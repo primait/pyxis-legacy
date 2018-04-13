@@ -1,0 +1,4 @@
+var _user$project$Achille_Subscriptions$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$batch(
+		{ctor: '[]'});
+};

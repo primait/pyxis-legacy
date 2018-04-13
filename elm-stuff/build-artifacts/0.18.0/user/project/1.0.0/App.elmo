@@ -1,0 +1,6 @@
+var _user$project$App$init = A2(
+	_elm_lang$core$Platform_Cmd_ops['!'],
+	_user$project$Achille_Model$initialModel,
+	{ctor: '[]'});
+var _user$project$App$main = _elm_lang$html$Html$program(
+	{init: _user$project$App$init, view: _user$project$Achille_View$view, update: _user$project$Achille_Update$update, subscriptions: _user$project$Achille_Subscriptions$subscriptions})();

@@ -1,0 +1,6 @@
+var _user$project$Achille_Model$Model = function (a) {
+	return {status: a};
+};
+var _user$project$Achille_Model$None = {ctor: 'None'};
+var _user$project$Achille_Model$AppReady = {ctor: 'AppReady'};
+var _user$project$Achille_Model$initialModel = _user$project$Achille_Model$Model(_user$project$Achille_Model$AppReady);
