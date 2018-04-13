@@ -15,6 +15,7 @@
 - Atoms must have only internal spacing
 - Atoms must have active modifiers *(i.e. is-active, is-selected )*
 - Stay **DRY**
+- Think **mobile-first**
 
 
 
@@ -29,6 +30,7 @@
   - Colors
   - Spacing & grid
   - Icons
+  - Media queries
 
 - Molecules
 
@@ -38,5 +40,4 @@
 
 - Pages
 
-  ​
-
+ 
