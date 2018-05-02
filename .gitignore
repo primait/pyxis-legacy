@@ -3,3 +3,6 @@
 npm-debug.log
 .npm/
 yarn-error.log
+node_modules/
+./node_modules/
+./dist/
