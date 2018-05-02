@@ -1,0 +1,33 @@
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+@function color($color, $variation: base) {
+  @if( map-has-key($colors, $color) ) {
+    @return map-deep-get($colors, $color, $variation);
+  }
+  @else {
+    @error "Color `#{$color}` not found in `$colors` map.");
+  }
+}
+
+@function font($font) {
+  @if( map-has-key($fonts, $font) ) {
+    @return map-get($fonts, $font);
+  }
+  @else {
+    @error "Font `#{$font}` not found in `$fonts` map.");
+  }
+}
+
+@function size($size) {
+  @if( map-has-key($sizes, $size) ) {
+    @return map-get($sizes, $size);
+  }
+  @else {
+    @error "Font `#{$size}` not found in `$sizes` map.");
+  }
+}

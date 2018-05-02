@@ -1,0 +1,45 @@
+$colors: (
+
+  purple: (
+    light: #b967d9,
+    base: #8334c2,
+    dark: #7230ac,
+  ),
+
+  green: (
+    light: #ecf8fa,
+    base: #21c7a7,
+    dark: #1db396,
+  ),
+
+  grey: (
+    light: #a3a4a6,
+    base: #7e8890,
+    dark: #4d5969,
+  ),
+
+  blue: (
+    light: #3c4355,
+    base: #3c4355,
+    dark: #343a4b,
+  ),
+
+  white: (
+    base: #fff,
+  ),
+
+);
+
+$fonts: (
+  light:   'avenirltstd-light',
+  base:    'avenirltstd-medium',
+  heavy:   'avenirltstd-heavy',
+);
+
+$fontSizes: (
+  xsmall:   11px,
+  small:    12px,
+  medium:   14px,
+  large:    24px,
+  xlarge:   32px,
+);
