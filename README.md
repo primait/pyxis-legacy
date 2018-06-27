@@ -19,26 +19,10 @@
 - Think **mobile-first**
 
 
+### Startup
 
-#### ToDo List:
+Install packages: `yarn`
 
-- Atoms:
+Run local devServer: `yarn dev` (via Webpack Dev Server)
 
-  - One-rule helpers 
-  - Buttons
-  - Typography
-  - Form inputs
-  - Colors
-  - Spacing & grid
-  - Icons
-  - Media queries
-
-- Molecules
-
-- Organisms
-
-- Templates
-
-- Pages
-
- 
+Build for production: `yarn build:prod`
