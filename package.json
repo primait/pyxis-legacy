@@ -4,12 +4,15 @@
   "description": "Design System of Prima Assicurazioni",
   "main": "app.js",
   "dependencies": {
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "elm-webpack-loader": "^4.5.0",
     "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "scss-loader": "^0.0.1",
     "style-loader": "^0.21.0",
-    "url-loader": "^1.0.1",
     "webpack": "^4.12.2",
+    "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4"
   },
   "scripts": {
@@ -20,12 +23,9 @@
   },
   "author": "Alessio Santangelo",
   "devDependencies": {
-    "clean-webpack-plugin": "^0.1.19",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "html-loader": "^0.5.5",
+    "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.0",
-    "sass-loader": "^7.0.3",
-    "webpack-cli": "^3.0.8"
+    "sass-loader": "^7.0.3"
   }
 }
