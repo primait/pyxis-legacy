@@ -2,10 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const appStylePlugin = new ExtractTextPlugin('./app.css');
-const primaStylePlugin = new ExtractTextPlugin('./prima.css');
 
 const config = {
 
@@ -25,10 +21,7 @@ const config = {
       {
         test: /\.scss$/,
         include: [ path.resolve(__dirname, 'src', 'scss') ],
-        use: [
-          appStylePlugin.extract({ use: ['css-loader', 'sass-loader'], fallback: 'style-loader' }),
-          primaStylePlugin.extract({ use: ['css-loader', 'sass-loader'], fallback: 'style-loader' })
-        ]
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       { test: /\.html$/,
         use: ['html-loader']
@@ -61,8 +54,6 @@ const config = {
   plugins: [
     new CleanWebpackPlugin([ 'dist' ]),
     new HtmlWebpackPlugin({ template: 'index.html' }),
-    appStylePlugin,
-    primaStylePlugin,
   ]
 
 }
