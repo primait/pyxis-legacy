@@ -5,13 +5,16 @@ import Pyxis.Components.Form.Update as FormUpdate
 import Pyxis.Helpers
     exposing
         ( changeRoute
+        , updateMenu
         , withCmds
         , withoutCmds
         )
 import Pyxis.Model
     exposing
-        ( Model
+        ( Menu
+        , Model
         , Msg(..)
+        , Route(..)
         )
 import Pyxis.Routing exposing (parseLocation)
 
@@ -20,10 +23,18 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case Debug.log "update" msg of
         LocationChange location ->
-            { model | route = parseLocation location } |> withoutCmds
+            { model
+                | route = parseLocation location
+                , menu = updateMenu (parseLocation location) model.menu
+            }
+                |> withoutCmds
 
         RouteUpdate route ->
-            { model | route = route } |> withCmds [ changeRoute route ]
+            { model
+                | route = route
+                , menu = updateMenu route model.menu
+            }
+                |> withCmds [ changeRoute route ]
 
         FormMsg formMsg ->
             updateForm model formMsg model.form

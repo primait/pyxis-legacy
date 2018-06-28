@@ -1,6 +1,7 @@
 module Pyxis.Model
     exposing
         ( AppStatus(..)
+        , Flags
         , Menu
         , Model
         , Msg(..)
@@ -37,8 +38,8 @@ initialModel =
 
 initialMenu : List Menu
 initialMenu =
-    [ Menu "home" "Pyxis" (RouteUpdate HomeRoute) True
-    , Menu "form" "Form" (RouteUpdate FormRoute) False
+    [ Menu "home" "Pyxis" HomeRoute True
+    , Menu "form" "Form" FormRoute False
     ]
 
 
@@ -55,6 +56,11 @@ type Route
 type alias Menu =
     { slug : String
     , label : String
-    , action : Msg
+    , route : Route
     , isActive : Bool
+    }
+
+
+type alias Flags =
+    { route : String
     }

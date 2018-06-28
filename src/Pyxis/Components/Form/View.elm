@@ -8,7 +8,10 @@ import Pyxis.Components.Form.Model
         ( Model
         , Msg(..)
         )
-import Pyxis.Helpers exposing (renderOrNothing)
+import Pyxis.Helpers
+    exposing
+        ( renderOrNothing
+        )
 
 
 view : Model -> List (Html Msg)

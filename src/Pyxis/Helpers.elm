@@ -4,8 +4,13 @@ import Date exposing (Date, Day(..), Month(..))
 import Date.Format
 import DatePicker exposing (DatePicker)
 import Html exposing (..)
+import Html.Attributes exposing (class)
 import Navigation exposing (Location)
-import Pyxis.Model exposing (Route(..))
+import Pyxis.Model
+    exposing
+        ( Menu
+        , Route(..)
+        )
 import Task
 
 
@@ -148,3 +153,18 @@ monthFormatter month =
 renderOrNothing : Maybe (Html msg) -> Html msg
 renderOrNothing maybeHtml =
     Maybe.withDefault (text "") maybeHtml
+
+
+updateMenu : Route -> List Menu -> List Menu
+updateMenu route menu =
+    let
+        activateByRoute : Route -> Menu -> Menu
+        activateByRoute route menu =
+            { menu | isActive = menu.route == route }
+    in
+    List.map (activateByRoute route) menu
+
+
+divider : Html msg
+divider =
+    hr [ class "divider" ] []

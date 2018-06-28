@@ -22,13 +22,13 @@ view { menu } =
 
 
 item : Menu -> Html Msg
-item { slug, label, action, isActive } =
+item { slug, label, route, isActive } =
     li
         [ classList
             [ ( "nav__menu__item", True )
             , ( "is-active", isActive )
             ]
-        , onClick action
+        , (onClick << RouteUpdate) route
         ]
         [ text label
         ]

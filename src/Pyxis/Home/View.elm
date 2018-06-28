@@ -1,7 +1,7 @@
 module Pyxis.Home.View exposing (view)
 
 import Html exposing (..)
-import Html.Events exposing (onClick)
+import Html.Attributes exposing (class)
 import Pyxis.Model
     exposing
         ( Model
@@ -12,4 +12,6 @@ import Pyxis.Model
 
 view : Model -> List (Html Msg)
 view model =
-    []
+    [ h1 [] [ text "Welcome to ", span [ class "purple" ] [ text "Pyxis!" ] ]
+    , h2 [] [ text "Prima Assicurazioni Design System" ]
+    ]
