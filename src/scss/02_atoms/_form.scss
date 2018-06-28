@@ -5,10 +5,16 @@
 .a-form__field {
   display: flex;
   padding: 10px 0;
+  height: 70px;
+  align-items: center;
 }
 
 .a-form__field__label {
   flex: 0 0 280px;
+
+  &.a-form__field__label--option {
+    flex: 1 0 auto;
+  }
 }
 
 .a-form__field__input {
@@ -17,4 +23,93 @@
   border-radius: 3px;
   padding: 10px;
   margin: 0;
+}
+
+.a-form__field__checkbox,
+.a-form__field__radio {
+  display: none;
+}
+
+.a-form__field__label.a-form__field__label--option {
+  margin-right: 15px;
+  width: auto;
+  min-width: 55px;
+  position: relative;
+  padding-left: 25px;
+  display: inline-block;
+  cursor: pointer;
+
+  &[disabled],
+  &[disabled]:focus,
+  &[disabled].is-valid,
+  &[disabled].is-dirty {
+    opacity: 0.65;
+    pointer-events: none;
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  &:before {
+    content: '';
+    border: 1px solid color(green);
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  &:after {
+    left: 6px;
+    transform: scale(0) translateY(-50%);
+    transition: transform 0.2s cubic-bezier(0, 1, 1, 1);
+  }
+}
+
+.a-form__field__radio + .a-form__field__label.a-form__field__label--option {
+
+  &:before,
+  &:after {
+    border-radius: 100%;
+  }
+
+  &:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: color(green);
+  }
+}
+
+.a-form__field__checkbox + .a-form__field__label.a-form__field__label--option {
+  display: block;
+  width: 20px;
+  height: 20px;
+
+  &:before {
+    border-radius: 2px;
+  }
+
+  &:after {
+    content: "\e900";
+    left: 3px;
+    line-height: 20px;
+    font-family: 'icomoon';
+    color: color(white);
+  }
+}
+
+.a-form__field__radio:checked + .a-form__field__label.a-form__field__label--option:after,
+.a-form__field__checkbox:checked + .a-form__field__label.a-form__field__label--option:after {
+  transform: scale(1) translateY(-50%);
+}
+
+.a-form__field__checkbox:checked + .a-form__field__label.a-form__field__label--option:before {
+  background: color(green);
 }
