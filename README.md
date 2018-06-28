@@ -12,33 +12,16 @@
 - No more than two nesting levels
 - No implicit rules
 - No vendor prefixes
-- Atoms must be **predictable** and **independent** 
+- Atoms must be **predictable** and **independent**
 - Atoms must have only internal spacing
 - Atoms must have active modifiers *(i.e. is-active, is-selected )*
 - Stay **DRY**
 - Think **mobile-first**
 
 
+### Startup
 
-#### ToDo List:
-
-- Atoms:
-
-  - One-rule helpers 
-  - Buttons
-  - Typography
-  - Form inputs
-  - Colors
-  - Spacing & grid
-  - Icons
-  - Media queries
-
-- Molecules
-
-- Organisms
-
-- Templates
-
-- Pages
-
- 
+- Install packages: `yarn install`
+- Install Elm packages: `elm-package install`
+- Run local devServer (via Webpack Dev Server): `yarn dev`
+- Build for production: `yarn build:prod`

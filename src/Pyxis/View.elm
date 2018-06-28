@@ -3,7 +3,7 @@ module Pyxis.View exposing (view)
 import Html exposing (..)
 import Html.Attributes exposing (class)
 import Pyxis.Components.Form.View as FormComponent
-import Pyxis.Home.View as HomeComponent
+import Pyxis.Home.View as Home
 import Pyxis.Model
     exposing
         ( AppStatus(..)
@@ -11,21 +11,26 @@ import Pyxis.Model
         , Msg(..)
         , Route(..)
         )
+import Pyxis.Nav.View as Nav
 
 
 view : Model -> Html Msg
-view ({ route } as model) =
+view model =
     div
         [ class "wrapper"
         ]
-        (case route of
-            HomeRoute ->
-                [ HomeComponent.view model ]
+        (Nav.view model :: dynamicView model)
 
-            FormRoute ->
-                List.map (Html.map FormMsg) (FormComponent.view model.form)
 
-            _ ->
-                [ text "Route not found"
-                ]
-        )
+dynamicView : Model -> List (Html Msg)
+dynamicView ({ route } as model) =
+    case route of
+        HomeRoute ->
+            Home.view model
+
+        FormRoute ->
+            List.map (Html.map FormMsg) (FormComponent.view model.form)
+
+        _ ->
+            [ text "Route not found"
+            ]

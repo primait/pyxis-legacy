@@ -7,6 +7,10 @@
   padding: 10px 0;
 }
 
+.a-form__field__label {
+  flex: 0 0 400px;
+}
+
 .a-form__field__input {
   background: color(white);
   border: 1px solid color(grey);

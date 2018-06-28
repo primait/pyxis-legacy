@@ -10,11 +10,6 @@ import Pyxis.Model
         )
 
 
-view : Model -> Html Msg
+view : Model -> List (Html Msg)
 view model =
-    div
-        []
-        [ a
-            [ onClick (RouteUpdate FormRoute) ]
-            [ text "Go to Form" ]
-        ]
+    []
