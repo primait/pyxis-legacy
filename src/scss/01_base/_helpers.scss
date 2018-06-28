@@ -10,7 +10,7 @@
     @return map-deep-get($colors, $color, $variation);
   }
   @else {
-    @error "Color `#{$color}` not found in `$colors` map.");
+    @error "Color `#{$color}` not found in `$colors` map.";
   }
 }
 
@@ -19,15 +19,15 @@
     @return map-get($fonts, $font);
   }
   @else {
-    @error "Font `#{$font}` not found in `$fonts` map.");
+    @error "Font `#{$font}` not found in `$fonts` map.";
   }
 }
 
 @function size($size) {
-  @if( map-has-key($sizes, $size) ) {
-    @return map-get($sizes, $size);
+  @if( map-has-key($fontSizes, $size) ) {
+    @return map-get($fontSizes, $size);
   }
   @else {
-    @error "Font `#{$size}` not found in `$sizes` map.");
+    @error "Font `#{$size}` not found in `$fontSizes` map.";
   }
 }

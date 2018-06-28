@@ -1,20 +1,28 @@
 module App exposing (..)
 
-import Achille.Model
+import Html
+import Pyxis.Helpers
     exposing
-        ( Model
+        ( updateMenu
+        , withCmds
+        , withoutCmds
+        )
+import Pyxis.Model
+    exposing
+        ( Flags
+        , Model
         , Msg(..)
+        , Route(..)
         , initialModel
         )
-import Achille.Subscriptions exposing (subscriptions)
-import Achille.Update exposing (update)
-import Achille.View exposing (view)
-import Html
+import Pyxis.Subscriptions exposing (subscriptions)
+import Pyxis.Update exposing (update)
+import Pyxis.View exposing (view)
 
 
-main : Program Never Model Msg
+main : Program Flags Model Msg
 main =
-    Html.program
+    Html.programWithFlags
         { init = init
         , view = view
         , update = update
@@ -22,6 +30,20 @@ main =
         }
 
 
-init : ( Model, Cmd Msg )
-init =
-    initialModel ! []
+init : Flags -> ( Model, Cmd Msg )
+init flags =
+    { initialModel
+        | route = toRoute flags.route
+        , menu = updateMenu (toRoute flags.route) initialModel.menu
+    }
+        |> withoutCmds
+
+
+toRoute : String -> Route
+toRoute str =
+    case String.toLower str of
+        "/form" ->
+            FormRoute
+
+        _ ->
+            initialModel.route
