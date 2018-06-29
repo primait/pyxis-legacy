@@ -14,32 +14,17 @@ clone:
 pipeline:
   build:
     image: prima/drone-tools:1.13.0
-#    environment:
-#      - COMPOSE_PROJECT_NAME=${DRONE_REPO_NAME}${DRONE_BUILD_NUMBER}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/cache/ci/${DRONE_REPO}/${DRONE_BRANCH}:/var/cache/ci
     commands:
       - prepare-docker-compose
       - cache-restore --docker-cache-pull --no-files
-#      - decrypt-secrets
       - docker-compose build
       - docker-compose run -w $PWD web "yarn install"
       - docker-compose run -w $PWD web "yarn build:prod"
       - if [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/deploy staging; fi
       - cache-save ~/.node-modules ~/.elm-stuff
-
-  # wait_for_stack:
-  #   image: prima/drone-tools:1.13.0
-  #   environment:
-  #     - COMPOSE_PROJECT_NAME=${DRONE_REPO_NAME}${DRONE_BUILD_NUMBER}
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock
-  #     - /var/cache/ci/${DRONE_REPO}/${DRONE_BRANCH}:/var/cache/ci
-  #   commands:
-  #     - if [ -n "${DRONE_TAG}" ]; then ./deploy/wait_for_stack production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/wait_for_stack staging; fi
-  #   when:
-  #     branch: master
 
   notify_email:
     image: drillster/drone-email
@@ -51,8 +36,6 @@ pipeline:
 
   cleanup:
     image: prima/drone-tools:1.13.0
-    # environment:
-    #   - COMPOSE_PROJECT_NAME=${DRONE_REPO_NAME}${DRONE_BUILD_NUMBER}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:

@@ -1,0 +1,175 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  Environment:
+    Type: String
+    AllowedValues:
+    - staging
+  ReleaseVersion:
+    Type: String
+  TaskDesiredCount:
+    Type: Number
+    Default: '2'
+  HostnamePattern:
+    Type: String
+  HostnamePatternPriority:
+    Type: Number
+    Default: 1
+
+Mappings:
+  ECSCluster:
+    staging:
+      id: ecs-cluster-allinone-staging-ECSCluster-1ECKQ785CYFWL
+      PyxisRam: '100'
+      HealthyThreshold: 10
+      DeploymentMaximumPercent: '100'
+      DeploymentMinimumHealthyPercent: '50'
+      ALBShortName: pyxis-staging
+
+Conditions:
+  ManageDNS: !Equals [ !Ref Environment, staging ]
+
+Resources:
+  ECSServicePyxis:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: !FindInMap [ ECSCluster, !Ref Environment, id ]
+      DesiredCount:
+        Ref: TaskDesiredCount
+      TaskDefinition:
+        Ref: TaskDefinitionPyxis
+      LoadBalancers:
+      - ContainerName: pyxis
+        ContainerPort: '80'
+        TargetGroupArn:
+          Ref: ApplicationLoadBalancerTargetGroup
+      DeploymentConfiguration:
+        MaximumPercent:
+          Fn::FindInMap:
+          - ECSCluster
+          - Ref: Environment
+          - DeploymentMaximumPercent
+        MinimumHealthyPercent:
+          Fn::FindInMap:
+          - ECSCluster
+          - Ref: Environment
+          - DeploymentMinimumHealthyPercent
+      Role:
+        Ref: ECSServiceRole
+    DependsOn:
+    - ApplicationLoadBalancerTargetGroup
+    - ApplicationLoadBalancerHttpsListenerRule
+
+  TaskDefinitionPyxis:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+      - Name: pyxis
+        Image: prima/pyxis:1.12.2-2
+        Essential: true
+        MemoryReservation:
+          Fn::FindInMap:
+          - ECSCluster
+          - Ref: Environment
+          - PyxisRam
+        PortMappings:
+        - ContainerPort: 80
+        Environment:
+        - Name: AWS_STACK_NAME
+          Value:
+            Ref: AWS::StackName
+        - Name: VERSION
+          Value:
+            Ref: ReleaseVersion
+        - Name: PORT
+          Value: '80'
+        - Name: ECS_SHOULD_BE_SCALED
+          Value: true
+      Volumes:
+      - Name: awseb-logs-system
+        Host:
+          SourcePath: "/var/log"
+
+  ApplicationLoadBalancerTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      HealthCheckIntervalSeconds: 5
+      HealthCheckPath: "/"
+      HealthCheckPort: traffic-port
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 4
+      HealthyThresholdCount:
+        Fn::FindInMap:
+        - ECSCluster
+        - Ref: Environment
+        - HealthyThreshold
+      UnhealthyThresholdCount: 2
+      Matcher:
+        HttpCode: '200'
+      Name:
+        !FindInMap [ ECSCluster, !Ref Environment, ALBShortName ]
+      Port: 80
+      Protocol: HTTP
+      Tags:
+      - Key: Name
+        Value:
+          Ref: AWS::StackName
+      TargetGroupAttributes:
+      - Key: deregistration_delay.timeout_seconds
+        Value: 30
+      - Key: stickiness.enabled
+        Value: true
+      - Key: stickiness.type
+        Value: lb_cookie
+      - Key: stickiness.lb_cookie.duration_seconds
+        Value: 360
+      VpcId:
+          - Fn::ImportValue: !Sub VPC-${Environment}
+
+  ApplicationLoadBalancerHttpsListenerRule:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      Actions:
+      - Type: forward
+        TargetGroupArn:
+          Ref: ApplicationLoadBalancerTargetGroup
+      Conditions:
+      - Field: host-header
+        Values:
+        - !Ref HostnamePattern
+      ListenerArn:
+        Fn::ImportValue: !Sub AlbPublicDefaultHttpsListener-http-${Environment}
+      Priority: !Ref HostnamePatternPriority
+
+  ECSServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - ecs.amazonaws.com
+            - ec2.amazonaws.com
+            - ecs-tasks.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: "/"
+      Policies:
+      - PolicyName:
+          Fn::Join:
+          - "-"
+          - - ecs-task-pyxis
+            - Ref: Environment
+        PolicyDocument:
+          Statement:
+          - Effect: Allow
+            Action:
+            - elasticloadbalancing:Describe*
+            - elasticloadbalancing:DeregisterInstancesFromLoadBalancer
+            - elasticloadbalancing:RegisterInstancesWithLoadBalancer
+            - elasticloadbalancing:DeregisterTargets
+            - elasticloadbalancing:RegisterTargets
+            - ec2:Describe*
+            - ec2:AuthorizeSecurityGroupIngress
+            Resource: "*"

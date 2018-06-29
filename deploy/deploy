@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# script exit when a command fails
+set -o errexit
+# catch a command error in pipe execution
+set -o pipefail
+# exit when try to use undeclared variables
+# set -o nounset
+
+set -x
+
+if [ $# -eq 0 ]; then
+    echo "Devi passare come argomento l'env da utilizzare, staging o production"
+    exit 1
+fi
+
+ENV=$1
+GIT_REV=$(git rev-parse --verify HEAD | cut -b 1-15)
+VERSION=${GIT_REV}
+
+if [ "$ENV" = "staging" ]; then
+  HOSTNAME_PRIORITY="6001"
+  HOSTNAME_PATTERN="pyxis-staging.prima.it"
+fi
+
+echo "deploying $ENV"
+
+tar czf ${VERSION}-${ENV}.tar.gz dist/
+aws --region="eu-west-1" s3 cp ${VERSION}-${ENV}.tar.gz s3://prima-artifacts-encrypted/microservices/pyxis/${VERSION}-${ENV}.tar.gz
+
+aws --region="eu-west-1" cloudformation describe-stacks --stack-name ecs-task-pyxis-"${ENV}" > /dev/null
+
+if [ $? -eq 0 ]; then
+  ACTION="update-stack"
+else
+  ACTION="create-stack"
+fi
+
+if [ "${ENV}" = "production" ]; then
+  CLUSTER_STACK_NAME="ecs-cluster-microservices-${ENV}"
+elif [ "${ENV}" = "staging" ]; then
+  CLUSTER_STACK_NAME="ecs-cluster-allinone-${ENV}"
+else
+  echo "${ENV} non supportato!"
+  exit 1
+fi
+
+SERVICE_LOGIC_NAME="ECSServicePyxis"
+
+ECS_CLUSTER=$(aws --region eu-west-1 cloudformation describe-stack-resource \
+  --stack-name ${CLUSTER_STACK_NAME} --logical-resource-id ECSCluster \
+  | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["StackResourceDetail"]["PhysicalResourceId"]')
+
+ECS_SERVICE=$(aws --region eu-west-1 cloudformation describe-stack-resource \
+  --stack-name ecs-task-pyxis-${ENV} --logical-resource-id ${SERVICE_LOGIC_NAME} \
+  | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["StackResourceDetail"]["PhysicalResourceId"]')
+
+TASK_DESIRED_COUNT=$(aws --region eu-west-1 ecs describe-services \
+  --cluster ${ECS_CLUSTER} --services ${ECS_SERVICE} \
+  | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["services"][0]["desiredCount"]')
+
+if [ -z "$TASK_DESIRED_COUNT" ]; then
+  TASK_DESIRED_COUNT=2
+fi
+
+aws --region="eu-west-1" cloudformation ${ACTION} --stack-name ecs-task-pyxis-"${ENV}" \
+  --template-body file://$PWD/deploy/task.yml \
+  --parameters ParameterKey=ReleaseVersion,ParameterValue=${VERSION} \
+              ParameterKey=Environment,ParameterValue=${ENV} \
+              ParameterKey=TaskDesiredCount,ParameterValue=${TASK_DESIRED_COUNT} \
+              ParameterKey=HostnamePatternPriority,ParameterValue=${HOSTNAME_PRIORITY} \
+              ParameterKey=HostnamePattern,ParameterValue=${HOSTNAME_PATTERN} \
+  --capabilities CAPABILITY_IAM
+
+exec ./wait_for_stack staging
