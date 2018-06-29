@@ -10,16 +10,19 @@ import Pyxis.Components.Form.Model
         )
 import Pyxis.Helpers
     exposing
-        ( renderOrNothing
+        ( divider
+        , renderOrNothing
         )
 
 
 view : Model -> List (Html Msg)
 view ({ datepicker } as model) =
-    [ Form.render model textFieldConfig
+    [ h2 [] [ text "Form components" ]
+    , divider
+    , Form.render model textFieldConfig
     , (renderOrNothing << Maybe.map (Form.render model << datepickerFieldConfig)) datepicker
     , Form.render model (autocompleteFieldConfig model)
     , Form.render model radioFieldConfig
-    , Form.render model selectFieldConfig
+    , Form.render model (selectFieldConfig model.isSelectFieldOpen)
     , Form.render model checkboxFieldConfig
     ]

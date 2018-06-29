@@ -1,0 +1,131 @@
+/************************
+  Tablet/Desktop component
+*************************/
+.a-form__field__customSelect {
+  background: color(white);
+  border: 1px solid color(grey);
+  border-radius: 3px;
+  color: color(green, dark);
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  position: relative;
+
+  &:focus {
+    border-color: color(green);
+  }
+
+  &.is-open,
+  &.is-valid,
+  &.is-touched {
+    border-color: color(green, dark);
+  }
+
+  &.is-invalid {
+    border-color: color(red);
+    color: color(red);
+  }
+
+  @include mq(medium) {
+    display: flex;
+  }
+}
+
+.a-form__field__customSelect__status {
+  align-items: center;
+  border-color: inherit;
+  color: inherit;
+  display: flex;
+  height: 50px;
+  padding: 0 10px;
+
+  &:after {
+    color: color(green, dark);
+    content: "\e902";
+    font-family: 'icomoon';
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+
+    transform: translateY(-50%) rotate(0deg);
+    transition: transform 0.2s cubic-bezier(0, 1, 1, 1);
+  }
+
+  .is-open &:after {
+    transform: translateY(-50%) rotate(-180deg);
+  }
+}
+
+.a-form__field__customSelect__list {
+  background: color(white);
+  border: 1px solid color(green, dark);
+  border-radius: 0 0 3px 3px;
+  border-top: none;
+  display: none;
+  flex-direction: column;
+  left: -1px;
+  list-style: none;
+  margin: -1px 0 0 0;
+  padding: 0;
+  position: absolute;
+  right: -1px;
+  top: 100%;
+  z-index: 1;
+
+  .is-open & {
+    display: flex;
+  }
+}
+
+.a-form__field__customSelect__list__item {
+  align-items: center;
+  color: color(green, dark);
+  display: flex;
+  padding: 0 10px;
+  height: 40px;
+
+  &.is-selected {
+    background: color(green, light);
+  }
+
+  &:hover,
+  &.is-selected:hover {
+    background: color(green, dark);
+    color: color(white);
+  }
+}
+
+
+/************************
+  Mobile component
+*************************/
+.a-form__field__select {
+  background: color(white);
+  border: 1px solid color(grey);
+  border-radius: 3px;
+  color: color(green, dark);
+  display: flex;
+  height: 50px;
+  margin: 0;
+  outline: none;
+  padding: 0 10px;
+
+  @include mq(medium) {
+    display: none;
+  }
+
+  &:focus {
+    border-color: color(green);
+  }
+
+  &.is-valid,
+  &.is-touched {
+    border-color: color(green, dark);
+  }
+
+  &.is-invalid {
+    border-color: color(red);
+    color: color(red);
+  }
+}
