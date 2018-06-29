@@ -1,0 +1,15 @@
+@each $color, $props in $colors {
+
+  @each $modifier in $props {
+
+    .bg-#{$color}-#{$modifier} {
+      background: color($color, $modifier);
+    }
+
+    .c-#{$color}-#{$modifier} {
+      color: color($color, $modifier);
+    }
+
+  }
+
+}
