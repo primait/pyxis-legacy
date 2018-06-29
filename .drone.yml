@@ -1,0 +1,61 @@
+clone:
+  cache-restore:
+    image: prima/drone-tools:1.13.0
+    volumes:
+      - /var/cache/ci/${DRONE_REPO}/${DRONE_BRANCH}:/var/cache/ci
+    commands:
+      - cache-restore --files --no-docker-cache-pull
+
+  git:
+    image: prima/drone-git:1.3-1
+    recursive: true
+    pull: true
+
+pipeline:
+  build:
+    image: prima/drone-tools:1.13.0
+#    environment:
+#      - COMPOSE_PROJECT_NAME=${DRONE_REPO_NAME}${DRONE_BUILD_NUMBER}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/cache/ci/${DRONE_REPO}/${DRONE_BRANCH}:/var/cache/ci
+    commands:
+      - prepare-docker-compose
+      - cache-restore --docker-cache-pull --no-files
+#      - decrypt-secrets
+      - docker-compose build
+      - docker-compose run -w $PWD web "yarn install"
+      - docker-compose run -w $PWD web "yarn build:prod"
+      - if [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/deploy staging; fi
+      - cache-save ~/.node-modules ~/.elm-stuff
+
+  # wait_for_stack:
+  #   image: prima/drone-tools:1.13.0
+  #   environment:
+  #     - COMPOSE_PROJECT_NAME=${DRONE_REPO_NAME}${DRONE_BUILD_NUMBER}
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /var/cache/ci/${DRONE_REPO}/${DRONE_BRANCH}:/var/cache/ci
+  #   commands:
+  #     - if [ -n "${DRONE_TAG}" ]; then ./deploy/wait_for_stack production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/wait_for_stack staging; fi
+  #   when:
+  #     branch: master
+
+  notify_email:
+    image: drillster/drone-email
+    host: email-smtp.eu-west-1.amazonaws.com
+    secrets: [ email_username, email_password ]
+    from: noreply@prima.it
+    when:
+      status: [ changed, failure ]
+
+  cleanup:
+    image: prima/drone-tools:1.13.0
+    # environment:
+    #   - COMPOSE_PROJECT_NAME=${DRONE_REPO_NAME}${DRONE_BUILD_NUMBER}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - teardown
+    when:
+      status: [ success, killed, failure ]
