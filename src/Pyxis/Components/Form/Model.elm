@@ -28,6 +28,7 @@ type alias Model =
     , datepicker : Maybe DatePicker
     , autocompleteField : Maybe String
     , autocompleteFilter : Maybe String
+    , isAutocompleteFieldOpen : Bool
     }
 
 
@@ -43,6 +44,7 @@ initialModel =
         Nothing
         Nothing
         Nothing
+        False
 
 
 type Field

@@ -93,7 +93,7 @@ datepickerFieldConfig datepicker =
 
 
 autocompleteFieldConfig : Model -> FormField Model Msg
-autocompleteFieldConfig model =
+autocompleteFieldConfig ({ isAutocompleteFieldOpen } as model) =
     let
         lowerFilter =
             (String.toLower << Maybe.withDefault "" << .autocompleteFilter) model
@@ -112,6 +112,8 @@ autocompleteFieldConfig model =
         "autocomplete_field"
         "Autocomplete field"
         False
+        isAutocompleteFieldOpen
+        (Just "Nessun risultato trovato. Modifica i filtri.")
         []
         .autocompleteFilter
         .autocompleteField

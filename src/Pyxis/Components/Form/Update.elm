@@ -22,7 +22,7 @@ update msg model =
             { model | textField = value } |> withoutCmds
 
         UpdateText Autocomplete value ->
-            { model | autocompleteField = value } |> withoutCmds
+            { model | autocompleteField = value, autocompleteFilter = Nothing, isAutocompleteFieldOpen = False } |> withoutCmds
 
         UpdateText Radio value ->
             { model | radioField = value } |> withoutCmds
@@ -34,7 +34,7 @@ update msg model =
             withoutCmds model
 
         UpdateAutocomplete Autocomplete value ->
-            { model | autocompleteFilter = value } |> withoutCmds
+            { model | autocompleteFilter = value, isAutocompleteFieldOpen = True } |> withoutCmds
 
         UpdateAutocomplete _ _ ->
             withoutCmds model
