@@ -15,11 +15,13 @@ type Msg
     | UpdateAutocomplete Field (Maybe String)
     | UpdateFlag Field Bool
     | UpdateDate Field DatePicker.Msg
+    | Toggle Field Bool
 
 
 type alias Model =
     { textField : Maybe String
     , selectField : Maybe String
+    , isSelectFieldOpen : Bool
     , checkboxField : Bool
     , radioField : Maybe String
     , datepickerField : Maybe Date
@@ -34,6 +36,7 @@ initialModel =
     Model
         Nothing
         Nothing
+        False
         False
         Nothing
         Nothing

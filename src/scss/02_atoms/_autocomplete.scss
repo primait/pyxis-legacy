@@ -1,0 +1,38 @@
+.a-form__field__autocomplete {
+  background: color(white);
+  border: 1px solid color(green, dark);
+  border-radius: 0 0 3px 3px;
+  border-top: none;
+  display: none;
+  flex-direction: column;
+  left: -1px;
+  list-style: none;
+  margin: -1px 0 0 0;
+  padding: 0;
+  position: absolute;
+  right: -1px;
+  top: 100%;
+  z-index: 1;
+
+  .a-form__field__input--autocomplete:focus + & {
+    display: flex;
+  }
+}
+
+.a-form__field__autocomplete__item {
+  align-items: center;
+  color: color(green, dark);
+  display: flex;
+  padding: 0 10px;
+  height: 40px;
+
+  &.is-selected {
+    background: color(green, light);
+  }
+
+  &:hover,
+  &.is-selected:hover {
+    background: color(green, dark);
+    color: color(white);
+  }
+}

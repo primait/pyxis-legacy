@@ -2,30 +2,34 @@ $colors: (
 
   purple: (
     light: #b967d9,
-    base: #8334c2,
-    dark: #7230ac,
+    base:  #8334c2,
+    dark:  #7230ac,
   ),
 
   green: (
     light: #ecf8fa,
-    base: #21c7a7,
-    dark: #1db396,
+    base:  #99d7df,
+    dark:  #10a1b4,
   ),
 
   grey: (
-    light: #a3a4a6,
-    base: #7e8890,
-    dark: #4d5969,
+    light: #f7f7f7,
+    base:  #e0e0e0,
+    dark:  #4d5969,
   ),
 
   blue: (
     light: #3c4355,
-    base: #3c4355,
-    dark: #343a4b,
+    base:  #3c4355,
+    dark:  #343a4b,
+  ),
+
+  red: (
+    base:  #e74c3c,
   ),
 
   white: (
-    base: #fff,
+    base:  #fff,
   ),
 
 );

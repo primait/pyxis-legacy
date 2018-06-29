@@ -1,0 +1,50 @@
+.a-form__field__radio {
+  display: none;
+}
+
+.a-form__field__radio__label {
+  cursor: pointer;
+  display: flex;
+  margin-right: 15px;
+  padding-left: 25px;
+  position: relative;
+  width: auto;
+
+  .a-form__field__radio[disabled] + & {
+    opacity: 0.65;
+    pointer-events: none;
+  }
+
+  &:before,
+  &:after {
+    border-radius: 100%;
+    display: flex;
+    font-size: 16px;
+    height: 20px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 20px;
+  }
+
+  &:before {
+    border: 1px solid color(green, dark);
+    content: '';
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  &:after {
+    background: color(green, dark);
+    content: '';
+    left: 6px;
+    height: 10px;
+    transform: scale(0) translateY(-50%);
+    transition: transform 0.2s cubic-bezier(0, 1, 1, 1);
+    width: 10px;
+  }
+
+  .a-form__field__radio:checked + &:after {
+    transform: scale(1) translateY(-50%);
+  }
+}

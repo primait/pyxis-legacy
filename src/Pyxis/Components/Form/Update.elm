@@ -27,6 +27,9 @@ update msg model =
         UpdateText Radio value ->
             { model | radioField = value } |> withoutCmds
 
+        UpdateText Select value ->
+            { model | selectField = value, isSelectFieldOpen = False } |> withoutCmds
+
         UpdateText _ _ ->
             withoutCmds model
 
@@ -70,4 +73,10 @@ update msg model =
             { model | datepickerField = date, datepicker = Just updatedDP } |> withCmds [ Cmd.map (UpdateDate Datepicker) dpCmd ]
 
         UpdateDate _ _ ->
+            withoutCmds model
+
+        Toggle Select isOpen ->
+            { model | isSelectFieldOpen = isOpen } |> withoutCmds
+
+        Toggle _ _ ->
             withoutCmds model

@@ -53,8 +53,8 @@ checkboxFieldConfig =
         []
 
 
-selectFieldConfig : FormField Model Msg
-selectFieldConfig =
+selectFieldConfig : Bool -> FormField Model Msg
+selectFieldConfig isOpen =
     let
         options =
             List.sortBy Tuple.first
@@ -69,8 +69,10 @@ selectFieldConfig =
         "select_field"
         "Select field"
         False
+        isOpen
         []
         .selectField
+        (Toggle Select)
         (UpdateText Select)
         options
         True
