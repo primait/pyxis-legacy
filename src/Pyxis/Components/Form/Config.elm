@@ -1,6 +1,8 @@
 module Pyxis.Components.Form.Config exposing (..)
 
 import DatePicker exposing (DatePicker)
+import Html exposing (..)
+import Html.Attributes exposing (class)
 import Prima.Form as Form
     exposing
         ( AutocompleteOption
@@ -21,6 +23,13 @@ import Pyxis.Helpers exposing (datepickerSettings)
 import Regex exposing (regex)
 
 
+errorConfig : String -> Html Msg
+errorConfig error =
+    p
+        [ class "a-form__field__error" ]
+        [ text error ]
+
+
 textFieldConfig : FormField Model Msg
 textFieldConfig =
     Form.textConfig
@@ -30,6 +39,7 @@ textFieldConfig =
         []
         .textField
         (UpdateText Text)
+        ((Just << errorConfig) "Value should contain `prima` string.")
         [ NotEmpty, Expression (regex "prima") ]
 
 
@@ -46,6 +56,7 @@ radioFieldConfig =
         , RadioOption "Option B" "b"
         , RadioOption "Option C" "c"
         ]
+        Nothing
         [ NotEmpty ]
 
 
@@ -58,6 +69,7 @@ checkboxFieldConfig =
         []
         .checkboxField
         (UpdateFlag Checkbox)
+        Nothing
         []
 
 
@@ -71,6 +83,7 @@ checkboxWithOptionsFieldConfig options =
         (List.map (\option -> ( option.slug, option.isChecked )) << .checkboxMultiField)
         (UpdateMultiCheckbox MultiCheckbox)
         options
+        Nothing
         []
 
 
@@ -97,6 +110,7 @@ selectFieldConfig isOpen =
         (UpdateText Select)
         options
         True
+        Nothing
         [ NotEmpty ]
 
 
@@ -110,6 +124,7 @@ datepickerFieldConfig datepicker =
         (UpdateDate Datepicker)
         datepicker
         datepickerSettings
+        Nothing
         []
 
 
@@ -134,11 +149,12 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen } as model) =
         "Autocomplete field"
         False
         isAutocompleteFieldOpen
-        (Just "Nessun risultato trovato. Modifica i filtri.")
+        (Just "Nessun risultato trovato.")
         []
         .autocompleteFilter
         .autocompleteField
         (UpdateAutocomplete Autocomplete)
         (UpdateText Autocomplete)
         options
+        Nothing
         [ NotEmpty ]
