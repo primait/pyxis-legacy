@@ -59,10 +59,6 @@
   .is-open &:after {
     transform: translateY(-50%) rotate(-180deg);
   }
-
-  .is-open & {
-    border-bottom: 2px solid color(grey);
-  }
 }
 
 .a-form__field__customSelect__list {
