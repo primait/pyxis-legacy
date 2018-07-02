@@ -30,7 +30,7 @@ aws --region="eu-west-1" s3 cp ${VERSION}-${ENV}.tar.gz s3://prima-artifacts-enc
 
 set +e
 aws --region="eu-west-1" cloudformation describe-stacks --stack-name ecs-task-pyxis-"${ENV}" > /dev/null
-set -e
+
 
 if [ $? -eq 0 ]; then
   ACTION="update-stack"
@@ -64,6 +64,8 @@ TASK_DESIRED_COUNT=$(aws --region eu-west-1 ecs describe-services \
 if [ -z "$TASK_DESIRED_COUNT" ]; then
   TASK_DESIRED_COUNT=2
 fi
+
+set -e
 
 aws --region="eu-west-1" cloudformation ${ACTION} --stack-name ecs-task-pyxis-"${ENV}" \
   --template-body file://$PWD/deploy/task.yml \
