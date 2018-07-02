@@ -23,7 +23,7 @@ pipeline:
       - docker-compose build
       - docker-compose run -w $PWD web "yarn install"
       - docker-compose run -w $PWD web "yarn build:prod"
-      - if [ "${DRONE_BRANCH}" = "feature/deploy-4618" ]; then ./deploy/deploy staging; fi
+      - if [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/deploy staging; fi
       - cache-save ~/.node-modules ~/.elm-stuff
 
   notify_email:
