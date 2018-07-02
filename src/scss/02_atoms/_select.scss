@@ -4,14 +4,16 @@
 .a-form__field__customSelect {
   background: color(white);
   border: 1px solid color(grey);
-  border-radius: 3px;
+  border-radius: 5px;
   color: color(green, dark);
   cursor: pointer;
   display: none;
   flex-direction: column;
   position: relative;
 
-  &:focus {
+  &:focus,
+  &.is-pristine,
+  &.is-pristine:focus {
     border-color: color(green);
   }
 
@@ -21,9 +23,19 @@
     border-color: color(green, dark);
   }
 
-  &.is-invalid {
+  &.is-open {
+    border-radius: 5px 5px 0px 0px;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.10);
+  }
+
+  &.is-invalid.is-touched:not(:focus) {
     border-color: color(red);
     color: color(red);
+  }
+
+  &.is-pristine:not(.is-open) {
+    border: 1px solid color(grey);
+    color: color(green, dark);
   }
 
   @include mq(medium) {
@@ -37,7 +49,7 @@
   color: inherit;
   display: flex;
   height: 50px;
-  padding: 0 10px;
+  padding: 0 15px;
 
   &:after {
     color: color(green, dark);
@@ -46,7 +58,7 @@
     font-size: 24px;
     position: absolute;
     top: 50%;
-    right: 5px;
+    right: 10px;
 
     transform: translateY(-50%) rotate(0deg);
     transition: transform 0.2s cubic-bezier(0, 1, 1, 1);
@@ -60,7 +72,7 @@
 .a-form__field__customSelect__list {
   background: color(white);
   border: 1px solid color(green, dark);
-  border-radius: 0 0 3px 3px;
+  border-radius: 0 0 5px 5px;
   border-top: none;
   display: none;
   flex-direction: column;
@@ -74,6 +86,7 @@
   z-index: 1;
 
   .is-open & {
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.10);
     display: flex;
   }
 }
@@ -82,7 +95,7 @@
   align-items: center;
   color: color(green, dark);
   display: flex;
-  padding: 0 10px;
+  padding: 0 15px;
   height: 40px;
 
   &.is-selected {
@@ -103,7 +116,7 @@
 .a-form__field__select {
   background: color(white);
   border: 1px solid color(grey);
-  border-radius: 3px;
+  border-radius: 5px;
   color: color(green, dark);
   display: flex;
   height: 50px;

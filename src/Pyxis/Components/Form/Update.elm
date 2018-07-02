@@ -30,6 +30,9 @@ update msg model =
         UpdateText Select value ->
             { model | selectField = value, isSelectFieldOpen = False } |> withoutCmds
 
+        UpdateText Textarea value ->
+            { model | textareaField = value } |> withoutCmds
+
         UpdateText _ _ ->
             withoutCmds model
 
@@ -43,6 +46,23 @@ update msg model =
             { model | checkboxField = value } |> withoutCmds
 
         UpdateFlag _ _ ->
+            withoutCmds model
+
+        UpdateMultiCheckbox MultiCheckbox slug isChecked ->
+            { model
+                | checkboxMultiField =
+                    List.map
+                        (\option ->
+                            if option.slug == slug then
+                                { option | isChecked = isChecked }
+                            else
+                                option
+                        )
+                        model.checkboxMultiField
+            }
+                |> withoutCmds
+
+        UpdateMultiCheckbox _ _ _ ->
             withoutCmds model
 
         UpdateDate Datepicker dpMsg ->

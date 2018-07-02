@@ -1,0 +1,198 @@
+$datepicker-ns: 'a-form__field__datepicker__' !default;
+
+%daySelection {
+  background-color: color(green, dark);
+  border-radius: 60px;
+  height: 30px;
+  width: 30px;
+  z-index: -1;
+
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate3d(-50%, -55%, 0);
+}
+
+.#{$datepicker-ns}container {
+  font-size: 14px;
+  position: relative;
+}
+
+.#{$datepicker-ns}input:focus {
+  outline: 0;
+}
+
+.#{$datepicker-ns}picker {
+  background: color(grey, light);
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.15);
+  left: 50%;
+  margin-left: -150px;
+  position: absolute;
+  top: 110%;
+  width: 300px;
+  z-index: 15;
+}
+
+.#{$datepicker-ns}picker-header {
+  align-items: center;
+  background: color(green, dark);
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  height: 50px;
+}
+
+.#{$datepicker-ns}weekdays {
+  background: color(grey, light);
+  color: color(grey, light);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.#{$datepicker-ns}prev-container,
+.#{$datepicker-ns}next-container {
+  flex: 0 1 auto;
+}
+
+.#{$datepicker-ns}month-container {
+  flex: 1 1 auto;
+
+  padding: 0.5em;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.#{$datepicker-ns}month {
+  font-weight: 700;
+  margin-right: 5px;
+  text-transform: uppercase;
+}
+
+.#{$datepicker-ns}month,
+.#{$datepicker-ns}year {
+  color: color(white);
+  flex: 0 1 auto;
+
+  font-size: 12px;
+  cursor: default;
+  text-align: center;
+  letter-spacing: 0.8px;
+}
+
+.#{$datepicker-ns}year {
+  font-weight: 400;
+}
+
+.#{$datepicker-ns}prev,
+.#{$datepicker-ns}next {
+  border: 6px solid transparent;
+  outline: none;
+
+  display: block;
+  width: 0;
+  height: 0;
+
+  padding: 0 5px;
+}
+
+.#{$datepicker-ns}prev {
+  border-right-color: color(white);
+
+  &:hover {
+    border-right-color: darken(color(white), 10%);
+  }
+}
+
+.#{$datepicker-ns}next {
+  border-left-color: color(white);
+
+  &:hover {
+    border-left-color: darken(color(white), 10%);
+  }
+}
+
+.#{$datepicker-ns}table {
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  font-size: 14px;
+  width: 100%;
+
+  td {
+    border-radius: 100%;
+    width: 42px;
+    height: 42px;
+    text-align: center;
+    display: table-cell;
+    border: none;
+  }
+}
+
+.#{$datepicker-ns}row {
+
+}
+
+.#{$datepicker-ns}dow {
+  color: color(grey, dark);
+
+  cursor: default;
+}
+
+.#{$datepicker-ns}day {
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    color: color(white);
+  }
+
+  &:hover:before {
+    content: '';
+  }
+}
+
+.#{$datepicker-ns}day,
+.#{$datepicker-ns}picked {
+  &:before {
+    @extend %daySelection;
+  }
+}
+
+.#{$datepicker-ns}picked {
+  color: color(white);
+
+  &:before {
+    content: '';
+  }
+}
+
+.#{$datepicker-ns}disabled {
+  cursor: default;
+  color: color(grey);
+
+  &:hover {
+    background: inherit;
+  }
+}
+
+.#{$datepicker-ns}today {
+  color: color(green, dark);
+  font-weight: bold;
+}
+
+.#{$datepicker-ns}other-month {
+  color: rgba(color(grey, dark), 0.3);
+
+  &.#{$datepicker-ns}disabled {
+    color: color(grey);
+  }
+
+  &.#{$datepicker-ns}picked {
+    color: color(white);
+  }
+}

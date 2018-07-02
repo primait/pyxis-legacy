@@ -1,17 +1,26 @@
 .a-form__field__autocomplete {
   cursor: pointer;
   position: relative;
-}
 
-.a-form__field__autocomplete .a-form__field__input:focus,
-.a-form__field__autocomplete .a-form__field__input.is-valid.is-touched {
-  border-color: color(green, dark);
+  &.is-open .a-form__field__input:focus   {
+    border-color: color(green, dark);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .a-form__field__input:focus {
+    border-color: color(green);
+  }
+
+  .a-form__field__input.is-valid.is-touched {
+    border-color: color(green, dark);
+  }
 }
 
 .a-form__field__autocomplete__list {
   background: color(white);
   border: 1px solid color(green, dark);
-  border-radius: 0 0 3px 3px;
+  border-radius: 0 0 5px 5px;
   border-top: none;
   display: none;
   flex-direction: column;
@@ -33,7 +42,7 @@
   align-items: center;
   color: color(green, dark);
   display: flex;
-  padding: 0 10px;
+  padding: 0 15px;
   height: 40px;
 
   &.is-selected {
@@ -45,4 +54,15 @@
     background: color(green, dark);
     color: color(white);
   }
+}
+
+.a-form__field__autocomplete__list__noResults {
+  align-items: center;
+  color: color(grey, dark);
+  cursor: default;
+  display: flex;
+  font-size: 12px;
+  padding: 0 10px;
+  pointer-events: none;
+  height: 40px;
 }

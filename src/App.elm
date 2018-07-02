@@ -1,5 +1,6 @@
 module App exposing (..)
 
+import DatePicker
 import Html
 import Pyxis.Helpers
     exposing
@@ -32,9 +33,17 @@ main =
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
+    let
+        ( datepicker, dpCmd ) =
+            DatePicker.init
+
+        { form } =
+            initialModel
+    in
     { initialModel
         | route = toRoute flags.route
         , menu = updateMenu (toRoute flags.route) initialModel.menu
+        , form = { form | datepicker = Just datepicker }
     }
         |> withoutCmds
 

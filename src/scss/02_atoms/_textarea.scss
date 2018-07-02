@@ -1,11 +1,11 @@
-.a-form__field__input {
+.a-form__field__textarea {
   background: color(white);
   border: 1px solid color(grey);
   border-radius: 5px;
   color: color(green, dark);
-  height: 50px;
+  min-height: 100px;
   margin: 0;
-  padding: 0 15px;
+  padding: 5px 15px;
 
   &:focus,
   &.is-pristine:focus {

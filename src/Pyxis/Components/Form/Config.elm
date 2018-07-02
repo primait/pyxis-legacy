@@ -3,8 +3,12 @@ module Pyxis.Components.Form.Config exposing (..)
 import DatePicker exposing (DatePicker)
 import Prima.Form as Form
     exposing
-        ( FormField
+        ( AutocompleteOption
+        , CheckboxOption
+        , FormField
         , FormFieldConfig
+        , RadioOption
+        , SelectOption
         , Validation(..)
         )
 import Pyxis.Components.Form.Model
@@ -14,6 +18,7 @@ import Pyxis.Components.Form.Model
         , Msg(..)
         )
 import Pyxis.Helpers exposing (datepickerSettings)
+import Regex exposing (regex)
 
 
 textFieldConfig : FormField Model Msg
@@ -25,7 +30,25 @@ textFieldConfig =
         []
         .textField
         (UpdateText Text)
-        [ NotEmpty ]
+        Nothing
+        [ NotEmpty "Empty value is not acceptable"
+        , Expression (regex "prima") "The value must contains `prima` substring."
+        ]
+
+
+textareaFieldConfig : FormField Model Msg
+textareaFieldConfig =
+    Form.textareaConfig
+        "textarea_field"
+        "Textarea field"
+        False
+        []
+        .textareaField
+        (UpdateText Textarea)
+        Nothing
+        [ NotEmpty "Empty value is not acceptable"
+        , Custom ((<=) 10 << String.length << Maybe.withDefault "" << .textareaField) "The value must be at least 10 characters length."
+        ]
 
 
 radioFieldConfig : FormField Model Msg
@@ -37,8 +60,12 @@ radioFieldConfig =
         []
         .radioField
         (UpdateText Radio)
-        [ ( "Option A", "option_a" ), ( "Option B", "option_b" ), ( "Option C", "option_c" ) ]
-        [ NotEmpty ]
+        [ RadioOption "Option A" "a"
+        , RadioOption "Option B" "b"
+        , RadioOption "Option C" "c"
+        ]
+        Nothing
+        [ Custom ((==) "b" << Maybe.withDefault "b" << .radioField) "You must choose `Option B`." ]
 
 
 checkboxFieldConfig : FormField Model Msg
@@ -50,6 +77,21 @@ checkboxFieldConfig =
         []
         .checkboxField
         (UpdateFlag Checkbox)
+        Nothing
+        []
+
+
+checkboxWithOptionsFieldConfig : List CheckboxOption -> FormField Model Msg
+checkboxWithOptionsFieldConfig options =
+    Form.checkboxWithOptionsConfig
+        "checkbox_field"
+        "Checkbox field"
+        False
+        []
+        (List.map (\option -> ( option.slug, option.isChecked )) << .checkboxMultiField)
+        (UpdateMultiCheckbox MultiCheckbox)
+        options
+        Nothing
         []
 
 
@@ -57,12 +99,13 @@ selectFieldConfig : Bool -> FormField Model Msg
 selectFieldConfig isOpen =
     let
         options =
-            List.sortBy Tuple.first
-                [ ( "Milano", "MI" )
-                , ( "Torino", "TO" )
-                , ( "Roma", "RO" )
-                , ( "Napoli", "NA" )
-                , ( "Genova", "GE" )
+            List.sortBy .label
+                [ SelectOption "Milano" "MI"
+                , SelectOption "Torino" "TO"
+                , SelectOption "Roma" "RO"
+                , SelectOption "Napoli" "NA"
+                , SelectOption "Genova" "GE"
+                , SelectOption "Savona" "SA"
                 ]
     in
     Form.selectConfig
@@ -76,7 +119,8 @@ selectFieldConfig isOpen =
         (UpdateText Select)
         options
         True
-        [ NotEmpty ]
+        Nothing
+        [ Custom ((==) "SA" << Maybe.withDefault "SA" << .radioField) "You must choose `Savona`. ;)" ]
 
 
 datepickerFieldConfig : DatePicker -> FormField Model Msg
@@ -89,6 +133,7 @@ datepickerFieldConfig datepicker =
         (UpdateDate Datepicker)
         datepicker
         datepickerSettings
+        Nothing
         []
 
 
@@ -99,25 +144,26 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen } as model) =
             (String.toLower << Maybe.withDefault "" << .autocompleteFilter) model
 
         options =
-            [ ( "Italy", "ITA" )
-            , ( "Brasil", "BRA" )
-            , ( "France", "FRA" )
-            , ( "Great Britain", "GB" )
-            , ( "USA", "USA" )
-            , ( "Japan", "JAP" )
+            [ AutocompleteOption "Italy" "ITA"
+            , AutocompleteOption "Brasil" "BRA"
+            , AutocompleteOption "France" "FRA"
+            , AutocompleteOption "Great Britain" "GBR"
+            , AutocompleteOption "USA" "USA"
+            , AutocompleteOption "Japan" "JAP"
             ]
-                |> List.filter (String.contains lowerFilter << String.toLower << Tuple.first)
+                |> List.filter (String.contains lowerFilter << String.toLower << .label)
     in
     Form.autocompleteConfig
         "autocomplete_field"
         "Autocomplete field"
         False
         isAutocompleteFieldOpen
-        (Just "Nessun risultato trovato. Modifica i filtri.")
+        (Just "Nessun risultato trovato.")
         []
         .autocompleteFilter
         .autocompleteField
         (UpdateAutocomplete Autocomplete)
         (UpdateText Autocomplete)
         options
-        [ NotEmpty ]
+        Nothing
+        [ NotEmpty "Empty value is not acceptable" ]
