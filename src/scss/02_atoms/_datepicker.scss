@@ -10,29 +10,27 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}picker {
-  position: absolute;
-  border: 1px solid rgba(color(grey), 0.7);
+  background: color(grey, light);
   border-radius: 0 0 5px 5px;
-  z-index: 10;
-  background: color(grey);
-  width: 300px;
+  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.15);
   left: 50%;
   margin-left: -150px;
+  position: absolute;
+  top: 110%;
+  width: 300px;
   z-index: 15;
 }
 
 .#{$datepicker-ns}picker-header {
-  background: color(green);
-}
-
-.#{$datepicker-ns}picker-header {
+  align-items: center;
+  background: color(green, dark);
   border-radius: 5px 5px 0 0;
   display: flex;
-  align-items: center;
+  height: 50px;
 }
 
 .#{$datepicker-ns}weekdays {
-  background: color(grey);
+  background: color(grey, light);
 }
 
 .#{$datepicker-ns}prev-container,
@@ -49,6 +47,13 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   flex-direction: column;
 }
 
+.#{$datepicker-ns}month {
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+
 .#{$datepicker-ns}month,
 .#{$datepicker-ns}year {
   color: color(white);
@@ -56,7 +61,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
   cursor: default;
   text-align: center;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
 }
 
 .#{$datepicker-ns}year {
@@ -123,7 +128,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   cursor: pointer;
 
   &:hover {
-    background: color(green);
+    background: color(green, dark);
     color: color(white);
   }
 }
