@@ -25,4 +25,5 @@ view ({ datepicker } as model) =
     , Form.render model radioFieldConfig
     , Form.render model (selectFieldConfig model.isSelectFieldOpen)
     , Form.render model checkboxFieldConfig
+    , Form.render model (checkboxWithOptionsFieldConfig model.checkboxMultiField)
     ]

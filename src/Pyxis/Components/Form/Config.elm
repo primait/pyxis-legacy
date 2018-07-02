@@ -3,8 +3,12 @@ module Pyxis.Components.Form.Config exposing (..)
 import DatePicker exposing (DatePicker)
 import Prima.Form as Form
     exposing
-        ( FormField
+        ( AutocompleteOption
+        , CheckboxOption
+        , FormField
         , FormFieldConfig
+        , RadioOption
+        , SelectOption
         , Validation(..)
         )
 import Pyxis.Components.Form.Model
@@ -37,7 +41,10 @@ radioFieldConfig =
         []
         .radioField
         (UpdateText Radio)
-        [ ( "Option A", "option_a" ), ( "Option B", "option_b" ), ( "Option C", "option_c" ) ]
+        [ RadioOption "Option A" "a"
+        , RadioOption "Option B" "b"
+        , RadioOption "Option C" "c"
+        ]
         [ NotEmpty ]
 
 
@@ -53,16 +60,29 @@ checkboxFieldConfig =
         []
 
 
+checkboxWithOptionsFieldConfig : List CheckboxOption -> FormField Model Msg
+checkboxWithOptionsFieldConfig options =
+    Form.checkboxWithOptionsConfig
+        "checkbox_field"
+        "Checkbox field"
+        False
+        []
+        (List.map (\option -> ( option.slug, option.isChecked )) << .checkboxMultiField)
+        (UpdateMultiCheckbox MultiCheckbox)
+        options
+        []
+
+
 selectFieldConfig : Bool -> FormField Model Msg
 selectFieldConfig isOpen =
     let
         options =
-            List.sortBy Tuple.first
-                [ ( "Milano", "MI" )
-                , ( "Torino", "TO" )
-                , ( "Roma", "RO" )
-                , ( "Napoli", "NA" )
-                , ( "Genova", "GE" )
+            List.sortBy .label
+                [ SelectOption "Milano" "MI"
+                , SelectOption "Torino" "TO"
+                , SelectOption "Roma" "RO"
+                , SelectOption "Napoli" "NA"
+                , SelectOption "Genova" "GE"
                 ]
     in
     Form.selectConfig
@@ -99,14 +119,14 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen } as model) =
             (String.toLower << Maybe.withDefault "" << .autocompleteFilter) model
 
         options =
-            [ ( "Italy", "ITA" )
-            , ( "Brasil", "BRA" )
-            , ( "France", "FRA" )
-            , ( "Great Britain", "GB" )
-            , ( "USA", "USA" )
-            , ( "Japan", "JAP" )
+            [ AutocompleteOption "Italy" "ITA"
+            , AutocompleteOption "Brasil" "BRA"
+            , AutocompleteOption "France" "FRA"
+            , AutocompleteOption "Great Britain" "GBR"
+            , AutocompleteOption "USA" "USA"
+            , AutocompleteOption "Japan" "JAP"
             ]
-                |> List.filter (String.contains lowerFilter << String.toLower << Tuple.first)
+                |> List.filter (String.contains lowerFilter << String.toLower << .label)
     in
     Form.autocompleteConfig
         "autocomplete_field"

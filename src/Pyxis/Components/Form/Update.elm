@@ -45,6 +45,23 @@ update msg model =
         UpdateFlag _ _ ->
             withoutCmds model
 
+        UpdateMultiCheckbox MultiCheckbox slug isChecked ->
+            { model
+                | checkboxMultiField =
+                    List.map
+                        (\option ->
+                            if option.slug == slug then
+                                { option | isChecked = isChecked }
+                            else
+                                option
+                        )
+                        model.checkboxMultiField
+            }
+                |> withoutCmds
+
+        UpdateMultiCheckbox _ _ _ ->
+            withoutCmds model
+
         UpdateDate Datepicker dpMsg ->
             let
                 ( datepickerFieldInitialDP, _ ) =

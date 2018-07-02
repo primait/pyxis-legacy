@@ -8,6 +8,13 @@ module Pyxis.Components.Form.Model
 
 import Date exposing (Date)
 import DatePicker exposing (DatePicker)
+import Prima.Form
+    exposing
+        ( AutocompleteOption
+        , CheckboxOption
+        , RadioOption
+        , SelectOption
+        )
 
 
 type Msg
@@ -15,6 +22,7 @@ type Msg
     | UpdateAutocomplete Field (Maybe String)
     | UpdateFlag Field Bool
     | UpdateDate Field DatePicker.Msg
+    | UpdateMultiCheckbox Field String Bool
     | Toggle Field Bool
 
 
@@ -23,6 +31,7 @@ type alias Model =
     , selectField : Maybe String
     , isSelectFieldOpen : Bool
     , checkboxField : Bool
+    , checkboxMultiField : List CheckboxOption
     , radioField : Maybe String
     , datepickerField : Maybe Date
     , datepicker : Maybe DatePicker
@@ -39,6 +48,11 @@ initialModel =
         Nothing
         False
         False
+        [ CheckboxOption "Option a" "a" False
+        , CheckboxOption "Option b" "b" False
+        , CheckboxOption "Option c" "c" False
+        , CheckboxOption "Option d" "d" False
+        ]
         Nothing
         Nothing
         Nothing
@@ -51,6 +65,7 @@ type Field
     = Text
     | Select
     | Checkbox
+    | MultiCheckbox
     | Radio
     | Datepicker
     | Autocomplete
