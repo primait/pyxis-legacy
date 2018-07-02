@@ -7,10 +7,10 @@
   margin: 0;
   padding: 0 15px;
 
-  &:focus {
+  &:focus,
+  &.is-pristine:focus {
     border-color: color(green);
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.10);
-
   }
 
   &.is-valid,
@@ -18,8 +18,13 @@
     border-color: color(green, dark);
   }
 
-  &.is-invalid {
+  &.is-invalid.is-touched:not(:focus) {
     border-color: color(red);
     color: color(red);
+  }
+
+  &.is-pristine {
+    border: 1px solid color(grey);
+    color: color(green, dark);
   }
 }

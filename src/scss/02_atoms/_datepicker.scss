@@ -1,5 +1,18 @@
 $datepicker-ns: 'a-form__field__datepicker__' !default;
 
+%daySelection {
+  background-color: color(green, dark);
+  border-radius: 60px;
+  height: 30px;
+  width: 30px;
+  z-index: -1;
+
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate3d(-50%, -55%, 0);
+}
+
 .#{$datepicker-ns}container {
   font-size: 14px;
   position: relative;
@@ -31,6 +44,12 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 .#{$datepicker-ns}weekdays {
   background: color(grey, light);
+  color: color(grey, light);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  text-transform: uppercase;
 }
 
 .#{$datepicker-ns}prev-container,
@@ -44,29 +63,29 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   padding: 0.5em;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .#{$datepicker-ns}month {
-  font-size: 11px;
   font-weight: 700;
-  margin-bottom: 2px;
+  margin-right: 5px;
   text-transform: uppercase;
 }
 
 .#{$datepicker-ns}month,
 .#{$datepicker-ns}year {
   color: color(white);
-  flex: 1 1 auto;
+  flex: 0 1 auto;
 
+  font-size: 12px;
   cursor: default;
   text-align: center;
   letter-spacing: 0.8px;
 }
 
 .#{$datepicker-ns}year {
-  font-size: 12px;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .#{$datepicker-ns}prev,
@@ -126,10 +145,29 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 .#{$datepicker-ns}day {
   cursor: pointer;
+  position: relative;
 
   &:hover {
-    background: color(green, dark);
     color: color(white);
+  }
+
+  &:hover:before {
+    content: '';
+  }
+}
+
+.#{$datepicker-ns}day,
+.#{$datepicker-ns}picked {
+  &:before {
+    @extend %daySelection;
+  }
+}
+
+.#{$datepicker-ns}picked {
+  color: color(white);
+
+  &:before {
+    content: '';
   }
 }
 
@@ -142,16 +180,8 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   }
 }
 
-.#{$datepicker-ns}picked {
-  color: color(white);
-  background: color(green, dark);
-
-  &:hover {
-    background: color(green);
-  }
-}
-
 .#{$datepicker-ns}today {
+  color: color(green, dark);
   font-weight: bold;
 }
 
