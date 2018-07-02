@@ -18,6 +18,7 @@ import Pyxis.Components.Form.Model
         , Msg(..)
         )
 import Pyxis.Helpers exposing (datepickerSettings)
+import Regex exposing (regex)
 
 
 textFieldConfig : FormField Model Msg
@@ -29,7 +30,7 @@ textFieldConfig =
         []
         .textField
         (UpdateText Text)
-        [ NotEmpty ]
+        [ NotEmpty, Expression (regex "prima") ]
 
 
 radioFieldConfig : FormField Model Msg

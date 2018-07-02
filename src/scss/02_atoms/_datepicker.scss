@@ -144,7 +144,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 .#{$datepicker-ns}picked {
   color: color(white);
-  background: color(green);
+  background: color(green, dark);
 
   &:hover {
     background: color(green);
