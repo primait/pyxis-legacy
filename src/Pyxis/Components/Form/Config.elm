@@ -1,8 +1,6 @@
 module Pyxis.Components.Form.Config exposing (..)
 
 import DatePicker exposing (DatePicker)
-import Html exposing (..)
-import Html.Attributes exposing (class)
 import Prima.Form as Form
     exposing
         ( AutocompleteOption
@@ -23,13 +21,6 @@ import Pyxis.Helpers exposing (datepickerSettings)
 import Regex exposing (regex)
 
 
-errorConfig : String -> Html Msg
-errorConfig error =
-    p
-        [ class "a-form__field__error" ]
-        [ text error ]
-
-
 textFieldConfig : FormField Model Msg
 textFieldConfig =
     Form.textConfig
@@ -39,8 +30,10 @@ textFieldConfig =
         []
         .textField
         (UpdateText Text)
-        ((Just << errorConfig) "Value should contain `prima` string.")
-        [ NotEmpty, Expression (regex "prima") ]
+        Nothing
+        [ NotEmpty "Empty value is not acceptable"
+        , Expression (regex "prima") "The value must contains `prima` substring."
+        ]
 
 
 textareaFieldConfig : FormField Model Msg
@@ -50,10 +43,12 @@ textareaFieldConfig =
         "Textarea field"
         False
         []
-        .textField
+        .textareaField
         (UpdateText Textarea)
         Nothing
-        [ NotEmpty ]
+        [ NotEmpty "Empty value is not acceptable"
+        , Custom ((<=) 10 << String.length << Maybe.withDefault "" << .textareaField) "The value must be at least 10 characters length."
+        ]
 
 
 radioFieldConfig : FormField Model Msg
@@ -70,7 +65,7 @@ radioFieldConfig =
         , RadioOption "Option C" "c"
         ]
         Nothing
-        [ NotEmpty ]
+        [ Custom ((==) "b" << Maybe.withDefault "b" << .radioField) "You must choose `Option B`." ]
 
 
 checkboxFieldConfig : FormField Model Msg
@@ -110,6 +105,7 @@ selectFieldConfig isOpen =
                 , SelectOption "Roma" "RO"
                 , SelectOption "Napoli" "NA"
                 , SelectOption "Genova" "GE"
+                , SelectOption "Savona" "SA"
                 ]
     in
     Form.selectConfig
@@ -124,7 +120,7 @@ selectFieldConfig isOpen =
         options
         True
         Nothing
-        [ NotEmpty ]
+        [ Custom ((==) "SA" << Maybe.withDefault "SA" << .radioField) "You must choose `Savona`. ;)" ]
 
 
 datepickerFieldConfig : DatePicker -> FormField Model Msg
@@ -170,4 +166,4 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen } as model) =
         (UpdateText Autocomplete)
         options
         Nothing
-        [ NotEmpty ]
+        [ NotEmpty "Empty value is not acceptable" ]
