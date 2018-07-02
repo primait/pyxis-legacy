@@ -126,7 +126,7 @@ Resources:
       - Key: stickiness.lb_cookie.duration_seconds
         Value: 360
       VpcId:
-          - Fn::ImportValue: !Sub VPC-${Environment}
+        Fn::ImportValue: !Sub VPC-${Environment}
 
   ApplicationLoadBalancerHttpsListenerRule:
     Type: AWS::ElasticLoadBalancingV2::ListenerRule

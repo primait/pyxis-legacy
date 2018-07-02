@@ -76,4 +76,4 @@ aws --region="eu-west-1" cloudformation ${ACTION} --stack-name ecs-task-pyxis-"$
               ParameterKey=HostnamePattern,ParameterValue=${HOSTNAME_PATTERN} \
   --capabilities CAPABILITY_IAM
 
-exec ./wait_for_stack staging
+bash deploy/wait_for_stack staging
