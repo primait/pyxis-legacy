@@ -1,11 +1,11 @@
 .a-form__field__input {
   background: color(white);
   border: 1px solid color(grey);
-  border-radius: 3px;
+  border-radius: 5px;
   color: color(green, dark);
   height: 50px;
   margin: 0;
-  padding: 0 10px;
+  padding: 0 15px;
 
   &:focus {
     border-color: color(green);

@@ -17,7 +17,7 @@
 .a-form__field__autocomplete__list {
   background: color(white);
   border: 1px solid color(green, dark);
-  border-radius: 0 0 3px 3px;
+  border-radius: 0 0 5px 5px;
   border-top: none;
   display: none;
   flex-direction: column;
@@ -39,7 +39,7 @@
   align-items: center;
   color: color(green, dark);
   display: flex;
-  padding: 0 10px;
+  padding: 0 15px;
   height: 40px;
 
   &.is-selected {

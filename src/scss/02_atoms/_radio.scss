@@ -30,7 +30,8 @@
   }
 
   &:before {
-    border: 1px solid color(green, dark);
+    background-color: color(white);
+    border: 1px solid color(green);
     content: '';
     left: 0;
     transform: translateY(-50%);

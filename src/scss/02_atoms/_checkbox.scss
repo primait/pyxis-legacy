@@ -28,7 +28,8 @@
   }
 
   &:before {
-    border: 1px solid color(green, dark);
+    background-color: color(white);
+    border: 1px solid color(green);
     border-radius: 2px;
     content: '';
     left: 0;
@@ -47,6 +48,7 @@
 
   .a-form__field__checkbox:checked + &:before {
     background: color(green, dark);
+    border: 1px solid color(green, dark);
   }
 
   .a-form__field__checkbox:checked + &:after {

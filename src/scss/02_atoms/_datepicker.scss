@@ -12,7 +12,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 .#{$datepicker-ns}picker {
   position: absolute;
   border: 1px solid rgba(color(grey), 0.7);
-  border-radius: 0 0 3px 3px;
+  border-radius: 0 0 5px 5px;
   z-index: 10;
   background: color(grey);
   width: 300px;
@@ -26,7 +26,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}picker-header {
-  border-radius: 3px 3px 0 0;
+  border-radius: 5px 5px 0 0;
   display: flex;
   align-items: center;
 }

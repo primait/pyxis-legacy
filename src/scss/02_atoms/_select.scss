@@ -4,7 +4,7 @@
 .a-form__field__customSelect {
   background: color(white);
   border: 1px solid color(grey);
-  border-radius: 3px;
+  border-radius: 5px;
   color: color(green, dark);
   cursor: pointer;
   display: none;
@@ -19,6 +19,10 @@
   &.is-valid,
   &.is-touched {
     border-color: color(green, dark);
+  }
+
+  &.is-open {
+    border-radius: 5px 5px 0px 0px;
   }
 
   &.is-invalid {
@@ -37,7 +41,7 @@
   color: inherit;
   display: flex;
   height: 50px;
-  padding: 0 10px;
+  padding: 0 15px;
 
   &:after {
     color: color(green, dark);
@@ -46,7 +50,7 @@
     font-size: 24px;
     position: absolute;
     top: 50%;
-    right: 5px;
+    right: 10px;
 
     transform: translateY(-50%) rotate(0deg);
     transition: transform 0.2s cubic-bezier(0, 1, 1, 1);
@@ -55,12 +59,16 @@
   .is-open &:after {
     transform: translateY(-50%) rotate(-180deg);
   }
+
+  .is-open & {
+    border-bottom: 2px solid color(grey);
+  }
 }
 
 .a-form__field__customSelect__list {
   background: color(white);
   border: 1px solid color(green, dark);
-  border-radius: 0 0 3px 3px;
+  border-radius: 0 0 5px 5px;
   border-top: none;
   display: none;
   flex-direction: column;
@@ -82,7 +90,7 @@
   align-items: center;
   color: color(green, dark);
   display: flex;
-  padding: 0 10px;
+  padding: 0 15px;
   height: 40px;
 
   &.is-selected {
@@ -103,7 +111,7 @@
 .a-form__field__select {
   background: color(white);
   border: 1px solid color(grey);
-  border-radius: 3px;
+  border-radius: 5px;
   color: color(green, dark);
   display: flex;
   height: 50px;
