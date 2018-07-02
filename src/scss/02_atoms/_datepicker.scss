@@ -1,0 +1,163 @@
+$datepicker-ns: 'a-form__field__datepicker__' !default;
+
+.#{$datepicker-ns}container {
+  font-size: 14px;
+  position: relative;
+}
+
+.#{$datepicker-ns}input:focus {
+  outline: 0;
+}
+
+.#{$datepicker-ns}picker {
+  position: absolute;
+  border: 1px solid rgba(color(grey), 0.7);
+  border-radius: 0 0 3px 3px;
+  z-index: 10;
+  background: color(grey);
+  width: 300px;
+  left: 50%;
+  margin-left: -150px;
+  z-index: 15;
+}
+
+.#{$datepicker-ns}picker-header {
+  background: color(green);
+}
+
+.#{$datepicker-ns}picker-header {
+  border-radius: 3px 3px 0 0;
+  display: flex;
+  align-items: center;
+}
+
+.#{$datepicker-ns}weekdays {
+  background: color(grey);
+}
+
+.#{$datepicker-ns}prev-container,
+.#{$datepicker-ns}next-container {
+  flex: 0 1 auto;
+}
+
+.#{$datepicker-ns}month-container {
+  flex: 1 1 auto;
+
+  padding: 0.5em;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.#{$datepicker-ns}month,
+.#{$datepicker-ns}year {
+  color: color(white);
+  flex: 1 1 auto;
+
+  cursor: default;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.#{$datepicker-ns}year {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.#{$datepicker-ns}prev,
+.#{$datepicker-ns}next {
+  border: 6px solid transparent;
+  outline: none;
+
+  display: block;
+  width: 0;
+  height: 0;
+
+  padding: 0 5px;
+}
+
+.#{$datepicker-ns}prev {
+  border-right-color: color(white);
+
+  &:hover {
+    border-right-color: darken(color(white), 10%);
+  }
+}
+
+.#{$datepicker-ns}next {
+  border-left-color: color(white);
+
+  &:hover {
+    border-left-color: darken(color(white), 10%);
+  }
+}
+
+.#{$datepicker-ns}table {
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  font-size: 14px;
+  width: 100%;
+
+  td {
+    border-radius: 100%;
+    width: 42px;
+    height: 42px;
+    text-align: center;
+    display: table-cell;
+    border: none;
+  }
+}
+
+.#{$datepicker-ns}row {
+
+}
+
+.#{$datepicker-ns}dow {
+  color: color(grey, dark);
+
+  cursor: default;
+}
+
+.#{$datepicker-ns}day {
+  cursor: pointer;
+
+  &:hover {
+    background: color(green);
+    color: color(white);
+  }
+}
+
+.#{$datepicker-ns}disabled {
+  cursor: default;
+  color: color(grey);
+
+  &:hover {
+    background: inherit;
+  }
+}
+
+.#{$datepicker-ns}picked {
+  color: color(white);
+  background: color(green);
+
+  &:hover {
+    background: color(green);
+  }
+}
+
+.#{$datepicker-ns}today {
+  font-weight: bold;
+}
+
+.#{$datepicker-ns}other-month {
+  color: rgba(color(grey, dark), 0.3);
+
+  &.#{$datepicker-ns}disabled {
+    color: color(grey);
+  }
+
+  &.#{$datepicker-ns}picked {
+    color: color(white);
+  }
+}

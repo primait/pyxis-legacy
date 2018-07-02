@@ -3,6 +3,7 @@
 }
 
 .a-form__field__radio__label {
+  color: color(grey, dark);
   cursor: pointer;
   display: flex;
   margin-right: 15px;
@@ -19,6 +20,7 @@
   &:after {
     border-radius: 100%;
     display: flex;
+    font-family: font(monospace);
     font-size: 16px;
     height: 20px;
     position: absolute;
@@ -37,7 +39,7 @@
   &:after {
     background: color(green, dark);
     content: '';
-    left: 6px;
+    left: 5px;
     height: 10px;
     transform: scale(0) translateY(-50%);
     transition: transform 0.2s cubic-bezier(0, 1, 1, 1);

@@ -78,9 +78,11 @@ datepickerSettings =
         , dayFormatter = dayFormatter
         , monthFormatter = monthFormatter
         , firstDayOfWeek = Mon
+        , placeholder = ""
+        , classNamespace = "a-form__field__datepicker__"
         , inputClassList =
-            [ ( "form__field__input", True )
-            , ( "form__field__input--datepicker", True )
+            [ ( "a-form__field__input", True )
+            , ( "a-form__field__input--datepicker", True )
             ]
     }
 

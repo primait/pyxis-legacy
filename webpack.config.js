@@ -1,7 +1,9 @@
-const path = require('path');
-const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path                = require('path');
+const webpack             = require('webpack');
+const CleanWebpackPlugin  = require('clean-webpack-plugin');
+const HtmlWebpackPlugin   = require('html-webpack-plugin');
+const UglifyJsPlugin      = require('uglifyjs-webpack-plugin')
+
 
 const config = {
 
@@ -32,8 +34,9 @@ const config = {
         loader:  'elm-webpack-loader?verbose=true&warn=true&debug=true',
       },
       {
-        test: /\.(ttf|eot|svg|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        test: /\.(ttf|eot|svg|woff(2)?|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
+        options: { name: '[name].[ext]', outputPath: 'assets/fonts/'}
       },
     ],
 
@@ -54,7 +57,15 @@ const config = {
   plugins: [
     new CleanWebpackPlugin([ 'dist' ]),
     new HtmlWebpackPlugin({ template: 'index.html' }),
-  ]
+  ],
+
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        test: /\.js($|\?)/i
+      })
+    ]
+  }
 
 }
 

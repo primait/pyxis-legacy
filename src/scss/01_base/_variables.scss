@@ -35,9 +35,10 @@ $colors: (
 );
 
 $fonts: (
-  light:   'avenirltstd-light',
-  base:    'avenirltstd-medium',
-  heavy:   'avenirltstd-heavy',
+  light:     ('avenirltstd-light', Helvetica, Verdana, sans-serif),
+  base:      ('avenirltstd-medium', Helvetica, Verdana, sans-serif),
+  heavy:     ('avenirltstd-heavy', Helvetica, Verdana, sans-serif),
+  monospace: ('Courier New', Courier, monospace),
 );
 
 $fontSizes: (

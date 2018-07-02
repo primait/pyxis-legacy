@@ -3,6 +3,7 @@
 }
 
 .a-form__field {
+  border-radius: 3px;
   display: flex;
   padding: 10px;
   height: 70px;
@@ -15,9 +16,10 @@
 }
 
 .a-form__field__input,
+.a-form__field__textare,
 .a-form__field__select,
 .a-form__field__customSelect {
-  min-width: 120px;
+  min-width: 250px;
   outline: none;
 }
 
@@ -27,4 +29,10 @@
 
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+
+.a-form__field__input,
+.a-form__field__textarea,
+.a-form__field__autocomplete {
+  font-size: 14px;
 }
