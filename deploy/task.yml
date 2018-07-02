@@ -65,7 +65,7 @@ Resources:
     Properties:
       ContainerDefinitions:
       - Name: pyxis
-        Image: prima/pyxis:1.12.2-2
+        Image: prima/pyxis:1.12.2-1
         Essential: true
         MemoryReservation:
           Fn::FindInMap:
@@ -81,6 +81,8 @@ Resources:
         - Name: VERSION
           Value:
             Ref: ReleaseVersion
+        - Name: ENV
+          Value: !Ref Environment
         - Name: PORT
           Value: '80'
         - Name: ECS_SHOULD_BE_SCALED
@@ -94,7 +96,7 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
       HealthCheckIntervalSeconds: 5
-      HealthCheckPath: "/"
+      HealthCheckPath: "/health-check"
       HealthCheckPort: traffic-port
       HealthCheckProtocol: HTTP
       HealthCheckTimeoutSeconds: 4

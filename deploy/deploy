@@ -25,7 +25,7 @@ fi
 
 echo "deploying $ENV"
 
-tar czf ${VERSION}-${ENV}.tar.gz dist/
+tar czf ${VERSION}-${ENV}.tar.gz -C dist/ .
 aws --region="eu-west-1" s3 cp ${VERSION}-${ENV}.tar.gz s3://prima-artifacts-encrypted/microservices/pyxis/${VERSION}-${ENV}.tar.gz
 
 aws --region="eu-west-1" cloudformation describe-stacks --stack-name ecs-task-pyxis-"${ENV}" > /dev/null
