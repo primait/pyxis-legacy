@@ -16,7 +16,7 @@
 }
 
 .a-form__field__input,
-.a-form__field__textare,
+.a-form__field__textarea,
 .a-form__field__select,
 .a-form__field__customSelect {
   min-width: 250px;
@@ -35,4 +35,10 @@
 .a-form__field__textarea,
 .a-form__field__autocomplete {
   font-size: 14px;
+}
+
+.a-form__field__error {
+  color: color(red);
+  font-family: font(base);
+  padding-left: 30px;
 }
