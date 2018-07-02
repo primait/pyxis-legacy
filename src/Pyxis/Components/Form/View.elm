@@ -20,6 +20,7 @@ view ({ datepicker } as model) =
     [ h2 [] [ text "Form components" ]
     , divider
     , Form.render model textFieldConfig
+    , Form.render model textareaFieldConfig
     , (renderOrNothing << Maybe.map (Form.render model << datepickerFieldConfig)) datepicker
     , Form.render model (autocompleteFieldConfig model)
     , Form.render model radioFieldConfig

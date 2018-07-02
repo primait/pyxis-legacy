@@ -30,6 +30,9 @@ update msg model =
         UpdateText Select value ->
             { model | selectField = value, isSelectFieldOpen = False } |> withoutCmds
 
+        UpdateText Textarea value ->
+            { model | textareaField = value } |> withoutCmds
+
         UpdateText _ _ ->
             withoutCmds model
 

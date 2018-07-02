@@ -28,6 +28,7 @@ type Msg
 
 type alias Model =
     { textField : Maybe String
+    , textareaField : Maybe String
     , selectField : Maybe String
     , isSelectFieldOpen : Bool
     , checkboxField : Bool
@@ -44,6 +45,7 @@ type alias Model =
 initialModel : Model
 initialModel =
     Model
+        Nothing
         Nothing
         Nothing
         False
@@ -63,6 +65,7 @@ initialModel =
 
 type Field
     = Text
+    | Textarea
     | Select
     | Checkbox
     | MultiCheckbox

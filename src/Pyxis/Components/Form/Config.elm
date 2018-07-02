@@ -43,6 +43,19 @@ textFieldConfig =
         [ NotEmpty, Expression (regex "prima") ]
 
 
+textareaFieldConfig : FormField Model Msg
+textareaFieldConfig =
+    Form.textareaConfig
+        "textarea_field"
+        "Textarea field"
+        False
+        []
+        .textField
+        (UpdateText Textarea)
+        Nothing
+        [ NotEmpty ]
+
+
 radioFieldConfig : FormField Model Msg
 radioFieldConfig =
     Form.radioConfig
