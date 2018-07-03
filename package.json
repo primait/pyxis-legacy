@@ -24,9 +24,16 @@
   },
   "author": "Alessio Santangelo",
   "devDependencies": {
+    "autoprefixer": "^8.6.4",
+    "cssnano": "^3.10.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.0",
-    "sass-loader": "^7.0.3"
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^11.1.0",
+    "postcss-loader": "^2.1.5",
+    "postcss-scss": "^1.0.6",
+    "sass-loader": "^7.0.3",
+    "sugarss": "^1.0.1"
   }
 }
