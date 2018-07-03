@@ -92,8 +92,8 @@ checkboxWithOptionsFieldConfig model =
             model.formDisabled
     in
     Form.checkboxWithOptionsConfig
-        "checkbox_field"
-        "Checkbox field"
+        "checkbox_multifield"
+        "Checkbox multi field"
         isDisabled
         []
         (List.map (\option -> ( option.slug, option.isChecked )) << .checkboxMultiField)
