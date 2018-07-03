@@ -3,19 +3,24 @@
 }
 
 .a-form__field {
-  border-radius: 5px;
-  display: flex;
-  padding: 10px;
-  min-height: 70px;
   align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 70px;
+  padding: 10px;
   transition: background 0.3s;
 
   &:hover {
     background: color(grey, light);
   }
+
+  @include mq(small) {
+    border-radius: 5px;
+  }
 }
 
 .a-form__field__input,
+.a-form__field__date,
 .a-form__field__textarea,
 .a-form__field__select,
 .a-form__field__customSelect {
@@ -24,6 +29,7 @@
 }
 
 .a-form__field__input,
+.a-form__field__date,
 .a-form__field__select {
   transition: background 0.3s, border 0.3s, color 0.3s;
 
@@ -32,6 +38,7 @@
 }
 
 .a-form__field__input,
+.a-form__field__date,
 .a-form__field__textarea,
 .a-form__field__autocomplete {
   font-size: 14px;
@@ -39,6 +46,20 @@
 
 .a-form__field__error {
   color: color(red);
+  flex: 0 0 100%;
   font-family: font(base);
-  padding-left: 30px;
+  font-size: 12px;
+  margin-top: 7.5px;
+
+  @include mq(small) {
+    padding-left: 280px;
+  }
+
+  .a-form__field__input:focus + &,
+  .a-form__field__date:focus + &,
+  .a-form__field__textarea:focus + &,
+  .a-form__field__autocomplete:focus + &,
+  .a-form__field__select:focus + & {
+    display: none;
+  }
 }

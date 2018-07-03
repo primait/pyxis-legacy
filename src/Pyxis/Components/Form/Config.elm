@@ -1,6 +1,7 @@
 module Pyxis.Components.Form.Config exposing (..)
 
 import DatePicker exposing (DatePicker)
+import Maybe.Extra exposing (isJust)
 import Prima.Form as Form
     exposing
         ( AutocompleteOption
@@ -21,12 +22,12 @@ import Pyxis.Helpers exposing (datepickerSettings)
 import Regex exposing (regex)
 
 
-textFieldConfig : FormField Model Msg
-textFieldConfig =
+textFieldConfig : Bool -> FormField Model Msg
+textFieldConfig isDisabled =
     Form.textConfig
         "text_field"
         "Text field"
-        False
+        isDisabled
         []
         .textField
         (UpdateText Text)
@@ -36,12 +37,12 @@ textFieldConfig =
         ]
 
 
-textareaFieldConfig : FormField Model Msg
-textareaFieldConfig =
+textareaFieldConfig : Bool -> FormField Model Msg
+textareaFieldConfig isDisabled =
     Form.textareaConfig
         "textarea_field"
         "Textarea field"
-        False
+        isDisabled
         []
         .textareaField
         (UpdateText Textarea)
@@ -51,12 +52,12 @@ textareaFieldConfig =
         ]
 
 
-radioFieldConfig : FormField Model Msg
-radioFieldConfig =
+radioFieldConfig : Bool -> FormField Model Msg
+radioFieldConfig isDisabled =
     Form.radioConfig
         "radio_field"
         "Radio field"
-        False
+        isDisabled
         []
         .radioField
         (UpdateText Radio)
@@ -68,12 +69,12 @@ radioFieldConfig =
         [ Custom ((==) "b" << Maybe.withDefault "b" << .radioField) "You must choose `Option B`." ]
 
 
-checkboxFieldConfig : FormField Model Msg
-checkboxFieldConfig =
+checkboxFieldConfig : Bool -> FormField Model Msg
+checkboxFieldConfig isDisabled =
     Form.checkboxConfig
         "checkbox_field"
         "Checkbox field"
-        False
+        isDisabled
         []
         .checkboxField
         (UpdateFlag Checkbox)
@@ -81,23 +82,46 @@ checkboxFieldConfig =
         []
 
 
-checkboxWithOptionsFieldConfig : List CheckboxOption -> FormField Model Msg
-checkboxWithOptionsFieldConfig options =
+checkboxWithOptionsFieldConfig : Model -> FormField Model Msg
+checkboxWithOptionsFieldConfig model =
+    let
+        options =
+            model.checkboxMultiField
+
+        isDisabled =
+            model.formDisabled
+    in
     Form.checkboxWithOptionsConfig
         "checkbox_field"
         "Checkbox field"
-        False
+        isDisabled
         []
         (List.map (\option -> ( option.slug, option.isChecked )) << .checkboxMultiField)
         (UpdateMultiCheckbox MultiCheckbox)
         options
         Nothing
-        []
+        [ Custom
+            (\{ checkboxMultiField } ->
+                (List.all ((==) False) << List.map .isChecked) checkboxMultiField
+                    || (isJust
+                            << List.head
+                            << List.filter (\{ slug, isChecked } -> slug == "b" && isChecked)
+                       )
+                        checkboxMultiField
+            )
+            "You must choose `Option B`."
+        ]
 
 
-selectFieldConfig : Bool -> FormField Model Msg
-selectFieldConfig isOpen =
+selectFieldConfig : Model -> FormField Model Msg
+selectFieldConfig model =
     let
+        isDisabled =
+            model.formDisabled
+
+        isOpen =
+            model.isSelectFieldOpen
+
         options =
             List.sortBy .label
                 [ SelectOption "Milano" "MI"
@@ -111,7 +135,7 @@ selectFieldConfig isOpen =
     Form.selectConfig
         "select_field"
         "Select field"
-        False
+        isDisabled
         isOpen
         []
         .selectField
@@ -120,15 +144,15 @@ selectFieldConfig isOpen =
         options
         True
         Nothing
-        [ Custom ((==) "SA" << Maybe.withDefault "SA" << .radioField) "You must choose `Savona`. ;)" ]
+        [ Custom ((==) "SA" << Maybe.withDefault "SA" << .selectField) "You must choose `Savona`. ;)" ]
 
 
-datepickerFieldConfig : DatePicker -> FormField Model Msg
-datepickerFieldConfig datepicker =
+datepickerFieldConfig : Bool -> DatePicker -> FormField Model Msg
+datepickerFieldConfig isDisabled datepicker =
     Form.datepickerConfig
         "datepicker_field"
         "Datepicker field"
-        False
+        isDisabled
         .datepickerField
         (UpdateDate Datepicker)
         datepicker
@@ -138,8 +162,11 @@ datepickerFieldConfig datepicker =
 
 
 autocompleteFieldConfig : Model -> FormField Model Msg
-autocompleteFieldConfig ({ isAutocompleteFieldOpen } as model) =
+autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
     let
+        isDisabled =
+            formDisabled
+
         lowerFilter =
             (String.toLower << Maybe.withDefault "" << .autocompleteFilter) model
 
@@ -156,7 +183,7 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen } as model) =
     Form.autocompleteConfig
         "autocomplete_field"
         "Autocomplete field"
-        False
+        isDisabled
         isAutocompleteFieldOpen
         (Just "Nessun risultato trovato.")
         []

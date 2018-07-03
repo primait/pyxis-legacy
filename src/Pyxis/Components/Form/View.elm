@@ -1,6 +1,8 @@
 module Pyxis.Components.Form.View exposing (view)
 
 import Html exposing (..)
+import Html.Attributes exposing (class)
+import Html.Events exposing (onClick)
 import Prima.Form as Form
 import Pyxis.Components.Form.Config exposing (..)
 import Pyxis.Components.Form.Model
@@ -17,14 +19,35 @@ import Pyxis.Helpers
 
 view : Model -> List (Html Msg)
 view ({ datepicker } as model) =
+    let
+        isDisabled =
+            model.formDisabled
+
+        render config =
+            Form.render model config
+    in
     [ h2 [] [ text "Form components" ]
     , divider
-    , Form.render model textFieldConfig
-    , Form.render model textareaFieldConfig
-    , (renderOrNothing << Maybe.map (Form.render model << datepickerFieldConfig)) datepicker
-    , Form.render model (autocompleteFieldConfig model)
-    , Form.render model radioFieldConfig
-    , Form.render model (selectFieldConfig model.isSelectFieldOpen)
-    , Form.render model checkboxFieldConfig
-    , Form.render model (checkboxWithOptionsFieldConfig model.checkboxMultiField)
+    , render <| textFieldConfig isDisabled
+    , render <| textareaFieldConfig isDisabled
+    , (renderOrNothing << Maybe.map (render << datepickerFieldConfig isDisabled)) datepicker
+    , render <| autocompleteFieldConfig model
+    , render <| radioFieldConfig isDisabled
+    , render <| selectFieldConfig model
+    , render <| checkboxFieldConfig isDisabled
+    , render <| checkboxWithOptionsFieldConfig model
+    , btnToggleDisable model
     ]
+
+
+btnToggleDisable : Model -> Html Msg
+btnToggleDisable { formDisabled } =
+    button
+        [ class "a-btn a-btn--primary"
+        , onClick ToggleDisable
+        ]
+        [ if formDisabled then
+            text "Enable form"
+          else
+            text "Disable form"
+        ]

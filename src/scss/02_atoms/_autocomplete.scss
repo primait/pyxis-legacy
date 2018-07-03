@@ -2,7 +2,8 @@
   cursor: pointer;
   position: relative;
 
-  &.is-open .a-form__field__input:focus   {
+  &.is-open .a-form__field__input,
+  &.is-open .a-form__field__input:focus {
     border-color: color(green, dark);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
