@@ -56,4 +56,14 @@
   .a-form__field__checkbox:checked + &:after {
     transform: scale(1) translateY(-50%);
   }
+
+  &:hover:after,
+  .a-form__field__checkbox:checked + &:after {
+    transform: scale(1) translateY(-50%);
+  }
+
+  .a-form__field__checkbox:not(:checked) + &:hover:after {
+    color: color(green, dark);
+    opacity: 0.65;
+  }
 }

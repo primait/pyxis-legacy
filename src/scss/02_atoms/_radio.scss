@@ -28,6 +28,7 @@
     text-align: center;
     top: 50%;
     width: 20px;
+    transform-origin: center center;
   }
 
   &:before {
@@ -48,7 +49,12 @@
     width: 10px;
   }
 
+  &:hover:after,
   .a-form__field__radio:checked + &:after {
     transform: scale(1) translateY(-50%);
+  }
+
+  .a-form__field__radio:not(:checked) + &:hover:after {
+    opacity: 0.65;
   }
 }
