@@ -28,7 +28,7 @@
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.10);
   }
 
-  &.is-invalid.is-touched:not(:focus) {
+  &.is-invalid.is-touched:not(.is-open):not(:focus) {
     border-color: color(red);
     color: color(red);
   }
@@ -66,6 +66,20 @@
 
   .is-open &:after {
     transform: translateY(-50%) rotate(-180deg);
+  }
+
+  .is-disabled & {
+    background: color(grey, light);
+    opacity: 0.65;
+    pointer-events: none;
+
+    &:after {
+      color: color(grey, dark);
+    }
+  }
+
+  .is-invalid.is-touched:not(.is-open):not(:focus) &:after {
+    color: color(red);
   }
 }
 
@@ -140,5 +154,12 @@
   &.is-invalid {
     border-color: color(red);
     color: color(red);
+  }
+
+  &.is-disabled,
+  &[disabled] {
+    background: color(grey, light);
+    opacity: 0.65;
+    pointer-events: none;
   }
 }

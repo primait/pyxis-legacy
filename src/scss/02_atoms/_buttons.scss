@@ -1,14 +1,19 @@
 .a-btn {
+  align-self: center;
   border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
   font-family: font(heavy);
-  font-size: size(xsmall);
+  font-size: 14px;
   letter-spacing: 0.3px;
-  padding: 5px 20px;
+  min-height: 50px;
+  padding: 0 20px;
 }
 
 .a-btn--primary {
-  background: color(green);
-  border-color: color(green);
+  background: color(green, dark);
+  border-color: color(green, dark);
   color: color(white);
 }
 

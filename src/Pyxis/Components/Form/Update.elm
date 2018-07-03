@@ -100,3 +100,6 @@ update msg model =
 
         Toggle _ _ ->
             withoutCmds model
+
+        ToggleDisable ->
+            { model | formDisabled = not model.formDisabled } |> withoutCmds

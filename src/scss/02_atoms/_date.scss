@@ -1,4 +1,4 @@
-.a-form__field__input {
+.a-form__field__date {
   background: color(white);
   border: 1px solid color(grey);
   border-radius: 5px;
@@ -6,6 +6,10 @@
   height: 50px;
   margin: 0;
   padding: 0 15px;
+
+  @include mq(small) {
+    display: none;
+  }
 
   &:focus,
   &.is-pristine:focus {

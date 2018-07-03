@@ -24,6 +24,7 @@ type Msg
     | UpdateDate Field DatePicker.Msg
     | UpdateMultiCheckbox Field String Bool
     | Toggle Field Bool
+    | ToggleDisable
 
 
 type alias Model =
@@ -39,6 +40,7 @@ type alias Model =
     , autocompleteField : Maybe String
     , autocompleteFilter : Maybe String
     , isAutocompleteFieldOpen : Bool
+    , formDisabled : Bool
     }
 
 
@@ -60,6 +62,7 @@ initialModel =
         Nothing
         Nothing
         Nothing
+        False
         False
 
 

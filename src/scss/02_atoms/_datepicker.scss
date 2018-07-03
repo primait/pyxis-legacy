@@ -14,8 +14,13 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}container {
+  display: none;
   font-size: 14px;
   position: relative;
+
+  @include mq(small) {
+    display: block;
+  }
 }
 
 .#{$datepicker-ns}input:focus {
@@ -164,7 +169,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}picked {
-  color: color(white);
+  color: color(white)!important;
 
   &:before {
     content: '';
