@@ -100,7 +100,17 @@ checkboxWithOptionsFieldConfig model =
         (UpdateMultiCheckbox MultiCheckbox)
         options
         Nothing
-        [ Custom (isJust << List.head << List.filter (\{ slug, isChecked } -> slug == "b" && isChecked) << .checkboxMultiField) "You must choose `Option B`." ]
+        [ Custom
+            (\{ checkboxMultiField } ->
+                (List.all ((==) False) << List.map .isChecked) checkboxMultiField
+                    || (isJust
+                            << List.head
+                            << List.filter (\{ slug, isChecked } -> slug == "b" && isChecked)
+                       )
+                        checkboxMultiField
+            )
+            "You must choose `Option B`."
+        ]
 
 
 selectFieldConfig : Model -> FormField Model Msg
