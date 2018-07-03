@@ -36,8 +36,16 @@ view ({ datepicker } as model) =
     , render <| selectFieldConfig model
     , render <| checkboxFieldConfig isDisabled
     , render <| checkboxWithOptionsFieldConfig model
-    , btnToggleDisable model
+    , btnGroup
+        [ btnToggleDisable model
+        ]
     ]
+
+
+btnGroup : List (Html Msg) -> Html Msg
+btnGroup =
+    div
+        [ class "m-btnGroup" ]
 
 
 btnToggleDisable : Model -> Html Msg
