@@ -3,6 +3,7 @@
   border: 1px solid color(grey);
   border-radius: 5px;
   color: color(green, dark);
+  max-width: calc(100% - 280px);
   min-height: 100px;
   margin: 0;
   padding: 15px;
@@ -16,6 +17,7 @@
   &.is-valid,
   &.is-touched {
     border-color: color(green, dark);
+    border-width: 2px;
   }
 
   &.is-invalid.is-touched:not(:focus) {
