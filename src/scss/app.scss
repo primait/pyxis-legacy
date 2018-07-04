@@ -147,7 +147,6 @@ h2 {
 
 .colorScheme__item__tone {
   border-radius: 14px;
-  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.10);
   cursor: pointer;
   display: flex;
   font-family: font(heavy);
@@ -167,6 +166,13 @@ h2 {
   @each $color, $tones in $colors {
     @each $colorTone, $colorHex in $tones {
       &.bg-#{$color}-#{$colorTone} {
+        @if lightness($colorHex) == 100 {
+          box-shadow: 0px 10px 20px 0px rgba(0,0,0, 0.15);
+        }
+        @else {
+          box-shadow: 0px 10px 20px 0px rgba($colorHex, 0.3);
+        }
+
         @if lightness($colorHex) > 50 {
           color: rgba(0,0,0,0.4);
         }
