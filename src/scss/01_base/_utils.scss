@@ -3,7 +3,7 @@
   @each $colorTone, $colorHex in $tones {
 
     .bg-#{$color}-#{$colorTone} {
-      background: $colorHex;
+      background-color: $colorHex;
     }
 
     .c-#{$color}-#{$colorTone} {
