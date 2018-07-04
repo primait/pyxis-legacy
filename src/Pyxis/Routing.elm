@@ -14,6 +14,7 @@ matchers =
     oneOf
         [ map HomeRoute top
         , map ColorsRoute (s "colors")
+        , map ColorsRoute (s "typography")
         , map FormRoute (s "form")
         ]
 

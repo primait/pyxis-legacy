@@ -18,7 +18,7 @@ import Pyxis.Helpers
 
 view : Model -> List (Html msg)
 view model =
-    [ h2 [] [ text "Color scheme" ]
+    [ h2 [ class "sectionTitle" ] [ text "Color scheme" ]
     , divider
     , colorList model.colors
     ]

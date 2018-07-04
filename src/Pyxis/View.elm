@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (class)
 import Pyxis.Components.Colors.View as ColorsComponent
 import Pyxis.Components.Form.View as FormComponent
+import Pyxis.Components.Typography.View as Typography
 import Pyxis.Home.View as Home
 import Pyxis.Model
     exposing
@@ -31,6 +32,9 @@ dynamicView ({ route } as model) =
 
         ColorsRoute ->
             List.map (Html.map ColorsMsg) (ColorsComponent.view model.colors)
+
+        TypographyRoute ->
+            Typography.view model
 
         FormRoute ->
             List.map (Html.map FormMsg) (FormComponent.view model.form)

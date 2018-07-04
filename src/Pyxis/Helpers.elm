@@ -58,6 +58,9 @@ routeToUrl route =
         ColorsRoute ->
             "/colors"
 
+        TypographyRoute ->
+            "/typography"
+
         FormRoute ->
             "/form"
 

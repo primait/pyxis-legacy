@@ -1,7 +1,5 @@
 @each $color, $tones in $colors {
-
   @each $colorTone, $colorHex in $tones {
-
     .bg-#{$color}-#{$colorTone} {
       background: $colorHex;
     }
@@ -9,7 +7,11 @@
     .c-#{$color}-#{$colorTone} {
       color: $colorHex;
     }
-
   }
+}
 
+@each $fontKey, $size in $fontSizes {
+  .fs-#{$fontKey} {
+    font-size: size($fontKey);
+  }
 }
