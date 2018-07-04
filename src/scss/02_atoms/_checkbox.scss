@@ -46,9 +46,9 @@
     font-family: 'icomoon';
     left: 2px;
     line-height: 20px;
+    opacity: 0;
     transform: translateY(-50%);
     transition: clip-path 0.3s linear, opacity 0.2s linear;
-    opacity: 0;
   }
 
   .a-form__field__checkbox:checked + &:before {
