@@ -1,13 +1,13 @@
-@each $color, $props in $colors {
+@each $color, $tones in $colors {
 
-  @each $modifier in $props {
+  @each $colorTone, $colorHex in $tones {
 
-    .bg-#{$color}-#{$modifier} {
-      background: color($color, $modifier);
+    .bg-#{$color}-#{$colorTone} {
+      background: $colorHex;
     }
 
-    .c-#{$color}-#{$modifier} {
-      color: color($color, $modifier);
+    .c-#{$color}-#{$colorTone} {
+      color: $colorHex;
     }
 
   }

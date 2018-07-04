@@ -1,5 +1,7 @@
 module Pyxis.Update exposing (update)
 
+import Pyxis.Components.Colors.Model as ColorsModel
+import Pyxis.Components.Colors.Update as ColorsUpdate
 import Pyxis.Components.Form.Model as FormModel
 import Pyxis.Components.Form.Update as FormUpdate
 import Pyxis.Helpers
@@ -36,6 +38,9 @@ update msg model =
             }
                 |> withCmds [ changeRoute route ]
 
+        ColorsMsg colorsMsg ->
+            updateColors model colorsMsg model.colors
+
         FormMsg formMsg ->
             updateForm model formMsg model.form
 
@@ -47,3 +52,12 @@ updateForm model msg formModel =
             FormUpdate.update msg formModel
     in
     { model | form = newFormModel } ! [ Cmd.map FormMsg cmds ]
+
+
+updateColors : Model -> ColorsModel.Msg -> ColorsModel.Model -> ( Model, Cmd Msg )
+updateColors model msg colorsModel =
+    let
+        ( newColorsModel, cmds ) =
+            ColorsUpdate.update msg colorsModel
+    in
+    { model | colors = newColorsModel } ! [ Cmd.map ColorsMsg cmds ]

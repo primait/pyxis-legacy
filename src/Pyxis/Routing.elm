@@ -13,6 +13,7 @@ matchers : Parser (Route -> a) a
 matchers =
     oneOf
         [ map HomeRoute top
+        , map ColorsRoute (s "colors")
         , map FormRoute (s "form")
         ]
 
