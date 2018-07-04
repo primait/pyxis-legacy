@@ -146,13 +146,11 @@ h2 {
 }
 
 .colorScheme__item__tone {
-  align-items: center;
   border-radius: 14px;
   box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.10);
   cursor: pointer;
   display: flex;
   font-family: font(heavy);
-  justify-content: center;
   height: 120px;
   margin: 0 5px;
   transition: all 0.3s ease;
@@ -178,4 +176,8 @@ h2 {
       }
     }
   }
+}
+
+.colorScheme__item__tone__name {
+  padding: 20px;
 }
