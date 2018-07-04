@@ -45,6 +45,7 @@ initialMenu : List Menu
 initialMenu =
     [ Menu "home" "Pyxis" HomeRoute True
     , Menu "colors" "Colors" ColorsRoute False
+    , Menu "typography" "Typography" TypographyRoute False
     , Menu "form" "Form" FormRoute False
     ]
 
@@ -57,6 +58,7 @@ type Route
     = HomeRoute
       --------------
     | ColorsRoute
+    | TypographyRoute
     | FormRoute
       --------------
     | NotFoundRoute

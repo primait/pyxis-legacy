@@ -26,7 +26,7 @@ view ({ datepicker } as model) =
         render config =
             Form.render model config
     in
-    [ h2 [] [ text "Form components" ]
+    [ h2 [ class "sectionTitle" ] [ text "Form components" ]
     , divider
     , render <| textFieldConfig isDisabled
     , render <| textareaFieldConfig isDisabled
