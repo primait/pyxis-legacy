@@ -19,14 +19,13 @@
 
   &:before,
   &:after {
-    border-radius: 100%;
+    border-radius: 20px;
     display: flex;
     font-family: font(monospace);
     font-size: 16px;
     height: 20px;
     position: absolute;
     text-align: center;
-    top: 50%;
     width: 20px;
     transform-origin: center center;
   }
@@ -36,6 +35,7 @@
     border: 1px solid color(green);
     content: '';
     left: 0;
+    top: 50%;
     transform: translateY(-50%);
   }
 
@@ -44,14 +44,15 @@
     content: '';
     left: 5px;
     height: 10px;
-    transform: scale(0) translateY(-50%);
+    top: 20px;
+    transform: scale(0);
     transition: transform 0.2s cubic-bezier(0, 1, 1, 1);
     width: 10px;
   }
 
   &:hover:after,
   .a-form__field__radio:checked + &:after {
-    transform: scale(1) translateY(-50%);
+    transform: scale(1);
   }
 
   .a-form__field__radio:not(:checked) + &:hover:after {
