@@ -1,10 +1,10 @@
 clone:
-  cache-restore:
-    image: prima/drone-tools:1.13.0
-    volumes:
-      - /var/cache/ci/${DRONE_REPO}/${DRONE_BRANCH}:/var/cache/ci
-    commands:
-      - cache-restore --files --no-docker-cache-pull
+  # cache-restore:
+  #   image: prima/drone-tools:1.13.0
+  #   volumes:
+  #     - /var/cache/ci/${DRONE_REPO}/${DRONE_BRANCH}:/var/cache/ci
+  #   commands:
+  #     - cache-restore --files --no-docker-cache-pull
 
   git:
     image: prima/drone-git:1.3-1
@@ -24,7 +24,7 @@ pipeline:
       - docker-compose run -w $PWD web "yarn install"
       - docker-compose run -w $PWD web "yarn build:prod"
       - if [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/deploy staging; fi
-      - cache-save ~/.node-modules ~/.elm-stuff
+      # - cache-save ~/.node-modules ~/.elm-stuff
 
   notify_email:
     image: drillster/drone-email
