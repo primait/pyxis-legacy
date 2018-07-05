@@ -9,21 +9,24 @@ const app = Elm.App.embed(document.getElementById('app'), {
   route: route
 })
 
+app.ports.inspectHtml.subscribe(selector => {
+  const htmlSource = [].slice.call(document.querySelectorAll(selector)).map(item => (item.innerHTML).replace(/\<\/label>/g, '</label>\n\n'))
+  app.ports.htmlSnippet.send(htmlSource.join(""))
+})
+
 app.ports.copyToClipboard.subscribe(selector => {
+  const colorHex  = window.getComputedStyle(document.querySelector(selector), null).getPropertyValue('background-color')
+  const hexBits   = colorHex.split(',').map((item) => parseInt(item.trim().replace('rgb(','').replace(')','')) )
+  const r = hexBits[0]
+  const g = hexBits[1]
+  const b = hexBits[2]
 
-  const colorItem = document.querySelector(selector)
-  const colorHex = window.getComputedStyle(colorItem, null).getPropertyValue('background-color')
-  const splittedHex =
-    colorHex
-      .split(',')
-      .map((item) => parseInt(item.trim().replace('rgb(','').replace(')','')) )
-
-  copyToClipboard(rgbToHex(splittedHex[0], splittedHex[1], splittedHex[2]))
-
+  copyToClipboard(rgbToHex(r, g, b))
 })
 
 const copyToClipboard = str => {
   const el = document.createElement('textarea');
+
   el.value = str;
   el.setAttribute('readonly', '');
   el.style.position = 'absolute';

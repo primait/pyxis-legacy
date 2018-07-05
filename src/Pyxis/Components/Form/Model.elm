@@ -24,7 +24,10 @@ type Msg
     | UpdateDate Field DatePicker.Msg
     | UpdateMultiCheckbox Field String Bool
     | Toggle Field Bool
+      ---------------------
     | ToggleDisable
+      ---------------------
+    | InspectHtml String
 
 
 type alias Model =

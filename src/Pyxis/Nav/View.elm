@@ -14,9 +14,9 @@ import Pyxis.Model
 view : Model -> Html Msg
 view { menu } =
     nav
-        [ class "nav" ]
+        [ class "pyNav" ]
         [ ul
-            [ class "nav__menu" ]
+            [ class "pyNav__menu" ]
             (List.map item menu)
         ]
 
@@ -25,7 +25,7 @@ item : Menu -> Html Msg
 item { slug, label, route, isActive } =
     li
         [ classList
-            [ ( "nav__menu__item", True )
+            [ ( "pyNav__menu__item", True )
             , ( "is-active", isActive )
             ]
         , (onClick << RouteUpdate) route

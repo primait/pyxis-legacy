@@ -12,6 +12,12 @@ import Pyxis.Model
 
 view : Model -> List (Html Msg)
 view model =
-    [ h1 [ class "appTitle" ] [ text "Welcome to ", span [ class "purple" ] [ text "Pyxis!" ] ]
-    , h2 [ class "sectionTitle" ] [ text "Prima Assicurazioni Design System" ]
+    [ h1
+        [ class "pyTitle" ]
+        [ text "Welcome to "
+        , span [ class "purple" ] [ text "Pyxis!" ]
+        ]
+    , h2
+        [ class "pySubtitle" ]
+        [ text "Prima Assicurazioni Design System" ]
     ]

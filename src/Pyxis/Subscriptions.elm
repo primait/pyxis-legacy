@@ -5,8 +5,11 @@ import Pyxis.Model
         ( Model
         , Msg(..)
         )
+import Pyxis.Ports as Ports
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.batch []
+    Sub.batch
+        [ Ports.htmlSnippet ShowSource
+        ]

@@ -16,7 +16,7 @@ import Pyxis.Model
 
 view : Model -> List (Html Msg)
 view model =
-    [ h2 [ class "sectionTitle" ] [ text "Form components" ]
+    [ h2 [ class "pySubtitle" ] [ text "Form components" ]
     , divider
     , h1 [] [ text "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." ]
     , h2 [] [ text "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." ]

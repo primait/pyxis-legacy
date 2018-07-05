@@ -2,6 +2,8 @@ module Pyxis.Model
     exposing
         ( AppStatus(..)
         , Flags
+        , HtmlSelector
+        , HtmlSnippet
         , Menu
         , Model
         , Msg(..)
@@ -17,7 +19,10 @@ import Pyxis.Components.Form.Model as Form
 type Msg
     = LocationChange Location
     | RouteUpdate Route
-      ---------------------
+      -------------
+    | ShowSource HtmlSnippet
+    | HideSource
+      -------------
     | ColorsMsg Colors.Msg
     | FormMsg Form.Msg
 
@@ -26,6 +31,7 @@ type alias Model =
     { status : AppStatus
     , route : Route
     , menu : List Menu
+    , htmlSnippet : Maybe HtmlSnippet
     , colors : Colors.Model
     , form : Form.Model
     }
@@ -37,6 +43,7 @@ initialModel =
         AppReady
         HomeRoute
         initialMenu
+        Nothing
         Colors.initialModel
         Form.initialModel
 
@@ -75,3 +82,11 @@ type alias Menu =
 type alias Flags =
     { route : String
     }
+
+
+type alias HtmlSelector =
+    String
+
+
+type alias HtmlSnippet =
+    String
