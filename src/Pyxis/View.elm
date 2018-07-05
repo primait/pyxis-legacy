@@ -6,6 +6,7 @@ import Pyxis.Components.Colors.View as ColorsComponent
 import Pyxis.Components.Form.View as FormComponent
 import Pyxis.Components.Typography.View as Typography
 import Pyxis.Home.View as Home
+import Pyxis.HtmlSnippet.View as HtmlSnippet
 import Pyxis.Model
     exposing
         ( AppStatus(..)
@@ -19,14 +20,14 @@ import Pyxis.Nav.View as Nav
 view : Model -> Html Msg
 view model =
     div
-        [ class "wrapper"
+        [ class "pyWrapper"
         ]
         (Nav.view model :: dynamicView model)
 
 
 dynamicView : Model -> List (Html Msg)
 dynamicView ({ route } as model) =
-    case route of
+    (case route of
         HomeRoute ->
             Home.view model
 
@@ -40,5 +41,12 @@ dynamicView ({ route } as model) =
             List.map (Html.map FormMsg) (FormComponent.view model.form)
 
         _ ->
-            [ text "Route not found"
-            ]
+            (List.singleton << text) "Route not found"
+    )
+        ++ commonView model
+
+
+commonView : Model -> List (Html Msg)
+commonView { htmlSnippet } =
+    [ HtmlSnippet.view htmlSnippet
+    ]

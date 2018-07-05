@@ -6,10 +6,11 @@
   Pyxis styles
 ******************************/
 :root {
-  --black: #000000;
-  --purple: #8334c2;
-  --grey: #d1d1d1;
-  --white: #ffffff;
+  --black:       #000000;
+  --purple:      #8334c2;
+  --grey:        #d1d1d1;
+  --lightGrey:   #f1f1f1;
+  --white:       #ffffff;
 }
 
 /******************************
@@ -25,16 +26,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.appTitle {
+.pyTitle {
   font-weight: 400;
   font-size: 40px;
   letter-spacing: 2px;
 }
 
-.sectionTitle {
+.pySubtitle {
   font-weight: 400;
   font-size: 32px;
   letter-spacing: 1.6px;
+}
+
+.pyLink {
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  font-family: font(heavy);
 }
 
 /******************************
@@ -55,12 +63,13 @@ body {
 /******************************
   Containers & Dividers
 ******************************/
-.wrapper {
+.pyWrapper {
   margin: 0 auto;
   max-width: 1100px;
+  position: relative;
 }
 
-.divider {
+.pyDivider {
   border: none;
   height: 50px;
   position: relative;
@@ -81,11 +90,11 @@ body {
 /******************************
   Nav
 ******************************/
-.nav {
+.pyNav {
   display: flex;
 }
 
-.nav__menu {
+.pyNav__menu {
   align-items: center;
   display: flex;
   flex: 1 0 auto;
@@ -95,10 +104,9 @@ body {
   padding: 0;
 }
 
-.nav__menu__item {
+.pyNav__menu__item {
   display: flex;
   flex: 0 0 auto;
-  font-weight: 700;
   justify-content: center;
   padding: 15px 30px 15px 0;
   cursor: pointer;
@@ -116,7 +124,7 @@ body {
 /******************************
   Color Scheme
 ******************************/
-.colorScheme {
+.pyColorScheme {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -125,7 +133,7 @@ body {
   padding: 0;
 }
 
-.colorScheme__item {
+.pyColorScheme__item {
   border-bottom: 1px solid #e0e0e0;
   display: flex;
   flex-wrap: wrap;
@@ -145,7 +153,7 @@ body {
   }
 }
 
-.colorScheme__item__tone {
+.pyColorScheme__item__tone {
   border-radius: 14px;
   cursor: pointer;
   display: flex;
@@ -184,6 +192,70 @@ body {
   }
 }
 
-.colorScheme__item__tone__name {
+.pyColorScheme__item__tone__name {
   padding: 20px;
+}
+
+/******************************
+  Footer
+******************************/
+.pyFooter {
+  background: var(--white);
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  box-shadow: -2px -2px 3px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+
+  transform: translate3d(0, 100%, 0);
+  transition: transform 0.3s ease-in-out;
+
+  &.is-open {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.pyFooter__link {
+  display: flex;
+  flex: 1 0 auto;
+  align-self: flex-end;
+  justify-content: flex-end;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/******************************
+  Snippet
+******************************/
+.pySnippet {
+  display: flex;
+  padding: 20px;
+  background-color: var(--lightGrey);
+  overflow-y: hidden;
+  font-size: 12px;
+}
+
+.pyIcon {
+  font-size: 24px;
+  color: var(--black);
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.pyIconInspect {
+  font-size: 20px;
+  justify-content: flex-end;
+  opacity: 0.45;
+  transition: all 0.3s;
+  position: absolute;
+  right: 0;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }

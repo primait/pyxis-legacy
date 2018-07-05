@@ -26,16 +26,16 @@ view ({ datepicker } as model) =
         render config =
             Form.render model config
     in
-    [ h2 [ class "sectionTitle" ] [ text "Form components" ]
+    [ h2 [ class "pySubtitle" ] [ text "Form components" ]
     , divider
-    , render <| textFieldConfig isDisabled
-    , render <| textareaFieldConfig isDisabled
-    , (renderOrNothing << Maybe.map (render << datepickerFieldConfig isDisabled)) datepicker
-    , render <| autocompleteFieldConfig model
-    , render <| radioFieldConfig isDisabled
-    , render <| selectFieldConfig model
-    , render <| checkboxFieldConfig isDisabled
-    , render <| checkboxWithOptionsFieldConfig model
+    , textFieldConfig isDisabled |> render
+    , textareaFieldConfig isDisabled |> render
+    , Maybe.map (render << datepickerFieldConfig isDisabled) datepicker |> renderOrNothing
+    , autocompleteFieldConfig model |> render
+    , radioFieldConfig isDisabled |> render
+    , selectFieldConfig model |> render
+    , checkboxFieldConfig isDisabled |> render
+    , checkboxWithOptionsFieldConfig model |> render
     , btnGroup
         [ btnToggleDisable model
         ]

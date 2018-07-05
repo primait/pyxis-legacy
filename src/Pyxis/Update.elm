@@ -38,6 +38,12 @@ update msg model =
             }
                 |> withCmds [ changeRoute route ]
 
+        ShowSource source ->
+            { model | htmlSnippet = Just source } |> withoutCmds
+
+        HideSource ->
+            { model | htmlSnippet = Nothing } |> withoutCmds
+
         ColorsMsg colorsMsg ->
             updateColors model colorsMsg model.colors
 

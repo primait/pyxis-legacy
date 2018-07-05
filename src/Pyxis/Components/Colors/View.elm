@@ -20,7 +20,7 @@ import Pyxis.Helpers
 
 view : Model -> List (Html Msg)
 view model =
-    [ h2 [ class "sectionTitle" ] [ text "Color scheme" ]
+    [ h2 [ class "pySubtitle" ] [ text "Color scheme" ]
     , divider
     , colorList model.colors
     ]
@@ -29,14 +29,14 @@ view model =
 colorList : List Color -> Html Msg
 colorList colors =
     ul
-        [ class "colorScheme" ]
+        [ class "pyColorScheme" ]
         (List.map colorItem colors)
 
 
 colorItem : Color -> Html Msg
 colorItem color =
     li
-        [ class "colorScheme__item"
+        [ class "pyColorScheme__item"
         , attribute "data-color" color.name
         ]
         (List.map (colorTone color) color.tones)
@@ -46,10 +46,10 @@ colorTone : Color -> ColorTone -> Html Msg
 colorTone color tone =
     div
         [ classList
-            [ ( "colorScheme__item__tone", True )
+            [ ( "pyColorScheme__item__tone", True )
             , ( String.join "-" [ "bg", color.name, colorToneToString tone ], True )
             ]
         , (onClick << PickTone color) tone
         ]
-        [ span [ class "colorScheme__item__tone__name" ] [ (text << colorToneToString) tone ]
+        [ span [ class "pyColorScheme__item__tone__name" ] [ (text << colorToneToString) tone ]
         ]

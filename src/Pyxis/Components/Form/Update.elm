@@ -13,6 +13,7 @@ import Pyxis.Helpers
         , withCmds
         , withoutCmds
         )
+import Pyxis.Ports as Ports
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -103,3 +104,6 @@ update msg model =
 
         ToggleDisable ->
             { model | formDisabled = not model.formDisabled } |> withoutCmds
+
+        InspectHtml selector ->
+            model |> withCmds [ Ports.inspectHtml selector ]
