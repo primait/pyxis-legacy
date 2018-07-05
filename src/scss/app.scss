@@ -1,3 +1,7 @@
+@import
+  '01_base/_variables.scss',
+  '01_base/_helpers.scss';
+
 /******************************
   Pyxis styles
 ******************************/
@@ -5,6 +9,7 @@
   --black: #000000;
   --purple: #8334c2;
   --grey: #d1d1d1;
+  --white: #ffffff;
 }
 
 /******************************
@@ -16,6 +21,8 @@ body {
   margin: 0;
   padding: 0;
   color: var(--black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .appTitle {
@@ -111,19 +118,72 @@ body {
 ******************************/
 .colorScheme {
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .colorScheme__item {
+  border-bottom: 1px solid #e0e0e0;
   display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  padding-bottom: 40px;
+
+  &:before {
+    content: attr(data-color);
+    flex: 1 0 100%;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    padding: 10px;
+    text-transform: uppercase;
+  }
 }
 
 .colorScheme__item__tone {
-  align-items: center;
+  border-radius: 14px;
+  cursor: pointer;
   display: flex;
-  justify-content: center;
-  height: 90px;
-  width: 90px;
+  font-family: font(heavy);
+  height: 120px;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+  width: 120px;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(1.08);
+  }
+
+  @each $color, $tones in $colors {
+    @each $colorTone, $colorHex in $tones {
+      &.bg-#{$color}-#{$colorTone} {
+        @if lightness($colorHex) == 100 {
+          box-shadow: 0px 10px 20px 0px rgba(0,0,0, 0.15);
+        }
+        @else {
+          box-shadow: 0px 10px 20px 0px rgba($colorHex, 0.3);
+        }
+
+        @if lightness($colorHex) > 50 {
+          color: rgba(0,0,0,0.4);
+        }
+        @else {
+          color: var(--white);
+        }
+      }
+    }
+  }
+}
+
+.colorScheme__item__tone__name {
+  padding: 20px;
 }

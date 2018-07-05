@@ -6,16 +6,28 @@ import Pyxis.Components.Colors.Model
         , ColorTone(..)
         , Model
         , Msg(..)
+        , colorToneToString
         )
 import Pyxis.Helpers
     exposing
         ( withCmds
         , withoutCmds
         )
+import Pyxis.Ports as Ports
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         PickTone color tone ->
-            model |> withoutCmds
+            let
+                colorClass =
+                    String.join "-" [ ".bg", color.name, colorToneToString tone ]
+
+                selector =
+                    String.join ""
+                        [ ".colorScheme__item__tone"
+                        , colorClass
+                        ]
+            in
+            model |> withCmds [ Ports.copyToClipboard selector ]
