@@ -15,7 +15,7 @@ const config = {
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js'
+    filename: '[name].bundle.[hash].js'
   },
 
   module: {
@@ -61,9 +61,7 @@ const config = {
 
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        test: /\.js($|\?)/i
-      })
+      new UglifyJsPlugin({ test: /\.js($|\?)/i })
     ]
   }
 

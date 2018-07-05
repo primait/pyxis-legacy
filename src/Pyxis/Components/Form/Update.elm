@@ -1,6 +1,7 @@
 module Pyxis.Components.Form.Update exposing (update)
 
 import DatePicker exposing (DatePicker)
+import Maybe.Extra exposing (isJust, isNothing)
 import Pyxis.Components.Form.Model
     exposing
         ( Field(..)
@@ -19,32 +20,94 @@ import Pyxis.Ports as Ports
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        FormNoOp ->
+            model |> withoutCmds
+
+        Focus Autocomplete ->
+            { model
+                | isAutocompleteFieldOpen = True
+                , isSelectFieldOpen = False
+            }
+                |> withoutCmds
+
+        Focus Select ->
+            { model
+                | isSelectFieldOpen = True
+                , isAutocompleteFieldOpen = False
+            }
+                |> withoutCmds
+
+        Focus _ ->
+            { model
+                | isSelectFieldOpen = False
+                , isAutocompleteFieldOpen = False
+            }
+                |> withoutCmds
+
+        Blur Autocomplete ->
+            { model
+                | isAutocompleteFieldOpen = model.isAutocompleteFieldOpen
+            }
+                |> withoutCmds
+
+        Blur _ ->
+            { model
+                | isAutocompleteFieldOpen = False
+                , isSelectFieldOpen = False
+            }
+                |> withoutCmds
+
         UpdateText Text value ->
-            { model | textField = value } |> withoutCmds
+            { model
+                | textField = value
+            }
+                |> withoutCmds
 
         UpdateText Autocomplete value ->
-            { model | autocompleteField = value, autocompleteFilter = Nothing, isAutocompleteFieldOpen = False } |> withoutCmds
+            { model
+                | autocompleteField = value
+                , autocompleteFilter = Nothing
+                , isAutocompleteFieldOpen = isNothing value
+            }
+                |> withoutCmds
 
         UpdateText Radio value ->
-            { model | radioField = value } |> withoutCmds
+            { model
+                | radioField = value
+            }
+                |> withoutCmds
 
         UpdateText Select value ->
-            { model | selectField = value, isSelectFieldOpen = False } |> withoutCmds
+            { model
+                | selectField = value
+                , isSelectFieldOpen = False
+            }
+                |> withoutCmds
 
         UpdateText Textarea value ->
-            { model | textareaField = value } |> withoutCmds
+            { model
+                | textareaField = value
+            }
+                |> withoutCmds
 
         UpdateText _ _ ->
             withoutCmds model
 
-        UpdateAutocomplete Autocomplete value ->
-            { model | autocompleteFilter = value, isAutocompleteFieldOpen = True } |> withoutCmds
+        UpdateFilter Autocomplete value ->
+            { model
+                | autocompleteFilter = value
+                , isAutocompleteFieldOpen = True
+            }
+                |> withoutCmds
 
-        UpdateAutocomplete _ _ ->
+        UpdateFilter _ _ ->
             withoutCmds model
 
         UpdateFlag Checkbox value ->
-            { model | checkboxField = value } |> withoutCmds
+            { model
+                | checkboxField = value
+            }
+                |> withoutCmds
 
         UpdateFlag _ _ ->
             withoutCmds model
@@ -91,19 +154,31 @@ update msg model =
                         DatePicker.Changed chosenDate ->
                             chosenDate
             in
-            { model | datepickerField = date, datepicker = Just updatedDP } |> withCmds [ Cmd.map (UpdateDate Datepicker) dpCmd ]
+            { model
+                | datepickerField = date
+                , datepicker = Just updatedDP
+                , isSelectFieldOpen = False
+                , isAutocompleteFieldOpen = False
+            }
+                |> withCmds [ Cmd.map (UpdateDate Datepicker) dpCmd ]
 
         UpdateDate _ _ ->
             withoutCmds model
 
         Toggle Select isOpen ->
-            { model | isSelectFieldOpen = isOpen } |> withoutCmds
+            { model
+                | isSelectFieldOpen = isOpen
+            }
+                |> withoutCmds
 
         Toggle _ _ ->
             withoutCmds model
 
         ToggleDisable ->
-            { model | formDisabled = not model.formDisabled } |> withoutCmds
+            { model
+                | formDisabled = not model.formDisabled
+            }
+                |> withoutCmds
 
         InspectHtml selector ->
             model |> withCmds [ Ports.inspectHtml selector ]

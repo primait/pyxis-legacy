@@ -18,13 +18,17 @@ import Prima.Form
 
 
 type Msg
-    = UpdateText Field (Maybe String)
-    | UpdateAutocomplete Field (Maybe String)
+    = FormNoOp
+    | Focus Field
+    | Blur Field
+      ---------------------
+    | UpdateText Field (Maybe String)
+    | UpdateFilter Field (Maybe String)
     | UpdateFlag Field Bool
     | UpdateDate Field DatePicker.Msg
     | UpdateMultiCheckbox Field String Bool
-    | Toggle Field Bool
       ---------------------
+    | Toggle Field Bool
     | ToggleDisable
       ---------------------
     | InspectHtml String
