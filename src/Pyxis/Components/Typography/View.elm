@@ -1,17 +1,12 @@
 module Pyxis.Components.Typography.View exposing (view)
 
 import Html exposing (..)
-import Html.Attributes exposing (class)
-import Pyxis.Helpers
-    exposing
-        ( divider
-        , renderOrNothing
-        )
 import Pyxis.Model
     exposing
         ( Model
         , Msg(..)
         )
+import Pyxis.ViewHelpers exposing (componentTitle, divider, renderOrNothing)
 
 
 view : Model -> List (Html Msg)
@@ -21,10 +16,12 @@ view model =
         renderText tagName =
             tagName [] [ text "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." ]
     in
-    [ h2 [ class "pySubtitle" ] [ text "Form components" ]
+    [ componentTitle [ text "Typography" ]
     , divider
     ]
-        ++ (List.intersperse divider
-                << List.map renderText
-           )
-            [ h1, h2, h3, h4, h5, h6, p ]
+        ++ (List.intersperse divider << List.map renderText) [ h1, h2, h3, h4, h5, h6, p ]
+
+
+renderText : (List (Attribute Msg) -> List (Html Msg) -> Html Msg) -> Html Msg
+renderText tagName =
+    tagName [] [ text "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." ]

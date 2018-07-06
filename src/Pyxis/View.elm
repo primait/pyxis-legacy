@@ -2,6 +2,7 @@ module Pyxis.View exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
+import Pyxis.Components.Buttons.View as ButtonsComponent
 import Pyxis.Components.Colors.View as ColorsComponent
 import Pyxis.Components.Form.View as FormComponent
 import Pyxis.Components.Typography.View as Typography
@@ -36,6 +37,9 @@ dynamicView ({ route } as model) =
 
         TypographyRoute ->
             Typography.view model
+
+        ButtonsRoute ->
+            List.map (Html.map ButtonsMsg) (ButtonsComponent.view model.buttons)
 
         FormRoute ->
             List.map (Html.map FormMsg) (FormComponent.view model.form)
