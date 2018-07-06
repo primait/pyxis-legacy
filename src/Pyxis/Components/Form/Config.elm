@@ -2,7 +2,7 @@ module Pyxis.Components.Form.Config exposing (..)
 
 import DatePicker exposing (DatePicker)
 import Html exposing (..)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (class, placeholder)
 import Html.Events exposing (onClick)
 import Maybe.Extra exposing (isJust)
 import Prima.Form as Form
@@ -31,9 +31,11 @@ textFieldConfig isDisabled =
         "text_field"
         "Text field"
         isDisabled
-        []
+        [ placeholder "Write something" ]
         .textField
         (UpdateText Text)
+        (Focus Text)
+        (Blur Text)
         ((Just << htmlInspector) "[data-form-field='text_field']")
         [ NotEmpty "Empty value is not acceptable"
         , Expression (regex "prima") "The value must contains `prima` substring."
@@ -46,9 +48,11 @@ textareaFieldConfig isDisabled =
         "textarea_field"
         "Textarea field"
         isDisabled
-        []
+        [ placeholder "Write something" ]
         .textareaField
         (UpdateText Textarea)
+        (Focus Textarea)
+        (Blur Textarea)
         ((Just << htmlInspector) "[data-form-field='textarea_field']")
         [ NotEmpty "Empty value is not acceptable"
         , Custom ((<=) 10 << String.length << Maybe.withDefault "" << .textareaField) "The value must be at least 10 characters length."
@@ -64,6 +68,8 @@ radioFieldConfig isDisabled =
         []
         .radioField
         (UpdateText Radio)
+        (Focus Radio)
+        (Blur Radio)
         [ RadioOption "Option A" "a"
         , RadioOption "Option B" "b"
         , RadioOption "Option C" "c"
@@ -81,6 +87,8 @@ checkboxFieldConfig isDisabled =
         []
         .checkboxField
         (UpdateFlag Checkbox)
+        (Focus Checkbox)
+        (Blur Checkbox)
         ((Just << htmlInspector) "[data-form-field='checkbox_field']")
         []
 
@@ -101,6 +109,8 @@ checkboxWithOptionsFieldConfig model =
         []
         (List.map (\option -> ( option.slug, option.isChecked )) << .checkboxMultiField)
         (UpdateMultiCheckbox MultiCheckbox)
+        (Focus MultiCheckbox)
+        (Blur MultiCheckbox)
         options
         ((Just << htmlInspector) "[data-form-field='checkbox_multifield']")
         [ Custom
@@ -144,6 +154,8 @@ selectFieldConfig model =
         .selectField
         (Toggle Select)
         (UpdateText Select)
+        (Focus Select)
+        (Blur Select)
         options
         True
         ((Just << htmlInspector) "[data-form-field='select_field']")
@@ -170,10 +182,7 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
         isDisabled =
             formDisabled
 
-        lowerFilter =
-            (String.toLower << Maybe.withDefault "" << .autocompleteFilter) model
-
-        options =
+        countries =
             [ AutocompleteOption "Italy" "ITA"
             , AutocompleteOption "Brasil" "BRA"
             , AutocompleteOption "France" "FRA"
@@ -181,7 +190,14 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
             , AutocompleteOption "USA" "USA"
             , AutocompleteOption "Japan" "JAP"
             ]
-                |> List.filter (String.contains lowerFilter << String.toLower << .label)
+
+        options =
+            case model.autocompleteFilter of
+                Nothing ->
+                    countries
+
+                Just f ->
+                    List.filter (String.contains (String.toLower f) << String.toLower << .label) countries
     in
     Form.autocompleteConfig
         "autocomplete_field"
@@ -189,11 +205,13 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
         isDisabled
         isAutocompleteFieldOpen
         (Just "Nessun risultato trovato.")
-        []
+        [ placeholder "Search your country" ]
         .autocompleteFilter
         .autocompleteField
-        (UpdateAutocomplete Autocomplete)
+        (UpdateFilter Autocomplete)
         (UpdateText Autocomplete)
+        (Focus Autocomplete)
+        (Blur Autocomplete)
         options
         ((Just << htmlInspector) "[data-form-field='autocomplete_field']")
         [ NotEmpty "Empty value is not acceptable" ]

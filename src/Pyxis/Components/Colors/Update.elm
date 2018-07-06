@@ -26,7 +26,7 @@ update msg model =
 
                 selector =
                     String.join ""
-                        [ ".colorScheme__item__tone"
+                        [ ".pyColorScheme__item__tone"
                         , colorClass
                         ]
             in

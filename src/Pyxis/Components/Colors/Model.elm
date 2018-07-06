@@ -18,6 +18,7 @@ type alias Model =
     }
 
 
+initialModel : Model
 initialModel =
     Model
         [ Color "purple" [ Light, Base, Dark ]
