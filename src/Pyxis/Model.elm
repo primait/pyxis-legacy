@@ -12,6 +12,7 @@ module Pyxis.Model
         )
 
 import Navigation exposing (Location)
+import Pyxis.Components.Buttons.Model as Buttons
 import Pyxis.Components.Colors.Model as Colors
 import Pyxis.Components.Form.Model as Form
 
@@ -24,6 +25,7 @@ type Msg
     | HideSource
       -------------
     | ColorsMsg Colors.Msg
+    | ButtonsMsg Buttons.Msg
     | FormMsg Form.Msg
 
 
@@ -33,6 +35,7 @@ type alias Model =
     , menu : List Menu
     , htmlSnippet : Maybe HtmlSnippet
     , colors : Colors.Model
+    , buttons : Buttons.Model
     , form : Form.Model
     }
 
@@ -45,6 +48,7 @@ initialModel =
         initialMenu
         Nothing
         Colors.initialModel
+        Buttons.initialModel
         Form.initialModel
 
 
@@ -53,6 +57,7 @@ initialMenu =
     [ Menu "home" "Pyxis" HomeRoute True
     , Menu "colors" "Colors" ColorsRoute False
     , Menu "typography" "Typography" TypographyRoute False
+    , Menu "buttons" "Buttons" ButtonsRoute False
     , Menu "form" "Form" FormRoute False
     ]
 
@@ -64,9 +69,10 @@ type AppStatus
 type Route
     = HomeRoute
       --------------
+    | ButtonsRoute
     | ColorsRoute
-    | TypographyRoute
     | FormRoute
+    | TypographyRoute
       --------------
     | NotFoundRoute
 

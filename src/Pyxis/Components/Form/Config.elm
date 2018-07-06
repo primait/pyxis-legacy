@@ -1,9 +1,7 @@
 module Pyxis.Components.Form.Config exposing (..)
 
 import DatePicker exposing (DatePicker)
-import Html exposing (..)
 import Html.Attributes exposing (class, placeholder)
-import Html.Events exposing (onClick)
 import Maybe.Extra exposing (isJust)
 import Prima.Form as Form
     exposing
@@ -36,7 +34,7 @@ textFieldConfig isDisabled =
         (UpdateText Text)
         (Focus Text)
         (Blur Text)
-        ((Just << htmlInspector) "[data-form-field='text_field']")
+        Nothing
         [ NotEmpty "Empty value is not acceptable"
         , Expression (regex "prima") "The value must contains `prima` substring."
         ]
@@ -53,7 +51,7 @@ textareaFieldConfig isDisabled =
         (UpdateText Textarea)
         (Focus Textarea)
         (Blur Textarea)
-        ((Just << htmlInspector) "[data-form-field='textarea_field']")
+        Nothing
         [ NotEmpty "Empty value is not acceptable"
         , Custom ((<=) 10 << String.length << Maybe.withDefault "" << .textareaField) "The value must be at least 10 characters length."
         ]
@@ -74,7 +72,7 @@ radioFieldConfig isDisabled =
         , RadioOption "Option B" "b"
         , RadioOption "Option C" "c"
         ]
-        ((Just << htmlInspector) "[data-form-field='radio_field']")
+        Nothing
         [ Custom ((==) "b" << Maybe.withDefault "b" << .radioField) "You must choose `Option B`." ]
 
 
@@ -89,7 +87,7 @@ checkboxFieldConfig isDisabled =
         (UpdateFlag Checkbox)
         (Focus Checkbox)
         (Blur Checkbox)
-        ((Just << htmlInspector) "[data-form-field='checkbox_field']")
+        Nothing
         []
 
 
@@ -112,7 +110,7 @@ checkboxWithOptionsFieldConfig model =
         (Focus MultiCheckbox)
         (Blur MultiCheckbox)
         options
-        ((Just << htmlInspector) "[data-form-field='checkbox_multifield']")
+        Nothing
         [ Custom
             (\{ checkboxMultiField } ->
                 (List.all ((==) False) << List.map .isChecked) checkboxMultiField
@@ -158,7 +156,7 @@ selectFieldConfig model =
         (Blur Select)
         options
         True
-        ((Just << htmlInspector) "[data-form-field='select_field']")
+        Nothing
         [ Custom ((==) "SA" << Maybe.withDefault "SA" << .selectField) "You must choose `Savona`. ;)" ]
 
 
@@ -172,7 +170,7 @@ datepickerFieldConfig isDisabled datepicker =
         (UpdateDate Datepicker)
         datepicker
         datepickerSettings
-        ((Just << htmlInspector) "[data-form-field='datepicker_field']")
+        Nothing
         []
 
 
@@ -213,14 +211,5 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
         (Focus Autocomplete)
         (Blur Autocomplete)
         options
-        ((Just << htmlInspector) "[data-form-field='autocomplete_field']")
+        Nothing
         [ NotEmpty "Empty value is not acceptable" ]
-
-
-htmlInspector : String -> Html Msg
-htmlInspector selector =
-    i
-        [ class "pyIcon pyIconInspect icon-search"
-        , (onClick << InspectHtml) selector
-        ]
-        []

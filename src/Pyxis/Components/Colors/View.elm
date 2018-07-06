@@ -11,16 +11,12 @@ import Pyxis.Components.Colors.Model
         , Msg(..)
         , colorToneToString
         )
-import Pyxis.Helpers
-    exposing
-        ( divider
-        , renderOrNothing
-        )
+import Pyxis.ViewHelpers exposing (componentTitle, divider, renderOrNothing)
 
 
 view : Model -> List (Html Msg)
 view model =
-    [ h2 [ class "pySubtitle" ] [ text "Color scheme" ]
+    [ componentTitle [ text "Color scheme" ]
     , divider
     , colorList model.colors
     ]

@@ -3,10 +3,6 @@ module Pyxis.Helpers exposing (..)
 import Date exposing (Date, Day(..), Month(..))
 import Date.Format
 import DatePicker exposing (DatePicker)
-import Html exposing (..)
-import Html.Attributes exposing (class)
-import HtmlParser exposing (parse)
-import HtmlParser.Util exposing (toVirtualDom)
 import Navigation exposing (Location)
 import Pyxis.Model
     exposing
@@ -57,16 +53,19 @@ routeToUrl route =
         HomeRoute ->
             "/"
 
+        ButtonsRoute ->
+            "/buttons"
+
         ColorsRoute ->
             "/colors"
-
-        TypographyRoute ->
-            "/typography"
 
         FormRoute ->
             "/form"
 
-        _ ->
+        TypographyRoute ->
+            "/typography"
+
+        NotFoundRoute ->
             "/"
 
 
@@ -160,39 +159,6 @@ monthFormatter month =
             "Dicembre"
 
 
-renderIf : Bool -> Html a -> Html a
-renderIf check html =
-    if check then
-        html
-    else
-        text ""
-
-
-renderUnless : Bool -> Html a -> Html a
-renderUnless check =
-    renderIf (not check)
-
-
-renderMaybe : Maybe a -> Html msg -> Html msg
-renderMaybe theMaybe html =
-    case theMaybe of
-        Just _ ->
-            html
-
-        Nothing ->
-            text ""
-
-
-renderOrNothing : Maybe (Html a) -> Html a
-renderOrNothing maybeHtml =
-    Maybe.withDefault (text "") maybeHtml
-
-
-renderHTMLContent : String -> List (Html a)
-renderHTMLContent =
-    toVirtualDom << parse
-
-
 updateMenu : Route -> List Menu -> List Menu
 updateMenu route menu =
     let
@@ -203,6 +169,6 @@ updateMenu route menu =
     List.map (activateByRoute route) menu
 
 
-divider : Html msg
-divider =
-    hr [ class "pyDivider" ] []
+toInspectableSelector : String -> String
+toInspectableSelector selector =
+    "pyInspect pyInspect--" ++ selector

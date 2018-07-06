@@ -9,7 +9,7 @@ const app = Elm.App.embed(document.getElementById('app'), {
 })
 
 app.ports.inspectHtml.subscribe(selector => {
-  const htmlSource = [].slice.call(document.querySelectorAll(selector)).map(item => (item.innerHTML).replace(/\<\/label>/g, '</label>\n\n'))
+  const htmlSource = [].slice.call(document.querySelectorAll(selector)).map(item => beautifyHtml(item.innerHTML))
   app.ports.htmlSnippet.send(htmlSource.join(""))
 })
 
@@ -37,3 +37,30 @@ const copyToClipboard = str => {
 }
 
 const rgbToHex = (r, g, b) => "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+
+const beautifyHtml = str => {
+  const div = document.createElement('div');
+  div.innerHTML = str.trim();
+  return formatHtml(div, 0).innerHTML;
+}
+
+const formatHtml = (node, level) => {
+
+  let indentBefore = new Array(level++ + 1).join('  ')
+  let indentAfter  = new Array(level - 1).join('  ')
+  let textNode
+
+  for (let i = 0; i < node.children.length; i++) {
+
+      textNode = document.createTextNode('\n' + indentBefore);
+      node.insertBefore(textNode, node.children[i]);
+
+      formatHtml(node.children[i], level);
+
+      if (node.lastElementChild == node.children[i]) {
+          textNode = document.createTextNode('\n' + indentAfter);
+          node.appendChild(textNode);
+      }
+  }
+  return node;
+}

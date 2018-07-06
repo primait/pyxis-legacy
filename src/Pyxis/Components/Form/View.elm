@@ -10,10 +10,15 @@ import Pyxis.Components.Form.Model
         ( Model
         , Msg(..)
         )
-import Pyxis.Helpers
+import Pyxis.ViewHelpers
     exposing
-        ( divider
+        ( componentShowdown
+        , componentTitle
+        , divider
+        , inspectableHtml
+        , renderIf
         , renderOrNothing
+        , renderUnless
         )
 
 
@@ -25,20 +30,29 @@ view ({ datepicker } as model) =
 
         render config =
             Form.render model config
+
+        dateFieldConfig datepicker =
+            Maybe.map (render << datepickerFieldConfig isDisabled) datepicker
     in
-    [ h2 [ class "pySubtitle" ] [ text "Form components" ]
+    [ componentTitle [ text "Form components" ]
     , divider
-    , textFieldConfig isDisabled |> render
-    , textareaFieldConfig isDisabled |> render
-    , Maybe.map (render << datepickerFieldConfig isDisabled) datepicker |> renderOrNothing
-    , autocompleteFieldConfig model |> render
-    , radioFieldConfig isDisabled |> render
-    , selectFieldConfig model |> render
-    , checkboxFieldConfig isDisabled |> render
-    , checkboxWithOptionsFieldConfig model |> render
-    , btnGroup
-        [ btnToggleDisable model
-        ]
+    , (componentShowdown "Input text" "inputText" InspectHtml << List.singleton << render)
+        (textFieldConfig isDisabled)
+    , (componentShowdown "Textarea" "textarea" InspectHtml << List.singleton << render)
+        (textareaFieldConfig isDisabled)
+    , (componentShowdown "Datepicker" "datepicker" InspectHtml << List.singleton << renderOrNothing)
+        (dateFieldConfig datepicker)
+    , (componentShowdown "Autocomplete" "autocomplete" InspectHtml << List.singleton << render)
+        (autocompleteFieldConfig model)
+    , (componentShowdown "Input radio" "inputRadio" InspectHtml << List.singleton << render)
+        (radioFieldConfig isDisabled)
+    , (componentShowdown "Select" "select" InspectHtml << List.singleton << render)
+        (selectFieldConfig model)
+    , (componentShowdown "Input checkbox" "inputCheckbox" InspectHtml << List.singleton << render)
+        (checkboxFieldConfig isDisabled)
+    , (componentShowdown "Input checkbox (multi-option)" "inputCheckboxMulti" InspectHtml << List.singleton << render)
+        (checkboxWithOptionsFieldConfig model)
+    , toggle model.formDisabled
     ]
 
 
@@ -48,14 +62,12 @@ btnGroup =
         [ class "m-btnGroup" ]
 
 
-btnToggleDisable : Model -> Html Msg
-btnToggleDisable { formDisabled } =
-    button
-        [ class "a-btn a-btn--primary"
+toggle : Bool -> Html Msg
+toggle isDisabled =
+    a
+        [ class "pyLink pyFooter__link"
         , onClick ToggleDisable
         ]
-        [ if formDisabled then
-            text "Enable form"
-          else
-            text "Disable form"
+        [ (renderIf isDisabled << text) "Enable form"
+        , (renderUnless isDisabled << text) "Disable form"
         ]

@@ -4,13 +4,13 @@ import Html exposing (..)
 import Html.Attributes exposing (class, classList)
 import Html.Events exposing (onClick)
 import Maybe.Extra exposing (isJust, isNothing)
-import Pyxis.Helpers exposing (renderOrNothing)
 import Pyxis.Model
     exposing
         ( HtmlSnippet
         , Model
         , Msg(..)
         )
+import Pyxis.ViewHelpers exposing (renderOrNothing)
 
 
 view : Maybe HtmlSnippet -> Html Msg
