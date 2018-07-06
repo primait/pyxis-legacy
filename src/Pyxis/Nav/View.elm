@@ -15,9 +15,13 @@ view : Model -> Html Msg
 view { menu } =
     nav
         [ class "pyNav" ]
-        [ ul
-            [ class "pyNav__menu" ]
-            (List.map item menu)
+        [ div
+            [ class "pyWrapper"
+            ]
+            [ ul
+                [ class "pyNav__menu" ]
+                (List.map item menu)
+            ]
         ]
 
 

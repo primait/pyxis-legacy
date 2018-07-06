@@ -55,6 +55,13 @@ renderHTMLContent =
 ---------------------------------------
 
 
+wrapper : List (Html msg) -> Html msg
+wrapper =
+    div
+        [ class "pyWrapper"
+        ]
+
+
 componentTitle : List (Html msg) -> Html msg
 componentTitle =
     h2 [ class "pySubtitle" ]

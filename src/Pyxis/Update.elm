@@ -8,7 +8,10 @@ import Pyxis.Components.Form.Model as FormModel
 import Pyxis.Components.Form.Update as FormUpdate
 import Pyxis.Helpers
     exposing
-        ( changeRoute
+        ( addMessage
+        , changeRoute
+        , delayCmd
+        , removeMessage
         , updateMenu
         , withCmds
         , withoutCmds
@@ -16,11 +19,15 @@ import Pyxis.Helpers
 import Pyxis.Model
     exposing
         ( Menu
+        , Message
+        , MessageType(..)
         , Model
         , Msg(..)
         , Route(..)
         )
 import Pyxis.Routing exposing (parseLocation)
+import Time exposing (Time)
+import Unique exposing (Id, Unique)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -45,6 +52,25 @@ update msg model =
 
         HideSource ->
             { model | htmlSnippet = Nothing } |> withoutCmds
+
+        Copied ->
+            let
+                uuid =
+                    Unique.unique
+
+                duration =
+                    Time.second * 3
+
+                message =
+                    Message uuid Default "Color hex copied!" duration
+            in
+            model |> addMessage message |> withCmds [ delayCmd duration (RemoveMessage uuid) ]
+
+        AddMessage message ->
+            model |> addMessage message |> withCmds [ delayCmd message.duration (RemoveMessage message.uuid) ]
+
+        RemoveMessage uuid ->
+            model |> removeMessage uuid |> withoutCmds
 
         ColorsMsg colorsMsg ->
             updateColors model colorsMsg model.colors

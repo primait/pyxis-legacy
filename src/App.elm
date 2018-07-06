@@ -51,6 +51,15 @@ init flags =
 toRoute : String -> Route
 toRoute str =
     case String.toLower str of
+        "/typography" ->
+            TypographyRoute
+
+        "/buttons" ->
+            ButtonsRoute
+
+        "/colors" ->
+            ColorsRoute
+
         "/form" ->
             FormRoute
 

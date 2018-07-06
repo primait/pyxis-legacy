@@ -34,6 +34,11 @@ const config = {
         loader:  'elm-webpack-loader?verbose=true&warn=true&debug=true',
       },
       {
+        test: /\.(jpg|png|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader',
+        options: { name: '[name].[ext]', outputPath: 'assets/'}
+      },
+      {
         test: /\.(ttf|eot|svg|woff(2)?|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
         options: { name: '[name].[ext]', outputPath: 'assets/fonts/'}
