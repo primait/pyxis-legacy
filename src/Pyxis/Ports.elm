@@ -10,6 +10,9 @@ import Pyxis.Model
 port copyToClipboard : HtmlSelector -> Cmd msg
 
 
+port copied : (Bool -> msg) -> Sub msg
+
+
 port inspectHtml : HtmlSelector -> Cmd msg
 
 

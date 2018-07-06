@@ -1,6 +1,7 @@
 const template    = require('./index.html')
 const pyxisStyle  = require('./scss/app.scss')
 const primaStyle  = require('./scss/prima.scss')
+const introImg    = require('./assets/intro.jpg')
 const Elm         = require('./App.elm');
 const route       = window.location.pathname
 
@@ -21,6 +22,7 @@ app.ports.copyToClipboard.subscribe(selector => {
   const b = hexBits[2]
 
   copyToClipboard(rgbToHex(r, g, b))
+  app.ports.copied.send(true)
 })
 
 const copyToClipboard = str => {

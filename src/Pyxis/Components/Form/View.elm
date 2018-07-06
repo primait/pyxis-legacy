@@ -23,7 +23,7 @@ import Pyxis.ViewHelpers
 
 
 view : Model -> List (Html Msg)
-view ({ datepicker } as model) =
+view ({ datepicker, showSeparated } as model) =
     let
         isDisabled =
             model.formDisabled
@@ -34,36 +34,56 @@ view ({ datepicker } as model) =
         dateFieldConfig datepicker =
             Maybe.map (render << datepickerFieldConfig isDisabled) datepicker
     in
-    [ componentTitle [ text "Form components" ]
+    [ componentTitle [ text "Form components", toggleSeparation showSeparated ]
     , divider
-    , (componentShowdown "Input text" "inputText" InspectHtml << List.singleton << render)
-        (textFieldConfig isDisabled)
-    , (componentShowdown "Textarea" "textarea" InspectHtml << List.singleton << render)
-        (textareaFieldConfig isDisabled)
-    , (componentShowdown "Datepicker" "datepicker" InspectHtml << List.singleton << renderOrNothing)
-        (dateFieldConfig datepicker)
-    , (componentShowdown "Autocomplete" "autocomplete" InspectHtml << List.singleton << render)
-        (autocompleteFieldConfig model)
-    , (componentShowdown "Input radio" "inputRadio" InspectHtml << List.singleton << render)
-        (radioFieldConfig isDisabled)
-    , (componentShowdown "Select" "select" InspectHtml << List.singleton << render)
-        (selectFieldConfig model)
-    , (componentShowdown "Input checkbox" "inputCheckbox" InspectHtml << List.singleton << render)
-        (checkboxFieldConfig isDisabled)
-    , (componentShowdown "Input checkbox (multi-option)" "inputCheckboxMulti" InspectHtml << List.singleton << render)
-        (checkboxWithOptionsFieldConfig model)
-    , toggle model.formDisabled
     ]
+        ++ (if showSeparated then
+                [ (componentShowdown "Input text" "inputText" InspectHtml << List.singleton << render)
+                    (textFieldConfig isDisabled)
+                , (componentShowdown "Textarea" "textarea" InspectHtml << List.singleton << render)
+                    (textareaFieldConfig isDisabled)
+                , (componentShowdown "Datepicker" "datepicker" InspectHtml << List.singleton << renderOrNothing)
+                    (dateFieldConfig datepicker)
+                , (componentShowdown "Autocomplete" "autocomplete" InspectHtml << List.singleton << render)
+                    (autocompleteFieldConfig model)
+                , (componentShowdown "Input radio" "inputRadio" InspectHtml << List.singleton << render)
+                    (radioFieldConfig isDisabled)
+                , (componentShowdown "Select" "select" InspectHtml << List.singleton << render)
+                    (selectFieldConfig model)
+                , (componentShowdown "Input checkbox" "inputCheckbox" InspectHtml << List.singleton << render)
+                    (checkboxFieldConfig isDisabled)
+                , (componentShowdown "Input checkbox (multi-option)" "inputCheckboxMulti" InspectHtml << List.singleton << render)
+                    (checkboxWithOptionsFieldConfig model)
+                ]
+            else
+                [ render <| textFieldConfig isDisabled
+                , render <| textareaFieldConfig isDisabled
+                , renderOrNothing <| dateFieldConfig datepicker
+                , render <| autocompleteFieldConfig model
+                , render <| radioFieldConfig isDisabled
+                , render <| selectFieldConfig model
+                , render <| checkboxFieldConfig isDisabled
+                , render <| checkboxWithOptionsFieldConfig model
+                ]
+           )
+        ++ [ toggleDisableForm isDisabled
+           , divider
+           ]
 
 
-btnGroup : List (Html Msg) -> Html Msg
-btnGroup =
-    div
-        [ class "m-btnGroup" ]
+toggleSeparation : Bool -> Html Msg
+toggleSeparation showSeparated =
+    a
+        [ class "pyLink pyFooter__link"
+        , onClick ToggleSeparation
+        ]
+        [ (renderIf showSeparated << text) "Show all together"
+        , (renderUnless showSeparated << text) "Show separated"
+        ]
 
 
-toggle : Bool -> Html Msg
-toggle isDisabled =
+toggleDisableForm : Bool -> Html Msg
+toggleDisableForm isDisabled =
     a
         [ class "pyLink pyFooter__link"
         , onClick ToggleDisable

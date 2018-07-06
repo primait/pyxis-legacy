@@ -1,15 +1,26 @@
 module Pyxis.Helpers exposing (..)
 
-import Date exposing (Date, Day(..), Month(..))
+import Date
+    exposing
+        ( Date
+        , Day(..)
+        , Month(..)
+        )
 import Date.Format
 import DatePicker exposing (DatePicker)
 import Navigation exposing (Location)
+import Process
 import Pyxis.Model
     exposing
         ( Menu
+        , Message
+        , MessageType(..)
+        , Model
         , Route(..)
         )
 import Task
+import Time exposing (Time)
+import Unique exposing (Id, Unique)
 
 
 withoutCmds : model -> ( model, Cmd msg )
@@ -40,6 +51,13 @@ maybeToCmd cmd =
 sendCmdMsg : msg -> Cmd msg
 sendCmdMsg =
     Task.perform identity << Task.succeed
+
+
+delayCmd : Time -> msg -> Cmd msg
+delayCmd time msg =
+    Process.sleep time
+        |> Task.andThen (Task.succeed msg |> always)
+        |> Task.perform identity
 
 
 changeRoute : Route -> Cmd msg
@@ -167,6 +185,16 @@ updateMenu route menu =
             { menu | isActive = menu.route == route }
     in
     List.map (activateByRoute route) menu
+
+
+addMessage : Message -> Model -> Model
+addMessage msg model =
+    { model | messages = msg :: model.messages }
+
+
+removeMessage : Unique Id -> Model -> Model
+removeMessage uuid model =
+    { model | messages = List.filter (not << (==) uuid << .uuid) model.messages }
 
 
 toInspectableSelector : String -> String

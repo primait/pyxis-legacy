@@ -12,4 +12,5 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
         [ Ports.htmlSnippet ShowSource
+        , Ports.copied (\_ -> Copied)
         ]

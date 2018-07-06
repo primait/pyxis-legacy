@@ -1,13 +1,13 @@
 module Pyxis.View exposing (view)
 
 import Html exposing (..)
-import Html.Attributes exposing (class)
 import Pyxis.Components.Buttons.View as ButtonsComponent
 import Pyxis.Components.Colors.View as ColorsComponent
 import Pyxis.Components.Form.View as FormComponent
 import Pyxis.Components.Typography.View as Typography
 import Pyxis.Home.View as Home
 import Pyxis.HtmlSnippet.View as HtmlSnippet
+import Pyxis.Messages.View as Messages
 import Pyxis.Model
     exposing
         ( AppStatus(..)
@@ -16,41 +16,37 @@ import Pyxis.Model
         , Route(..)
         )
 import Pyxis.Nav.View as Nav
+import Pyxis.ViewHelpers exposing (wrapper)
 
 
 view : Model -> Html Msg
 view model =
     div
-        [ class "pyWrapper"
+        []
+        [ Nav.view model
+        , dynamicView model
+        , HtmlSnippet.view model.htmlSnippet
+        , Messages.view model.messages
         ]
-        (Nav.view model :: dynamicView model)
 
 
-dynamicView : Model -> List (Html Msg)
+dynamicView : Model -> Html Msg
 dynamicView ({ route } as model) =
-    (case route of
+    case route of
         HomeRoute ->
             Home.view model
 
         ColorsRoute ->
-            List.map (Html.map ColorsMsg) (ColorsComponent.view model.colors)
+            (wrapper << List.map (Html.map ColorsMsg)) (ColorsComponent.view model.colors)
 
         TypographyRoute ->
-            Typography.view model
+            (wrapper << Typography.view) model
 
         ButtonsRoute ->
-            List.map (Html.map ButtonsMsg) (ButtonsComponent.view model.buttons)
+            (wrapper << List.map (Html.map ButtonsMsg)) (ButtonsComponent.view model.buttons)
 
         FormRoute ->
-            List.map (Html.map FormMsg) (FormComponent.view model.form)
+            (wrapper << List.map (Html.map FormMsg)) (FormComponent.view model.form)
 
         _ ->
-            (List.singleton << text) "Route not found"
-    )
-        ++ commonView model
-
-
-commonView : Model -> List (Html Msg)
-commonView { htmlSnippet } =
-    [ HtmlSnippet.view htmlSnippet
-    ]
+            (wrapper << List.singleton << text) "Route not found"

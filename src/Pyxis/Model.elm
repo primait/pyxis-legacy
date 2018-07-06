@@ -5,16 +5,21 @@ module Pyxis.Model
         , HtmlSelector
         , HtmlSnippet
         , Menu
+        , Message
+        , MessageType(..)
         , Model
         , Msg(..)
         , Route(..)
         , initialModel
+        , messageTypeToString
         )
 
 import Navigation exposing (Location)
 import Pyxis.Components.Buttons.Model as Buttons
 import Pyxis.Components.Colors.Model as Colors
 import Pyxis.Components.Form.Model as Form
+import Time exposing (Time)
+import Unique exposing (Id, Unique)
 
 
 type Msg
@@ -23,6 +28,9 @@ type Msg
       -------------
     | ShowSource HtmlSnippet
     | HideSource
+    | AddMessage Message
+    | RemoveMessage (Unique Id)
+    | Copied
       -------------
     | ColorsMsg Colors.Msg
     | ButtonsMsg Buttons.Msg
@@ -33,6 +41,7 @@ type alias Model =
     { status : AppStatus
     , route : Route
     , menu : List Menu
+    , messages : List Message
     , htmlSnippet : Maybe HtmlSnippet
     , colors : Colors.Model
     , buttons : Buttons.Model
@@ -46,6 +55,7 @@ initialModel =
         AppReady
         HomeRoute
         initialMenu
+        []
         Nothing
         Colors.initialModel
         Buttons.initialModel
@@ -83,6 +93,29 @@ type alias Menu =
     , route : Route
     , isActive : Bool
     }
+
+
+type alias Message =
+    { uuid : Unique Id
+    , type_ : MessageType
+    , description : String
+    , duration : Time
+    }
+
+
+type MessageType
+    = Default
+    | Error
+
+
+messageTypeToString : MessageType -> String
+messageTypeToString type_ =
+    case type_ of
+        Default ->
+            "default"
+
+        Error ->
+            "error"
 
 
 type alias Flags =

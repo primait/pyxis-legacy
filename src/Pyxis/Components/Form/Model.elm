@@ -30,6 +30,7 @@ type Msg
       ---------------------
     | Toggle Field Bool
     | ToggleDisable
+    | ToggleSeparation
       ---------------------
     | InspectHtml String
 
@@ -48,6 +49,7 @@ type alias Model =
     , autocompleteFilter : Maybe String
     , isAutocompleteFieldOpen : Bool
     , formDisabled : Bool
+    , showSeparated : Bool
     }
 
 
@@ -71,6 +73,7 @@ initialModel =
         Nothing
         False
         False
+        True
 
 
 type Field
