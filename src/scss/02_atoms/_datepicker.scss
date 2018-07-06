@@ -1,7 +1,7 @@
 $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 %daySelection {
-  background-color: color(green, dark);
+  background-color: color(blue);
   border-radius: 60px;
   height: 30px;
   width: 30px;
@@ -21,6 +21,34 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   @include mq(small) {
     display: block;
   }
+
+  &:before {
+    color: color(green, dark);
+    content: "\e904";
+    font-family: 'icomoon';
+    font-size: 24px;
+    left: 15px;
+    line-height: 20px;
+    opacity: 1;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+  }
+
+  &:after {
+    background-color: color(grey);
+    content: "";
+    height: 50px;
+    position: absolute;
+    left: 50px;
+    top: 0;
+    width: 1px;
+  }
+}
+
+.#{$datepicker-ns}input {
+  padding: 18px 15px 15px 60px;
 }
 
 .#{$datepicker-ns}input:focus {
@@ -41,7 +69,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 .#{$datepicker-ns}picker-header {
   align-items: center;
-  background: color(green, dark);
+  background: color(blue);
   border-radius: 5px 5px 0 0;
   display: flex;
   height: 50px;
