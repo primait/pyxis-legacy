@@ -33,6 +33,7 @@ type Msg
     | ToggleSeparation
       ---------------------
     | InspectHtml String
+    | ClickedOutside
 
 
 type alias Model =

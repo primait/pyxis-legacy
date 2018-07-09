@@ -17,3 +17,6 @@ port inspectHtml : HtmlSelector -> Cmd msg
 
 
 port htmlSnippet : (HtmlSnippet -> msg) -> Sub msg
+
+
+port clickedOutside : (Bool -> msg) -> Sub msg

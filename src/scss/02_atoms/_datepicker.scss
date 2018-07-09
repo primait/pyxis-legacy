@@ -59,7 +59,10 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 .#{$datepicker-ns}prev-container,
 .#{$datepicker-ns}next-container {
+  align-items: center;
+  display: flex;
   flex: 0 1 auto;
+  height: 100%;
 }
 
 .#{$datepicker-ns}month-container {
