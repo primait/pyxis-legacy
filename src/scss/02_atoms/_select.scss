@@ -11,15 +11,8 @@
   flex-direction: column;
   position: relative;
 
-  &:focus,
-  &.is-pristine,
-  &.is-pristine:focus {
-    border-color: color(green);
-  }
-
-  &.is-open,
-  &.is-valid,
-  &.is-touched {
+  &.is-valid:not(.is-open),
+  &.is-touched:not(.is-open) {
     border-color: color(green, dark);
   }
 
@@ -91,7 +84,7 @@
 
 .a-form__field__customSelect__list {
   background: color(white);
-  border: 1px solid color(green, dark);
+  border: 1px solid color(grey);
   border-radius: 0 0 5px 5px;
   border-top: none;
   display: none;

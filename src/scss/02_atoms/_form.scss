@@ -27,6 +27,11 @@
   font-family: font(light);
   min-width: 250px;
   outline: none;
+
+  &::placeholder {
+    color: color(grey, dark);
+    opacity: 0.3;
+  }
 }
 
 .a-form__field__input,

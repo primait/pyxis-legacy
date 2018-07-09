@@ -2,7 +2,7 @@
   background: color(white);
   border: 1px solid color(grey);
   border-radius: 5px;
-  color: color(green, dark);
+  color: color(grey, dark);
   max-width: calc(100% - 280px);
   min-height: 100px;
   margin: 0;
@@ -10,24 +10,24 @@
 
   &:focus,
   &.is-pristine:focus {
-    border-color: color(green);
+    // border-color: color(green);
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.10);
   }
 
-  &.is-valid,
-  &.is-touched {
+  &.is-valid:not(:focus),
+  &.is-touched:not(.is-invalid):not(:focus) {
     border-color: color(green, dark);
     border-width: 2px;
   }
 
   &.is-invalid.is-touched:not(:focus) {
     border-color: color(red);
+    border-width: 2px;
     color: color(red);
   }
 
   &.is-pristine {
     border: 1px solid color(grey);
-    color: color(green, dark);
   }
 
   &.is-disabled,

@@ -4,9 +4,14 @@
 
   &.is-open .a-form__field__input,
   &.is-open .a-form__field__input:focus {
-    border-color: color(green, dark);
+    border-color: color(grey);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+  }
+
+  &.is-open .a-form__field__input,
+  &.is-open .a-form__field__autocomplete__list {
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.10);
   }
 
   .a-form__field__input:focus {
@@ -18,9 +23,10 @@
   }
 }
 
+
 .a-form__field__autocomplete__list {
   background: color(white);
-  border: 1px solid color(green, dark);
+  border: 1px solid color(grey);
   border-radius: 0 0 5px 5px;
   border-top: none;
   display: none;

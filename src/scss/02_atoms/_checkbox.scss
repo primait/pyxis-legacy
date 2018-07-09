@@ -41,7 +41,7 @@
 
   &:after {
     clip-path: inset( 0 100% 0 0 );
-    color: color(white);
+    color: color(green, dark);
     content: "\e900";
     font-family: 'icomoon';
     left: 2px;
@@ -52,8 +52,7 @@
   }
 
   .a-form__field__checkbox:checked + &:before {
-    background: color(green, dark);
-    border: 1px solid color(green, dark);
+    border: 2px solid color(green, dark);
   }
 
   &:hover:after,
@@ -68,7 +67,6 @@
 
   .a-form__field__checkbox:not(:checked) + &:hover:after {
     clip-path: inset( 0 0 0 0 );
-    color: color(green, dark);
     opacity: 0.65;
   }
 }
