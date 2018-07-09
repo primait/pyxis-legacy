@@ -11,11 +11,6 @@ import Pyxis.ViewHelpers exposing (componentTitle, divider, renderOrNothing)
 
 view : Model -> List (Html Msg)
 view model =
-    let
-        renderText : (List (Attribute Msg) -> List (Html Msg) -> Html Msg) -> Html Msg
-        renderText tagName =
-            tagName [] [ text "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor." ]
-    in
     [ componentTitle [ text "Typography" ]
     , divider
     ]
