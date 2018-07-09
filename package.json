@@ -25,6 +25,10 @@
   "author": "Alessio Santangelo",
   "devDependencies": {
     "autoprefixer": "^8.6.4",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-3": "^6.24.1",
     "cssnano": "^3.10.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
