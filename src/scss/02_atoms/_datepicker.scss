@@ -94,6 +94,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}month-container {
+  align-items: center;
   flex: 1 1 auto;
 
   padding: 0.5em;
@@ -105,7 +106,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 .#{$datepicker-ns}month {
   font-weight: 700;
-  margin-right: 5px;
+  margin-right: 10px;
   text-transform: uppercase;
 }
 
@@ -121,7 +122,25 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}year {
+  background-color: rgba(255,255,255,0.15);
+  border-radius: 50px;
   font-weight: 400;
+  padding: 4px 6px 2px 6px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255,255,255,0.2);
+  }
+}
+
+.#{$datepicker-ns}year-menu {
+  background: none;
+  border: none;
+  color: color(white);
+  cursor: pointer;
+  font-family: font(heavy);
+  -webkit-appearance: none;
+  outline: none;
 }
 
 .#{$datepicker-ns}prev,
