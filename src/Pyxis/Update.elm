@@ -59,7 +59,7 @@ update msg model =
                     Unique.unique
 
                 duration =
-                    Time.second * 3
+                    Time.second * 2
 
                 message =
                     Message uuid Default "Color hex copied!" duration

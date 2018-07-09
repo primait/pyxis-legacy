@@ -15,7 +15,11 @@ view : List Message -> Html Msg
 view messages =
     div
         [ class "pyMessageList" ]
-        (List.map renderMessage messages)
+        [ div
+            [ class "pyWrapper"
+            ]
+            (List.map renderMessage messages)
+        ]
 
 
 renderMessage : Message -> Html Msg
