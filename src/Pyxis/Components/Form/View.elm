@@ -34,7 +34,7 @@ view ({ datepicker, showSeparated } as model) =
         dateFieldConfig datepicker =
             Maybe.map (render << datepickerFieldConfig isDisabled) datepicker
     in
-    [ componentTitle [ text "Form components", toggleSeparation showSeparated ]
+    [ componentTitle [ text "Form components", toggleSeparation showSeparated, toggleDisableForm isDisabled ]
     , divider
     ]
         ++ (if showSeparated then
@@ -66,15 +66,12 @@ view ({ datepicker, showSeparated } as model) =
                 , render <| checkboxWithOptionsFieldConfig model
                 ]
            )
-        ++ [ toggleDisableForm isDisabled
-           , divider
-           ]
 
 
 toggleSeparation : Bool -> Html Msg
 toggleSeparation showSeparated =
     a
-        [ class "pyLink pyFooter__link"
+        [ class "pyLink"
         , onClick ToggleSeparation
         ]
         [ (renderIf showSeparated << text) "Show all together"
@@ -85,7 +82,7 @@ toggleSeparation showSeparated =
 toggleDisableForm : Bool -> Html Msg
 toggleDisableForm isDisabled =
     a
-        [ class "pyLink pyFooter__link"
+        [ class "pyLink"
         , onClick ToggleDisable
         ]
         [ (renderIf isDisabled << text) "Enable form"

@@ -18,9 +18,9 @@
   },
   "scripts": {
     "build": "./node_modules/.bin/webpack",
-    "build:prod": "./node_modules/.bin/webpack -p",
+    "build:prod": "./node_modules/.bin/webpack -p --mode=production",
     "watch": "./node_modules/.bin/webpack --watch",
-    "dev": "./node_modules/.bin/webpack-dev-server --host 0.0.0.0"
+    "dev": "./node_modules/.bin/webpack-dev-server --host 0.0.0.0 --mode=development"
   },
   "author": "Alessio Santangelo",
   "devDependencies": {

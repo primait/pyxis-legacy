@@ -188,3 +188,10 @@ update msg model =
 
         InspectHtml selector ->
             model |> withCmds [ Ports.inspectHtml selector ]
+
+        ClickedOutside ->
+            { model
+                | isSelectFieldOpen = False
+                , isAutocompleteFieldOpen = False
+            }
+                |> withoutCmds
