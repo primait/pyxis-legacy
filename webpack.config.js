@@ -34,6 +34,13 @@ const config = {
         loader:  'elm-webpack-loader?verbose=true&warn=true&debug=true',
       },
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
         test: /\.(jpg|png|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
         options: { name: '[name].[ext]', outputPath: 'assets/'}
@@ -62,13 +69,14 @@ const config = {
   plugins: [
     new CleanWebpackPlugin([ 'dist' ]),
     new HtmlWebpackPlugin({ template: 'index.html' }),
+    new UglifyJsPlugin({ test: /\.js($|\?)/i })
   ],
-
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({ test: /\.js($|\?)/i })
-    ]
-  }
+  //
+  // optimization: {
+  //   minimizer: [
+  //
+  //   ]
+  // }
 
 }
 
