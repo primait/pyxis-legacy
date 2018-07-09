@@ -71,13 +71,6 @@ const config = {
     new HtmlWebpackPlugin({ template: 'index.html' }),
     new UglifyJsPlugin({ test: /\.js($|\?)/i })
   ],
-  //
-  // optimization: {
-  //   minimizer: [
-  //
-  //   ]
-  // }
-
 }
 
 module.exports = config
