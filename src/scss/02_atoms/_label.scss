@@ -3,8 +3,11 @@
   cursor: pointer;
   flex: 0 0 100%;
   font-size: 16px;
+  outline: none;
   padding: 0 30px 0 0;
   text-align: left;
+
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 
   @include mq(small) {
     flex: 0 0 280px;

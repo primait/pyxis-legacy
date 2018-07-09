@@ -109,6 +109,7 @@ datepickerSettings =
             [ ( "a-form__field__input", True )
             , ( "a-form__field__input--datepicker", True )
             ]
+        , changeYear = DatePicker.between 1900 2020
     }
 
 
