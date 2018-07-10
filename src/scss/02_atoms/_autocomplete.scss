@@ -4,7 +4,7 @@
 
   &.is-open .a-form__field__input,
   &.is-open .a-form__field__input:focus {
-    border-color: color(grey);
+    border-color: color(green);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
@@ -41,6 +41,7 @@
   z-index: 1;
 
   .is-open & {
+    border-color: color(green);
     display: flex;
   }
 }

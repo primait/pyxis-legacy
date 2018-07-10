@@ -16,14 +16,9 @@
     border-color: color(green, dark);
   }
 
-  &.is-touched,
-  &.is-valid {
-    border-width: 2px;
-  }
-
   &.is-open {
+    border: 1px solid color(green);
     border-radius: 5px 5px 0px 0px;
-    border-width: 1px;
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.10);
   }
 
@@ -99,6 +94,8 @@
   z-index: 1;
 
   .is-open & {
+    border: 1px solid color(green);
+    border-top-color: transparent;
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.10);
     display: flex;
   }
