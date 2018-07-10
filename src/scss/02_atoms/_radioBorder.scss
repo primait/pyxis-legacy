@@ -1,0 +1,13 @@
+.radioBorder .a-form__field__radio__label {
+  padding: 0 25px 0 40px;
+  border: 1px solid color(green);
+  border-radius: 5px;
+
+  &:before {
+    left: 15px;
+  }
+
+  &:after {
+    left: 20px;
+  }
+}

@@ -76,7 +76,7 @@ initialModel =
         Nothing
         False
         False
-        True
+        False
         Nothing
 
 
