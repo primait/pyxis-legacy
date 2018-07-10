@@ -21,6 +21,7 @@ type Msg
     = FormNoOp
     | Focus Field
     | Blur Field
+    | FetchTodayDate Date
       ---------------------
     | UpdateText Field (Maybe String)
     | UpdateFilter Field (Maybe String)
@@ -51,6 +52,7 @@ type alias Model =
     , isAutocompleteFieldOpen : Bool
     , formDisabled : Bool
     , showSeparated : Bool
+    , todayDate : Maybe Date
     }
 
 
@@ -75,6 +77,7 @@ initialModel =
         False
         False
         True
+        Nothing
 
 
 type Field

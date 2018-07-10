@@ -20,6 +20,12 @@ import Pyxis.Ports as Ports
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        FetchTodayDate todayDate ->
+            { model
+                | todayDate = Just todayDate
+            }
+                |> withoutCmds
+
         FormNoOp ->
             model |> withoutCmds
 

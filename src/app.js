@@ -2,7 +2,7 @@ const template      = require('./index.html')
 const pyxisStyle    = require('./scss/app.scss')
 const primaStyle    = require('./scss/prima.scss')
 const introImg      = require('./assets/intro.jpg')
-const Elm           = require('./App.elm');
+const Elm           = require('./App.elm')
 const route         = window.location.pathname
 
 const app = Elm.App.embed(document.getElementById('app'), {
@@ -11,7 +11,7 @@ const app = Elm.App.embed(document.getElementById('app'), {
 
 app.ports.inspectHtml.subscribe(selector => {
   const htmlSource = [].slice.call(document.querySelectorAll(selector)).map(item => beautifyHtml(item.innerHTML))
-  app.ports.htmlSnippet.send(htmlSource.join(""))
+  app.ports.htmlSnippet.send(htmlSource.join(''))
 })
 
 app.ports.copyToClipboard.subscribe(selector => {
@@ -37,7 +37,7 @@ document.addEventListener('click', event => {
 
 const copyToClipboard = str => { const el = document.createElement('textarea'); el.value = str; el.setAttribute('readonly', ''); el.style.position = 'absolute'; el.style.left = '-9999px'; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); }
 
-const rgbToHex = (r, g, b) => "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+const rgbToHex = (r, g, b) => '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
 
 const beautifyHtml = str => { const div = document.createElement('div'); div.innerHTML = str.trim(); return formatHtml(div, 0).innerHTML; }
 
