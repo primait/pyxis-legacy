@@ -134,7 +134,9 @@ selectFieldConfig model =
             model.isSelectFieldOpen
 
         options =
-            List.sortBy .label
+            ((::) (SelectOption "-- Seleziona --" "")
+                << List.sortBy .label
+            )
                 [ SelectOption "Milano" "MI"
                 , SelectOption "Torino" "TO"
                 , SelectOption "Roma" "RO"
@@ -155,7 +157,6 @@ selectFieldConfig model =
         (Focus Select)
         (Blur Select)
         options
-        True
         Nothing
         [ Custom ((==) "SA" << Maybe.withDefault "SA" << .selectField) "You must choose `Savona`. ;)" ]
 
@@ -171,7 +172,7 @@ datepickerFieldConfig isDisabled datepicker =
         datepicker
         datepickerSettings
         Nothing
-        []
+        [ Custom (Maybe.withDefault False << Maybe.map (\_ -> True) << .datepickerField) "Enter a valid date." ]
 
 
 autocompleteFieldConfig : Model -> FormField Model Msg
