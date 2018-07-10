@@ -8,6 +8,12 @@ const route         = window.location.pathname
 const isIE          = helpers.detectIE() <= 11
 const isEdge        = helpers.detectIE() >= 12
 
+const random        = Math.floor(Math.random() * 10)
+console.log("Seed", random)
+if(random % 2 == 0) {
+  document.body.className += ' radioBorder'
+}
+
 isIE ? document.body.className += ' is-IE' : null
 isEdge ? document.body.className += ' is-Edge' : null;
 
@@ -34,8 +40,8 @@ app.ports.copyToClipboard.subscribe(selector => {
 
 document.addEventListener('click', event => {
   if(event.target.className) {
-    const isInput = ~event.target.className.indexOf('a-form__field__');
-    const isLabel = ~event.target.className.indexOf('a-form__field__label');
+    const isInput = ~event.target.className.indexOf('a-form__field__')
+    const isLabel = ~event.target.className.indexOf('a-form__field__label')
     (isInput && !isLabel) ? null : app.ports.clickedOutside.send(true)
   }
   else {
