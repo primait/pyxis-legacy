@@ -25,12 +25,12 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   &:before {
     color: color(green, dark);
     content: "\e904";
+    cursor: pointer;
     font-family: 'icomoon';
     font-size: 24px;
     left: 15px;
     line-height: 20px;
     opacity: 1;
-    pointer-events: none;
     position: absolute;
     top: 50%;
     transform: translate3d(0, -50%, 0);
@@ -39,10 +39,10 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   &:after {
     background-color: color(grey);
     content: "";
-    height: 50px;
+    height: 46px;
     position: absolute;
     left: 50px;
-    top: 0;
+    top: 2px;
     width: 1px;
   }
 }
@@ -213,6 +213,11 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 .#{$datepicker-ns}day,
 .#{$datepicker-ns}picked {
+
+  .is-Edge & {
+    vertical-align: sub;
+  }
+
   &:before {
     @extend %daySelection;
   }
