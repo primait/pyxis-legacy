@@ -63,10 +63,18 @@
 
   .a-form__field__checkbox:not(:checked) + &:hover:before {
     transform: scale(1.05) translateY(-50%);
+
+    .isTouchDevice & {
+      transform: scale(1) translateY(-50%);
+    }
   }
 
   .a-form__field__checkbox:not(:checked) + &:hover:after {
     clip-path: inset( 0 0 0 0 );
     opacity: 0.65;
+
+    .isTouchDevice & {
+      opacity: 0;
+    }
   }
 }

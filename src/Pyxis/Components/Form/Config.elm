@@ -175,7 +175,7 @@ datepickerFieldConfig isDisabled datepicker =
         Nothing
         [ Custom
             (\{ datepickerField, todayDate } ->
-                (Maybe.withDefault True << Maybe.map2 (DateCompare.is DateCompare.SameOrAfter) datepickerField) todayDate
+                (Maybe.withDefault False << Maybe.map2 (DateCompare.is DateCompare.SameOrAfter) datepickerField) todayDate
             )
             "Acceptable dates are today or in the future."
         ]
