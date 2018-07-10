@@ -17,6 +17,7 @@ import Pyxis.Model
         , initialModel
         )
 import Pyxis.Subscriptions exposing (subscriptions)
+import Pyxis.Tasks as Tasks
 import Pyxis.Update exposing (update)
 import Pyxis.View exposing (view)
 
@@ -45,7 +46,7 @@ init flags =
         , menu = updateMenu (toRoute flags.route) initialModel.menu
         , form = { form | datepicker = Just datepicker }
     }
-        |> withoutCmds
+        |> withCmds [ Tasks.fetchTodayDate ]
 
 
 toRoute : String -> Route

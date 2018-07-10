@@ -1,5 +1,6 @@
 module Pyxis.Components.Form.Config exposing (..)
 
+import Date.Extra.Compare as DateCompare
 import DatePicker exposing (DatePicker)
 import Html.Attributes exposing (class, placeholder)
 import Maybe.Extra exposing (isJust)
@@ -172,7 +173,12 @@ datepickerFieldConfig isDisabled datepicker =
         datepicker
         datepickerSettings
         Nothing
-        [ Custom (Maybe.withDefault False << Maybe.map (\_ -> True) << .datepickerField) "Enter a valid date." ]
+        [ Custom
+            (\{ datepickerField, todayDate } ->
+                (Maybe.withDefault True << Maybe.map2 (DateCompare.is DateCompare.SameOrAfter) datepickerField) todayDate
+            )
+            "Acceptable dates are today or in the future."
+        ]
 
 
 autocompleteFieldConfig : Model -> FormField Model Msg
