@@ -12,6 +12,10 @@
   position: relative;
   width: auto;
 
+  &:hover {
+    color: color(green, dark);
+  }
+
   .a-form__field__radio[disabled] + & {
     opacity: 0.65;
     pointer-events: none;
@@ -48,6 +52,10 @@
     transform: scale(0);
     transition: transform 0.2s cubic-bezier(0, 1, 1, 1);
     width: 10px;
+  }
+
+  .a-form__field__radio:checked + & {
+    color: color(green, dark);
   }
 
   &:hover:after,
