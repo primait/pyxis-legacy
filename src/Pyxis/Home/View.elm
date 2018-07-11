@@ -18,8 +18,7 @@ view model =
         [ wrapper
             [ h1
                 [ class "pyTitle" ]
-                [ text "Welcome to "
-                , span [ class "purple" ] [ text "Pyxis!" ]
+                [ text "Welcome to Pyxis!"
                 ]
             , h2
                 [ class "pySubtitle" ]
