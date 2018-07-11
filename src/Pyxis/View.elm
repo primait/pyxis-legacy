@@ -3,7 +3,9 @@ module Pyxis.View exposing (view)
 import Html exposing (..)
 import Pyxis.Components.Buttons.View as ButtonsComponent
 import Pyxis.Components.Colors.View as ColorsComponent
+import Pyxis.Components.Footer.View as FooterComponent
 import Pyxis.Components.Form.View as FormComponent
+import Pyxis.Components.Header.View as HeaderComponent
 import Pyxis.Components.Typography.View as Typography
 import Pyxis.Home.View as Home
 import Pyxis.HtmlSnippet.View as HtmlSnippet
@@ -33,20 +35,26 @@ view model =
 dynamicView : Model -> Html Msg
 dynamicView ({ route } as model) =
     case route of
-        HomeRoute ->
-            Home.view model
+        ButtonsRoute ->
+            (wrapper << List.map (Html.map ButtonsMsg)) (ButtonsComponent.view model.buttons)
 
         ColorsRoute ->
             (wrapper << List.map (Html.map ColorsMsg)) (ColorsComponent.view model.colors)
 
-        TypographyRoute ->
-            (wrapper << Typography.view) model
-
-        ButtonsRoute ->
-            (wrapper << List.map (Html.map ButtonsMsg)) (ButtonsComponent.view model.buttons)
+        FooterRoute ->
+            (wrapper << FooterComponent.view) model
 
         FormRoute ->
             (wrapper << List.map (Html.map FormMsg)) (FormComponent.view model.form)
+
+        HeaderRoute ->
+            (wrapper << List.map (Html.map HeaderMsg)) (HeaderComponent.view model.header)
+
+        HomeRoute ->
+            Home.view model
+
+        TypographyRoute ->
+            (wrapper << Typography.view) model
 
         _ ->
             (wrapper << List.singleton << text) "Route not found"

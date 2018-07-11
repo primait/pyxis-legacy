@@ -53,6 +53,12 @@ const config = {
         exclude: /src\/assets\/fonts/,
         options: { name: '[name].[ext]', outputPath: 'assets/media/' }
       },
+      {
+        test: /\.txt$/,
+        loader: 'file-loader',
+        include: [ path.resolve(__dirname, 'src', 'static') ],
+        options: { name: '[name].[ext]', outputPath: 'static/' }
+      },
     ],
 
     noParse: /\.elm$/,

@@ -6,6 +6,8 @@ import Pyxis.Components.Colors.Model as ColorsModel
 import Pyxis.Components.Colors.Update as ColorsUpdate
 import Pyxis.Components.Form.Model as FormModel
 import Pyxis.Components.Form.Update as FormUpdate
+import Pyxis.Components.Header.Model as HeaderModel
+import Pyxis.Components.Header.Update as HeaderUpdate
 import Pyxis.Helpers
     exposing
         ( addMessage
@@ -81,6 +83,9 @@ update msg model =
         FormMsg formMsg ->
             updateForm model formMsg model.form
 
+        HeaderMsg headerMsg ->
+            updateHeader model headerMsg model.header
+
 
 updateColors : Model -> ColorsModel.Msg -> ColorsModel.Model -> ( Model, Cmd Msg )
 updateColors model msg colorsModel =
@@ -107,3 +112,12 @@ updateForm model msg formModel =
             FormUpdate.update msg formModel
     in
     { model | form = newFormModel } ! [ Cmd.map FormMsg cmds ]
+
+
+updateHeader : Model -> HeaderModel.Msg -> HeaderModel.Model -> ( Model, Cmd Msg )
+updateHeader model msg headerModel =
+    let
+        ( newHeaderModel, cmds ) =
+            HeaderUpdate.update msg headerModel
+    in
+    { model | header = newHeaderModel } ! [ Cmd.map HeaderMsg cmds ]

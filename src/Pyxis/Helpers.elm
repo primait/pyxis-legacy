@@ -68,17 +68,23 @@ changeRoute =
 routeToUrl : Route -> String
 routeToUrl route =
     case route of
-        HomeRoute ->
-            "/"
-
         ButtonsRoute ->
             "/buttons"
 
         ColorsRoute ->
             "/colors"
 
+        FooterRoute ->
+            "/footer"
+
         FormRoute ->
             "/form"
+
+        HeaderRoute ->
+            "/header"
+
+        HomeRoute ->
+            "/"
 
         TypographyRoute ->
             "/typography"

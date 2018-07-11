@@ -17,6 +17,8 @@ matchers =
         , map TypographyRoute (s "typography")
         , map ButtonsRoute (s "buttons")
         , map FormRoute (s "form")
+        , map HeaderRoute (s "header")
+        , map FooterRoute (s "footer")
         ]
 
 
