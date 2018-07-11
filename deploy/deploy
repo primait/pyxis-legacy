@@ -25,6 +25,8 @@ fi
 
 echo "deploying $ENV"
 
+aws --region="eu-west-1" s3 cp dist/prima.css s3://prima-documents-assets/css/prima.css
+
 tar czf ${VERSION}-${ENV}.tar.gz -C dist/ .
 aws --region="eu-west-1" s3 cp ${VERSION}-${ENV}.tar.gz s3://prima-artifacts-encrypted/microservices/pyxis/${VERSION}-${ENV}.tar.gz
 
