@@ -22,20 +22,6 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
     display: block;
   }
 
-  &:before {
-    color: color(green, dark);
-    content: "\e904";
-    cursor: pointer;
-    font-family: 'icomoon';
-    font-size: 24px;
-    left: 15px;
-    line-height: 20px;
-    opacity: 1;
-    position: absolute;
-    top: 50%;
-    transform: translate3d(0, -50%, 0);
-  }
-
   &:after {
     background-color: color(grey);
     content: "";
@@ -48,6 +34,8 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}input {
+  background: color(white) url(/assets/media/calendar.svg) no-repeat 12px center;
+  background-size: 25px;
   padding: 18px 15px 15px 60px;
 }
 
@@ -160,7 +148,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   cursor: pointer;
   font-family: font(heavy);
   outline: none;
-  padding: 22px 20px 20px 15px;
+  padding: 24px 20px 20px 14px;
   -webkit-appearance: none;
 }
 
