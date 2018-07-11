@@ -1,17 +1,18 @@
-const path                = require('path');
-const webpack             = require('webpack');
-const CleanWebpackPlugin  = require('clean-webpack-plugin');
-const HtmlWebpackPlugin   = require('html-webpack-plugin');
-const UglifyJsPlugin      = require('uglifyjs-webpack-plugin')
-const CopyWebpackPlugin   = require('copy-webpack-plugin')
-
+const path                  = require('path');
+const webpack               = require('webpack');
+const CleanWebpackPlugin    = require('clean-webpack-plugin');
+const HtmlWebpackPlugin     = require('html-webpack-plugin');
+const UglifyJsPlugin        = require('uglifyjs-webpack-plugin')
+const CopyWebpackPlugin     = require('copy-webpack-plugin')
+const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 
 const config = {
 
   context: path.resolve(__dirname, 'src'),
 
   entry: {
-    app: './app.js'
+    app:    './app.js',
+    prima:  './prima.js',
   },
 
   output: {
@@ -24,7 +25,12 @@ const config = {
       {
         test: /\.scss$/,
         include: [ path.resolve(__dirname, 'src', 'scss') ],
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          { loader: 'css-loader' },
+          { loader: 'postcss-loader' },
+          { loader: 'sass-loader' },
+        ]
       },
       { test: /\.html$/,
         use: ['html-loader']
@@ -77,12 +83,10 @@ const config = {
 
   plugins: [
     new CleanWebpackPlugin([ 'dist' ]),
+    new MiniCssExtractPlugin({ filename: '[name].css' }),
     new HtmlWebpackPlugin({ template: 'index.html' }),
     new UglifyJsPlugin({ test: /\.js($|\?)/i }),
-    new CopyWebpackPlugin([{
-      from: 'assets/media/**/**',
-      to: ''
-  }]),
+    new CopyWebpackPlugin([{ from: 'assets/media/**/**', to: '' }]),
   ],
 }
 
