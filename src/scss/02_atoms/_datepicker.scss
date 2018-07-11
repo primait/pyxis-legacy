@@ -73,6 +73,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   border-radius: 5px 5px 0 0;
   display: flex;
   height: 50px;
+  overflow: hidden;
 }
 
 .#{$datepicker-ns}weekdays {
@@ -95,7 +96,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 .#{$datepicker-ns}month-container {
   align-items: center;
-  flex: 1 1 auto;
+  flex: 0 0 120px;
 
   padding: 0.5em;
 
@@ -106,7 +107,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 .#{$datepicker-ns}month {
   font-weight: 700;
-  margin-right: 10px;
+  padding-top: 2px;
   text-transform: uppercase;
 }
 
@@ -122,14 +123,33 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}year {
-  background-color: rgba(255,255,255,0.15);
-  border-radius: 50px;
+  align-items: center;
+  background-color: rgba(255,255,255,0.10);
+  cursor: pointer;
+  display: flex;
   font-weight: 400;
-  padding: 4px 6px 2px 6px;
+  height: 50px;
+  position: absolute;
+  right: 0px;
+  width: 70px;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255,255,255,0.15);
+  }
+
+  &:after {
+    color: color(white);
+    content: "\e902";
+    font-family: 'icomoon';
+    font-size: 14px;
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%) rotate(0deg);
+    transition: transform 0.2s cubic-bezier(0, 1, 1, 1);
   }
 }
 
@@ -139,8 +159,9 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   color: color(white);
   cursor: pointer;
   font-family: font(heavy);
-  -webkit-appearance: none;
   outline: none;
+  padding: 22px 20px 20px 15px;
+  -webkit-appearance: none;
 }
 
 .#{$datepicker-ns}prev,
