@@ -256,3 +256,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
     color: color(white);
   }
 }
+
+.#{$datepicker-ns}year-menu option {
+  color: color(grey, dark);
+}
