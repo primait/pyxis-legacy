@@ -2,7 +2,6 @@ const helpers       = require('./helpers.js')
 const template      = require('./index.html')
 const pyxisStyle    = require('./scss/app.scss')
 const primaStyle    = require('./scss/prima.scss')
-const introImg      = require('./assets/intro.jpg')
 const Elm           = require('./App.elm')
 const route         = window.location.pathname
 const isIE          = helpers.detectIE() <= 11

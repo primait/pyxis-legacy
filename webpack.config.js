@@ -3,6 +3,7 @@ const webpack             = require('webpack');
 const CleanWebpackPlugin  = require('clean-webpack-plugin');
 const HtmlWebpackPlugin   = require('html-webpack-plugin');
 const UglifyJsPlugin      = require('uglifyjs-webpack-plugin')
+const CopyWebpackPlugin   = require('copy-webpack-plugin')
 
 
 const config = {
@@ -41,14 +42,16 @@ const config = {
         }
       },
       {
-        test: /\.(jpg|png|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader',
-        options: { name: '[name].[ext]', outputPath: 'assets/'}
-      },
-      {
         test: /\.(ttf|eot|svg|woff(2)?|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
-        options: { name: '[name].[ext]', outputPath: 'assets/fonts/'}
+        exclude: /src\/assets\/media/,
+        options: { name: '[name].[ext]', outputPath: 'assets/fonts/' }
+      },
+      {
+        test: /\.(jpg|svg|png|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader',
+        exclude: /src\/assets\/fonts/,
+        options: { name: '[name].[ext]', outputPath: 'assets/media/' }
       },
     ],
 
@@ -69,7 +72,11 @@ const config = {
   plugins: [
     new CleanWebpackPlugin([ 'dist' ]),
     new HtmlWebpackPlugin({ template: 'index.html' }),
-    new UglifyJsPlugin({ test: /\.js($|\?)/i })
+    new UglifyJsPlugin({ test: /\.js($|\?)/i }),
+    new CopyWebpackPlugin([{
+      from: 'assets/media/**/**',
+      to: ''
+  }]),
   ],
 }
 
