@@ -1,6 +1,5 @@
 module Pyxis.Components.Header.Update exposing (update)
 
-import Http
 import Pyxis.Components.Header.Model
     exposing
         ( Model

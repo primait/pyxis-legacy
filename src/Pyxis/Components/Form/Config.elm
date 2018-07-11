@@ -148,6 +148,7 @@ selectFieldConfig model =
         "Select field"
         isDisabled
         isOpen
+        (Just "Seleziona")
         []
         .selectField
         (Toggle Select)
