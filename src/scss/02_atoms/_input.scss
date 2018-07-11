@@ -30,7 +30,7 @@
 
   &.is-disabled,
   &[disabled] {
-    background: color(grey, light);
+    background-color: color(grey, light);
     opacity: 0.65;
     pointer-events: none;
   }

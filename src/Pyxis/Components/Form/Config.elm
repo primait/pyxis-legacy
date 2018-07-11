@@ -135,16 +135,13 @@ selectFieldConfig model =
             model.isSelectFieldOpen
 
         options =
-            ((::) (SelectOption "-- Seleziona --" "")
-                << List.sortBy .label
-            )
-                [ SelectOption "Milano" "MI"
-                , SelectOption "Torino" "TO"
-                , SelectOption "Roma" "RO"
-                , SelectOption "Napoli" "NA"
-                , SelectOption "Genova" "GE"
-                , SelectOption "Savona" "SA"
-                ]
+            [ SelectOption "Milano" "MI"
+            , SelectOption "Torino" "TO"
+            , SelectOption "Roma" "RO"
+            , SelectOption "Napoli" "NA"
+            , SelectOption "Genova" "GE"
+            , SelectOption "Savona" "SA"
+            ]
     in
     Form.selectConfig
         "select_field"
