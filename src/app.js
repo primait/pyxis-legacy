@@ -8,16 +8,25 @@ const route         = window.location.pathname
 const isIE          = helpers.detectIE() <= 11
 const isEdge        = helpers.detectIE() >= 12
 
+/* AB TEST */
 const random        = Math.floor(Math.random() * 10)
-console.log("Seed", random)
+
 if(random % 2 == 0) {
   document.body.className += ' radioBorder'
 }
+/* END AB TEST */
 
-isIE ? document.body.className += ' is-IE' : null
-isEdge ? document.body.className += ' is-Edge' : null;
+if(isIE) {
+  document.body.className += ' is-IE'
+}
 
-(!!('ontouchstart' in window) || !!('msmaxtouchpoints' in window.navigator)) ? document.body.className += ' isTouchDevice' : null;
+if(isEdge) {
+  document.body.className += ' is-Edge'
+}
+
+if(!!('ontouchstart' in window) || !!('msmaxtouchpoints' in window.navigator)) {
+  document.body.className += ' isTouchDevice'
+}
 
 const app = Elm.App.embed(document.getElementById('app'), {
   route: route
@@ -42,7 +51,9 @@ document.addEventListener('click', event => {
   if(event.target.className) {
     const isInput = ~event.target.className.indexOf('a-form__field__')
     const isLabel = ~event.target.className.indexOf('a-form__field__label')
-    (isInput && !isLabel) ? null : app.ports.clickedOutside.send(true)
+    if(!isInput || isLabel) {
+      app.ports.clickedOutside.send(true)
+    }
   }
   else {
     app.ports.clickedOutside.send(true)
