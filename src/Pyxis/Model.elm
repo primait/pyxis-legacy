@@ -18,6 +18,7 @@ import Navigation exposing (Location)
 import Pyxis.Components.Buttons.Model as Buttons
 import Pyxis.Components.Colors.Model as Colors
 import Pyxis.Components.Form.Model as Form
+import Pyxis.Components.Header.Model as Header
 import Time exposing (Time)
 import Unique exposing (Id, Unique)
 
@@ -32,9 +33,10 @@ type Msg
     | RemoveMessage (Unique Id)
     | Copied
       -------------
-    | ColorsMsg Colors.Msg
     | ButtonsMsg Buttons.Msg
+    | ColorsMsg Colors.Msg
     | FormMsg Form.Msg
+    | HeaderMsg Header.Msg
 
 
 type alias Model =
@@ -46,6 +48,7 @@ type alias Model =
     , colors : Colors.Model
     , buttons : Buttons.Model
     , form : Form.Model
+    , header : Header.Model
     }
 
 
@@ -60,6 +63,7 @@ initialModel =
         Colors.initialModel
         Buttons.initialModel
         Form.initialModel
+        Header.initialModel
 
 
 initialMenu : List Menu
@@ -69,6 +73,8 @@ initialMenu =
     , Menu "typography" "Typography" TypographyRoute False
     , Menu "buttons" "Buttons" ButtonsRoute False
     , Menu "form" "Form" FormRoute False
+    , Menu "header" "Header" HeaderRoute False
+    , Menu "footer" "Footer" FooterRoute False
     ]
 
 
@@ -81,7 +87,9 @@ type Route
       --------------
     | ButtonsRoute
     | ColorsRoute
+    | FooterRoute
     | FormRoute
+    | HeaderRoute
     | TypographyRoute
       --------------
     | NotFoundRoute

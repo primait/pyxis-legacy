@@ -1,8 +1,10 @@
 const helpers       = require('./helpers.js')
-const template      = require('./index.html')
+const templates     = require('./templates.js')
+const entryPoint    = require('./index.html')
+const Elm           = require('./App.elm')
 const pyxisStyle    = require('./scss/app.scss')
 const primaStyle    = require('./scss/prima.scss')
-const Elm           = require('./App.elm')
+
 const route         = window.location.pathname
 const isIE          = helpers.detectIE() <= 11
 const isEdge        = helpers.detectIE() >= 12

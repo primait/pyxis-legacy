@@ -46,7 +46,10 @@ init flags =
         , menu = updateMenu (toRoute flags.route) initialModel.menu
         , form = { form | datepicker = Just datepicker }
     }
-        |> withCmds [ Tasks.fetchTodayDate ]
+        |> withCmds
+            [ Tasks.fetchTodayDate
+            , Tasks.fetchHeaderTemplate "static/header.html.txt"
+            ]
 
 
 toRoute : String -> Route
@@ -63,6 +66,12 @@ toRoute str =
 
         "/form" ->
             FormRoute
+
+        "/header" ->
+            HeaderRoute
+
+        "/footer" ->
+            FooterRoute
 
         _ ->
             initialModel.route
