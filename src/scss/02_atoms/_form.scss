@@ -15,7 +15,7 @@
   }
 
   @include mq(small) {
-    border-radius: 5px;
+    border-radius: map-get($formConfig, borderRadius);
   }
 }
 
