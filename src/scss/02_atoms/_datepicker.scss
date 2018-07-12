@@ -1,7 +1,7 @@
 $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 %daySelection {
-  background-color: color(blue);
+  background-color: color(grey);
   border-radius: 60px;
   height: 30px;
   width: 30px;
@@ -24,8 +24,9 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
   &:after {
     background-color: color(grey);
+    bottom: 1px;
     content: "";
-    height: 46px;
+    height: 48px;
     position: absolute;
     right: 49px;
     top: 1px;
@@ -45,7 +46,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}picker {
-  background: color(grey, light);
+  background: color(white);
   border-radius: 0 0 map-get($formConfig, borderRadius) map-get($formConfig, borderRadius);
   box-shadow: map-get($formConfig, fieldShadow);
   left: 50%;
@@ -66,7 +67,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}weekdays {
-  background: color(grey, light);
+  background: color(white);
   color: color(grey, light);
   font-size: 10px;
   font-weight: 700;
@@ -210,10 +211,6 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   cursor: pointer;
   position: relative;
 
-  &:hover {
-    color: color(white);
-  }
-
   &:hover:before {
     content: '';
   }
@@ -235,6 +232,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   color: color(white)!important;
 
   &:before {
+    background-color: color(blue);
     content: '';
   }
 }
@@ -249,8 +247,23 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}today {
-  color: color(green, dark);
+  color: color(blue, dark);
   font-weight: bold;
+}
+
+.#{$datepicker-ns}today:not(.#{$datepicker-ns}picked) {
+
+  &:before {
+    background-color: transparent;
+    border: map-get($formConfig, borderWidth) solid color(grey);
+    content: '';
+  }
+
+  &:hover:before {
+    background-color: color(grey);
+    border: none;
+    color: color(grey, dark);
+  }
 }
 
 .#{$datepicker-ns}other-month {

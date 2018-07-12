@@ -112,14 +112,10 @@
   padding: map-get($formConfig, fieldPadding);
   height: map-get($formConfig, fieldHeight);
 
-  &.is-selected {
-    background: color(green, dark);
-    color: color(white);
-
-    &:hover {
-      background: color(green, light);
-      color: color(green, dark);
-    }
+  &.is-selected,
+  &.is-selected:hover {
+    background: color(green, light);
+    color: color(green, dark);
   }
 
   &:hover {

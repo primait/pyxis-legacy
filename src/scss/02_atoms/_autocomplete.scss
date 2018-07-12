@@ -10,6 +10,7 @@
     font-family: 'icomoon';
     font-size: 20px;
     line-height: map-get($formConfig, fieldHeight);
+    pointer-events: none;
     position: absolute;
     right: 0;
     text-align: center;
@@ -75,14 +76,10 @@
   padding: 0 15px;
   height: map-get($formConfig, fieldHeight);
 
-  &.is-selected {
-    background: color(green, dark);
-    color: color(white);
-
-    &:hover {
-      background: color(green, light);
-      color: color(green, dark);
-    }
+  &.is-selected,
+  &.is-selected:hover {
+    background: color(green, light);
+    color: color(green, dark);
   }
 
   &:hover {
