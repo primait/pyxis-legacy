@@ -7,7 +7,7 @@
   font-family: font(heavy);
   font-size: 14px;
   letter-spacing: 0.3px;
-  min-height: 50px;
+  min-height: map-get($formConfig, fieldHeight);
   outline: none;
   padding: 0 20px;
 

@@ -1,7 +1,6 @@
 module Pyxis.Components.Header.View exposing (view)
 
 import Html exposing (..)
-import Html.Attributes exposing (class)
 import Pyxis.Components.Header.Model
     exposing
         ( Model
