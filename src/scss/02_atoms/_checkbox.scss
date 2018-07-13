@@ -8,7 +8,7 @@
   display: flex;
   line-height: map-get($formConfig, fieldHeight);
   margin-right: 20px;
-  padding-left: 25px;
+  padding-left: 30px;
   position: relative;
   width: auto;
 
@@ -49,15 +49,15 @@
     content: "\e900";
     font-family: 'icomoon';
     font-size: 12px;
-    left: 3px;
+    left: 4px;
     line-height: 20px;
     opacity: 0;
     transform: translateY(-50%);
     transition: clip-path 0.3s linear, opacity 0.2s linear;
   }
 
-  .a-form__field__checkbox:checked + &:before {
-    border-color: color(green, dark);
+  .a-form__field__checkbox:checked + & {
+    color: color(green, dark);
   }
 
   &:hover:after,

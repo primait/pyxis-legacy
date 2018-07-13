@@ -40,7 +40,7 @@
 .a-form__field__customSelect__status {
   align-items: center;
   border-color: inherit;
-  color: inherit;
+  color: rgba(color(grey, dark), 0.65);
   display: flex;
   height: map-get($formConfig, fieldHeight);
   padding: map-get($formConfig, fieldPadding);
@@ -56,6 +56,14 @@
     transform: translateY(-50%) rotate(0deg);
     transition: transform 0.2s cubic-bezier(0, 1, 1, 1);
     right: 10px;
+  }
+
+  .is-invalid.is-touched & {
+    color: color(red);
+  }
+
+  .is-valid:not(.is-pristine) & {
+    color: color(green, dark);
   }
 
   .is-open &:after {

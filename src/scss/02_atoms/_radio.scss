@@ -3,8 +3,7 @@
 }
 
 .a-form__field__radio__label {
-  background: color(white);
-  border: map-get($formConfig, borderWidth) solid color(grey);
+  border: map-get($formConfig, borderWidth) solid transparent;
   border-radius: map-get($formConfig, borderRadius);
   color: color(grey, dark);
   cursor: pointer;
@@ -12,18 +11,19 @@
   margin-right: 20px;
   line-height: map-get($formConfig, fieldHeight);
   padding-left: 40px;
-  padding-right: 25px;
+  padding-right: 20px;
   position: relative;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
   width: auto;
 
   &:hover {
     background: color(white);
+    border-color: color(green);
     color: color(green, dark);
   }
 
   .a-form__field__radio[disabled] + & {
-    background-color: color(grey, light);
+    // background-color: color(grey, light);
     opacity: map-get($formConfig, fieldDisabledOpacity);
     pointer-events: none;
   }
@@ -45,7 +45,7 @@
     background-color: color(white);
     border: map-get($formConfig, borderWidth) solid color(green);
     content: '';
-    left: 15px;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -53,7 +53,7 @@
   &:after {
     background: color(green, dark);
     content: '';
-    left: 20px;
+    left: 15px;
     height: 10px;
     top: 20px;
     transform: scale(0);

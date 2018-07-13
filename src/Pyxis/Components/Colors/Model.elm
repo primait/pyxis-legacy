@@ -24,7 +24,7 @@ initialModel =
         [ Color "purple" [ Light, Base, Dark ]
         , Color "green" [ Light, Base, Dark ]
         , Color "grey" [ Light, Base, Dark ]
-        , Color "blue" [ Light, Base, Dark ]
+        , Color "blue" [ Base, Dark ]
         , Color "red" [ Base ]
         , Color "white" [ Base ]
         , Color "yellow" [ Base ]
