@@ -25,3 +25,13 @@
 - Install Elm packages: `elm-package install`
 - Run local devServer (via Webpack Dev Server): `yarn dev`
 - Build for production: `yarn build:prod`
+
+
+## Deploy del css
+Per utilizzare il css su altri progetti, come fosse una dipendenza
+```
+git tag x.x.x
+git push origin x.x.x
+```
+
+Non dimenticarti di aggiornare l'url dei progetti in cui vuoi utilizzare il nuovo css cambiando il numero di versione!
