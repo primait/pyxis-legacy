@@ -193,7 +193,7 @@ body {
 }
 
 .pyColorScheme__item__tone {
-  border-radius: 14px;
+  border-radius: 8px;
   cursor: pointer;
   display: flex;
   font-family: font(heavy);
@@ -214,14 +214,14 @@ body {
     @each $colorTone, $colorHex in $tones {
       &.bg-#{$color}-#{$colorTone} {
         @if lightness($colorHex) == 100 {
-          box-shadow: 0px 10px 20px 0px rgba(0,0,0, 0.15);
+          box-shadow: 0px 10px 30px 0px rgba(0,0,0, 0.15);
         }
         @else {
-          box-shadow: 0px 10px 20px 0px rgba($colorHex, 0.3);
+          box-shadow: 0px 10px 40px 0px rgba($colorHex, 0.3);
         }
 
-        @if lightness($colorHex) > 50 {
-          color: rgba(0,0,0,0.4);
+        @if lightness($colorHex) > 80 {
+          color: rgba(0,0,0,0.3);
         }
         @else {
           color: var(--white);
