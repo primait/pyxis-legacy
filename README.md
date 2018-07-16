@@ -34,4 +34,5 @@ git tag x.x.x
 git push origin x.x.x
 ```
 
-Non dimenticarti di aggiornare l'url dei progetti in cui vuoi utilizzare il nuovo css cambiando il numero di versione!
+Aggiornare l'url sui progetti che utilizzano il css:
+`https://d3be8952cnveif.cloudfront.net/css/pyxis-x.x.x.css`
