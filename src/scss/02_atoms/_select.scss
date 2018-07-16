@@ -2,10 +2,10 @@
   Tablet/Desktop component
 *************************/
 .a-form__field__customSelect {
-  background: color(white);
-  border: map-get($formConfig, borderWidth) solid color(grey);
+  background: color(background);
+  border: map-get($formConfig, borderWidth) solid color(shape);
   border-radius: map-get($formConfig, borderRadius);
-  color: color(green, dark);
+  color: color(brand-alt, dark);
   cursor: pointer;
   display: none;
   flex-direction: column;
@@ -13,11 +13,11 @@
 
   &.is-valid:not(.is-open),
   &.is-touched:not(.is-open) {
-    border-color: color(green, dark);
+    border-color: color(brand-alt, dark);
   }
 
   &.is-open {
-    border: map-get($formConfig, borderWidth) solid color(green);
+    border: map-get($formConfig, borderWidth) solid color(brand-alt);
     border-radius: map-get($formConfig, borderRadius) map-get($formConfig, borderRadius) 0px 0px;
     box-shadow: map-get($formConfig, fieldShadow);
   }
@@ -28,8 +28,8 @@
   }
 
   &.is-pristine:not(.is-open) {
-    border: map-get($formConfig, borderWidth) solid color(grey);
-    color: color(green, dark);
+    border: map-get($formConfig, borderWidth) solid color(shape);
+    color: color(brand-alt, dark);
   }
 
   @include mq(medium) {
@@ -40,14 +40,14 @@
 .a-form__field__customSelect__status {
   align-items: center;
   border-color: inherit;
-  color: rgba(color(grey, dark), 0.65);
+  color: color(text);
   display: flex;
   height: map-get($formConfig, fieldHeight);
   padding: map-get($formConfig, fieldPadding);
   position: relative;
 
   &:after {
-    color: color(green, dark);
+    color: color(brand-alt, dark);
     content: "\e902";
     font-family: 'icomoon';
     font-size: map-get($formConfig, iconSize);
@@ -63,7 +63,7 @@
   }
 
   .is-valid:not(.is-pristine) & {
-    color: color(green, dark);
+    color: color(brand-alt, dark);
   }
 
   .is-open &:after {
@@ -71,12 +71,12 @@
   }
 
   .is-disabled & {
-    background: color(grey, light);
+    background: color(background, dark);
     opacity: map-get($formConfig, fieldDisabledOpacity);
     pointer-events: none;
 
     &:after {
-      color: color(grey, dark);
+      color: color(text, dark);
     }
   }
 
@@ -86,8 +86,8 @@
 }
 
 .a-form__field__customSelect__list {
-  background: color(white);
-  border: map-get($formConfig, borderWidth) solid color(grey);
+  background: color(background);
+  border: map-get($formConfig, borderWidth) solid color(shape);
   border-radius: 0 0 map-get($formConfig, borderRadius) map-get($formConfig, borderRadius);
   border-top: none;
   display: none;
@@ -105,8 +105,8 @@
   z-index: 1;
 
   .is-open & {
-    border: 1px solid color(green);
-    border-top-color: color(grey);
+    border: 1px solid color(brand-alt);
+    border-top-color: color(shape);
     box-shadow: map-get($formConfig, fieldShadow);
     display: flex;
   }
@@ -114,7 +114,7 @@
 
 .a-form__field__customSelect__list__item {
   align-items: center;
-  color: color(grey, dark);
+  color: color(text, dark);
   display: flex;
   flex: 0 0 100%;
   padding: map-get($formConfig, fieldPadding);
@@ -122,12 +122,12 @@
 
   &.is-selected,
   &.is-selected:hover {
-    background: color(green, light);
-    color: color(green, dark);
+    background: color(brand-alt, light);
+    color: color(brand-alt, dark);
   }
 
   &:hover {
-    background: color(grey, light);
+    background: color(background, dark);
   }
 }
 
@@ -135,10 +135,10 @@
   Mobile component
 *************************/
 .a-form__field__select {
-  background: color(white);
-  border: map-get($formConfig, borderWidth) solid color(grey);
+  background: color(background);
+  border: map-get($formConfig, borderWidth) solid color(shape);
   border-radius: map-get($formConfig, borderRadius);
-  color: color(green, dark);
+  color: color(brand-alt, dark);
   display: flex;
   height: map-get($formConfig, fieldHeight);
   margin: 0;
@@ -150,12 +150,12 @@
   }
 
   &:focus {
-    border-color: color(green);
+    border-color: color(brand-alt);
   }
 
   &.is-valid,
   &.is-touched {
-    border-color: color(green, dark);
+    border-color: color(brand-alt, dark);
   }
 
   &.is-invalid {
@@ -165,12 +165,12 @@
 
   &.is-disabled,
   &[disabled] {
-    background: color(grey, light);
+    background: color(background, dark);
     opacity: map-get($formConfig, fieldDisabledOpacity);
     pointer-events: none;
   }
 
   option {
-    color: color(grey, dark);
+    color: color(text, dark);
   }
 }

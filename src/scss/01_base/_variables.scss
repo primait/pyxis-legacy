@@ -12,20 +12,21 @@ $colors: (
     dark:  #7230ac,
   ),
 
-  green: (
+  brand-alt: (
     light: #ecf8fa,
     base:  #99d7df,
     dark:  #10a1b4,
   ),
 
-  action: (
-    base:  #21c7a7,
-    dark:  #1db396,
-  ),
-
-  grey: (
+  shape: (
     light: #f7f7f7,
     base:  #e0e0e0,
+    dark:  #4d5969,
+  ),
+
+  text: (
+    light: #e0e0e0,
+    base:  #7E8890,
     dark:  #4d5969,
   ),
 
@@ -39,16 +40,21 @@ $colors: (
     dark:  #343a4b,
   ),
 
+  action: (
+    base:  #21c7a7,
+    dark:  #1db396,
+  ),
+
   error: (
     base:  #e74c3c,
   ),
 
-  white: (
-    base:  #fff,
-  ),
-
   alert: (
     base: #f7da7e,
+  ),
+
+  white: (
+    base: #fff,
   ),
 
 );

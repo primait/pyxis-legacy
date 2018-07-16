@@ -22,8 +22,9 @@ initialModel : Model
 initialModel =
     Model
         [ Color "brand" [ Light, Base, Dark ]
-        , Color "green" [ Light, Base, Dark ]
-        , Color "grey" [ Light, Base, Dark ]
+        , Color "brand-alt" [ Light, Base, Dark ]
+        , Color "shape" [ Light, Base, Dark ]
+        , Color "text" [ Light, Base, Dark ]
         , Color "background" [ Base, Dark ]
         , Color "background-alt" [ Base, Dark ]
         , Color "action" [ Base, Dark ]

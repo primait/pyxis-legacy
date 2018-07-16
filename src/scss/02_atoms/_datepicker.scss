@@ -1,7 +1,7 @@
 $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 %daySelection {
-  background-color: color(grey);
+  background-color: color(shape);
   border-radius: 60px;
   height: 30px;
   width: 30px;
@@ -23,7 +23,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   }
 
   &:after {
-    background-color: color(grey);
+    background-color: color(shape);
     bottom: 1px;
     content: "";
     height: 48px;
@@ -35,7 +35,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}input {
-  background: color(white) url(/assets/media/calendar.svg) no-repeat;
+  background: color(background) url(/assets/media/calendar.svg) no-repeat;
   background-position: 95%;
   background-size: 25px;
   padding: 18px 60px 15px 15px;
@@ -46,7 +46,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}picker {
-  background: color(white);
+  background: color(background);
   border-radius: 0 0 map-get($formConfig, borderRadius) map-get($formConfig, borderRadius);
   box-shadow: map-get($formConfig, fieldShadow);
   left: 50%;
@@ -67,8 +67,8 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}weekdays {
-  background: color(white);
-  color: color(grey, light);
+  background: color(background);
+  color: color(text, light);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -202,7 +202,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}dow {
-  color: color(grey, dark);
+  color: color(text, dark);
 
   cursor: default;
 }
@@ -239,7 +239,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 .#{$datepicker-ns}disabled {
   cursor: default;
-  color: color(grey);
+  color: color(text, light);
 
   &:hover {
     background: inherit;
@@ -255,22 +255,22 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
   &:before {
     background-color: transparent;
-    border: map-get($formConfig, borderWidth) solid color(grey);
+    border: map-get($formConfig, borderWidth) solid color(shape);
     content: '';
   }
 
   &:hover:before {
-    background-color: color(grey);
+    background-color: color(shape);
     border: none;
-    color: color(grey, dark);
+    color: color(text, dark);
   }
 }
 
 .#{$datepicker-ns}other-month {
-  color: rgba(color(grey, dark), 0.3);
+  color: rgba(color(text), 0.5);
 
   &.#{$datepicker-ns}disabled {
-    color: color(grey);
+    color: color(text);
   }
 
   &.#{$datepicker-ns}picked {
@@ -279,5 +279,5 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}year-menu option {
-  color: color(grey, dark);
+  color: color(text, dark);
 }

@@ -5,7 +5,7 @@
 .a-form__field__radio__label {
   border: map-get($formConfig, borderWidth) solid transparent;
   border-radius: map-get($formConfig, borderRadius);
-  color: color(grey, dark);
+  color: color(text, dark);
   cursor: pointer;
   display: flex;
   margin-right: 20px;
@@ -17,13 +17,13 @@
   width: auto;
 
   &:hover {
-    background: color(white);
-    border-color: color(green);
-    color: color(green, dark);
+    background: color(background);
+    border-color: color(brand-alt);
+    color: color(brand-alt, dark);
   }
 
   .a-form__field__radio[disabled] + & {
-    // background-color: color(grey, light);
+    // background-color: color(background, dark);
     opacity: map-get($formConfig, fieldDisabledOpacity);
     pointer-events: none;
   }
@@ -42,8 +42,8 @@
   }
 
   &:before {
-    background-color: color(white);
-    border: map-get($formConfig, borderWidth) solid color(green);
+    background-color: color(background);
+    border: map-get($formConfig, borderWidth) solid color(brand-alt);
     content: '';
     left: 10px;
     top: 50%;
@@ -51,7 +51,7 @@
   }
 
   &:after {
-    background: color(green, dark);
+    background: color(brand-alt, dark);
     content: '';
     left: 15px;
     height: 10px;
@@ -62,7 +62,7 @@
   }
 
   .a-form__field__radio:checked + & {
-    color: color(green, dark);
+    color: color(brand-alt, dark);
   }
 
   &:hover:after,
