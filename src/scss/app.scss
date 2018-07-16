@@ -199,22 +199,47 @@ body {
   font-family: font(heavy);
   height: 120px;
   margin: 0 5px;
+  overflow: hidden;
   transition: all 0.3s ease;
   width: 120px;
+  will-change: transform;
+
+  &:before {
+    bottom: 0;
+    content: 'Copy HEX';
+    font-size: 10px;
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    transform: translate3d(0, 100%, 0);
+    transition: all 0.3s ease;
+    width: 100%;
+    will-change: transform;
+  }
 
   &:hover {
     transform: scale(1.05);
   }
 
-  &:active {
-    transform: scale(1.08);
+  &:hover:before {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &:active:before {
+    transform: scale(1.1);
   }
 
   @each $color, $tones in $colors {
     @each $colorTone, $colorHex in $tones {
       &.bg-#{$color}-#{$colorTone} {
-        @if lightness($colorHex) == 100 {
-          box-shadow: 0px 10px 30px 0px rgba(0,0,0, 0.15);
+
+        &:hover:before {
+          background-color: darken($colorHex, 4%);
+        }
+
+        @if lightness($colorHex) >= 96 {
+          box-shadow: 0px 10px 30px 0px rgba(0,0,0, 0.1);
         }
         @else {
           box-shadow: 0px 10px 40px 0px rgba($colorHex, 0.3);

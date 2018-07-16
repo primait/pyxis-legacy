@@ -59,7 +59,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 
 .#{$datepicker-ns}picker-header {
   align-items: center;
-  background: color(blue);
+  background: color(background-alt);
   border-radius: map-get($formConfig, borderRadius) map-get($formConfig, borderRadius) 0 0;
   display: flex;
   height: 50px;
@@ -232,7 +232,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   color: color(white)!important;
 
   &:before {
-    background-color: color(blue);
+    background-color: color(background-alt);
     content: '';
   }
 }
@@ -247,7 +247,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}today {
-  color: color(blue, dark);
+  color: color(background-alt, dark);
   font-weight: bold;
 }
 

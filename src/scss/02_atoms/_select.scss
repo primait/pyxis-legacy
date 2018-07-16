@@ -23,8 +23,8 @@
   }
 
   &.is-invalid.is-touched:not(.is-open):not(:focus) {
-    border-color: color(red);
-    color: color(red);
+    border-color: color(error);
+    color: color(error);
   }
 
   &.is-pristine:not(.is-open) {
@@ -59,7 +59,7 @@
   }
 
   .is-invalid.is-touched & {
-    color: color(red);
+    color: color(error);
   }
 
   .is-valid:not(.is-pristine) & {
@@ -81,7 +81,7 @@
   }
 
   .is-invalid.is-touched:not(.is-open):not(:focus) &:after {
-    color: color(red);
+    color: color(error);
   }
 }
 
@@ -159,8 +159,8 @@
   }
 
   &.is-invalid {
-    border-color: color(red);
-    color: color(red);
+    border-color: color(error);
+    color: color(error);
   }
 
   &.is-disabled,

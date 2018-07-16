@@ -20,8 +20,8 @@
   }
 
   &.is-invalid.is-touched:not(:focus) {
-    border-color: color(red);
-    color: color(red);
+    border-color: color(error);
+    color: color(error);
   }
 
   &.is-pristine {

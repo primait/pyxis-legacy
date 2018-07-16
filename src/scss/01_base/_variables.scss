@@ -6,7 +6,7 @@
 /**********************************************/
 $colors: (
 
-  purple: (
+  brand: (
     light: #b967d9,
     base:  #8334c2,
     dark:  #7230ac,
@@ -18,7 +18,7 @@ $colors: (
     dark:  #10a1b4,
   ),
 
-  emerald: (
+  action: (
     base:  #21c7a7,
     dark:  #1db396,
   ),
@@ -29,12 +29,17 @@ $colors: (
     dark:  #4d5969,
   ),
 
-  blue: (
+  background: (
+    base:  #fff,
+    dark:  #f7f7f7,
+  ),
+
+  background-alt: (
     base:  #3c4355,
     dark:  #343a4b,
   ),
 
-  red: (
+  error: (
     base:  #e74c3c,
   ),
 
@@ -42,7 +47,7 @@ $colors: (
     base:  #fff,
   ),
 
-  yellow: (
+  alert: (
     base: #f7da7e,
   ),
 
