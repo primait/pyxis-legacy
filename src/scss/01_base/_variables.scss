@@ -12,7 +12,7 @@ $colors: (
     dark:  #7230ac,
   ),
 
-  brand-alt: (
+  brandAlt: (
     light: #ecf8fa,
     base:  #99d7df,
     dark:  #10a1b4,
@@ -30,12 +30,18 @@ $colors: (
     dark:  #4d5969,
   ),
 
+  textAlt: (
+    light: #fff,
+    base:  rgba(255,255,255,0.5),
+    dark:  rgba(255,255,255,0.3),
+  ),
+
   background: (
     base:  #fff,
     dark:  #f7f7f7,
   ),
 
-  background-alt: (
+  backgroundAlt: (
     base:  #3c4355,
     dark:  #343a4b,
   ),
@@ -51,10 +57,6 @@ $colors: (
 
   alert: (
     base: #f7da7e,
-  ),
-
-  white: (
-    base: #fff,
   ),
 
 );

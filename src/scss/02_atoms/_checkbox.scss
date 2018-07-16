@@ -18,7 +18,7 @@
   }
 
   &:hover {
-    color: color(brand-alt, dark);
+    color: color(brandAlt, dark);
   }
 
   &:before,
@@ -35,7 +35,7 @@
 
   &:before {
     background-color: color(background);
-    border: map-get($formConfig, borderWidth) solid color(brand-alt);
+    border: map-get($formConfig, borderWidth) solid color(brandAlt);
     border-radius: 3px;
     content: '';
     left: 0;
@@ -45,7 +45,7 @@
 
   &:after {
     clip-path: inset( 0 100% 0 0 );
-    color: color(brand-alt, dark);
+    color: color(brandAlt, dark);
     content: "\e900";
     font-family: 'icomoon';
     font-size: 12px;
@@ -57,7 +57,7 @@
   }
 
   .a-form__field__checkbox:checked + & {
-    color: color(brand-alt, dark);
+    color: color(brandAlt, dark);
   }
 
   &:hover:after,

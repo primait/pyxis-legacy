@@ -5,7 +5,7 @@
   &:before {
     border-left: 1px solid color(shape);
     bottom: 1px;
-    color: color(brand-alt, dark);
+    color: color(brandAlt, dark);
     content: "\e903";
     font-family: 'icomoon';
     font-size: 20px;
@@ -20,7 +20,7 @@
 
   &.is-open .a-form__field__input,
   &.is-open .a-form__field__input:focus {
-    border-color: color(brand-alt);
+    border-color: color(brandAlt);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
@@ -34,12 +34,12 @@
     padding-right: 60px;
 
     &:focus {
-      border-color: color(brand-alt);
+      border-color: color(brandAlt);
     }
   }
 
   .a-form__field__input.is-valid.is-touched {
-    border-color: color(brand-alt, dark);
+    border-color: color(brandAlt, dark);
   }
 }
 
@@ -62,7 +62,7 @@
   z-index: 1;
 
   .is-open & {
-    border-color: color(brand-alt);
+    border-color: color(brandAlt);
     border-top-color: color(shape);
     display: flex;
   }
@@ -78,8 +78,8 @@
 
   &.is-selected,
   &.is-selected:hover {
-    background: color(brand-alt, light);
-    color: color(brand-alt, dark);
+    background: color(brandAlt, light);
+    color: color(brandAlt, dark);
   }
 
   &:hover {

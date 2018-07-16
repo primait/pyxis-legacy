@@ -18,8 +18,8 @@
 
   &:hover {
     background: color(background);
-    border-color: color(brand-alt);
-    color: color(brand-alt, dark);
+    border-color: color(brandAlt);
+    color: color(brandAlt, dark);
   }
 
   .a-form__field__radio[disabled] + & {
@@ -43,7 +43,7 @@
 
   &:before {
     background-color: color(background);
-    border: map-get($formConfig, borderWidth) solid color(brand-alt);
+    border: map-get($formConfig, borderWidth) solid color(brandAlt);
     content: '';
     left: 10px;
     top: 50%;
@@ -51,7 +51,7 @@
   }
 
   &:after {
-    background: color(brand-alt, dark);
+    background: color(brandAlt, dark);
     content: '';
     left: 15px;
     height: 10px;
@@ -62,7 +62,7 @@
   }
 
   .a-form__field__radio:checked + & {
-    color: color(brand-alt, dark);
+    color: color(brandAlt, dark);
   }
 
   &:hover:after,

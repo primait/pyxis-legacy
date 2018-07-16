@@ -5,7 +5,7 @@
   background: color(background);
   border: map-get($formConfig, borderWidth) solid color(shape);
   border-radius: map-get($formConfig, borderRadius);
-  color: color(brand-alt, dark);
+  color: color(brandAlt, dark);
   cursor: pointer;
   display: none;
   flex-direction: column;
@@ -13,11 +13,11 @@
 
   &.is-valid:not(.is-open),
   &.is-touched:not(.is-open) {
-    border-color: color(brand-alt, dark);
+    border-color: color(brandAlt, dark);
   }
 
   &.is-open {
-    border: map-get($formConfig, borderWidth) solid color(brand-alt);
+    border: map-get($formConfig, borderWidth) solid color(brandAlt);
     border-radius: map-get($formConfig, borderRadius) map-get($formConfig, borderRadius) 0px 0px;
     box-shadow: map-get($formConfig, fieldShadow);
   }
@@ -29,7 +29,7 @@
 
   &.is-pristine:not(.is-open) {
     border: map-get($formConfig, borderWidth) solid color(shape);
-    color: color(brand-alt, dark);
+    color: color(brandAlt, dark);
   }
 
   @include mq(medium) {
@@ -47,7 +47,7 @@
   position: relative;
 
   &:after {
-    color: color(brand-alt, dark);
+    color: color(brandAlt, dark);
     content: "\e902";
     font-family: 'icomoon';
     font-size: map-get($formConfig, iconSize);
@@ -63,7 +63,7 @@
   }
 
   .is-valid:not(.is-pristine) & {
-    color: color(brand-alt, dark);
+    color: color(brandAlt, dark);
   }
 
   .is-open &:after {
@@ -105,7 +105,7 @@
   z-index: 1;
 
   .is-open & {
-    border: 1px solid color(brand-alt);
+    border: 1px solid color(brandAlt);
     border-top-color: color(shape);
     box-shadow: map-get($formConfig, fieldShadow);
     display: flex;
@@ -122,8 +122,8 @@
 
   &.is-selected,
   &.is-selected:hover {
-    background: color(brand-alt, light);
-    color: color(brand-alt, dark);
+    background: color(brandAlt, light);
+    color: color(brandAlt, dark);
   }
 
   &:hover {
@@ -138,7 +138,7 @@
   background: color(background);
   border: map-get($formConfig, borderWidth) solid color(shape);
   border-radius: map-get($formConfig, borderRadius);
-  color: color(brand-alt, dark);
+  color: color(brandAlt, dark);
   display: flex;
   height: map-get($formConfig, fieldHeight);
   margin: 0;
@@ -150,12 +150,12 @@
   }
 
   &:focus {
-    border-color: color(brand-alt);
+    border-color: color(brandAlt);
   }
 
   &.is-valid,
   &.is-touched {
-    border-color: color(brand-alt, dark);
+    border-color: color(brandAlt, dark);
   }
 
   &.is-invalid {

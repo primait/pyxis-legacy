@@ -22,15 +22,15 @@ initialModel : Model
 initialModel =
     Model
         [ Color "brand" [ Light, Base, Dark ]
-        , Color "brand-alt" [ Light, Base, Dark ]
+        , Color "brandAlt" [ Light, Base, Dark ]
         , Color "shape" [ Light, Base, Dark ]
         , Color "text" [ Light, Base, Dark ]
+        , Color "textAlt" [ Light, Base, Dark ]
         , Color "background" [ Base, Dark ]
-        , Color "background-alt" [ Base, Dark ]
+        , Color "backgroundAlt" [ Base, Dark ]
         , Color "action" [ Base, Dark ]
         , Color "error" [ Base ]
         , Color "alert" [ Base ]
-        , Color "white" [ Base ]
         ]
 
 
