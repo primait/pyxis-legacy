@@ -17,7 +17,8 @@
   Basics
 ******************************/
 #app {
-  min-height: 101vh;
+  min-height: 130vh;
+
 }
 
 html,
@@ -100,7 +101,7 @@ body {
   Containers & Dividers
 ******************************/
 .pyWrapper {
-  margin: 0 auto 200px;
+  margin: 0 auto;
   max-width: 1100px;
   position: relative;
   width: 100%;
