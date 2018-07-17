@@ -1,0 +1,92 @@
+<footer class="o-footer bg-backgroundAlt-dark directionColumn">
+  <div class="m-btnGroup"><button class="a-btn a-btn--circle" onClick="document.querySelector('.o-footer').className += ' is-active';"><i class="a-icon a-icon-caret-up"></i></button></div>
+  <div class="a-container a-container--navigation">
+    <ul class="m-list m-list--customer directionColumn">
+      <li class="a-list__item">
+        <a href="#" class="a-link  a-link--alt fs-xsmall fw-heavy">già cliente</a>
+        <ul class="m-list m-list--sublist directionRow">
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Cambio veicolo</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Rinnovo polizza</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Aggiunta garanzie</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Denuncia sinistri</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Denuncia sinistri</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="m-list m-list--support directionColumn">
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall fw-heavy">supporto</a>
+      <ul class="m-list m-list--sublist directionRow">
+        <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Domande frequenti</a></li>
+        <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Guida all'area riservata</a></li>
+        <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Guide all'assicurazione auto</a></li>
+        <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Guide all'assicurazione moto</a></li>
+        <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Glossario assicurativo</a></li>
+        <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Moduli denuncia sinistri</a></li>
+      </ul>
+      </li>
+    </ul>
+    <ul class="m-list m-list--guarantee directionColumn">
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall fw-heavy">garanzie assicurative</a>
+        <ul class="m-list m-list--sublist directionRow">
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Responsabilità civile</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Infortuni conducente</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Rinuncia alla rivalsa</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Bonus protetto</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Assistenza stradale</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Tutela legale</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Furto e incendio</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Cristalli</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Atti vandalici</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Eventi atmosferici</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Kasko collisione</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Kasko completa</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="m-list m-list--informative directionColumn">
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall fw-heavy">informative</a>
+        <ul class="m-list m-list--sublist directionRow">
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Cambio veicolo</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Rinnovo polizza</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Aggiunta garanzie</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Denuncia sinistri</a></li>
+          <li class="m-list"><a href="#" class="a-link a-link--alt fs-xsmall">Moduli denuncia sinistri</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="m-list m-list--company directionRow">
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Chi siamo</a></li>
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Contatti</a></li>
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Assicurazioni online</a></li>
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Assicurazioni auto</a></li>
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Assicurazioni auto mensile</a></li>
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Assicurazioni moto sospendibile</a></li>
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Assicurazioni furgoni</a></li>
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Lavora con noi</a></li>
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Mappa del sito</a></li>
+    </ul>
+    <ul class="m-list m-list--information-package directionRow">
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Fascicolo auto (.pdf)</a></li>
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Fascicolo moto (.pdf)</a></li>
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Fascicolo furgoni (.pdf)</a></li>
+      <li class="a-list__item"><a href="#" class="a-link a-link--alt fs-xsmall">Fascicolo DAS (.pdf)</a></li>
+    </ul>
+  </div>
+  <div class="a-container a-container--xsmall a-container--payment">
+    <ul class="m-list directionRow">
+      <li class="a-list__item"><img src="/assets/media/card/visa.svg" alt="Visa"></li>
+      <li class="a-list__item"><img src="/assets/media/card/master-card.svg" alt="Master card"></li>
+      <li class="a-list__item"><img src="/assets/media/card/maestro.svg" alt="Maestro"></li>
+      <li class="a-list__item"><img src="/assets/media/card/paypal.svg" alt="PayPal"></li>
+      <li class="a-list__item"><img src="/assets/media/card/poste-pay.svg" alt="Postepay"></li>
+      <li class="a-list__item"><img src="/assets/media/card/bank_transfer.svg" alt="Bonifico bancario"></li>
+    </ul>
+  </div>
+  <div class="a-container a-container--xsmall a-container--privacy">
+      <div class="a-logo a-logo--white"><img src="/assets/media/logo-white.svg" alt="Prima.it"></div>
+      <p class="fs-xsmall alignCenter c-textAlt-light">© Prima Assicurazioni S.p.A. • P. IVA 08879250960 • via Speronari 8, 20123 Milano. <br/><br/>
+        Prima Assicurazioni S.p.A. è un'agenzia di Great Lakes Insurance SE Gruppo Munich Re.
+        Great Lakes Insurance SE è iscritta al Registro delle imprese di Assicurazione in Italia con il N° I.00093. Capitale sociale: € 131.776.704 (EUR) <br/><br/>
+        Prima Assicurazioni S.p.A. è regolamentata dall'IVASS ed iscritta al RUI con numero A000511660.</p>
+  </div>
+</footer>

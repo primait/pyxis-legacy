@@ -1,0 +1,14 @@
+.m-accordion {
+  color: color(text);
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  &.m-accordion--dark {
+    background: color(backgroundAlt, dark);
+    color: color(textAlt, light);
+  }
+}

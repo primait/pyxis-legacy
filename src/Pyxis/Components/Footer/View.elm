@@ -1,20 +1,17 @@
 module Pyxis.Components.Footer.View exposing (view)
 
 import Html exposing (..)
-import Html.Attributes exposing (class)
-import Pyxis.Model
+import Pyxis.Components.Footer.Model
     exposing
         ( Model
         , Msg(..)
         )
-import Pyxis.ViewHelpers exposing (componentTitle, divider, renderOrNothing)
+import Pyxis.ViewHelpers exposing (componentTitle, divider, renderHTMLContent, renderOrNothing)
 
 
 view : Model -> List (Html Msg)
-view model =
+view { template } =
     [ componentTitle [ text "Footer" ]
     , divider
-    , footer
-        [ class "o-footer" ]
-        [ text "Footer" ]
     ]
+        ++ (Maybe.withDefault [] << Maybe.map renderHTMLContent) template

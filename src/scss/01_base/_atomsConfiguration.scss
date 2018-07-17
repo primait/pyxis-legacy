@@ -4,6 +4,8 @@ $formConfig: (
   buttonDisabledOpacity: 0.3,
   buttonHeight: 40px,
   buttonMinWidth: 180px,
+  circleDimension: 40px,
+  circleRadius: 20px,
   datepickerCellSize: 38px,
   datepickerPadding: 20px,
   datepickerShadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10),
@@ -14,6 +16,7 @@ $formConfig: (
   fieldPadding: 0 15px,
   fieldShadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10),
   iconSize: 20px,
+  iconPosition: 26%,
   labelWidth: 280px,
 );
 
@@ -38,4 +41,47 @@ $containerConfig: (
   medium:  960px,
   large:   1140px,
   xlarge:  1370px,
+);
+
+$linkConfig: (
+  iconSize: 20px,
+  linkPadding: 0 20px,
+  iconPadding: 0 5px,
+  underlineHeight: 2px,
+);
+
+$listConfig: (
+  borderWidth: 1px,
+  iconSize: 20px,
+  padding: 10px,
+);
+
+$accordionConfig: (
+  iconWidth: 2px,
+  iconHeight: 10px,
+  accordionPadding: 20px,
+);
+
+$hamburgerConfig: (
+ borderRadius  : 4px,
+ layerWidth    : 20px,
+ layerHeight   : 3px,
+ layerSpacing  : 2px,
+ paddingHeight : 10px,
+ paddingWidth  : 10px,
+);
+
+$pillsConfig: (
+ borderRadius : 30px,
+ marginPills  : 10px,
+ paddingPills : 5px,
+);
+
+$navConfig: (
+ desktopHeight: 70px,
+ mobileHeight : 40px,
+);
+
+$footerConfig: (
+ listHeight: 25px,
 );
