@@ -6,43 +6,56 @@
 /**********************************************/
 $colors: (
 
-  purple: (
+  brand: (
     light: #b967d9,
     base:  #8334c2,
     dark:  #7230ac,
   ),
 
-  green: (
+  brandAlt: (
     light: #ecf8fa,
     base:  #99d7df,
     dark:  #10a1b4,
   ),
 
-  emerald: (
-    base:  #21c7a7,
-    dark:  #1db396,
-  ),
-
-  grey: (
+  shape: (
     light: #f7f7f7,
     base:  #e0e0e0,
     dark:  #4d5969,
   ),
 
-  blue: (
+  text: (
+    light: #e0e0e0,
+    base:  #7E8890,
+    dark:  #4d5969,
+  ),
+
+  textAlt: (
+    light: #fff,
+    base:  rgba(255,255,255,0.5),
+    dark:  rgba(255,255,255,0.3),
+  ),
+
+  background: (
+    base:  #fff,
+    dark:  #f7f7f7,
+  ),
+
+  backgroundAlt: (
     base:  #3c4355,
     dark:  #343a4b,
   ),
 
-  red: (
+  action: (
+    base:  #21c7a7,
+    dark:  #1db396,
+  ),
+
+  error: (
     base:  #e74c3c,
   ),
 
-  white: (
-    base:  #fff,
-  ),
-
-  yellow: (
+  alert: (
     base: #f7da7e,
   ),
 

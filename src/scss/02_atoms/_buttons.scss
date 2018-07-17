@@ -17,15 +17,15 @@
 }
 
 .a-btn--primary {
-  background: color(green, dark);
-  border-color: color(green, dark);
-  color: color(white);
+  background: color(brandAlt, dark);
+  border-color: color(brandAlt, dark);
+  color: color(textAlt, light);
 }
 
 .a-btn--secondary {
-  background: color(white);
-  border-color: color(grey, light);
-  color: color(grey, dark);
+  background: color(background);
+  border-color: color(shape, light);
+  color: color(text, dark);
 }
 
 .a-btn--tertiary {

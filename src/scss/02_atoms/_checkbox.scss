@@ -3,7 +3,7 @@
 }
 
 .a-form__field__checkbox__label {
-  color: color(grey, dark);
+  color: color(text, dark);
   cursor: pointer;
   display: flex;
   line-height: map-get($formConfig, fieldHeight);
@@ -18,7 +18,7 @@
   }
 
   &:hover {
-    color: color(green, dark);
+    color: color(brandAlt, dark);
   }
 
   &:before,
@@ -34,8 +34,8 @@
   }
 
   &:before {
-    background-color: color(white);
-    border: map-get($formConfig, borderWidth) solid color(green);
+    background-color: color(background);
+    border: map-get($formConfig, borderWidth) solid color(brandAlt);
     border-radius: 3px;
     content: '';
     left: 0;
@@ -45,7 +45,7 @@
 
   &:after {
     clip-path: inset( 0 100% 0 0 );
-    color: color(green, dark);
+    color: color(brandAlt, dark);
     content: "\e900";
     font-family: 'icomoon';
     font-size: 12px;
@@ -57,7 +57,7 @@
   }
 
   .a-form__field__checkbox:checked + & {
-    color: color(green, dark);
+    color: color(brandAlt, dark);
   }
 
   &:hover:after,

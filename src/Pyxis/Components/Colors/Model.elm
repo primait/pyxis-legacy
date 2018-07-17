@@ -21,14 +21,16 @@ type alias Model =
 initialModel : Model
 initialModel =
     Model
-        [ Color "purple" [ Light, Base, Dark ]
-        , Color "green" [ Light, Base, Dark ]
-        , Color "emerald" [ Base, Dark ]
-        , Color "grey" [ Light, Base, Dark ]
-        , Color "blue" [ Base, Dark ]
-        , Color "red" [ Base ]
-        , Color "white" [ Base ]
-        , Color "yellow" [ Base ]
+        [ Color "brand" [ Light, Base, Dark ]
+        , Color "brandAlt" [ Light, Base, Dark ]
+        , Color "shape" [ Light, Base, Dark ]
+        , Color "text" [ Light, Base, Dark ]
+        , Color "textAlt" [ Light, Base, Dark ]
+        , Color "background" [ Base, Dark ]
+        , Color "backgroundAlt" [ Base, Dark ]
+        , Color "action" [ Base, Dark ]
+        , Color "error" [ Base ]
+        , Color "alert" [ Base ]
         ]
 
 
