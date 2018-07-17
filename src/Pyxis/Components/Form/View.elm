@@ -56,14 +56,22 @@ view ({ datepicker, showSeparated } as model) =
                     (checkboxWithOptionsFieldConfig model)
                 ]
             else
-                [ render <| textFieldConfig isDisabled
-                , render <| textareaFieldConfig isDisabled
-                , renderOrNothing <| dateFieldConfig datepicker
-                , render <| autocompleteFieldConfig model
-                , render <| radioFieldConfig isDisabled
-                , render <| selectFieldConfig model
-                , render <| checkboxFieldConfig isDisabled
-                , render <| checkboxWithOptionsFieldConfig model
+                [ fieldset
+                    [ class "a-fieldset"
+                    ]
+                    [ legend
+                        [ class "a-fieldset__legend" ]
+                        [ text "Fieldset Legend"
+                        ]
+                    , render <| textFieldConfig isDisabled
+                    , render <| textareaFieldConfig isDisabled
+                    , renderOrNothing <| dateFieldConfig datepicker
+                    , render <| autocompleteFieldConfig model
+                    , render <| radioFieldConfig isDisabled
+                    , render <| selectFieldConfig model
+                    , render <| checkboxFieldConfig isDisabled
+                    , render <| checkboxWithOptionsFieldConfig model
+                    ]
                 ]
            )
 
