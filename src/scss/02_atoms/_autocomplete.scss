@@ -3,7 +3,7 @@
   position: relative;
 
   &:before {
-    border-left: 1px solid color(shape);
+    border-left: map-get($formConfig, borderWidth) solid color(shape);
     bottom: 1px;
     color: color(brandAlt, dark);
     content: "\e903";
@@ -74,7 +74,7 @@
   display: flex;
   flex: 0 0 100%;
   padding: 0 15px;
-  height: map-get($formConfig, fieldHeight);
+  min-height: map-get($formConfig, fieldHeight);
 
   &.is-selected,
   &.is-selected:hover {

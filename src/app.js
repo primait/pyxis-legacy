@@ -4,7 +4,7 @@ const templates     = require('./templates.js')
 const entryPoint    = require('./index.html')
 const Elm           = require('./App.elm')
 const route         = window.location.pathname
-const isIE          = helpers.detectIE() <= 11
+const isIE          = helpers.detectIE() >= 10 && helpers.detectIE() < 12
 const isEdge        = helpers.detectIE() >= 12
 
 /* AB TEST */

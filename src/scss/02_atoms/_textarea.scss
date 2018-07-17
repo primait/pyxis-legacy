@@ -7,6 +7,7 @@
   min-height: 100px;
   margin: 0;
   padding: nth(map-get($formConfig, fieldPadding), 2);
+  -ms-overflow-style: none;
 
   &:focus,
   &.is-pristine:focus {

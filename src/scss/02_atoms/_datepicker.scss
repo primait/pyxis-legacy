@@ -22,20 +22,24 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
     display: block;
   }
 
-  &:after {
-    background-color: color(shape);
+  &:before {
+    border-left: map-get($formConfig, borderWidth) solid color(shape);
     bottom: 1px;
-    content: "";
-    height: 48px;
+    color: color(brandAlt, dark);
+    content: "\e904";
+    font-family: 'icomoon';
+    font-size: 20px;
+    line-height: map-get($formConfig, fieldHeight);
+    pointer-events: none;
     position: absolute;
-    right: 49px;
+    right: 0;
+    text-align: center;
     top: 1px;
-    width: 1px;
+    width: map-get($formConfig, fieldHeight);
   }
 }
 
 .#{$datepicker-ns}input {
-  background: color(background) url(/assets/media/calendar.svg) no-repeat;
   background-position: 95%;
   background-size: 25px;
   padding: 18px 60px 15px 15px;
@@ -67,7 +71,6 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 }
 
 .#{$datepicker-ns}weekdays {
-  background: color(background);
   color: color(text, light);
   font-size: 10px;
   font-weight: 700;
@@ -117,9 +120,14 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   font-weight: 400;
   height: 50px;
   position: absolute;
-  right: 0px;
+  right: 0;
+  top: 0;
   width: 100px;
   transition: background-color 0.3s ease;
+
+  .is-IE & {
+    right: -5px;
+  }
 
   &:hover {
     background-color: rgba(255,255,255,0.15);
@@ -150,6 +158,10 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
   outline: none;
   padding: 25px 30px 20px 25px;
   -webkit-appearance: none;
+
+  &::-ms-expand {
+    display: none;
+  }
 }
 
 .#{$datepicker-ns}prev,
@@ -219,7 +231,8 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
 .#{$datepicker-ns}day,
 .#{$datepicker-ns}picked {
 
-  .is-Edge & {
+  .is-Edge &,
+  .is-IE & {
     vertical-align: sub;
   }
 
