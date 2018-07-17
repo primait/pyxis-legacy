@@ -133,7 +133,7 @@ $datepicker-ns: 'a-form__field__datepicker__' !default;
     background-color: rgba(255,255,255,0.15);
   }
 
-  &:after {
+  span:after {
     color: color(textAlt, light);
     content: "\e902";
     font-family: 'icomoon';
