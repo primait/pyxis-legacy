@@ -49,7 +49,7 @@
   margin-top: 7.5px;
 
   @include mq(small) {
-    padding-left: 280px;
+    padding-left: map-get($formConfig, labelWidth);
   }
 
   .a-form__field__input:focus + &,

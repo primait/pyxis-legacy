@@ -3,7 +3,7 @@
   position: relative;
 
   &:before {
-    border-left: 1px solid color(shape);
+    border-left: map-get($formConfig, borderWidth) solid color(shape);
     bottom: 1px;
     color: color(brandAlt, dark);
     content: "\e903";
