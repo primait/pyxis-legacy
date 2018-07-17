@@ -12,5 +12,9 @@
   @include mq(small) {
     flex: 0 0 280px;
     text-align: right;
+
+    .is-IE & {
+      max-width: 280px;
+    }
   }
 }
