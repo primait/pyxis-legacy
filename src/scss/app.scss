@@ -17,8 +17,7 @@
   Basics
 ******************************/
 #app {
-  min-height: 130vh;
-
+  min-height: 100%;
 }
 
 html,
@@ -33,13 +32,14 @@ body {
 }
 
 .pyTitle {
-  font-size: 40px;
-  letter-spacing: 2px;
+  font-size: 50px;
+  letter-spacing: 1px;
 }
 
 .pySubtitle {
-  font-size: 32px;
-  letter-spacing: 1.6px;
+  font-size: 25px;
+  letter-spacing: 0.5px;
+  padding-left: 5px;
 }
 
 .pyLink {
@@ -69,16 +69,13 @@ body {
 .pyIntro {
   display: flex;
   align-items: center;
-  background: url(/assets/media/intro.jpg) center center no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 85vh;
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: calc(100% - 7.5vh);
   position: relative;
 
   h1,
   h2 {
     color: var(--white);
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -101,10 +98,14 @@ body {
   Containers & Dividers
 ******************************/
 .pyWrapper {
-  margin: 0 auto;
+  margin: 0 auto 200px;
   max-width: 1100px;
   position: relative;
   width: 100%;
+
+  .pyIntro & {
+    margin: 0 auto;
+  }
 }
 
 .pyDivider {
