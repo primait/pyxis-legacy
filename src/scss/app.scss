@@ -103,7 +103,8 @@ body {
   position: relative;
   width: 100%;
 
-  .pyIntro & {
+  .pyIntro &,
+  .pyMessageList & {
     margin: 0 auto;
   }
 }
