@@ -1,15 +1,16 @@
 .a-btn {
   align-self: center;
   border: 1px solid transparent;
-  border-radius: 3px;
+  border-radius: map-get($formConfig, buttonHeight) * 2;
   cursor: pointer;
   display: flex;
   font-family: font(heavy);
   font-size: 14px;
-  letter-spacing: 0.3px;
-  min-height: map-get($formConfig, fieldHeight);
+  letter-spacing: 0.8px;
+  min-height: map-get($formConfig, buttonHeight);
   outline: none;
-  padding: 0 20px;
+  padding: 0 25px;
+  transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
 
   & + & {
     margin-left: 15px;
@@ -20,14 +21,31 @@
   background: color(brandAlt, dark);
   border-color: color(brandAlt, dark);
   color: color(textAlt, light);
+
+  &:hover {
+    background: lighten(color(brandAlt, dark), 5%);
+    border-color: lighten(color(brandAlt, dark), 5%);
+  }
 }
 
 .a-btn--secondary {
   background: color(background);
-  border-color: color(shape, light);
-  color: color(text, dark);
+  border-color: color(brandAlt, dark);
+  color: color(brandAlt, dark);
+
+  &:hover {
+    border-color: lighten(color(brandAlt, dark), 5%);
+    color: lighten(color(brandAlt, dark), 5%);
+  }
 }
 
 .a-btn--tertiary {
+  background: color(background);
+  border-color: color(shape);
+  color: color(brandAlt, dark);
 
+  &:hover {
+    border-color: color(brandAlt, dark);
+    color: color(brandAlt, dark);
+  }
 }
