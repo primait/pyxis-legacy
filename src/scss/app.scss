@@ -70,7 +70,7 @@ body {
   display: flex;
   align-items: center;
   background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  height: calc(100% - 7.5vh);
+  height: calc(100vh - 7.5vh);
   position: relative;
 
   h1,
@@ -98,15 +98,10 @@ body {
   Containers & Dividers
 ******************************/
 .pyWrapper {
-  margin: 0 auto 200px;
+  margin: 0 auto;
   max-width: 1100px;
   position: relative;
   width: 100%;
-
-  .pyIntro &,
-  .pyMessageList & {
-    margin: 0 auto;
-  }
 }
 
 .pyDivider {
