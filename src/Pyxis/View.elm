@@ -1,6 +1,7 @@
 module Pyxis.View exposing (view)
 
 import Html exposing (..)
+import Pyxis.AppMessages.View as AppMessages
 import Pyxis.Components.Buttons.View as ButtonsComponent
 import Pyxis.Components.Colors.View as ColorsComponent
 import Pyxis.Components.Footer.View as FooterComponent
@@ -10,7 +11,6 @@ import Pyxis.Components.Tooltips.View as TooltipsComponent
 import Pyxis.Components.Typography.View as Typography
 import Pyxis.Home.View as Home
 import Pyxis.HtmlSnippet.View as HtmlSnippet
-import Pyxis.AppMessages.View as AppMessages
 import Pyxis.Model
     exposing
         ( AppStatus(..)
@@ -29,7 +29,7 @@ view model =
         [ Nav.view model
         , dynamicView model
         , HtmlSnippet.view model.htmlSnippet
-        , AppMessages.view model.messages
+        , AppMessages.view model.appMessages
         ]
 
 

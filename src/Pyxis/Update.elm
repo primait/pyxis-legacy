@@ -65,13 +65,13 @@ update msg model =
                 duration =
                     Time.second * 2
 
-                message =
+                appMessage =
                     AppMessage uuid Default "Color hex copied!" duration
             in
-            model |> addAppMessage message |> withCmds [ delayCmd duration (RemoveAppMessage uuid) ]
+            model |> addAppMessage appMessage |> withCmds [ delayCmd duration (RemoveAppMessage uuid) ]
 
-        AddAppMessage message ->
-            model |> addAppMessage message |> withCmds [ delayCmd message.duration (RemoveAppMessage message.uuid) ]
+        AddAppMessage appMessage ->
+            model |> addAppMessage appMessage |> withCmds [ delayCmd appMessage.duration (RemoveAppMessage appMessage.uuid) ]
 
         RemoveAppMessage uuid ->
             model |> removeAppMessage uuid |> withoutCmds

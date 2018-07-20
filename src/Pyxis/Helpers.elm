@@ -112,12 +112,12 @@ updateMenu route menu =
 
 addAppMessage : AppMessage -> Model -> Model
 addAppMessage msg model =
-    { model | messages = msg :: model.messages }
+    { model | appMessages = msg :: model.appMessages }
 
 
 removeAppMessage : Unique Id -> Model -> Model
 removeAppMessage uuid model =
-    { model | messages = List.filter (not << (==) uuid << .uuid) model.messages }
+    { model | appMessages = List.filter (not << (==) uuid << .uuid) model.appMessages }
 
 
 toInspectableSelector : String -> String

@@ -45,7 +45,7 @@ type alias Model =
     { status : AppStatus
     , route : Route
     , menu : List Menu
-    , messages : List AppMessage
+    , appMessages : List AppMessage
     , htmlSnippet : Maybe HtmlSnippet
     , colors : Colors.Model
     , buttons : Buttons.Model
