@@ -12,19 +12,19 @@ import Pyxis.Components.Tooltips.Model as TooltipsModel
 import Pyxis.Components.Tooltips.Update as TooltipsUpdate
 import Pyxis.Helpers
     exposing
-        ( addMessage
+        ( addAppMessage
         , changeRoute
         , delayCmd
-        , removeMessage
+        , removeAppMessage
         , updateMenu
         , withCmds
         , withoutCmds
         )
 import Pyxis.Model
     exposing
-        ( Menu
-        , Message
-        , MessageType(..)
+        ( AppMessage
+        , AppMessageType(..)
+        , Menu
         , Model
         , Msg(..)
         , Route(..)
@@ -66,15 +66,15 @@ update msg model =
                     Time.second * 2
 
                 message =
-                    Message uuid Default "Color hex copied!" duration
+                    AppMessage uuid Default "Color hex copied!" duration
             in
-            model |> addMessage message |> withCmds [ delayCmd duration (RemoveMessage uuid) ]
+            model |> addAppMessage message |> withCmds [ delayCmd duration (RemoveAppMessage uuid) ]
 
-        AddMessage message ->
-            model |> addMessage message |> withCmds [ delayCmd message.duration (RemoveMessage message.uuid) ]
+        AddAppMessage message ->
+            model |> addAppMessage message |> withCmds [ delayCmd message.duration (RemoveAppMessage message.uuid) ]
 
-        RemoveMessage uuid ->
-            model |> removeMessage uuid |> withoutCmds
+        RemoveAppMessage uuid ->
+            model |> removeAppMessage uuid |> withoutCmds
 
         ColorsMsg colorsMsg ->
             updateColors model colorsMsg model.colors

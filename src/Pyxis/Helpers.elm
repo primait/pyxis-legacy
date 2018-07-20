@@ -11,9 +11,9 @@ import Navigation exposing (Location)
 import Process
 import Pyxis.Model
     exposing
-        ( Menu
-        , Message
-        , MessageType(..)
+        ( AppMessage
+        , AppMessageType(..)
+        , Menu
         , Model
         , Route(..)
         )
@@ -110,13 +110,13 @@ updateMenu route menu =
     List.map (activateByRoute route) menu
 
 
-addMessage : Message -> Model -> Model
-addMessage msg model =
+addAppMessage : AppMessage -> Model -> Model
+addAppMessage msg model =
     { model | messages = msg :: model.messages }
 
 
-removeMessage : Unique Id -> Model -> Model
-removeMessage uuid model =
+removeAppMessage : Unique Id -> Model -> Model
+removeAppMessage uuid model =
     { model | messages = List.filter (not << (==) uuid << .uuid) model.messages }
 
 

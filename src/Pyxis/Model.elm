@@ -1,17 +1,17 @@
 module Pyxis.Model
     exposing
-        ( AppStatus(..)
+        ( AppMessage
+        , AppMessageType(..)
+        , AppStatus(..)
         , Flags
         , HtmlSelector
         , HtmlSnippet
         , Menu
-        , Message
-        , MessageType(..)
         , Model
         , Msg(..)
         , Route(..)
+        , appMessageTypeToString
         , initialModel
-        , messageTypeToString
         )
 
 import Navigation exposing (Location)
@@ -30,8 +30,8 @@ type Msg
       -------------
     | ShowSource HtmlSnippet
     | HideSource
-    | AddMessage Message
-    | RemoveMessage (Unique Id)
+    | AddAppMessage AppMessage
+    | RemoveAppMessage (Unique Id)
     | Copied
       -------------
     | ButtonsMsg Buttons.Msg
@@ -45,7 +45,7 @@ type alias Model =
     { status : AppStatus
     , route : Route
     , menu : List Menu
-    , messages : List Message
+    , messages : List AppMessage
     , htmlSnippet : Maybe HtmlSnippet
     , colors : Colors.Model
     , buttons : Buttons.Model
@@ -109,21 +109,21 @@ type alias Menu =
     }
 
 
-type alias Message =
+type alias AppMessage =
     { uuid : Unique Id
-    , type_ : MessageType
+    , type_ : AppMessageType
     , description : String
     , duration : Time
     }
 
 
-type MessageType
+type AppMessageType
     = Default
     | Error
 
 
-messageTypeToString : MessageType -> String
-messageTypeToString type_ =
+appMessageTypeToString : AppMessageType -> String
+appMessageTypeToString type_ =
     case type_ of
         Default ->
             "default"
