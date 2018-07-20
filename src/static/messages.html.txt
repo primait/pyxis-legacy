@@ -1,3 +1,24 @@
-<div>
-  <h1>Messaggio</h1>
+<h4>Message</h4>
+
+<div class="m-message">
+  <div class="m-message__icon"></div>
+  <span class="m-message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+</div>
+
+<hr class="pyDivider">
+
+<h4>Ok message</h4>
+
+<div class="m-message m-message--ok">
+  <div class="m-message__icon"></div>
+  <span class="m-message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+</div>
+
+<hr class="pyDivider">
+
+<h4>Error message</h4>
+
+<div class="m-message m-message--error">
+  <div class="m-message__icon"></div>
+  <span class="m-message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
 </div>

@@ -1,0 +1,15 @@
+.m-message {
+  border: map-get($formConfig, borderWidth) solid color(shape);
+  border-radius: map-get($formConfig, borderRadius);
+  display: flex;
+  flex: 1 0 auto;
+  padding: 15px;
+
+  &.m-message--ok {
+    border: map-get($formConfig, borderWidth) solid color(brandAlt, dark);
+  }
+
+  &.m-message--error {
+    border: map-get($formConfig, borderWidth) solid color(error);
+  }
+}
