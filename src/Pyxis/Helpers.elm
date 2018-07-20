@@ -82,6 +82,9 @@ routeToUrl route =
         HeaderRoute ->
             "/header"
 
+        MessagesRoute ->
+            "/messages"
+
         HomeRoute ->
             "/"
 
