@@ -7,7 +7,6 @@ import Date
         , Month(..)
         )
 import Date.Format
-import DatePicker exposing (DatePicker)
 import Navigation exposing (Location)
 import Process
 import Pyxis.Model
@@ -95,93 +94,7 @@ routeToUrl route =
 
 formatDate : String -> Maybe Date -> String
 formatDate dateFormat date =
-    Maybe.map (Date.Format.format dateFormat) date |> Maybe.withDefault ""
-
-
-datepickerSettings : DatePicker.Settings
-datepickerSettings =
-    let
-        settings =
-            DatePicker.defaultSettings
-    in
-    { settings
-        | dateFormatter = formatDate "%d/%m/%Y" << Just
-        , dayFormatter = dayFormatter
-        , monthFormatter = monthFormatter
-        , firstDayOfWeek = Mon
-        , placeholder = "gg / mm / aaaa"
-        , classNamespace = "a-form__field__datepicker__"
-        , inputClassList =
-            [ ( "a-form__field__input", True )
-            , ( "a-form__field__input--datepicker", True )
-            ]
-        , changeYear = DatePicker.between 1900 2020
-    }
-
-
-dayFormatter : Day -> String
-dayFormatter day =
-    case day of
-        Mon ->
-            "Lun"
-
-        Tue ->
-            "Mar"
-
-        Wed ->
-            "Mer"
-
-        Thu ->
-            "Gio"
-
-        Fri ->
-            "Ven"
-
-        Sat ->
-            "Sab"
-
-        Sun ->
-            "Dom"
-
-
-monthFormatter : Month -> String
-monthFormatter month =
-    case month of
-        Jan ->
-            "Gennaio"
-
-        Feb ->
-            "Febbraio"
-
-        Mar ->
-            "Marzo"
-
-        Apr ->
-            "Aprile"
-
-        May ->
-            "Maggio"
-
-        Jun ->
-            "Giugno"
-
-        Jul ->
-            "Luglio"
-
-        Aug ->
-            "Agosto"
-
-        Sep ->
-            "Settembre"
-
-        Oct ->
-            "Ottobre"
-
-        Nov ->
-            "Novembre"
-
-        Dec ->
-            "Dicembre"
+    (Maybe.withDefault "" << Maybe.map (Date.Format.format dateFormat)) date
 
 
 updateMenu : Route -> List Menu -> List Menu

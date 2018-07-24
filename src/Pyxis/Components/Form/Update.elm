@@ -1,7 +1,9 @@
 module Pyxis.Components.Form.Update exposing (update)
 
-import DatePicker exposing (DatePicker)
+import Date exposing (Date)
+import Date.Format
 import Maybe.Extra exposing (isJust, isNothing)
+import Prima.DatePicker as DatePicker
 import Pyxis.Components.Form.Model
     exposing
         ( Field(..)
@@ -10,8 +12,7 @@ import Pyxis.Components.Form.Model
         )
 import Pyxis.Helpers
     exposing
-        ( datepickerSettings
-        , withCmds
+        ( withCmds
         , withoutCmds
         )
 import Pyxis.Ports as Ports
@@ -96,6 +97,19 @@ update msg model =
             }
                 |> withoutCmds
 
+        UpdateText Datepicker value ->
+            { model
+                | datepickerField = value
+                , datepicker =
+                    case (Maybe.Extra.join << Maybe.map (Result.toMaybe << Date.fromString)) value of
+                        Just date ->
+                            DatePicker.init date
+
+                        _ ->
+                            model.datepicker
+            }
+                |> withoutCmds
+
         UpdateText _ _ ->
             withoutCmds model
 
@@ -137,36 +151,14 @@ update msg model =
 
         UpdateDate Datepicker dpMsg ->
             let
-                ( datepickerFieldInitialDP, _ ) =
-                    DatePicker.init
-
-                ( updatedDP, dpCmd, dateEvent ) =
-                    DatePicker.update
-                        datepickerSettings
-                        dpMsg
-                        (case model.datepicker of
-                            Just datepicker ->
-                                datepicker
-
-                            Nothing ->
-                                datepickerFieldInitialDP
-                        )
-
-                date =
-                    case dateEvent of
-                        DatePicker.NoChange ->
-                            model.datepickerField
-
-                        DatePicker.Changed chosenDate ->
-                            chosenDate
+                updatedInstance =
+                    DatePicker.update dpMsg model.datepicker
             in
             { model
-                | datepickerField = date
-                , datepicker = Just updatedDP
-                , isSelectFieldOpen = False
-                , isAutocompleteFieldOpen = False
+                | datepicker = updatedInstance
+                , datepickerField = (Just << Date.Format.format "%d/%m/%Y" << DatePicker.selectedDate) updatedInstance
             }
-                |> withCmds [ Cmd.map (UpdateDate Datepicker) dpCmd ]
+                |> withoutCmds
 
         UpdateDate _ _ ->
             withoutCmds model

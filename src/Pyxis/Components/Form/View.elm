@@ -29,31 +29,52 @@ view ({ datepicker, showSeparated } as model) =
             model.formDisabled
 
         render config =
-            Form.render model config
+            (Form.wrapper << Form.render model) config
 
-        dateFieldConfig datepicker =
-            Maybe.map (render << datepickerFieldConfig isDisabled) datepicker
+        textField =
+            textFieldConfig model
+
+        textareaField =
+            textareaFieldConfig model
+
+        datepickerField =
+            datePickerFieldConfig model
+
+        autocompleteField =
+            autocompleteFieldConfig model
+
+        radioField =
+            radioFieldConfig model
+
+        selectField =
+            selectFieldConfig model
+
+        checkboxField =
+            checkboxFieldConfig model
+
+        checkboxWithOptionsField =
+            checkboxWithOptionsFieldConfig model
     in
     [ componentTitle [ text "Form components", toggleSeparation showSeparated, toggleDisableForm isDisabled ]
     , divider
     ]
         ++ (if showSeparated then
                 [ (componentShowdown "Input text" "inputText" InspectHtml << List.singleton << render)
-                    (textFieldConfig isDisabled)
+                    textField
                 , (componentShowdown "Textarea" "textarea" InspectHtml << List.singleton << render)
-                    (textareaFieldConfig isDisabled)
-                , (componentShowdown "Datepicker" "datepicker" InspectHtml << List.singleton << renderOrNothing)
-                    (dateFieldConfig datepicker)
+                    textareaField
+                , (componentShowdown "Datepicker" "datepicker" InspectHtml << List.singleton << render)
+                    datepickerField
                 , (componentShowdown "Autocomplete" "autocomplete" InspectHtml << List.singleton << render)
-                    (autocompleteFieldConfig model)
+                    autocompleteField
                 , (componentShowdown "Input radio" "inputRadio" InspectHtml << List.singleton << render)
-                    (radioFieldConfig isDisabled)
+                    radioField
                 , (componentShowdown "Select" "select" InspectHtml << List.singleton << render)
-                    (selectFieldConfig model)
+                    selectField
                 , (componentShowdown "Input checkbox" "inputCheckbox" InspectHtml << List.singleton << render)
-                    (checkboxFieldConfig isDisabled)
+                    checkboxField
                 , (componentShowdown "Input checkbox (multi-option)" "inputCheckboxMulti" InspectHtml << List.singleton << render)
-                    (checkboxWithOptionsFieldConfig model)
+                    checkboxWithOptionsField
                 ]
             else
                 [ fieldset
@@ -63,14 +84,14 @@ view ({ datepicker, showSeparated } as model) =
                         [ class "a-fieldset__legend" ]
                         [ text "Fieldset Legend"
                         ]
-                    , render <| textFieldConfig isDisabled
-                    , render <| textareaFieldConfig isDisabled
-                    , renderOrNothing <| dateFieldConfig datepicker
-                    , render <| autocompleteFieldConfig model
-                    , render <| radioFieldConfig isDisabled
-                    , render <| selectFieldConfig model
-                    , render <| checkboxFieldConfig isDisabled
-                    , render <| checkboxWithOptionsFieldConfig model
+                    , render <| textField
+                    , render <| textareaField
+                    , render <| datepickerField
+                    , render <| autocompleteField
+                    , render <| radioField
+                    , render <| selectField
+                    , render <| checkboxField
+                    , render <| checkboxWithOptionsField
                     ]
                 ]
            )

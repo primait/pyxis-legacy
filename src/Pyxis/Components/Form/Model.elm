@@ -7,7 +7,9 @@ module Pyxis.Components.Form.Model
         )
 
 import Date exposing (Date)
-import DatePicker exposing (DatePicker)
+import Date.Extra.Core exposing (intToMonth)
+import Date.Extra.Create exposing (dateFromFields)
+import Prima.DatePicker as DatePicker
 import Prima.Form
     exposing
         ( AutocompleteOption
@@ -45,8 +47,9 @@ type alias Model =
     , checkboxField : Bool
     , checkboxMultiField : List CheckboxOption
     , radioField : Maybe String
-    , datepickerField : Maybe Date
-    , datepicker : Maybe DatePicker
+    , datepickerField : Maybe String
+    , datepicker : DatePicker.Model
+    , isDatePickerOpen : Bool
     , autocompleteField : Maybe String
     , autocompleteFilter : Maybe String
     , isAutocompleteFieldOpen : Bool
@@ -71,7 +74,8 @@ initialModel =
         ]
         Nothing
         Nothing
-        Nothing
+        (DatePicker.init <| dateFromFields 2018 (intToMonth 12) 25 0 0 0 0)
+        True
         Nothing
         Nothing
         False

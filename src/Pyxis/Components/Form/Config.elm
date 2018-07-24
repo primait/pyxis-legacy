@@ -1,9 +1,9 @@
 module Pyxis.Components.Form.Config exposing (..)
 
 import Date.Extra.Compare as DateCompare
-import DatePicker exposing (DatePicker)
-import Html.Attributes exposing (class, placeholder)
+import Html.Attributes exposing (class, disabled, placeholder)
 import Maybe.Extra exposing (isJust)
+import Prima.DatePicker as DatePicker
 import Prima.Form as Form
     exposing
         ( AutocompleteOption
@@ -20,51 +20,45 @@ import Pyxis.Components.Form.Model
         , Model
         , Msg(..)
         )
-import Pyxis.Helpers exposing (datepickerSettings)
 import Regex exposing (regex)
 
 
-textFieldConfig : Bool -> FormField Model Msg
-textFieldConfig isDisabled =
+textFieldConfig : Model -> FormField Model Msg
+textFieldConfig { formDisabled } =
     Form.textConfig
         "text_field"
         "Text field"
-        isDisabled
-        [ placeholder "Write something" ]
+        [ placeholder "Write something", disabled formDisabled ]
         .textField
         (UpdateText Text)
         (Focus Text)
         (Blur Text)
-        Nothing
         [ NotEmpty "Empty value is not acceptable"
         , Expression (regex "prima") "The value must contains `prima` substring."
         ]
 
 
-textareaFieldConfig : Bool -> FormField Model Msg
-textareaFieldConfig isDisabled =
+textareaFieldConfig : Model -> FormField Model Msg
+textareaFieldConfig { formDisabled } =
     Form.textareaConfig
         "textarea_field"
         "Textarea field"
-        isDisabled
-        [ placeholder "Write something" ]
+        [ placeholder "Write something", disabled formDisabled ]
         .textareaField
         (UpdateText Textarea)
         (Focus Textarea)
         (Blur Textarea)
-        Nothing
         [ NotEmpty "Empty value is not acceptable"
         , Custom ((<=) 10 << String.length << Maybe.withDefault "" << .textareaField) "The value must be at least 10 characters length."
         ]
 
 
-radioFieldConfig : Bool -> FormField Model Msg
-radioFieldConfig isDisabled =
+radioFieldConfig : Model -> FormField Model Msg
+radioFieldConfig { formDisabled } =
     Form.radioConfig
         "radio_field"
         "Radio field"
-        isDisabled
-        []
+        [ disabled formDisabled ]
         .radioField
         (UpdateText Radio)
         (Focus Radio)
@@ -73,22 +67,19 @@ radioFieldConfig isDisabled =
         , RadioOption "Option B" "b"
         , RadioOption "Option C" "c"
         ]
-        Nothing
         [ Custom ((==) "b" << Maybe.withDefault "b" << .radioField) "You must choose `Option B`." ]
 
 
-checkboxFieldConfig : Bool -> FormField Model Msg
-checkboxFieldConfig isDisabled =
+checkboxFieldConfig : Model -> FormField Model Msg
+checkboxFieldConfig { formDisabled } =
     Form.checkboxConfig
         "checkbox_field"
         "Checkbox field"
-        isDisabled
-        []
+        [ disabled formDisabled ]
         .checkboxField
         (UpdateFlag Checkbox)
         (Focus Checkbox)
         (Blur Checkbox)
-        Nothing
         []
 
 
@@ -97,21 +88,16 @@ checkboxWithOptionsFieldConfig model =
     let
         options =
             model.checkboxMultiField
-
-        isDisabled =
-            model.formDisabled
     in
     Form.checkboxWithOptionsConfig
         "checkbox_multifield"
         "Checkbox multi field"
-        isDisabled
-        []
+        [ disabled model.formDisabled ]
         (List.map (\option -> ( option.slug, option.isChecked )) << .checkboxMultiField)
         (UpdateMultiCheckbox MultiCheckbox)
         (Focus MultiCheckbox)
         (Blur MultiCheckbox)
         options
-        Nothing
         [ Custom
             (\{ checkboxMultiField } ->
                 (List.all ((==) False) << List.map .isChecked) checkboxMultiField
@@ -128,11 +114,11 @@ checkboxWithOptionsFieldConfig model =
 selectFieldConfig : Model -> FormField Model Msg
 selectFieldConfig model =
     let
-        isDisabled =
-            model.formDisabled
-
         isOpen =
             model.isSelectFieldOpen
+
+        isDisabled =
+            model.formDisabled
 
         options =
             [ SelectOption "Milano" "MI"
@@ -149,42 +135,35 @@ selectFieldConfig model =
         isDisabled
         isOpen
         (Just "Seleziona")
-        []
+        [ disabled isDisabled ]
         .selectField
         (Toggle Select)
         (UpdateText Select)
         (Focus Select)
         (Blur Select)
         options
-        Nothing
         [ Custom ((==) "SA" << Maybe.withDefault "SA" << .selectField) "You must choose `Savona`. ;)" ]
 
 
-datepickerFieldConfig : Bool -> DatePicker -> FormField Model Msg
-datepickerFieldConfig isDisabled datepicker =
+datePickerFieldConfig : Model -> FormField Model Msg
+datePickerFieldConfig { datepicker, isDatePickerOpen } =
     Form.datepickerConfig
         "datepicker_field"
         "Datepicker field"
-        isDisabled
         .datepickerField
+        (UpdateText Datepicker)
         (UpdateDate Datepicker)
+        (Focus Datepicker)
+        (Blur Datepicker)
         datepicker
-        datepickerSettings
-        Nothing
-        [ Custom
-            (\{ datepickerField, todayDate } ->
-                (Maybe.withDefault False << Maybe.map2 (DateCompare.is DateCompare.SameOrAfter) datepickerField) todayDate
-            )
-            "Acceptable dates are today or in the future."
+        isDatePickerOpen
+        [ NotEmpty "You must choose a date."
         ]
 
 
 autocompleteFieldConfig : Model -> FormField Model Msg
 autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
     let
-        isDisabled =
-            formDisabled
-
         countries =
             [ AutocompleteOption "Italy" "ITA"
             , AutocompleteOption "Brasil" "BRA"
@@ -205,10 +184,9 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
     Form.autocompleteConfig
         "autocomplete_field"
         "Autocomplete field"
-        isDisabled
         isAutocompleteFieldOpen
         (Just "Nessun risultato trovato.")
-        [ placeholder "Search your country" ]
+        [ placeholder "Search your country", disabled formDisabled ]
         .autocompleteFilter
         .autocompleteField
         (UpdateFilter Autocomplete)
@@ -216,5 +194,4 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
         (Focus Autocomplete)
         (Blur Autocomplete)
         options
-        Nothing
         [ NotEmpty "Empty value is not acceptable" ]
