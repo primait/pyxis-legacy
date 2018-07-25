@@ -6,6 +6,7 @@ import Pyxis.Components.Colors.View as ColorsComponent
 import Pyxis.Components.Footer.View as FooterComponent
 import Pyxis.Components.Form.View as FormComponent
 import Pyxis.Components.Header.View as HeaderComponent
+import Pyxis.Components.Tooltips.View as TooltipsComponent
 import Pyxis.Components.Typography.View as Typography
 import Pyxis.Home.View as Home
 import Pyxis.HtmlSnippet.View as HtmlSnippet
@@ -52,6 +53,9 @@ dynamicView ({ route } as model) =
 
         HomeRoute ->
             Home.view model
+
+        TooltipsRoute ->
+            (wrapper << List.map (Html.map TooltipsMsg)) (TooltipsComponent.view model.tooltips)
 
         TypographyRoute ->
             (wrapper << Typography.view) model

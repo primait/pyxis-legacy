@@ -46,9 +46,6 @@ init flags =
 toRoute : String -> Route
 toRoute str =
     case String.toLower str of
-        "/typography" ->
-            TypographyRoute
-
         "/buttons" ->
             ButtonsRoute
 
@@ -63,6 +60,12 @@ toRoute str =
 
         "/footer" ->
             FooterRoute
+
+        "/tooltips" ->
+            TooltipsRoute
+
+        "/typography" ->
+            TypographyRoute
 
         _ ->
             initialModel.route

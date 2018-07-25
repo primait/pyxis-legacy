@@ -85,6 +85,9 @@ routeToUrl route =
         HomeRoute ->
             "/"
 
+        TooltipsRoute ->
+            "/tooltips"
+
         TypographyRoute ->
             "/typography"
 
@@ -120,3 +123,13 @@ removeMessage uuid model =
 toInspectableSelector : String -> String
 toInspectableSelector selector =
     "pyInspect pyInspect--" ++ selector
+
+
+capitalize : String -> String
+capitalize str =
+    case String.split "" str of
+        head :: tail ->
+            (String.join "" << (::) (String.toUpper head)) tail
+
+        _ ->
+            str

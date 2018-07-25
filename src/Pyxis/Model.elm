@@ -19,6 +19,7 @@ import Pyxis.Components.Buttons.Model as Buttons
 import Pyxis.Components.Colors.Model as Colors
 import Pyxis.Components.Form.Model as Form
 import Pyxis.Components.Header.Model as Header
+import Pyxis.Components.Tooltips.Model as Tooltips
 import Time exposing (Time)
 import Unique exposing (Id, Unique)
 
@@ -37,6 +38,7 @@ type Msg
     | ColorsMsg Colors.Msg
     | FormMsg Form.Msg
     | HeaderMsg Header.Msg
+    | TooltipsMsg Tooltips.Msg
 
 
 type alias Model =
@@ -49,6 +51,7 @@ type alias Model =
     , buttons : Buttons.Model
     , form : Form.Model
     , header : Header.Model
+    , tooltips : Tooltips.Model
     }
 
 
@@ -64,6 +67,7 @@ initialModel =
         Buttons.initialModel
         Form.initialModel
         Header.initialModel
+        Tooltips.initialModel
 
 
 initialMenu : List Menu
@@ -75,6 +79,7 @@ initialMenu =
     , Menu "form" "Form" FormRoute False
     , Menu "header" "Header" HeaderRoute False
     , Menu "footer" "Footer" FooterRoute False
+    , Menu "tooltips" "Tooltips" TooltipsRoute False
     ]
 
 
@@ -91,6 +96,7 @@ type Route
     | FormRoute
     | HeaderRoute
     | TypographyRoute
+    | TooltipsRoute
       --------------
     | NotFoundRoute
 

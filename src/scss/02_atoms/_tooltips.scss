@@ -1,0 +1,63 @@
+.tooltip {
+  background: color(backgroundAlt, dark);
+  border-radius: map-get($tooltipConfig, borderRadius);
+  color: color(textAlt);
+  padding: map-get($tooltipConfig, padding);
+  position: relative;
+  width: map-get($tooltipConfig, width);
+
+  &:before {
+    content: '';
+    height: 0;
+    position: absolute;
+    width: 0;
+  }
+}
+
+.tooltip.tooltip--down {
+
+  &:before {
+    border-left: map-get($tooltipConfig, arrowSize) solid transparent;
+    border-right: map-get($tooltipConfig, arrowSize) solid transparent;
+    border-top: map-get($tooltipConfig, arrowSize) solid color(backgroundAlt);
+    bottom: -(map-get($tooltipConfig, arrowSize));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.tooltip.tooltip--left {
+
+  &:before {
+    border-bottom: map-get($tooltipConfig, arrowSize) solid transparent;
+    border-right: map-get($tooltipConfig, arrowSize) solid color(backgroundAlt);
+    border-top: map-get($tooltipConfig, arrowSize) solid transparent;
+    left: -(map-get($tooltipConfig, arrowSize));
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.tooltip.tooltip--right {
+
+  &:before {
+    border-bottom: map-get($tooltipConfig, arrowSize) solid transparent;
+    border-left: map-get($tooltipConfig, arrowSize) solid color(backgroundAlt);
+    border-top: map-get($tooltipConfig, arrowSize) solid transparent;
+    right: -(map-get($tooltipConfig, arrowSize));
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.tooltip.tooltip--up {
+
+  &:before {
+    border-bottom: map-get($tooltipConfig, arrowSize) solid color(backgroundAlt);
+    border-left: map-get($tooltipConfig, arrowSize) solid transparent;
+    border-right: map-get($tooltipConfig, arrowSize) solid transparent;
+    left: 50%;
+    top: -(map-get($tooltipConfig, arrowSize));;
+    transform: translateX(-50%);
+  }
+}
