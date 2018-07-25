@@ -70,6 +70,12 @@ update msg model =
             }
                 |> withoutCmds
 
+        UpdateText Password value ->
+            { model
+                | passwordField = value
+            }
+                |> withoutCmds
+
         UpdateText Autocomplete value ->
             { model
                 | autocompleteField = value
