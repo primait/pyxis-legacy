@@ -7,9 +7,18 @@
 
 <hr class="pyDivider">
 
-<h4>Ok message</h4>
+<h4>Success message</h4>
 
-<div class="m-message m-message--ok">
+<div class="m-message m-message--success">
+  <div class="m-message__icon"></div>
+  <span class="m-message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+</div>
+
+<hr class="pyDivider">
+
+<h4>Alert message</h4>
+
+<div class="m-message m-message--alert">
   <div class="m-message__icon"></div>
   <span class="m-message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
 </div>
