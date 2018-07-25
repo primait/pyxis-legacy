@@ -8,6 +8,8 @@ import Pyxis.Components.Form.Model as FormModel
 import Pyxis.Components.Form.Update as FormUpdate
 import Pyxis.Components.Header.Model as HeaderModel
 import Pyxis.Components.Header.Update as HeaderUpdate
+import Pyxis.Components.Tooltips.Model as TooltipsModel
+import Pyxis.Components.Tooltips.Update as TooltipsUpdate
 import Pyxis.Helpers
     exposing
         ( addMessage
@@ -86,6 +88,9 @@ update msg model =
         HeaderMsg headerMsg ->
             updateHeader model headerMsg model.header
 
+        TooltipsMsg tooltipsMsg ->
+            updateTooltips model tooltipsMsg model.tooltips
+
 
 updateColors : Model -> ColorsModel.Msg -> ColorsModel.Model -> ( Model, Cmd Msg )
 updateColors model msg colorsModel =
@@ -121,3 +126,12 @@ updateHeader model msg headerModel =
             HeaderUpdate.update msg headerModel
     in
     { model | header = newHeaderModel } ! [ Cmd.map HeaderMsg cmds ]
+
+
+updateTooltips : Model -> TooltipsModel.Msg -> TooltipsModel.Model -> ( Model, Cmd Msg )
+updateTooltips model msg tooltipsModel =
+    let
+        ( newTooltipsModel, cmds ) =
+            TooltipsUpdate.update msg tooltipsModel
+    in
+    { model | tooltips = newTooltipsModel } ! [ Cmd.map TooltipsMsg cmds ]

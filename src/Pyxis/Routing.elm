@@ -19,6 +19,7 @@ matchers =
         , map FormRoute (s "form")
         , map HeaderRoute (s "header")
         , map FooterRoute (s "footer")
+        , map TooltipsRoute (s "tooltips")
         ]
 
 

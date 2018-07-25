@@ -2,6 +2,7 @@
 
 @import
   '01_base/_variables.scss',
+  '01_base/_atomsConfiguration.scss',
   '01_base/_helpers.scss',
   '01_base/_utils.scss',
   '01_base/_breakpoints.scss',
@@ -22,6 +23,7 @@
   '02_atoms/_datepicker.scss',
   '02_atoms/_containers.scss',
   '02_atoms/_fieldset.scss',
+  '02_atoms/_tooltips.scss',
 
   '03_molecules/_buttonGroup.scss',
   '03_molecules/_form.scss';
