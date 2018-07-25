@@ -1,0 +1,50 @@
+.o-login {
+  box-shadow: map-get($loginConfig, loginShadow);
+  flex-direction: column;
+  min-height: 400px;
+  padding: 50px;
+
+  .a-form__field {
+    justify-content: center;
+  }
+
+  .a-form__field,
+  .a-form__field:hover {
+    background-color: transparent;
+  }
+
+  .a-form__field__label,
+  .a-form__field__error {
+    flex: 0 0 250px;
+    padding: 0;
+  }
+
+  .a-form__field__label {
+    font-size: size(small);
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+  }
+
+  .m-message {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .a-btn {
+    justify-content: center;
+    margin-top: 20px;
+    width: 200px;
+  }
+
+  h3 {
+    color: color(text);
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  a {
+    margin-top: 50px;
+    text-align: center;
+  }
+}
