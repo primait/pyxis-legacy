@@ -21,7 +21,7 @@
 .a-form__field__select,
 .a-form__field__customSelect {
   font-family: font(light);
-  min-width: 250px;
+  min-width: map-get($formConfig, fieldMaxWidth);
   outline: none;
 }
 

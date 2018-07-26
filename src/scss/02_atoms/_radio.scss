@@ -23,7 +23,6 @@
   }
 
   .a-form__field__radio[disabled] + & {
-    // background-color: color(background, dark);
     opacity: map-get($formConfig, fieldDisabledOpacity);
     pointer-events: none;
   }

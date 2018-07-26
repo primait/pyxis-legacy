@@ -4,7 +4,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: font(heavy);
+  font-family: font(base);
   font-weight: normal;
 }
 
@@ -30,4 +30,9 @@ h5 {
 
 h6 {
   font-size: size(xsmall);
+}
+
+a {
+  color: color(brandAlt, dark);
+  font-family: font(base);
 }

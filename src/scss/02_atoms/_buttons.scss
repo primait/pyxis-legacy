@@ -10,6 +10,7 @@
   min-height: map-get($formConfig, buttonHeight);
   outline: none;
   padding: 0 25px;
+  text-transform: uppercase;
   transition: background 0.2s ease, border 0.2s ease, color 0.2s ease;
 
   & + & {
