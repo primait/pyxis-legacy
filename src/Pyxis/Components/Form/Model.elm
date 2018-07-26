@@ -41,6 +41,7 @@ type Msg
 
 type alias Model =
     { textField : Maybe String
+    , passwordField : Maybe String
     , textareaField : Maybe String
     , selectField : Maybe String
     , isSelectFieldOpen : Bool
@@ -65,6 +66,7 @@ initialModel =
         Nothing
         Nothing
         Nothing
+        Nothing
         False
         False
         [ CheckboxOption "Option a" "a" False
@@ -86,6 +88,7 @@ initialModel =
 
 type Field
     = Text
+    | Password
     | Textarea
     | Select
     | Checkbox
