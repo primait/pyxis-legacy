@@ -18,13 +18,11 @@
     margin-left: 15px;
   }
 
-  &:disabled {
+  &:disabled,
+  &[disabled],
+  &.a-btn--disabled {
     opacity: map-get($formConfig, buttonDisabledOpacity);
     pointer-events: none;
-  }
-
-  &:disabled:hover {
-    background: inherit;
   }
 
   &.a-btn--primary {
