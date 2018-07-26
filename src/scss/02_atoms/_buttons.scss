@@ -20,7 +20,7 @@
 
   &:disabled,
   &[disabled],
-  &.a-btn--disabled {
+  &.is-disabled {
     opacity: map-get($formConfig, buttonDisabledOpacity);
     pointer-events: none;
   }
