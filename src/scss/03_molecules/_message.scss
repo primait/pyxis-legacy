@@ -25,10 +25,10 @@
 
   .m-message__text {
     color: color(text, dark);
-    padding-left: 20px;
     font-size: size(medium);
     font-family: font(base);
     line-height: size(medium);
+    padding-left: 20px;
   }
 
   &.m-message--success .m-message__icon .icon {
