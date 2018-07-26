@@ -1,17 +1,17 @@
 module Pyxis.Model
     exposing
-        ( AppStatus(..)
+        ( AppMessage
+        , AppMessageType(..)
+        , AppStatus(..)
         , Flags
         , HtmlSelector
         , HtmlSnippet
         , Menu
-        , Message
-        , MessageType(..)
         , Model
         , Msg(..)
         , Route(..)
+        , appMessageTypeToString
         , initialModel
-        , messageTypeToString
         )
 
 import Navigation exposing (Location)
@@ -19,6 +19,7 @@ import Pyxis.Components.Buttons.Model as Buttons
 import Pyxis.Components.Colors.Model as Colors
 import Pyxis.Components.Form.Model as Form
 import Pyxis.Components.Header.Model as Header
+import Pyxis.Components.Messages.Model as Messages
 import Pyxis.Components.Tooltips.Model as Tooltips
 import Time exposing (Time)
 import Unique exposing (Id, Unique)
@@ -30,8 +31,8 @@ type Msg
       -------------
     | ShowSource HtmlSnippet
     | HideSource
-    | AddMessage Message
-    | RemoveMessage (Unique Id)
+    | AddAppMessage AppMessage
+    | RemoveAppMessage (Unique Id)
     | Copied
       -------------
     | ButtonsMsg Buttons.Msg
@@ -39,19 +40,21 @@ type Msg
     | FormMsg Form.Msg
     | HeaderMsg Header.Msg
     | TooltipsMsg Tooltips.Msg
+    | MessagesMsg Messages.Msg
 
 
 type alias Model =
     { status : AppStatus
     , route : Route
     , menu : List Menu
-    , messages : List Message
+    , appMessages : List AppMessage
     , htmlSnippet : Maybe HtmlSnippet
     , colors : Colors.Model
     , buttons : Buttons.Model
     , form : Form.Model
     , header : Header.Model
     , tooltips : Tooltips.Model
+    , messages : Messages.Model
     }
 
 
@@ -68,6 +71,7 @@ initialModel =
         Form.initialModel
         Header.initialModel
         Tooltips.initialModel
+        Messages.initialModel
 
 
 initialMenu : List Menu
@@ -78,6 +82,7 @@ initialMenu =
     , Menu "buttons" "Buttons" ButtonsRoute False
     , Menu "form" "Form" FormRoute False
     , Menu "header" "Header" HeaderRoute False
+    , Menu "messages" "Messages" MessagesRoute False
     , Menu "footer" "Footer" FooterRoute False
     , Menu "tooltips" "Tooltips" TooltipsRoute False
     ]
@@ -95,6 +100,7 @@ type Route
     | FooterRoute
     | FormRoute
     | HeaderRoute
+    | MessagesRoute
     | TypographyRoute
     | TooltipsRoute
       --------------
@@ -109,21 +115,21 @@ type alias Menu =
     }
 
 
-type alias Message =
+type alias AppMessage =
     { uuid : Unique Id
-    , type_ : MessageType
+    , type_ : AppMessageType
     , description : String
     , duration : Time
     }
 
 
-type MessageType
+type AppMessageType
     = Default
     | Error
 
 
-messageTypeToString : MessageType -> String
-messageTypeToString type_ =
+appMessageTypeToString : AppMessageType -> String
+appMessageTypeToString type_ =
     case type_ of
         Default ->
             "default"

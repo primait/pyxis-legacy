@@ -1,16 +1,17 @@
 module Pyxis.View exposing (view)
 
 import Html exposing (..)
+import Pyxis.AppMessages.View as AppMessages
 import Pyxis.Components.Buttons.View as ButtonsComponent
 import Pyxis.Components.Colors.View as ColorsComponent
 import Pyxis.Components.Footer.View as FooterComponent
 import Pyxis.Components.Form.View as FormComponent
 import Pyxis.Components.Header.View as HeaderComponent
+import Pyxis.Components.Messages.View as MessagesComponent
 import Pyxis.Components.Tooltips.View as TooltipsComponent
 import Pyxis.Components.Typography.View as Typography
 import Pyxis.Home.View as Home
 import Pyxis.HtmlSnippet.View as HtmlSnippet
-import Pyxis.Messages.View as Messages
 import Pyxis.Model
     exposing
         ( AppStatus(..)
@@ -29,7 +30,7 @@ view model =
         [ Nav.view model
         , dynamicView model
         , HtmlSnippet.view model.htmlSnippet
-        , Messages.view model.messages
+        , AppMessages.view model.appMessages
         ]
 
 
@@ -50,6 +51,9 @@ dynamicView ({ route } as model) =
 
         HeaderRoute ->
             (wrapper << List.map (Html.map HeaderMsg)) (HeaderComponent.view model.header)
+
+        MessagesRoute ->
+            (wrapper << List.map (Html.map MessagesMsg)) (MessagesComponent.view model.messages)
 
         HomeRoute ->
             Home.view model

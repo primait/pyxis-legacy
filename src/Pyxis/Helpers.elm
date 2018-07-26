@@ -11,9 +11,9 @@ import Navigation exposing (Location)
 import Process
 import Pyxis.Model
     exposing
-        ( Menu
-        , Message
-        , MessageType(..)
+        ( AppMessage
+        , AppMessageType(..)
+        , Menu
         , Model
         , Route(..)
         )
@@ -82,6 +82,9 @@ routeToUrl route =
         HeaderRoute ->
             "/header"
 
+        MessagesRoute ->
+            "/messages"
+
         HomeRoute ->
             "/"
 
@@ -110,14 +113,14 @@ updateMenu route menu =
     List.map (activateByRoute route) menu
 
 
-addMessage : Message -> Model -> Model
-addMessage msg model =
-    { model | messages = msg :: model.messages }
+addAppMessage : AppMessage -> Model -> Model
+addAppMessage msg model =
+    { model | appMessages = msg :: model.appMessages }
 
 
-removeMessage : Unique Id -> Model -> Model
-removeMessage uuid model =
-    { model | messages = List.filter (not << (==) uuid << .uuid) model.messages }
+removeAppMessage : Unique Id -> Model -> Model
+removeAppMessage uuid model =
+    { model | appMessages = List.filter (not << (==) uuid << .uuid) model.appMessages }
 
 
 toInspectableSelector : String -> String

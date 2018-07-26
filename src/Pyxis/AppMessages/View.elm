@@ -1,33 +1,33 @@
-module Pyxis.Messages.View exposing (view)
+module Pyxis.AppMessages.View exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (class, classList)
 import Pyxis.Model
     exposing
-        ( Message
-        , MessageType(..)
+        ( AppMessage
+        , AppMessageType(..)
         , Msg(..)
-        , messageTypeToString
+        , appMessageTypeToString
         )
 
 
-view : List Message -> Html Msg
-view messages =
+view : List AppMessage -> Html Msg
+view appMessages =
     div
         [ class "pyMessageList" ]
         [ div
             [ class "pyWrapper"
             ]
-            (List.map renderMessage messages)
+            (List.map renderAppMessage appMessages)
         ]
 
 
-renderMessage : Message -> Html Msg
-renderMessage { type_, description } =
+renderAppMessage : AppMessage -> Html Msg
+renderAppMessage { type_, description } =
     div
         [ classList
             [ ( "pyMessage", True )
-            , ( messageTypeToString type_, True )
+            , ( appMessageTypeToString type_, True )
             ]
         ]
         [ text description
