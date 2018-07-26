@@ -34,6 +34,9 @@ view ({ datepicker, showSeparated } as model) =
         textField =
             textFieldConfig model
 
+        passwordField =
+            passwordFieldConfig model
+
         textareaField =
             textareaFieldConfig model
 
@@ -61,6 +64,8 @@ view ({ datepicker, showSeparated } as model) =
         ++ (if showSeparated then
                 [ (componentShowdown "Input text" "inputText" InspectHtml << List.singleton << render)
                     textField
+                , (componentShowdown "Password" "password" InspectHtml << List.singleton << render)
+                    passwordField
                 , (componentShowdown "Textarea" "textarea" InspectHtml << List.singleton << render)
                     textareaField
                 , (componentShowdown "Datepicker" "datepicker" InspectHtml << List.singleton << render)
@@ -85,6 +90,7 @@ view ({ datepicker, showSeparated } as model) =
                         [ text "Fieldset Legend"
                         ]
                     , render <| textField
+                    , render <| passwordField
                     , render <| textareaField
                     , render <| datepickerField
                     , render <| autocompleteField

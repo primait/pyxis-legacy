@@ -8,23 +8,25 @@ import Pyxis.Components.Form.Model as FormModel
 import Pyxis.Components.Form.Update as FormUpdate
 import Pyxis.Components.Header.Model as HeaderModel
 import Pyxis.Components.Header.Update as HeaderUpdate
+import Pyxis.Components.Messages.Model as MessagesModel
+import Pyxis.Components.Messages.Update as MessagesUpdate
 import Pyxis.Components.Tooltips.Model as TooltipsModel
 import Pyxis.Components.Tooltips.Update as TooltipsUpdate
 import Pyxis.Helpers
     exposing
-        ( addMessage
+        ( addAppMessage
         , changeRoute
         , delayCmd
-        , removeMessage
+        , removeAppMessage
         , updateMenu
         , withCmds
         , withoutCmds
         )
 import Pyxis.Model
     exposing
-        ( Menu
-        , Message
-        , MessageType(..)
+        ( AppMessage
+        , AppMessageType(..)
+        , Menu
         , Model
         , Msg(..)
         , Route(..)
@@ -65,16 +67,16 @@ update msg model =
                 duration =
                     Time.second * 2
 
-                message =
-                    Message uuid Default "Color hex copied!" duration
+                appMessage =
+                    AppMessage uuid Default "Color hex copied!" duration
             in
-            model |> addMessage message |> withCmds [ delayCmd duration (RemoveMessage uuid) ]
+            model |> addAppMessage appMessage |> withCmds [ delayCmd duration (RemoveAppMessage uuid) ]
 
-        AddMessage message ->
-            model |> addMessage message |> withCmds [ delayCmd message.duration (RemoveMessage message.uuid) ]
+        AddAppMessage appMessage ->
+            model |> addAppMessage appMessage |> withCmds [ delayCmd appMessage.duration (RemoveAppMessage appMessage.uuid) ]
 
-        RemoveMessage uuid ->
-            model |> removeMessage uuid |> withoutCmds
+        RemoveAppMessage uuid ->
+            model |> removeAppMessage uuid |> withoutCmds
 
         ColorsMsg colorsMsg ->
             updateColors model colorsMsg model.colors
@@ -87,6 +89,9 @@ update msg model =
 
         HeaderMsg headerMsg ->
             updateHeader model headerMsg model.header
+
+        MessagesMsg messagesMsg ->
+            updateMessages model messagesMsg model.messages
 
         TooltipsMsg tooltipsMsg ->
             updateTooltips model tooltipsMsg model.tooltips
@@ -126,6 +131,15 @@ updateHeader model msg headerModel =
             HeaderUpdate.update msg headerModel
     in
     { model | header = newHeaderModel } ! [ Cmd.map HeaderMsg cmds ]
+
+
+updateMessages : Model -> MessagesModel.Msg -> MessagesModel.Model -> ( Model, Cmd Msg )
+updateMessages model msg messagesModel =
+    let
+        ( newMessagesModel, cmds ) =
+            MessagesUpdate.update msg messagesModel
+    in
+    { model | messages = newMessagesModel } ! [ Cmd.map MessagesMsg cmds ]
 
 
 updateTooltips : Model -> TooltipsModel.Msg -> TooltipsModel.Model -> ( Model, Cmd Msg )

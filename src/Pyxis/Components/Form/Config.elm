@@ -1,9 +1,7 @@
 module Pyxis.Components.Form.Config exposing (..)
 
-import Date.Extra.Compare as DateCompare
 import Html.Attributes exposing (class, disabled, placeholder)
 import Maybe.Extra exposing (isJust)
-import Prima.DatePicker as DatePicker
 import Prima.Form as Form
     exposing
         ( AutocompleteOption
@@ -35,6 +33,21 @@ textFieldConfig { formDisabled } =
         (Blur Text)
         [ NotEmpty "Empty value is not acceptable"
         , Expression (regex "prima") "The value must contains `prima` substring."
+        ]
+
+
+passwordFieldConfig : Model -> FormField Model Msg
+passwordFieldConfig { formDisabled } =
+    Form.passwordConfig
+        "password_field"
+        "Password Field"
+        [ placeholder "Write something", disabled formDisabled ]
+        .passwordField
+        (UpdateText Password)
+        (Focus Password)
+        (Blur Password)
+        [ NotEmpty "Empty value is not acceptable"
+        , Custom ((<=) 8 << String.length << Maybe.withDefault "" << .passwordField) "The value must be at least 8 characters length."
         ]
 
 

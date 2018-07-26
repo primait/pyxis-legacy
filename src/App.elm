@@ -40,6 +40,7 @@ init flags =
         |> withCmds
             [ Tasks.fetchTodayDate
             , Tasks.fetchHeaderTemplate "static/header.html.txt"
+            , Tasks.fetchMessagesTemplate "static/messages.html.txt"
             ]
 
 
@@ -57,6 +58,9 @@ toRoute str =
 
         "/header" ->
             HeaderRoute
+
+        "/messages" ->
+            MessagesRoute
 
         "/footer" ->
             FooterRoute
