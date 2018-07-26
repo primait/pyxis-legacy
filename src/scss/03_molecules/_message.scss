@@ -1,5 +1,6 @@
 .m-message {
   align-items: center;
+  background-color: color(shape, light);
   border: map-get($formConfig, borderWidth) solid color(shape);
   border-radius: map-get($formConfig, borderRadius);
   display: flex;
@@ -12,38 +13,29 @@
     justify-content: center;
     height: 50px;
     position: relative;
+  }
 
-    &:before {
-      color: color(brandAlt, dark);
-      content: "\e904";
-      font-family: 'icomoon';
-      font-size: 20px;
-      line-height: map-get($formConfig, fieldHeight);
-      position: absolute;
-      text-align: center;
-    }
+  .m-message__icon .icon {
+    color: color(brand, dark);
+    font-size: size(large);
+    line-height: map-get($formConfig, fieldHeight);
+    position: absolute;
+    text-align: center;
   }
 
   .m-message__text {
-    color: color(text);
+    color: color(text, dark);
     padding-left: 20px;
     font-size: size(medium);
     font-family: font(base);
     line-height: size(medium);
   }
 
-  &.m-message--success,
-  &.m-message--success .m-message__icon {
-    border-color: color(brandAlt, dark);
+  &.m-message--success .m-message__icon .icon {
+    color: color(brandAlt, dark);
   }
 
-  &.m-message--alert,
-  &.m-message--alert .m-message__icon {
-    border-color: color(alert);
-  }
-
-  &.m-message--error,
-  &.m-message--error .m-message__icon {
-    border-color: color(error);
+  &.m-message--error .m-message__icon .icon {
+    color: color(error);
   }
 }
