@@ -1,4 +1,5 @@
 .o-login {
+  background: color(background);
   flex-direction: column;
   padding: 20px;
 
@@ -57,7 +58,6 @@
   .a-btn {
     justify-content: center;
     margin-top: 20px;
-    width: 200px;
   }
 
   .m-message {
