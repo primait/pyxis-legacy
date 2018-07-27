@@ -1,7 +1,7 @@
 <h4>Message</h4>
 
 <div class="m-message">
-  <div class="m-message__icon"><i class="icon icon-info"></i></div>
+  <div class="m-message__icon"><i class="a-icon icon-info"></i></div>
   <span class="m-message__text">La sezione è riservata agli autenti verificati. Per accedere, inserisci la tua Password nel form sottostante.</span>
 </div>
 
@@ -10,7 +10,7 @@
 <h4>Success message</h4>
 
 <div class="m-message m-message--success">
-  <div class="m-message__icon"><i class="icon icon-ok"></i></div>
+  <div class="m-message__icon"><i class="a-icon icon-ok"></i></div>
   <span class="m-message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
 </div>
 
@@ -19,6 +19,6 @@
 <h4>Error message</h4>
 
 <div class="m-message m-message--error">
-  <div class="m-message__icon"><i class="icon icon-attention"></i></div>
+  <div class="m-message__icon"><i class="a-icon icon-attention"></i></div>
   <span class="m-message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
 </div>

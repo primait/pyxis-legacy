@@ -11,13 +11,13 @@
     align-self: stretch;
     border-right: map-get($formConfig, borderWidth) solid color(shape);
     display: flex;
-    flex: 0 0 map-get($formConfig, fieldHeight);;
+    flex: 0 0 map-get($formConfig, fieldHeight);
     justify-content: center;
-    min-height: map-get($formConfig, fieldHeight);;
+    min-height: map-get($formConfig, fieldHeight);
     position: relative;
   }
 
-  .m-message__icon .icon {
+  .m-message__icon .a-icon {
     color: color(brand, dark);
     font-size: size(large);
     line-height: map-get($formConfig, fieldHeight);
@@ -33,11 +33,11 @@
     padding: 10px 20px;
   }
 
-  &.m-message--success .m-message__icon .icon {
+  &.m-message--success .m-message__icon .a-icon {
     color: color(brandAlt, dark);
   }
 
-  &.m-message--error .m-message__icon .icon {
+  &.m-message--error .m-message__icon .a-icon {
     color: color(error);
   }
 }
