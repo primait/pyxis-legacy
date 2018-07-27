@@ -1,0 +1,44 @@
+.m-form__field__group {
+  position: relative;
+}
+
+.m-form__field__group__append,
+.m-form__field__group__prepend {
+  align-items: center;
+  display: flex;
+  height: map-get($formConfig, fieldHeight);
+  justify-content: center;
+  position: absolute;
+  width: map-get($formConfig, fieldHeight);
+}
+
+.m-form__field__group__append {
+  border-left: map-get($formConfig, borderWidth) solid color(shape);
+  right: 0;
+
+  & ~ .a-form__field__input {
+    padding-right: map-get($formConfig, fieldHeight) + 10px;
+  }
+}
+
+.m-form__field__group__prepend {
+  left: 0;
+
+  & ~ .a-form__field__input {
+    padding-left: map-get($formConfig, fieldHeight);
+  }
+}
+
+
+.icon {
+  font-size: size(large);
+
+  .m-form__field__group__append & {
+    color: color(brandAlt, dark);
+  }
+
+  .m-form__field__group__prepend & {
+    color: color(shape, dark);
+    opacity: 0.5;
+  }
+}
