@@ -7,15 +7,17 @@
   flex: 1 0 auto;
 
   .m-message__icon {
+    align-items: center;
+    align-self: stretch;
     border-right: map-get($formConfig, borderWidth) solid color(shape);
     display: flex;
-    flex: 0 0 50px;
+    flex: 0 0 map-get($formConfig, fieldHeight);
     justify-content: center;
-    height: 50px;
+    min-height: map-get($formConfig, fieldHeight);
     position: relative;
   }
 
-  .m-message__icon .icon {
+  .m-message__icon .a-icon {
     color: color(brand, dark);
     font-size: size(large);
     line-height: map-get($formConfig, fieldHeight);
@@ -26,16 +28,16 @@
   .m-message__text {
     color: color(text, dark);
     font-size: size(small);
-    font-family: font(base);
-    line-height: size(medium);
-    padding-left: 20px;
+    font-family: font(light);
+    line-height: size(large);
+    padding: 10px 20px;
   }
 
-  &.m-message--success .m-message__icon .icon {
+  &.m-message--success .m-message__icon .a-icon {
     color: color(brandAlt, dark);
   }
 
-  &.m-message--error .m-message__icon .icon {
+  &.m-message--error .m-message__icon .a-icon {
     color: color(error);
   }
 }
