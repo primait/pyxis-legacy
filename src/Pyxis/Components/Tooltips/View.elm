@@ -1,7 +1,7 @@
 module Pyxis.Components.Tooltips.View exposing (view)
 
 import Html exposing (..)
-import Html.Attributes exposing (classList)
+import Html.Attributes exposing (class, classList)
 import Pyxis.Components.Tooltips.Model
     exposing
         ( Model
@@ -23,7 +23,18 @@ view model =
     , divider
     ]
         ++ List.map
-            (\direction -> (componentShowdown ("Tooltip " ++ capitalize direction) ("tooltip" ++ capitalize direction) InspectHtml << List.singleton << tooltip) direction)
+            (\direction ->
+                (componentShowdown
+                    ("Tooltip " ++ capitalize direction)
+                    ("tooltip" ++ capitalize direction)
+                    InspectHtml
+                    << List.singleton
+                    << div [ class "pyTooltipHolder" ]
+                    << List.singleton
+                    << tooltip
+                )
+                    direction
+            )
             [ "up", "down", "left", "right" ]
 
 
@@ -38,7 +49,4 @@ tooltip direction =
         [ p
             []
             [ text "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa." ]
-        , p
-            []
-            [ text "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem." ]
         ]
