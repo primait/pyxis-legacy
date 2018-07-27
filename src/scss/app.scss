@@ -351,3 +351,13 @@ body {
 .pyMessage + .pyMessage {
   margin-top: 10px;
 }
+
+/******************************
+  Tooltips
+******************************/
+.pyTooltipHolder {
+  position: relative;
+  height: 1px;
+  margin: 120px auto;
+  width: 320px;
+}
