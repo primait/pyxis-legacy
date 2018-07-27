@@ -73,6 +73,7 @@ elif [ "$ENV" = "production" ]; then
 
   echo "deploying $ENV"
   aws --region="eu-west-1" s3 cp --acl public-read dist/prima.css s3://prima-documents-assets/css/pyxis-${VERSION}.css
+  aws --region="eu-west-1" s3 cp --acl public-read dist/prima.css s3://prima-documents-assets/css/pyxis-latest.css
 
 else
   echo "${ENV} non supportato!"
