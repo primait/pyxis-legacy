@@ -1,12 +1,14 @@
 .a-btn {
-  align-self: center;
+  align-content: center;
   border: 1px solid transparent;
   border-radius: map-get($formConfig, buttonHeight) * 2;
   cursor: pointer;
   display: flex;
   font-family: font(heavy);
   font-size: 14px;
+  justify-content: center;
   letter-spacing: 0.8px;
+  line-height: map-get($formConfig, buttonHeight);
   min-height: map-get($formConfig, buttonHeight);
   min-width: map-get($formConfig, buttonMinWidth);
   outline: none;
