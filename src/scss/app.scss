@@ -267,6 +267,7 @@ body {
   bottom: 0;
   right: 0;
   left: 0;
+  height: 30vh;
   box-shadow: -2px -2px 3px rgba(0, 0, 0, 0.15);
   z-index: 1;
 
@@ -297,7 +298,8 @@ body {
   display: flex;
   padding: 20px;
   background-color: var(--lightGrey);
-  overflow-y: hidden;
+  height: 25vh;
+  overflow: auto;
   font-size: 12px;
 }
 

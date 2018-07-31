@@ -184,12 +184,6 @@ update msg model =
             }
                 |> withoutCmds
 
-        ToggleSeparation ->
-            { model
-                | showSeparated = not model.showSeparated
-            }
-                |> withoutCmds
-
         InspectHtml selector ->
             model |> withCmds [ Ports.inspectHtml selector ]
 

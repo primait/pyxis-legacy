@@ -23,95 +23,32 @@ import Pyxis.ViewHelpers
 
 
 view : Model -> List (Html Msg)
-view ({ datepicker, showSeparated } as model) =
-    let
-        isDisabled =
-            model.formDisabled
-
-        render config =
-            (Form.wrapper << Form.render model) config
-
-        textField =
-            textFieldConfig model
-
-        passwordField =
-            passwordFieldConfig model
-
-        textareaField =
-            textareaFieldConfig model
-
-        datepickerField =
-            datePickerFieldConfig model
-
-        autocompleteField =
-            autocompleteFieldConfig model
-
-        radioField =
-            radioFieldConfig model
-
-        selectField =
-            selectFieldConfig model
-
-        checkboxField =
-            checkboxFieldConfig model
-
-        checkboxWithOptionsField =
-            checkboxWithOptionsFieldConfig model
-    in
-    [ componentTitle [ text "Form components", toggleSeparation showSeparated, toggleDisableForm isDisabled ]
+view ({ datepicker } as model) =
+    [ componentTitle [ text "Form components", toggleDisableForm model.formDisabled ]
     , divider
+    , componentShowdown "Fieldset"
+        "fieldset"
+        InspectHtml
+        [ fieldset
+            [ class "a-fieldset"
+            ]
+            [ legend
+                [ class "a-fieldset__legend" ]
+                [ text "Fieldset Legend"
+                ]
+            , Form.wrapper <| Form.render model <| textFieldConfig model
+            , Form.wrapper <| Form.renderWithGroup (div [ class "m-form__field__group__prepend" ] [ i [ class "a-icon icon-mail opacity-8" ] [] ]) model <| textFieldConfig model
+            , Form.wrapper <| Form.render model <| passwordFieldConfig model
+            , Form.wrapper <| Form.render model <| textareaFieldConfig model
+            , Form.wrapper <| Form.render model <| datePickerFieldConfig model
+            , Form.wrapper <| Form.render model <| autocompleteFieldConfig model
+            , Form.wrapper <| Form.render model <| radioFieldConfig model
+            , Form.wrapper <| Form.render model <| selectFieldConfig model
+            , Form.wrapper <| Form.render model <| checkboxFieldConfig model
+            , Form.wrapper <| Form.render model <| checkboxWithOptionsFieldConfig model
+            ]
+        ]
     ]
-        ++ (if showSeparated then
-                [ (componentShowdown "Input text" "inputText" InspectHtml << List.singleton << render)
-                    textField
-                , (componentShowdown "Password" "password" InspectHtml << List.singleton << render)
-                    passwordField
-                , (componentShowdown "Textarea" "textarea" InspectHtml << List.singleton << render)
-                    textareaField
-                , (componentShowdown "Datepicker" "datepicker" InspectHtml << List.singleton << render)
-                    datepickerField
-                , (componentShowdown "Autocomplete" "autocomplete" InspectHtml << List.singleton << render)
-                    autocompleteField
-                , (componentShowdown "Input radio" "inputRadio" InspectHtml << List.singleton << render)
-                    radioField
-                , (componentShowdown "Select" "select" InspectHtml << List.singleton << render)
-                    selectField
-                , (componentShowdown "Input checkbox" "inputCheckbox" InspectHtml << List.singleton << render)
-                    checkboxField
-                , (componentShowdown "Input checkbox (multi-option)" "inputCheckboxMulti" InspectHtml << List.singleton << render)
-                    checkboxWithOptionsField
-                ]
-            else
-                [ fieldset
-                    [ class "a-fieldset"
-                    ]
-                    [ legend
-                        [ class "a-fieldset__legend" ]
-                        [ text "Fieldset Legend"
-                        ]
-                    , render <| textField
-                    , render <| passwordField
-                    , render <| textareaField
-                    , render <| datepickerField
-                    , render <| autocompleteField
-                    , render <| radioField
-                    , render <| selectField
-                    , render <| checkboxField
-                    , render <| checkboxWithOptionsField
-                    ]
-                ]
-           )
-
-
-toggleSeparation : Bool -> Html Msg
-toggleSeparation showSeparated =
-    a
-        [ class "pyLink"
-        , onClick ToggleSeparation
-        ]
-        [ (renderIf showSeparated << text) "Show all together"
-        , (renderUnless showSeparated << text) "Show separated"
-        ]
 
 
 toggleDisableForm : Bool -> Html Msg

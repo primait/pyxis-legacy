@@ -31,3 +31,7 @@
     @error "Font `#{$size}` not found in `$fontSizes` map.";
   }
 }
+
+@function zIndex($key) {
+  @return index($zIndexes, $key);
+}
