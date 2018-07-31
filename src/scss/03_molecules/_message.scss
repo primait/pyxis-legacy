@@ -21,7 +21,6 @@
     color: color(brand, dark);
     font-size: size(large);
     line-height: map-get($formConfig, fieldHeight);
-    position: absolute;
     text-align: center;
   }
 
