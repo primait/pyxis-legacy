@@ -80,7 +80,7 @@ componentShowdown label selector action content =
 componentInspectorToggle : (String -> msg) -> String -> Html msg
 componentInspectorToggle action selector =
     i
-        [ class "pyIcon pyIconInspect icon-search"
+        [ class "pyIcon pyIconInspect a-icon-search"
         , (onClick
             << action
             << String.join "."

@@ -37,7 +37,7 @@ view ({ datepicker } as model) =
                 [ text "Fieldset Legend"
                 ]
             , Form.wrapper <| Form.render model <| textFieldConfig model
-            , Form.wrapper <| Form.renderWithGroup (div [ class "m-form__field__group__prepend" ] [ i [ class "a-icon icon-mail opacity-8" ] [] ]) model <| textFieldConfig model
+            , Form.wrapper <| Form.renderWithGroup (div [ class "m-form__field__group__prepend" ] [ i [ class "a-icon a-icon-mail opacity-8" ] [] ]) model <| textFieldConfig model
             , Form.wrapper <| Form.render model <| passwordFieldConfig model
             , Form.wrapper <| Form.render model <| textareaFieldConfig model
             , Form.wrapper <| Form.render model <| datePickerFieldConfig model
