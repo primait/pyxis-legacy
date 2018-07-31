@@ -33,7 +33,6 @@ type Msg
       ---------------------
     | Toggle Field Bool
     | ToggleDisable
-    | ToggleSeparation
       ---------------------
     | InspectHtml String
     | ClickedOutside
@@ -55,7 +54,6 @@ type alias Model =
     , autocompleteFilter : Maybe String
     , isAutocompleteFieldOpen : Bool
     , formDisabled : Bool
-    , showSeparated : Bool
     , todayDate : Maybe Date
     }
 
@@ -80,7 +78,6 @@ initialModel =
         True
         Nothing
         Nothing
-        False
         False
         False
         Nothing

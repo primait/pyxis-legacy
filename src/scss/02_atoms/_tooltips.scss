@@ -5,6 +5,7 @@
   padding: map-get($tooltipConfig, padding);
   position: absolute;
   width: map-get($tooltipConfig, width);
+  z-index: zIndex(tooltip);
 
   &:before {
     content: '';

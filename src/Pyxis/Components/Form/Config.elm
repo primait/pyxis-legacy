@@ -40,7 +40,7 @@ passwordFieldConfig : Model -> FormField Model Msg
 passwordFieldConfig { formDisabled } =
     Form.passwordConfig
         "password_field"
-        "Password Field"
+        "Password field"
         [ placeholder "Write something", disabled formDisabled ]
         .passwordField
         (UpdateText Password)
