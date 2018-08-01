@@ -62,8 +62,27 @@
   }
 }
 
-::-webkit-input-placeholder { color: color(text); }
-::-moz-placeholder { color: color(text); }
-:-ms-input-placeholder { color: color(text); }
-:-moz-placeholder { color: color(text); }
-::-ms-clear { display: none; }
+::-webkit-input-placeholder {
+  color: color(text);
+}
+
+::-moz-placeholder {
+  color: color(text);
+}
+
+:-ms-input-placeholder {
+  color: color(text);
+}
+
+:-moz-placeholder {
+  color: color(text);
+}
+
+::-ms-clear {
+  display: none;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+   display: none;
+ }
