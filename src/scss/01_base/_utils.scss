@@ -20,6 +20,18 @@
   .opacity-#{$i} { opacity: $i/10; }
 }
 
+.alignLeft {
+  text-align: left;
+}
+
+.alignCenter {
+  text-align: center; 
+}
+
+.alignRight {
+  text-align: right;
+}
+
 .lowercase {
   text-transform: lowercase;
 }
