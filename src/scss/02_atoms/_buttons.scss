@@ -1,5 +1,6 @@
 .a-btn {
   align-content: center;
+  align-self: center;
   border: 1px solid transparent;
   border-radius: map-get($formConfig, buttonHeight) * 2;
   cursor: pointer;

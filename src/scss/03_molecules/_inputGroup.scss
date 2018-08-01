@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.m-form__field__group .a-form__field__input {
+  display: flex;
+}
+
 .m-form__field__group__append,
 .m-form__field__group__prepend {
   align-items: center;
