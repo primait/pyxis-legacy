@@ -75,7 +75,7 @@ initialModel =
         Nothing
         Nothing
         (DatePicker.init <| dateFromFields 2018 (intToMonth 12) 25 0 0 0 0)
-        True
+        False
         Nothing
         Nothing
         False

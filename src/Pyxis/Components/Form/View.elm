@@ -7,7 +7,8 @@ import Prima.Form as Form
 import Pyxis.Components.Form.Config exposing (..)
 import Pyxis.Components.Form.Model
     exposing
-        ( Model
+        ( Field(..)
+        , Model
         , Msg(..)
         )
 import Pyxis.ViewHelpers
@@ -23,7 +24,22 @@ import Pyxis.ViewHelpers
 
 
 view : Model -> List (Html Msg)
-view ({ datepicker } as model) =
+view ({ datepicker, isDatePickerOpen } as model) =
+    let
+        iconMail =
+            div
+                [ class "m-form__field__group__prepend"
+                ]
+                [ i [ class "a-icon a-icon-mail opacity-5" ] []
+                ]
+
+        iconCalendar =
+            div
+                [ class "m-form__field__group__append"
+                ]
+                [ i [ class "a-icon a-icon-calendar c-brandAlt-dark", (onClick << Toggle Datepicker << not) isDatePickerOpen ] []
+                ]
+    in
     [ componentTitle [ text "Form components", toggleDisableForm model.formDisabled ]
     , divider
     , componentShowdown "Fieldset"
@@ -37,10 +53,10 @@ view ({ datepicker } as model) =
                 [ text "Fieldset Legend"
                 ]
             , Form.wrapper <| Form.render model <| textFieldConfig model
-            , Form.wrapper <| Form.renderWithGroup (div [ class "m-form__field__group__prepend" ] [ i [ class "a-icon a-icon-mail opacity-8" ] [] ]) model <| textFieldConfig model
+            , Form.wrapper <| Form.renderWithGroup iconMail model <| textFieldConfig model
             , Form.wrapper <| Form.render model <| passwordFieldConfig model
             , Form.wrapper <| Form.render model <| textareaFieldConfig model
-            , Form.wrapper <| Form.render model <| datePickerFieldConfig model
+            , Form.wrapper <| Form.renderWithGroup iconCalendar model <| datePickerFieldConfig model
             , Form.wrapper <| Form.render model <| autocompleteFieldConfig model
             , Form.wrapper <| Form.render model <| radioFieldConfig model
             , Form.wrapper <| Form.render model <| selectFieldConfig model
