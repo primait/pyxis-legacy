@@ -175,6 +175,12 @@ update msg model =
             }
                 |> withoutCmds
 
+        Toggle Datepicker isOpen ->
+            { model
+                | isDatePickerOpen = isOpen
+            }
+                |> withoutCmds
+
         Toggle _ _ ->
             withoutCmds model
 
