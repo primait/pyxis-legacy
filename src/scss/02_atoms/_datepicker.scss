@@ -6,13 +6,15 @@
 	color: color(text);
 	display: flex;
 	flex-direction: column;
-	padding: map-get($formConfig, datepickerPadding);
 	width: map-get($formConfig, datepickerCellSize) * 7 + map-get($formConfig, datepickerPadding) * 2;
 }
 
 .a-datepicker__header {
+	background-color: color(backgroundAlt);
+	color: color(textAlt, light);
 	display: flex;
 	flex-direction: column;
+	padding: map-get($formConfig, datepickerPadding);
 }
 
 .a-datepicker__header__year,
@@ -29,9 +31,8 @@
 }
 
 .a-datepicker__header__year {
-	color: color(text, dark);
 	font-family: font(heavy);
-	font-size: size(medium);
+	font-size: size(large);
 	height: map-get($formConfig, datepickerCellSize);
 }
 
@@ -40,6 +41,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	padding: map-get($formConfig, datepickerPadding) / 2 map-get($formConfig, datepickerPadding);
 }
 
 .a-datepicker__picker__header {
@@ -102,7 +104,6 @@
 .a-datepicker__picker__monthDays {
 	position: relative;
 	overflow: hidden;
-	height: 214px
 }
 
 .a-datepicker__picker__days {
@@ -188,4 +189,29 @@
 	font-weight: 500;
 	position: relative;
 	top: -1px
+}
+
+.a-datepicker__yearPicker__scroller {
+	max-height: 300px;
+	overflow: scroll;
+}
+
+.a-datepicker__yearPicker__scroller__list {
+	display: flex;
+	flex-direction: column;
+}
+
+.a-datepicker__yearPicker__scroller__list__item {
+	background-color: color(background);
+	color: color(text, dark);
+	cursor: pointer;
+	display: flex;
+	font-size: size(small);
+	font-weight: 800;
+	justify-content: center;
+	padding: 10px;
+
+	&:hover {
+		background: color(background, dark);
+	}
 }
