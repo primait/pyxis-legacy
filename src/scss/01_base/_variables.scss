@@ -69,11 +69,41 @@ $fonts: (
 );
 
 $fontSizes: (
-  xsmall:   12px,
-  small:    14px,
-  medium:   16px,
-  large:    20px,
-  xlarge:   32px,
+
+  mobile-sizes: (
+    root:     14px,
+    xlarge:   20px,
+    large:    18px,
+    medium:   16px,
+    small:    14px,
+    xsmall:   12px
+  ),
+
+  tablet-sizes: (
+    root:     14px,
+    xlarge:   26px,
+    large:    24px,
+    medium:   16px,
+    small:    14px,
+    xsmall:   12px
+  ),
+
+  desktop-sizes: (
+    root:     16px,
+    xlarge:   40px,
+    large:    30px,
+    medium:   18px,
+    small:    14px,
+    xsmall:   12px
+  ),
+  
+  line-heights: (
+    xlarge:   180%,
+    large:    150%,
+    medium:   170%,
+    small:    115%,
+    xsmall:   100%
+  )
 );
 
 $zIndexes: tooltip;
