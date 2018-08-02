@@ -30,14 +30,14 @@ view ({ datepicker, isDatePickerOpen } as model) =
             div
                 [ class "m-form__field__group__prepend"
                 ]
-                [ i [ class "a-icon a-icon-mail opacity-8" ] []
+                [ i [ class "a-icon a-icon-mail opacity-5" ] []
                 ]
 
         iconCalendar =
             div
-                [ class "m-form__field__group__prepend"
+                [ class "m-form__field__group__append"
                 ]
-                [ i [ class "a-icon a-icon-mail opacity-8", (onClick << Toggle Datepicker << not) isDatePickerOpen ] []
+                [ i [ class "a-icon a-icon-calendar c-brandAlt-dark", (onClick << Toggle Datepicker << not) isDatePickerOpen ] []
                 ]
     in
     [ componentTitle [ text "Form components", toggleDisableForm model.formDisabled ]

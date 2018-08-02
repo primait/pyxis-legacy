@@ -6,7 +6,10 @@
 	color: color(text);
 	display: flex;
 	flex-direction: column;
+	position: absolute;
+	top: 110%;
 	width: map-get($formConfig, datepickerCellSize) * 7 + map-get($formConfig, datepickerPadding) * 2;
+	z-index: 10;
 }
 
 .a-datepicker__header {
@@ -34,6 +37,15 @@
 	font-family: font(heavy);
 	font-size: size(large);
 	height: map-get($formConfig, datepickerCellSize);
+	position: relative;
+}
+
+.a-datepicker__header__year:after {
+	color: color(textAlt, light);
+	content: "\e902";
+	font-family: 'pyxis';
+	left: 50px;
+	position: absolute;
 }
 
 .a-datepicker__picker {
@@ -123,6 +135,10 @@
 	height: map-get($formConfig, datepickerCellSize);
 	margin: 0;
 	position: relative;
+
+	&:hover {
+		background-color: color(shape, light);
+	}
 
 	&.is-selected {
 		background: color(brandAlt, light);
