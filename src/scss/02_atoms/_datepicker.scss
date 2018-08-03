@@ -53,7 +53,7 @@
 	}
 
 	&.is-selected:after {
-		transform: rotate(-180deg);
+		transform: scaleY(-1);
 	}
 }
 
@@ -84,7 +84,10 @@
 		border-radius: map-get($formConfig, datepickerCellSize);
 		font-family: 'pyxis';
 		font-size: 24px;
+		left: 50%;
 		position: absolute;
+		top: 50%;
+		transform: translate3d(-50%, -50%, 0);
 	}
 
 	&:after {
