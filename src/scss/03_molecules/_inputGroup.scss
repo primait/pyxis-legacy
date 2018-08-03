@@ -12,12 +12,14 @@
   display: flex;
   height: map-get($formConfig, fieldHeight);
   justify-content: center;
+  mix-blend-mode: darken;
   position: absolute;
   width: map-get($formConfig, fieldHeight);
 }
 
 .m-form__field__group__append {
   border-left: map-get($formConfig, borderWidth) solid color(shape);
+  cursor: pointer;
   right: 0;
 
   & ~ .a-form__field__input {
