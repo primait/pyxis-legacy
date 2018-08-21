@@ -7,32 +7,41 @@ h6 {
   font-family: font(base);
   font-weight: normal;
 }
-
 h1 {
   font-size: size(xlarge);
 }
-
 h2 {
   font-size: size(large);
 }
-
 h3 {
   font-size: size(medium);
 }
-
 h4 {
   font-size: size(small);
 }
-
 h5 {
   font-size: size(xsmall);
 }
-
 h6 {
   font-size: size(xsmall);
 }
-
-a {
-  color: color(brandAlt, dark);
-  font-family: font(base);
+.a-xsmall {
+  font-size: size(xsmall);
+}
+.a-small {
+  font-size: size(small);
+}
+.a-medium {
+  font-size: size(medium);
+}
+.a-large {
+  font-size: size(large);
+}
+.a-xlarge{
+  font-size: size(xlarge);
+}
+.a-heavy {
+  font-family: font(heavy);
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
