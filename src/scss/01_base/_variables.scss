@@ -69,11 +69,12 @@ $fonts: (
 );
 
 $fontSizes: (
-  xsmall:   12px,
-  small:    14px,
-  medium:   16px,
-  large:    20px,
-  xlarge:   32px,
+  root:   16px,
+  xsmall: 0.75rem,
+  small:  0.875rem,
+  medium: 1.25rem,
+  large:  1.5625rem,
+  xlarge: 1.875rem,
 );
 
 $zIndexes: tooltip;
