@@ -92,14 +92,17 @@
 
 	&:after {
 		background-color: color(background);
+		border: 2px solid color(background);
 		border-radius: map-get($formConfig, datepickerCellSize);
 		content: '';
-		height: map-get($formConfig, datepickerCellSize) - 5;
+		height: map-get($formConfig, datepickerCellSize);
+		left: 0;
 		opacity: 0.5;
 		position: absolute;
+		top: 0;
 		transform: scale(0.5);
 		transition: all 0.3s ease-out;
-		width: map-get($formConfig, datepickerCellSize) - 5;
+		width: map-get($formConfig, datepickerCellSize);
 		z-index: -1;
 	}
 }
@@ -178,14 +181,17 @@
 
 	&:not(.is-empty):before {
 		background-color: color(background);
+		border: 2px solid color(background);
 		border-radius: map-get($formConfig, datepickerCellSize);
 		content: '';
-		height: map-get($formConfig, datepickerCellSize) - 5;
+		height: map-get($formConfig, datepickerCellSize);
+		left: 0;
 		opacity: 0.5;
 		position: absolute;
+		top: 0;
 		transform: scale(0.5);
 		transition: all 0.3s ease-out;
-		width: map-get($formConfig, datepickerCellSize) - 5;
+		width: map-get($formConfig, datepickerCellSize);
 		z-index: -1;
 	}
 
