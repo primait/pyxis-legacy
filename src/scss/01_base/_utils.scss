@@ -16,6 +16,12 @@
   }
 }
 
+@each $lineHeight, $lineheight in $lineHeights {
+  .lh-#{$lineHeight} {
+    line-height: lineheight($lineHeight);
+  }
+}
+
 @each $fontWeight, $font in $fonts {
   .fw-#{$fontWeight} {
     font-family: font($fontWeight);
