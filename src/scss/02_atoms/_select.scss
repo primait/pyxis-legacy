@@ -9,6 +9,7 @@
   cursor: pointer;
   display: none;
   flex-direction: column;
+  font-size: size(small);
   position: relative;
 
   &.is-valid:not(.is-open),
@@ -43,6 +44,7 @@
   color: color(text);
   display: flex;
   height: map-get($formConfig, fieldHeight);
+  opacity: 0.6;
   padding: map-get($formConfig, fieldPadding);
   position: relative;
 
@@ -60,10 +62,12 @@
 
   .is-invalid.is-touched & {
     color: color(error);
+    opacity: 1;
   }
 
   .is-valid:not(.is-pristine) & {
     color: color(brandAlt, dark);
+    opacity: 1;
   }
 
   .is-open &:after {

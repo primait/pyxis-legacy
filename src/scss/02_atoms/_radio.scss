@@ -8,6 +8,7 @@
   color: color(text, dark);
   cursor: pointer;
   display: flex;
+  font-size: size(small);
   margin-right: 20px;
   line-height: map-get($formConfig, fieldHeight);
   padding-left: 40px;

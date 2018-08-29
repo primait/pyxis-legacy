@@ -144,6 +144,7 @@ body {
 .pyNav__menu__item {
   display: flex;
   flex: 0 0 auto;
+  font-size: size(small);
   justify-content: center;
   padding: 15px 30px 15px 0;
   cursor: pointer;
@@ -194,6 +195,7 @@ body {
   cursor: pointer;
   display: flex;
   font-family: font(heavy);
+  font-size: size(small);
   height: 120px;
   margin: 0 5px;
   overflow: hidden;
