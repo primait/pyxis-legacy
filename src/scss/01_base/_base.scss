@@ -19,9 +19,11 @@ body {
 
  @include mq(small) {
    font-size: size(small);
+   line-height: lineheight(medium);
  }
 
  @include mq(medium) {
    font-size: size(root);
+   line-height: lineheight(root);
  }
 }
