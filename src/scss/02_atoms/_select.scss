@@ -139,6 +139,7 @@
   border-radius: map-get($formConfig, borderRadius);
   color: color(brandAlt, dark);
   display: flex;
+  font-size: size(small);
   height: map-get($formConfig, fieldHeight);
   margin: 0;
   outline: none;
