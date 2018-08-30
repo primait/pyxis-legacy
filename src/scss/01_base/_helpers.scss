@@ -32,6 +32,15 @@
   }
 }
 
+@function lineheight($lineheight) {
+  @if( map-has-key($lineHeights, $lineheight) ) {
+    @return map-get($lineHeights, $lineheight);
+  }
+  @else {
+    @error "LineHeight `#{$lineheight}` not found in `$lineheight` map.";
+  }
+}
+
 @function zIndex($key) {
   @return index($zIndexes, $key);
 }
