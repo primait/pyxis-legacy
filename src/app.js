@@ -6,6 +6,7 @@ const Elm           = require('./App.elm')
 const route         = window.location.pathname
 const isIE          = helpers.detectIE() >= 10 && helpers.detectIE() < 12
 const isEdge        = helpers.detectIE() >= 12
+const isMobileDevice = window.innerWidth <= 769
 
 /* AB TEST */
 const random        = Math.floor(Math.random() * 10)
@@ -23,8 +24,9 @@ if(isEdge) {
   document.body.className += ' is-Edge'
 }
 
-if(!!('ontouchstart' in window) || !!('msmaxtouchpoints' in window.navigator)) {
+if((!!('ontouchstart' in window) && isMobileDevice) || (!!('msmaxtouchpoints' in window.navigator) && isMobileDevice)) {
   document.body.className += ' isTouchDevice'
+  alert('porcoddio')
 }
 
 const app = Elm.App.embed(document.getElementById('app'), {
