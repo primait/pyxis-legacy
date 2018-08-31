@@ -13,7 +13,7 @@
 @each $fontKey, $size in $fontSizes {
   .fs-#{$fontKey} {
     font-size: size($fontKey);
-    line-height: size($fontKey) * $goldenRatio;
+    line-height: line-height($fontKey);
   }
 }
 

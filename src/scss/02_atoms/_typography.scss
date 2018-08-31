@@ -10,35 +10,35 @@ h6 {
 
 h1 {
   font-size: size(xlarge);
-  line-height: size(xlarge) * $goldenRatio;
+  line-height: line-height(xlarge);
 }
 
 h2 {
   font-size: size(large);
-  line-height: size(large) * $goldenRatio;
+  line-height: line-height(large);
 }
 
 h3 {
   font-size: size(medium);
-  line-height: size(medium) * $goldenRatio;
+  line-height: line-height(medium);
 }
 
 h4 {
   font-size: size(root);
-  line-height: size(root) * $goldenRatio;
+  line-height: line-height(root);
 }
 
 h5 {
   font-size: size(small);
-  line-height: size(small) * $goldenRatio;
+  line-height: line-height(small);
 }
 
 h6 {
   font-size: size(xsmall);
-  line-height: size(xsmall) * $goldenRatio;
+  line-height: line-height(xsmall);
 }
 
 p {
   font-size: size(small);
-  line-height: size(small) * $goldenRatio;
+  line-height: line-height(small);
 }
