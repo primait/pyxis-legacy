@@ -32,6 +32,15 @@
   }
 }
 
+@function line-height($size) {
+  @if( map-has-key($fontSizes, $size) ) {
+    @return map-get($fontSizes, $size) * $goldenRatio;
+  }
+  @else {
+    @error "Font `#{$size}` not found in `$fontSizes` map.";
+  }
+}
+
 @function zIndex($key) {
   @return index($zIndexes, $key);
 }

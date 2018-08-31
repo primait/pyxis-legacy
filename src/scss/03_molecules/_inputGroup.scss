@@ -1,9 +1,12 @@
 .m-form__field__group {
+  display: flex;
+  flex-direction: column;
   position: relative;
 }
 
-.m-form__field__group .a-form__field__input {
-  display: flex;
+.m-form__field__group .a-form__field__error {
+  flex: 1;
+  padding-left: 0;
 }
 
 .m-form__field__group__append,
@@ -12,12 +15,14 @@
   display: flex;
   height: map-get($formConfig, fieldHeight);
   justify-content: center;
+  mix-blend-mode: darken;
   position: absolute;
   width: map-get($formConfig, fieldHeight);
 }
 
 .m-form__field__group__append {
   border-left: map-get($formConfig, borderWidth) solid color(shape);
+  cursor: pointer;
   right: 0;
 
   & ~ .a-form__field__input {

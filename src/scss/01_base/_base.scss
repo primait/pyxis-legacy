@@ -1,7 +1,7 @@
 html {
  box-sizing: border-box;
  font-size: size(root);
- line-height: size(root) * $goldenRatio;
+ line-height: line-height(root);
 }
 
 *,* :before, *:after {
@@ -12,18 +12,18 @@ body {
  box-sizing: border-box;
  font-family: font(light);
  font-size: size(xsmall);
- line-height: size(xsmall) * $goldenRatio;
  height: 100%;
+ line-height: line-height(xsmall);
  width: 100%;
  -webkit-font-smoothing: antialiased;
 
  @include mq(small) {
    font-size: size(small);
-   line-height: size(small) * $goldenRatio;
+   line-height: line-height(small);
  }
 
  @include mq(medium) {
    font-size: size(root);
-   line-height: size(root) * $goldenRatio;
+   line-height: line-height(root);
  }
 }

@@ -3,7 +3,6 @@
 }
 
 .a-form__field__radio__label {
-  border: map-get($formConfig, borderWidth) solid transparent;
   border-radius: map-get($formConfig, borderRadius);
   color: color(text, dark);
   cursor: pointer;
@@ -17,10 +16,17 @@
   transition: background 0.3s, color 0.3s, border-color 0.3s;
   width: auto;
 
+  @include mq(small) {
+    border: map-get($formConfig, borderWidth) solid transparent;
+  }
+
   &:hover {
-    background: color(background);
     border-color: color(brandAlt);
     color: color(brandAlt, dark);
+
+    @include mq(small) {
+      background: color(background);
+    }
   }
 
   .a-form__field__radio[disabled] + & {

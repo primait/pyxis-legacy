@@ -2,7 +2,6 @@
   background: color(backgroundAlt, dark);
   border-radius: map-get($tooltipConfig, borderRadius);
   color: color(textAlt);
-  font-size: size(small);
   padding: map-get($tooltipConfig, padding);
   position: absolute;
   width: map-get($tooltipConfig, width);
@@ -13,6 +12,12 @@
     height: 0;
     position: absolute;
     width: 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: size(small);
+    line-height: line-height(small);
   }
 }
 
