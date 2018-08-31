@@ -29,9 +29,13 @@
     background-color: transparent;
   }
 
-  .a-form__field__label,
-  .a-form__field__error {
+  .a-form__field__label {
     flex: 0 0 map-get($formConfig, fieldMaxWidth);
+    padding: 0;
+  }
+
+  .a-form__field__error {
+    flex: 1;
     padding: 0;
   }
 
