@@ -47,7 +47,6 @@
   flex: 0 0 100%;
   font-family: font(base);
   font-size: 12px;
-  margin-top: 7.5px;
 
   @include mq(small) {
     padding-left: map-get($formConfig, labelWidth);
