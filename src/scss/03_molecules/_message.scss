@@ -19,7 +19,7 @@
 
   .m-message__icon .a-icon {
     color: color(brand, dark);
-    font-size: size(large);
+    font-size: size(medium);
     line-height: map-get($formConfig, fieldHeight);
     text-align: center;
   }

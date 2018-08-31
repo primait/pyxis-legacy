@@ -26,7 +26,6 @@ if(isEdge) {
 
 if((!!('ontouchstart' in window) && isMobileDevice) || (!!('msmaxtouchpoints' in window.navigator) && isMobileDevice)) {
   document.body.className += ' isTouchDevice'
-  alert('porcoddio')
 }
 
 const app = Elm.App.embed(document.getElementById('app'), {
