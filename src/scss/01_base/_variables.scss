@@ -77,11 +77,5 @@ $fontSizes: (
   xlarge: 1.875rem,
 );
 
-$lineHeights: (
-  root:   1.7rem,
-  small:  1.3rem,
-  medium: 1.5rem,
-  large:  2.3rem,
-);
-
+$goldenRatio: 1.618; // https://medium.com/@zkareemz/golden-ratio-62b3b6d4282a
 $zIndexes: tooltip;
