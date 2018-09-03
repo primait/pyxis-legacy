@@ -9,36 +9,35 @@ h6 {
 }
 
 h1 {
-  font-size: size(xlarge);
-  line-height: line-height(xlarge);
+  @extend .fs-xlarge;
 }
 
 h2 {
   font-size: size(large);
-  line-height: line-height(large);
+  line-height: lineHeight(large);
 }
 
 h3 {
   font-size: size(medium);
-  line-height: line-height(medium);
+  line-height: lineHeight(medium);
 }
 
 h4 {
   font-size: size(root);
-  line-height: line-height(root);
+  line-height: lineHeight(root);
 }
 
 h5 {
   font-size: size(small);
-  line-height: line-height(small);
+  line-height: lineHeight(small);
 }
 
 h6 {
   font-size: size(xsmall);
-  line-height: line-height(xsmall);
+  line-height: lineHeight(xsmall);
 }
 
 p {
   font-size: size(root);
-  line-height: line-height(root);
+  line-height: lineHeight(root);
 }

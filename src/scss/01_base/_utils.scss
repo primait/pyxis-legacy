@@ -13,23 +13,20 @@
 @each $fontKey, $size in $fontSizes {
   .fs-#{$fontKey} {
     font-size: size($fontKey);
-    line-height: line-height($fontKey);
+    line-height: lineHeight($fontKey);
   }
 }
 
 @each $fontWeight, $font in $fonts {
   .fw-#{$fontWeight} {
     font-family: font($fontWeight);
-
-    @if $fontWeight == 'heavy' {
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
   }
 }
 
 @for $i from 0 through 10 {
-  .opacity-#{$i} { opacity: $i/10; }
+  .opacity-#{$i} {
+    opacity: $i/10;
+  }
 }
 
 .alignLeft {

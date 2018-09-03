@@ -1,7 +1,6 @@
 html {
  box-sizing: border-box;
  font-size: size(root);
- line-height: line-height(root);
 }
 
 *,* :before, *:after {
@@ -13,17 +12,17 @@ body {
  font-family: font(light);
  font-size: size(xsmall);
  height: 100%;
- line-height: line-height(xsmall);
+ line-height: lineHeight(xsmall);
  width: 100%;
  -webkit-font-smoothing: antialiased;
 
  @include mq(small) {
    font-size: size(small);
-   line-height: line-height(small);
+   line-height: lineHeight(small);
  }
 
  @include mq(medium) {
    font-size: size(root);
-   line-height: line-height(root);
+   line-height: lineHeight(root);
  }
 }
