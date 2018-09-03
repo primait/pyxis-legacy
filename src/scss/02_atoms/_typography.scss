@@ -13,12 +13,12 @@ h1 {
 
   @include mq(small) {
     font-size: size(large);
-    line-height: line-height(large);
+    line-height: lineHeight(large);
   }
 
   @include mq(medium) {
     font-size: size(xlarge);
-    line-height: line-height(xlarge);
+    line-height: lineHeight(xlarge);
   }
 }
 
@@ -27,12 +27,12 @@ h2 {
 
   @include mq(small) {
     font-size: size(medium);
-    line-height: line-height(large);
+    line-height: lineHeight(large);
   }
 
   @include mq(medium) {
     font-size: size(large);
-    line-height: line-height(large);
+    line-height: lineHeight(large);
   }
 }
 
@@ -41,12 +41,12 @@ h3 {
 
   @include mq(small) {
     font-size: size(base);
-    line-height: line-height(base);
+    line-height: lineHeight(base);
   }
 
   @include mq(medium) {
     font-size: size(medium);
-    line-height: line-height(medium);
+    line-height: lineHeight(medium);
   }
 }
 
@@ -55,12 +55,12 @@ h4 {
 
   @include mq(small) {
     font-size: size(small);
-    line-height: line-height(small);
+    line-height: lineHeight(small);
   }
 
   @include mq(medium) {
     font-size: size(base);
-    line-height: line-height(base);
+    line-height: lineHeight(base);
   }
 }
 
@@ -69,11 +69,11 @@ p {
 
   @include mq(small) {
     font-size: size(small);
-    line-height: line-height(small);
+    line-height: lineHeight(small);
   }
 
   @include mq(medium) {
     font-size: size(base);
-    line-height: line-height(base);
+    line-height: lineHeight(base);
   }
 }
