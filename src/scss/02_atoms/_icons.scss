@@ -1,3 +1,11 @@
 .a-icon {
   font-size: size(medium);
 }
+
+.m-form__field__group__append .a-icon,
+.m-form__field__group__prepend .a-icon {
+  height: map-get($formConfig, fieldHeight);
+  line-height: map-get($formConfig, fieldHeight);
+  text-align: center;
+  width: map-get($formConfig, fieldHeight);
+}
