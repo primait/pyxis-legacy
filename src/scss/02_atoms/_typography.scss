@@ -65,6 +65,15 @@ h4 {
 }
 
 p {
-  font-size: size(root);
-  line-height: lineHeight(root);
+  @extend .fs-small;
+
+  @include mq(small) {
+    font-size: size(small);
+    line-height: line-height(small);
+  }
+
+  @include mq(medium) {
+    font-size: size(base);
+    line-height: line-height(base);
+  }
 }
