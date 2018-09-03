@@ -1,7 +1,9 @@
 .m-form__field__group {
-  display: flex;
-  flex-direction: column;
   position: relative;
+}
+
+.m-form__field__group .a-form__field__input {
+  display: flex;
 }
 
 .m-form__field__group .a-form__field__error {
