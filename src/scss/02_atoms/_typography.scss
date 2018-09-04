@@ -9,35 +9,71 @@ h6 {
 }
 
 h1 {
-  @extend .fs-xlarge;
+  @extend .fs-medium;
+
+  @include mq(small) {
+    font-size: size(large);
+    line-height: lineHeight(large);
+  }
+
+  @include mq(medium) {
+    font-size: size(xlarge);
+    line-height: lineHeight(xlarge);
+  }
 }
 
 h2 {
-  font-size: size(large);
-  line-height: lineHeight(large);
+  @extend .fs-base;
+
+  @include mq(small) {
+    font-size: size(medium);
+    line-height: lineHeight(large);
+  }
+
+  @include mq(medium) {
+    font-size: size(large);
+    line-height: lineHeight(large);
+  }
 }
 
 h3 {
-  font-size: size(medium);
-  line-height: lineHeight(medium);
+  @extend .fs-small;
+
+  @include mq(small) {
+    font-size: size(base);
+    line-height: lineHeight(base);
+  }
+
+  @include mq(medium) {
+    font-size: size(medium);
+    line-height: lineHeight(medium);
+  }
 }
 
 h4 {
-  font-size: size(root);
-  line-height: lineHeight(root);
-}
+  @extend .fs-small;
 
-h5 {
-  font-size: size(small);
-  line-height: lineHeight(small);
-}
+  @include mq(small) {
+    font-size: size(small);
+    line-height: lineHeight(small);
+  }
 
-h6 {
-  font-size: size(xsmall);
-  line-height: lineHeight(xsmall);
+  @include mq(medium) {
+    font-size: size(base);
+    line-height: lineHeight(base);
+  }
 }
 
 p {
-  font-size: size(root);
-  line-height: lineHeight(root);
+  @extend .fs-small;
+
+  @include mq(small) {
+    font-size: size(small);
+    line-height: lineHeight(small);
+  }
+
+  @include mq(medium) {
+    font-size: size(base);
+    line-height: lineHeight(base);
+  }
 }
