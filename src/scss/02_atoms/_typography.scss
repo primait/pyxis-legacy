@@ -37,7 +37,7 @@ h2 {
 }
 
 h3 {
-  @extend .fs-small;
+  @extend .fs-base;
 
   @include mq(small) {
     font-size: size(base);
