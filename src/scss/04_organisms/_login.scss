@@ -31,6 +31,7 @@
 
   .a-form__field__label {
     flex: 0 0 map-get($formConfig, fieldMaxWidth);
+    margin-left: 0;
     padding: 0;
   }
 
