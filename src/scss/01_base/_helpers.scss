@@ -5,6 +5,10 @@
   @return $map;
 }
 
+@function capitalize($str) {
+  @return to_upper_case(str_slice($str, 1, 1)) + str_slice($str, 2, -1);
+}
+
 @function color($color, $variation: base) {
   @if( map-has-key($colors, $color) ) {
     @return map-deep-get($colors, $color, $variation);

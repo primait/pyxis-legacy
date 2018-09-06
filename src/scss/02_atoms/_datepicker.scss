@@ -299,9 +299,8 @@
 }
 
 .a-form__field__datepicker {
-	display: none !important;
-
-	@include mq(small) {
-		display: flex;
+	
+	@include mqDown(small) {
+		display: none !important;
 	}
 }
