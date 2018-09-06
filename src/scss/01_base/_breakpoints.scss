@@ -41,7 +41,7 @@ $breakpoints: (
     @warn "Cannot find the key #{$upperBound} in the $breakpoints object (/atom/01_base/_breakpoints.scss)";
   }
   @else {
-    @media screen and (min-width: map-get($breakpoints, $lowerBound)) and (max-width: map-get($breakpoints, $upperBound) - $boundDiff) {
+    @media screen and (min-width: map-get($breakpoints, $lowerBound)) and (max-width: map-get($breakpoints, $upperBound) - map-get($breakpoints, boundDiff)) {
       @content;
     }
   }
@@ -49,7 +49,7 @@ $breakpoints: (
 
 @mixin mqDown($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
-    @media screen and (max-width: map-get($breakpoints, $breakpoint) - $boundDiff) {
+    @media screen and (max-width: map-get($breakpoints, $breakpoint) - map-get($breakpoints, boundDiff)) {
       @content;
     }
   }

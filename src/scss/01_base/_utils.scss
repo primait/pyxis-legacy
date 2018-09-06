@@ -1,24 +1,28 @@
 @each $color, $tones in $colors {
   @each $colorTone, $colorHex in $tones {
-    .bg-#{$color}-#{$colorTone} {
+    .bg-#{$color}-#{$colorTone},
+    .bg#{capitalize($color)}#{capitalize($colorTone)} {
       background-color: $colorHex;
     }
 
-    .c-#{$color}-#{$colorTone} {
+    .c-#{$color}-#{$colorTone},
+    .c#{capitalize($color)}#{capitalize($colorTone)} {
       color: $colorHex;
     }
   }
 }
 
 @each $fontKey, $size in $fontSizes {
-  .fs-#{$fontKey} {
+  .fs-#{$fontKey},
+  .fs#{capitalize($fontKey)} {
     font-size: size($fontKey);
     line-height: lineHeight($fontKey);
   }
 }
 
 @each $fontWeight, $font in $fonts {
-  .fw-#{$fontWeight} {
+  .fw-#{$fontWeight},
+  .fw#{capitalize($fontWeight)} {
     font-family: font($fontWeight);
   }
 }
@@ -26,6 +30,24 @@
 @for $i from 0 through 10 {
   .opacity-#{$i} {
     opacity: $i/10;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+@each $mqKey, $size in $containerConfig {
+  .hide#{capitalize($mqKey)}Down {
+    @include mqDown($mqKey) {
+      display: none !important;
+    }
+  }
+
+  .hide#{capitalize($mqKey)}Up {
+    @include mq($mqKey) {
+      display: none !important;
+    }
   }
 }
 

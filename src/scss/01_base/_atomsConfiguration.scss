@@ -18,9 +18,10 @@ $formConfig: (
 );
 
 $tooltipConfig: (
-  arrowSize: 5px,
+  arrowSize: 8px,
   borderRadius: 5px,
-  padding: 15px,
+  margin: 15px,
+  padding: 10px 15px,
   width: 320px,
 );
 
@@ -29,4 +30,12 @@ $loginConfig: (
   borderWidth: 1px,
   loginShadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.10),
   minHeight: 400px,
-)
+);
+
+$containerConfig: (
+  xsmall:  540px,
+  small:   700px,
+  medium:  960px,
+  large:   1140px,
+  xlarge:  1370px,
+);

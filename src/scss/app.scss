@@ -1,5 +1,6 @@
 @import
   '01_base/_variables.scss',
+  '01_base/_fonts.scss',
   '01_base/_helpers.scss';
 
 /******************************
@@ -22,6 +23,7 @@
 
 html,
 body {
+  font-family: font(light);
   font-weight: normal;
   font-size: 14px;
   margin: 0;

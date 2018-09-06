@@ -2,17 +2,21 @@
   align-items: center;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   min-height: 70px;
   padding: 10px;
   position: relative;
   transition: background 0.3s;
 
   &:hover {
-    background: color(background, dark);
+    @include mq(medium) {
+      background: color(background, dark);
+    }
   }
 
   @include mq(small) {
     border-radius: map-get($formConfig, borderRadius);
+    justify-content: flex-start;
   }
 }
 

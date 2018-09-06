@@ -7,9 +7,10 @@
   border-radius: map-get($formConfig, borderRadius);
   color: color(brandAlt, dark);
   cursor: pointer;
-  display: none;
+  display: flex;
   flex-direction: column;
   font-size: size(small);
+  pointer-events: none;
   position: relative;
 
   &.is-valid:not(.is-open),
@@ -19,8 +20,11 @@
 
   &.is-open {
     border: map-get($formConfig, borderWidth) solid color(brandAlt);
-    border-radius: map-get($formConfig, borderRadius) map-get($formConfig, borderRadius) 0px 0px;
     box-shadow: map-get($formConfig, fieldShadow);
+
+    @include mq(medium) {
+      border-radius: map-get($formConfig, borderRadius) map-get($formConfig, borderRadius) 0px 0px;
+    }
   }
 
   &.is-invalid.is-touched:not(.is-open):not(:focus) {
@@ -40,7 +44,7 @@
   }
 
   @include mq(medium) {
-    display: flex;
+    pointer-events: auto;
   }
 }
 
@@ -107,7 +111,11 @@
     border: 1px solid color(brandAlt);
     border-top-color: color(shape);
     box-shadow: map-get($formConfig, fieldShadow);
-    display: flex;
+    display: none;
+
+    @include mq(medium) {
+      display: flex;
+    }
   }
 }
 
@@ -137,13 +145,16 @@
   background: color(background);
   border: map-get($formConfig, borderWidth) solid color(shape);
   border-radius: map-get($formConfig, borderRadius);
+  bottom: 10px;
   color: color(brandAlt, dark);
   display: flex;
   font-size: size(small);
   height: map-get($formConfig, fieldHeight);
   margin: 0;
   outline: none;
+  opacity: 0;
   padding: map-get($formConfig, fieldPadding);
+  position: absolute;
 
   @include mq(medium) {
     display: none;

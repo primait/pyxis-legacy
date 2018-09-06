@@ -1,5 +1,9 @@
+:root {
+  --tooltipColor: #{color(backgroundAlt, dark)};
+}
+
 .tooltip {
-  background: color(backgroundAlt, dark);
+  background: var(--tooltipColor);
   border-radius: map-get($tooltipConfig, borderRadius);
   color: color(textAlt);
   padding: map-get($tooltipConfig, padding);
@@ -19,31 +23,36 @@
     font-size: size(small);
     line-height: line-height(small);
   }
+
+  &.tooltip--info {
+    --tooltipColor: #{color(brand, light)};
+    color: color(textAlt, light);
+  }
 }
 
-.tooltip.tooltip--down {
+.tooltip.tooltip--up {
   bottom: 100%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -(map-get($tooltipConfig, margin)));
 
   &:before {
     border-left: map-get($tooltipConfig, arrowSize) solid transparent;
     border-right: map-get($tooltipConfig, arrowSize) solid transparent;
-    border-top: map-get($tooltipConfig, arrowSize) solid color(backgroundAlt);
+    border-top: map-get($tooltipConfig, arrowSize) solid var(--tooltipColor);
     bottom: -(map-get($tooltipConfig, arrowSize));
     left: 50%;
     transform: translateX(-50%);
   }
 }
 
-.tooltip.tooltip--left {
+.tooltip.tooltip--right {
   left: 100%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(map-get($tooltipConfig, margin), -50%);
 
   &:before {
     border-bottom: map-get($tooltipConfig, arrowSize) solid transparent;
-    border-right: map-get($tooltipConfig, arrowSize) solid color(backgroundAlt);
+    border-right: map-get($tooltipConfig, arrowSize) solid var(--tooltipColor);
     border-top: map-get($tooltipConfig, arrowSize) solid transparent;
     left: -(map-get($tooltipConfig, arrowSize));
     top: 50%;
@@ -51,14 +60,14 @@
   }
 }
 
-.tooltip.tooltip--right {
+.tooltip.tooltip--left {
   right: 100%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-(map-get($tooltipConfig, margin)), -50%);
 
   &:before {
     border-bottom: map-get($tooltipConfig, arrowSize) solid transparent;
-    border-left: map-get($tooltipConfig, arrowSize) solid color(backgroundAlt);
+    border-left: map-get($tooltipConfig, arrowSize) solid var(--tooltipColor);
     border-top: map-get($tooltipConfig, arrowSize) solid transparent;
     right: -(map-get($tooltipConfig, arrowSize));
     top: 50%;
@@ -66,13 +75,13 @@
   }
 }
 
-.tooltip.tooltip--up {
+.tooltip.tooltip--down {
   left: 50%;
   top: 100%;
-  transform: translateX(-50%);
+  transform: translate(-50%, map-get($tooltipConfig, margin));
 
   &:before {
-    border-bottom: map-get($tooltipConfig, arrowSize) solid color(backgroundAlt);
+    border-bottom: map-get($tooltipConfig, arrowSize) solid var(--tooltipColor);
     border-left: map-get($tooltipConfig, arrowSize) solid transparent;
     border-right: map-get($tooltipConfig, arrowSize) solid transparent;
     left: 50%;

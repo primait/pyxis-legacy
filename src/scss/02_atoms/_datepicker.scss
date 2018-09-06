@@ -297,3 +297,10 @@
 		background: color(background, dark);
 	}
 }
+
+.a-form__field__datepicker {
+	
+	@include mqDown(small) {
+		display: none !important;
+	}
+}

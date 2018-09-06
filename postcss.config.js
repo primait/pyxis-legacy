@@ -1,8 +1,8 @@
 module.exports = {
   parser: 'postcss-scss',
   plugins: {
-    'postcss-import': {},
-    'postcss-cssnext': {},
+    'autoprefixer': {},
+    'postcss-preset-env': {},
     'cssnano': {}
   }
 }

@@ -1,5 +1,6 @@
 .m-form__field__group {
   position: relative;
+  flex: 0 0 map-get($formConfig, fieldMaxWidth);
 }
 
 .m-form__field__group .a-form__field__input {
