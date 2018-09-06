@@ -145,6 +145,7 @@
   background: color(background);
   border: map-get($formConfig, borderWidth) solid color(shape);
   border-radius: map-get($formConfig, borderRadius);
+  bottom: 10px;
   color: color(brandAlt, dark);
   display: flex;
   font-size: size(small);

@@ -297,3 +297,11 @@
 		background: color(background, dark);
 	}
 }
+
+.a-form__field__datepicker {
+	display: none !important;
+
+	@include mq(small) {
+		display: flex;
+	}
+}

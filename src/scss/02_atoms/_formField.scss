@@ -8,7 +8,9 @@
   transition: background 0.3s;
 
   &:hover {
-    background: color(background, dark);
+    @include mq(medium) {
+      background: color(background, dark);
+    }
   }
 
   @include mq(small) {
