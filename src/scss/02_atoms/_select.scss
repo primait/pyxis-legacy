@@ -10,8 +10,8 @@
   display: flex;
   flex-direction: column;
   font-size: size(small);
-  position: relative;
   pointer-events: none;
+  position: relative;
 
   &.is-valid:not(.is-open),
   &.is-touched:not(.is-open) {
