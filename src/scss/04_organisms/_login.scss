@@ -21,7 +21,10 @@
   }
 
   .a-form__field {
-    justify-content: center;
+    
+    @include mq(small) {
+      justify-content: center
+    }
   }
 
   .a-form__field,

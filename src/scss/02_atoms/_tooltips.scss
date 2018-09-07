@@ -85,7 +85,7 @@
     border-left: map-get($tooltipConfig, arrowSize) solid transparent;
     border-right: map-get($tooltipConfig, arrowSize) solid transparent;
     left: 50%;
-    top: -(map-get($tooltipConfig, arrowSize));;
+    top: -(map-get($tooltipConfig, arrowSize));
     transform: translateX(-50%);
   }
 }

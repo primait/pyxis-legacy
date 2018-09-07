@@ -6,7 +6,7 @@
   height: map-get($formConfig, fieldHeight);
   margin: 0;
   padding: map-get($formConfig, fieldPadding);
-  -webkit-text-fill-color: color(text, dark);;
+  -webkit-text-fill-color: color(text, dark);
 
   &:focus,
   &.is-pristine:focus {

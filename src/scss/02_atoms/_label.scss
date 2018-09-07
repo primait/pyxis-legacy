@@ -1,6 +1,6 @@
 .a-form__field__label {
   color: color(text, dark);
-  flex: 0 0 map-get($formConfig, fieldMaxWidth);
+  flex: 0 0 100%;
   font-size: map-get($fontSizes, small);
   margin-bottom: 5px;
   outline: none;

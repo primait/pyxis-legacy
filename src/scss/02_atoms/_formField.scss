@@ -2,7 +2,7 @@
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 70px;
   padding: 10px;
   position: relative;
@@ -13,11 +13,6 @@
       background: color(background, dark);
     }
   }
-
-  @include mq(small) {
-    border-radius: map-get($formConfig, borderRadius);
-    justify-content: flex-start;
-  }
 }
 
 .a-form__field__input,
@@ -26,8 +21,12 @@
 .a-form__field__select,
 .a-form__field__customSelect {
   font-family: font(light);
-  min-width: map-get($formConfig, fieldMaxWidth);
+  min-width: 100%;
   outline: none;
+
+  @include mq(small) {
+    min-width: map-get($formConfig, fieldMaxWidth);
+  }
 }
 
 .a-form__field__input,
@@ -53,7 +52,7 @@
   font-size: 12px;
 
   @include mq(small) {
-    padding-left: map-get($formConfig, labelWidth);
+    padding-left: calc(50% - (#{map-get($formConfig, fieldMaxWidth)} / 2));
   }
 
   .a-form__field__input:focus + &,
