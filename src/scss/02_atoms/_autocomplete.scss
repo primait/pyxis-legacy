@@ -2,6 +2,10 @@
   cursor: pointer;
   position: relative;
 
+  @include mqDown(small) {
+    flex: 1;
+  }
+
   &:before {
     border-left: map-get($formConfig, borderWidth) solid color(shape);
     bottom: 1px;
