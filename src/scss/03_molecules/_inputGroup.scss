@@ -36,6 +36,11 @@
     padding-right: map-get($formConfig, fieldHeight) + 10px;
   }
 
+  & ~ .a-form__field__input:disabled {
+    pointer-events: all;
+    z-index: 2;
+  }
+
   &.noBorder {
     border-left: 0px;
   }
