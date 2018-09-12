@@ -53,10 +53,10 @@ view ({ datepicker, isDatePickerOpen } as model) =
                 [ text "Fieldset Legend"
                 ]
             , Form.wrapper <| Form.render model <| textFieldConfig model
-            , Form.wrapper <| Form.renderWithGroup iconMail model <| textFieldConfig model
+            , Form.wrapper <| Form.renderWithGroup [ iconMail ] model <| textFieldConfig model
             , Form.wrapper <| Form.render model <| passwordFieldConfig model
             , Form.wrapper <| Form.render model <| textareaFieldConfig model
-            , Form.wrapper <| Form.renderWithGroup iconCalendar model <| datePickerFieldConfig model
+            , Form.wrapper <| Form.renderWithGroup [ iconCalendar ] model <| datePickerFieldConfig model
             , Form.wrapper <| Form.render model <| autocompleteFieldConfig model
             , Form.wrapper <| Form.render model <| radioFieldConfig model
             , Form.wrapper <| Form.render model <| selectFieldConfig model

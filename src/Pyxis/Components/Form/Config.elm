@@ -31,6 +31,7 @@ textFieldConfig { formDisabled } =
         (UpdateText Text)
         (Focus Text)
         (Blur Text)
+        False
         [ NotEmpty "Empty value is not acceptable"
         , Expression (regex "prima") "The value must contains `prima` substring."
         ]
@@ -46,6 +47,7 @@ passwordFieldConfig { formDisabled } =
         (UpdateText Password)
         (Focus Password)
         (Blur Password)
+        False
         [ NotEmpty "Empty value is not acceptable"
         , Custom ((<=) 8 << String.length << Maybe.withDefault "" << .passwordField) "The value must be at least 8 characters length."
         ]
@@ -61,6 +63,7 @@ textareaFieldConfig { formDisabled } =
         (UpdateText Textarea)
         (Focus Textarea)
         (Blur Textarea)
+        False
         [ NotEmpty "Empty value is not acceptable"
         , Custom ((<=) 10 << String.length << Maybe.withDefault "" << .textareaField) "The value must be at least 10 characters length."
         ]
@@ -80,6 +83,7 @@ radioFieldConfig { formDisabled } =
         , RadioOption "Option B" "b"
         , RadioOption "Option C" "c"
         ]
+        False
         [ Custom ((==) "b" << Maybe.withDefault "b" << .radioField) "You must choose `Option B`." ]
 
 
@@ -93,6 +97,7 @@ checkboxFieldConfig { formDisabled } =
         (UpdateFlag Checkbox)
         (Focus Checkbox)
         (Blur Checkbox)
+        False
         []
 
 
@@ -111,6 +116,7 @@ checkboxWithOptionsFieldConfig model =
         (Focus MultiCheckbox)
         (Blur MultiCheckbox)
         options
+        False
         [ Custom
             (\{ checkboxMultiField } ->
                 (List.all ((==) False) << List.map .isChecked) checkboxMultiField
@@ -155,14 +161,16 @@ selectFieldConfig model =
         (Focus Select)
         (Blur Select)
         options
+        False
         [ Custom ((==) "SA" << Maybe.withDefault "SA" << .selectField) "You must choose `Savona`. ;)" ]
 
 
 datePickerFieldConfig : Model -> FormField Model Msg
-datePickerFieldConfig { datepicker, isDatePickerOpen } =
+datePickerFieldConfig { datepicker, isDatePickerOpen, formDisabled } =
     Form.datepickerConfig
         "datepicker_field"
         "Datepicker field"
+        [ disabled formDisabled ]
         .datepickerField
         (UpdateText Datepicker)
         (UpdateDate Datepicker)
@@ -170,6 +178,7 @@ datePickerFieldConfig { datepicker, isDatePickerOpen } =
         (Blur Datepicker)
         datepicker
         isDatePickerOpen
+        False
         [ NotEmpty "You must choose a date."
         ]
 
@@ -207,4 +216,5 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
         (Focus Autocomplete)
         (Blur Autocomplete)
         options
+        False
         [ NotEmpty "Empty value is not acceptable" ]

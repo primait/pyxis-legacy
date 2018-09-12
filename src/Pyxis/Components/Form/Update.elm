@@ -109,7 +109,7 @@ update msg model =
                 , datepicker =
                     case (Maybe.Extra.join << Maybe.map (Result.toMaybe << Date.fromString)) value of
                         Just date ->
-                            DatePicker.init date
+                            DatePicker.init date ( 1910, 2020 )
 
                         _ ->
                             model.datepicker
