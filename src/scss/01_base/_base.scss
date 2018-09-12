@@ -25,4 +25,11 @@ body {
    font-size: size(root);
    line-height: lineHeight(root);
  }
+
+ input,
+ textarea,
+ select,
+ button {
+   font-size: size(root);
+ }
 }

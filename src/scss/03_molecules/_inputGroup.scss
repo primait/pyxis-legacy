@@ -35,6 +35,10 @@
   & ~ .a-form__field__input {
     padding-right: map-get($formConfig, fieldHeight) + 10px;
   }
+
+  &.noBorder {
+    border-left: 0px;
+  }
 }
 
 .m-form__field__group__prepend {
