@@ -4,6 +4,8 @@ module Pyxis.Components.Form.Model
         , Model
         , Msg(..)
         , initialModel
+        , lowDate
+        , highDate
         )
 
 import Date exposing (Date)
@@ -58,6 +60,14 @@ type alias Model =
     }
 
 
+lowDate : Date
+lowDate =
+    dateFromFields 2018 (intToMonth 9) 15 0 0 0 0
+
+highDate : Date
+highDate =
+    dateFromFields 2018 (intToMonth 10) 28 0 0 0 0
+
 initialModel : Model
 initialModel =
     Model
@@ -74,7 +84,7 @@ initialModel =
         ]
         Nothing
         Nothing
-        (DatePicker.init (dateFromFields 2018 (intToMonth 12) 25 0 0 0 0) ( 1910, 2010 ))
+        (DatePicker.init (dateFromFields 2018 (intToMonth 12) 25 0 0 0 0) ( 1910, 2019) (Just (lowDate, highDate)))
         False
         Nothing
         Nothing

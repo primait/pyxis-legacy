@@ -9,6 +9,8 @@ import Pyxis.Components.Form.Model
         ( Field(..)
         , Model
         , Msg(..)
+        , lowDate
+        , highDate
         )
 import Pyxis.Helpers
     exposing
@@ -109,7 +111,7 @@ update msg model =
                 , datepicker =
                     case (Maybe.Extra.join << Maybe.map (Result.toMaybe << Date.fromString)) value of
                         Just date ->
-                            DatePicker.init date ( 1910, 2020 )
+                            DatePicker.init date ( 1910, 2020 ) (Just (lowDate, highDate))
 
                         _ ->
                             model.datepicker
