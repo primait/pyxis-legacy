@@ -210,6 +210,11 @@
 		opacity: 1;
 		transform: scale(1);
 	}
+
+	&.is-disabled {
+		opacity: 0.5;
+		pointer-events: none;
+	}
 }
 
 .a-datepicker .year-picker {
