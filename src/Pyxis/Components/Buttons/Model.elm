@@ -27,6 +27,7 @@ initialModel =
         [ Btn Primary "Primary action" False
         , Btn Secondary "Secondary action" False
         , Btn Tertiary "Tertiary action" False
+        , Btn Circle "" False
         ]
 
 
@@ -41,6 +42,7 @@ type BtnType
     = Primary
     | Secondary
     | Tertiary
+    | Circle
 
 
 btnTypeToString : BtnType -> String
@@ -54,3 +56,6 @@ btnTypeToString type_ =
 
         Tertiary ->
             "tertiary"
+
+        Circle ->
+            "circle"
