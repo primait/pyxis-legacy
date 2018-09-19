@@ -84,9 +84,9 @@
   </div>
   <div class="a-container a-container--xsmall a-container--privacy">
       <div class="a-logo a-logo--white"><img src="/assets/media/logo-white.svg" alt="Prima.it"></div>
-      <p class="fs-xsmall alignCenter c-textAlt-light">© Prima Assicurazioni S.p.A. • P. IVA 08879250960 • via Speronari 8, 20123 Milano. <br/><br/>
+      <p class="fs-xsmall alignCenter c-textAlt-light">© Prima Assicurazioni S.p.A. • P. IVA 08879250960 • via Speronari 8, 20123 Milano. <br/>
         Prima Assicurazioni S.p.A. è un'agenzia di Great Lakes Insurance SE Gruppo Munich Re.
-        Great Lakes Insurance SE è iscritta al Registro delle imprese di Assicurazione in Italia con il N° I.00093. Capitale sociale: € 131.776.704 (EUR) <br/><br/>
+        Great Lakes Insurance SE è iscritta al Registro delle imprese di Assicurazione in Italia con il N° I.00093. Capitale sociale: € 131.776.704 (EUR) <br/>
         Prima Assicurazioni S.p.A. è regolamentata dall'IVASS ed iscritta al RUI con numero A000511660.</p>
   </div>
 </footer>
