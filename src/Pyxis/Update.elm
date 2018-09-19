@@ -4,6 +4,8 @@ import Pyxis.Components.Buttons.Model as ButtonsModel
 import Pyxis.Components.Buttons.Update as ButtonsUpdate
 import Pyxis.Components.Colors.Model as ColorsModel
 import Pyxis.Components.Colors.Update as ColorsUpdate
+import Pyxis.Components.Footer.Model as FooterModel
+import Pyxis.Components.Footer.Update as FooterUpdate
 import Pyxis.Components.Form.Model as FormModel
 import Pyxis.Components.Form.Update as FormUpdate
 import Pyxis.Components.Header.Model as HeaderModel
@@ -87,6 +89,9 @@ update msg model =
         FormMsg formMsg ->
             updateForm model formMsg model.form
 
+        FooterMsg footerMsg ->
+            updateFooter model footerMsg model.footer
+
         HeaderMsg headerMsg ->
             updateHeader model headerMsg model.header
 
@@ -131,6 +136,15 @@ updateHeader model msg headerModel =
             HeaderUpdate.update msg headerModel
     in
     { model | header = newHeaderModel } ! [ Cmd.map HeaderMsg cmds ]
+
+
+updateFooter : Model -> FooterModel.Msg -> FooterModel.Model -> ( Model, Cmd Msg )
+updateFooter model msg footerModel =
+    let
+        ( newFooterModel, cmds ) =
+            FooterUpdate.update msg footerModel
+    in
+    { model | footer = newFooterModel } ! [ Cmd.map FooterMsg cmds ]
 
 
 updateMessages : Model -> MessagesModel.Msg -> MessagesModel.Model -> ( Model, Cmd Msg )

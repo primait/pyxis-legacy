@@ -17,6 +17,7 @@ module Pyxis.Model
 import Navigation exposing (Location)
 import Pyxis.Components.Buttons.Model as Buttons
 import Pyxis.Components.Colors.Model as Colors
+import Pyxis.Components.Footer.Model as Footer
 import Pyxis.Components.Form.Model as Form
 import Pyxis.Components.Header.Model as Header
 import Pyxis.Components.Messages.Model as Messages
@@ -39,6 +40,7 @@ type Msg
     | ColorsMsg Colors.Msg
     | FormMsg Form.Msg
     | HeaderMsg Header.Msg
+    | FooterMsg Footer.Msg
     | TooltipsMsg Tooltips.Msg
     | MessagesMsg Messages.Msg
 
@@ -53,6 +55,7 @@ type alias Model =
     , buttons : Buttons.Model
     , form : Form.Model
     , header : Header.Model
+    , footer : Footer.Model
     , tooltips : Tooltips.Model
     , messages : Messages.Model
     }
@@ -70,6 +73,7 @@ initialModel =
         Buttons.initialModel
         Form.initialModel
         Header.initialModel
+        Footer.initialModel
         Tooltips.initialModel
         Messages.initialModel
 

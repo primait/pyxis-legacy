@@ -40,6 +40,7 @@ init flags =
         |> withCmds
             [ Tasks.fetchTodayDate
             , Tasks.fetchHeaderTemplate "static/header.html.txt"
+            , Tasks.fetchFooterTemplate "static/footer.html.txt"
             , Tasks.fetchMessagesTemplate "static/messages.html.txt"
             ]
 

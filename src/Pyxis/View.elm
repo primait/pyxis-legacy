@@ -44,13 +44,13 @@ dynamicView ({ route } as model) =
             (wrapper << List.map (Html.map ColorsMsg)) (ColorsComponent.view model.colors)
 
         FooterRoute ->
-            (wrapper << FooterComponent.view) model
+            (div [] << List.map (Html.map FooterMsg)) (FooterComponent.view model.footer)
 
         FormRoute ->
             (wrapper << List.map (Html.map FormMsg)) (FormComponent.view model.form)
 
         HeaderRoute ->
-            (wrapper << List.map (Html.map HeaderMsg)) (HeaderComponent.view model.header)
+            (div [] << List.map (Html.map HeaderMsg)) (HeaderComponent.view model.header)
 
         MessagesRoute ->
             (wrapper << List.map (Html.map MessagesMsg)) (MessagesComponent.view model.messages)

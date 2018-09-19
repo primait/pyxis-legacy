@@ -1,0 +1,85 @@
+.a-hamburger {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  margin: 0;
+  overflow: visible;
+  padding: map-get($hamburgerConfig, paddingHeight) map-get($hamburgerConfig, paddingWidth);
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  z-index: 10;
+
+  &:focus {
+    outline: none
+  }
+
+  @include mq(small) {
+    display: none;
+  }
+}
+
+.a-hamburger__box {
+  display: inline-block;
+  height: map-get($hamburgerConfig, layerHeight) * 3 + map-get($hamburgerConfig, layerSpacing) * 2;
+  position: relative;
+  width: map-get($hamburgerConfig, layerWidth);
+}
+
+.a-hamburger__inner {
+  display: block;
+  margin-top: map-get($hamburgerConfig, layerHeight) / -2;
+  top: 50%;
+
+  &,
+  &::before,
+  &::after {
+    background-color: color(text, dark);
+    border-radius: map-get($hamburgerConfig, layerWidth);
+    height: 2px;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease;
+    width: 20px;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+  }
+
+  &::before {
+    top: (map-get($hamburgerConfig, layerSpacing) + map-get($hamburgerConfig, layerHeight)) * -1;
+  }
+
+  &::after {
+    bottom: (map-get($hamburgerConfig, layerSpacing) + map-get($hamburgerConfig, layerHeight)) * -1;
+  }
+}
+
+.is-active + .m-nav .a-container .a-hamburger {
+  .a-hamburger__inner {
+    transform: rotate(225deg);
+    transition-delay: 0.12s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+    &::before {
+      background-color: color(background);
+      top: 0;
+      opacity: 1;
+      transition: top 0.1s ease-out,
+      opacity 0.1s 0.12s ease-out;
+    }
+
+    &::after {
+      background-color: color(background);
+      bottom: 0;
+      transform: rotate(-90deg);
+      transition: bottom 0.1s ease-out,
+      transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  }
+}

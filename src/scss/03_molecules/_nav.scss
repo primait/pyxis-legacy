@@ -1,0 +1,20 @@
+.m-nav {
+  align-items: center;
+  border-top: 1px solid color(shape);
+  display: flex;
+  flex: 1 0 auto;
+  height: map-get($navConfig, mobileHeight);
+  justify-content: center;
+  z-index: 10;
+
+  @include mq(small) {
+    background: color(background);
+    border-bottom: 1px solid color(shape);
+    height: map-get($navConfig, desktopHeight);
+  }
+}
+
+.m-nav .a-container {
+  align-items: center;
+  justify-content: space-between;
+}

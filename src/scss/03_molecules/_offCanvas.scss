@@ -1,0 +1,28 @@
+.m-offCanvas {
+  height: 100vh;
+	opacity: 0;
+  padding: (map-get($navConfig, mobileHeight) + 20px ) 0 0 0;
+  position: absolute;
+  perspective: 1200px;
+	transition: opacity 0.5s, visibility 0s 0.5s;
+  visibility: hidden;
+  width: 100%;
+  z-index: 3;
+
+  &.is-active {
+  	opacity: 1;
+  	transition: opacity 0.5s;
+    visibility: visible;
+  }
+}
+
+.m-offCanvas * {
+	opacity: 0.4;
+	transform: translateY(25%) rotateX(-35deg);
+	transition: transform 1s, opacity 0.5s;
+}
+
+.m-offCanvas.is-active * {
+	opacity: 1;
+	transform: rotateX(0deg);
+}
