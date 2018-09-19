@@ -1,18 +1,17 @@
-module Pyxis.Model
-    exposing
-        ( AppMessage
-        , AppMessageType(..)
-        , AppStatus(..)
-        , Flags
-        , HtmlSelector
-        , HtmlSnippet
-        , Menu
-        , Model
-        , Msg(..)
-        , Route(..)
-        , appMessageTypeToString
-        , initialModel
-        )
+module Pyxis.Model exposing
+    ( AppMessage
+    , AppMessageType(..)
+    , AppStatus(..)
+    , Flags
+    , HtmlSelector
+    , HtmlSnippet
+    , Menu
+    , Model
+    , Msg(..)
+    , Route(..)
+    , appMessageTypeToString
+    , initialModel
+    )
 
 import Navigation exposing (Location)
 import Pyxis.Components.Buttons.Model as Buttons
@@ -20,8 +19,9 @@ import Pyxis.Components.Colors.Model as Colors
 import Pyxis.Components.Footer.Model as Footer
 import Pyxis.Components.Form.Model as Form
 import Pyxis.Components.Header.Model as Header
-import Pyxis.Components.Login.Model as Login
+import Pyxis.Components.Lists.Model as Lists
 import Pyxis.Components.Loader.Model as Loader
+import Pyxis.Components.Login.Model as Login
 import Pyxis.Components.Messages.Model as Messages
 import Pyxis.Components.Tooltips.Model as Tooltips
 import Time exposing (Time)
@@ -39,10 +39,8 @@ type Msg
     | Copied
       -------------
     | ButtonsMsg Buttons.Msg
-
-
-
     | ColorsMsg Colors.Msg
+    | FooterMsg Footer.Msg
     | FormMsg Form.Msg
     | HeaderMsg Header.Msg
     | LoaderMsg Loader.Msg
@@ -50,6 +48,7 @@ type Msg
     | TooltipsMsg Tooltips.Msg
     | MessagesMsg Messages.Msg
     | LoginMsg Login.Msg
+    | ListsMsg Lists.Msg
 
 
 type alias Model =
@@ -67,7 +66,9 @@ type alias Model =
     , tooltips : Tooltips.Model
     , messages : Messages.Model
     , login : Login.Model
+    , lists : Lists.Model
     }
+
 
 initialModel : Model
 initialModel =
@@ -86,17 +87,22 @@ initialModel =
         Tooltips.initialModel
         Messages.initialModel
         Login.initialModel
+        Lists.initialModel
 
 
 initialMenu : List Menu
 initialMenu =
     [ Menu "home" "Pyxis" HomeRoute True
-    , Menu "colors" "Colors" ColorsRoute False
-    , Menu "typography" "Typography" TypographyRoute False
     , Menu "buttons" "Buttons" ButtonsRoute False
+    , Menu "colors" "Colors" ColorsRoute False
+    , Menu "footer" "Footer" FooterRoute False
     , Menu "form" "Form" FormRoute False
     , Menu "loader" "Loader" LoaderRoute False
     , Menu "messages" "Messages" MessagesRoute False
+    , Menu "header" "Header" HeaderRoute False
+    , Menu "lists" "Lists" ListsRoute False
+    , Menu "messages" "Messages" MessagesRoute False
+    , Menu "typography" "Typography" TypographyRoute False
     , Menu "tooltips" "Tooltips" TooltipsRoute False
     , Menu "login" "Login" LoginRoute False
     ]
@@ -114,6 +120,7 @@ type Route
     | FooterRoute
     | FormRoute
     | HeaderRoute
+    | ListsRoute
     | MessagesRoute
     | LoaderRoute
     | TypographyRoute

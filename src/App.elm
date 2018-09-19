@@ -1,7 +1,7 @@
-module App exposing (..)
+module App exposing (init, main)
 
 import Html
-import Pyxis.Helpers
+import Pyxis.Helpers as Helpers
     exposing
         ( updateMenu
         , withCmds
@@ -34,8 +34,8 @@ main =
 init : Flags -> ( Model, Cmd Msg )
 init flags =
     { initialModel
-        | route = toRoute flags.route
-        , menu = updateMenu (toRoute flags.route) initialModel.menu
+        | route = Helpers.urlToRoute flags.route
+        , menu = updateMenu (Helpers.urlToRoute flags.route) initialModel.menu
     }
         |> withCmds
             [ Tasks.fetchTodayDate

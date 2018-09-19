@@ -10,10 +10,12 @@ import Pyxis.Components.Form.Model as FormModel
 import Pyxis.Components.Form.Update as FormUpdate
 import Pyxis.Components.Header.Model as HeaderModel
 import Pyxis.Components.Header.Update as HeaderUpdate
-import Pyxis.Components.Login.Model as LoginModel
-import Pyxis.Components.Login.Update as LoginUpdate
+import Pyxis.Components.Lists.Model as ListsModel
+import Pyxis.Components.Lists.Update as ListsUpdate
 import Pyxis.Components.Loader.Model as LoaderModel
 import Pyxis.Components.Loader.Update as LoaderUpdate
+import Pyxis.Components.Login.Model as LoginModel
+import Pyxis.Components.Login.Update as LoginUpdate
 import Pyxis.Components.Messages.Model as MessagesModel
 import Pyxis.Components.Messages.Update as MessagesUpdate
 import Pyxis.Components.Tooltips.Model as TooltipsModel
@@ -84,17 +86,20 @@ update msg model =
         RemoveAppMessage uuid ->
             model |> removeAppMessage uuid |> withoutCmds
 
+        ButtonsMsg buttonsMsg ->
+            updateButtons model buttonsMsg model.buttons
+
         ColorsMsg colorsMsg ->
             updateColors model colorsMsg model.colors
 
-        ButtonsMsg buttonsMsg ->
-            updateButtons model buttonsMsg model.buttons
+        FooterMsg footerMsg ->
+            updateFooter model footerMsg model.footer
 
         FormMsg formMsg ->
             updateForm model formMsg model.form
 
-        FooterMsg footerMsg ->
-            updateFooter model footerMsg model.footer
+        ListsMsg listsMsg ->
+            updateLists model listsMsg model.lists
 
         HeaderMsg headerMsg ->
             updateHeader model headerMsg model.header
@@ -139,6 +144,15 @@ updateForm model msg formModel =
     { model | form = newFormModel } ! [ Cmd.map FormMsg cmds ]
 
 
+updateLists : Model -> ListsModel.Msg -> ListsModel.Model -> ( Model, Cmd Msg )
+updateLists model msg listsModel =
+    let
+        ( newListsModel, cmds ) =
+            ListsUpdate.update msg listsModel
+    in
+    { model | lists = newListsModel } ! [ Cmd.map ListsMsg cmds ]
+
+
 updateHeader : Model -> HeaderModel.Msg -> HeaderModel.Model -> ( Model, Cmd Msg )
 updateHeader model msg headerModel =
     let
@@ -146,6 +160,7 @@ updateHeader model msg headerModel =
             HeaderUpdate.update msg headerModel
     in
     { model | header = newHeaderModel } ! [ Cmd.map HeaderMsg cmds ]
+
 
 updateLoader : Model -> LoaderModel.Msg -> LoaderModel.Model -> ( Model, Cmd Msg )
 updateLoader model msg loaderModel =

@@ -266,7 +266,6 @@
     top: 2px;
   }
 }
-
 .o-footer {
 
   // BLOCK TABLET
@@ -282,4 +281,7 @@
       display: none;
     }
   }
+
+.o-footer .a-btn--circle {
+  position: absolute;
 }

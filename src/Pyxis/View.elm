@@ -7,8 +7,9 @@ import Pyxis.Components.Colors.View as ColorsComponent
 import Pyxis.Components.Footer.View as FooterComponent
 import Pyxis.Components.Form.View as FormComponent
 import Pyxis.Components.Header.View as HeaderComponent
-import Pyxis.Components.Login.View as LoginComponent
+import Pyxis.Components.Lists.View as ListsComponent
 import Pyxis.Components.Loader.View as LoaderComponent
+import Pyxis.Components.Login.View as LoginComponent
 import Pyxis.Components.Messages.View as MessagesComponent
 import Pyxis.Components.Tooltips.View as TooltipsComponent
 import Pyxis.Components.Typography.View as Typography
@@ -56,6 +57,9 @@ dynamicView ({ route } as model) =
 
         LoaderRoute ->
             (wrapper << List.map (Html.map LoaderMsg)) (LoaderComponent.view model.loader)
+
+        ListsRoute ->
+            (wrapper << List.map (Html.map ListsMsg)) (ListsComponent.view model.lists)
 
         MessagesRoute ->
             (wrapper << List.map (Html.map MessagesMsg)) (MessagesComponent.view model.messages)
