@@ -40,7 +40,7 @@
 }
 
 // MOBILE HEADER //
-.o-header .m-overlay--right.is-active + .m-nav .a-container .m-list .a-icon {
+.o-header .m-offCanvas--right.is-active + .m-nav .a-container .m-list .a-icon {
   color: color(textAlt, light);
 
   @include mq(small) {
@@ -48,7 +48,7 @@
   }
 }
 
-.o-header .m-overlay--right.is-active + .m-nav .a-container .a-logo {
+.o-header .m-offCanvas--right.is-active + .m-nav .a-container .a-logo {
   display: none;
   transition-delay: 3s;
 
@@ -57,7 +57,7 @@
   }
 }
 
-.o-header .m-overlay--right.is-active + .m-nav .a-container .a-logo.a-logo--white {
+.o-header .m-offCanvas--right.is-active + .m-nav .a-container .a-logo.a-logo--white {
   display: flex;
   z-index: 10;
 

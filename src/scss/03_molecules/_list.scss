@@ -6,10 +6,6 @@
   margin: 0;
   padding: 0;
   position: relative;
-
-  &.m-list--sublist {
-    padding: map-get($listConfig, padding) 0;
-  }
 }
 
 .m-nav .m-list {

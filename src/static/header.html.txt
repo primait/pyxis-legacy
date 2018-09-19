@@ -1,5 +1,5 @@
 <header class="o-header">
-  <div class="m-overlay m-overlay--right bg-backgroundAlt-dark">
+  <div class="m-offCanvas m-offCanvas--right bg-backgroundAlt-dark">
     <div class="m-accordion m-accordion--dark">
       <div class="a-accordion__item">
         <a onClick="document.querySelector('.a-accordion__item').className += ' is-open';" class="a-accordion__item__toggle a-link--alt fs-xsmall fw-heavy">
@@ -60,7 +60,7 @@
   </div>
   <nav class="m-nav">
     <div class="a-container">
-      <button onClick="var overlay = document.querySelector('.m-overlay--right'); ~overlay.className.indexOf('is-active') ? (overlay.className = overlay.className.replace('is-active', '')) : overlay.className += ' is-active';" class="a-hamburger" type="button">
+      <button onClick="var offCanvas = document.querySelector('.m-offCanvas--right'); ~offCanvas.className.indexOf('is-active') ? (offCanvas.className = offCanvas.className.replace('is-active', '')) : offCanvas.className += ' is-active';" class="a-hamburger" type="button">
         <span class="a-hamburger__box">
           <span class="a-hamburger__inner"></span>
         </span>
@@ -74,16 +74,16 @@
           <li class="a-list__item hideMediumDown"><a href="#" class="a-link a-link--underline fs-xsmall fw-heavy">Moto</a></li>
           <li class="a-list__item hideMediumDown"><a href="#" class="a-link a-link--underline fs-xsmall fw-heavy">Furgoni</a></li>
           <li class="a-list__item hideSmallDown a-list__item--button"><a class="a-link a-link--underline fs-xsmall fw-heavy" onClick="document.querySelector('.a-list__item--button').className += ' is-active';">Preventivo</a></li>
-          <li class="a-list__item a-list__item--reserved-area"><a href="#" onClick="var overlay = document.querySelector('.m-overlay--left'); ~overlay.className.indexOf('is-active') ? (overlay.className = overlay.className.replace('is-active', '')) : overlay.className += ' is-active';" class="a-link a-link--underline fs-xsmall fw-heavy"><i class="a-icon a-icon-people"></i> <span class="hideMediumDown">Accedi</span></a></li>
+          <li class="a-list__item a-list__item--reserved-area"><a href="#" onClick="var offCanvas = document.querySelector('.m-offCanvas--left'); ~offCanvas.className.indexOf('is-active') ? (offCanvas.className = offCanvas.className.replace('is-active', '')) : offCanvas.className += ' is-active';" class="a-link a-link--underline fs-xsmall fw-heavy"><i class="a-icon a-icon-people"></i> <span class="hideMediumDown">Accedi</span></a></li>
         </ul>
     </div>
   </nav>
-  <div class="m-overlay m-overlay--left bg-brand-base">
+  <div class="m-offCanvas m-offCanvas--left bg-brand-base">
   </div>
 </header>
 <br/><br/><br/>
 <header class="o-header">
-  <div class="m-overlay m-overlay--right bg-backgroundAlt-dark">
+  <div class="m-offCanvas m-offCanvas--right bg-backgroundAlt-dark">
       <ul class="m-accordion m-accordion--dark">
         <li class="a-accordion__item">
             <a onClick="document.querySelector('.a-accordion__item').className += ' is-active';" class="a-accordion__item__toggle a-link--alt fs-xsmall fw-heavy">
@@ -118,7 +118,7 @@
   </div>
   <nav class="m-nav">
     <div class="a-container">
-      <button onClick="var overlay = document.querySelector('.m-overlay--right'); ~overlay.className.indexOf('is-active') ? (overlay.className = overlay.className.replace('is-active', '')) : overlay.className += ' is-active';" class="a-hamburger" type="button">
+      <button onClick="var offCanvas = document.querySelector('.m-offCanvas--right'); ~offCanvas.className.indexOf('is-active') ? (offCanvas.className = offCanvas.className.replace('is-active', '')) : offCanvas.className += ' is-active';" class="a-hamburger" type="button">
         <span class="a-hamburger__box">
           <span class="a-hamburger__inner"></span>
         </span>
@@ -132,16 +132,16 @@
           <li class="a-list__item hideMediumDown"><a href="#" class="a-link a-link--underline fs-xsmall fw-heavy">Moto</a></li>
           <li class="a-list__item hideMediumDown"><a href="#" class="a-link a-link--underline fs-xsmall fw-heavy">Furgoni</a></li>
           <li class="a-list__item hideSmallDown a-list__item--button"><a class="a-link a-link--underline fs-xsmall fw-heavy" onClick="document.querySelector('.a-list__item--button').className += ' is-active';">Preventivo</a></li>
-          <li class="a-list__item a-list__item--reserved-area"><a href="#" onClick="var overlay = document.querySelector('.m-overlay--left'); ~overlay.className.indexOf('is-active') ? (overlay.className = overlay.className.replace('is-active', '')) : overlay.className += ' is-active';" class="a-link a-link--underline fs-xsmall fw-heavy"><i class="a-icon a-icon-people"></i> <span class="hideMediumDown">Benvenuta Alessandra</span></a></li>
+          <li class="a-list__item a-list__item--reserved-area"><a href="#" onClick="var offCanvas = document.querySelector('.m-offCanvas--left'); ~offCanvas.className.indexOf('is-active') ? (offCanvas.className = offCanvas.className.replace('is-active', '')) : offCanvas.className += ' is-active';" class="a-link a-link--underline fs-xsmall fw-heavy"><i class="a-icon a-icon-people"></i> <span class="hideMediumDown">Benvenuta Alessandra</span></a></li>
         </ul>
     </div>
   </nav>
-  <div class="m-overlay m-overlay--left bg-background">
+  <div class="m-offCanvas m-offCanvas--left bg-background">
   </div>
 </header>
 <br/><br/><br/>
 <header class="o-header">
-  <div class="m-overlay m-overlay--right">
+  <div class="m-offCanvas m-offCanvas--right">
       <ul class="m-accordion m-accordion--dark">
         <li class="a-accordion__item">
             <a onClick="document.querySelector('.a-accordion__item').className += ' is-active';" class="a-link">
@@ -176,7 +176,7 @@
   </div>
   <nav class="m-nav m-nav--navigation-block">
     <div class="a-container">
-      <button onClick="var overlay = document.querySelector('.m-overlay--right'); ~overlay.className.indexOf('is-active') ? (overlay.className = overlay.className.replace('is-active', '')) : overlay.className += ' is-active';" class="a-hamburger a-hamburger--spin" type="button">
+      <button onClick="var offCanvas = document.querySelector('.m-offCanvas--right'); ~offCanvas.className.indexOf('is-active') ? (offCanvas.className = offCanvas.className.replace('is-active', '')) : offCanvas.className += ' is-active';" class="a-hamburger a-hamburger--spin" type="button">
         <span class="a-hamburger__box">
           <span class="a-hamburger__inner"></span>
         </span>
@@ -190,7 +190,7 @@
           <li class="a-list__item"><a href="#" class="a-link a-link--underline">Moto</a></li>
           <li class="a-list__item"><a href="#" class="a-link a-link--underline">Furgoni</a></li>
           <li class="a-list__item a-list__item--button"><a class="a-link a-link--underline" onClick="document.querySelector('.a-list__item--button .a-link--underline').className += ' is-active';">Preventivo</a></li>
-          <li class="a-list__item"><a href="#" onClick="var overlay = document.querySelector('.m-overlay--left'); ~overlay.className.indexOf('is-active') ? (overlay.className = overlay.className.replace('is-active', '')) : overlay.className += ' is-active';" class="a-link a-link--underline"><i class="a-icon a-icon-people"></i> <span class="hideMediumDown">Accedi</span></a></li>
+          <li class="a-list__item"><a href="#" onClick="var offCanvas = document.querySelector('.m-offCanvas--left'); ~offCanvas.className.indexOf('is-active') ? (offCanvas.className = offCanvas.className.replace('is-active', '')) : offCanvas.className += ' is-active';" class="a-link a-link--underline"><i class="a-icon a-icon-people"></i> <span class="hideMediumDown">Accedi</span></a></li>
         </ul>
         <p class="fs-small hideMediumDown alignCenter"><strong>Prima Assicurazioni,</strong><br/>
             ti propone la polizza auto sottoscritta da <strong>Great Lakes Insurance (SE)</strong>.
@@ -201,7 +201,7 @@
         </div>
     </div>
   </nav>
-  <div class="m-overlay m-overlay--left">
+  <div class="m-offCanvas m-offCanvas--left">
   </div>
 </header>
 <br/><br/><br/><br/><br/><br/>

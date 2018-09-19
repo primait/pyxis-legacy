@@ -16,7 +16,7 @@ $formConfig: (
   fieldPadding: 0 15px,
   fieldShadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10),
   iconSize: 20px,
-  iconPosition: 26%,
+  buttonIconOffset: 26%,
   labelWidth: 280px,
 );
 
@@ -80,4 +80,14 @@ $pillsConfig: (
 $navConfig: (
  desktopHeight: 70px,
  mobileHeight : 40px,
+);
+
+$headerConfig: (
+  borderWidth: 1px,
+  iconSize: 20px,
+  itemPadding: 0 20px,
+);
+
+$footerConfig: (
+ listHeight: 25px,
 );

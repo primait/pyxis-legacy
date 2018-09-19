@@ -80,25 +80,3 @@ $fontSizes: (
 
 $goldenRatio: 1.618; // https://medium.com/@zkareemz/golden-ratio-62b3b6d4282a
 $zIndexes: tooltip;
-
-$formConfig: (
-  borderRadius: 5px,
-  borderWidth: 1px,
-  buttonHeight: 40px,
-  fieldDisabledOpacity: 0.65,
-  fieldHeight: 50px,
-  fieldPadding: 0 15px,
-  fieldShadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10),
-  iconSize: 20px,
-  labelWidth: 280px,
-);
-
-$headerConfig: (
-  borderWidth: 1px,
-  iconSize: 20px,
-  itemPadding: 0 20px,
-);
-
-$footerConfig: (
- listHeight: 25px,
-);

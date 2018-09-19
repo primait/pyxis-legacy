@@ -1,4 +1,4 @@
-.m-overlay {
+.m-offCanvas {
   height: 100vh;
 	opacity: 0;
   padding: (map-get($navConfig, mobileHeight) + 20px ) 0 0 0;
@@ -16,13 +16,13 @@
   }
 }
 
-.m-overlay * {
+.m-offCanvas * {
 	opacity: 0.4;
 	transform: translateY(25%) rotateX(-35deg);
 	transition: transform 1s, opacity 0.5s;
 }
 
-.m-overlay.is-active * {
+.m-offCanvas.is-active * {
 	opacity: 1;
 	transform: rotateX(0deg);
 }
