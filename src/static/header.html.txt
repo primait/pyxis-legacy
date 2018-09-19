@@ -74,7 +74,7 @@
           <li class="a-list__item hideMediumDown"><a href="#" class="a-link a-link--underline fs-xsmall fw-heavy">Moto</a></li>
           <li class="a-list__item hideMediumDown"><a href="#" class="a-link a-link--underline fs-xsmall fw-heavy">Furgoni</a></li>
           <li class="a-list__item hideSmallDown a-list__item--button"><a class="a-link a-link--underline fs-xsmall fw-heavy" onClick="document.querySelector('.a-list__item--button').className += ' is-active';">Preventivo</a></li>
-          <li class="a-list__item a-list__item--reserved-area"><a href="#" onClick="var overlay = document.querySelector('.m-overlay--left'); ~overlay.className.indexOf('is-active') ? (overlay.className = overlay.className.replace('is-active', '')) : overlay.className += ' is-active';" class="a-link a-link--underline fs-xsmall fw-heavy"><i class="a-icon a-icon-search"></i> <span class="hideMediumDown">Accedi</span></a></li>
+          <li class="a-list__item a-list__item--reserved-area"><a href="#" onClick="var overlay = document.querySelector('.m-overlay--left'); ~overlay.className.indexOf('is-active') ? (overlay.className = overlay.className.replace('is-active', '')) : overlay.className += ' is-active';" class="a-link a-link--underline fs-xsmall fw-heavy"><i class="a-icon a-icon-people"></i> <span class="hideMediumDown">Accedi</span></a></li>
         </ul>
     </div>
   </nav>
@@ -132,7 +132,7 @@
           <li class="a-list__item hideMediumDown"><a href="#" class="a-link a-link--underline fs-xsmall fw-heavy">Moto</a></li>
           <li class="a-list__item hideMediumDown"><a href="#" class="a-link a-link--underline fs-xsmall fw-heavy">Furgoni</a></li>
           <li class="a-list__item hideSmallDown a-list__item--button"><a class="a-link a-link--underline fs-xsmall fw-heavy" onClick="document.querySelector('.a-list__item--button').className += ' is-active';">Preventivo</a></li>
-          <li class="a-list__item a-list__item--reserved-area"><a href="#" onClick="var overlay = document.querySelector('.m-overlay--left'); ~overlay.className.indexOf('is-active') ? (overlay.className = overlay.className.replace('is-active', '')) : overlay.className += ' is-active';" class="a-link a-link--underline fs-xsmall fw-heavy"><i class="a-icon a-icon-search"></i> <span class="hideMediumDown">Benvenuta Alessandra</span></a></li>
+          <li class="a-list__item a-list__item--reserved-area"><a href="#" onClick="var overlay = document.querySelector('.m-overlay--left'); ~overlay.className.indexOf('is-active') ? (overlay.className = overlay.className.replace('is-active', '')) : overlay.className += ' is-active';" class="a-link a-link--underline fs-xsmall fw-heavy"><i class="a-icon a-icon-people"></i> <span class="hideMediumDown">Benvenuta Alessandra</span></a></li>
         </ul>
     </div>
   </nav>
@@ -190,13 +190,13 @@
           <li class="a-list__item"><a href="#" class="a-link a-link--underline">Moto</a></li>
           <li class="a-list__item"><a href="#" class="a-link a-link--underline">Furgoni</a></li>
           <li class="a-list__item a-list__item--button"><a class="a-link a-link--underline" onClick="document.querySelector('.a-list__item--button .a-link--underline').className += ' is-active';">Preventivo</a></li>
-          <li class="a-list__item"><a href="#" onClick="var overlay = document.querySelector('.m-overlay--left'); ~overlay.className.indexOf('is-active') ? (overlay.className = overlay.className.replace('is-active', '')) : overlay.className += ' is-active';" class="a-link a-link--underline"><i class="a-icon a-icon-search"></i> <span class="hideMediumDown">Accedi</span></a></li>
+          <li class="a-list__item"><a href="#" onClick="var overlay = document.querySelector('.m-overlay--left'); ~overlay.className.indexOf('is-active') ? (overlay.className = overlay.className.replace('is-active', '')) : overlay.className += ' is-active';" class="a-link a-link--underline"><i class="a-icon a-icon-people"></i> <span class="hideMediumDown">Accedi</span></a></li>
         </ul>
-        <p class="fs-small"><strong>Prima Assicurazioni,</strong><br/>
+        <p class="fs-small hideMediumDown alignCenter"><strong>Prima Assicurazioni,</strong><br/>
             ti propone la polizza auto sottoscritta da <strong>Great Lakes Insurance (SE)</strong>.
           </p>
-        <div class="m-pills">
-          <p class="m-pills__text fs-medium fw-heavy"><i class="a-icon a-icon-search"></i> 02 72 62 64 62</p>
+        <div class="m-pills hideMediumDown">
+          <p class="m-pills__text fs-medium fw-heavy"><i class="a-icon a-icon-phone"></i> 02 72 62 64 62</p>
           <p class="c-text-base fs-xsmall">lun-ven 8.30/19.30, sab 9.00/13.00</p>
         </div>
     </div>

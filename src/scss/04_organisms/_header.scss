@@ -13,10 +13,6 @@
 
 .o-header .m-nav--navigation-block {
 
-  .m-list {
-    display: none
-  }
-
   .a-container {
     justify-content: center;
 
@@ -25,20 +21,10 @@
     }
   }
 
-  .m-pills,
-  .fs-small {
-
-    @include mq(medium) {
-      visibility: visible;
-      width: auto;
-    }
-  }
-
   .m-list,
   .a-hamburger {
     display: none;
   }
-
 }
 
 .o-header .a-logo.a-logo--white {
