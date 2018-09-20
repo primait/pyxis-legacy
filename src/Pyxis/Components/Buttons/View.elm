@@ -36,6 +36,9 @@ view model =
         tertiaryBtn =
             pickBtn Tertiary
 
+        circleBtn =
+            pickBtn Circle
+
         renderBtn : Maybe Btn -> List (Html Msg)
         renderBtn =
             List.singleton << renderOrNothing << Maybe.map btn
@@ -45,6 +48,7 @@ view model =
     , (componentShowdown "Btn primary" "btnPrimary" InspectHtml << renderBtn) primaryBtn
     , (componentShowdown "Btn secondary" "btnSecondary" InspectHtml << renderBtn) secondaryBtn
     , (componentShowdown "Btn tertiary" "btnTertiary" InspectHtml << renderBtn) tertiaryBtn
+    , (componentShowdown "Btn circle" "btnCircle" InspectHtml << renderBtn) circleBtn
     , (componentShowdown "Btn group" "btnGroup" InspectHtml << (List.singleton << btnGroup << List.map btn)) model.buttons
     ]
 
