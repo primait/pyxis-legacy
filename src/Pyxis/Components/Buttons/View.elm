@@ -76,5 +76,5 @@ btn { label, type_, icon, isDisabled } =
 renderIcon : String -> Html Msg
 renderIcon iconName =
     i
-        [ class <| "a-icon a-icon--" ++ iconName ]
+        [ class <| "a-icon a-icon-" ++ iconName ]
         []

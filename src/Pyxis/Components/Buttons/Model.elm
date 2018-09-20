@@ -26,7 +26,7 @@ initialModel =
         [ Btn Primary "Primary action" Nothing False
         , Btn Secondary "Secondary action" Nothing False
         , Btn Tertiary "Tertiary action" Nothing False
-        , Btn Circle "" (Just "icon-mark") False
+        , Btn Circle "" (Just "caret-down") False
         ]
 
 

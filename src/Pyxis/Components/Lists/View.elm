@@ -21,19 +21,29 @@ view : Model -> List (Html Msg)
 view model =
     [ componentTitle [ text "Lists" ]
     , divider
-    , componentShowdown "Default list" "defaultList" InspectHtml [ list ]
+    , componentShowdown "DirectionColumn list" "defaultList" InspectHtml [ list "directionColumn" ]
+    , componentShowdown "DirectionRow list" "defaultList" InspectHtml [ list "directionRow" ]
+    , componentShowdown "DirectionColumn Sublist" "defaultList" InspectHtml [ sublist  "directionColumn" "directionColumn" ]
+    , componentShowdown "DirectionRow Sublist" "defaultList" InspectHtml [ sublist "directionColumn" "directionRow" ]
     ]
 
-
-list : Html Msg
-list =
+list : String -> Html Msg
+list directionFlex =
     ul
-        [ class "m-list" ]
-        (List.map listItem [ "Ciao", "Hello", "Bonjour" ])
+        [ class <| "m-list " ++ directionFlex ]
+        [ listItem [ text "Ciao"], listItem [ text "Hello" ], listItem [ text "Bonjour" ] ]
 
 
-listItem : String -> Html Msg
-listItem str =
+sublist : String -> String -> Html Msg
+sublist directionFlex directionFlexSublist =
+    ul
+        [ class <| "m-list " ++ directionFlex ]
+        [ listItem [ text "Sublist", listItem [ list directionFlexSublist ] ]
+        ]
+
+
+listItem : List (Html Msg) -> Html Msg
+listItem arg =
     li
         [ class "a-list__item" ]
-        [ text str ]
+        (arg)
