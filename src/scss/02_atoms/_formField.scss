@@ -27,15 +27,25 @@
   @include mq(small) {
     min-width: map-get($formConfig, fieldMaxWidth);
   }
+
+  &.fieldSmall {
+    min-width: 100px;
+  }
+
+  &.fieldLarge {
+    min-width: 320px;
+  }
+
+  & + & {
+    margin-left: 10px;
+  }
 }
 
 .a-form__field__input,
 .a-form__field__date,
 .a-form__field__select {
   transition: background 0.3s, border 0.3s, color 0.3s;
-
   -webkit-appearance: none;
-  -moz-appearance: none;
 }
 
 .a-form__field__input,
