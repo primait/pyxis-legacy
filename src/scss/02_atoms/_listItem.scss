@@ -41,7 +41,7 @@
 
     @include mq(small) {
       border-left: map-get($listConfig, borderWidth) solid color(shape);
-      padding: map-get($listConfig, padding) (map-get($listConfig, padding) * 2);
+      padding: map-get($listConfig, padding);
     }
   }
 }
