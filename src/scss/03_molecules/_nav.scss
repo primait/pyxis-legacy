@@ -1,20 +1,26 @@
 .m-nav {
   align-items: center;
-  border-top: 1px solid color(shape);
+  border-color: color(shape);
   display: flex;
   flex: 1 0 auto;
   height: map-get($navConfig, mobileHeight);
   justify-content: center;
-  z-index: 10;
+  z-index: 2050;
 
-  @include mq(small) {
-    background: color(background);
-    border-bottom: 1px solid color(shape);
+  @include mq(medium) {
+    background: color(background, base);
+    border-bottom: 1px solid color(shape, base);
     height: map-get($navConfig, desktopHeight);
+  }
+
+  &.m-nav--scroll {
+    background: color(background, base);
+    border-bottom: 1px solid color(shape);
   }
 }
 
 .m-nav .a-container {
   align-items: center;
+  flex-direction: row;
   justify-content: space-between;
 }

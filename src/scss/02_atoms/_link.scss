@@ -32,7 +32,6 @@
 
   &.a-link--underline {
     color: color(text, dark);
-    padding: (map-get($linkConfig, linkPadding)/2) 0;
 
     &:before,
     &:after {

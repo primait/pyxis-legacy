@@ -7,15 +7,19 @@
   position: relative;
   transition: all .5s ease-in-out;
   width: 100%;
-  z-index: 9px;
+  z-index: 100;
 
   @include mq(small) {
-    // position: fixed;
-    // top: calc(100% - 50px);
+    position: fixed;
+    top: calc( 100% - 60px );
+  }
+
+  &.is-unfixed {
+    position: relative;
   }
 
   &.is-active {
-    top: 70%;
+    top:  calc( 100% - ( (50px * 3) + (25px * 9 ) ) );
   }
 
   &:before {
@@ -31,26 +35,41 @@
       display: block;
     }
   }
+
+  &.o-footer--navigation-block {
+    position: relative;
+
+    &:before,
+    .m-btnGroup {
+      display: none;
+    }
+  }
+}
+
+.footerSentinel {
+  height: 2px;
+  background: transparent;
+  width: 100%;
+  position: relative;
+  display: block;
+  float: left;
+  transform: translateY(60px);
 }
 
 .o-footer .a-container--navigation {
   border-bottom: 1px solid color(shape, dark);
-  display: none;
-  flex-wrap: wrap;
   flex: 1 0 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
   padding-bottom: (map-get($footerConfig, listHeight) * 2);
-
-  @include mq(medium) {
-    display: flex;
-  }
 }
 
-.o-footer .m-list--support,
 .o-footer .m-list--customer,
-.o-footer .m-list--informative,
-.o-footer .m-list--guarantee {
+.o-footer .m-list--support,
+.o-footer .m-list--guarantees,
+.o-footer .m-list--informative {
   border-right: 1px solid color(shape, dark);
-  flex: 1 0 20%;
+  flex: 0 0 20%;
   overflow: hidden;
   position: relative;
   z-index: 10;
@@ -119,19 +138,16 @@
 }
 
 // GUARANTEE LIST
-.o-footer .m-list--guarantee {
-  flex: 1 0 40%;
+.o-footer .m-list--guarantees {
+  flex: 1 0 30%;
 }
 
-.o-footer .m-list--guarantee .m-list {
-  height: (50px /2) * 6;
+.o-footer .m-list--guarantees .m-list {
+  height: ( 50px / 2) * 7;
   flex-wrap: wrap;
   width: 100%;
 }
 
-.o-footer .m-list--guarantee .m-list .a-list__item {
-  flex: 1 0 50%;
-}
 
 // HORIZONTAL LISTS MENU //
 .o-footer .m-list--company,
@@ -171,9 +187,11 @@
 }
 
 .o-footer .a-container--payment .a-list__item {
+  justify-content: center;
   padding: (map-get($footerConfig, listHeight) * 2 ) (map-get($footerConfig, listHeight) / 5) map-get($footerConfig, listHeight);
 }
 
+.o-footer .m-list .a-list__item svg,
 .o-footer .m-list .a-list__item img {
   width: (map-get($footerConfig, listHeight) * 2) - 10px;
 }
@@ -185,6 +203,7 @@
 // TOGGLE BTN //
 .o-footer .m-btnGroup {
   display: none;
+
 
   @include mq(small) {
     display: flex;
