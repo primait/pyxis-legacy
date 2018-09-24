@@ -218,3 +218,18 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
         options
         False
         [ NotEmpty "Empty value is not acceptable" ]
+
+
+smallTextFieldConfig : Model -> FormField Model Msg
+smallTextFieldConfig { formDisabled } =
+    Form.textConfig
+        "text_field"
+        "Text field"
+        [ placeholder "Something", disabled formDisabled, class "fieldSmall" ]
+        .textField
+        (UpdateText Text)
+        (Focus Text)
+        (Blur Text)
+        False
+        [ NotEmpty "Empty value is not acceptable"
+        ]

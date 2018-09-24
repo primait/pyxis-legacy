@@ -29,11 +29,16 @@
   }
 
   &.fieldSmall {
-    min-width: 100px;
+    min-width: calc(50% - 5px);
+
+    @include mq(small) {
+      min-width: map-get($formConfig, fieldMaxWidthSmall);
+      width: map-get($formConfig, fieldMaxWidthSmall);
+    }
   }
 
   &.fieldLarge {
-    min-width: 320px;
+    min-width: map-get($formConfig, fieldMaxWidthLarge);
   }
 
   & + & {
