@@ -3,7 +3,7 @@
   flex: 0 0 100%;
 
   @include mq(small) {
-    flex: 0 0 map-get($formConfig, fieldMaxWidth);
+    flex: 0 0 auto;
   }
 }
 
