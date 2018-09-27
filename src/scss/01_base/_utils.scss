@@ -31,7 +31,7 @@
   .fw-#{$fontWeight} {
     font-family: font($fontWeight);
 
-    @if $fontWeight == 'heavy' {
+    @if $fontWeight == heavy {
       letter-spacing: 1px;
       text-transform: uppercase;
     }

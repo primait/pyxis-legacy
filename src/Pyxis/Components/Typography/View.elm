@@ -19,7 +19,7 @@ view model =
     [ componentTitle [ text "Typography" ]
     , divider
     ]
-        ++ (List.intersperse divider << List.map renderText) [ h1, h2, h3, h4, h5, h6, p ]
+        ++ (List.intersperse divider << List.map renderText) [ h1, h2, h3, h4, p ]
 
 
 renderText : (List (Attribute Msg) -> List (Html Msg) -> Html Msg) -> Html Msg
