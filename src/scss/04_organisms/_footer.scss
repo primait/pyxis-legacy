@@ -19,7 +19,7 @@
   }
 
   &.is-active {
-    top:  calc( 100% - ( (50px * 3) + (25px * 9 ) ) );
+    top:  calc( 100% - 380px );
   }
 
   &:before {
@@ -46,7 +46,7 @@
   }
 }
 
-.footerSentinel {
+#footerSentinel {
   height: 2px;
   background: transparent;
   width: 100%;
