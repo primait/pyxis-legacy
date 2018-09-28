@@ -56,7 +56,6 @@ view ({ datepicker, isDatePickerOpen } as model) =
             , Form.wrapper <| Form.renderWithGroup [ iconMail ] model <| textFieldConfig model
             , Form.wrapper <| Form.render model <| passwordFieldConfig model
             , Form.wrapper <| Form.render model <| textareaFieldConfig model
-            , Form.wrapper <| Form.renderList model <| [ smallTextFieldConfig model, smallTextFieldConfig model ]
             , Form.wrapper <| Form.renderWithGroup [ iconCalendar ] model <| datePickerFieldConfig model
             , Form.wrapper <| Form.render model <| autocompleteFieldConfig model
             , Form.wrapper <| Form.render model <| radioFieldConfig model

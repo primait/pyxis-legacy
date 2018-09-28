@@ -46,16 +46,13 @@ $containerConfig: (
 );
 
 $linkConfig: (
-  iconSize: 20px,
-  linkPadding: 0 20px,
-  iconPadding: 0 5px,
   underlineHeight: 2px,
 );
 
 $listConfig: (
   borderWidth: 1px,
   iconSize: 20px,
-  padding: 10px,
+  padding: 20px,
 );
 
 $accordionConfig: (
@@ -66,7 +63,7 @@ $accordionConfig: (
 
 $hamburgerConfig: (
  borderRadius  : 4px,
- layerWidth    : 20px,
+ layerWidth    : 16px,
  layerHeight   : 3px,
  layerSpacing  : 2px,
  paddingHeight : 10px,

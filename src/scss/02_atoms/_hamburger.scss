@@ -42,7 +42,7 @@
     transition-property: transform;
     transition-duration: 0.15s;
     transition-timing-function: ease;
-    width: 20px;
+    width: map-get($hamburgerConfig, layerWidth);
   }
 
   &::before,
