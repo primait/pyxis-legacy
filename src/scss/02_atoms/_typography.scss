@@ -51,16 +51,16 @@ h3 {
 }
 
 h4 {
-  @extend .fs-small;
+  @extend .fs-xsmall, .fw-heavy;
 
   @include mq(small) {
-    font-size: size(small);
+    font-size: size(xsmall);
     line-height: lineHeight(small);
   }
 
   @include mq(medium) {
-    font-size: size(base);
-    line-height: lineHeight(base);
+    font-size: size(xsmall);
+    line-height: lineHeight(small);
   }
 }
 
