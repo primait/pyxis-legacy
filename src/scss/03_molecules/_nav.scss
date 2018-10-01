@@ -7,7 +7,7 @@
   justify-content: center;
   z-index: 2050;
 
-  @include mq(medium) {
+  @include mq(small) {
     background: color(background, base);
     border-bottom: 1px solid color(shape, base);
     height: map-get($navConfig, desktopHeight);
@@ -23,4 +23,10 @@
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
+
+  .fast-quote & {
+    @include mq(medium) {
+      align-items: flex-start;
+    }
+  }
 }

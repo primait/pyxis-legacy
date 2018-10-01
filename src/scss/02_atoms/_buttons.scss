@@ -62,6 +62,7 @@
   }
 
   &.a-btn--circle {
+    align-items: center;
     background: color(brand, light);
     border-radius: map-get($formConfig, circleRadius);
     box-shadow: 0 5px 20px rgba(0,0,0,0.3);
@@ -132,13 +133,10 @@
 
     .a-icon {
       color: color(textAlt, light);
-      left: map-get($formConfig, buttonIconOffset);
       position: absolute;
-      top: map-get($formConfig, buttonIconOffset);;
+      top: map-get($formConfig, buttonIconOffset);
 
       .is-active & {
-        left: map-get($formConfig, buttonIconOffset) - 1%;
-        top: map-get($formConfig, buttonIconOffset) + 2%;
         transform: rotate(180deg);
       }
     }

@@ -10,7 +10,8 @@
 
   .reserved-area &,
   .renewal & {
-    position: relative;
+    position: absolute;
+    top: 0;
   }
 
   &.o-header--navigation-block {
@@ -59,14 +60,21 @@
   }
 }
 
+.o-header .m-nav .m-list .a-list__item.is-active .a-link {
+
+  .reserved-area &,
+  .renewal & {
+    background: transparent;
+  }
+}
+
 .o-header .m-nav .m-list .a-list__item.a-list__item--reserved-area {
   padding: 0;
 
   &:after,
   &:before {
-    @include mq(small) {
-      display: none
-    }
+
+
   }
 
   @include mq(small) {

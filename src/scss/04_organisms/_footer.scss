@@ -64,6 +64,14 @@
   padding-bottom: (map-get($footerConfig, listHeight) * 2);
 }
 
+.o-footer .m-list .a-list__item {
+  padding: 5px;
+
+  @include mq(large) {
+    padding: 10px;
+  }
+}
+
 .o-footer .m-list--customer,
 .o-footer .m-list--support,
 .o-footer .m-list--guarantees,
@@ -205,7 +213,7 @@
   display: none;
 
 
-  @include mq(small) {
+  @include mq(medium) {
     display: flex;
     position: absolute;
     right: 5%;

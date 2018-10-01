@@ -10,6 +10,8 @@
 
   &.is-open {
     background: color(backgroundAlt);
+    padding-top: ((map-get($accordionConfig, accordionPadding) / 2) + 1px);
+    top: -1px;
 
     .a-icon:after {
       transform: rotate(-225deg);
