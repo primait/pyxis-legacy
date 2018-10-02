@@ -11,19 +11,15 @@
 
   @include mq(medium) {
     position: fixed;
-    top: calc( 100% - map-get($footerConfig, heightOpen) );
+    top: calc( 100% - #{map-get($footerConfig, heightClose)} );
   }
 
   &.is-unfixed {
     position: relative;
-
-    .m-btnGroup {
-      display: none;
-    }
   }
 
   &.is-active {
-    top:  calc( 100% - map-get($footerConfig, heightClose) );
+    top: calc( 100% - #{map-get($footerConfig, heightOpen)} );
   }
 
   &:before {
@@ -51,13 +47,18 @@
 }
 
 #footerSentinel {
-  height: 2px;
   background: transparent;
-  width: 100%;
-  position: relative;
   display: block;
   float: left;
+  height: 10px;
+  position: relative;
   transform: translateY(60px);
+  width: 100%;
+
+  .insurance & {
+    background: color(background, dark);
+    height: 200px;
+  }
 }
 
 .o-footer .a-container--navigation {
@@ -216,7 +217,6 @@
 .o-footer .m-btnGroup {
   display: none;
 
-
   @include mq(medium) {
     display: flex;
     position: absolute;
@@ -229,6 +229,10 @@
     top: 0;
   }
 }
+
+.o-footer.is-unfixed .m-btnGroup {
+    display: none;
+  }
 
 .o-footer .m-btnGroup .a-icon {
   transition: all .2s ease-in-out;
