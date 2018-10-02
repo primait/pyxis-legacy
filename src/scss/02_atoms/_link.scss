@@ -18,16 +18,16 @@
     width: 100%;
   }
 
-  &.is-active {
-    color: color(brandAlt, dark);
-  }
-
   &.a-link--alt {
     color: color(textAlt, light);
 
     &:hover {
       color: color(textAlt);
     }
+  }
+
+  &.is-active {
+    color: color(brandAlt, dark);
   }
 
   &.a-link--underline {

@@ -85,9 +85,9 @@ initialMenu =
     , Menu "typography" "Typography" TypographyRoute False
     , Menu "buttons" "Buttons" ButtonsRoute False
     , Menu "form" "Form" FormRoute False
-    , Menu "header" "Header" HeaderRoute False
+    -- , Menu "header" "Header" HeaderRoute False
     , Menu "messages" "Messages" MessagesRoute False
-    , Menu "footer" "Footer" FooterRoute False
+    -- , Menu "footer" "Footer" FooterRoute False
     , Menu "tooltips" "Tooltips" TooltipsRoute False
     ]
 

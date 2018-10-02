@@ -3,13 +3,18 @@
   display: flex;
   flex: 1 0 auto;
   left: 0;
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
-  z-index: 20;
+  z-index: 1010;
+
+  @include mq(medium) {
+    position: fixed;
+  }
 
   .reserved-area &,
-  .renewal & {
+  .renewal &,
+  .static-page & {
     position: absolute;
     top: 0;
   }
@@ -52,7 +57,7 @@
 .o-header .m-nav .m-list .a-list__item.a-list__item--button {
 
   &.is-active {
-    padding: 0;
+    padding: 0 5px;
   }
 
   &.is-animate--done {
@@ -71,14 +76,22 @@
 .o-header .m-nav .m-list .a-list__item.a-list__item--reserved-area {
   padding: 0;
 
-  &:after,
-  &:before {
-
-
-  }
-
   @include mq(small) {
     padding: (map-get($listConfig, padding) / 2) map-get($listConfig, padding);
+  }
+}
+
+.o-header .m-nav .m-list .a-list__item.a-list__item--reserved-area .a-link {
+  &:after,
+  &:before {
+    display: none;
+  }
+
+  @include mq(medium) {
+    &:after,
+    &:before {
+      display: flex;
+    }
   }
 }
 
@@ -96,8 +109,7 @@
 }
 
 .o-header .m-offCanvas--right.is-animate--in + .m-nav.m-nav--scroll {
-  background: color(backgroundAlt, dark);
-  border-bottom: 1px solid color(shape, dark);
+  position: absolute;
 }
 
 .o-header .m-offCanvas--right.is-animate--done + .m-nav .m-accordion {

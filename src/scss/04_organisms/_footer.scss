@@ -9,17 +9,21 @@
   width: 100%;
   z-index: 100;
 
-  @include mq(small) {
+  @include mq(medium) {
     position: fixed;
-    top: calc( 100% - 60px );
+    top: calc( 100% - map-get($footerConfig, heightOpen) );
   }
 
   &.is-unfixed {
     position: relative;
+
+    .m-btnGroup {
+      display: none;
+    }
   }
 
   &.is-active {
-    top:  calc( 100% - 380px );
+    top:  calc( 100% - map-get($footerConfig, heightClose) );
   }
 
   &:before {
@@ -31,7 +35,7 @@
     top: 0;
     width: 100%;
 
-    @include mq(small) {
+    @include mq(medium) {
       display: block;
     }
   }
@@ -196,7 +200,7 @@
 
 .o-footer .a-container--payment .a-list__item {
   justify-content: center;
-  padding: (map-get($footerConfig, listHeight) * 2 ) (map-get($footerConfig, listHeight) / 5) map-get($footerConfig, listHeight);
+  padding: (map-get($footerConfig, listHeight) * 2 ) (map-get($footerConfig, listHeight) / 5) 0;
 }
 
 .o-footer .m-list .a-list__item svg,

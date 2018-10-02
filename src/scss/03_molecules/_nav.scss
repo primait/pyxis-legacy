@@ -4,7 +4,6 @@
   display: flex;
   flex: 1 0 auto;
   height: map-get($navConfig, mobileHeight);
-  justify-content: center;
   z-index: 2050;
 
   @include mq(small) {
@@ -16,6 +15,8 @@
   &.m-nav--scroll {
     background: color(background, base);
     border-bottom: 1px solid color(shape);
+    position: fixed;
+    width: 100%;
   }
 }
 
