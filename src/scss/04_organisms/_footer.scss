@@ -11,7 +11,7 @@
 
   @include mq(medium) {
     position: fixed;
-    top: calc( 100% - 60px );
+    top: calc( 100% - map-get($footerConfig, heightOpen) );
   }
 
   &.is-unfixed {
@@ -23,7 +23,7 @@
   }
 
   &.is-active {
-    top:  calc( 100% - 400px );
+    top:  calc( 100% - map-get($footerConfig, heightClose) );
   }
 
   &:before {
