@@ -121,20 +121,21 @@
       background: color(brand, light);
       border-radius: map-get($formConfig, circleRadius);
       content: "";
-      left: 0;
-      min-height: map-get($formConfig, circleDimension);
-      min-width: map-get($formConfig, circleDimension);
+      left: 5px;
+      min-height: map-get($formConfig, circleDimension) - 10px;
+      min-width: map-get($formConfig, circleDimension) - 10px;
       opacity: 1;
       position: absolute;
       transition: all .2s ease-in-out;
-      top: 0;
+      top: 5px;
       z-index: -1;
     }
 
     .a-icon {
       color: color(textAlt, light);
+      left: 22%;
       position: absolute;
-      top: map-get($formConfig, buttonIconOffset);
+      top: 24%;
 
       .is-active & {
         transform: rotate(180deg);
@@ -143,12 +144,11 @@
 
     &:hover {
       &:after {
-        background: color(brand, dark);
-        border: 1px solid color(brand, light);
+        background: color(brand, light);
       }
 
       &:before {
-        background: rgba(color(brand, dark), 0.3);
+        background: rgba(color(brand, light), 0.3);
       }
     }
 

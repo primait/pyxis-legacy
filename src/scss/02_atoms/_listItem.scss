@@ -9,7 +9,6 @@
     &.is-active .a-link {
       background: color(brandAlt, dark);
       color: color(textAlt, light);
-      margin: 0 5px;
       padding: (map-get($listConfig, padding) / 2) 15px;
       transition: background-color 0.1s ease;
 
@@ -22,6 +21,7 @@
       &:before {
         display: none
       }
+
     }
   }
 
@@ -43,7 +43,7 @@
 
     .a-link:first-child {
       @include mq(small){
-        padding-right: 10px      
+        margin-right: 10px
       }
     }
   }
