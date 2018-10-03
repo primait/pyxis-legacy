@@ -29,9 +29,11 @@
   color: inherit;
   cursor: pointer;
   display: flex;
+  flex: 1 0 auto;
   flex-direction: row;
   justify-content: space-between;
   padding: (map-get($accordionConfig, accordionPadding) / 2) 0;
+  width: 100%;
 
   .m-accordion--dark & {
     border-bottom: 1px solid color(shape, dark);
@@ -63,9 +65,7 @@
 
 .a-accordion__item__content  {
   display: none;
-  opacity: 0;
   transition: transform 1s, opacity 0.5s;
-  visibility: hidden;
   height: 0;
   transform: translateY(25%) rotateX(-35deg);
 
@@ -73,6 +73,5 @@
     height: auto;
     opacity: 1;
     transform: rotateX(0deg);
-    visibility: visible;
   }
 }

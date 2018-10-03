@@ -1,41 +1,37 @@
 .m-offCanvas {
-  bottom: 0;
+  border-top: 1px solid color(shape, dark);
   display: none;
-  height: 100%;
+  height: 100vh;
+  flex-direction: column;
   left: 0;
-  overflow: hidden;
-  position: fixed;
-  right: 0;
-  top: 0;
+  justify-content: flex-start;
+  position: absolute;
+  top: map-get($navConfig, mobileHeight);
   width: 100%;
-  z-index: 2000;
-
-  &.is-active {
-    display: block;
-  }
+  z-index: 100;
 }
 
-.m-offCanvas__ripple {
-  backface-visiblity: hidden;
+.a-toggle-container__button {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  cursor: pointer;
+  border: none;
   border-radius: 100%;
-  height: 100%;
-  left: 0;
-  opacity: 0;
-  overflow-y: auto;
-  padding-top: 60px;
-  transform: scale(0) translate3d(-50%, -50%, 0);
-  transform-origin: 0 0;
-  transition: opacity 600ms ease-in-out, transform 600ms cubic-bezier(0.7, 0, 0.6, 0.8);
-  width: 100%;
+  transition: map-get($canvasConfig, transitionDuration) + 0.1;
+  z-index: 10;
+}
 
-  .is-animate--in & {
-    opacity: 1;
-    transform: scale(1) translate3d(-50%, -50%, 0);
+#toggle:checked {
+
+  & ~ .a-toggle-container .a-toggle-container__button {
+    box-shadow: 0 0 0 900px color(backgroundAlt, dark), inset 0 0 0 20px color(backgroundAlt, dark), 0 0 0 8px color(backgroundAlt, dark), inset 0 0 0 20px color(backgroundAlt, dark);
   }
 
-  .is-animate--done & {
-    border-radius: 0;
-    transform: none;
-    transition: opacity 600ms ease-in-out;
+  & ~ .m-offCanvas {
+    display: flex;
+    overflow: auto;
+    pointer-events: auto;
+    transform: translate(0, 0);
   }
 }

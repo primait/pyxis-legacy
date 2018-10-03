@@ -25,6 +25,7 @@
   height: map-get($hamburgerConfig, layerHeight) * 3 + map-get($hamburgerConfig, layerSpacing) * 2;
   position: relative;
   width: map-get($hamburgerConfig, layerWidth);
+  z-index: 110;
 }
 
 .a-hamburger__inner {
@@ -57,29 +58,5 @@
 
   &::after {
     bottom: (map-get($hamburgerConfig, layerSpacing) + map-get($hamburgerConfig, layerHeight)) * -1;
-  }
-}
-
-.is-active + .m-nav .a-container .a-hamburger {
-  .a-hamburger__inner {
-    transform: rotate(225deg);
-    transition-delay: 0.12s;
-    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-
-    &::before {
-      background-color: color(background);
-      top: 0;
-      opacity: 1;
-      transition: top 0.1s ease-out,
-      opacity 0.1s 0.12s ease-out;
-    }
-
-    &::after {
-      background-color: color(background);
-      bottom: 0;
-      transform: rotate(-90deg);
-      transition: bottom 0.1s ease-out,
-      transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
   }
 }

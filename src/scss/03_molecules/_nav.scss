@@ -1,22 +1,21 @@
 .m-nav {
   align-items: center;
-  border-color: color(shape);
+  background: color(background, base);
+  border-bottom: 1px solid color(shape, base);
   display: flex;
   flex: 1 0 auto;
   height: map-get($navConfig, mobileHeight);
+  position: fixed;
+  width: 100%;
   z-index: 2050;
 
   @include mq(small) {
-    background: color(background, base);
-    border-bottom: 1px solid color(shape, base);
     height: map-get($navConfig, desktopHeight);
   }
 
   &.m-nav--scroll {
-    background: color(background, base);
-    border-bottom: 1px solid color(shape);
-    position: fixed;
-    width: 100%;
+    background: color(backgroundAlt, base);
+    border-bottom: 1px solid color(shape, base);
   }
 }
 
