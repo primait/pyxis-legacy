@@ -18,7 +18,7 @@
   cursor: pointer;
   border: none;
   border-radius: 100%;
-  transition: map-get($canvasConfig, transitionDuration) + 0.1;
+  transition: map-get($ofCanvasConfig, transitionDuration);
   z-index: 10;
 }
 
