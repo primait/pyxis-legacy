@@ -14,11 +14,17 @@
     top: calc( 100% - #{map-get($footerConfig, heightClose)} );
   }
 
+  .loginapp &,
+  .default &,
   &.is-unfixed {
     position: relative;
 
     .a-link--animation {
       color: color(textAlt, light);
+    }
+
+    .m-btnGroup {
+      display: none;
     }
   }
 
