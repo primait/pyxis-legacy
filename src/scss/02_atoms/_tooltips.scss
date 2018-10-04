@@ -1,11 +1,11 @@
 :root {
-  --tooltipColor: #{color(backgroundAlt, dark)};
+  --tooltipColor: #{color(backgroundAlt, base)};
 }
 
 .tooltip {
   background: var(--tooltipColor);
   border-radius: map-get($tooltipConfig, borderRadius);
-  color: color(textAlt);
+  color: color(textAlt, light);
   padding: map-get($tooltipConfig, padding);
   position: absolute;
   width: map-get($tooltipConfig, width);
