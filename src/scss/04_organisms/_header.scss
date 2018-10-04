@@ -57,7 +57,7 @@
 }
 
 .o-header .m-nav .m-list .a-list__item {
-  padding: (map-get($listConfig, padding) / 2) map-get($listConfig, padding);
+  padding: (map-get($listConfig, padding)/2) map-get($listConfig, padding);
 }
 
 .o-header .m-nav .m-list .a-list__item.a-list__item--button {
@@ -123,6 +123,33 @@
 .m-offCanvas .m-accordion .a-accordion__item .a-accordion__item__a-toggle {
   width: 100%;
 }
+
+.m-offCanvas .m-accordion .a-accordion__item {
+  opacity: 0;
+  transition: transform 1s, opacity 0.5s;
+  transform: translateX(-100%) rotateX(-35deg);
+}
+
+.m-offCanvas .a-link.a-link--alt.is-active {
+  color: color(brandAlt, base);
+}
+
+$items: 6;
+
+.m-offCanvas.is-active .m-accordion .a-accordion__item {
+
+  @for $i from 1 through $items {
+    &:nth-child(#{$i}) {
+      $delay: ($i - 1) * 0.05s;
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg);
+      transition-delay: $delay;
+    }
+  }
+
+}
+
+
 
 .o-header #toggle:checked {
 

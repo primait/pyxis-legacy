@@ -41,9 +41,9 @@
       padding: map-get($listConfig, padding);
     }
 
-    .a-link:first-child {
+    .a-link:last-child {
       @include mq(small){
-        margin-right: 10px
+        margin-left: 5px
       }
     }
   }
