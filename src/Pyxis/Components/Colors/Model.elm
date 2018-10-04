@@ -27,7 +27,7 @@ initialModel =
         , Color "text" [ Light, Base, Dark ]
         , Color "textAlt" [ Light, Base, Dark ]
         , Color "background" [ Base, Dark ]
-        , Color "backgroundAlt" [ Base, Dark ]
+        , Color "backgroundAlt" [ Light, Base, Dark ]
         , Color "action" [ Base, Dark ]
         , Color "error" [ Base ]
         , Color "alert" [ Base ]
