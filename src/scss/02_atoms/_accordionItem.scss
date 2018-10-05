@@ -21,6 +21,10 @@
     .a-icon:before {
       transform: rotate(225deg);
     }
+
+    .m-accordion--dark & {
+      background: color(backgroundAlt, light);
+    }
   }
 }
 
