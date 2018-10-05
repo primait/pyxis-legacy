@@ -5,7 +5,6 @@
   left: 0;
   padding-bottom: 50px;
   position: relative;
-  transition: all .5s ease-in-out;
   width: 100%;
   z-index: 100;
 
@@ -14,10 +13,9 @@
     top: calc( 100% - #{map-get($footerConfig, heightClose)} );
   }
 
-  .loginapp &,
-  .default &,
-  &.is-unfixed {
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
     position: relative;
+    top: 0;
 
     .a-link--animation {
       color: color(textAlt, light);
@@ -27,6 +25,24 @@
       display: none;
     }
   }
+
+  .loginapp &,
+  .default &,
+  .is-IE &,
+  &.is-unfixed {
+    position: relative;
+    top: 0;
+
+    .a-link--animation {
+      color: color(textAlt, light);
+    }
+
+    .m-btnGroup {
+      display: none;
+    }
+  }
+
+
 
   &.is-active {
     top: calc( 100% - #{map-get($footerConfig, heightOpen)} );
@@ -64,11 +80,6 @@
   position: relative;
   transform: translateY(60px);
   width: 100%;
-
-  .insurance & {
-    background: color(background, dark);
-    height: 200px;
-  }
 }
 
 .o-footer .a-container--navigation {
@@ -166,7 +177,7 @@
 }
 
 .o-footer .m-list--guarantees .m-list {
-  height: ( 50px / 2) * 7;
+  height: ( 50px / 2) * 6;
   flex-wrap: wrap;
   width: 100%;
 }

@@ -9,8 +9,12 @@
     &.is-active .a-link {
       background: color(brandAlt, dark);
       color: color(textAlt, light);
-      padding: (map-get($listConfig, padding) / 2) 15px;
+      padding: (map-get($listConfig, padding) / 2) 5px;
       transition: background-color 0.1s ease;
+
+      @include mq(medium) {
+        padding: (map-get($listConfig, padding) / 2) 15px;
+      }
 
       &:hover {
         background: lighten(color(brandAlt, dark), 5%);
@@ -36,14 +40,14 @@
     flex-direction: row;
     transition: all 0.5s;
 
-    @include mq(small) {
+    @include mq(medium) {
       border-left: map-get($listConfig, borderWidth) solid color(shape);
       padding: map-get($listConfig, padding);
     }
 
-    .a-link:first-child {
+    .a-link:last-child {
       @include mq(small){
-        margin-right: 10px
+        margin-left: 10px
       }
     }
   }

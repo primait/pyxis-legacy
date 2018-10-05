@@ -2,7 +2,7 @@
   align-items: center;
   background: color(brand, base);
   background: linear-gradient(180deg, color(brand, light) 40%, color(brand, base));
-  border-radius: map-get($avatarConfig, borderRadius);
+  border-radius: (map-get($avatarConfig, dimension) * 2);
   color: color(textAlt, light);
   display: flex;
   height: map-get($avatarConfig, dimension);

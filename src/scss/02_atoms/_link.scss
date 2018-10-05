@@ -14,10 +14,6 @@
     color: color(brandAlt);
   }
 
-  &:focus {
-    width: 100%;
-  }
-
   &.a-link--alt {
     color: color(textAlt, light);
 
@@ -26,15 +22,10 @@
     }
   }
 
-  &.is-active {
-    color: color(brandAlt, dark);
-  }
-
   &.a-link--underline {
     color: color(text, dark);
 
-    &:before,
-    &:after {
+    &:before {
       bottom: 0;
       background: color(brandAlt, dark);
       content: '';
@@ -46,16 +37,11 @@
       width: 100%;
     }
 
-    &:hover:before,
-    &:focus:before {
+    &:hover:before {
       color: color(brandAlt);
       transform: scale3d(1, 1, 1);
       transform-origin: center left;
       transition-delay: 0s;
-    }
-
-    &:focus:before {
-      background: color(brandAlt);
     }
 
     &:before {
@@ -63,11 +49,10 @@
     }
 
     &.is-active,
-    &.is-active:hover,
-    &.is-active:focus {
+    &.is-active:hover {
       color: color(brandAlt, dark);
 
-      &:after,
+
       &:before {
         transform: scale3d(1, 1, 1);
       }

@@ -1,5 +1,4 @@
 .m-offCanvas {
-  border-top: 1px solid color(shape, dark);
   display: none;
   height: 100vh;
   flex-direction: column;
@@ -25,12 +24,13 @@
 #toggle:checked {
 
   & ~ .a-toggle-container .a-toggle-container__button {
-    box-shadow: 0 0 0 900px color(backgroundAlt, dark), inset 0 0 0 20px color(backgroundAlt, dark), 0 0 0 8px color(backgroundAlt, dark), inset 0 0 0 20px color(backgroundAlt, dark);
+    box-shadow: 0 0 0 1500px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base), 0 0 0 8px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base);
   }
 
   & ~ .m-offCanvas {
     display: flex;
     overflow: auto;
+    padding-bottom: 120px;
     pointer-events: auto;
     transform: translate(0, 0);
   }

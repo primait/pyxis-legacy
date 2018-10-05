@@ -16,11 +16,22 @@
   .renewal &,
   .static-page & {
     position: absolute;
-    top: 0;
+
+    .m-nav {
+      position: relative;
+    }
   }
+
 
   &.o-header--navigation-block {
     position: relative;
+    top: 0;
+    z-index: 10;
+
+    .m-nav {
+      position: relative;
+      z-index: 20;
+    }
 
     .a-container {
       justify-content: center;
@@ -34,9 +45,8 @@
     .a-hamburger {
       display: none;
     }
-  }
+    }
 }
-
 
 .o-header .a-logo.a-logo--white {
   display: none;
@@ -45,7 +55,6 @@
 .o-header .m-btnGroup {
   background: color(backgroundAlt, dark);
   bottom: -50px;
-  border-top: 1px solid color(shape, dark);
   left: 0;
   opacity: 0;
   position: fixed;
@@ -57,17 +66,17 @@
 }
 
 .o-header .m-nav .m-list .a-list__item {
-  padding: (map-get($listConfig, padding) / 2) map-get($listConfig, padding);
+  padding: (map-get($listConfig, padding)/2);
+
+  @include mq(large) {
+    padding: (map-get($listConfig, padding)/2) map-get($listConfig, padding);
+  }
 }
 
 .o-header .m-nav .m-list .a-list__item.a-list__item--button {
 
   &.is-active {
     padding: 0 5px;
-  }
-
-  &.is-animate--done {
-    padding: 0;
   }
 }
 
@@ -81,6 +90,10 @@
 
 .o-header .m-nav .m-list .a-list__item.a-list__item--reserved-area {
   padding: 0;
+
+  @include mq(small) {
+    padding: (map-get($listConfig, padding) / 2);
+  }
 
   @include mq(small) {
     padding: (map-get($listConfig, padding) / 2) map-get($listConfig, padding);
@@ -124,6 +137,37 @@
   width: 100%;
 }
 
+.m-offCanvas .m-accordion .a-accordion__item {
+  opacity: 0;
+  transition: transform 1s, opacity 0.5s;
+  transform: translateX(-100%) rotateX(-35deg);
+}
+
+.m-offCanvas .a-link.a-link--alt.is-active {
+  color: color(brandAlt, base);
+}
+
+.m-offCanvas .m-accordion .a-accordion__item .m-list .a-list__item {
+  padding: (map-get($listConfig, padding) / 2) map-get($listConfig, padding);
+}
+
+$items: 6;
+
+.m-offCanvas.is-active .m-accordion .a-accordion__item {
+
+  @for $i from 1 through $items {
+    &:nth-child(#{$i}) {
+      $delay: ($i - 1) * 0.05s;
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg);
+      transition-delay: $delay;
+    }
+  }
+
+}
+
+
+
 .o-header #toggle:checked {
 
   & ~ .a-hamburger .a-hamburger__inner {
@@ -151,7 +195,7 @@
   & ~ .m-list .a-list__item--reserved-area .a-icon {
     color: color(textAlt, light);
 
-    @include mq(small) {
+    @include mq(medium) {
       color: inherit;
     }
   }
@@ -160,7 +204,7 @@
     display: none;
     transition-delay: 3s;
 
-    @include mq(small) {
+    @include mq(medium) {
       display: flex;
     }
   }
@@ -169,7 +213,7 @@
     display: flex;
     z-index: 10;
 
-    @include mq(small) {
+    @include mq(medium) {
       display: none;
     }
   }

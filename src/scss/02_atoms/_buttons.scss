@@ -133,12 +133,16 @@
 
     .a-icon {
       color: color(textAlt, light);
-      left: map-get($formConfig, buttonIconOffset);
       position: absolute;
-      top: map-get($formConfig, buttonIconOffset);
 
       .is-active & {
         transform: rotate(180deg);
+        top: map-get($formConfig, buttonIconOffset);
+      }
+
+      .is-IE & {
+        left: map-get($formConfig, buttonIconOffset);
+        top: map-get($formConfig, buttonIconOffset);
       }
     }
 
