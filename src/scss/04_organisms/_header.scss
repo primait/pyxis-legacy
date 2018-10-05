@@ -16,11 +16,22 @@
   .renewal &,
   .static-page & {
     position: absolute;
-    top: 0;
+
+    .m-nav {
+      position: relative;
+    }
   }
+
 
   &.o-header--navigation-block {
     position: relative;
+    top: 0;
+    z-index: 10;
+
+    .m-nav {
+      position: relative;
+      z-index: 20;
+    }
 
     .a-container {
       justify-content: center;
@@ -34,9 +45,8 @@
     .a-hamburger {
       display: none;
     }
-  }
+    }
 }
-
 
 .o-header .a-logo.a-logo--white {
   display: none;
@@ -57,17 +67,17 @@
 }
 
 .o-header .m-nav .m-list .a-list__item {
-  padding: (map-get($listConfig, padding)/2) map-get($listConfig, padding);
+  padding: (map-get($listConfig, padding)/2);
+
+  @include mq(large) {
+    padding: (map-get($listConfig, padding)/2) map-get($listConfig, padding);
+  }
 }
 
 .o-header .m-nav .m-list .a-list__item.a-list__item--button {
 
   &.is-active {
     padding: 0 5px;
-  }
-
-  &.is-animate--done {
-    padding: 0;
   }
 }
 
@@ -81,6 +91,10 @@
 
 .o-header .m-nav .m-list .a-list__item.a-list__item--reserved-area {
   padding: 0;
+
+  @include mq(small) {
+    padding: (map-get($listConfig, padding) / 2);
+  }
 
   @include mq(small) {
     padding: (map-get($listConfig, padding) / 2) map-get($listConfig, padding);
@@ -134,6 +148,10 @@
   color: color(brandAlt, base);
 }
 
+.m-offCanvas .m-accordion .a-accordion__item .m-list .a-list__item {
+  padding: (map-get($listConfig, padding) / 2) map-get($listConfig, padding);
+}
+
 $items: 6;
 
 .m-offCanvas.is-active .m-accordion .a-accordion__item {
@@ -178,7 +196,7 @@ $items: 6;
   & ~ .m-list .a-list__item--reserved-area .a-icon {
     color: color(textAlt, light);
 
-    @include mq(small) {
+    @include mq(medium) {
       color: inherit;
     }
   }
@@ -187,7 +205,7 @@ $items: 6;
     display: none;
     transition-delay: 3s;
 
-    @include mq(small) {
+    @include mq(medium) {
       display: flex;
     }
   }
@@ -196,7 +214,7 @@ $items: 6;
     display: flex;
     z-index: 10;
 
-    @include mq(small) {
+    @include mq(medium) {
       display: none;
     }
   }

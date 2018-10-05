@@ -5,7 +5,6 @@
   left: 0;
   padding-bottom: 50px;
   position: relative;
-  transition: all .5s ease-in-out;
   width: 100%;
   z-index: 100;
 
@@ -14,11 +13,9 @@
     top: calc( 100% - #{map-get($footerConfig, heightClose)} );
   }
 
-  .loginapp &,
-  .default &,
-  .is-IE &,
-  &.is-unfixed {
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
     position: relative;
+    top: 0;
 
     .a-link--animation {
       color: color(textAlt, light);
@@ -28,6 +25,24 @@
       display: none;
     }
   }
+
+  .loginapp &,
+  .default &,
+  .is-IE &,
+  &.is-unfixed {
+    position: relative;
+    top: 0;
+
+    .a-link--animation {
+      color: color(textAlt, light);
+    }
+
+    .m-btnGroup {
+      display: none;
+    }
+  }
+
+
 
   &.is-active {
     top: calc( 100% - #{map-get($footerConfig, heightOpen)} );
