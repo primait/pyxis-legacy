@@ -6,15 +6,16 @@
   padding-bottom: 50px;
   position: relative;
   width: 100%;
-  z-index: 100;
 
   @include mq(medium) {
+    padding-bottom: 100px;
     position: fixed;
     top: calc( 100% - #{map-get($footerConfig, heightClose)} );
+    z-index: 100;
   }
 
   &.fluid-transition {
-    transition: all 1s;
+    transition: all 0.5s;
   }
 
   .loginapp &,
@@ -23,9 +24,11 @@
   &.is-unfixed {
     position: relative;
     top: 0;
+    transition: none;
 
     .a-link--animation {
       color: color(textAlt, light);
+      cursor: pointer;
     }
 
     .m-btnGroup {
@@ -60,7 +63,9 @@
     }
   }
 
-  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+  // BLOCK TABLET
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
     position: relative;
     top: 0;
 
