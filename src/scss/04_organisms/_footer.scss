@@ -13,17 +13,8 @@
     top: calc( 100% - #{map-get($footerConfig, heightClose)} );
   }
 
-  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    position: relative;
-    top: 0;
-
-    .a-link--animation {
-      color: color(textAlt, light);
-    }
-
-    .m-btnGroup {
-      display: none;
-    }
+  &.fluid-transition {
+    transition: all 1s;
   }
 
   .loginapp &,
@@ -41,8 +32,6 @@
       display: none;
     }
   }
-
-
 
   &.is-active {
     top: calc( 100% - #{map-get($footerConfig, heightOpen)} );
@@ -70,7 +59,21 @@
       display: none;
     }
   }
+
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    position: relative;
+    top: 0;
+
+    .a-link--animation {
+      color: color(textAlt, light);
+    }
+
+    .m-btnGroup {
+      display: none;
+    }
+  }
 }
+
 
 #footerSentinel {
   background: transparent;
