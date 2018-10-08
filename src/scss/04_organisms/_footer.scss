@@ -37,9 +37,12 @@
     }
   }
 
+<<<<<<< HEAD
   &.is-active {
     top: calc( 100% - #{map-get($footerConfig, heightOpen)} );
   }
+=======
+>>>>>>> elimino footer space
 
   &:before {
     background: linear-gradient(to right, color(brand, light) , color(brand, dark));
