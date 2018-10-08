@@ -22,8 +22,7 @@
   .is-IE &,
   &.is-unfixed {
     position: relative;
-    top: 0 !important;
-    transition: none !important;
+    top: 0;
 
     .a-link--animation {
       color: color(textAlt, light);
