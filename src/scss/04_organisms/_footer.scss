@@ -3,7 +3,7 @@
   flex: 1 0 auto;
   flex-direction: column;
   left: 0;
-  padding-bottom: 50px;
+  padding-bottom: 110px;
   position: relative;
   width: 100%;
 
@@ -28,7 +28,7 @@
 
     .a-link--animation {
       color: color(textAlt, light);
-      cursor: pointer;
+      cursor: default;
     }
 
     .m-btnGroup {
@@ -58,21 +58,6 @@
     position: relative;
 
     &:before,
-    .m-btnGroup {
-      display: none;
-    }
-  }
-
-
-  // BLOCK TABLET
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
-    position: relative;
-    top: 0;
-
-    .a-link--animation {
-      color: color(textAlt, light);
-    }
-
     .m-btnGroup {
       display: none;
     }
@@ -236,6 +221,10 @@
 .o-footer .m-list .a-list__item svg,
 .o-footer .m-list .a-list__item img {
   width: (map-get($footerConfig, listHeight) * 2) - 10px;
+
+  .is-IE & {
+    height: 27.3px;
+  }
 }
 
 .o-footer .a-container--privacy .a-logo {
@@ -270,4 +259,22 @@
     transform: rotate(180deg);
     top: 2px;
   }
+}
+
+.o-footer {
+  
+  // BLOCK TABLET
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+    position: relative;
+    top: 0;
+
+    .a-link--animation {
+      color: color(textAlt, light);
+    }
+
+    .m-btnGroup {
+      display: none;
+    }
+  }
+
 }

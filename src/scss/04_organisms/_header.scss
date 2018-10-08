@@ -14,14 +14,14 @@
 
   .reserved-area &,
   .renewal &,
-  .static-page & {
+  .static-page &,
+  .has-sticky-proceed & {
     position: absolute;
 
     .m-nav {
       position: relative;
     }
   }
-
 
   &.o-header--navigation-block {
     position: relative;

@@ -24,8 +24,12 @@
 #toggle:checked {
 
   & ~ .a-toggle-container .a-toggle-container__button {
-    box-shadow: 0 0 0 1500px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base), 0 0 0 8px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base);
+    box-shadow: 0 0 0 1000px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base), 0 0 0 8px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base);
     background: color(backgroundAlt, base);
+
+    @include mq(small) {
+      box-shadow: 0 0 0 1200px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base), 0 0 0 8px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base);
+    }
   }
 
   & ~ .m-offCanvas {
