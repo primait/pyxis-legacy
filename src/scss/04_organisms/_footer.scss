@@ -243,7 +243,10 @@
     top: -20px;
   }
 
-  @media screen and (-webkit-min-device-pixel-ratio:0) {
+}
+
+@-moz-document url-prefix() {
+  .o-footer .m-btnGroup {
     top: 0;
   }
 }
@@ -262,7 +265,7 @@
 }
 
 .o-footer {
-  
+
   // BLOCK TABLET
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
     position: relative;

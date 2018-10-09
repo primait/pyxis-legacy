@@ -34,7 +34,7 @@
 
   & ~ .m-offCanvas {
     display: flex;
-    overflow: auto;
+    overflow: scroll;
     padding-bottom: 120px;
     pointer-events: auto;
     transform: translate(0, 0);
