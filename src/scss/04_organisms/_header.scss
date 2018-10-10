@@ -53,7 +53,7 @@
 }
 
 .o-header .m-btnGroup {
-  background: color(backgroundAlt, dark);
+  background: color(backgroundAlt, base);
   bottom: -50px;
   left: 0;
   opacity: 0;
@@ -112,6 +112,26 @@
       display: flex;
     }
   }
+}
+
+.o-header .m-nav .a-logo {
+  justify-content: center;
+  flex: 0 0 calc(100% / 3);
+
+  @include mq(medium) {
+    justify-content: flex-start;
+  }
+}
+
+.o-header .m-nav p {
+  justify-content: center;
+  flex: 0 0 calc(100% / 3);
+}
+
+.o-header .m-nav .m-pills {
+  flex: 1 0 calc(100% / 3);
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 // MOBILE HEADER //

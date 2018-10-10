@@ -56,6 +56,7 @@
 
   &.o-footer--navigation-block {
     position: relative;
+    top: 0;
 
     &:before,
     .m-btnGroup {
@@ -240,15 +241,9 @@
     position: absolute;
     right: 5%;
     padding: 0;
-    top: -20px;
-  }
-
-}
-
-@-moz-document url-prefix() {
-  .o-footer .m-btnGroup {
     top: 0;
   }
+
 }
 
 .o-footer.is-unfixed .m-btnGroup {
