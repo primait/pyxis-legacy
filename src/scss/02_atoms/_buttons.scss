@@ -76,6 +76,33 @@
     justify-content: center;
     z-index: 100;
 
+    &:before {
+      animation: internal-circle 2s linear infinite alternate;
+      background: rgba(color(brand, light), 0.3);
+      border-radius: map-get($formConfig, circleRadius) + 10px;
+      content: "";
+      left: -10px;
+      min-height: map-get($formConfig, circleDimension) + 20px;
+      min-width: map-get($formConfig, circleDimension) + 20px;
+      position: absolute;
+      top: -10px;
+      z-index: -1;
+    }
+
+    &:after {
+      animation: external-circle 2s linear infinite alternate;
+      background: rgba(color(brand, light), 0.3);
+      border-radius: map-get($formConfig, circleRadius);
+      content: "";
+      left: map-get($formConfig, buttonIconAfterOffset);
+      min-height: map-get($formConfig, circleExternalDimension);
+      min-width: map-get($formConfig, circleExternalDimension);
+      opacity: 1;
+      position: absolute;
+      top: 5px;
+      z-index: -1;
+    }
+
     @keyframes internal-circle {
       0% {
         transform: scale(1);
@@ -100,35 +127,6 @@
         transform: scale(2);
         opacity: 0;
       }
-    }
-
-    &:before {
-      animation: internal-circle 0.8s ease-in-out infinite;
-      background: rgba(color(brand, light), 0.3);
-      border-radius: map-get($formConfig, circleRadius) + 10px;
-      content: "";
-      left: -10px;
-      min-height: map-get($formConfig, circleDimension) + 20px;
-      min-width: map-get($formConfig, circleDimension) + 20px;
-      position: absolute;
-      transition: all .2s ease-in-out;
-      top: -10px;
-      z-index: -1;
-    }
-
-    &:after {
-      animation: external-circle 0.8s ease-in-out infinite;
-      background: color(brand, light);
-      border-radius: map-get($formConfig, circleRadius);
-      content: "";
-      left: map-get($formConfig, buttonIconAfterOffset);;
-      min-height: map-get($formConfig, circleExternalDimension);
-      min-width: map-get($formConfig, circleExternalDimension);
-      opacity: 1;
-      position: absolute;
-      transition: all .2s ease-in-out;
-      top: 5px;
-      z-index: -1;
     }
 
     .a-icon {

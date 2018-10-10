@@ -21,7 +21,7 @@
   z-index: 10;
 }
 
-#toggle:checked {
+#toggleCanvas:checked {
 
   & ~ .a-toggle-container .a-toggle-container__button {
     box-shadow: 0 0 0 1000px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base), 0 0 0 8px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base);
