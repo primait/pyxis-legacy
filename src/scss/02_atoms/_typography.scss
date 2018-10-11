@@ -53,7 +53,7 @@ h6 {
   }
 
   h4 {
-    @extend .fs-small, .fw-heavy;
+    @extend .fs-xsmall, .fw-heavy;
 
     @include mq(small) {
       font-size: size(xsmall);
@@ -61,7 +61,7 @@ h6 {
     }
 
     @include mq(medium) {
-      font-size: size(small);
+      font-size: size(xsmall);
       line-height: lineHeight(small);
     }
   }
