@@ -1,20 +1,6 @@
 html {
  box-sizing: border-box;
  font-size: size(root);
-}
-
-*,* :before, *:after {
- box-sizing: inherit;
-}
-
-body {
- box-sizing: border-box;
- font-family: font(light);
- font-size: size(small);
- height: 100%;
- line-height: lineHeight(small);
- width: 100%;
- -webkit-font-smoothing: antialiased;
 
  @include mq(small) {
    font-size: size(small);
@@ -26,12 +12,30 @@ body {
    line-height: lineHeight(root);
  }
 
- input,
- textarea,
- select,
- button {
-   font-size: size(root);
- }
+   @include mqUp(xlarge) {
+     font-size: 18px;
+  }
+}
+
+*,* :before, *:after {
+ box-sizing: inherit;
+}
+
+body {
+ box-sizing: border-box;
+ font-family: font(light);
+ font-size: inherit;
+ height: 100%;
+ width: 100%;
+ -webkit-font-smoothing: antialiased;
+}
+
+
+input,
+textarea,
+select,
+button {
+  font-size: inherit;
 }
 
 p {
