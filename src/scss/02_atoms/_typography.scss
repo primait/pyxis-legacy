@@ -42,8 +42,8 @@ h6 {
     @extend .fs-base;
 
     @include mq(small) {
-      font-size: size(base);
-      line-height: lineHeight(base);
+      font-size: size(base-lg);
+      line-height: lineHeight(base-lg);
     }
 
     @include mq(medium) {
@@ -59,14 +59,9 @@ h6 {
       font-size: size(xsmall);
       line-height: lineHeight(small);
     }
-
-    @include mq(medium) {
-      font-size: size(xsmall);
-      line-height: lineHeight(small);
-    }
   }
 
-  p {
+  p:not([class*="fs-"]) {
     @extend .fs-small;
 
     @include mq(small) {
