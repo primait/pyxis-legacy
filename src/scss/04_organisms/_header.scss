@@ -46,6 +46,7 @@
       display: none;
     }
     }
+ 
 }
 
 .o-header .a-logo.a-logo--white {
@@ -116,7 +117,7 @@
 
 .o-header .m-nav .a-logo {
   justify-content: center;
-  flex: 0 0 calc(100% / 3);
+  flex: 0 0 calc(100% / 4);
 
   @include mq(medium) {
     justify-content: flex-start;
@@ -125,11 +126,11 @@
 
 .o-header .m-nav p {
   justify-content: center;
-  flex: 0 0 calc(100% / 3);
+  flex: 2 0 calc(100% / 2);
 }
 
 .o-header .m-nav .m-pills {
-  flex: 1 0 calc(100% / 3);
+  flex: 0 0 calc(100% / 4);
   align-items: flex-end;
   justify-content: flex-end;
 }
@@ -188,7 +189,7 @@ $items: 6;
 
 
 
-.o-header #toggle:checked {
+.o-header #toggleCanvas:checked {
 
   & ~ .a-hamburger .a-hamburger__inner {
     transform: rotate(225deg);

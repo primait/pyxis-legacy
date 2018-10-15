@@ -8,8 +8,8 @@ h6 {
   font-weight: normal;
 }
 
-@include ignorePyxis {
 
+@mixin tmpTypography {
   h1 {
     @extend .fs-medium;
 
@@ -74,4 +74,8 @@ h6 {
       line-height: lineHeight(base);
     }
   }
+}
+
+@include ignorePyxis {
+  @include tmpTypography;
 }
