@@ -27,12 +27,12 @@
   }
 }
 
-@function size($size) {
-  @if( map-has-key($fontSizes, $size) ) {
-    @return map-get($fontSizes, $size);
+@function size($size, $map: $fontSizes) {
+  @if( map-has-key($map, $size) ) {
+    @return map-get($map, $size);
   }
   @else {
-    @error "Font `#{$size}` not found in `$fontSizes` map.";
+    @error "Font `#{$size}` not found in `$map` map.";
   }
 }
 
@@ -49,8 +49,8 @@
   @return index($zIndexes, $key);
 }
 
-// @mixin ignorePyxis {
-//   body:not(.ignorePyxis) {
-//     @content;
-//   }
-// }
+@mixin ignorePyxis {
+  body:not(.ignorePyxis) {
+    @content;
+  }
+}
