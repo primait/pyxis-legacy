@@ -67,6 +67,7 @@
   font-size: 12px;
 
   @include mq(small) {
+    margin-top: 5px;
     padding-left: calc(50% - (#{map-get($formConfig, fieldMaxWidth)} / 2));
   }
 
