@@ -1,3 +1,12 @@
+.a-form__field__radioOptions {
+  display: flex;
+  flex-direction: row;
+
+  &.is-vertical {
+    flex-direction: column;
+  }
+}
+
 .a-form__field__radio {
   display: none;
 }
