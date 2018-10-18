@@ -2,19 +2,22 @@ html {
  box-sizing: border-box;
  font-size: size(root);
 
- @include mq(small) {
-   font-size: size(small);
-   line-height: lineHeight(small);
- }
-
- @include mq(medium) {
-   font-size: size(root);
-   line-height: lineHeight(root);
- }
+   @include mq(medium) {
+     font-size: size(root);
+     line-height: lineHeight(root);
+   }
 
    @include mqUp(xlarge) {
      font-size: 18px;
-  }
+   }
+
+   &.guarantees {
+
+     @include mq(medium) {
+       font-size: size(root, $guaranteesFontSizes);
+       line-height: lineHeight(root);
+     }
+   }
 }
 
 *,* :before, *:after {

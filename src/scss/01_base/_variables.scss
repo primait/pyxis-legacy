@@ -74,11 +74,13 @@ $fontSizes: (
   xsmall:   0.75rem,   // 12px
   small:    0.875rem,  // 14px
   base:     1rem,      // 16px
-  base-lg:  1.125rem,  // 18px
-  medium:   1.375rem,  // 22px
-  large:    1.5625rem, // 25px
-  xlarge:   2rem,      // 32px
+  medium:   1.125rem,  // 18px
+  large:    1.375rem,  // 22px
+  xlarge:   1.5625rem, // 25px
+  xxlarge:  2rem,      // 32px
 );
+
+$guaranteesFontSizes: map-merge($fontSizes, ( root: 14px, xsmall: 0.785rem, small: 0.857rem, medium: 1.1428rem, large: 1.2857rem, xlarge: 1.4285rem, xxlarge: 1.8571rem ));
 
 $goldenRatio: 1.618; // https://medium.com/@zkareemz/golden-ratio-62b3b6d4282a
 $zIndexes: tooltip;
