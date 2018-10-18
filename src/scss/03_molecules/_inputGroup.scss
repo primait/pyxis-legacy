@@ -3,7 +3,9 @@
   flex: 0 0 100%;
 
   @include mq(small) {
+    display: flex;
     flex: 0 0 auto;
+    flex-direction: column;
   }
 }
 
