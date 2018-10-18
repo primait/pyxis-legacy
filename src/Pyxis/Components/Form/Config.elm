@@ -1,4 +1,4 @@
-module Pyxis.Components.Form.Config exposing (..)
+module Pyxis.Components.Form.Config exposing (autocompleteFieldConfig, checkboxFieldConfig, checkboxWithOptionsFieldConfig, datePickerFieldConfig, passwordFieldConfig, radioFieldConfig, selectFieldConfig, smallTextFieldConfig, textFieldConfig, textareaFieldConfig)
 
 import Html.Attributes exposing (class, disabled, placeholder)
 import Maybe.Extra exposing (isJust)
@@ -25,7 +25,7 @@ textFieldConfig : Model -> FormField Model Msg
 textFieldConfig { formDisabled } =
     Form.textConfig
         "text_field"
-        "Text field"
+        (Just "Text field")
         [ placeholder "Write something", disabled formDisabled ]
         .textField
         (UpdateText Text)
@@ -41,7 +41,7 @@ passwordFieldConfig : Model -> FormField Model Msg
 passwordFieldConfig { formDisabled } =
     Form.passwordConfig
         "password_field"
-        "Password field"
+        (Just "Password field")
         [ placeholder "Write something", disabled formDisabled ]
         .passwordField
         (UpdateText Password)
@@ -57,7 +57,7 @@ textareaFieldConfig : Model -> FormField Model Msg
 textareaFieldConfig { formDisabled } =
     Form.textareaConfig
         "textarea_field"
-        "Textarea field"
+        (Just "Textarea field")
         [ placeholder "Write something", disabled formDisabled ]
         .textareaField
         (UpdateText Textarea)
@@ -73,7 +73,7 @@ radioFieldConfig : Model -> FormField Model Msg
 radioFieldConfig { formDisabled } =
     Form.radioConfig
         "radio_field"
-        "Radio field"
+        (Just "Radio field")
         [ disabled formDisabled ]
         .radioField
         (UpdateText Radio)
@@ -91,7 +91,7 @@ checkboxFieldConfig : Model -> FormField Model Msg
 checkboxFieldConfig { formDisabled } =
     Form.checkboxConfig
         "checkbox_field"
-        "Checkbox field"
+        (Just "Checkbox field")
         [ disabled formDisabled ]
         .checkboxField
         (UpdateFlag Checkbox)
@@ -109,7 +109,7 @@ checkboxWithOptionsFieldConfig model =
     in
     Form.checkboxWithOptionsConfig
         "checkbox_multifield"
-        "Checkbox multi field"
+        (Just "Checkbox multi field")
         [ disabled model.formDisabled ]
         (List.map (\option -> ( option.slug, option.isChecked )) << .checkboxMultiField)
         (UpdateMultiCheckbox MultiCheckbox)
@@ -150,7 +150,7 @@ selectFieldConfig model =
     in
     Form.selectConfig
         "select_field"
-        "Select field"
+        (Just "Select field")
         isDisabled
         isOpen
         (Just "Seleziona")
@@ -169,7 +169,7 @@ datePickerFieldConfig : Model -> FormField Model Msg
 datePickerFieldConfig { datepicker, isDatePickerOpen, formDisabled } =
     Form.datepickerConfig
         "datepicker_field"
-        "Datepicker field"
+        (Just "Datepicker field")
         [ disabled formDisabled ]
         .datepickerField
         (UpdateText Datepicker)
@@ -205,7 +205,7 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
     in
     Form.autocompleteConfig
         "autocomplete_field"
-        "Autocomplete field"
+        (Just "Autocomplete field")
         isAutocompleteFieldOpen
         (Just "Nessun risultato trovato.")
         [ placeholder "Search your country", disabled formDisabled ]
@@ -224,7 +224,7 @@ smallTextFieldConfig : Model -> FormField Model Msg
 smallTextFieldConfig { formDisabled } =
     Form.textConfig
         "text_field"
-        "Text field"
+        (Just "Text field")
         [ placeholder "Something", disabled formDisabled, class "fieldSmall" ]
         .textField
         (UpdateText Text)

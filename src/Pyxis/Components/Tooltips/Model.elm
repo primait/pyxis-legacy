@@ -1,11 +1,8 @@
-module Pyxis.Components.Tooltips.Model
-    exposing
-        ( Model
-        , Msg(..)
-        , initialModel
-        )
-
-import Http
+module Pyxis.Components.Tooltips.Model exposing
+    ( Model
+    , Msg(..)
+    , initialModel
+    )
 
 
 type Msg
