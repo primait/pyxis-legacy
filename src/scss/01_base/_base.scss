@@ -10,14 +10,6 @@ html {
    @include mqUp(xlarge) {
      font-size: 18px;
    }
-
-   &.guarantees {
-
-     @include mq(medium) {
-       font-size: size(root, $guaranteesFontSizes);
-       line-height: lineHeight(root);
-     }
-   }
 }
 
 *,* :before, *:after {
