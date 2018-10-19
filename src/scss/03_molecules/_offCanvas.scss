@@ -8,6 +8,11 @@
   top: map-get($navConfig, mobileHeight);
   width: 100%;
   z-index: 100;
+
+  &.is-active {
+    transition: background-color 0.1s ease 0.05s;
+    background: color(backgroundAlt, base);
+  }
 }
 
 .a-toggle-container__button {
@@ -24,11 +29,10 @@
 #toggleCanvas:checked {
 
   & ~ .a-toggle-container .a-toggle-container__button {
-    box-shadow: 0 0 0 1000px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base), 0 0 0 8px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base);
-    background: color(backgroundAlt, base);
+    box-shadow: 0 0 0 680px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base), 0 0 0 8px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base);
 
     @include mq(small) {
-      box-shadow: 0 0 0 1200px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base), 0 0 0 8px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base);
+      box-shadow: 0 0 0 1000px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base), 0 0 0 8px color(backgroundAlt, base), inset 0 0 0 20px color(backgroundAlt, base);
     }
   }
 
