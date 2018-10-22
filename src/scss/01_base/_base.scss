@@ -4,11 +4,14 @@ html {
 
    @include mq(medium) {
      font-size: size(root);
-     line-height: lineHeight(root);
+
+     @include ignorePyxis {
+       line-height: lineHeight(root);
+     }
    }
 
    @include mqUp(xlarge) {
-     font-size: map-get($fontSizes, root) * $largeScreenRatio;
+     font-size: map-get($fontSizes, base) * $largeScreenRatio;
    }
 }
 
