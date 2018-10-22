@@ -13,6 +13,7 @@ const config = {
   entry: {
     app:    './app.js',
     prima:  './prima.js',
+    primaGuarantees:  './primaGuarantees.js',
   },
 
   output: {

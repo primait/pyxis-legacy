@@ -8,7 +8,7 @@ html {
    }
 
    @include mqUp(xlarge) {
-     font-size: 18px;
+     font-size: map-get($fontSizes, root) * $largeScreenRatio;
    }
 }
 
