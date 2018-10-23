@@ -50,6 +50,7 @@
 }
 
 @mixin ignorePyxis {
+  html:not(.ignorePyxis),
   body:not(.ignorePyxis) {
     @content;
   }

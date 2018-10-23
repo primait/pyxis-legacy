@@ -13,6 +13,7 @@ const config = {
   entry: {
     app:    './app.js',
     prima:  './prima.js',
+    primaGuarantees:  './primaGuarantees.js',
   },
 
   output: {
@@ -28,7 +29,7 @@ const config = {
         use: [
           { loader: MiniCssExtractPlugin.loader },
           { loader: 'css-loader' },
-          { loader: 'postcss-loader' },
+          { loader: 'postcss-loader', options: { reduceIdents: false } },
           { loader: 'sass-loader' },
         ]
       },

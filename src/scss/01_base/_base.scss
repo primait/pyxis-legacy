@@ -4,19 +4,14 @@ html {
 
    @include mq(medium) {
      font-size: size(root);
-     line-height: lineHeight(root);
+
+     @include ignorePyxis {
+       line-height: lineHeight(root);
+     }
    }
 
    @include mqUp(xlarge) {
-     font-size: 18px;
-   }
-
-   &.guarantees {
-
-     @include mq(medium) {
-       font-size: size(root, $guaranteesFontSizes);
-       line-height: lineHeight(root);
-     }
+     font-size: map-get($fontSizes, base) * $largeScreenRatio;
    }
 }
 
