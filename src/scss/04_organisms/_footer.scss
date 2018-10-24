@@ -29,6 +29,11 @@
     .a-link--animation {
       color: color(textAlt, light);
       cursor: default;
+
+      .is-IE & {
+        color: color(textAlt, light);
+        cursor: default;
+      }
     }
 
     .m-btnGroup {
