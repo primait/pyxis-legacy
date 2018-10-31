@@ -1,6 +1,5 @@
 .a-datepicker {
 	background: color(background);
-	border: 1px solid color(brandAlt, light);
 	border-radius: map-get($formConfig, borderRadius);
 	box-shadow: map-get($formConfig, datepickerShadow);
 	color: color(text);
@@ -15,6 +14,8 @@
 .a-datepicker__header {
 	align-items: center;
 	background-color: color(backgroundAlt);
+	border-top-left-radius: map-get($formConfig, borderRadius);
+	border-top-right-radius: map-get($formConfig, borderRadius);
 	color: color(textAlt, light);
 	display: flex;
 	flex-direction: row-reverse;
@@ -304,7 +305,6 @@
 }
 
 .a-form__field__datepicker {
-	
 	@include mqDown(small) {
 		display: none !important;
 	}

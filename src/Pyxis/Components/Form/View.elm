@@ -26,11 +26,11 @@ import Pyxis.ViewHelpers
 view : Model -> List (Html Msg)
 view ({ datepicker, isDatePickerOpen } as model) =
     let
-        iconMail =
+        icon position name =
             div
-                [ class "m-form__field__group__prepend"
+                [ class ("m-form__field__group__" ++ position)
                 ]
-                [ i [ class "a-icon a-icon-mail opacity-5" ] []
+                [ i [ class ("a-icon a-icon-" ++ name ++ " opacity-5") ] []
                 ]
 
         iconCalendar =
@@ -50,12 +50,23 @@ view ({ datepicker, isDatePickerOpen } as model) =
             ]
             [ legend
                 [ class "a-fieldset__legend" ]
-                [ text "Fieldset Legend"
+                [ text "Text input"
                 ]
             , Form.wrapper <| Form.render model <| textFieldConfig model
-            , Form.wrapper <| Form.renderWithGroup [ iconMail ] model <| textFieldConfig model
-            , Form.wrapper <| Form.render model <| passwordFieldConfig model
             , Form.wrapper <| Form.render model <| textareaFieldConfig model
+            , Form.wrapper <|
+                Form.render model (textFieldSmallFirstConfig model)
+                    ++ Form.render model (textFieldSmallLastConfig model)
+            ]
+        , fieldset
+            [ class "a-fieldset"
+            ]
+            [ legend
+                [ class "a-fieldset__legend" ]
+                [ text "Fieldset Legend"
+                ]
+            , Form.wrapper <| Form.renderWithGroup [ icon "prepend" "mail" ] model <| textFieldIconConfig model
+            , Form.wrapper <| Form.renderWithGroup [ icon "prepend" "lock" ] model <| passwordFieldConfig model
             , Form.wrapper <| Form.renderWithGroup [ iconCalendar ] model <| datePickerFieldConfig model
             , Form.wrapper <| Form.render model <| autocompleteFieldConfig model
             , Form.wrapper <| Form.render model <| radioFieldConfig model

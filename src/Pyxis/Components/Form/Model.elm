@@ -3,9 +3,9 @@ module Pyxis.Components.Form.Model
         ( Field(..)
         , Model
         , Msg(..)
+        , highDate
         , initialModel
         , lowDate
-        , highDate
         )
 
 import Date exposing (Date)
@@ -42,6 +42,9 @@ type Msg
 
 type alias Model =
     { textField : Maybe String
+    , textFieldIcon : Maybe String
+    , textFieldSmallFirst : Maybe String
+    , textFieldSmallLast : Maybe String
     , passwordField : Maybe String
     , textareaField : Maybe String
     , selectField : Maybe String
@@ -64,13 +67,18 @@ lowDate : Date
 lowDate =
     dateFromFields 2018 (intToMonth 9) 15 0 0 0 0
 
+
 highDate : Date
 highDate =
     dateFromFields 2018 (intToMonth 10) 28 0 0 0 0
 
+
 initialModel : Model
 initialModel =
     Model
+        Nothing
+        Nothing
+        Nothing
         Nothing
         Nothing
         Nothing
@@ -84,7 +92,7 @@ initialModel =
         ]
         Nothing
         Nothing
-        (DatePicker.init (dateFromFields 2018 (intToMonth 12) 25 0 0 0 0) ( 1910, 2019) (Just (lowDate, highDate)))
+        (DatePicker.init (dateFromFields 2018 (intToMonth 12) 25 0 0 0 0) ( 1960, 2019 ) (Just ( lowDate, highDate )))
         False
         Nothing
         Nothing
@@ -95,6 +103,9 @@ initialModel =
 
 type Field
     = Text
+    | TextIcon
+    | TextSmallFirst
+    | TextSmallLast
     | Password
     | Textarea
     | Select

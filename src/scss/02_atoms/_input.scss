@@ -14,7 +14,7 @@
     box-shadow: map-get($formConfig, fieldShadow);
   }
 
-  &.is-valid:not(:focus),
+  &.is-valid:not(:focus):not(.is-pristine),
   &.is-touched:not(.is-invalid):not(:focus) {
     border-color: color(brandAlt, dark);
     color: color(brandAlt, dark);
