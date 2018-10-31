@@ -90,6 +90,12 @@ update msg model =
             }
                 |> withoutCmds
 
+        UpdateText TextLarge value ->
+            { model
+                | textFieldLarge = value
+            }
+                |> withoutCmds
+
         UpdateText Password value ->
             { model
                 | passwordField = value

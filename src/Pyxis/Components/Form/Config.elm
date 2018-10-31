@@ -1,4 +1,4 @@
-module Pyxis.Components.Form.Config exposing (autocompleteFieldConfig, checkboxFieldConfig, checkboxWithOptionsFieldConfig, datePickerFieldConfig, passwordFieldConfig, radioFieldConfig, selectFieldConfig, smallTextFieldConfig, textFieldConfig, textFieldIconConfig, textFieldSmallFirstConfig, textFieldSmallLastConfig, textareaFieldConfig)
+module Pyxis.Components.Form.Config exposing (autocompleteFieldConfig, checkboxFieldConfig, checkboxWithOptionsFieldConfig, datePickerFieldConfig, passwordFieldConfig, radioFieldConfig, selectFieldConfig, textFieldConfig, textFieldIconConfig, textFieldLargeConfig, textFieldSmallFirstConfig, textFieldSmallLastConfig, textareaFieldConfig)
 
 import Html.Attributes exposing (class, disabled, placeholder)
 import Maybe.Extra exposing (isJust)
@@ -57,7 +57,7 @@ textFieldSmallFirstConfig : Model -> FormField Model Msg
 textFieldSmallFirstConfig { formDisabled } =
     Form.textConfig
         "text_field"
-        (Just "Text field small")
+        (Just "Small text field")
         [ placeholder "From", disabled formDisabled, class "fieldSmall" ]
         .textFieldSmallFirst
         (UpdateText TextSmallFirst)
@@ -80,6 +80,22 @@ textFieldSmallLastConfig { formDisabled } =
         (Blur TextSmallLast)
         False
         [ NotEmpty "Empty value is not acceptable"
+        ]
+
+
+textFieldLargeConfig : Model -> FormField Model Msg
+textFieldLargeConfig { formDisabled } =
+    Form.textConfig
+        "text_field"
+        (Just "Large text field")
+        [ placeholder "Something", disabled formDisabled, class "fieldLarge" ]
+        .textFieldLarge
+        (UpdateText TextLarge)
+        (Focus TextLarge)
+        (Blur TextLarge)
+        False
+        [ NotEmpty "Empty value is not acceptable"
+        , Expression (regex "prima") "The value must contains `prima` substring."
         ]
 
 
@@ -264,18 +280,3 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
         options
         False
         [ NotEmpty "Empty value is not acceptable" ]
-
-
-smallTextFieldConfig : Model -> FormField Model Msg
-smallTextFieldConfig { formDisabled } =
-    Form.textConfig
-        "text_field"
-        (Just "Text field")
-        [ placeholder "Something", disabled formDisabled, class "fieldSmall" ]
-        .textField
-        (UpdateText Text)
-        (Focus Text)
-        (Blur Text)
-        False
-        [ NotEmpty "Empty value is not acceptable"
-        ]

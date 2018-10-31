@@ -45,6 +45,7 @@ type alias Model =
     , textFieldIcon : Maybe String
     , textFieldSmallFirst : Maybe String
     , textFieldSmallLast : Maybe String
+    , textFieldLarge : Maybe String
     , passwordField : Maybe String
     , textareaField : Maybe String
     , selectField : Maybe String
@@ -83,6 +84,7 @@ initialModel =
         Nothing
         Nothing
         Nothing
+        Nothing
         False
         False
         [ CheckboxOption "Option a" "a" False
@@ -106,6 +108,7 @@ type Field
     | TextIcon
     | TextSmallFirst
     | TextSmallLast
+    | TextLarge
     | Password
     | Textarea
     | Select
