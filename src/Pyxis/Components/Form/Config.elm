@@ -1,4 +1,4 @@
-module Pyxis.Components.Form.Config exposing (autocompleteFieldConfig, checkboxFieldConfig, checkboxWithOptionsFieldConfig, datePickerFieldConfig, passwordFieldConfig, radioFieldConfig, selectFieldConfig, smallTextFieldConfig, textFieldConfig, textareaFieldConfig)
+module Pyxis.Components.Form.Config exposing (autocompleteFieldConfig, checkboxFieldConfig, checkboxWithOptionsFieldConfig, datePickerFieldConfig, passwordFieldConfig, radioFieldConfig, selectFieldConfig, textFieldConfig, textFieldIconConfig, textFieldLargeConfig, textFieldSmallFirstConfig, textFieldSmallLastConfig, textareaFieldConfig)
 
 import Html.Attributes exposing (class, disabled, placeholder)
 import Maybe.Extra exposing (isJust)
@@ -31,6 +31,68 @@ textFieldConfig { formDisabled } =
         (UpdateText Text)
         (Focus Text)
         (Blur Text)
+        False
+        [ NotEmpty "Empty value is not acceptable"
+        , Expression (regex "prima") "The value must contains `prima` substring."
+        ]
+
+
+textFieldIconConfig : Model -> FormField Model Msg
+textFieldIconConfig { formDisabled } =
+    Form.textConfig
+        "text_field"
+        (Just "Text field icon")
+        [ placeholder "Write something", disabled formDisabled ]
+        .textFieldIcon
+        (UpdateText TextIcon)
+        (Focus TextIcon)
+        (Blur TextIcon)
+        False
+        [ NotEmpty "Empty value is not acceptable"
+        , Expression (regex "prima") "The value must contains `prima` substring."
+        ]
+
+
+textFieldSmallFirstConfig : Model -> FormField Model Msg
+textFieldSmallFirstConfig { formDisabled } =
+    Form.textConfig
+        "text_field"
+        (Just "Small text field")
+        [ placeholder "From", disabled formDisabled, class "fieldSmall" ]
+        .textFieldSmallFirst
+        (UpdateText TextSmallFirst)
+        (Focus TextSmallFirst)
+        (Blur TextSmallFirst)
+        False
+        [ NotEmpty "Empty value is not acceptable"
+        ]
+
+
+textFieldSmallLastConfig : Model -> FormField Model Msg
+textFieldSmallLastConfig { formDisabled } =
+    Form.textConfig
+        "text_field"
+        Nothing
+        [ placeholder "To", disabled formDisabled, class "fieldSmall" ]
+        .textFieldSmallLast
+        (UpdateText TextSmallLast)
+        (Focus TextSmallLast)
+        (Blur TextSmallLast)
+        False
+        [ NotEmpty "Empty value is not acceptable"
+        ]
+
+
+textFieldLargeConfig : Model -> FormField Model Msg
+textFieldLargeConfig { formDisabled } =
+    Form.textConfig
+        "text_field"
+        (Just "Large text field")
+        [ placeholder "Something", disabled formDisabled, class "fieldLarge" ]
+        .textFieldLarge
+        (UpdateText TextLarge)
+        (Focus TextLarge)
+        (Blur TextLarge)
         False
         [ NotEmpty "Empty value is not acceptable"
         , Expression (regex "prima") "The value must contains `prima` substring."
@@ -170,7 +232,7 @@ datePickerFieldConfig { datepicker, isDatePickerOpen, formDisabled } =
     Form.datepickerConfig
         "datepicker_field"
         (Just "Datepicker field")
-        [ disabled formDisabled ]
+        [ disabled formDisabled, placeholder "gg/mm/aaaa" ]
         .datepickerField
         (UpdateText Datepicker)
         (UpdateDate Datepicker)
@@ -218,18 +280,3 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
         options
         False
         [ NotEmpty "Empty value is not acceptable" ]
-
-
-smallTextFieldConfig : Model -> FormField Model Msg
-smallTextFieldConfig { formDisabled } =
-    Form.textConfig
-        "text_field"
-        (Just "Text field")
-        [ placeholder "Something", disabled formDisabled, class "fieldSmall" ]
-        .textField
-        (UpdateText Text)
-        (Focus Text)
-        (Blur Text)
-        False
-        [ NotEmpty "Empty value is not acceptable"
-        ]

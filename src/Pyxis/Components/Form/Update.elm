@@ -9,8 +9,8 @@ import Pyxis.Components.Form.Model
         ( Field(..)
         , Model
         , Msg(..)
-        , lowDate
         , highDate
+        , lowDate
         )
 import Pyxis.Helpers
     exposing
@@ -72,6 +72,30 @@ update msg model =
             }
                 |> withoutCmds
 
+        UpdateText TextIcon value ->
+            { model
+                | textFieldIcon = value
+            }
+                |> withoutCmds
+
+        UpdateText TextSmallFirst value ->
+            { model
+                | textFieldSmallFirst = value
+            }
+                |> withoutCmds
+
+        UpdateText TextSmallLast value ->
+            { model
+                | textFieldSmallLast = value
+            }
+                |> withoutCmds
+
+        UpdateText TextLarge value ->
+            { model
+                | textFieldLarge = value
+            }
+                |> withoutCmds
+
         UpdateText Password value ->
             { model
                 | passwordField = value
@@ -111,7 +135,7 @@ update msg model =
                 , datepicker =
                     case (Maybe.Extra.join << Maybe.map (Result.toMaybe << Date.fromString)) value of
                         Just date ->
-                            DatePicker.init date ( 1910, 2020 ) (Just (lowDate, highDate))
+                            DatePicker.init date ( 1910, 2020 ) (Just ( lowDate, highDate ))
 
                         _ ->
                             model.datepicker
