@@ -21,12 +21,33 @@
   p {
     margin: 0;
     font-size: size(small);
-    line-height: line-height(small);
+    line-height: lineHeight(small);
   }
 
   &.tooltip--info {
     --tooltipColor: #{color(brand, light)};
     color: color(textAlt, light);
+  }
+}
+
+.tooltip__wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  right: -30px;
+  top: 0;
+  bottom: 0;
+
+  .tooltip {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+  }
+
+  &:hover .tooltip {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 
