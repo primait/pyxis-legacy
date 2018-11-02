@@ -39,6 +39,23 @@ view ({ datepicker, isDatePickerOpen } as model) =
                 ]
                 [ i [ class "a-icon a-icon-calendar c-brandAlt-dark", (onClick << Toggle Datepicker << not) isDatePickerOpen ] []
                 ]
+
+        tooltip =
+            div [ class "tooltip__wrapper" ]
+                [ i [ class "a-icon a-icon-info cBrandAltDark" ] []
+                , div [ class "tooltip tooltip--right" ]
+                    [ p []
+                        [ text "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
+                        ]
+                    ]
+                ]
+
+        tooltipInfo =
+            div [ class "tooltip tooltip--right tooltip--info" ]
+                [ p []
+                    [ text "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
+                    ]
+                ]
     in
     [ componentTitle [ text "Form components", toggleDisableForm model.formDisabled ]
     , divider
@@ -67,6 +84,12 @@ view ({ datepicker, isDatePickerOpen } as model) =
         "autocomplete"
         InspectHtml
         [ Form.wrapper <| Form.render model <| autocompleteFieldConfig model
+        ]
+    , componentShowdown "Input with tooltip"
+        "inputtooltip"
+        InspectHtml
+        [ Form.wrapper <| Form.renderWithGroup [ tooltipInfo ] model <| textFieldTooltipConfig model
+        , Form.wrapper <| Form.renderWithGroup [ tooltip ] model <| textFieldTooltipInfoConfig model
         ]
     , componentShowdown "Select" "select" InspectHtml [ Form.wrapper <| Form.render model <| selectFieldConfig model ]
     , componentShowdown "Checkbox"

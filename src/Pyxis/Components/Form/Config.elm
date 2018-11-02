@@ -1,4 +1,21 @@
-module Pyxis.Components.Form.Config exposing (autocompleteFieldConfig, checkboxFieldConfig, checkboxWithOptionsFieldConfig, datePickerFieldConfig, passwordFieldConfig, radioFieldConfig, selectFieldConfig, textFieldConfig, textFieldIconConfig, textFieldLargeConfig, textFieldSmallFirstConfig, textFieldSmallLastConfig, textareaFieldConfig)
+module Pyxis.Components.Form.Config
+    exposing
+        ( autocompleteFieldConfig
+        , checkboxFieldConfig
+        , checkboxWithOptionsFieldConfig
+        , datePickerFieldConfig
+        , passwordFieldConfig
+        , radioFieldConfig
+        , selectFieldConfig
+        , textFieldConfig
+        , textFieldIconConfig
+        , textFieldLargeConfig
+        , textFieldSmallFirstConfig
+        , textFieldSmallLastConfig
+        , textFieldTooltipConfig
+        , textFieldTooltipInfoConfig
+        , textareaFieldConfig
+        )
 
 import Html.Attributes exposing (class, disabled, placeholder)
 import Maybe.Extra exposing (isJust)
@@ -96,6 +113,36 @@ textFieldLargeConfig { formDisabled } =
         False
         [ NotEmpty "Empty value is not acceptable"
         , Expression (regex "prima") "The value must contains `prima` substring."
+        ]
+
+
+textFieldTooltipConfig : Model -> FormField Model Msg
+textFieldTooltipConfig { formDisabled } =
+    Form.textConfig
+        "text_field"
+        (Just "Text field tooltip")
+        [ placeholder "Write something", disabled formDisabled ]
+        .textFieldTooltip
+        (UpdateText TextTooltip)
+        (Focus TextTooltip)
+        (Blur TextTooltip)
+        False
+        [ NotEmpty "Empty value is not acceptable"
+        ]
+
+
+textFieldTooltipInfoConfig : Model -> FormField Model Msg
+textFieldTooltipInfoConfig { formDisabled } =
+    Form.textConfig
+        "text_field"
+        (Just "Text field tooltip")
+        [ placeholder "Write something", disabled formDisabled ]
+        .textFieldTooltipInfo
+        (UpdateText TextTooltipInfo)
+        (Focus TextTooltipInfo)
+        (Blur TextTooltipInfo)
+        False
+        [ NotEmpty "Empty value is not acceptable"
         ]
 
 

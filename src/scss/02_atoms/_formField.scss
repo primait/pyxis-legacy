@@ -1,5 +1,6 @@
 .a-form__field {
   align-items: center;
+  border-radius: map-get($formConfig, borderRadius);
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -56,7 +57,8 @@
 .a-form__field__input,
 .a-form__field__date,
 .a-form__field__textarea,
-.a-form__field__autocomplete {
+.a-form__field__autocomplete,
+.a-form__field__customSelect {
   font-size: 14px;
 }
 

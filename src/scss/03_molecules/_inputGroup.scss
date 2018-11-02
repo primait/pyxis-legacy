@@ -27,6 +27,7 @@
   mix-blend-mode: darken;
   position: absolute;
   width: map-get($formConfig, fieldHeight);
+  z-index: 2;
 }
 
 .m-form__field__group__append {

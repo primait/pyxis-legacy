@@ -47,7 +47,6 @@ tooltip direction =
             ]
         ]
         [ p
-            [ class "fs-small"
-            ]
+            []
             [ text "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa." ]
         ]

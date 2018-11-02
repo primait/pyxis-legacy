@@ -96,6 +96,18 @@ update msg model =
             }
                 |> withoutCmds
 
+        UpdateText TextTooltip value ->
+            { model
+                | textFieldTooltip = value
+            }
+                |> withoutCmds
+
+        UpdateText TextTooltipInfo value ->
+            { model
+                | textFieldTooltipInfo = value
+            }
+                |> withoutCmds
+
         UpdateText Password value ->
             { model
                 | passwordField = value
