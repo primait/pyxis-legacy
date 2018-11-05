@@ -60,6 +60,9 @@ toRoute str =
         "/header" ->
             HeaderRoute
 
+        "/login" ->
+            LoginRoute
+
         "/messages" ->
             MessagesRoute
 

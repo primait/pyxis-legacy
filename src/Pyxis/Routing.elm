@@ -21,6 +21,7 @@ matchers =
         , map MessagesRoute (s "messages")
         , map FooterRoute (s "footer")
         , map TooltipsRoute (s "tooltips")
+        , map LoginRoute (s "login")
         ]
 
 

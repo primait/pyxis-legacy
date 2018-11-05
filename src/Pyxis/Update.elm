@@ -10,6 +10,8 @@ import Pyxis.Components.Form.Model as FormModel
 import Pyxis.Components.Form.Update as FormUpdate
 import Pyxis.Components.Header.Model as HeaderModel
 import Pyxis.Components.Header.Update as HeaderUpdate
+import Pyxis.Components.Login.Model as LoginModel
+import Pyxis.Components.Login.Update as LoginUpdate
 import Pyxis.Components.Messages.Model as MessagesModel
 import Pyxis.Components.Messages.Update as MessagesUpdate
 import Pyxis.Components.Tooltips.Model as TooltipsModel
@@ -101,6 +103,9 @@ update msg model =
         TooltipsMsg tooltipsMsg ->
             updateTooltips model tooltipsMsg model.tooltips
 
+        LoginMsg loginMsg ->
+            updateLogin model loginMsg model.login
+
 
 updateColors : Model -> ColorsModel.Msg -> ColorsModel.Model -> ( Model, Cmd Msg )
 updateColors model msg colorsModel =
@@ -163,3 +168,12 @@ updateTooltips model msg tooltipsModel =
             TooltipsUpdate.update msg tooltipsModel
     in
     { model | tooltips = newTooltipsModel } ! [ Cmd.map TooltipsMsg cmds ]
+
+
+updateLogin : Model -> LoginModel.Msg -> LoginModel.Model -> ( Model, Cmd Msg )
+updateLogin model msg loginModel =
+    let
+        ( newLoginModel, cmds ) =
+            LoginUpdate.update msg loginModel
+    in
+    { model | login = newLoginModel } ! [ Cmd.map LoginMsg cmds ]
