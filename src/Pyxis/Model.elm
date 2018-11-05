@@ -20,6 +20,7 @@ import Pyxis.Components.Colors.Model as Colors
 import Pyxis.Components.Footer.Model as Footer
 import Pyxis.Components.Form.Model as Form
 import Pyxis.Components.Header.Model as Header
+import Pyxis.Components.Login.Model as Login
 import Pyxis.Components.Messages.Model as Messages
 import Pyxis.Components.Tooltips.Model as Tooltips
 import Time exposing (Time)
@@ -43,6 +44,7 @@ type Msg
     | FooterMsg Footer.Msg
     | TooltipsMsg Tooltips.Msg
     | MessagesMsg Messages.Msg
+    | LoginMsg Login.Msg
 
 
 type alias Model =
@@ -58,6 +60,7 @@ type alias Model =
     , footer : Footer.Model
     , tooltips : Tooltips.Model
     , messages : Messages.Model
+    , login : Login.Model
     }
 
 
@@ -76,6 +79,7 @@ initialModel =
         Footer.initialModel
         Tooltips.initialModel
         Messages.initialModel
+        Login.initialModel
 
 
 initialMenu : List Menu
@@ -85,10 +89,9 @@ initialMenu =
     , Menu "typography" "Typography" TypographyRoute False
     , Menu "buttons" "Buttons" ButtonsRoute False
     , Menu "form" "Form" FormRoute False
-    -- , Menu "header" "Header" HeaderRoute False
     , Menu "messages" "Messages" MessagesRoute False
-    -- , Menu "footer" "Footer" FooterRoute False
     , Menu "tooltips" "Tooltips" TooltipsRoute False
+    , Menu "login" "Login" LoginRoute False
     ]
 
 
@@ -107,6 +110,7 @@ type Route
     | MessagesRoute
     | TypographyRoute
     | TooltipsRoute
+    | LoginRoute
       --------------
     | NotFoundRoute
 
