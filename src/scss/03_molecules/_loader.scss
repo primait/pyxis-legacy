@@ -1,0 +1,12 @@
+.m-loader {
+	display: flex;
+	flex-direction: column;
+
+	@include loader( center, spinner, text, small );
+}
+
+.a-loader__text {
+	display: none;
+	flex-direction: column;
+	padding-top: 20px;
+}

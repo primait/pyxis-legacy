@@ -1,5 +1,6 @@
+
 <footer class="o-footer bg-backgroundAlt-dark directionColumn">
-  <div class="m-btnGroup"><button class="a-btn a-btn--circle" onClick="document.querySelector('.o-footer').className += ' is-active';"><i class="a-icon a-icon-caret-up"></i></button></div>
+  <div class="m-btnGroup"><button class="a-btn a-btn--circle" onClick="document.querySelector('.o-footer').className += ' is-active';"><i class="a-icon a-icon-a-loader__caret-up"></i></button></div>
   <div class="a-container a-container--navigation">
     <ul class="m-list m-list--customer directionColumn">
       <li class="a-list__item">
@@ -74,12 +75,12 @@
   </div>
   <div class="a-container a-container--xsmall a-container--payment">
     <ul class="m-list directionRow">
-      <li class="a-list__item"><img src="/assets/media/card/visa.svg" alt="Visa"></li>
-      <li class="a-list__item"><img src="/assets/media/card/master-card.svg" alt="Master card"></li>
-      <li class="a-list__item"><img src="/assets/media/card/maestro.svg" alt="Maestro"></li>
-      <li class="a-list__item"><img src="/assets/media/card/paypal.svg" alt="PayPal"></li>
-      <li class="a-list__item"><img src="/assets/media/card/poste-pay.svg" alt="Postepay"></li>
-      <li class="a-list__item"><img src="/assets/media/card/bank_transfer.svg" alt="Bonifico bancario"></li>
+      <li class="a-list__item"><img src="/assets/media/a-loader__card/visa.svg" alt="Visa"></li>
+      <li class="a-list__item"><img src="/assets/media/a-loader__card/master-a-loader__card.svg" alt="Master a-loader__card"></li>
+      <li class="a-list__item"><img src="/assets/media/a-loader__card/maestro.svg" alt="Maestro"></li>
+      <li class="a-list__item"><img src="/assets/media/a-loader__card/paypal.svg" alt="PayPal"></li>
+      <li class="a-list__item"><img src="/assets/media/a-loader__card/poste-pay.svg" alt="Postepay"></li>
+      <li class="a-list__item"><img src="/assets/media/a-loader__card/bank_transfer.svg" alt="Bonifico bana-loader__cario"></li>
     </ul>
   </div>
   <div class="a-container a-container--xsmall a-container--privacy">

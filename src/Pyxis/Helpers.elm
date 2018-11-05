@@ -85,6 +85,9 @@ routeToUrl route =
         LoginRoute ->
             "/login"
 
+        LoaderRoute ->
+            "/loader"
+
         MessagesRoute ->
             "/messages"
 
