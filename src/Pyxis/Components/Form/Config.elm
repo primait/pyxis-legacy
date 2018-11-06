@@ -82,6 +82,7 @@ textFieldSmallFirstConfig { formDisabled } =
         (Blur TextSmallFirst)
         False
         [ NotEmpty "Empty value is not acceptable"
+        , Expression (regex "prima") "The value must contains `prima` substring."
         ]
 
 
@@ -97,6 +98,7 @@ textFieldSmallLastConfig { formDisabled } =
         (Blur TextSmallLast)
         False
         [ NotEmpty "Empty value is not acceptable"
+        , Expression (regex "prima") "The value must contains `prima` substring."
         ]
 
 

@@ -4,7 +4,7 @@
 
   @include mq(small) {
     display: flex;
-    flex: 0 0 auto;
+    flex: 0 0 map-get($formConfig, fieldMaxWidth);
     flex-direction: column;
   }
 }
