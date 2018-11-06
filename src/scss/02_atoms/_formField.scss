@@ -73,7 +73,7 @@
   flex: 0 0 100%;
   font-family: font(base);
   font-size: 12px;
-  order: +1;
+  order: 1;
 
   @include mq(small) {
     margin-top: map-get($formConfig, errorMargin);
