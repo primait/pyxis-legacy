@@ -70,7 +70,6 @@
   }
 }
 
-
 #footerSentinel {
   background: transparent;
   display: block;
@@ -181,7 +180,6 @@
   width: 100%;
 }
 
-
 // HORIZONTAL LISTS MENU //
 .o-footer .m-list--company,
 .o-footer .m-list--information-package {
@@ -258,10 +256,6 @@
     display: none;
   }
 
-  }
-}
-
-
 .o-footer .m-btnGroup .a-icon {
   transition: all .2s ease-in-out;
 
@@ -270,6 +264,7 @@
     top: 2px;
   }
 }
+
 .o-footer {
 
   // BLOCK TABLET
@@ -286,6 +281,7 @@
     }
   }
 
+}
 
 .o-footer .a-btn--circle {
   position: absolute;

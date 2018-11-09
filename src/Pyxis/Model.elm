@@ -40,7 +40,6 @@ type Msg
       -------------
     | ButtonsMsg Buttons.Msg
     | ColorsMsg Colors.Msg
-    | FooterMsg Footer.Msg
     | FormMsg Form.Msg
     | HeaderMsg Header.Msg
     | LoaderMsg Loader.Msg
@@ -97,14 +96,14 @@ initialMenu =
     , Menu "colors" "Colors" ColorsRoute False
     , Menu "footer" "Footer" FooterRoute False
     , Menu "form" "Form" FormRoute False
+    , Menu "lists" "Lists" ListsRoute False
     , Menu "loader" "Loader" LoaderRoute False
+    , Menu "login" "Login" LoginRoute False
     , Menu "messages" "Messages" MessagesRoute False
     , Menu "header" "Header" HeaderRoute False
-    , Menu "lists" "Lists" ListsRoute False
     , Menu "messages" "Messages" MessagesRoute False
     , Menu "typography" "Typography" TypographyRoute False
     , Menu "tooltips" "Tooltips" TooltipsRoute False
-    , Menu "login" "Login" LoginRoute False
     ]
 
 
