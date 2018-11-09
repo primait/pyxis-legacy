@@ -42,9 +42,11 @@ $loginConfig: (
 
 $loaderConfig: (
   borderRadius: 5px,
-  borderWidth: 1px,
-  loginShadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.10),
-  minHeight: 400px,
+  borderRadiusSmall: 5px,
+  height: 60px,
+  with: 60px,
+  heightSmall: 20px,
+  withSmall: 20px,
 );
 
 $containerConfig: (

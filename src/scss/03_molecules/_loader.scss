@@ -12,17 +12,17 @@
 
 .a-loader__spinner {
   animation: spin 1s infinite linear;
-  border: 6px solid rgba(color(brand, light), 0.2);
+  border: map-get($loginConfig, borderRadius) solid rgba(color(brand, light), 0.2);
   border-radius: 50%;
   border-top-color: color(brand, base);
-  height: 60px;
-  width: 60px;
+  height: map-get($loaderConfig, height);
+  width: map-get($loaderConfig, with);
 
 	&--small {
-		border: 3px solid rgba(color(brand, light), 0.2);
+		border: map-get($loginConfig, borderRadiusSmall) solid rgba(color(brand, light), 0.2);
 		border-top-color: color(brand, base);
-		height: 20px;
-	  width: 20px;
+		height: map-get($loaderConfig, heightSmall);
+	  width: map-get($loaderConfig, withSmall);
 	}
 
 	&--green {
@@ -32,38 +32,6 @@
 }
 
 .a-loader__car {
-
-	&__body {
-	  animation: shake 0.2s ease-in-out infinite alternate;
-		fill: color(brand);
-	}
-
-	&__wheel {
-		fill: color(brand);
-	}
-
-	&__line {
-    animation: line 0.8s ease-in-out infinite;
-		animation-fill-mode: both;
-		stroke-dasharray: 100;
-    stroke-width: 7;
-    transform-origin: center right;
-
-		&--top {
-			animation-delay: 0s;
-			stroke: color(brand);
-		}
-
-		&--middle {
-			animation-delay: 0.2s;
-			stroke: color(brand);
-		}
-
-		&--bottom {
-			animation-delay: 0.4s;
-			stroke: color(brand);
-		}
-	}
 
 	.is-IE & {
 		@extend .a-loader__spinner;
@@ -83,6 +51,38 @@
   .a-loader__car--small & {
     transform: scale(0.2);
   }
+
+	&__body {
+		animation: shake 0.2s ease-in-out infinite alternate;
+		fill: color(brand);
+	}
+
+	&__wheel {
+		fill: color(brand);
+	}
+
+	&__line {
+		animation: line 0.8s ease-in-out infinite;
+		animation-fill-mode: both;
+		stroke-dasharray: 100;
+		stroke-width: 7;
+		transform-origin: center right;
+
+		&--top {
+			animation-delay: 0s;
+			stroke: color(brand);
+		}
+
+		&--middle {
+			animation-delay: 0.2s;
+			stroke: color(brand);
+		}
+
+		&--bottom {
+			animation-delay: 0.4s;
+			stroke: color(brand);
+		}
+	}
 }
 
 @keyframes spin {
