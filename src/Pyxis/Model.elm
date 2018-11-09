@@ -21,6 +21,7 @@ import Pyxis.Components.Footer.Model as Footer
 import Pyxis.Components.Form.Model as Form
 import Pyxis.Components.Header.Model as Header
 import Pyxis.Components.Login.Model as Login
+import Pyxis.Components.Loader.Model as Loader
 import Pyxis.Components.Messages.Model as Messages
 import Pyxis.Components.Tooltips.Model as Tooltips
 import Time exposing (Time)
@@ -38,9 +39,13 @@ type Msg
     | Copied
       -------------
     | ButtonsMsg Buttons.Msg
+
+
+
     | ColorsMsg Colors.Msg
     | FormMsg Form.Msg
     | HeaderMsg Header.Msg
+    | LoaderMsg Loader.Msg
     | FooterMsg Footer.Msg
     | TooltipsMsg Tooltips.Msg
     | MessagesMsg Messages.Msg
@@ -57,12 +62,12 @@ type alias Model =
     , buttons : Buttons.Model
     , form : Form.Model
     , header : Header.Model
+    , loader : Loader.Model
     , footer : Footer.Model
     , tooltips : Tooltips.Model
     , messages : Messages.Model
     , login : Login.Model
     }
-
 
 initialModel : Model
 initialModel =
@@ -76,6 +81,7 @@ initialModel =
         Buttons.initialModel
         Form.initialModel
         Header.initialModel
+        Loader.initialModel
         Footer.initialModel
         Tooltips.initialModel
         Messages.initialModel
@@ -89,6 +95,7 @@ initialMenu =
     , Menu "typography" "Typography" TypographyRoute False
     , Menu "buttons" "Buttons" ButtonsRoute False
     , Menu "form" "Form" FormRoute False
+    , Menu "loader" "Loader" LoaderRoute False
     , Menu "messages" "Messages" MessagesRoute False
     , Menu "tooltips" "Tooltips" TooltipsRoute False
     , Menu "login" "Login" LoginRoute False
@@ -108,6 +115,7 @@ type Route
     | FormRoute
     | HeaderRoute
     | MessagesRoute
+    | LoaderRoute
     | TypographyRoute
     | TooltipsRoute
     | LoginRoute

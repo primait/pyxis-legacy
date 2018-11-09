@@ -18,6 +18,7 @@ matchers =
         , map ButtonsRoute (s "buttons")
         , map FormRoute (s "form")
         , map HeaderRoute (s "header")
+        , map LoaderRoute (s "loader")
         , map MessagesRoute (s "messages")
         , map FooterRoute (s "footer")
         , map TooltipsRoute (s "tooltips")

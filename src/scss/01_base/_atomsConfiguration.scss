@@ -40,6 +40,15 @@ $loginConfig: (
   minHeight: 400px,
 );
 
+$loaderConfig: (
+  borderRadius: 5px,
+  borderRadiusSmall: 5px,
+  height: 60px,
+  with: 60px,
+  heightSmall: 20px,
+  withSmall: 20px,
+);
+
 $containerConfig: (
   xsmall:  540px,
   small:   700px,

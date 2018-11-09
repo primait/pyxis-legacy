@@ -12,6 +12,8 @@ import Pyxis.Components.Header.Model as HeaderModel
 import Pyxis.Components.Header.Update as HeaderUpdate
 import Pyxis.Components.Login.Model as LoginModel
 import Pyxis.Components.Login.Update as LoginUpdate
+import Pyxis.Components.Loader.Model as LoaderModel
+import Pyxis.Components.Loader.Update as LoaderUpdate
 import Pyxis.Components.Messages.Model as MessagesModel
 import Pyxis.Components.Messages.Update as MessagesUpdate
 import Pyxis.Components.Tooltips.Model as TooltipsModel
@@ -97,6 +99,9 @@ update msg model =
         HeaderMsg headerMsg ->
             updateHeader model headerMsg model.header
 
+        LoaderMsg loaderMsg ->
+            updateLoader model loaderMsg model.loader
+
         MessagesMsg messagesMsg ->
             updateMessages model messagesMsg model.messages
 
@@ -141,6 +146,14 @@ updateHeader model msg headerModel =
             HeaderUpdate.update msg headerModel
     in
     { model | header = newHeaderModel } ! [ Cmd.map HeaderMsg cmds ]
+
+updateLoader : Model -> LoaderModel.Msg -> LoaderModel.Model -> ( Model, Cmd Msg )
+updateLoader model msg loaderModel =
+    let
+        ( newLoaderModel, cmds ) =
+            LoaderUpdate.update msg loaderModel
+    in
+    { model | loader = newLoaderModel } ! [ Cmd.map LoaderMsg cmds ]
 
 
 updateFooter : Model -> FooterModel.Msg -> FooterModel.Model -> ( Model, Cmd Msg )
