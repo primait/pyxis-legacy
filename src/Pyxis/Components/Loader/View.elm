@@ -8,26 +8,45 @@ import Pyxis.Components.Loader.Model
         )
 
 import Pyxis.ViewHelpers exposing (componentTitle, divider, renderOrNothing)
+import Html.Attributes exposing (classList)
 import Svg exposing (Svg, circle, g, path, svg, line)
 import Svg.Attributes exposing (cx, cy, d, height, r, strokeLinejoin, strokeMiterlimit, viewBox, width, class, transform, x1, x2, y1, y2 )
 
+import Pyxis.ViewHelpers
+    exposing
+        ( componentShowdown
+        , componentTitle
+        , divider
+        , inspectableHtml
+        )
+
+
 view : Model -> List (Html Msg)
 view model =
+    let
+      loader loaderType loaderText =
+        div [ class "m-loader" ]
+            [ loaderType
+            , loaderText
+            ]
+
+    in
     [ componentTitle [ text "Loader" ]
     , divider
-    , div [ class "m-loader" ]
-    [ svgLoader
-    , spinnerLoader
-    , textLoader
+    , componentShowdown "loader car" "loaderCar" InspectHtml [ loader svgLoader ( textLoader "Ancora qualche secondo ..." "Stiamo elaborando i tuoi dati." ) ]
+    , componentShowdown "loader spinner" "loaderSpinner" InspectHtml [ loader ( spinnerLoader "" "" ) ( textLoader "Ancora qualche secondo ..." "Stiamo elaborando i tuoi dati." ) ]
+    , componentShowdown "loader spinner borat" "loaderSpinnerBorat" InspectHtml [ loader ( spinnerLoader "" "green" ) ( textLoader "Dati in elaborazione ..." "" ) ]
+    , componentShowdown "loader spinner small" "loaderSpinnerSmall" InspectHtml [ loader ( spinnerLoader "small" "" ) ( textLoader "" "" ) ]
+    , componentShowdown "loader spinner small borat" "loaderSpinneSmallBorat" InspectHtml [ loader ( spinnerLoader "small" "green" ) ( textLoader "" "" ) ]
     ]
-  ]
+
 
 svgLoader : Html Msg
 svgLoader =
   svg
     [ width "150"
     , height "50"
-    , class "a-loader__car a-loader__small"
+    , class "a-loader__car"
     ]
     [ g
       [ class "a-loader__car__group" ]
@@ -71,19 +90,24 @@ svgLoader =
       ]
     ]
 
+spinnerLoader : String -> String -> Html Msg
+spinnerLoader dimension color  =
+        div
+            [ classList
+                  [ ( "a-loader__spinner", True )
+                  , ( "a-loader__spinner--" ++ dimension, False )
+                  , ( "a-loader__spinner--" ++ color, False )
+                  ]
+            ]
+            [ ]
 
-spinnerLoader : Html Msg
-spinnerLoader =
-      div [ class "a-loader__spinner" ]
-          []
 
-
-textLoader : Html Msg
-textLoader =
+textLoader : String -> String -> Html Msg
+textLoader title subtitle =
   div [ class "a-loader__text fs-small fw-heavy c-text-dark" ]
       [
         p [ ]
-          [ text "Ancora qualche secondo ..."]
+          [ text title]
         , p [ ]
-          [ text "stiamo elaborando i tuoi dati."]
+          [ text subtitle ]
       ]

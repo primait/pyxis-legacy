@@ -10,6 +10,7 @@ import Http
 
 type Msg
     = FetchTemplate (Result Http.Error String)
+    | InspectHtml String
 
 
 type alias Model =
