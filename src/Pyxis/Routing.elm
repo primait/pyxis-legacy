@@ -1,4 +1,4 @@
-module Pyxis.Routing exposing (..)
+module Pyxis.Routing exposing (matchers, parseLocation)
 
 import Navigation exposing (Location)
 import Pyxis.Model
@@ -23,6 +23,7 @@ matchers =
         , map FooterRoute (s "footer")
         , map TooltipsRoute (s "tooltips")
         , map LoginRoute (s "login")
+        , map ListsRoute (s "lists")
         ]
 
 

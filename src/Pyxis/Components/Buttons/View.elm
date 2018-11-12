@@ -9,6 +9,10 @@ import Pyxis.Components.Buttons.Model
         , Model
         , Msg(..)
         , btnTypeToString
+        , circleBtn
+        , primaryBtn
+        , secondaryBtn
+        , tertiaryBtn
         )
 import Pyxis.ViewHelpers
     exposing
@@ -23,29 +27,21 @@ import Pyxis.ViewHelpers
 view : Model -> List (Html Msg)
 view model =
     let
-        pickBtn : BtnType -> Maybe Btn
-        pickBtn type_ =
-            (List.head << List.filter ((==) type_ << .type_)) model.buttons
-
-        primaryBtn =
-            pickBtn Primary
-
-        secondaryBtn =
-            pickBtn Secondary
-
-        tertiaryBtn =
-            pickBtn Tertiary
-
-        renderBtn : Maybe Btn -> List (Html Msg)
+        renderBtn : Btn -> List (Html Msg)
         renderBtn =
-            List.singleton << renderOrNothing << Maybe.map btn
+            List.singleton << btn
+
+        renderBtnList : List Btn -> List (Html Msg)
+        renderBtnList =
+            List.singleton << btnGroup << List.map btn
     in
     [ componentTitle [ text "Buttons" ]
     , divider
     , (componentShowdown "Btn primary" "btnPrimary" InspectHtml << renderBtn) primaryBtn
     , (componentShowdown "Btn secondary" "btnSecondary" InspectHtml << renderBtn) secondaryBtn
     , (componentShowdown "Btn tertiary" "btnTertiary" InspectHtml << renderBtn) tertiaryBtn
-    , (componentShowdown "Btn group" "btnGroup" InspectHtml << (List.singleton << btnGroup << List.map btn)) model.buttons
+    , (componentShowdown "Btn circle" "btnCircle" InspectHtml << renderBtn) circleBtn
+    , (componentShowdown "Btn group" "btnGroup" InspectHtml << renderBtnList) [ primaryBtn, secondaryBtn, tertiaryBtn ]
     ]
 
 
@@ -56,7 +52,7 @@ btnGroup =
 
 
 btn : Btn -> Html Msg
-btn { label, type_, isDisabled } =
+btn { label, type_, icon, isDisabled } =
     button
         [ classList
             [ ( "a-btn", True )
@@ -65,4 +61,12 @@ btn { label, type_, isDisabled } =
             ]
         ]
         [ text label
+        , (Maybe.withDefault (text "") << Maybe.map renderIcon) icon
         ]
+
+
+renderIcon : String -> Html Msg
+renderIcon iconName =
+    i
+        [ class <| "a-icon a-icon-" ++ iconName ]
+        []

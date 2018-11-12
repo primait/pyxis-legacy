@@ -3,6 +3,10 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+
+	&--small {
+		align-items: normal;
+	}
 }
 
 .a-loader__text {
@@ -12,15 +16,14 @@
 
 .a-loader__spinner {
   animation: loaderSpin 1s infinite linear;
-  border: map-get($loginConfig, borderRadius) solid rgba(color(brand, light), 0.2);
+  border: map-get($loaderConfig, borderRadius) solid rgba(color(brand, light), 0.2);
   border-radius: 50%;
   border-top-color: color(brand, base);
   height: map-get($loaderConfig, height);
   width: map-get($loaderConfig, with);
 
-	&--small {
-		border: map-get($loginConfig, borderRadiusSmall) solid rgba(color(brand, light), 0.2);
-		border-top-color: color(brand, base);
+	.m-loader--small & {
+		border-width: map-get($loaderConfig, borderRadiusSmall);
 		height: map-get($loaderConfig, heightSmall);
 	  width: map-get($loaderConfig, withSmall);
 	}
@@ -29,6 +32,7 @@
 		border-color: color(shape, base);
 		border-top-color: color(brandAlt, dark);
 	}
+
 }
 
 .a-loader__car {

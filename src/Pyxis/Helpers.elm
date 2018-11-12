@@ -1,4 +1,21 @@
-module Pyxis.Helpers exposing (..)
+module Pyxis.Helpers exposing
+    ( addAppMessage
+    , capitalize
+    , changeRoute
+    , delayCmd
+    , formatDate
+    , maybeToCmd
+    , removeAppMessage
+    , routeToUrl
+    , sendCmdMsg
+    , toInspectableSelector
+    , toMaybeCmd
+    , updateMenu
+    , urlToRoute
+    , withCmd
+    , withCmds
+    , withoutCmds
+    )
 
 import Date
     exposing
@@ -16,6 +33,7 @@ import Pyxis.Model
         , Menu
         , Model
         , Route(..)
+        , initialModel
         )
 import Task
 import Time exposing (Time)
@@ -64,6 +82,40 @@ changeRoute =
     Navigation.newUrl << routeToUrl
 
 
+urlToRoute : String -> Route
+urlToRoute str =
+    case String.toLower str of
+        "/buttons" ->
+            ButtonsRoute
+
+        "/colors" ->
+            ColorsRoute
+
+        "/form" ->
+            FormRoute
+
+        "/header" ->
+            HeaderRoute
+
+        "/lists" ->
+            ListsRoute
+
+        "/messages" ->
+            MessagesRoute
+
+        "/footer" ->
+            FooterRoute
+
+        "/tooltips" ->
+            TooltipsRoute
+
+        "/typography" ->
+            TypographyRoute
+
+        _ ->
+            initialModel.route
+
+
 routeToUrl : Route -> String
 routeToUrl route =
     case route of
@@ -90,6 +142,9 @@ routeToUrl route =
 
         MessagesRoute ->
             "/messages"
+
+        ListsRoute ->
+            "/lists"
 
         HomeRoute ->
             "/"

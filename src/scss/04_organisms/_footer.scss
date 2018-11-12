@@ -70,7 +70,6 @@
   }
 }
 
-
 #footerSentinel {
   background: transparent;
   display: block;
@@ -181,7 +180,6 @@
   width: 100%;
 }
 
-
 // HORIZONTAL LISTS MENU //
 .o-footer .m-list--company,
 .o-footer .m-list--information-package {
@@ -281,5 +279,20 @@
     .m-btnGroup {
       display: none;
     }
+  }
+
+}
+
+.o-footer .a-btn--circle {
+  position: absolute;
+
+  &:before {
+    left: - (map-get($formConfig, buttonIconAfterOffset) * 2);
+    top: - (map-get($formConfig, buttonIconAfterOffset) * 2);
+  }
+
+  &:after {
+    left: map-get($formConfig, buttonIconAfterOffset);
+    top:  map-get($formConfig, buttonIconAfterOffset);
   }
 }

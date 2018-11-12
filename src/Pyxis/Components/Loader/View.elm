@@ -13,8 +13,7 @@ import Pyxis.ViewHelpers
         ( componentShowdown
         , componentTitle
         , divider
-        , inspectableHtml
-        , renderOrNothing
+        , renderIf
         )
 import Svg exposing (Svg, circle, g, line, path, svg)
 import Svg.Attributes exposing (class, cx, cy, d, height, r, strokeLinejoin, strokeMiterlimit, transform, viewBox, width, x1, x2, y1, y2)
@@ -22,21 +21,31 @@ import Svg.Attributes exposing (class, cx, cy, d, height, r, strokeLinejoin, str
 
 view : Model -> List (Html Msg)
 view model =
-    let
-        loader loaderType loaderText =
-            div [ class "m-loader" ]
-                [ loaderType
-                , loaderText
-                ]
-    in
     [ componentTitle [ text "Loader" ]
     , divider
-    , componentShowdown "Loader Car" "loaderCar" InspectHtml [ loader svgLoader (textLoader "Ancora qualche secondo ..." "Stiamo elaborando i tuoi dati.") ]
-    , componentShowdown "Loader Spinner" "loaderSpinner" InspectHtml [ loader (spinnerLoader Nothing Nothing) (textLoader "Ancora qualche secondo ..." "Stiamo elaborando i tuoi dati.") ]
-    , componentShowdown "Loader Spinner Borat" "loaderSpinnerBorat" InspectHtml [ loader (spinnerLoader Nothing (Just "green")) (textLoader "Dati in elaborazione ..." "") ]
-    , componentShowdown "Loader Spinner Small" "loaderSpinnerSmall" InspectHtml [ loader (spinnerLoader (Just "small") Nothing) (textLoader "" "") ]
-    , componentShowdown "Loader Spinner Small Borat" "loaderSpinneSmallBorat" InspectHtml [ loader (spinnerLoader (Just "small") (Just "green")) (textLoader "" "") ]
+    , componentShowdown "Loader Car" "loaderCar" InspectHtml [ loader Nothing svgLoader (textLoader "Ancora qualche secondo ..." "Stiamo elaborando i tuoi dati.") ]
+    , componentShowdown "Loader Spinner" "loaderSpinner" InspectHtml [ loader Nothing (spinnerLoader Nothing) (textLoader "Ancora qualche secondo ..." "Stiamo elaborando i tuoi dati.") ]
+    , componentShowdown "Loader Spinner Borat" "loaderSpinnerBorat" InspectHtml [ loader Nothing (spinnerLoader (Just "green")) (textLoader "Dati in elaborazione ..." "") ]
+    , componentShowdown "Loader Spinner Small" "loaderSpinnerSmall" InspectHtml [ loader (Just "small") (spinnerLoader Nothing) (textLoader "" "") ]
+    , componentShowdown "Loader Spinner Small Borat" "loaderSpinneSmallBorat" InspectHtml [ loader (Just "small") (spinnerLoader (Just "green")) (textLoader "" "") ]
     ]
+
+
+loader : Maybe String -> Html msg -> Html msg -> Html msg
+loader loaderDimension loaderType loaderText =
+    let
+        canRenderText =
+            loaderDimension /= Just "small"
+    in
+    div
+        [ classList
+            [ ( "m-loader", True )
+            , ( "m-loader--" ++ Maybe.withDefault "" loaderDimension, Maybe.Extra.isJust loaderDimension )
+            ]
+        ]
+        [ loaderType
+        , renderIf canRenderText <| loaderText
+        ]
 
 
 svgLoader : Html Msg
@@ -70,7 +79,7 @@ svgLoader =
                 []
             , line
                 [ class "a-loader__car__group__line a-loader__car__group__line--top"
-                , x1 "28"
+                , x1 "68"
                 , y1 "46.7"
                 , x2 "114.2"
                 , y2 "46.7"
@@ -78,7 +87,7 @@ svgLoader =
                 []
             , line
                 [ class "a-loader__car__group__line a-loader__car__group__line--bottom"
-                , x1 "13.2"
+                , x1 "33.2"
                 , y1 "65.9"
                 , x2 "99.4"
                 , y2 "65.9"
@@ -86,7 +95,7 @@ svgLoader =
                 []
             , line
                 [ class "a-loader__car__group__line a-loader__car__group__line--middle"
-                , x1 "28"
+                , x1 "68"
                 , y1 "84.5"
                 , x2 "114.2"
                 , y2 "84.5"
@@ -96,12 +105,11 @@ svgLoader =
         ]
 
 
-spinnerLoader : Maybe String -> Maybe String -> Html Msg
-spinnerLoader dimension bgColor =
+spinnerLoader : Maybe String -> Html Msg
+spinnerLoader bgColor =
     div
         [ classList
             [ ( "a-loader__spinner", True )
-            , ( "a-loader__spinner--" ++ Maybe.withDefault "" dimension, Maybe.Extra.isJust dimension )
             , ( "a-loader__spinner--" ++ Maybe.withDefault "" bgColor, Maybe.Extra.isJust bgColor )
             ]
         ]
