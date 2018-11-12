@@ -16,14 +16,14 @@
 
 .a-loader__spinner {
   animation: loaderSpin 1s infinite linear;
-  border: 4px solid rgba(color(brand, light), 0.2);
+  border: map-get($loaderConfig, borderRadius) solid rgba(color(brand, light), 0.2);
   border-radius: 50%;
   border-top-color: color(brand, base);
   height: map-get($loaderConfig, height);
   width: map-get($loaderConfig, with);
 
 	.m-loader--small & {
-		border-width: 3px;
+		border-width: map-get($loaderConfig, borderRadiusSmall);
 		height: map-get($loaderConfig, heightSmall);
 	  width: map-get($loaderConfig, withSmall);
 	}

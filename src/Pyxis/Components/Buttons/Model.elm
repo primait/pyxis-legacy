@@ -4,7 +4,11 @@ module Pyxis.Components.Buttons.Model exposing
     , Model
     , Msg(..)
     , btnTypeToString
+    , circleBtn
     , initialModel
+    , primaryBtn
+    , secondaryBtn
+    , tertiaryBtn
     )
 
 
@@ -23,11 +27,31 @@ type alias Model =
 initialModel : Model
 initialModel =
     Model
-        [ Btn Primary "Primary action" Nothing False
-        , Btn Secondary "Secondary action" Nothing False
-        , Btn Tertiary "Tertiary action" Nothing False
-        , Btn Circle "" (Just "caret-down") False
+        [ circleBtn
+        , primaryBtn
+        , secondaryBtn
+        , tertiaryBtn
         ]
+
+
+primaryBtn : Btn
+primaryBtn =
+    Btn Primary "Primary action" Nothing False
+
+
+secondaryBtn : Btn
+secondaryBtn =
+    Btn Secondary "Secondary action" Nothing False
+
+
+tertiaryBtn : Btn
+tertiaryBtn =
+    Btn Tertiary "Tertiary action" Nothing False
+
+
+circleBtn : Btn
+circleBtn =
+    Btn Circle "" (Just "caret-down") False
 
 
 type alias Btn =
@@ -39,15 +63,18 @@ type alias Btn =
 
 
 type BtnType
-    = Primary
+    = Circle
+    | Primary
     | Secondary
     | Tertiary
-    | Circle
 
 
 btnTypeToString : BtnType -> String
 btnTypeToString type_ =
     case type_ of
+        Circle ->
+            "circle"
+
         Primary ->
             "primary"
 
@@ -56,6 +83,3 @@ btnTypeToString type_ =
 
         Tertiary ->
             "tertiary"
-
-        Circle ->
-            "circle"

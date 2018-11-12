@@ -13,9 +13,7 @@ import Pyxis.ViewHelpers
         ( componentShowdown
         , componentTitle
         , divider
-        , inspectableHtml
         , renderIf
-        , renderOrNothing
         )
 import Svg exposing (Svg, circle, g, line, path, svg)
 import Svg.Attributes exposing (class, cx, cy, d, height, r, strokeLinejoin, strokeMiterlimit, transform, viewBox, width, x1, x2, y1, y2)

@@ -285,4 +285,14 @@
 
 .o-footer .a-btn--circle {
   position: absolute;
+
+  &:before {
+    left: - (map-get($formConfig, buttonIconAfterOffset) * 2);
+    top: - (map-get($formConfig, buttonIconAfterOffset) * 2);
+  }
+
+  &:after {
+    left: map-get($formConfig, buttonIconAfterOffset);
+    top:  map-get($formConfig, buttonIconAfterOffset);
+  }
 }

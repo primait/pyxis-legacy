@@ -12,8 +12,6 @@ import Pyxis.ViewHelpers
         ( componentShowdown
         , componentTitle
         , divider
-        , inspectableHtml
-        , renderOrNothing
         )
 
 
@@ -32,13 +30,7 @@ list : String -> Html Msg
 list directionFlex =
     ul
         [ class <| "m-list " ++ directionFlex ]
-        [ listItem
-            [ text "Ciao" ]
-        , listItem
-            [ text "Hello" ]
-        , listItem
-            [ text "Bonjour" ]
-        ]
+        (List.map (listItem << List.singleton << text) [ "Ciao", "Hello", "Bonjour" ])
 
 
 sublist : String -> String -> Html Msg
