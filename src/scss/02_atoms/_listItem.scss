@@ -1,17 +1,12 @@
 .a-list__item {
-  display: flex;
+  display: list-item;
   flex: 0 0 auto;
   flex-direction: row;
+  list-style-type: disc;
   padding: (map-get($listConfig, padding) / 2) ;
 
-  &:before {
-    color: inherit;
-    content: "•";
-    padding-right: (map-get($listConfig, padding) / 2);
-
-    .noListStyle & {
-      display: none
-    }
+  .m-list--no-list-type & {
+    display: flex;
   }
 
   &.a-list__item--button {

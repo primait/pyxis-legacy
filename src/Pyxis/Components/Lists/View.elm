@@ -20,38 +20,38 @@ view model =
     [ componentTitle [ text "Lists" ]
     , divider
     , componentShowdown "List Direction Column Type Disc" "ListDirectionColumn" InspectHtml [ list "directionColumn" "" ]
-    , componentShowdown "List Direction Column" "ListDirectionRow" InspectHtml [ list "directionRow" "noListStyle" ]
-    , componentShowdown "List Direction Row" "ListDirectionRow" InspectHtml [ list "directionRow" "noListStyle" ]
-    , componentShowdown "Sublist Direction Column" "SublistDirectionColumn" InspectHtml [ sublist "directionColumn" "noListStyle" "directionColumn" "noListStyle" ]
-    , componentShowdown "Sublist Direction Row" "SublistDirectionRow" InspectHtml [ sublist "directionRow" "noListStyle" "directionRow" "noListStyle" ]
+    , componentShowdown "List Direction Column" "ListDirectionRow" InspectHtml [ list "directionRow" "no-list-type" ]
+    , componentShowdown "List Direction Row" "ListDirectionRow" InspectHtml [ list "directionRow" "no-list-type" ]
+    , componentShowdown "Sublist Direction Column" "SublistDirectionColumn" InspectHtml [ sublist "directionColumn" "no-list-type" "directionColumn" "no-list-type" ]
+    , componentShowdown "Sublist Direction Row" "SublistDirectionRow" InspectHtml [ sublist "directionRow" "no-list-type" "directionRow" "no-list-type" ]
     ]
 
 
 list : String -> String -> Html Msg
-list directionFlex noType =
+list directionFlex noListStyle =
     ul
         [ classList
             [ ( "m-list", True )
             , ( directionFlex, True )
-            , ( noType, True )
+            , ( "m-list--" ++ noListStyle, True )
             ]
         ]
         (List.map (listItem << List.singleton << text) [ "Ciao", "Hello", "Bonjour" ])
 
 
 sublist : String -> String -> String -> String -> Html Msg
-sublist directionFlex noType directionFlexSublist noTypeSublist =
+sublist directionFlex noListStyle directionFlexSublist noListStyleSublist =
     ul
         [ classList
             [ ( "m-list", True )
             , ( directionFlex, True )
-            , ( noType, True )
+            , ( "m-list--" ++ noListStyle, True )
             ]
         ]
         [ listItem [ text "Ciao" ]
         , listItem
             [ text "Hello"
-            , listItem [ list directionFlexSublist noTypeSublist ]
+            , listItem [ list directionFlexSublist noListStyleSublist ]
             ]
         ]
 
