@@ -2,6 +2,7 @@ module Pyxis.View exposing (view)
 
 import Html exposing (..)
 import Pyxis.AppMessages.View as AppMessages
+import Pyxis.Components.Accordions.View as AccordionsComponent
 import Pyxis.Components.Buttons.View as ButtonsComponent
 import Pyxis.Components.Colors.View as ColorsComponent
 import Pyxis.Components.Footer.View as FooterComponent
@@ -40,6 +41,9 @@ view model =
 dynamicView : Model -> Html Msg
 dynamicView ({ route } as model) =
     case route of
+        AccordionsRoute ->
+            (wrapper << List.map (Html.map AccordionsMsg)) (AccordionsComponent.view model.accordions)
+
         ButtonsRoute ->
             (wrapper << List.map (Html.map ButtonsMsg)) (ButtonsComponent.view model.buttons)
 

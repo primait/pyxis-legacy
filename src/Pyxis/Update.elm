@@ -1,5 +1,7 @@
 module Pyxis.Update exposing (update)
 
+import Pyxis.Components.Accordions.Model as AccordionsModel
+import Pyxis.Components.Accordions.Update as AccordionsUpdate
 import Pyxis.Components.Buttons.Model as ButtonsModel
 import Pyxis.Components.Buttons.Update as ButtonsUpdate
 import Pyxis.Components.Colors.Model as ColorsModel
@@ -86,6 +88,9 @@ update msg model =
         RemoveAppMessage uuid ->
             model |> removeAppMessage uuid |> withoutCmds
 
+        AccordionsMsg accordionsMsg ->
+            updateAccordions model accordionsMsg model.accordions
+
         ButtonsMsg buttonsMsg ->
             updateButtons model buttonsMsg model.buttons
 
@@ -115,6 +120,15 @@ update msg model =
 
         LoginMsg loginMsg ->
             updateLogin model loginMsg model.login
+
+
+updateAccordions : Model -> AccordionsModel.Msg -> AccordionsModel.Model -> ( Model, Cmd Msg )
+updateAccordions model msg accordionsModel =
+    let
+        ( newAccordionsModel, cmds ) =
+            AccordionsUpdate.update msg accordionsModel
+    in
+    { model | accordions = newAccordionsModel } ! [ Cmd.map AccordionsMsg cmds ]
 
 
 updateColors : Model -> ColorsModel.Msg -> ColorsModel.Model -> ( Model, Cmd Msg )

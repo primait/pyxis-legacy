@@ -85,6 +85,9 @@ changeRoute =
 urlToRoute : String -> Route
 urlToRoute str =
     case String.toLower str of
+        "/accordions" ->
+            AccordionsRoute
+
         "/buttons" ->
             ButtonsRoute
 
@@ -119,6 +122,9 @@ urlToRoute str =
 routeToUrl : Route -> String
 routeToUrl route =
     case route of
+        AccordionsRoute ->
+            "/accordions"
+
         ButtonsRoute ->
             "/buttons"
 

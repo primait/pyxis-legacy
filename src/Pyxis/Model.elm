@@ -14,6 +14,7 @@ module Pyxis.Model exposing
     )
 
 import Navigation exposing (Location)
+import Pyxis.Components.Accordions.Model as Accordions
 import Pyxis.Components.Buttons.Model as Buttons
 import Pyxis.Components.Colors.Model as Colors
 import Pyxis.Components.Footer.Model as Footer
@@ -38,6 +39,7 @@ type Msg
     | RemoveAppMessage (Unique Id)
     | Copied
       -------------
+    | AccordionsMsg Accordions.Msg
     | ButtonsMsg Buttons.Msg
     | ColorsMsg Colors.Msg
     | FormMsg Form.Msg
@@ -57,6 +59,7 @@ type alias Model =
     , appMessages : List AppMessage
     , htmlSnippet : Maybe HtmlSnippet
     , colors : Colors.Model
+    , accordions : Accordions.Model
     , buttons : Buttons.Model
     , form : Form.Model
     , header : Header.Model
@@ -78,6 +81,7 @@ initialModel =
         []
         Nothing
         Colors.initialModel
+        Accordions.initialModel
         Buttons.initialModel
         Form.initialModel
         Header.initialModel
@@ -92,6 +96,7 @@ initialModel =
 initialMenu : List Menu
 initialMenu =
     [ Menu "home" "Pyxis" HomeRoute True
+    , Menu "accordions" "Accordions" AccordionsRoute False
     , Menu "buttons" "Buttons" ButtonsRoute False
     , Menu "colors" "Colors" ColorsRoute False
 
@@ -115,6 +120,7 @@ type AppStatus
 type Route
     = HomeRoute
       --------------
+    | AccordionsRoute
     | ButtonsRoute
     | ColorsRoute
     | FooterRoute
