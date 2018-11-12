@@ -94,13 +94,15 @@ initialMenu =
     [ Menu "home" "Pyxis" HomeRoute True
     , Menu "buttons" "Buttons" ButtonsRoute False
     , Menu "colors" "Colors" ColorsRoute False
-    , Menu "footer" "Footer" FooterRoute False
+
+    -- , Menu "footer" "Footer" FooterRoute False
     , Menu "form" "Form" FormRoute False
     , Menu "lists" "Lists" ListsRoute False
     , Menu "loader" "Loader" LoaderRoute False
     , Menu "login" "Login" LoginRoute False
     , Menu "messages" "Messages" MessagesRoute False
-    , Menu "header" "Header" HeaderRoute False
+
+    -- , Menu "header" "Header" HeaderRoute False
     , Menu "messages" "Messages" MessagesRoute False
     , Menu "typography" "Typography" TypographyRoute False
     , Menu "tooltips" "Tooltips" TooltipsRoute False
