@@ -5,7 +5,7 @@
   list-style-type: disc;
   padding: (map-get($listConfig, padding) / 2) ;
 
-  .m-list--no-list-type & {
+  .m-list--no-pointers & {
     display: flex;
   }
 
