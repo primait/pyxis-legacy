@@ -21,9 +21,9 @@ view model =
     , divider
     , componentShowdown "List Direction Column Type Disc" "ListDirectionColumn" InspectHtml [ list Nothing Nothing ]
     , componentShowdown "List Direction Column" "ListDirectionRow" InspectHtml [ list Nothing (Just "no-pointers") ]
-    , componentShowdown "List Direction Row" "ListDirectionRow" InspectHtml [ list Nothing (Just "no-pointers") ]
-    , componentShowdown "Sublist Direction Column" "SublistDirectionColumn" InspectHtml [ sublist (Just "directionColumn") (Just "no-pointers") (Just "directionColumn") (Just "no-pointers") ]
-    , componentShowdown "Sublist Direction Row" "SublistDirectionRow" InspectHtml [ sublist Nothing (Just "no-pointers") Nothing (Just "no-pointers") ]
+    , componentShowdown "List Direction Row" "ListDirectionRow" InspectHtml [ list (Just "directionRow") (Just "no-pointers") ]
+    , componentShowdown "Sublist Direction Row" "SublistDirectionRow" InspectHtml [ sublist (Just "directionRow") (Just "no-pointers") (Just "directionRow") (Just "no-pointers") ]
+    , componentShowdown "Sublist Direction Column" "SublistDirectionColumn" InspectHtml [ sublist Nothing (Just "no-pointers") Nothing (Just "no-pointers") ]
     ]
 
 
@@ -32,8 +32,8 @@ list directionClass pointersClass =
     ul
         [ classList
             [ ( "m-list", True )
-            , ( Maybe.withDefault "directionRow" directionClass, True )
-            , ( Maybe.withDefault "" pointersClass, True )
+            , ( Maybe.withDefault "directionColumn" directionClass, True )
+            , ( "m-list--" ++ Maybe.withDefault "" pointersClass, True )
             ]
         ]
         (List.map (listItem << List.singleton << text) [ "Ciao", "Hello", "Bonjour" ])
@@ -44,8 +44,8 @@ sublist directionClass pointersClass directionClassSublist pointersClassSublist 
     ul
         [ classList
             [ ( "m-list", True )
-            , ( Maybe.withDefault "directionRow" directionClass, True )
-            , ( Maybe.withDefault "" pointersClass, True )
+            , ( Maybe.withDefault "directionColumn" directionClass, True )
+            , ( "m-list--" ++ Maybe.withDefault "" pointersClass, True )
             ]
         ]
         [ listItem [ text "Ciao" ]
