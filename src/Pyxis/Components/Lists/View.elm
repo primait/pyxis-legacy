@@ -19,39 +19,39 @@ view : Model -> List (Html Msg)
 view model =
     [ componentTitle [ text "Lists" ]
     , divider
-    , componentShowdown "List Direction Column Type Disc" "ListDirectionColumn" InspectHtml [ list "directionColumn" "" ]
-    , componentShowdown "List Direction Column" "ListDirectionRow" InspectHtml [ list "directionRow" "no-pointers" ]
-    , componentShowdown "List Direction Row" "ListDirectionRow" InspectHtml [ list "directionRow" "no-pointers" ]
-    , componentShowdown "Sublist Direction Column" "SublistDirectionColumn" InspectHtml [ sublist "directionColumn" "no-pointers" "directionColumn" "no-pointers" ]
-    , componentShowdown "Sublist Direction Row" "SublistDirectionRow" InspectHtml [ sublist "directionRow" "no-pointers" "directionRow" "no-pointers" ]
+    , componentShowdown "List Direction Column Type Disc" "ListDirectionColumn" InspectHtml [ list Nothing Nothing ]
+    , componentShowdown "List Direction Column" "ListDirectionRow" InspectHtml [ list Nothing (Just "no-pointers") ]
+    , componentShowdown "List Direction Row" "ListDirectionRow" InspectHtml [ list Nothing (Just "no-pointers") ]
+    , componentShowdown "Sublist Direction Column" "SublistDirectionColumn" InspectHtml [ sublist (Just "directionColumn") (Just "no-pointers") (Just "directionColumn") (Just "no-pointers") ]
+    , componentShowdown "Sublist Direction Row" "SublistDirectionRow" InspectHtml [ sublist Nothing (Just "no-pointers") Nothing (Just "no-pointers") ]
     ]
 
 
-list : String -> String -> Html Msg
-list directionFlex noPointers =
+list : Maybe String -> Maybe String -> Html Msg
+list directionClass pointersClass =
     ul
         [ classList
             [ ( "m-list", True )
-            , ( directionFlex, True )
-            , ( "m-list--" ++ noPointers, True )
+            , ( Maybe.withDefault "directionRow" directionClass, True )
+            , ( Maybe.withDefault "" pointersClass, True )
             ]
         ]
         (List.map (listItem << List.singleton << text) [ "Ciao", "Hello", "Bonjour" ])
 
 
-sublist : String -> String -> String -> String -> Html Msg
-sublist directionFlex noPointers directionFlexSublist noPointersSublist =
+sublist : Maybe String -> Maybe String -> Maybe String -> Maybe String -> Html Msg
+sublist directionClass pointersClass directionClassSublist pointersClassSublist =
     ul
         [ classList
             [ ( "m-list", True )
-            , ( directionFlex, True )
-            , ( "m-list--" ++ noPointers, True )
+            , ( Maybe.withDefault "directionRow" directionClass, True )
+            , ( Maybe.withDefault "" pointersClass, True )
             ]
         ]
         [ listItem [ text "Ciao" ]
         , listItem
             [ text "Hello"
-            , listItem [ list directionFlexSublist noPointersSublist ]
+            , listItem [ list directionClassSublist pointersClassSublist ]
             ]
         ]
 
