@@ -1,11 +1,16 @@
 .a-accordion__item {
   background: inherit;
+  border-bottom: 1px solid color(shape);
   color: inherit;
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;
-  padding: (map-get($accordionConfig, accordionPadding) / 2) map-get($accordionConfig, accordionPadding) 0 map-get($accordionConfig, accordionPadding);
+  padding: (map-get($accordionConfig, accordionPadding) / 2) map-get($accordionConfig, accordionPadding);
   position: relative;
+
+  .m-accordion--dark & {
+    border-color: color(shape, dark);
+  }
 
 
   &.is-open {
@@ -42,6 +47,15 @@
 
   .m-accordion--dark & {
     border-bottom: 1px solid color(shape, dark);
+  }
+}
+
+.a-accordion__item .a-link {
+  color: color(brandAlt, dark);
+  justify-content: space-between;
+
+  .m-accordion--dark & {
+    color: color(textAlt, light);
   }
 }
 
