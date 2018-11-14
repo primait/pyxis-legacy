@@ -1,7 +1,6 @@
 .a-list__item {
   display: list-item;
   flex: 0 0 auto;
-  flex-direction: row;
   list-style-type: disc;
   padding: (map-get($listConfig, padding) / 2) ;
 
