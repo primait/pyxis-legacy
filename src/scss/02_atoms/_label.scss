@@ -12,6 +12,7 @@
   @include mq(small) {
     flex: 0 0 calc(50% - (#{map-get($formConfig, fieldMaxWidth)} / 2));
     font-size: map-get($fontSizes, base);
+    margin-bottom: 0;
     text-align: right;
 
     .is-IE & {
