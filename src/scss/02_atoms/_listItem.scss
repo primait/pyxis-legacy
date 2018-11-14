@@ -1,8 +1,12 @@
 .a-list__item {
-  display: flex;
+  display: list-item;
   flex: 0 0 auto;
-  flex-direction: column;
+  list-style-type: disc;
   padding: (map-get($listConfig, padding) / 2) ;
+
+  .m-list--no-pointers & {
+    display: flex;
+  }
 
   &.a-list__item--button {
 

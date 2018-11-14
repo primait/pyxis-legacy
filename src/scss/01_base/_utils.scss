@@ -102,7 +102,7 @@
   flex-direction: row;
 }
 
- .is-unscrollable {
-   overflow: hidden!important;
+.is-unscrollable {
+   overflow: hidden;
    position: fixed;
  }
