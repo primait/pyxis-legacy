@@ -1,23 +1,21 @@
 .a-accordion__item {
   background: inherit;
-  border-bottom: 1px solid color(shape);
   color: inherit;
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;
-  padding: (map-get($accordionConfig, accordionPadding) / 2) map-get($accordionConfig, accordionPadding);
+  padding: (map-get($accordionConfig, accordionPadding) / 2) map-get($accordionConfig, accordionPadding) 0  map-get($accordionConfig, accordionPadding);
   position: relative;
 
-  .m-accordion--dark & {
-    border-color: color(shape, dark);
-  }
-
-
   &.is-open {
-    background: color(backgroundAlt);
+    background: color(background, dark);
     padding-top: ((map-get($accordionConfig, accordionPadding) / 2) + 1px);
     top: -1px;
     transition: transform 1s;
+
+    .m-accordion--dark & {
+      background: color(backgroundAlt, light);
+    }
 
     .a-icon:after {
       transform: rotate(-225deg);
@@ -25,10 +23,6 @@
 
     .a-icon:before {
       transform: rotate(225deg);
-    }
-
-    .m-accordion--dark & {
-      background: color(backgroundAlt, light);
     }
   }
 }
@@ -43,19 +37,11 @@
   flex-direction: row;
   justify-content: space-between;
   padding: map-get($accordionConfig, accordionPadding) 0;
+  text-decoration: none;
   width: 100%;
 
   .m-accordion--dark & {
     border-bottom: 1px solid color(shape, dark);
-  }
-}
-
-.a-accordion__item .a-link {
-  color: color(brandAlt, dark);
-  justify-content: space-between;
-
-  .m-accordion--dark & {
-    color: color(textAlt, light);
   }
 }
 
@@ -80,15 +66,21 @@
   &:before {
     transform: rotate(90deg);
   }
+
+  &--arrow:after {
+    content: '\E902';
+  }
 }
 
 .a-accordion__item__content  {
   display: none;
   opacity: 0;
+  padding: (map-get($accordionConfig, accordionPadding) / 2) 0;
   transition: transform 1s, opacity 0.5s;
   transform: translateY(25%) rotateX(-35deg);
 
   .is-open & {
+    display: flex;
     opacity: 1;
     transform: rotateX(0deg);
   }

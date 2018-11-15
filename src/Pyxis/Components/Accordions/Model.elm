@@ -7,12 +7,14 @@ module Pyxis.Components.Accordions.Model exposing
 
 type Msg
     = InspectHtml String
+    | Toggle
 
 
 type alias Model =
-    {}
+    { isAccordionOpen : Bool }
 
 
 initialModel : Model
 initialModel =
     Model
+        False

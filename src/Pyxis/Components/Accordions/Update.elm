@@ -18,3 +18,9 @@ update msg model =
     case msg of
         InspectHtml selector ->
             model |> withCmds [ Ports.inspectHtml selector ]
+
+        Toggle ->
+            { model
+                | isAccordionOpen = not model.isAccordionOpen
+            }
+                |> withoutCmds
