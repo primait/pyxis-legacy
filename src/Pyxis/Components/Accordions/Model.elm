@@ -1,5 +1,6 @@
 module Pyxis.Components.Accordions.Model exposing
-    ( Model
+    ( Accordion
+    , Model
     , Msg(..)
     , initialModel
     )
@@ -7,14 +8,25 @@ module Pyxis.Components.Accordions.Model exposing
 
 type Msg
     = InspectHtml String
-    | Toggle
+    | Toggle String
 
 
 type alias Model =
-    { isAccordionOpen : Bool }
+    { accordions : List Accordion }
 
 
 initialModel : Model
 initialModel =
     Model
-        False
+        [ Accordion "a_1" "accordion1" False "bla bla"
+        , Accordion "a_2" "accordion2" False "bla bla"
+        , Accordion "a_3" "accordion3" False "bla bla"
+        ]
+
+
+type alias Accordion =
+    { slug : String
+    , name : String
+    , isOpen : Bool
+    , content : String
+    }

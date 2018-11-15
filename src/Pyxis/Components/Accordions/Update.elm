@@ -19,8 +19,17 @@ update msg model =
         InspectHtml selector ->
             model |> withCmds [ Ports.inspectHtml selector ]
 
-        Toggle ->
+        Toggle slug ->
             { model
-                | isAccordionOpen = not model.isAccordionOpen
+                | accordions =
+                    List.map
+                        (\accordion ->
+                            if accordion.slug == slug then
+                                { accordion | isOpen = not accordion.isOpen }
+
+                            else
+                                accordion
+                        )
+                        model.accordions
             }
                 |> withoutCmds

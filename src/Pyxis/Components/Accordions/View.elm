@@ -5,7 +5,8 @@ import Html.Attributes exposing (class, classList, href)
 import Html.Events exposing (onClick)
 import Pyxis.Components.Accordions.Model
     exposing
-        ( Model
+        ( Accordion
+        , Model
         , Msg(..)
         )
 import Pyxis.ViewHelpers
@@ -20,35 +21,35 @@ view : Model -> List (Html Msg)
 view model =
     [ componentTitle [ text "Accordions" ]
     , divider
-    , componentShowdown "Accordion" "Accordion" InspectHtml [ accordion Nothing ( "ciao", "bla bla bla" ) ]
-    , componentShowdown "Accordion Dark" "AccordionDark" InspectHtml [ accordion (Just "dark") ( "ciao", "bbla bla" ) ]
+    , componentShowdown "Accordion" "Accordion" InspectHtml (List.map accordion model.accordions "")
+    , componentShowdown "Accordion Black" "AccordionBlack" InspectHtml (List.map accordion model.accordions "")
     ]
 
 
-accordion : Maybe String -> ( String, String ) -> String -> Html Msg
-accordion accordionStyle ( accordionText, accordionCont ) =
+accordion : Accordion -> String -> Html Msg
+accordion accordionColor =
     div
         [ classList
             [ ( "m-accordion", True )
-            , ( "m-accordion--" ++ Maybe.withDefault "" accordionStyle, True )
+            , ( "m-accordion--" ++ accordionColor, True )
             ]
         ]
-        (List.map accordionListItem [ ( accordionText, accordionCont ) ])
+        [ accordionListItem accordion ]
 
 
-accordionListItem : ( String, String ) -> Html Msg
-accordionListItem ( accordionText, accordionCont ) =
+accordionListItem : Accordion -> Html Msg
+accordionListItem { slug, name, isOpen, content } =
     div
         [ classList
             [ ( "a-accordion__item", True )
-            , ( "is-open", isAccordionOpen )
+            , ( "is-open", isOpen )
             ]
         ]
         [ a
-            [ onClick Toggle, class "a-accordion__item__toggle a-link--alt fs-xsmall fw-heavy" ]
-            [ text accordionText
+            [ onClick (Toggle slug), class "a-accordion__item__toggle a-link--alt fs-xsmall fw-heavy" ]
+            [ text name
             , i [ class "a-icon" ] []
             ]
-        , div [ class "a-accordion__item__content fs-small" ]
-            [ text accordionCont ]
+        , div [ class "a-accordion__item__content fs-medium" ]
+            [ text content ]
         ]

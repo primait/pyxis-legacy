@@ -75,7 +75,7 @@
 .a-accordion__item__content  {
   display: none;
   opacity: 0;
-  padding: (map-get($accordionConfig, accordionPadding) / 2) 0;
+  padding: map-get($accordionConfig, accordionPadding) 0;
   transition: transform 1s, opacity 0.5s;
   transform: translateY(25%) rotateX(-35deg);
 
