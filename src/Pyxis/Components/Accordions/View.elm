@@ -21,24 +21,24 @@ view : Model -> List (Html Msg)
 view model =
     [ componentTitle [ text "Accordions" ]
     , divider
-    , componentShowdown "Accordion" "Accordion" InspectHtml (List.map accordion model.accordions "")
-    , componentShowdown "Accordion Black" "AccordionBlack" InspectHtml (List.map accordion model.accordions "")
+    , componentShowdown "Accordion" "Accordion" InspectHtml [ accordionColor Nothing model.accordions ]
+    , componentShowdown "Accordion Dark" "Accordion Dark" InspectHtml [ accordionColor (Just "dark") model.accordions ]
     ]
 
 
-accordion : Accordion -> String -> Html Msg
-accordion accordionColor =
+accordionColor : Maybe String -> List Accordion -> Html Msg
+accordionColor accordionStyle accordion =
     div
         [ classList
             [ ( "m-accordion", True )
-            , ( "m-accordion--" ++ accordionColor, True )
+            , ( "m-accordion--" ++ Maybe.withDefault "" accordionStyle, True )
             ]
         ]
-        [ accordionListItem accordion ]
+        (List.map accordionItem accordion)
 
 
-accordionListItem : Accordion -> Html Msg
-accordionListItem { slug, name, isOpen, content } =
+accordionItem : Accordion -> Html Msg
+accordionItem { slug, name, isOpen, content } =
     div
         [ classList
             [ ( "a-accordion__item", True )
