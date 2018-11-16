@@ -21,35 +21,29 @@ view : Model -> List (Html Msg)
 view model =
     [ componentTitle [ text "Accordions" ]
     , divider
-    , componentShowdown "Accordion" "Accordion" InspectHtml [ accordionColor Nothing model.accordions ]
-    , componentShowdown "Accordion Dark" "Accordion Dark" InspectHtml [ accordionColor (Just "dark") model.accordions ]
+    , accordionList model.accordions
     ]
 
 
-accordionColor : Maybe String -> List Accordion -> Html Msg
-accordionColor accordionStyle accordion =
-    div
-        [ classList
-            [ ( "m-accordion", True )
-            , ( "m-accordion--" ++ Maybe.withDefault "" accordionStyle, True )
-            ]
-        ]
-        (List.map accordionItem accordion)
+accordionList : List Accordion -> Html Msg
+accordionList accordion =
+    componentShowdown "Accordion" "Accordion" InspectHtml (List.map accordionListItem accordion)
 
 
-accordionItem : Accordion -> Html Msg
-accordionItem { slug, name, isOpen, content } =
+accordionListItem : Accordion -> Html Msg
+accordionListItem { slug, name, isOpen, content, tone } =
     div
         [ classList
-            [ ( "a-accordion__item", True )
+            [ ( "a-accordion", True )
+            , ( "a-accordion--" ++ tone, True )
             , ( "is-open", isOpen )
             ]
         ]
         [ a
-            [ onClick (Toggle slug), class "a-accordion__item__toggle a-link--alt fs-xsmall fw-heavy" ]
+            [ onClick (Toggle slug), class "a-accordion__toggle a-link--alt fs-xsmall fw-heavy" ]
             [ text name
             , i [ class "a-icon" ] []
             ]
-        , div [ class "a-accordion__item__content fs-medium" ]
+        , div [ class "a-accordion__content fs-medium" ]
             [ text content ]
         ]

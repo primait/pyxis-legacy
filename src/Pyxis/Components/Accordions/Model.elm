@@ -18,9 +18,9 @@ type alias Model =
 initialModel : Model
 initialModel =
     Model
-        [ Accordion "a_1" "accordion1" False "bla bla"
-        , Accordion "a_2" "accordion2" False "bla bla"
-        , Accordion "a_3" "accordion3" False "bla bla"
+        [ Accordion "a_1" "accordion1" False "bla bla" "light"
+        , Accordion "a_2" "accordion2" False "bla bla" "dark"
+        , Accordion "a_3" "accordion3" False "bla bla" "base"
         ]
 
 
@@ -29,4 +29,5 @@ type alias Accordion =
     , name : String
     , isOpen : Bool
     , content : String
+    , tone : String
     }
