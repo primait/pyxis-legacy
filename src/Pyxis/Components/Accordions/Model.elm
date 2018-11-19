@@ -2,9 +2,6 @@ module Pyxis.Components.Accordions.Model exposing
     ( Accordion
     , Model
     , Msg(..)
-    , accordionBase
-    , accordionDark
-    , accordionLight
     , initialModel
     )
 
@@ -21,25 +18,10 @@ type alias Model =
 initialModel : Model
 initialModel =
     Model
-        [ accordionLight
-        , accordionBase
-        , accordionDark
+        [ Accordion "a_1" "accordion1" False "bla bla" "light"
+        , Accordion "a_2" "accordion2" False "bla bla" "dark"
+        , Accordion "a_3" "accordion3" False "bla bla" "base"
         ]
-
-
-accordionLight : Accordion
-accordionLight =
-    Accordion "a_1" "accordion light" False "bla bla" "light"
-
-
-accordionBase : Accordion
-accordionBase =
-    Accordion "a_2" "accordion base" False "bla bla" "base"
-
-
-accordionDark : Accordion
-accordionDark =
-    Accordion "a_3" "accordion dark" False "bla bla" "dark"
 
 
 type alias Accordion =
