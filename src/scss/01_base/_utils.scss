@@ -12,20 +12,6 @@
   }
 }
 
-@each $accordionColor, $accordion in $accordions {
-  @each $background, $color in $accordion {
-    .a-accordion--#{$accordionColor} {
-      background: #{$background};
-      color: #{$color};
-    }
-  }
-  @each $border in $accordion {
-    .a-accordion--#{$accordionColor} {
-      border: 1px solid #{$border};
-    }
-  }
-}
-
 @each $fontKey, $size in $fontSizes {
   .fs-#{$fontKey},
   .fs#{capitalize($fontKey)} {

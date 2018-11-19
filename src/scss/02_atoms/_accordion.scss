@@ -7,20 +7,20 @@
   padding: (map-get($accordionConfig, accordionPadding) / 2) map-get($accordionConfig, accordionPadding) 0  map-get($accordionConfig, accordionPadding);
   position: relative;
 
-  // &--light {
-  //   background: color(background, light);
-  //   color: color(text, dark);
-  // }
-  //
-  // &--dark {
-  //   background: color(backgroundAlt, base);
-  //   color: color(text, light);
-  // }
-  //
-  // &--base {
-  //   background: color(background, dark);
-  //   color: color(text, dark);
-  // }
+  &--light {
+    background: color(background, light);
+    color: color(text, dark);
+  }
+
+  &--dark {
+    background: color(backgroundAlt, dark);
+    color: color(text, light);
+  }
+
+  &--base {
+    background: color(background, dark);
+    color: color(text, dark);
+  }
 
   &.is-open {
     background: color(background, dark);
@@ -39,6 +39,18 @@
     .a-icon:before {
       transform: rotate(225deg);
     }
+
+    &.a-accordion--light {
+      background: color(background, dark);
+    }
+
+    &.a-accordion--dark {
+      background: color(backgroundAlt, light);
+    }
+
+    &.a-accordion--base {
+      background: color(background, base);
+    }
   }
 }
 
@@ -56,6 +68,10 @@
   width: 100%;
 
   .m-group--dark & {
+    border-bottom: 1px solid color(shape, dark);
+  }
+
+  .a-accordion--dark & {
     border-bottom: 1px solid color(shape, dark);
   }
 }
@@ -81,6 +97,11 @@
   &--arrow:after {
     content: '\E902';
   }
+}
+
+.a-accordion--dark .a-icon:after,
+.a-accordion--dark .a-icon:before {
+  background: color(shape, dark);
 }
 
 .a-accordion .a-icon:after,

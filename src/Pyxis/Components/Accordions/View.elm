@@ -8,6 +8,9 @@ import Pyxis.Components.Accordions.Model
         ( Accordion
         , Model
         , Msg(..)
+        , accordionBase
+        , accordionDark
+        , accordionLight
         )
 import Pyxis.ViewHelpers
     exposing
@@ -19,15 +22,17 @@ import Pyxis.ViewHelpers
 
 view : Model -> List (Html Msg)
 view model =
+    let
+        renderAccordion : Accordion -> List (Html Msg)
+        renderAccordion =
+            List.singleton << accordionListItem
+    in
     [ componentTitle [ text "Accordions" ]
     , divider
-    , accordionList model.accordions
+    , (componentShowdown "Accordion Light" "Accordionlight" InspectHtml << renderAccordion) accordionLight
+    , (componentShowdown "Accordion Base" "AccordionBase" InspectHtml << renderAccordion) accordionBase
+    , (componentShowdown "Accordion Dark" "AccordionDark" InspectHtml << renderAccordion) accordionDark
     ]
-
-
-accordionList : List Accordion -> Html Msg
-accordionList accordion =
-    componentShowdown "Accordion" "Accordion" InspectHtml (List.map accordionListItem accordion)
 
 
 accordionListItem : Accordion -> Html Msg
