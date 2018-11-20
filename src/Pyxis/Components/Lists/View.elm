@@ -23,7 +23,7 @@ view model =
     , componentShowdown "List Direction Column" "ListDirectionRow" InspectHtml [ list Nothing (Just "m-list--no-pointers") ]
     , componentShowdown "List Direction Row" "ListDirectionRow" InspectHtml [ list (Just "directionRow") (Just "m-list--no-pointers") ]
     , componentShowdown "Sublist Direction Row" "SublistDirectionRow" InspectHtml [ sublist (Just "directionRow") (Just "m-list--no-pointers") (Just "directionRow") (Just "m-list--no-pointers") ]
-    , componentShowdown "Sublist Direction Column" "SublistDirectionColumn" InspectHtml [ sublist Nothing (Just "no-pointers") Nothing (Just "m-list--no-pointers") ]
+    , componentShowdown "Sublist Direction Column" "SublistDirectionColumn" InspectHtml [ sublist Nothing (Just "m-list--no-pointers") Nothing (Just "m-list--no-pointers") ]
     ]
 
 
