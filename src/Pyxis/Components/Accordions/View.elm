@@ -19,27 +19,13 @@ import Pyxis.ViewHelpers
 
 view : Model -> List (Html Msg)
 view model =
-    let
-        renderAccordion : Accordion -> List (Html Msg)
-        renderAccordion =
-            List.singleton << accordionListItem
-    in
     [ componentTitle [ text "Accordions" ]
-    , divider
-    , List.map (componentShowdown "Accordion" "Accordion" InspectHtml << renderAccordion) model.accordions
     ]
+        ++ List.map (\({ slug, name } as accordion) -> componentShowdown name slug InspectHtml (List.singleton (accordionList accordion))) model.accordions
 
 
-
--- accordion : List Accordion -> Html Msg
--- accordion accordion =
---     div []
---         List.map
---         (accordionListItem accordion)
-
-
-accordionListItem : Accordion -> Html Msg
-accordionListItem { slug, name, isOpen, content, tone } =
+accordionList : Accordion -> Html Msg
+accordionList { slug, name, isOpen, content, tone } =
     div
         [ classList
             [ ( "a-accordion", True )
@@ -52,6 +38,6 @@ accordionListItem { slug, name, isOpen, content, tone } =
             [ text name
             , i [ class "a-icon" ] []
             ]
-        , div [ class "a-accordion__content fs-medium" ]
+        , div [ class "a-accordion__content fs-small" ]
             [ text content ]
         ]

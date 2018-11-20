@@ -18,9 +18,10 @@ type alias Model =
 initialModel : Model
 initialModel =
     Model
-        [ Accordion "a_1" "accordion1" False "bla bla" "light"
-        , Accordion "a_2" "accordion2" False "bla bla" "dark"
-        , Accordion "a_3" "accordion3" False "bla bla" "base"
+        [ Accordion "a_1" "accordion" False "Contenuto accordion" ""
+        , Accordion "a_2" "accordion dark" False "Contenuto accordion" "dark"
+        , Accordion "a_3" "accordion base" False "Contenuto accordion" "base"
+        , Accordion "a_4" "accordion light" False "Contenuto accordion" "light"
         ]
 
 
