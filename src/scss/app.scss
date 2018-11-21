@@ -124,6 +124,76 @@ body {
   }
 }
 
+.pyContainers {
+  border: 1px solid color(shape);
+  width: 100%;
+
+  &.pyContainers--xsmall {
+    width: 576px;
+  }
+
+  &.pyContainers--small {
+    width: 768px;
+  }
+
+  &.pyContainers--medium {
+    width: 992px;
+  }
+
+  &.pyContainers--large {
+    width: 1200px;
+  }
+
+  &.pyContainers--xlarge {
+    width: 1400px;
+  }
+}
+
+.pyContainers_definition {
+  background: color(brand, light);
+  border-left: 1px solid color(shape);
+  border-right: 1px solid color(shape);
+  height: 60px;
+
+  .pyContainers--xsmall & {
+    margin: 0 auto;
+    width: 540px;
+  }
+
+  .pyContainers--small & {
+    margin: 0 auto;
+    max-width: 700px;
+    width: 100%;
+  }
+
+  .pyContainers--medium & {
+    margin: 0 auto;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .pyContainers--large & {
+    margin: 0 auto;
+    max-width: 1140px;
+    width: 100%;
+  }
+
+  .pyContainers--xlarge & {
+    margin: 0 auto;
+    max-width: 1370px;
+    width: 100%;
+  }
+}
+
+.pyContainers-description {
+  padding: 20px 0;
+}
+
+.pyContainers-description p {
+  padding: 5px 0;
+}
+
+
 /******************************
   Nav
 ******************************/

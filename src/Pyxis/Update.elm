@@ -6,6 +6,8 @@ import Pyxis.Components.Buttons.Model as ButtonsModel
 import Pyxis.Components.Buttons.Update as ButtonsUpdate
 import Pyxis.Components.Colors.Model as ColorsModel
 import Pyxis.Components.Colors.Update as ColorsUpdate
+import Pyxis.Components.Containers.Model as ContainersModel
+import Pyxis.Components.Containers.Update as ContainersUpdate
 import Pyxis.Components.Footer.Model as FooterModel
 import Pyxis.Components.Footer.Update as FooterUpdate
 import Pyxis.Components.Form.Model as FormModel
@@ -97,6 +99,9 @@ update msg model =
         ColorsMsg colorsMsg ->
             updateColors model colorsMsg model.colors
 
+        ContainersMsg containersMsg ->
+            updateContainers model containersMsg model.containers
+
         FooterMsg footerMsg ->
             updateFooter model footerMsg model.footer
 
@@ -138,6 +143,15 @@ updateColors model msg colorsModel =
             ColorsUpdate.update msg colorsModel
     in
     { model | colors = newColorsModel } ! [ Cmd.map ColorsMsg cmds ]
+
+
+updateContainers : Model -> ContainersModel.Msg -> ContainersModel.Model -> ( Model, Cmd Msg )
+updateContainers model msg containersModel =
+    let
+        ( newContainersModel, cmds ) =
+            ContainersUpdate.update msg containersModel
+    in
+    { model | containers = newContainersModel } ! [ Cmd.map ContainersMsg cmds ]
 
 
 updateButtons : Model -> ButtonsModel.Msg -> ButtonsModel.Model -> ( Model, Cmd Msg )

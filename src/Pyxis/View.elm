@@ -5,6 +5,7 @@ import Pyxis.AppMessages.View as AppMessages
 import Pyxis.Components.Accordions.View as AccordionsComponent
 import Pyxis.Components.Buttons.View as ButtonsComponent
 import Pyxis.Components.Colors.View as ColorsComponent
+import Pyxis.Components.Containers.View as ContainersComponent
 import Pyxis.Components.Footer.View as FooterComponent
 import Pyxis.Components.Form.View as FormComponent
 import Pyxis.Components.Header.View as HeaderComponent
@@ -49,6 +50,9 @@ dynamicView ({ route } as model) =
 
         ColorsRoute ->
             (wrapper << List.map (Html.map ColorsMsg)) (ColorsComponent.view model.colors)
+
+        ContainersRoute ->
+            (wrapper << List.map (Html.map ContainersMsg)) (ContainersComponent.view model.containers)
 
         FooterRoute ->
             (div [] << List.map (Html.map FooterMsg)) (FooterComponent.view model.footer)

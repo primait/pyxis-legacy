@@ -14,6 +14,7 @@ matchers =
     oneOf
         [ map HomeRoute top
         , map ColorsRoute (s "colors")
+        , map ContainersRoute (s "containers")
         , map TypographyRoute (s "typography")
         , map AccordionsRoute (s "accordions")
         , map ButtonsRoute (s "buttons")

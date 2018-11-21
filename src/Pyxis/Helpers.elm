@@ -94,6 +94,9 @@ urlToRoute str =
         "/colors" ->
             ColorsRoute
 
+        "/containers" ->
+            ContainersRoute
+
         "/form" ->
             FormRoute
 
@@ -130,6 +133,9 @@ routeToUrl route =
 
         ColorsRoute ->
             "/colors"
+
+        ContainersRoute ->
+            "/containers"
 
         FooterRoute ->
             "/footer"

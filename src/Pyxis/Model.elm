@@ -17,6 +17,7 @@ import Navigation exposing (Location)
 import Pyxis.Components.Accordions.Model as Accordions
 import Pyxis.Components.Buttons.Model as Buttons
 import Pyxis.Components.Colors.Model as Colors
+import Pyxis.Components.Containers.Model as Containers
 import Pyxis.Components.Footer.Model as Footer
 import Pyxis.Components.Form.Model as Form
 import Pyxis.Components.Header.Model as Header
@@ -42,6 +43,7 @@ type Msg
     | AccordionsMsg Accordions.Msg
     | ButtonsMsg Buttons.Msg
     | ColorsMsg Colors.Msg
+    | ContainersMsg Containers.Msg
     | FormMsg Form.Msg
     | HeaderMsg Header.Msg
     | LoaderMsg Loader.Msg
@@ -60,6 +62,7 @@ type alias Model =
     , htmlSnippet : Maybe HtmlSnippet
     , colors : Colors.Model
     , accordions : Accordions.Model
+    , containers : Containers.Model
     , buttons : Buttons.Model
     , form : Form.Model
     , header : Header.Model
@@ -81,6 +84,7 @@ initialModel =
         []
         Nothing
         Colors.initialModel
+        Containers.initialModel
         Accordions.initialModel
         Buttons.initialModel
         Form.initialModel
@@ -99,6 +103,7 @@ initialMenu =
     , Menu "accordions" "Accordions" AccordionsRoute False
     , Menu "buttons" "Buttons" ButtonsRoute False
     , Menu "colors" "Colors" ColorsRoute False
+    , Menu "containers" "Containers" ContainersRoute False
 
     -- , Menu "footer" "Footer" FooterRoute False
     , Menu "form" "Form" FormRoute False
@@ -123,6 +128,7 @@ type Route
     | AccordionsRoute
     | ButtonsRoute
     | ColorsRoute
+    | ContainersRoute
     | FooterRoute
     | FormRoute
     | HeaderRoute
