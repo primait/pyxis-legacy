@@ -359,6 +359,45 @@ body {
 }
 
 /******************************
+  Typography
+******************************/
+
+.pyTypography {
+  background: color(background, dark);
+  border: 1px solid color(shape);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.pyTypography_column {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+
+  &:first-child {
+    background: color(background);
+    font-family: 'avenirltstd-medium', Helvetica, Verdana, sans-serif
+  }
+}
+
+.pyTypography_row {
+  align-items: center;
+  border: 1px solid color(background);
+  display: flex;
+  height: 50px;
+  flex: 1 0 auto;
+  justify-content: center;
+  width: 100px;
+
+  &:first-child {
+    background: color(background);
+    font-family: 'avenirltstd-medium', Helvetica, Verdana, sans-serif;
+  }
+}
+
+
+/******************************
   Tooltips
 ******************************/
 .pyTooltipHolder {
