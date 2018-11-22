@@ -113,19 +113,19 @@
 }
 
 .a-accordion__content {
+  height: 0;
   opacity: 0;
   padding: 0;
   transition: transform 1s, opacity 0.5s;
   transform: translateY(25%) rotateX(-35deg);
   visibility: hidden;
-  height: 0;
 
   .is-open & {
     display: flex;
+    height: auto;
     opacity: 1;
     padding: map-get($accordionConfig, accordionPadding) 0;
     transform: rotateX(0deg);
     visibility: visible;
-    height: auto;
   }
 }
