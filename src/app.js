@@ -55,10 +55,10 @@ document.addEventListener('click', event => {
     const isIconCalendar = event.target.classList.contains('a-icon-calendar')
 
     if((!isIconCalendar && !isInput && !isDatePicker) || isLabel) {
-      app.ports.hasClickedOutside.send(true)
+      app.ports.clickedOutside.send(true)
     }
   }
   else {
-    app.ports.hasClickedOutside.send(true)
+    app.ports.clickedOutside.send(true)
   }
 }, false)

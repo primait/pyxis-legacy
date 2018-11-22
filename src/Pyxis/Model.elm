@@ -103,7 +103,6 @@ initialMenu =
     , Menu "messages" "Messages" MessagesRoute False
 
     -- , Menu "header" "Header" HeaderRoute False
-    , Menu "messages" "Messages" MessagesRoute False
     , Menu "typography" "Typography" TypographyRoute False
     , Menu "tooltips" "Tooltips" TooltipsRoute False
     ]
