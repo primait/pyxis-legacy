@@ -1,7 +1,7 @@
 module Pyxis.Components.Containers.View exposing (view)
 
 import Html exposing (..)
-import Html.Attributes exposing (class, classList)
+import Html.Attributes exposing (attribute, class, classList)
 import Pyxis.Components.Containers.Model
     exposing
         ( Container
@@ -13,6 +13,7 @@ import Pyxis.ViewHelpers
         ( componentShowdown
         , componentTitle
         , divider
+        , renderHTMLContent
         , renderIf
         )
 
@@ -40,30 +41,25 @@ containerLayout ({ name, dimension, description, breakpoint } as container) =
     section []
         [ h4 [] [ text name ]
         , div [ class "pyContainers-wrapper" ]
-            [ renderIf canTextFluid <| containerImg container.dimension
+            [ renderIf canTextFluid <| containerImg container.dimension container.description
             , div [ class "pyContainers-description" ]
-                [ p [ class "fw-base" ]
-                    [ text ("<div class='a-container a-container--" ++ Maybe.withDefault "" dimension ++ "'> ...</div>")
-                    ]
-                , p []
-                    [ text (" Il container  " ++ Maybe.withDefault "" dimension ++ " ha una " ++ description)
-                    , renderIf canTextFluid <| text (" per il breakpoint " ++ breakpoint)
-                    ]
-                ]
+                (renderHTMLContent ("<p class='fw-base'> Il container  " ++ Maybe.withDefault "" dimension ++ " ha una " ++ description ++ "</p>"))
+            , p [ class "fw-base" ] [ renderIf canTextFluid <| text (" per il breakpoint " ++ breakpoint) ]
             ]
         , divider
         ]
 
 
-containerImg : Maybe String -> Html Msg
-containerImg dimension =
+containerImg : Maybe String -> String -> Html Msg
+containerImg dimension description =
     div
         [ classList
             [ ( "pyContainers", True )
-            , ( "pyContainers--" ++ Maybe.withDefault "" dimension, True )
+            , ( Maybe.withDefault "" dimension, True )
             ]
         ]
         [ div
-            [ class "pyContainers_definition" ]
+            [ class "a-container"
+            ]
             []
         ]

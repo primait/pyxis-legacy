@@ -1,4 +1,5 @@
 @import
+  '01_base/_atomsConfiguration.scss',
   '01_base/_variables.scss',
   '01_base/_fonts.scss',
   '01_base/_helpers.scss';
@@ -126,67 +127,68 @@ body {
 
 .pyContainers {
   border: 1px solid color(shape);
+  border-radius: 8px;
   width: 100%;
 
-  &.pyContainers--xsmall {
-    width: 576px;
+  &.xsmall {
+    width: map-get($breakpointConfig, xsmall);
   }
 
-  &.pyContainers--small {
-    width: 768px;
+  &.small {
+    width: map-get($breakpointConfig, small);
   }
 
-  &.pyContainers--medium {
-    width: 992px;
+  &.medium {
+    width: map-get($breakpointConfig, medium);
   }
 
-  &.pyContainers--large {
-    width: 1200px;
+  &.large {
+    width: map-get($breakpointConfig, large);
   }
 
-  &.pyContainers--xlarge {
-    width: 1400px;
+  &.xlarge {
+    width: (map-get($breakpointConfig, xlarge) - 500px);
   }
 }
 
-.pyContainers_definition {
+.a-container {
   background: color(brand, light);
   border-left: 1px solid color(shape);
   border-right: 1px solid color(shape);
   height: 60px;
 
-  .pyContainers--xsmall & {
+  .xsmall & {
     margin: 0 auto;
-    width: 540px;
+    width: map-get($containerConfig, xsmall);
   }
 
-  .pyContainers--small & {
+  .small & {
     margin: 0 auto;
-    max-width: 700px;
+    max-width: map-get($containerConfig, small);
     width: 100%;
   }
 
-  .pyContainers--medium & {
+  .medium & {
     margin: 0 auto;
-    max-width: 960px;
+    max-width: map-get($containerConfig, medium);
     width: 100%;
   }
 
-  .pyContainers--large & {
+  .large & {
     margin: 0 auto;
-    max-width: 1140px;
+    max-width: map-get($containerConfig, large);
     width: 100%;
   }
 
-  .pyContainers--xlarge & {
+  .xlarge & {
     margin: 0 auto;
-    max-width: 1370px;
+    max-width: map-get($containerConfig, xlarge);
     width: 100%;
   }
 }
 
 .pyContainers-description {
-  padding: 20px 0;
+  padding: 20px 0 0 0;
 }
 
 .pyContainers-description p {

@@ -25,6 +25,14 @@ $formConfig: (
   labelWidth: 280px,
 );
 
+$breakpointConfig: (
+  xsmall:  576px,
+  small:   768px,
+  medium:  992px,
+  large:   1200px,
+  xlarge:  1920px,
+);
+
 $tooltipConfig: (
   arrowSize: 8px,
   borderRadius: 5px,
