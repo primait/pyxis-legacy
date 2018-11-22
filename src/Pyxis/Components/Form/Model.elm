@@ -1,12 +1,12 @@
-module Pyxis.Components.Form.Model
-    exposing
-        ( Field(..)
-        , Model
-        , Msg(..)
-        , highDate
-        , initialModel
-        , lowDate
-        )
+module Pyxis.Components.Form.Model exposing
+    ( Field(..)
+    , Model
+    , Msg(..)
+    , firstOfTheYear
+    , initialModel
+    , xMas2018
+    , xMas2020
+    )
 
 import Date exposing (Date)
 import Date.Extra.Core exposing (intToMonth)
@@ -66,16 +66,6 @@ type alias Model =
     }
 
 
-lowDate : Date
-lowDate =
-    dateFromFields 2018 (intToMonth 9) 15 0 0 0 0
-
-
-highDate : Date
-highDate =
-    dateFromFields 2018 (intToMonth 10) 28 0 0 0 0
-
-
 initialModel : Model
 initialModel =
     Model
@@ -98,13 +88,28 @@ initialModel =
         ]
         Nothing
         Nothing
-        (DatePicker.init (dateFromFields 2018 (intToMonth 12) 25 0 0 0 0) ( 1960, 2019 ) (Just ( lowDate, highDate )))
+        (DatePicker.init firstOfTheYear ( xMas2018, xMas2020 ))
         False
         Nothing
         Nothing
         False
         False
         Nothing
+
+
+xMas2018 : Date
+xMas2018 =
+    dateFromFields 2018 (intToMonth 12) 25 0 0 0 0
+
+
+xMas2020 : Date
+xMas2020 =
+    dateFromFields 2020 (intToMonth 12) 25 0 0 0 0
+
+
+firstOfTheYear : Date
+firstOfTheYear =
+    dateFromFields 2019 (intToMonth 1) 1 0 0 0 0
 
 
 type Field

@@ -1,14 +1,5 @@
-.a-form__field__radioOptions {
-  display: flex;
-  flex-direction: row;
-
-  &.is-vertical {
-    flex-direction: column;
-  }
-}
-
 .a-form__field__radio {
-  display: none;
+  @extend .visuallyHidden;
 }
 
 .a-form__field__radio__label {
@@ -40,6 +31,14 @@
   .a-form__field__radio[disabled] + & {
     opacity: map-get($formConfig, fieldDisabledOpacity);
     pointer-events: none;
+  }
+
+  .a-form__field__radio:checked + & {
+    color: color(brandAlt, dark);
+  }
+
+  .a-form__field__radio:focus + & {
+    @extend .underline;
   }
 
   &:before,
@@ -75,10 +74,6 @@
     width: 10px;
   }
 
-  .a-form__field__radio:checked + & {
-    color: color(brandAlt, dark);
-  }
-
   &:hover:after,
   .a-form__field__radio:checked + &:after {
     transform: scale(1);
@@ -86,5 +81,14 @@
 
   .a-form__field__radio:not(:checked) + &:hover:after {
     opacity: map-get($formConfig, fieldDisabledOpacity);
+  }
+}
+
+.a-form__field__radioOptions {
+  display: flex;
+  flex-direction: row;
+
+  &.is-vertical {
+    flex-direction: column;
   }
 }

@@ -9,8 +9,6 @@ import Pyxis.Components.Form.Model
         ( Field(..)
         , Model
         , Msg(..)
-        , highDate
-        , lowDate
         )
 import Pyxis.Helpers
     exposing
@@ -147,7 +145,7 @@ update msg model =
                 , datepicker =
                     case (Maybe.Extra.join << Maybe.map (Result.toMaybe << Date.fromString)) value of
                         Just date ->
-                            DatePicker.init date ( 1910, 2020 ) (Just ( lowDate, highDate ))
+                            DatePicker.init date model.datepicker.daysPickerRange
 
                         _ ->
                             model.datepicker
@@ -183,6 +181,7 @@ update msg model =
                         (\option ->
                             if option.slug == slug then
                                 { option | isChecked = isChecked }
+
                             else
                                 option
                         )

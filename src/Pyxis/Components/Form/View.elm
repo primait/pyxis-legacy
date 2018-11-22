@@ -62,43 +62,43 @@ view ({ datepicker, isDatePickerOpen } as model) =
     , componentShowdown "Input"
         "input"
         InspectHtml
-        [ Form.wrapper <| Form.render model <| textFieldConfig model
+        [ Form.wrapper <| Form.render model <| textFieldConfig model 1
         , Form.wrapper <|
-            Form.render model (textFieldSmallFirstConfig model)
-                ++ Form.render model (textFieldSmallLastConfig model)
-        , Form.wrapper <| Form.render model <| textFieldLargeConfig model
+            Form.render model (textFieldSmallFirstConfig model 2)
+                ++ Form.render model (textFieldSmallLastConfig model 3)
+        , Form.wrapper <| Form.render model <| textFieldLargeConfig model 4
         ]
-    , componentShowdown "Textarea" "textarea" InspectHtml [ Form.wrapper <| Form.render model <| textareaFieldConfig model ]
+    , componentShowdown "Textarea" "textarea" InspectHtml [ Form.wrapper <| Form.render model <| textareaFieldConfig model 5 ]
     , componentShowdown "Input with icon"
         "inputicon"
         InspectHtml
-        [ Form.wrapper <| Form.renderWithGroup [ icon "prepend" "mail" ] model <| textFieldIconConfig model
-        , Form.wrapper <| Form.renderWithGroup [ icon "prepend" "lock" ] model <| passwordFieldConfig model
+        [ Form.wrapper <| Form.renderWithGroup [ icon "prepend" "mail" ] model <| textFieldIconConfig model 6
+        , Form.wrapper <| Form.renderWithGroup [ icon "prepend" "lock" ] model <| passwordFieldConfig model 7
         ]
     , componentShowdown "Datepicker"
         "datepicker"
         InspectHtml
-        [ Form.wrapper <| Form.renderWithGroup [ iconCalendar ] model <| datePickerFieldConfig model
+        [ Form.wrapper <| Form.renderWithGroup [ iconCalendar ] model <| datePickerFieldConfig model 8
         ]
     , componentShowdown "Input with autocomplete"
         "autocomplete"
         InspectHtml
-        [ Form.wrapper <| Form.render model <| autocompleteFieldConfig model
+        [ Form.wrapper <| Form.render model <| autocompleteFieldConfig model 9
         ]
     , componentShowdown "Input with tooltip"
         "inputtooltip"
         InspectHtml
-        [ Form.wrapper <| Form.renderWithGroup [ tooltipInfo ] model <| textFieldTooltipConfig model
-        , Form.wrapper <| Form.renderWithGroup [ tooltip ] model <| textFieldTooltipInfoConfig model
+        [ Form.wrapper <| Form.renderWithGroup [ tooltipInfo ] model <| textFieldTooltipConfig model 10
+        , Form.wrapper <| Form.renderWithGroup [ tooltip ] model <| textFieldTooltipInfoConfig model 11
         ]
-    , componentShowdown "Select" "select" InspectHtml [ Form.wrapper <| Form.render model <| selectFieldConfig model ]
+    , componentShowdown "Select" "select" InspectHtml [ Form.wrapper <| Form.render model <| selectFieldConfig model 12 ]
     , componentShowdown "Checkbox"
         "checkbox"
         InspectHtml
-        [ Form.wrapper <| Form.render model <| checkboxFieldConfig model
-        , Form.wrapper <| Form.render model <| checkboxWithOptionsFieldConfig model
+        [ Form.wrapper <| Form.render model <| checkboxFieldConfig model 13
+        , Form.wrapper <| Form.render model <| checkboxWithOptionsFieldConfig model 14
         ]
-    , componentShowdown "Radio" "radio" InspectHtml [ Form.wrapper <| Form.render model <| radioFieldConfig model ]
+    , componentShowdown "Radio" "radio" InspectHtml [ Form.wrapper <| Form.render model <| radioFieldConfig model 15 ]
     ]
 
 
