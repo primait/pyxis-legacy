@@ -1,5 +1,5 @@
 .a-form__field__checkbox {
-  display: none;
+  @extend .visuallyHidden;
 }
 
 .a-form__field__checkbox__label {
@@ -17,7 +17,8 @@
     pointer-events: none;
   }
 
-  &:hover {
+  &:hover,
+  .a-form__field__checkbox:focus + & {
     color: color(brandAlt, dark);
   }
 

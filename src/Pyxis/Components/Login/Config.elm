@@ -1,8 +1,7 @@
-module Pyxis.Components.Login.Config
-    exposing
-        ( emailFieldConfig
-        , passwordFieldConfig
-        )
+module Pyxis.Components.Login.Config exposing
+    ( emailFieldConfig
+    , passwordFieldConfig
+    )
 
 import Html.Attributes exposing (class, disabled, placeholder)
 import Prima.Form as Form
@@ -31,6 +30,7 @@ emailFieldConfig =
         (Focus Email)
         (Blur Email)
         False
+        (Just 1)
         [ NotEmpty "Empty value is not acceptable"
         , Expression validateEmail "Please enter valid email address"
         ]
@@ -52,6 +52,7 @@ passwordFieldConfig =
         (Focus Password)
         (Blur Password)
         False
+        (Just 2)
         [ NotEmpty "Empty value is not acceptable"
         , Custom ((<=) 8 << String.length << Maybe.withDefault "" << .passwordField) "The value must be at least 8 characters length."
         ]

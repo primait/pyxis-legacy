@@ -51,7 +51,10 @@ document.addEventListener('click', event => {
   if(event.target.className) {
     const isInput = ~event.target.className.indexOf('a-form__field__')
     const isLabel = ~event.target.className.indexOf('a-form__field__label')
-    if(!isInput || isLabel) {
+    const isDatePicker = ~event.target.className.indexOf('a-datepicker')
+    const isIconCalendar = event.target.classList.contains('a-icon-calendar')
+
+    if((!isIconCalendar && !isInput && !isDatePicker) || isLabel) {
       app.ports.clickedOutside.send(true)
     }
   }

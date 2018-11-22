@@ -9,8 +9,6 @@ import Pyxis.Components.Form.Model
         ( Field(..)
         , Model
         , Msg(..)
-        , highDate
-        , lowDate
         )
 import Pyxis.Helpers
     exposing
@@ -39,32 +37,11 @@ update msg model =
             }
                 |> withoutCmds
 
-        Focus Select ->
-            { model
-                | isSelectFieldOpen = True
-                , isAutocompleteFieldOpen = False
-            }
-                |> withoutCmds
-
         Focus _ ->
-            { model
-                | isSelectFieldOpen = False
-                , isAutocompleteFieldOpen = False
-            }
-                |> withoutCmds
-
-        Blur Autocomplete ->
-            { model
-                | isAutocompleteFieldOpen = model.isAutocompleteFieldOpen
-            }
-                |> withoutCmds
+            model |> withoutCmds
 
         Blur _ ->
-            { model
-                | isAutocompleteFieldOpen = False
-                , isSelectFieldOpen = False
-            }
-                |> withoutCmds
+            model |> withoutCmds
 
         UpdateText Text value ->
             { model
@@ -147,7 +124,7 @@ update msg model =
                 , datepicker =
                     case (Maybe.Extra.join << Maybe.map (Result.toMaybe << Date.fromString)) value of
                         Just date ->
-                            DatePicker.init date ( 1910, 2020 ) (Just ( lowDate, highDate ))
+                            DatePicker.init date model.datepicker.daysPickerRange
 
                         _ ->
                             model.datepicker
@@ -183,6 +160,7 @@ update msg model =
                         (\option ->
                             if option.slug == slug then
                                 { option | isChecked = isChecked }
+
                             else
                                 option
                         )
@@ -235,5 +213,6 @@ update msg model =
             { model
                 | isSelectFieldOpen = False
                 , isAutocompleteFieldOpen = False
+                , isDatePickerOpen = False
             }
                 |> withoutCmds

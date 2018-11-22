@@ -55,6 +55,12 @@ toRoute str =
         "/header" ->
             HeaderRoute
 
+        "/lists" ->
+            ListsRoute
+
+        "/loader" ->
+            LoaderRoute
+
         "/login" ->
             LoginRoute
 
@@ -64,11 +70,11 @@ toRoute str =
         "/footer" ->
             FooterRoute
 
-        "/tooltips" ->
-            TooltipsRoute
-
         "/typography" ->
             TypographyRoute
+
+        "/tooltips" ->
+            TooltipsRoute
 
         _ ->
             initialModel.route

@@ -1,21 +1,20 @@
-module Pyxis.Components.Form.Config
-    exposing
-        ( autocompleteFieldConfig
-        , checkboxFieldConfig
-        , checkboxWithOptionsFieldConfig
-        , datePickerFieldConfig
-        , passwordFieldConfig
-        , radioFieldConfig
-        , selectFieldConfig
-        , textFieldConfig
-        , textFieldIconConfig
-        , textFieldLargeConfig
-        , textFieldSmallFirstConfig
-        , textFieldSmallLastConfig
-        , textFieldTooltipConfig
-        , textFieldTooltipInfoConfig
-        , textareaFieldConfig
-        )
+module Pyxis.Components.Form.Config exposing
+    ( autocompleteFieldConfig
+    , checkboxFieldConfig
+    , checkboxWithOptionsFieldConfig
+    , datePickerFieldConfig
+    , passwordFieldConfig
+    , radioFieldConfig
+    , selectFieldConfig
+    , textFieldConfig
+    , textFieldIconConfig
+    , textFieldLargeConfig
+    , textFieldSmallFirstConfig
+    , textFieldSmallLastConfig
+    , textFieldTooltipConfig
+    , textFieldTooltipInfoConfig
+    , textareaFieldConfig
+    )
 
 import Html.Attributes exposing (class, disabled, placeholder)
 import Maybe.Extra exposing (isJust)
@@ -38,8 +37,8 @@ import Pyxis.Components.Form.Model
 import Regex exposing (regex)
 
 
-textFieldConfig : Model -> FormField Model Msg
-textFieldConfig { formDisabled } =
+textFieldConfig : Model -> Int -> FormField Model Msg
+textFieldConfig { formDisabled } tabIndex =
     Form.textConfig
         "text_field"
         (Just "Text field")
@@ -49,15 +48,16 @@ textFieldConfig { formDisabled } =
         (Focus Text)
         (Blur Text)
         False
+        (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
         , Expression (regex "prima") "The value must contains `prima` substring."
         ]
 
 
-textFieldIconConfig : Model -> FormField Model Msg
-textFieldIconConfig { formDisabled } =
+textFieldIconConfig : Model -> Int -> FormField Model Msg
+textFieldIconConfig { formDisabled } tabIndex =
     Form.textConfig
-        "text_field"
+        "text_field_icon"
         (Just "Text field icon")
         [ placeholder "Write something", disabled formDisabled ]
         .textFieldIcon
@@ -65,15 +65,16 @@ textFieldIconConfig { formDisabled } =
         (Focus TextIcon)
         (Blur TextIcon)
         False
+        (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
         , Expression (regex "prima") "The value must contains `prima` substring."
         ]
 
 
-textFieldSmallFirstConfig : Model -> FormField Model Msg
-textFieldSmallFirstConfig { formDisabled } =
+textFieldSmallFirstConfig : Model -> Int -> FormField Model Msg
+textFieldSmallFirstConfig { formDisabled } tabIndex =
     Form.textConfig
-        "text_field"
+        "text_field_small_first"
         (Just "Small text field")
         [ placeholder "From", disabled formDisabled, class "fieldSmall" ]
         .textFieldSmallFirst
@@ -81,15 +82,16 @@ textFieldSmallFirstConfig { formDisabled } =
         (Focus TextSmallFirst)
         (Blur TextSmallFirst)
         False
+        (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
         , Expression (regex "prima") "The value must contains `prima` substring."
         ]
 
 
-textFieldSmallLastConfig : Model -> FormField Model Msg
-textFieldSmallLastConfig { formDisabled } =
+textFieldSmallLastConfig : Model -> Int -> FormField Model Msg
+textFieldSmallLastConfig { formDisabled } tabIndex =
     Form.textConfig
-        "text_field"
+        "text_field_small_last"
         Nothing
         [ placeholder "To", disabled formDisabled, class "fieldSmall" ]
         .textFieldSmallLast
@@ -97,15 +99,16 @@ textFieldSmallLastConfig { formDisabled } =
         (Focus TextSmallLast)
         (Blur TextSmallLast)
         False
+        (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
         , Expression (regex "prima") "The value must contains `prima` substring."
         ]
 
 
-textFieldLargeConfig : Model -> FormField Model Msg
-textFieldLargeConfig { formDisabled } =
+textFieldLargeConfig : Model -> Int -> FormField Model Msg
+textFieldLargeConfig { formDisabled } tabIndex =
     Form.textConfig
-        "text_field"
+        "text_field_large"
         (Just "Large text field")
         [ placeholder "Something", disabled formDisabled, class "fieldLarge" ]
         .textFieldLarge
@@ -113,15 +116,16 @@ textFieldLargeConfig { formDisabled } =
         (Focus TextLarge)
         (Blur TextLarge)
         False
+        (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
         , Expression (regex "prima") "The value must contains `prima` substring."
         ]
 
 
-textFieldTooltipConfig : Model -> FormField Model Msg
-textFieldTooltipConfig { formDisabled } =
+textFieldTooltipConfig : Model -> Int -> FormField Model Msg
+textFieldTooltipConfig { formDisabled } tabIndex =
     Form.textConfig
-        "text_field"
+        "text_field_tooltip"
         (Just "Text field tooltip")
         [ placeholder "Write something", disabled formDisabled ]
         .textFieldTooltip
@@ -129,14 +133,15 @@ textFieldTooltipConfig { formDisabled } =
         (Focus TextTooltip)
         (Blur TextTooltip)
         False
+        (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
         ]
 
 
-textFieldTooltipInfoConfig : Model -> FormField Model Msg
-textFieldTooltipInfoConfig { formDisabled } =
+textFieldTooltipInfoConfig : Model -> Int -> FormField Model Msg
+textFieldTooltipInfoConfig { formDisabled } tabIndex =
     Form.textConfig
-        "text_field"
+        "text_field_tooltip_info"
         (Just "Text field tooltip")
         [ placeholder "Write something", disabled formDisabled ]
         .textFieldTooltipInfo
@@ -144,12 +149,13 @@ textFieldTooltipInfoConfig { formDisabled } =
         (Focus TextTooltipInfo)
         (Blur TextTooltipInfo)
         False
+        (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
         ]
 
 
-passwordFieldConfig : Model -> FormField Model Msg
-passwordFieldConfig { formDisabled } =
+passwordFieldConfig : Model -> Int -> FormField Model Msg
+passwordFieldConfig { formDisabled } tabIndex =
     Form.passwordConfig
         "password_field"
         (Just "Password field")
@@ -159,13 +165,14 @@ passwordFieldConfig { formDisabled } =
         (Focus Password)
         (Blur Password)
         False
+        (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
         , Custom ((<=) 8 << String.length << Maybe.withDefault "" << .passwordField) "The value must be at least 8 characters length."
         ]
 
 
-textareaFieldConfig : Model -> FormField Model Msg
-textareaFieldConfig { formDisabled } =
+textareaFieldConfig : Model -> Int -> FormField Model Msg
+textareaFieldConfig { formDisabled } tabIndex =
     Form.textareaConfig
         "textarea_field"
         (Just "Textarea field")
@@ -175,13 +182,14 @@ textareaFieldConfig { formDisabled } =
         (Focus Textarea)
         (Blur Textarea)
         False
+        (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
         , Custom ((<=) 10 << String.length << Maybe.withDefault "" << .textareaField) "The value must be at least 10 characters length."
         ]
 
 
-radioFieldConfig : Model -> FormField Model Msg
-radioFieldConfig { formDisabled } =
+radioFieldConfig : Model -> Int -> FormField Model Msg
+radioFieldConfig { formDisabled } tabIndex =
     Form.radioConfig
         "radio_field"
         (Just "Radio field")
@@ -195,11 +203,12 @@ radioFieldConfig { formDisabled } =
         , RadioOption "Option C" "c"
         ]
         False
+        (Just tabIndex)
         [ Custom ((==) "b" << Maybe.withDefault "b" << .radioField) "You must choose `Option B`." ]
 
 
-checkboxFieldConfig : Model -> FormField Model Msg
-checkboxFieldConfig { formDisabled } =
+checkboxFieldConfig : Model -> Int -> FormField Model Msg
+checkboxFieldConfig { formDisabled } tabIndex =
     Form.checkboxConfig
         "checkbox_field"
         (Just "Checkbox field")
@@ -209,11 +218,12 @@ checkboxFieldConfig { formDisabled } =
         (Focus Checkbox)
         (Blur Checkbox)
         False
+        (Just tabIndex)
         []
 
 
-checkboxWithOptionsFieldConfig : Model -> FormField Model Msg
-checkboxWithOptionsFieldConfig model =
+checkboxWithOptionsFieldConfig : Model -> Int -> FormField Model Msg
+checkboxWithOptionsFieldConfig model tabIndex =
     let
         options =
             model.checkboxMultiField
@@ -228,6 +238,7 @@ checkboxWithOptionsFieldConfig model =
         (Blur MultiCheckbox)
         options
         False
+        (Just tabIndex)
         [ Custom
             (\{ checkboxMultiField } ->
                 (List.all ((==) False) << List.map .isChecked) checkboxMultiField
@@ -241,15 +252,9 @@ checkboxWithOptionsFieldConfig model =
         ]
 
 
-selectFieldConfig : Model -> FormField Model Msg
-selectFieldConfig model =
+selectFieldConfig : Model -> Int -> FormField Model Msg
+selectFieldConfig model tabIndex =
     let
-        isOpen =
-            model.isSelectFieldOpen
-
-        isDisabled =
-            model.formDisabled
-
         options =
             [ SelectOption "Milano" "MI"
             , SelectOption "Torino" "TO"
@@ -262,10 +267,10 @@ selectFieldConfig model =
     Form.selectConfig
         "select_field"
         (Just "Select field")
-        isDisabled
-        isOpen
+        model.formDisabled
+        model.isSelectFieldOpen
         (Just "Seleziona")
-        [ disabled isDisabled ]
+        [ disabled model.formDisabled ]
         .selectField
         (Toggle Select)
         (UpdateText Select)
@@ -273,11 +278,12 @@ selectFieldConfig model =
         (Blur Select)
         options
         False
+        (Just tabIndex)
         [ Custom ((==) "SA" << Maybe.withDefault "SA" << .selectField) "You must choose `Savona`. ;)" ]
 
 
-datePickerFieldConfig : Model -> FormField Model Msg
-datePickerFieldConfig { datepicker, isDatePickerOpen, formDisabled } =
+datePickerFieldConfig : Model -> Int -> FormField Model Msg
+datePickerFieldConfig { datepicker, isDatePickerOpen, formDisabled } tabIndex =
     Form.datepickerConfig
         "datepicker_field"
         (Just "Datepicker field")
@@ -290,12 +296,13 @@ datePickerFieldConfig { datepicker, isDatePickerOpen, formDisabled } =
         datepicker
         isDatePickerOpen
         False
+        (Just tabIndex)
         [ NotEmpty "You must choose a date."
         ]
 
 
-autocompleteFieldConfig : Model -> FormField Model Msg
-autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
+autocompleteFieldConfig : Model -> Int -> FormField Model Msg
+autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) tabIndex =
     let
         countries =
             [ AutocompleteOption "Italy" "ITA"
@@ -328,4 +335,5 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) =
         (Blur Autocomplete)
         options
         False
+        (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable" ]
