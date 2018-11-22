@@ -19,7 +19,8 @@
     border: map-get($formConfig, borderWidth) solid transparent;
   }
 
-  &:hover {
+  &:hover,
+  .a-form__field__radio:focus + & {
     border-color: color(brandAlt);
     color: color(brandAlt, dark);
 
@@ -35,10 +36,6 @@
 
   .a-form__field__radio:checked + & {
     color: color(brandAlt, dark);
-  }
-
-  .a-form__field__radio:focus + & {
-    @extend .underline;
   }
 
   &:before,
