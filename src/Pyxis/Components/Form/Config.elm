@@ -57,7 +57,7 @@ textFieldConfig { formDisabled } tabIndex =
 textFieldIconConfig : Model -> Int -> FormField Model Msg
 textFieldIconConfig { formDisabled } tabIndex =
     Form.textConfig
-        "text_field"
+        "text_field_icon"
         (Just "Text field icon")
         [ placeholder "Write something", disabled formDisabled ]
         .textFieldIcon
@@ -74,7 +74,7 @@ textFieldIconConfig { formDisabled } tabIndex =
 textFieldSmallFirstConfig : Model -> Int -> FormField Model Msg
 textFieldSmallFirstConfig { formDisabled } tabIndex =
     Form.textConfig
-        "text_field"
+        "text_field_small_first"
         (Just "Small text field")
         [ placeholder "From", disabled formDisabled, class "fieldSmall" ]
         .textFieldSmallFirst
@@ -91,7 +91,7 @@ textFieldSmallFirstConfig { formDisabled } tabIndex =
 textFieldSmallLastConfig : Model -> Int -> FormField Model Msg
 textFieldSmallLastConfig { formDisabled } tabIndex =
     Form.textConfig
-        "text_field"
+        "text_field_small_last"
         Nothing
         [ placeholder "To", disabled formDisabled, class "fieldSmall" ]
         .textFieldSmallLast
@@ -108,7 +108,7 @@ textFieldSmallLastConfig { formDisabled } tabIndex =
 textFieldLargeConfig : Model -> Int -> FormField Model Msg
 textFieldLargeConfig { formDisabled } tabIndex =
     Form.textConfig
-        "text_field"
+        "text_field_large"
         (Just "Large text field")
         [ placeholder "Something", disabled formDisabled, class "fieldLarge" ]
         .textFieldLarge
@@ -125,7 +125,7 @@ textFieldLargeConfig { formDisabled } tabIndex =
 textFieldTooltipConfig : Model -> Int -> FormField Model Msg
 textFieldTooltipConfig { formDisabled } tabIndex =
     Form.textConfig
-        "text_field"
+        "text_field_tooltip"
         (Just "Text field tooltip")
         [ placeholder "Write something", disabled formDisabled ]
         .textFieldTooltip
@@ -141,7 +141,7 @@ textFieldTooltipConfig { formDisabled } tabIndex =
 textFieldTooltipInfoConfig : Model -> Int -> FormField Model Msg
 textFieldTooltipInfoConfig { formDisabled } tabIndex =
     Form.textConfig
-        "text_field"
+        "text_field_tooltip_info"
         (Just "Text field tooltip")
         [ placeholder "Write something", disabled formDisabled ]
         .textFieldTooltipInfo
@@ -255,12 +255,6 @@ checkboxWithOptionsFieldConfig model tabIndex =
 selectFieldConfig : Model -> Int -> FormField Model Msg
 selectFieldConfig model tabIndex =
     let
-        isOpen =
-            model.isSelectFieldOpen
-
-        isDisabled =
-            model.formDisabled
-
         options =
             [ SelectOption "Milano" "MI"
             , SelectOption "Torino" "TO"
@@ -273,10 +267,10 @@ selectFieldConfig model tabIndex =
     Form.selectConfig
         "select_field"
         (Just "Select field")
-        isDisabled
-        isOpen
+        model.formDisabled
+        model.isSelectFieldOpen
         (Just "Seleziona")
-        [ disabled isDisabled ]
+        [ disabled model.formDisabled ]
         .selectField
         (Toggle Select)
         (UpdateText Select)

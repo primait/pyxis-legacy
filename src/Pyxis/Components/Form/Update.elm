@@ -37,32 +37,11 @@ update msg model =
             }
                 |> withoutCmds
 
-        Focus Select ->
-            { model
-                | isSelectFieldOpen = True
-                , isAutocompleteFieldOpen = False
-            }
-                |> withoutCmds
-
         Focus _ ->
-            { model
-                | isSelectFieldOpen = False
-                , isAutocompleteFieldOpen = False
-            }
-                |> withoutCmds
-
-        Blur Autocomplete ->
-            { model
-                | isAutocompleteFieldOpen = model.isAutocompleteFieldOpen
-            }
-                |> withoutCmds
+            model |> withoutCmds
 
         Blur _ ->
-            { model
-                | isAutocompleteFieldOpen = False
-                , isSelectFieldOpen = False
-            }
-                |> withoutCmds
+            model |> withoutCmds
 
         UpdateText Text value ->
             { model
@@ -234,5 +213,6 @@ update msg model =
             { model
                 | isSelectFieldOpen = False
                 , isAutocompleteFieldOpen = False
+                , isDatePickerOpen = False
             }
                 |> withoutCmds

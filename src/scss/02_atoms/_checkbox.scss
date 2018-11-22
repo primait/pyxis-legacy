@@ -17,11 +17,8 @@
     pointer-events: none;
   }
 
+  &:hover,
   .a-form__field__checkbox:focus + & {
-    @extend .underline;
-  }
-
-  &:hover {
     color: color(brandAlt, dark);
   }
 
