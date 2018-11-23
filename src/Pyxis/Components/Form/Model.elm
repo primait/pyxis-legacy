@@ -63,6 +63,7 @@ type alias Model =
     , isAutocompleteFieldOpen : Bool
     , formDisabled : Bool
     , todayDate : Maybe Date
+    , resources : Resources
     }
 
 
@@ -95,6 +96,7 @@ initialModel =
         False
         False
         Nothing
+        initialResources
 
 
 xMas2018 : Date
@@ -128,3 +130,57 @@ type Field
     | Radio
     | Datepicker
     | Autocomplete
+
+
+type alias Resources =
+    { countries : List { name : String, code : String }
+    , cities : List { name : String, code : String }
+    }
+
+
+initialResources : Resources
+initialResources =
+    { countries =
+        [ { name = "Aland Islands", code = "ALA" }
+        , { name = "Austria", code = "AUT" }
+        , { name = "Belgium", code = "BEL" }
+        , { name = "Bulgaria", code = "BGR" }
+        , { name = "Croatia", code = "HRV" }
+        , { name = "Cyprus", code = "CYP" }
+        , { name = "Czech Republic", code = "CZE" }
+        , { name = "Denmark", code = "DNK" }
+        , { name = "Estonia", code = "EST" }
+        , { name = "Faroe Islands", code = "FRO" }
+        , { name = "Finland", code = "FIN" }
+        , { name = "France", code = "FRA" }
+        , { name = "French Guiana", code = "GUF" }
+        , { name = "Germany", code = "DEU" }
+        , { name = "Gibraltar", code = "GIB" }
+        , { name = "Greece", code = "GRC" }
+        , { name = "Hungary", code = "HUN" }
+        , { name = "Ireland", code = "IRL" }
+        , { name = "Isle of Man", code = "IMN" }
+        , { name = "Italy", code = "ITA" }
+        , { name = "Latvia", code = "LVA" }
+        , { name = "Lithuania", code = "LTU" }
+        , { name = "Luxembourg", code = "LUX" }
+        , { name = "Malta", code = "MLT" }
+        , { name = "Netherlands", code = "NLD" }
+        , { name = "Poland", code = "POL" }
+        , { name = "Portugal", code = "PRT" }
+        , { name = "Romania", code = "ROU" }
+        , { name = "Slovakia", code = "SVK" }
+        , { name = "Slovenia", code = "SVN" }
+        , { name = "Spain", code = "ESP" }
+        , { name = "Sweden", code = "SWE" }
+        , { name = "United Kingdom of Great Britain and Northern Ireland", code = "GBR" }
+        ]
+    , cities =
+        [ { name = "Milano", code = "MI" }
+        , { name = "Torino", code = "TO" }
+        , { name = "Roma", code = "RO" }
+        , { name = "Napoli", code = "NA" }
+        , { name = "Genova", code = "GE" }
+        , { name = "Savona", code = "SA" }
+        ]
+    }

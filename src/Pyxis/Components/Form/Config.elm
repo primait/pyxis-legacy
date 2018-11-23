@@ -241,7 +241,10 @@ checkboxWithOptionsFieldConfig model tabIndex =
         (Just tabIndex)
         [ Custom
             (\{ checkboxMultiField } ->
-                (List.all ((==) False) << List.map .isChecked) checkboxMultiField
+                (List.all ((==) False)
+                    << List.map .isChecked
+                )
+                    checkboxMultiField
                     || (isJust
                             << List.head
                             << List.filter (\{ slug, isChecked } -> slug == "b" && isChecked)
@@ -253,16 +256,10 @@ checkboxWithOptionsFieldConfig model tabIndex =
 
 
 selectFieldConfig : Model -> Int -> FormField Model Msg
-selectFieldConfig model tabIndex =
+selectFieldConfig ({ resources } as model) tabIndex =
     let
         options =
-            [ SelectOption "Milano" "MI"
-            , SelectOption "Torino" "TO"
-            , SelectOption "Roma" "RO"
-            , SelectOption "Napoli" "NA"
-            , SelectOption "Genova" "GE"
-            , SelectOption "Savona" "SA"
-            ]
+            List.map (\{ name, code } -> SelectOption name code) resources.cities
     in
     Form.selectConfig
         "select_field"
@@ -302,24 +299,21 @@ datePickerFieldConfig { datepicker, isDatePickerOpen, formDisabled } tabIndex =
 
 
 autocompleteFieldConfig : Model -> Int -> FormField Model Msg
-autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) tabIndex =
+autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled, resources } as model) tabIndex =
     let
-        countries =
-            [ AutocompleteOption "Italy" "ITA"
-            , AutocompleteOption "Brasil" "BRA"
-            , AutocompleteOption "France" "FRA"
-            , AutocompleteOption "Great Britain" "GBR"
-            , AutocompleteOption "USA" "USA"
-            , AutocompleteOption "Japan" "JAP"
-            ]
-
         options =
             case model.autocompleteFilter of
                 Nothing ->
-                    countries
+                    resources.countries
 
-                Just f ->
-                    List.filter (String.contains (String.toLower f) << String.toLower << .label) countries
+                Just searchTerm ->
+                    List.filter
+                        (String.contains
+                            (String.toLower searchTerm)
+                            << String.toLower
+                            << .name
+                        )
+                        resources.countries
     in
     Form.autocompleteConfig
         "autocomplete_field"
@@ -333,7 +327,7 @@ autocompleteFieldConfig ({ isAutocompleteFieldOpen, formDisabled } as model) tab
         (UpdateText Autocomplete)
         (Focus Autocomplete)
         (Blur Autocomplete)
-        options
+        (List.map (\{ name, code } -> AutocompleteOption name code) options)
         False
         (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable" ]
