@@ -92,9 +92,17 @@ update msg model =
                 |> withoutCmds
 
         UpdateText Autocomplete value ->
+            let
+                label =
+                    (Maybe.map .name
+                        << List.head
+                        << List.filter ((==) (Maybe.withDefault "" value) << .code)
+                    )
+                        model.resources.countries
+            in
             { model
                 | autocompleteField = value
-                , autocompleteFilter = Nothing
+                , autocompleteFilter = label
                 , isAutocompleteFieldOpen = isNothing value
             }
                 |> withoutCmds

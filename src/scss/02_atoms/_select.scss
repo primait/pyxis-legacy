@@ -123,16 +123,19 @@
   color: color(text, dark);
   display: flex;
   flex: 0 0 100%;
-  padding: map-get($formConfig, fieldPadding);
   min-height: map-get($formConfig, fieldHeight);
+  outline: none;
+  padding: map-get($formConfig, fieldPadding);
 
   &.is-selected,
-  &.is-selected:hover {
+  &.is-selected:hover,
+  &.is-selected:focus {
     background: color(brandAlt, light);
     color: color(brandAlt, dark);
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: color(background, dark);
   }
 }
