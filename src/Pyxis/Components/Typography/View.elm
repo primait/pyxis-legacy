@@ -7,7 +7,7 @@ import Pyxis.Model
         ( Model
         , Msg(..)
         )
-import Pyxis.ViewHelpers exposing (componentTitle, divider, renderOrNothing)
+import Pyxis.ViewHelpers exposing (componentTitle, divider, renderHTMLContent, renderOrNothing)
 
 
 view : Model -> List (Html Msg)
@@ -17,17 +17,12 @@ view model =
     , fontFamily
     , divider
     , fontSizeStatic
+    , lineHeight
     , textDimension
     , divider
-    , fontSize
-    , divider
-    , lineHeight
+    , fontSizeFlow
     , divider
     ]
-
-
-
--- ++ List.map renderText [ h1, h2, h3, h4, p ]
 
 
 textDimension : Html Msg
@@ -50,10 +45,19 @@ fontFamily : Html Msg
 fontFamily =
     div []
         [ h4 [] [ text "font-family" ]
-        , p [] [ text "light: ('avenirltstd-book', Helvetica, Verdana, sans-serif)" ]
-        , p [] [ text "base: ('avenirltstd-medium', Helvetica, Verdana, sans-serif)" ]
-        , p [] [ text "heavy: ('avenirltstd-heavy', Helvetica, Verdana, sans-serif)" ]
-        , p [] [ text "monospace: ('Courier New', Courier, monospace)" ]
+        , fontFamilyDimension "light" "'avenirltstd-book', Helvetica, Verdana, sans-serif" "light" "200"
+        , fontFamilyDimension "base" "'avenirltstd-medium', Helvetica, Verdana, sans-serif" "base" "200"
+        , fontFamilyDimension "heavy" "'avenirltstd-heavy', Helvetica, Verdana, sans-serif" "heavy" "200"
+        ]
+
+
+fontFamilyDimension : String -> String -> String -> String -> Html Msg
+fontFamilyDimension fontName fontFamily fontStyle fontWeight =
+    div [ class "pyTypographyFamily" ]
+        [ h3 [] [ text fontName ]
+        , div [ class ("pyLetters fw-" ++ fontName) ] [ text "Aa" ]
+        , div [ class ("pyAlphabet fw-" ++ fontName) ] (renderHTMLContent "ABCDEFGHIJKLMNOPQRSTUVWXYZ<br/> abcdefghijklmnopqrstuvwxyz<br/> 1234567890(,.;:?!$&*)")
+        , div [ class "pyFontFamily" ] (renderHTMLContent ("<span class='c-text-base'>family:</span> " ++ fontFamily ++ "<br/><span class='c-text-base'>style:</span> " ++ fontStyle ++ "<br/><span class='c-text-base'>weight:</span> " ++ fontWeight ++ "<br/>"))
         ]
 
 
@@ -62,34 +66,35 @@ fontSizeStatic =
     div []
         [ h4 [] [ text "font-size pagine statiche" ]
         , div
-            [ class "pyTypography" ]
-            [ pyTypography_row "" "small" "xsmall" "medium" "large" "xlarge"
-            , pyTypography_row "root" "12px" "16px" "16px" "16px" "16px"
-            , pyTypography_row "xsmall" "0.75rem" "0.75rem" "0.75rem" "0.75rem" "0.75rem"
-            , pyTypography_row "small" "0.875rem" "0.875rem" "0.875rem" "0.875rem" "0.875rem"
-            , pyTypography_row "medium" "1.125rem" "1.125rem" "1.125rem" "1.125rem" "1.125rem"
-            , pyTypography_row "large" "1.375rem" "1.375rem" "1.375rem" "1.375rem" "1.375rem"
-            , pyTypography_row "xlarge" "1.5625rem" "1.5625rem" "1.5625rem" "1.5625rem" "1.5625rem"
-            , pyTypography_row "xxlarge" "2rem" "2rem" "2rem" "2rem" "2rem"
+            [ class "pyTable" ]
+            [ pyTypographyStatic_row "" "Breackpoint xsmall/small" "Breackpoint medium/large" "Breackpoint xlarge"
+            , pyTypographyStatic_row "root" "16px" "16px" "16px"
+            , pyTypographyStatic_row "base" "0,875rem / 14px" "1rem / 16px" "1,125rem"
+            , pyTypographyStatic_row "xsmall" "0,75rem / 12px" "0,75rem / 12px" "0,84rem"
+            , pyTypographyStatic_row "small" "0,875rem / px" "0,875rem / 14px" "0,98rem"
+            , pyTypographyStatic_row "medium" "1,125rem / px" "1,125rem / 18px" "1,125rem"
+            , pyTypographyStatic_row "large" "1,375rem / px" "1,375rem / 22px" "1,265rem"
+            , pyTypographyStatic_row "xlarge" "1,5625rem / px" "1,5625rem / 25px" "1,757em"
+            , pyTypographyStatic_row "xxlarge" "2rem" "2rem / 32px" "2,25rem"
             ]
         ]
 
 
-fontSize : Html Msg
-fontSize =
+fontSizeFlow : Html Msg
+fontSizeFlow =
     div []
         [ h4 [] [ text "font-size pagine di flusso" ]
         , div
-            [ class "pyTypography" ]
-            [ pyTypography_row "" "small" "xsmall" "medium" "large" "xlarge"
-            , pyTypography_row "root" "14px" "14px" "14px" "14px" "14px"
-            , pyTypography_row "xsmall" "0.785rem" "0.785rem" "0.785rem" "0.785rem" "0.785rem"
-            , pyTypography_row "small" "0.857rem" "0.857rem" "0.857rem" "0.857rem" "0.857rem"
-            , pyTypography_row "base" "1rem" "1rem" "1rem" "1rem" "1rem"
-            , pyTypography_row "medium" "1.1428rem" "1.1428rem" "1.1428rem" "1.1428rem" "1.1428rem"
-            , pyTypography_row "large" "1.2857rem" "1.2857rem" "1.2857rem" "1.2857rem" "1.2857rem"
-            , pyTypography_row "xlarge" "1.4285rem" "1.4285rem" "1.4285rem" "1.4285rem" "1.4285rem"
-            , pyTypography_row "xxlarge" "1.8571rem" "1.8571rem" "1.8571rem" "1.8571rem" "1.8571rem"
+            [ class "pyTable" ]
+            [ pyTypographyFlow_row "" "Dimension" "Line-height"
+            , pyTypographyFlow_row "root" "14px" ""
+            , pyTypographyFlow_row "xsmall" "0,785rem / 11px" ""
+            , pyTypographyFlow_row "small" "0,857rem / 12px" ""
+            , pyTypographyFlow_row "base" "1rem / 14px" ""
+            , pyTypographyFlow_row "medium" "1,1428rem / 16px" ""
+            , pyTypographyFlow_row "large" "1,2857rem / 18px" ""
+            , pyTypographyFlow_row "xlarge" "1,4285rem / 20px" ""
+            , pyTypographyFlow_row "xxlarge" "1,8571rem / 26px" ""
             ]
         ]
 
@@ -99,25 +104,33 @@ lineHeight =
     div []
         [ h4 [] [ text "lineHeight" ]
         , div
-            [ class "pyTypography" ]
-            [ pyTypography_row "" "small" "xsmall" "medium" "large" "xlarge"
-            , pyTypography_row "root" "0.75rem" "0.75rem" "0.75rem" "0.75rem" "0.75rem"
-            , pyTypography_row "xsmall" "1.27rem" "1.27rem" "1.27rem" "1.27rem" "1.27rem"
-            , pyTypography_row "small" "0.875rem" "0.875rem" "0.875rem" "0.875rem" "0.875rem"
-            , pyTypography_row "medium" "1.849" "1.849" "1.849" "1.849" "1.849"
-            , pyTypography_row "large" "1.375rem" "1.375rem" "1.375rem" "1.375rem" "1.375rem"
+            [ class "pyTable" ]
+            [ pyTypographyStatic_row "" "Breackpoint xsmall/small" "Breackpoint medium/large" "Breackpoint xlarge"
+            , pyTypographyStatic_row "base" "0,75rem " "0,75rem" "0,75rem"
+            , pyTypographyStatic_row "xsmall" "1,27rem" "1,27rem" "1,27rem"
+            , pyTypographyStatic_row "small" "0,875rem" "0,875rem" "0,875rem"
+            , pyTypographyStatic_row "medium" "1,849" "1,849" "1,849"
+            , pyTypographyStatic_row "large" "1,375rem" "1,375rem" "1,375rem"
             ]
         ]
 
 
-pyTypography_row : String -> String -> String -> String -> String -> String -> Html Msg
-pyTypography_row name bXsmall bSmall bMedium bLarge bXlarge =
+pyTypographyStatic_row : String -> String -> String -> String -> Html Msg
+pyTypographyStatic_row name bXsmall bMedium bXlarge =
     div
         [ class "pyTypography_column" ]
-        [ div [ class "pyTypography_row" ] [ text name ]
-        , div [ class "pyTypography_row" ] [ text bXsmall ]
-        , div [ class "pyTypography_row" ] [ text bSmall ]
-        , div [ class "pyTypography_row" ] [ text bMedium ]
-        , div [ class "pyTypography_row" ] [ text bLarge ]
-        , div [ class "pyTypography_row" ] [ text bXlarge ]
+        [ div [ class "pyTypographyStatic_row" ] [ text name ]
+        , div [ class "pyTypographyStatic_row" ] [ text bXsmall ]
+        , div [ class "pyTypographyStatic_row" ] [ text bMedium ]
+        , div [ class "pyTypographyStatic_row" ] [ text bXlarge ]
+        ]
+
+
+pyTypographyFlow_row : String -> String -> String -> Html Msg
+pyTypographyFlow_row name dimension lineHeight =
+    div
+        [ class "pyTypography_column" ]
+        [ div [ class "pyTypographyFlow_row" ] [ text name ]
+        , div [ class "pyTypographyFlow_row" ] [ text dimension ]
+        , div [ class "pyTypographyFlow_row" ] [ text lineHeight ]
         ]

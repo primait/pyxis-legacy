@@ -362,12 +362,43 @@ body {
   Typography
 ******************************/
 
-.pyTypography {
+.pyTypographyFamily {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.pyTypographyFamily h3 {
+  flex: 0 0 100%;
+  padding: 10px 0;
+}
+
+.pyTypographyFamily .pyLetters {
+  flex: 0 0 10%;
+  font-size: 40px;
+}
+
+.pyTypographyFamily .pyAlphabet {
+  border-right: 1px solid color(shape);
+  flex: 0 0 40%;
+}
+
+.pyTypographyFamily .pyFontFamily {
+  padding-left: 30px;
+}
+
+.pyTable,
+.pyTable {
   background: color(background, dark);
   border: 1px solid color(shape);
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
+}
+
+.pyTypographyFlow {
+  flex: 0 0 60%;
 }
 
 .pyTypography_column {
@@ -381,7 +412,8 @@ body {
   }
 }
 
-.pyTypography_row {
+.pyTypographyStatic_row,
+.pyTypographyFlow_row {
   align-items: center;
   border: 1px solid color(background);
   display: flex;
