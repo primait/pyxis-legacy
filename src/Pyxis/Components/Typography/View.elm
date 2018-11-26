@@ -6,6 +6,7 @@ import Pyxis.Model
     exposing
         ( Model
         , Msg(..)
+        , initialModel
         )
 import Pyxis.ViewHelpers exposing (componentTitle, divider, renderHTMLContent, renderOrNothing)
 
@@ -67,7 +68,7 @@ fontSizeStatic =
         [ h4 [] [ text "font-size pagine statiche" ]
         , div
             [ class "pyTable" ]
-            [ pyTypographyStatic_row "" "Breackpoint xsmall/small" "Breackpoint medium/large" "Breackpoint xlarge"
+            [ pyTypographyStatic_row "" "Breakpoint xsmall/small" "Breakpoint medium/large" "Breakpoint xlarge"
             , pyTypographyStatic_row "root" "16px" "16px" "16px"
             , pyTypographyStatic_row "base" "0,875rem / 14px" "1rem / 16px" "1,125rem"
             , pyTypographyStatic_row "xsmall" "0,75rem / 12px" "0,75rem / 12px" "0,84rem"
@@ -105,7 +106,7 @@ lineHeight =
         [ h4 [] [ text "lineHeight" ]
         , div
             [ class "pyTable" ]
-            [ pyTypographyStatic_row "" "Breackpoint xsmall/small" "Breackpoint medium/large" "Breackpoint xlarge"
+            [ pyTypographyStatic_row "" "Breakpoint xsmall/small" "Breakpoint medium/large" "Breakpoint xlarge"
             , pyTypographyStatic_row "base" "0,75rem " "0,75rem" "0,75rem"
             , pyTypographyStatic_row "xsmall" "1,27rem" "1,27rem" "1,27rem"
             , pyTypographyStatic_row "small" "0,875rem" "0,875rem" "0,875rem"
