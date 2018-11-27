@@ -9,6 +9,7 @@ import Pyxis.Components.Accordions.Model
         , AccordionTone(..)
         , Model
         , Msg(..)
+        , accordionToneToClass
         , accordionToneToString
         )
 import Pyxis.ViewHelpers
@@ -21,25 +22,36 @@ import Pyxis.ViewHelpers
 
 view : Model -> List (Html Msg)
 view model =
-    [ componentTitle [ text "Accordions" ]
-    ]
-        ++ List.map (\({ slug, name } as accordion) -> componentShowdown name slug InspectHtml (List.singleton (accordionList accordion))) model.accordions
+    componentTitle
+        [ text "Accordions" ]
+        :: List.map
+            (\accordionLoop ->
+                componentShowdown
+                    accordionLoop.name
+                    accordionLoop.slug
+                    InspectHtml
+                    [ accordion accordionLoop ]
+            )
+            model.accordions
 
 
-accordionList : Accordion -> AccordionTone -> Html Msg
-accordionList { slug, name, isOpen, content, tone } =
+accordion : Accordion -> Html Msg
+accordion { slug, name, title, isOpen, content, tone } =
     div
         [ classList
             [ ( "a-accordion", True )
-            , ( "a-accordion--", accordionToneToString tone, True )
+            , ( (Maybe.withDefault "" << Maybe.map accordionToneToClass) tone, True )
             , ( "is-open", isOpen )
             ]
         ]
         [ a
-            [ onClick (Toggle slug), class "a-accordion__toggle a-link--alt fs-xsmall fw-heavy" ]
-            [ text name
+            [ class "a-accordion__toggle a-link--alt fs-xsmall fw-heavy"
+            , onClick (Toggle slug)
+            ]
+            [ text title
             , i [ class "a-icon" ] []
             ]
-        , div [ class "a-accordion__content fs-small" ]
-            [ text content ]
+        , div
+            [ class "a-accordion__content fs-small" ]
+            content
         ]
