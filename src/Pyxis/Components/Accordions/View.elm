@@ -36,13 +36,20 @@ view model =
 
 
 accordion : Accordion -> Html Msg
-accordion { slug, name, title, isOpen, content, tone } =
+accordion ({ slug, name, title, isOpen, content } as accordion) =
     div
         [ classList
-            [ ( "a-accordion", True )
-            , ( (Maybe.withDefault "" << Maybe.map accordionToneToClass) tone, True )
-            , ( "is-open", isOpen )
-            ]
+            ([ ( "a-accordion", True )
+             , ( "is-open", isOpen )
+             ]
+                ++ (Maybe.withDefault []
+                        << Maybe.map
+                            (\tone ->
+                                [ ( accordionToneToClass tone, True ) ]
+                            )
+                   )
+                    accordion.tone
+            )
         ]
         [ a
             [ class "a-accordion__toggle a-link--alt fs-xsmall fw-heavy"
