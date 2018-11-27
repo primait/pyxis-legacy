@@ -8,10 +8,8 @@ h6 {
   font-weight: normal;
 }
 
-
-@mixin tmpTypography {
-  h1 {
-    @extend .fs-large;
+h1 {
+  @extend .fs-large;
 
     @include mq(small) {
       font-size: size(xlarge);
@@ -74,8 +72,3 @@ h6 {
       line-height: lineHeight(base);
     }
   }
-}
-
-@include ignorePyxis {
-  @include tmpTypography;
-}

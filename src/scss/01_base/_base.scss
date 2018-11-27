@@ -4,14 +4,11 @@ html {
 
    @include mq(medium) {
      font-size: size(root);
-
-     @include ignorePyxis {
-       line-height: lineHeight(root);
-     }
+     line-height: lineHeight(root);
    }
 
    @include mqUp(xlarge) {
-     font-size: map-get($fontSizes, base) * $largeScreenRatio;
+     font-size: map-get($fontSizes, root) * $largeScreenRatio;
    }
 }
 
@@ -30,14 +27,9 @@ body {
 
 input,
 textarea,
-select {
+select,
+button {
   font-size: inherit;
-}
-
-@include ignorePyxis {
-  button {
-    font-size: inherit;
-  }
 }
 
 p {
