@@ -35,16 +35,15 @@ containerList container =
 containerLayout : Container -> Html Msg
 containerLayout ({ name, dimension, description, breakpoint } as container) =
     let
-        canTextFluid =
+        canTextBeFluid =
             dimension /= Just "fluid"
     in
     section []
         [ h4 [] [ text name ]
         , div [ class "pyContainers-wrapper" ]
-            [ renderIf canTextFluid <| containerImg container.dimension container.description
+            [ renderIf canTextBeFluid <| containerImg container.dimension container.description
             , div [ class "pyContainers-description" ]
-                (renderHTMLContent ("<p class='fw-base'> Il container  " ++ Maybe.withDefault "" dimension ++ " ha una " ++ description ++ "</p>"))
-            , p [ class "fw-base" ] [ renderIf canTextFluid <| text (" per il breakpoint " ++ breakpoint) ]
+                (renderHTMLContent ("<p class='fw-base'> Il container  " ++ Maybe.withDefault "" dimension ++ " ha una " ++ description ++ "</p><p class='fw-base'>" renderIf canTextBeFluid <| text (" per il breakpoint " ++ breakpoint)))
             ]
         , divider
         ]
@@ -59,7 +58,7 @@ containerImg dimension description =
             ]
         ]
         [ div
-            [ class "a-container"
+            [ class "pyContainer"
             ]
             []
         ]
