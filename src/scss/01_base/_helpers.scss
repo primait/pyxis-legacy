@@ -45,6 +45,10 @@
   }
 }
 
+@function zIndex($key) {
+  @return index($zIndexes, $key);
+}
+
 @mixin ignorePyxis {
   html:not(.ignorePyxis),
   body:not(.ignorePyxis) {
