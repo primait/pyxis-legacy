@@ -6,8 +6,10 @@ import Html.Events exposing (onClick)
 import Pyxis.Components.Accordions.Model
     exposing
         ( Accordion
+        , AccordionTone(..)
         , Model
         , Msg(..)
+        , accordionToneToString
         )
 import Pyxis.ViewHelpers
     exposing
@@ -24,12 +26,12 @@ view model =
         ++ List.map (\({ slug, name } as accordion) -> componentShowdown name slug InspectHtml (List.singleton (accordionList accordion))) model.accordions
 
 
-accordionList : Accordion -> Html Msg
+accordionList : Accordion -> AccordionTone -> Html Msg
 accordionList { slug, name, isOpen, content, tone } =
     div
         [ classList
             [ ( "a-accordion", True )
-            , ( "a-accordion--" ++ tone, True )
+            , ( "a-accordion--", accordionToneToString tone, True )
             , ( "is-open", isOpen )
             ]
         ]

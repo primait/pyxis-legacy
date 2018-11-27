@@ -1,7 +1,9 @@
 module Pyxis.Components.Accordions.Model exposing
     ( Accordion
+    , AccordionTone(..)
     , Model
     , Msg(..)
+    , accordionToneToString
     , initialModel
     )
 
@@ -18,11 +20,17 @@ type alias Model =
 initialModel : Model
 initialModel =
     Model
-        [ Accordion "a_1" "accordion" False "Contenuto accordion" ""
-        , Accordion "a_2" "accordion dark" False "Contenuto accordion" "dark"
-        , Accordion "a_3" "accordion base" False "Contenuto accordion" "base"
-        , Accordion "a_4" "accordion light" False "Contenuto accordion" "light"
+        [ Accordion "a_1" "accordion" False "Contenuto accordion" AccordionDark
+        , Accordion "a_2" "accordion Dark" False "Contenuto accordion" AccordionDark
+        , Accordion "a_3" "accordion Base" False "Contenuto accordion" AccordionBase
+        , Accordion "a_4" "accordion Light" False "Contenuto accordion" AccordionLight
         ]
+
+
+type AccordionTone
+    = AccordionDark
+    | AccordionBase
+    | AccordionLight
 
 
 type alias Accordion =
@@ -30,5 +38,18 @@ type alias Accordion =
     , name : String
     , isOpen : Bool
     , content : String
-    , tone : String
+    , tone : AccordionTone
     }
+
+
+accordionToneToString : AccordionTone -> String
+accordionToneToString tone =
+    case tone of
+        AccordionDark ->
+            "dark"
+
+        AccordionBase ->
+            "base"
+
+        AccordionLight ->
+            "light"
