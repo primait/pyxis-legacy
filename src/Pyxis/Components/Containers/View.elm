@@ -37,13 +37,29 @@ containerLayout ({ name, dimension, description, breakpoint } as container) =
     let
         canTextBeFluid =
             dimension /= Just "fluid"
+
+        breakpointText =
+            if canTextBeFluid then
+                " per il breakpoint " ++ breakpoint
+
+            else
+                ""
     in
     section []
         [ h4 [] [ text name ]
         , div [ class "pyContainers-wrapper" ]
             [ renderIf canTextBeFluid <| containerImg container.dimension container.description
             , div [ class "pyContainers-description" ]
-                (renderHTMLContent ("<p class='fw-base'> Il container  " ++ Maybe.withDefault "" dimension ++ " ha una " ++ description ++ "</p><p class='fw-base'>" renderIf canTextBeFluid <| text (" per il breakpoint " ++ breakpoint)))
+                (renderHTMLContent
+                    ("<p class='fw-base'> Il container  "
+                        ++ Maybe.withDefault "" dimension
+                        ++ " ha una "
+                        ++ description
+                        ++ "</p><p class='fw-base'>"
+                        ++ breakpointText
+                        ++ "</p>"
+                    )
+                )
             ]
         , divider
         ]
