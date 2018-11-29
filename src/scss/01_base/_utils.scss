@@ -27,6 +27,7 @@
   }
 }
 
+
 @each $fontWeight, $font in $fonts {
   .fw-#{$fontWeight} {
     font-family: font($fontWeight);

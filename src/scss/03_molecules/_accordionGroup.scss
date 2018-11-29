@@ -1,4 +1,4 @@
-.m-accordion {
+.m-accordion-group {
   color: color(text);
   display: flex;
   flex: 1 0 auto;
@@ -7,8 +7,8 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-
-  &.m-accordion--dark {
+  
+  &.m-accordion-group--dark {
     background: color(backgroundAlt, base);
     color: color(textAlt, light);
   }

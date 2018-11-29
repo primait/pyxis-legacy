@@ -15,6 +15,7 @@ matchers =
         [ map HomeRoute top
         , map ColorsRoute (s "colors")
         , map TypographyRoute (s "typography")
+        , map AccordionsRoute (s "accordions")
         , map ButtonsRoute (s "buttons")
         , map FormRoute (s "form")
         , map HeaderRoute (s "header")

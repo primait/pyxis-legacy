@@ -1,4 +1,4 @@
-module Pyxis.ViewHelpers exposing (..)
+module Pyxis.ViewHelpers exposing (componentInspectorToggle, componentShowdown, componentTitle, divider, inspectableHtml, renderHTMLContent, renderIf, renderMaybe, renderOrNothing, renderUnless, wrapper)
 
 import Html exposing (..)
 import Html.Attributes exposing (attribute, class, classList)
@@ -11,6 +11,7 @@ import Pyxis.Helpers
         )
 
 
+
 ---------------------------------------
 -- RENDER UTILITIES
 ---------------------------------------
@@ -20,6 +21,7 @@ renderIf : Bool -> Html msg -> Html msg
 renderIf check html =
     if check then
         html
+
     else
         text ""
 
@@ -71,7 +73,11 @@ componentShowdown : String -> String -> (String -> msg) -> List (Html msg) -> Ht
 componentShowdown label selector action content =
     section
         []
-        [ h4 [] [ text label, componentInspectorToggle action selector ]
+        [ h4
+            []
+            [ text label
+            , componentInspectorToggle action selector
+            ]
         , inspectableHtml selector content
         , divider
         ]
