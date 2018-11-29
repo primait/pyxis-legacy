@@ -1,5 +1,6 @@
 @import
   '01_base/_atomsConfiguration.scss',
+  '01_base/_breakpoints.scss',
   '01_base/_variables.scss',
   '01_base/_fonts.scss',
   '01_base/_helpers.scss';
@@ -131,23 +132,23 @@ body {
   width: 100%;
 
   &.xsmall {
-    width: map-get($breakpointConfig, xsmall);
+    width: map-get($breakpoints, xsmall);
   }
 
   &.small {
-    width: map-get($breakpointConfig, small);
+    width: map-get($breakpoints, small);
   }
 
   &.medium {
-    width: map-get($breakpointConfig, medium);
+    width: map-get($breakpoints, medium);
   }
 
   &.large {
-    width: map-get($breakpointConfig, large);
+    width: map-get($breakpoints, large);
   }
 
   &.xlarge {
-    width: (map-get($breakpointConfig, xlarge) - 500px);
+    width: (map-get($breakpoints, xlarge) - 500px);
   }
 }
 
