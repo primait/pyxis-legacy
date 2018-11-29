@@ -53,15 +53,16 @@ h6 {
   }
 
   h4 {
-    @extend .fs-xsmall, .fw-heavy;
+    @extend .fs-small;
 
     @include mq(small) {
-      font-size: size(xsmall);
-      line-height: lineHeight(small);
+      font-size: size(base);
+      line-height: lineHeight(base);
     }
   }
 
-  p:not([class*="fs-"]) {
+  p:not([class*="fs-"]),
+  ul:not([class*="fs-"]) {
     @extend .fs-small;
 
     @include mq(small) {
