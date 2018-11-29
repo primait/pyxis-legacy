@@ -63,6 +63,39 @@
   }
 }
 
+@each $fontKey, $size in $fontSizes {
+  @each $breakpointKey, $breakpointSize in $breakpoints {
+
+    $breakpointKeyMax: small;
+
+    @if $breakpointKey == xsmall {
+      $breakpointKeyMax: small;
+    } @else if $breakpointKey == small {
+      $breakpointKeyMax: medium;
+    } @else if $breakpointKey == medium {
+      $breakpointKeyMax: large;
+    } @else if $breakpointKey == large {
+      $breakpointKeyMax: xlarge;
+    } @else {
+      $breakpointKeyMax: xlarge;
+    }
+
+    .fs-#{$fontKey}-on-bp-#{$breakpointKey},
+    .fs#{capitalize($fontKey)}OnBp#{capitalize($breakpointKey)} {
+
+      @if $breakpointKey != xlarge {
+        @include mqBetween($breakpointKey, $breakpointKeyMax) {
+          font-size: size($fontKey);
+        }
+      } @else {
+        @include mq($breakpointKey) {
+          font-size: size($fontKey);
+        }
+      }
+    }
+  }
+}
+
 .alignLeft {
   text-align: left;
 }
