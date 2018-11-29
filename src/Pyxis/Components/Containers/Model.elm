@@ -28,7 +28,38 @@ initialModel =
 
 type alias Container =
     { name : String
-    , dimension : Maybe String
+    , dimension : Maybe ContainerSize
     , description : String
     , breakpoint : String
     }
+
+
+type ContainerSize maxWidth minWidth
+    = XSmall maxWidth minWidth
+    | Small maxWidth minWidth
+    | Medium maxWidth minWidth
+    | Large maxWidth minWidth
+    | Xlarge maxWidth minWidth
+    | Fluid maxWidth minWidth
+
+
+containerSizeToString : ContainerSize -> String
+containerSizeToString size =
+    case tone of
+        ContainerXsmall ->
+            "xsmall"
+
+        ContainerSmall ->
+            "small"
+
+        ContainerMedium ->
+            "medium"
+
+        ContainerLarge ->
+            "large"
+
+        ContainerXlarge ->
+            "xlarge"
+
+        ContainerFluid ->
+            "fluid"
