@@ -29,7 +29,7 @@
     color: color(error);
   }
 
-  &.is-pristine:not(.is-open), {
+  &.is-pristine:not(.is-open) {
     border: map-get($formConfig, borderWidth) solid color(shape);
     color: color(brandAlt, dark);
   }
