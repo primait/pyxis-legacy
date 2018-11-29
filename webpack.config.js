@@ -10,10 +10,13 @@ const config = {
 
   context: path.resolve(__dirname, 'src'),
 
+  /* `primaGuarantees` viene chiamato per primo così da
+  poter essere sovrascritto da `prima` */
+
   entry: {
+    primaGuarantees:  './primaGuarantees.js',
     app:    './app.js',
     prima:  './prima.js',
-    primaGuarantees:  './primaGuarantees.js',
   },
 
   output: {
