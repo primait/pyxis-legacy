@@ -63,6 +63,38 @@
   }
 }
 
+@mixin fontSizesByBreakpoint($fontSizes:(), $breakpoints:()) {
+
+  @each $fontKey, $size in $fontSizes {
+    $bpIndex: 1;
+    $bpLength: length($breakpoints);
+
+    @each $bpKey, $bpSize in $breakpoints {
+
+      .fs-#{$fontKey}-on-bp-#{$bpKey},
+      .fs#{capitalize($fontKey)}OnBp#{capitalize($bpKey)} {
+
+        @if ($bpIndex + 1) <= $bpLength {
+          $nextBpKey: nth(nth($breakpoints, ($bpIndex + 1)), 1);
+          @include mqBetween($bpKey, $nextBpKey) {
+            font-size: size($fontKey);
+          }
+        }
+        @else {
+          @include mq($bpKey) {
+            font-size: size($fontKey);
+          }
+        }
+
+      }
+
+      $bpIndex: $bpIndex + 1;
+    }
+  }
+
+}
+@include fontSizesByBreakpoint(map-remove($fontSizes, "root"), map-remove($breakpoints, "boundDiff"));
+
 .alignLeft {
   text-align: left;
 }

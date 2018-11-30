@@ -1,4 +1,4 @@
-<header class="o-header">
+<header class="o-header fsSmallOnBpMedium">
   <div class="m-offCanvas m-offCanvas--right bg-backgroundAlt-dark">
     <div class="m-accordion m-accordion--dark">
       <div class="a-accordion__item">
