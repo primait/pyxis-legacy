@@ -63,38 +63,37 @@
   }
 }
 
-@each $fontKey, $size in $fontSizes {
-  @each $breakpointKey, $breakpointSize in $breakpoints {
+@mixin fontSizesByBreakpoint($fontSizes:(), $breakpoints:()) {
 
-    $breakpointKeyMax: small;
+  @each $fontKey, $size in $fontSizes {
+    $bpIndex: 1;
+    $bpLength: length($breakpoints);
 
-    @if $breakpointKey == xsmall {
-      $breakpointKeyMax: small;
-    } @else if $breakpointKey == small {
-      $breakpointKeyMax: medium;
-    } @else if $breakpointKey == medium {
-      $breakpointKeyMax: large;
-    } @else if $breakpointKey == large {
-      $breakpointKeyMax: xlarge;
-    } @else {
-      $breakpointKeyMax: xlarge;
-    }
+    @each $bpKey, $bpSize in $breakpoints {
 
-    .fs-#{$fontKey}-on-bp-#{$breakpointKey},
-    .fs#{capitalize($fontKey)}OnBp#{capitalize($breakpointKey)} {
+      .fs-#{$fontKey}-on-bp-#{$bpKey},
+      .fs#{capitalize($fontKey)}OnBp#{capitalize($bpKey)} {
 
-      @if $breakpointKey != xlarge {
-        @include mqBetween($breakpointKey, $breakpointKeyMax) {
-          font-size: size($fontKey);
+        @if ($bpIndex + 1) <= $bpLength {
+          $nextBpKey: nth(nth($breakpoints, ($bpIndex + 1)), 1);
+          @include mqBetween($bpKey, $nextBpKey) {
+            font-size: size($fontKey);
+          }
         }
-      } @else {
-        @include mq($breakpointKey) {
-          font-size: size($fontKey);
+        @else {
+          @include mq($bpKey) {
+            font-size: size($fontKey);
+          }
         }
+
       }
+
+      $bpIndex: $bpIndex + 1;
     }
   }
+
 }
+@include fontSizesByBreakpoint(map-remove($fontSizes, "root"), map-remove($breakpoints, "boundDiff"));
 
 .alignLeft {
   text-align: left;
