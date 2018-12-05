@@ -89,8 +89,6 @@ Resources:
           Value: !Ref Environment
         - Name: PORT
           Value: '80'
-        - Name: ECS_SHOULD_BE_SCALED
-          Value: true
       Volumes:
       - Name: awseb-logs-system
         Host:
