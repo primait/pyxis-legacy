@@ -50,6 +50,12 @@
 }
 
 @mixin ignorePyxis {
+  html {
+    @include mqUp(xlarge) {
+      font-size: size(root);
+    }
+  }
+  
   html:not(.ignorePyxis),
   body:not(.ignorePyxis) {
     @content;
