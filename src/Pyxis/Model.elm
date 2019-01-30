@@ -20,6 +20,7 @@ import Pyxis.Components.Colors.Model as Colors
 import Pyxis.Components.Footer.Model as Footer
 import Pyxis.Components.Form.Model as Form
 import Pyxis.Components.Header.Model as Header
+import Pyxis.Components.Jumbotron.Model as Jumbotron
 import Pyxis.Components.Lists.Model as Lists
 import Pyxis.Components.Loader.Model as Loader
 import Pyxis.Components.Login.Model as Login
@@ -44,6 +45,7 @@ type Msg
     | ColorsMsg Colors.Msg
     | FormMsg Form.Msg
     | HeaderMsg Header.Msg
+    | JumbotronMsg Jumbotron.Msg
     | LoaderMsg Loader.Msg
     | FooterMsg Footer.Msg
     | TooltipsMsg Tooltips.Msg
@@ -63,6 +65,7 @@ type alias Model =
     , buttons : Buttons.Model
     , form : Form.Model
     , header : Header.Model
+    , jumbotron : Jumbotron.Model
     , loader : Loader.Model
     , footer : Footer.Model
     , tooltips : Tooltips.Model
@@ -85,6 +88,7 @@ initialModel =
         Buttons.initialModel
         Form.initialModel
         Header.initialModel
+        Jumbotron.initialModel
         Loader.initialModel
         Footer.initialModel
         Tooltips.initialModel
@@ -98,6 +102,7 @@ initialMenu =
     [ Menu "home" "Pyxis" HomeRoute True
     , Menu "accordions" "Accordions" AccordionsRoute False
     , Menu "buttons" "Buttons" ButtonsRoute False
+    , Menu "jumbotron" "Jumbotron" JumbotronRoute False
     , Menu "colors" "Colors" ColorsRoute False
 
     -- , Menu "footer" "Footer" FooterRoute False
@@ -126,6 +131,7 @@ type Route
     | FooterRoute
     | FormRoute
     | HeaderRoute
+    | JumbotronRoute
     | ListsRoute
     | MessagesRoute
     | LoaderRoute

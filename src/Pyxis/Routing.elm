@@ -25,6 +25,7 @@ matchers =
         , map TooltipsRoute (s "tooltips")
         , map LoginRoute (s "login")
         , map ListsRoute (s "lists")
+        , map JumbotronRoute (s "jumbotron")
         ]
 
 

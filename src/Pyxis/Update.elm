@@ -22,6 +22,8 @@ import Pyxis.Components.Messages.Model as MessagesModel
 import Pyxis.Components.Messages.Update as MessagesUpdate
 import Pyxis.Components.Tooltips.Model as TooltipsModel
 import Pyxis.Components.Tooltips.Update as TooltipsUpdate
+import Pyxis.Components.Jumbotron.Model as JumbotronModel
+import Pyxis.Components.Jumbotron.Update as JumbotronUpdate
 import Pyxis.Helpers
     exposing
         ( addAppMessage
@@ -121,6 +123,9 @@ update msg model =
         LoginMsg loginMsg ->
             updateLogin model loginMsg model.login
 
+        JumbotronMsg jumbotronMsg ->
+            updateJumbotron model jumbotronMsg model.jumbotron
+
 
 updateAccordions : Model -> AccordionsModel.Msg -> AccordionsModel.Model -> ( Model, Cmd Msg )
 updateAccordions model msg accordionsModel =
@@ -219,3 +224,11 @@ updateLogin model msg loginModel =
             LoginUpdate.update msg loginModel
     in
     { model | login = newLoginModel } ! [ Cmd.map LoginMsg cmds ]
+
+updateJumbotron : Model -> JumbotronModel.Msg -> JumbotronModel.Model -> ( Model, Cmd Msg)
+updateJumbotron model msg jumbotronModel =
+    let
+        ( newJumbotronModel, cmds ) =
+            JumbotronUpdate.update msg jumbotronModel
+    in
+    { model | jumbotron = newJumbotronModel } ! [ Cmd.map JumbotronMsg cmds ]
