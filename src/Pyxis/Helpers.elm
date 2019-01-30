@@ -5,6 +5,7 @@ module Pyxis.Helpers exposing
     , delayCmd
     , formatDate
     , maybeToCmd
+    , picture
     , removeAppMessage
     , routeToUrl
     , sendCmdMsg
@@ -24,6 +25,7 @@ import Date
         , Month(..)
         )
 import Date.Format
+import Html exposing (Attribute, Html, node)
 import Navigation exposing (Location)
 import Process
 import Pyxis.Model
@@ -115,6 +117,8 @@ urlToRoute str =
         "/typography" ->
             TypographyRoute
 
+        "/jumbotron" ->
+            JumbotronRoute
         _ ->
             initialModel.route
 
@@ -161,8 +165,13 @@ routeToUrl route =
         TypographyRoute ->
             "/typography"
 
+        JumbotronRoute ->
+            "/jumbotron"
+
         NotFoundRoute ->
             "/"
+
+
 
 
 formatDate : String -> Maybe Date -> String
@@ -194,6 +203,9 @@ toInspectableSelector : String -> String
 toInspectableSelector selector =
     "pyInspect pyInspect--" ++ selector
 
+picture : List (Attribute msg) -> List (Html msg) -> Html msg
+picture attributes children =
+    node "picture" attributes children
 
 capitalize : String -> String
 capitalize str =
