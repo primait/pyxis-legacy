@@ -5,15 +5,12 @@ import Pyxis.Components.Jumbotron.Model
         ( Model
         , Msg(..)
         )
-import Pyxis.Helpers
-    exposing
-        ( withoutCmds
-        )
+import Pyxis.Helpers exposing (withCmds, withoutCmds)
+import Pyxis.Ports as Ports
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    model |> withoutCmds
-
-
-
+    case msg of
+        InspectHtml selector ->
+            model |> withCmds [ Ports.inspectHtml selector ]

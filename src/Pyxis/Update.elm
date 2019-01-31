@@ -12,6 +12,8 @@ import Pyxis.Components.Form.Model as FormModel
 import Pyxis.Components.Form.Update as FormUpdate
 import Pyxis.Components.Header.Model as HeaderModel
 import Pyxis.Components.Header.Update as HeaderUpdate
+import Pyxis.Components.Jumbotron.Model as JumbotronModel
+import Pyxis.Components.Jumbotron.Update as JumbotronUpdate
 import Pyxis.Components.Lists.Model as ListsModel
 import Pyxis.Components.Lists.Update as ListsUpdate
 import Pyxis.Components.Loader.Model as LoaderModel
@@ -22,8 +24,6 @@ import Pyxis.Components.Messages.Model as MessagesModel
 import Pyxis.Components.Messages.Update as MessagesUpdate
 import Pyxis.Components.Tooltips.Model as TooltipsModel
 import Pyxis.Components.Tooltips.Update as TooltipsUpdate
-import Pyxis.Components.Jumbotron.Model as JumbotronModel
-import Pyxis.Components.Jumbotron.Update as JumbotronUpdate
 import Pyxis.Helpers
     exposing
         ( addAppMessage
@@ -225,7 +225,8 @@ updateLogin model msg loginModel =
     in
     { model | login = newLoginModel } ! [ Cmd.map LoginMsg cmds ]
 
-updateJumbotron : Model -> JumbotronModel.Msg -> JumbotronModel.Model -> ( Model, Cmd Msg)
+
+updateJumbotron : Model -> JumbotronModel.Msg -> JumbotronModel.Model -> ( Model, Cmd Msg )
 updateJumbotron model msg jumbotronModel =
     let
         ( newJumbotronModel, cmds ) =

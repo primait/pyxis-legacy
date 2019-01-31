@@ -119,6 +119,7 @@ urlToRoute str =
 
         "/jumbotron" ->
             JumbotronRoute
+
         _ ->
             initialModel.route
 
@@ -172,8 +173,6 @@ routeToUrl route =
             "/"
 
 
-
-
 formatDate : String -> Maybe Date -> String
 formatDate dateFormat date =
     (Maybe.withDefault "" << Maybe.map (Date.Format.format dateFormat)) date
@@ -203,9 +202,11 @@ toInspectableSelector : String -> String
 toInspectableSelector selector =
     "pyInspect pyInspect--" ++ selector
 
+
 picture : List (Attribute msg) -> List (Html msg) -> Html msg
 picture attributes children =
     node "picture" attributes children
+
 
 capitalize : String -> String
 capitalize str =
