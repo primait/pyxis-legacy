@@ -17,46 +17,39 @@
 }
 
 .o-jumbotron__wrapper--left {
+  text-align: center;
+
+  @include mq(small) {
+    text-align: left;
+  }
+
   .o-jumbotron__title {
     color: color(brand, base);
     margin: 0;
-    text-align: center;
-
-    @include mq(small) {
-      text-align: left;
-    }
   }
 
   .o-jumbotron__subtitle {
     color: color(text, base);
     margin: 0;
-    text-align: center;
-
-    @include mq(small) {
-      text-align: left;
-    }
   }
 
   .o-jumbotron__paragraph {
     color: color(text, base);
     margin-top: 15px;
-    text-align: center;
-
     @include mq(small) {
       margin-top: 30px;
-      text-align: left;
     }
   }
 }
 
 .o-jumbotron__wrapper--right {
   display: flex;
+}
 
-  .o-jumbotron__picture,
-  .o-jumbotron__picture__image {
-    align-self: center;
-    height: auto;
-    margin: 0 auto;
-    max-width: 100%;
-  }
+.o-jumbotron__picture,
+.o-jumbotron__picture__image {
+  align-self: center;
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
 }

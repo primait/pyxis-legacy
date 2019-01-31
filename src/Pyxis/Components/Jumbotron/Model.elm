@@ -4,7 +4,6 @@ module Pyxis.Components.Jumbotron.Model exposing
     , Model
     , Msg(..)
     , initialModel
-    , jumbotronWithParagraph
     )
 
 
@@ -12,8 +11,12 @@ type Msg
     = InspectHtml String
 
 
-type alias Model =
+type alias Jumbotrons =
     List Jumbotron
+
+
+type alias Model =
+    { jumbotrons : List Jumbotron }
 
 
 type alias Jumbotron =
@@ -26,8 +29,10 @@ type alias Jumbotron =
 
 initialModel : Model
 initialModel =
-    [ jumbotronWithParagraph
-    ]
+    { jumbotrons =
+        [ Jumbotron "Titolo" "Sottotitolo" testImage <| Just <| "<p class='o-jumbotron__paragraph'>I'm a nice paragraph</p>"
+        ]
+    }
 
 
 type alias Image =
@@ -37,8 +42,3 @@ type alias Image =
 testImage : Maybe Image
 testImage =
     Just "https://via.placeholder.com/480x205"
-
-
-jumbotronWithParagraph : Jumbotron
-jumbotronWithParagraph =
-    Jumbotron "Titolo" "Sottotitolo" testImage (Just <| "<p class='o-jumbotron__paragraph'>I'm a nice paragraph</p>")

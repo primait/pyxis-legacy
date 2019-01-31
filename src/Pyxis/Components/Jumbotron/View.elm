@@ -12,53 +12,35 @@ view model =
     [ componentTitle [ text "Jumbotron" ]
     , divider
     ]
-        ++ List.map (\j -> componentShowdown "Jumbotron with paragraph" "jumbotronWithParagraph" InspectHtml (renderJumbotron j)) model
+        ++ List.map (componentShowdown "Jumbotron with paragraph" "jumbotronWithParagraph" InspectHtml << renderJumbotron) model.jumbotrons
 
 
 renderJumbotron : Jumbotron -> List (Html Msg)
 renderJumbotron model =
-    [ div [ classList [ ( "o-jumbotron", True ), ( "a-container", True ) ] ]
+    [ div [ class "o-jumbotron a-container" ]
         [ div [ class "o-jumbotron__wrapper--left" ] <|
             List.append
                 [ h1 [ class "o-jumbotron__title" ] [ text model.title ]
                 , h2 [ class "o-jumbotron__subtitle" ] [ text model.subtitle ]
                 ]
                 (Maybe.withDefault [] (Maybe.map renderHTMLContent model.content))
-        , div [ class "o-jumbotron__wrapper--right" ] [ renderImage model.image ]
+        , div [ class "o-jumbotron__wrapper--right" ] [ Maybe.withDefault (div [] []) <| Maybe.map renderImage model.image ]
         ]
     ]
 
 
-renderImage : Maybe Image -> Html Msg
+renderImage : Image -> Html Msg
 renderImage image =
-    case image of
-        Just i ->
-            picture [ class "o-jumbotron__picture" ]
-                [ source [ attribute "srcset" (stripImageSource i ++ ".webp"), type_ "image/webp" ] []
-                , source [ attribute "srcset" i, type_ "image/jpeg" ] []
-                , img [ class "o-jumbotron__picture__image", src i, alt "alt-placeholder" ] []
-                ]
+    let
+        stripExtension : String -> Maybe String
+        stripExtension str =
+            List.head <| String.split "." str
 
-        Nothing ->
-            div [] []
-
-
-stripImageSource : String -> String
-stripImageSource original =
-    String.fromList (myStrip [] (String.toList original))
-
-
-myStrip : List Char -> List Char -> List Char
-myStrip acc list =
-    case list of
-        [] ->
-            acc
-
-        '.' :: [ 'j', 'p', 'e', 'g' ] ->
-            acc
-
-        '.' :: [ 'j', 'p', 'g' ] ->
-            acc
-
-        x :: xs ->
-            myStrip (acc ++ [ x ]) xs
+        ext =
+            (Maybe.withDefault "" << Maybe.map ((++) ".webp") << stripExtension) image
+    in
+    picture [ class "o-jumbotron__picture" ]
+        [ source [ attribute "srcset" ext, type_ "image/webp" ] []
+        , source [ attribute "srcset" image, type_ "image/jpeg" ] []
+        , img [ class "o-jumbotron__picture__image", src image, alt "alt-placeholder" ] []
+        ]
