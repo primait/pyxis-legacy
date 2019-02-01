@@ -1,0 +1,71 @@
+.o-jumbotron {
+  background-color: color(background, base);
+  display: flex;
+  flex-flow: column;
+  flex-wrap: wrap;
+  height: 70vh;
+  justify-content: center;
+  overflow: hidden;
+
+  @include mq(small) {
+    flex-flow: row;
+    justify-content: space-between;
+  }
+
+  @include mqBetween(small, medium) {
+    height: 40vh;
+  }
+}
+
+.o-jumbotron__container {
+  flex-flow: column;
+  flex-wrap: wrap;
+
+  @include mq(small) {
+    align-items: center;
+    flex-flow: row;
+    justify-content: space-between;
+  }
+}
+
+.o-jumbotron__wrapper {
+  text-align: center;
+
+  @include mq(small) {
+    text-align: left;
+  }
+}
+
+.o-jumbotron__title {
+  color: color(brand, base);
+  margin: 0;
+  text-align: inherit;
+}
+
+.o-jumbotron__subtitle {
+  color: color(text, base);
+  font-family: map-get($fonts, light);
+  margin: 0;
+  text-align: inherit;
+}
+
+.o-jumbotron__paragraph {
+  color: color(text, base);
+  margin-top: 15px;
+  text-align: inherit;
+  @include mq(small) {
+    margin-top: 30px;
+  }
+}
+
+.o-jumbotron__wrapper--picture {
+  display: flex;
+}
+
+.o-jumbotron__picture,
+.o-jumbotron__picture__image {
+  align-self: center;
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
+}

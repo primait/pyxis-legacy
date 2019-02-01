@@ -12,6 +12,8 @@ import Pyxis.Components.Form.Model as FormModel
 import Pyxis.Components.Form.Update as FormUpdate
 import Pyxis.Components.Header.Model as HeaderModel
 import Pyxis.Components.Header.Update as HeaderUpdate
+import Pyxis.Components.Jumbotron.Model as JumbotronModel
+import Pyxis.Components.Jumbotron.Update as JumbotronUpdate
 import Pyxis.Components.Lists.Model as ListsModel
 import Pyxis.Components.Lists.Update as ListsUpdate
 import Pyxis.Components.Loader.Model as LoaderModel
@@ -121,6 +123,9 @@ update msg model =
         LoginMsg loginMsg ->
             updateLogin model loginMsg model.login
 
+        JumbotronMsg jumbotronMsg ->
+            updateJumbotron model jumbotronMsg model.jumbotron
+
 
 updateAccordions : Model -> AccordionsModel.Msg -> AccordionsModel.Model -> ( Model, Cmd Msg )
 updateAccordions model msg accordionsModel =
@@ -219,3 +224,12 @@ updateLogin model msg loginModel =
             LoginUpdate.update msg loginModel
     in
     { model | login = newLoginModel } ! [ Cmd.map LoginMsg cmds ]
+
+
+updateJumbotron : Model -> JumbotronModel.Msg -> JumbotronModel.Model -> ( Model, Cmd Msg )
+updateJumbotron model msg jumbotronModel =
+    let
+        ( newJumbotronModel, cmds ) =
+            JumbotronUpdate.update msg jumbotronModel
+    in
+    { model | jumbotron = newJumbotronModel } ! [ Cmd.map JumbotronMsg cmds ]

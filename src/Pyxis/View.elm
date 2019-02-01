@@ -8,6 +8,7 @@ import Pyxis.Components.Colors.View as ColorsComponent
 import Pyxis.Components.Footer.View as FooterComponent
 import Pyxis.Components.Form.View as FormComponent
 import Pyxis.Components.Header.View as HeaderComponent
+import Pyxis.Components.Jumbotron.View as JumbotronComponent
 import Pyxis.Components.Lists.View as ListsComponent
 import Pyxis.Components.Loader.View as LoaderComponent
 import Pyxis.Components.Login.View as LoginComponent
@@ -58,6 +59,9 @@ dynamicView ({ route } as model) =
 
         HeaderRoute ->
             (div [] << List.map (Html.map HeaderMsg)) (HeaderComponent.view model.header)
+
+        JumbotronRoute ->
+            (wrapper << List.map (Html.map JumbotronMsg)) (JumbotronComponent.view model.jumbotron)
 
         LoaderRoute ->
             (wrapper << List.map (Html.map LoaderMsg)) (LoaderComponent.view model.loader)
