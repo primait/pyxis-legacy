@@ -2,8 +2,8 @@
   background-color: color(background, base);
   flex-flow: column;
   flex-wrap: wrap;
-  overflow: hidden;
   height: 70vh;
+  overflow: hidden;
 
   @include mqBetween(small, medium) {
     height: 40vh;
@@ -16,33 +16,36 @@
   }
 }
 
-.o-jumbotron__wrapper--left {
+.o-jumbotron__wrapper {
   text-align: center;
 
   @include mq(small) {
     text-align: left;
   }
+}
 
-  .o-jumbotron__title {
-    color: color(brand, base);
-    margin: 0;
-  }
+.o-jumbotron__title {
+  color: color(brand, base);
+  margin: 0;
+  text-align: inherit;
+}
 
-  .o-jumbotron__subtitle {
-    color: color(text, base);
-    margin: 0;
-  }
+.o-jumbotron__subtitle {
+  color: color(text, base);
+  margin: 0;
+  text-align: inherit;
+}
 
-  .o-jumbotron__paragraph {
-    color: color(text, base);
-    margin-top: 15px;
-    @include mq(small) {
-      margin-top: 30px;
-    }
+.o-jumbotron__paragraph {
+  color: color(text, base);
+  margin-top: 15px;
+  text-align: inherit;
+  @include mq(small) {
+    margin-top: 30px;
   }
 }
 
-.o-jumbotron__wrapper--right {
+.o-jumbotron__wrapper--picture {
   display: flex;
 }
 

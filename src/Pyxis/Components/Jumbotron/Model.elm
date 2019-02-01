@@ -11,10 +11,6 @@ type Msg
     = InspectHtml String
 
 
-type alias Jumbotrons =
-    List Jumbotron
-
-
 type alias Model =
     { jumbotrons : List Jumbotron }
 
