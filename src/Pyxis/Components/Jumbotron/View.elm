@@ -17,15 +17,39 @@ view model =
 
 renderJumbotron : Jumbotron -> List (Html Msg)
 renderJumbotron model =
-    [ div [ class "o-jumbotron a-container" ]
-        [ div [ class "o-jumbotron__wrapper" ] <|
-            List.append
-                [ h1 [ class "o-jumbotron__title" ] [ text model.title ]
-                , h2 [ class "o-jumbotron__subtitle" ] [ text model.subtitle ]
-                ]
-                (Maybe.withDefault [] (Maybe.map renderHTMLContent model.content))
-        , div [ class "o-jumbotron__wrapper--picture" ] [ Maybe.withDefault (div [] []) <| Maybe.map renderImage model.image ]
+    let
+        content =
+            Maybe.withDefault [] <| Maybe.map renderHTMLContent model.content
+
+        image =
+            Maybe.withDefault (div [] []) <| Maybe.map renderImage model.image
+    in
+    [ div
+        [ class "o-jumbotron" ]
+        [ div
+            [ class "a-container o-jumbotron__container" ]
+            [ div
+                [ class "o-jumbotron__wrapper" ]
+                (List.append
+                    (jumbotronHeading model)
+                    content
+                )
+            , div
+                [ class "o-jumbotron__wrapper--picture" ]
+                [ image ]
+            ]
         ]
+    ]
+
+
+jumbotronHeading : Jumbotron -> List (Html Msg)
+jumbotronHeading { title, subtitle } =
+    [ h1
+        [ class "o-jumbotron__title" ]
+        [ text title ]
+    , h2
+        [ class "o-jumbotron__subtitle" ]
+        [ text subtitle ]
     ]
 
 
@@ -39,8 +63,22 @@ renderImage image =
         ext =
             (Maybe.withDefault "" << Maybe.map ((++) ".webp") << stripExtension) image
     in
-    picture [ class "o-jumbotron__picture" ]
-        [ source [ attribute "srcset" ext, type_ "image/webp" ] []
-        , source [ attribute "srcset" image, type_ "image/jpeg" ] []
-        , img [ class "o-jumbotron__picture__image", src image, alt "alt-placeholder" ] []
+    picture
+        [ class "o-jumbotron__picture" ]
+        [ source
+            [ attribute "srcset" ext
+            , type_ "image/webp"
+            ]
+            []
+        , source
+            [ attribute "srcset" image
+            , type_ "image/jpeg"
+            ]
+            []
+        , img
+            [ class "o-jumbotron__picture__image"
+            , src image
+            , alt "alt-placeholder"
+            ]
+            []
         ]
