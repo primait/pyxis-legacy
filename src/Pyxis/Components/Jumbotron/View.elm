@@ -18,13 +18,13 @@ view model =
 renderJumbotron : Jumbotron -> List (Html Msg)
 renderJumbotron model =
     [ div [ class "o-jumbotron a-container" ]
-        [ div [ class "o-jumbotron__wrapper--left" ] <|
+        [ div [ class "o-jumbotron__wrapper" ] <|
             List.append
                 [ h1 [ class "o-jumbotron__title" ] [ text model.title ]
                 , h2 [ class "o-jumbotron__subtitle" ] [ text model.subtitle ]
                 ]
                 (Maybe.withDefault [] (Maybe.map renderHTMLContent model.content))
-        , div [ class "o-jumbotron__wrapper--right" ] [ Maybe.withDefault (div [] []) <| Maybe.map renderImage model.image ]
+        , div [ class "o-jumbotron__wrapper--picture" ] [ Maybe.withDefault (div [] []) <| Maybe.map renderImage model.image ]
         ]
     ]
 
