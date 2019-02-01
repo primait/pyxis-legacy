@@ -1,12 +1,13 @@
 .o-jumbotron {
   background-color: color(background, base);
+  display: flex;
   flex-flow: column;
   flex-wrap: wrap;
   height: 70vh;
+  justify-content: center;
   overflow: hidden;
 
   @include mq(small) {
-    align-items: center;
     flex-flow: row;
     justify-content: space-between;
   }
@@ -43,6 +44,7 @@
 
 .o-jumbotron__subtitle {
   color: color(text, base);
+  font-family: map-get($fonts, light);
   margin: 0;
   text-align: inherit;
 }
