@@ -13,7 +13,7 @@
   }
 
   @include mqBetween(small, medium) {
-    height: 40vh;
+    height: 50vh;
   }
 }
 
@@ -31,10 +31,15 @@
 }
 
 .o-jumbotron__wrapper {
+  align-items: center;
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
 
   @include mq(medium) {
+    align-items: flex-start;
     flex: 0 0 55%;
     text-align: left;
   }
