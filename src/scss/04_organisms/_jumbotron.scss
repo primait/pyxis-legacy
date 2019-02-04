@@ -13,25 +13,34 @@
   }
 
   @include mqBetween(small, medium) {
-    height: 40vh;
+    height: 50vh;
   }
 }
 
 .o-jumbotron__container {
   flex-flow: column;
-  flex-wrap: wrap;
 
   @include mq(small) {
     align-items: center;
-    flex-flow: row;
     justify-content: space-between;
+  }
+
+  @include mq(medium) {
+    flex-flow: row;
   }
 }
 
 .o-jumbotron__wrapper {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
 
-  @include mq(small) {
+  @include mq(medium) {
+    align-items: flex-start;
+    flex: 0 0 55%;
     text-align: left;
   }
 }
