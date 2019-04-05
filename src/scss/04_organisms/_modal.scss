@@ -1,53 +1,47 @@
 .o-modal {
   align-items: center;
-  background: rgba(color(backgroundAlt, dark), 0.6);
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-}
-
-.o-modal__box {
-  align-items: center;
   background: color(background, base);
   border-radius: map-get($modalConfig, borderRadius);
   display: flex;
   flex-direction: column;
+  left: 50%;
   max-width: map-get($modalConfig, maxWidthDefault);
   padding: map-get($modalConfig, paddingMobile);
-  position: relative;
+  position: absolute;
+  transform: translate3d(-50%, -50%, 0);
+  top: 50%;
   width: map-get($modalConfig, width);
 
   @include mq(small) {
     padding: map-get($modalConfig, padding);
   }
 
-  .o-modal--small & {
-    max-width: map-get($modalConfig, maxWidthSmall)
+  &.o-modal--small {
+    max-width: map-get($modalConfig, maxWidthSmall);
   }
 
-  .o-modal--medium & {
-    max-width: map-get($modalConfig, maxWidthMedium)
+  &.o-modal--medium {
+    max-width: map-get($modalConfig, maxWidthMedium);
   }
 
-  .o-modal--large & {
-    max-width: map-get($modalConfig, maxWidthLarge)
+  &.o-modal--large {
+    max-width: map-get($modalConfig, maxWidthLarge);
   }
 
-  .o-modal--dark & {
+  &.o-modal--dark {
     background: color(backgroundAlt, light);
     color: color(textAlt, light);
   }
+
+  .m-btnGroup {
+    padding-bottom: 0;
+  }
 }
 
-.o-modal__box__close {
+.o-modal__close {
   align-items: center;
   border: 1px solid color(brandAlt, dark);
-  border-radius: 100%;
+  border-radius: map-get($modalConfig, closeButtonSize) * 2;
   color: color(brandAlt, dark);
   display: flex;
   height: map-get($modalConfig, closeButtonSizeMobile);
@@ -65,7 +59,7 @@
   }
 }
 
-.o-modal__box__title {
+.o-modal__title {
   color: color(text, dark);
   font-size: size(large);
   margin: 0;
@@ -73,10 +67,12 @@
   text-align: center;
 }
 
-.o-modal__box__content {
+.o-modal__content {
   color: color(text, base);
   font-size: size(base);
   line-height: lineHeight(base);
-  text-align: left;
+  max-height: calc(70vh - 150px);
+  overflow: scroll;
+  margin-bottom: 20px;
   width: 90%;
 }

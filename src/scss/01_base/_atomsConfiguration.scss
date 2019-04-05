@@ -96,7 +96,7 @@ $modalConfig: (
  maxWidthSmall: 500px,
  maxWidthMedium: 800px,
  maxWidthLarge: 1000px,
- padding: 50px 20px,
+ padding: 40px 20px,
  paddingMobile: 30px 15px,
  titlePadding: 5px 0 40px 0,
  width: 90%,
@@ -127,3 +127,8 @@ $offCanvasConfig: (
 $avatarConfig: (
  dimension: 24px,
 );
+
+$overlayConfig: (
+  opacity: 0.8,
+  zIndex: 100,
+)
