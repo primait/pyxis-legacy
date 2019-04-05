@@ -1,0 +1,77 @@
+.o-modal {
+  align-items: center;
+  background: rgba(color(backgroundAlt, dark), 0.6);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.o-modal__box {
+  align-items: center;
+  background: color(background, base);
+  border-radius: map-get($modalConfig, borderRadius);
+  display: flex;
+  flex-direction: column;
+  max-width: map-get($modalConfig, maxWidthDefault);
+  padding: map-get($modalConfig, paddingMobile);
+  position: relative;
+  width: map-get($modalConfig, width);
+
+  @include mq(small) {
+    padding: map-get($modalConfig, padding);
+  }
+
+  .o-modal--small & {
+    max-width: map-get($modalConfig, maxWidthSmall)
+  }
+
+  .o-modal--medium & {
+    max-width: map-get($modalConfig, maxWidthMedium)
+  }
+
+  .o-modal--large & {
+    max-width: map-get($modalConfig, maxWidthLarge)
+  }
+}
+
+.o-modal__box__close {
+  align-items: center;
+  border: 1px solid color(brandAlt, dark);
+  border-radius: 100%;
+  color: color(brandAlt, dark);
+  display: flex;
+  height: map-get($modalConfig, closeButtonSizeMobile);
+  justify-content: center;
+  position: absolute;
+  right: map-get($modalConfig, closeButtonSizeMobile);
+  top: map-get($modalConfig, closeButtonSizeMobile);
+  width: map-get($modalConfig, closeButtonSizeMobile);
+
+  @include mq(small) {
+    height: map-get($modalConfig, closeButtonSize);
+    right: map-get($modalConfig, closeButtonSize);
+    top: map-get($modalConfig, closeButtonSize);
+    width: map-get($modalConfig, closeButtonSize);
+  }
+}
+
+.o-modal__box__title {
+  color: color(text, dark);
+  font-size: size(large);
+  margin: 0;
+  padding: map-get($modalConfig, titlePadding);
+  text-align: center;
+}
+
+.o-modal__box__content {
+  color: color(text, base);
+  font-size: size(base);
+  line-height: lineHeight(base);
+  text-align: left;
+  width: 90%;
+}
