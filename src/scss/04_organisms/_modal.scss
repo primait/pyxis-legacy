@@ -37,6 +37,11 @@
   .o-modal--large & {
     max-width: map-get($modalConfig, maxWidthLarge)
   }
+
+  .o-modal--dark & {
+    background: color(backgroundAlt, light);
+    color: color(textAlt, light);
+  }
 }
 
 .o-modal__box__close {
