@@ -28,19 +28,58 @@
     max-width: map-get($modalConfig, maxWidthLarge);
   }
 
-  &.o-modal--dark {
-    background: color(backgroundAlt, light);
-    color: color(textAlt, light);
-  }
-
   .m-btnGroup {
     padding-bottom: 0;
   }
 }
 
+.o-modal.o-modal--dark {
+  background: color(backgroundAlt, light);
+  color: color(textAlt, light);
+
+  .o-modal__title,
+  .o-modal__content {
+    color: color(textAlt, light);
+  }
+
+  .a-btn--primary {
+    background-color: color(background, base);
+    color: color(backgroundAlt, light);
+
+    &:hover {
+      background-color: color(shape);
+    }
+  }
+
+  .a-btn--primary,
+  .a-btn--secondary{
+    border-color: color(background, base);
+
+    &:hover {
+      border-color: color(shape);
+    }
+  }
+
+  .a-btn--secondary,
+  .a-btn--tertiary {
+    background-color: transparent;
+    color: color(textAlt, light);
+
+    &:hover {
+      color: color(shape);
+    }
+  }
+
+  .o-modal__close {
+    border-color: color(background, base);
+    color: color(textAlt, light);
+  }
+}
+
 .o-modal__close {
   align-items: center;
-  border: 1px solid color(brandAlt, dark);
+  border: 1px solid;
+  border-color: color(brandAlt, dark);
   border-radius: map-get($modalConfig, closeButtonSize) * 2;
   color: color(brandAlt, dark);
   display: flex;
