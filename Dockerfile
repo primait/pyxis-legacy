@@ -1,4 +1,4 @@
-FROM node:9
+FROM node:lts
 
 RUN apt-get update && apt-get install -qqy apt-transport-https && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
