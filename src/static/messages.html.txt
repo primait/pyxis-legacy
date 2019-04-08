@@ -2,7 +2,7 @@
 
 <div class="m-message">
   <div class="m-message__icon"><i class="a-icon a-icon-info"></i></div>
-  <span class="m-message__text">La sezione è riservata agli autenti verificati. Per accedere, inserisci la tua Password nel form sottostante.</span>
+  <span class="m-message__text">La sezione è riservata agli utenti verificati. Per accedere, inserisci la tua Password nel form sottostante.</span>
 </div>
 
 <hr class="pyDivider">
