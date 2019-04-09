@@ -1,4 +1,5 @@
 .a-btn {
+  align-items: center;
   align-content: center;
   align-self: center;
   border: 1px solid transparent;
@@ -59,6 +60,22 @@
       border-color: color(brandAlt, dark);
       color: color(brandAlt, dark);
     }
+  }
+
+  &.a-btn--attention {
+    background: color(background);
+    border-color: color(error);
+    color: color(error);
+
+    &:hover {
+      border-color: lighten(color(error), 10%);
+      color: lighten(color(error), 10%);
+    }
+  }
+
+  .a-icon {
+    margin-top: -2px;
+    margin: 0 7px;
   }
 
   &.a-btn--circle {
@@ -127,6 +144,7 @@
 
     .a-icon {
       color: color(textAlt, light);
+      margin: 0;
       padding-left: 1px;
       padding-top: 2px;
       position: absolute;
