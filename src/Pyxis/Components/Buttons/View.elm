@@ -8,6 +8,7 @@ import Pyxis.Components.Buttons.Model
         , BtnType(..)
         , Model
         , Msg(..)
+        , attentionBtn
         , btnTypeToString
         , circleBtn
         , primaryBtn
@@ -40,6 +41,7 @@ view model =
     , (componentShowdown "Btn primary" "btnPrimary" InspectHtml << renderBtn) primaryBtn
     , (componentShowdown "Btn secondary" "btnSecondary" InspectHtml << renderBtn) secondaryBtn
     , (componentShowdown "Btn tertiary" "btnTertiary" InspectHtml << renderBtn) tertiaryBtn
+    , (componentShowdown "Btn attention" "btnAttention" InspectHtml << renderBtn) attentionBtn
     , (componentShowdown "Btn circle" "btnCircle" InspectHtml << renderBtn) circleBtn
     , (componentShowdown "Btn group" "btnGroup" InspectHtml << renderBtnList) [ primaryBtn, secondaryBtn, tertiaryBtn ]
     ]

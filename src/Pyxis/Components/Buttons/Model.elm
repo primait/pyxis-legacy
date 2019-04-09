@@ -1,15 +1,17 @@
-module Pyxis.Components.Buttons.Model exposing
-    ( Btn
-    , BtnType(..)
-    , Model
-    , Msg(..)
-    , btnTypeToString
-    , circleBtn
-    , initialModel
-    , primaryBtn
-    , secondaryBtn
-    , tertiaryBtn
-    )
+module Pyxis.Components.Buttons.Model
+    exposing
+        ( Btn
+        , BtnType(..)
+        , Model
+        , Msg(..)
+        , attentionBtn
+        , btnTypeToString
+        , circleBtn
+        , initialModel
+        , primaryBtn
+        , secondaryBtn
+        , tertiaryBtn
+        )
 
 
 type Msg
@@ -31,6 +33,7 @@ initialModel =
         , primaryBtn
         , secondaryBtn
         , tertiaryBtn
+        , attentionBtn
         ]
 
 
@@ -47,6 +50,11 @@ secondaryBtn =
 tertiaryBtn : Btn
 tertiaryBtn =
     Btn Tertiary "Tertiary action" Nothing False
+
+
+attentionBtn : Btn
+attentionBtn =
+    Btn Attention "Attention action" (Just "lock") False
 
 
 circleBtn : Btn
@@ -67,6 +75,7 @@ type BtnType
     | Primary
     | Secondary
     | Tertiary
+    | Attention
 
 
 btnTypeToString : BtnType -> String
@@ -83,3 +92,6 @@ btnTypeToString type_ =
 
         Tertiary ->
             "tertiary"
+
+        Attention ->
+            "attention"
