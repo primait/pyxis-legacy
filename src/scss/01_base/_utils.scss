@@ -153,3 +153,23 @@
 .strong {
   @extend .fs-xsmall, .fw-heavy;
 }
+
+.noWrap {
+  white-space: nowrap;
+}
+
+.preWrap {
+  white-space: pre-wrap;
+}
+
+.normalWrap {
+  white-space: normal;
+}
+
+.wordBreakAll {
+  word-break: break-all;
+}
+
+.wordBreakWord {
+  word-break: break-word;
+}
