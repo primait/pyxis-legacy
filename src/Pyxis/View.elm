@@ -1,5 +1,6 @@
 module Pyxis.View exposing (view)
 
+import Browser
 import Html exposing (..)
 import Pyxis.AppMessages.View as AppMessages
 import Pyxis.Components.Accordions.View as AccordionsComponent
@@ -28,15 +29,16 @@ import Pyxis.Nav.View as Nav
 import Pyxis.ViewHelpers exposing (wrapper)
 
 
-view : Model -> Html Msg
+view : Model -> Browser.Document Msg
 view model =
-    div
-        []
+    { title = "Prima Assicurazioni"
+    , body =
         [ Nav.view model
         , dynamicView model
         , HtmlSnippet.view model.htmlSnippet
         , AppMessages.view model.appMessages
         ]
+    }
 
 
 dynamicView : Model -> Html Msg

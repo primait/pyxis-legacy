@@ -13,7 +13,8 @@ module Pyxis.Model exposing
     , initialModel
     )
 
-import Navigation exposing (Location)
+import Browser exposing (UrlRequest)
+import Browser.Navigation as Nav
 import Pyxis.Components.Accordions.Model as Accordions
 import Pyxis.Components.Buttons.Model as Buttons
 import Pyxis.Components.Colors.Model as Colors
@@ -26,18 +27,17 @@ import Pyxis.Components.Loader.Model as Loader
 import Pyxis.Components.Login.Model as Login
 import Pyxis.Components.Messages.Model as Messages
 import Pyxis.Components.Tooltips.Model as Tooltips
-import Time exposing (Time)
-import Unique exposing (Id, Unique)
+import Url exposing (Url)
 
 
 type Msg
-    = LocationChange Location
-    | RouteUpdate Route
+    = UrlRequested UrlRequest
+    | UrlChanged Url
       -------------
     | ShowSource HtmlSnippet
     | HideSource
     | AddAppMessage AppMessage
-    | RemoveAppMessage (Unique Id)
+    | RemoveAppMessage String
     | Copied
       -------------
     | AccordionsMsg Accordions.Msg
@@ -55,8 +55,10 @@ type Msg
 
 
 type alias Model =
-    { status : AppStatus
+    { key : Nav.Key
+    , url : Url
     , route : Route
+    , status : AppStatus
     , menu : List Menu
     , appMessages : List AppMessage
     , htmlSnippet : Maybe HtmlSnippet
@@ -75,11 +77,13 @@ type alias Model =
     }
 
 
-initialModel : Model
-initialModel =
+initialModel : Url -> Nav.Key -> Model
+initialModel url key =
     Model
-        AppReady
+        key
+        url
         HomeRoute
+        AppReady
         initialMenu
         []
         Nothing
@@ -151,10 +155,10 @@ type alias Menu =
 
 
 type alias AppMessage =
-    { uuid : Unique Id
+    { uuid : String
     , type_ : AppMessageType
     , description : String
-    , duration : Time
+    , duration : Float
     }
 
 
@@ -174,7 +178,9 @@ appMessageTypeToString type_ =
 
 
 type alias Flags =
-    { route : String
+    { host : String
+    , protocol : String
+    , path : String
     }
 
 

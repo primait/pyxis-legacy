@@ -34,7 +34,7 @@ import Pyxis.Components.Form.Model
         , Model
         , Msg(..)
         )
-import Regex exposing (regex)
+import Regex
 
 
 textFieldConfig : Model -> Int -> FormField Model Msg
@@ -50,7 +50,7 @@ textFieldConfig { formDisabled } tabIndex =
         False
         (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
-        , Expression (regex "prima") "The value must contains `prima` substring."
+        , Expression (Maybe.withDefault Regex.never <| Regex.fromString "prima") "The value must contains `prima` substring."
         ]
 
 
@@ -67,7 +67,7 @@ textFieldIconConfig { formDisabled } tabIndex =
         False
         (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
-        , Expression (regex "prima") "The value must contains `prima` substring."
+        , Expression (Maybe.withDefault Regex.never <| Regex.fromString "prima") "The value must contains `prima` substring."
         ]
 
 
@@ -84,7 +84,7 @@ textFieldSmallFirstConfig { formDisabled } tabIndex =
         False
         (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
-        , Expression (regex "prima") "The value must contains `prima` substring."
+        , Expression (Maybe.withDefault Regex.never <| Regex.fromString "prima") "The value must contains `prima` substring."
         ]
 
 
@@ -101,7 +101,7 @@ textFieldSmallLastConfig { formDisabled } tabIndex =
         False
         (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
-        , Expression (regex "prima") "The value must contains `prima` substring."
+        , Expression (Maybe.withDefault Regex.never <| Regex.fromString "prima") "The value must contains `prima` substring."
         ]
 
 
@@ -118,7 +118,7 @@ textFieldLargeConfig { formDisabled } tabIndex =
         False
         (Just tabIndex)
         [ NotEmpty "Empty value is not acceptable"
-        , Expression (regex "prima") "The value must contains `prima` substring."
+        , Expression (Maybe.withDefault Regex.never <| Regex.fromString "prima") "The value must contains `prima` substring."
         ]
 
 
@@ -280,22 +280,27 @@ selectFieldConfig ({ resources } as model) tabIndex =
 
 
 datePickerFieldConfig : Model -> Int -> FormField Model Msg
-datePickerFieldConfig { datepicker, isDatePickerOpen, formDisabled } tabIndex =
-    Form.datepickerConfig
-        "datepicker_field"
-        (Just "Datepicker field")
-        [ disabled formDisabled, placeholder "gg/mm/aaaa" ]
-        .datepickerField
-        (UpdateText Datepicker)
-        (UpdateDate Datepicker)
-        (Focus Datepicker)
-        (Blur Datepicker)
-        datepicker
-        isDatePickerOpen
-        False
-        (Just tabIndex)
-        [ NotEmpty "You must choose a date."
-        ]
+datePickerFieldConfig ({ isDatePickerOpen, formDisabled } as model) tabIndex =
+    case model.datepicker of
+        Just datepicker ->
+            Form.datepickerConfig
+                "datepicker_field"
+                (Just "Datepicker field")
+                [ disabled formDisabled, placeholder "gg/mm/aaaa" ]
+                .datepickerField
+                (UpdateText Datepicker)
+                (UpdateDate Datepicker)
+                (Focus Datepicker)
+                (Blur Datepicker)
+                datepicker
+                isDatePickerOpen
+                False
+                (Just tabIndex)
+                [ NotEmpty "You must choose a date."
+                ]
+
+        Nothing ->
+            Form.pureHtmlConfig []
 
 
 autocompleteFieldConfig : Model -> Int -> FormField Model Msg

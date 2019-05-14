@@ -2,19 +2,18 @@ const appStyle      = require('./scss/app.scss')
 const helpers       = require('./helpers.js')
 const templates     = require('./templates.js')
 const entryPoint    = require('./index.html')
-const Elm           = require('./App.elm')
-const route         = window.location.pathname
+
 const isIE          = helpers.detectIE() >= 10 && helpers.detectIE() < 12
 const isEdge        = helpers.detectIE() >= 12
 const isMobileDevice = window.innerWidth <= 769
 
-/* AB TEST */
-const random        = Math.floor(Math.random() * 10)
+import { Elm } from './App.elm'
 
-if(random % 2 == 0) {
-  document.body.className += ' radioBorder'
+const flags = {
+  host:       window.location.host,
+  protocol:   window.location.protocol,
+  path:       window.location.href,
 }
-/* END AB TEST */
 
 if(isIE) {
   document.body.className += ' is-IE'
@@ -28,9 +27,7 @@ if((!!('ontouchstart' in window) && isMobileDevice) || (!!('msmaxtouchpoints' in
   document.body.className += ' isTouchDevice'
 }
 
-const app = Elm.App.embed(document.getElementById('app'), {
-  route: route
-})
+const app = Elm.App.init({ flags: flags })
 
 app.ports.inspectHtml.subscribe(selector => {
   const htmlSource = [].slice.call(document.querySelectorAll(selector)).map(item => helpers.beautifyHtml(item.innerHTML))

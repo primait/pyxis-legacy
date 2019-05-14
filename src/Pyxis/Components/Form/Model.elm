@@ -2,15 +2,9 @@ module Pyxis.Components.Form.Model exposing
     ( Field(..)
     , Model
     , Msg(..)
-    , firstOfTheYear
     , initialModel
-    , xMas2018
-    , xMas2020
     )
 
-import Date exposing (Date)
-import Date.Extra.Core exposing (intToMonth)
-import Date.Extra.Create exposing (dateFromFields)
 import Prima.DatePicker as DatePicker
 import Prima.Form
     exposing
@@ -19,13 +13,14 @@ import Prima.Form
         , RadioOption
         , SelectOption
         )
+import Time
 
 
 type Msg
     = FormNoOp
     | Focus Field
     | Blur Field
-    | FetchTodayDate Date
+    | FetchTodayDate Time.Posix
       ---------------------
     | UpdateText Field (Maybe String)
     | UpdateFilter Field (Maybe String)
@@ -56,13 +51,13 @@ type alias Model =
     , checkboxMultiField : List CheckboxOption
     , radioField : Maybe String
     , datepickerField : Maybe String
-    , datepicker : DatePicker.Model
+    , datepicker : Maybe DatePicker.Model
     , isDatePickerOpen : Bool
     , autocompleteField : Maybe String
     , autocompleteFilter : Maybe String
     , isAutocompleteFieldOpen : Bool
     , formDisabled : Bool
-    , todayDate : Maybe Date
+    , todayDate : Maybe Time.Posix
     , resources : Resources
     }
 
@@ -89,7 +84,7 @@ initialModel =
         ]
         Nothing
         Nothing
-        (DatePicker.init firstOfTheYear ( xMas2018, xMas2020 ))
+        Nothing
         False
         Nothing
         Nothing
@@ -97,21 +92,6 @@ initialModel =
         False
         Nothing
         initialResources
-
-
-xMas2018 : Date
-xMas2018 =
-    dateFromFields 2018 (intToMonth 12) 25 0 0 0 0
-
-
-xMas2020 : Date
-xMas2020 =
-    dateFromFields 2020 (intToMonth 12) 25 0 0 0 0
-
-
-firstOfTheYear : Date
-firstOfTheYear =
-    dateFromFields 2019 (intToMonth 1) 1 0 0 0 0
 
 
 type Field
