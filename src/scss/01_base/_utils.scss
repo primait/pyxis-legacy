@@ -145,7 +145,7 @@
   height: 1px;
   margin: -1px;
   overflow: hidden;
-  padding: 0; 
+  padding: 0;
   position: absolute;
   width: 1px;
 }
@@ -172,4 +172,70 @@
 
 .wordBreakWord {
   word-break: break-word;
+}
+
+.displayInline {
+  display: inline;
+}
+
+.displayInlineBlock {
+  display: inline-block;
+}
+
+.displayBlock {
+  display: block;
+}
+
+.displayFlex {
+  display: flex;
+}
+
+.textEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.overflowHidden {
+  overflow: hidden;
+}
+
+.overflowYHidden {
+  overflow-y: hidden;
+}
+
+.overflowXHidden {
+  overflow-x: hidden;
+}
+
+.overflowScroll {
+  overflow: scroll;
+}
+
+.overflowYScroll {
+  overflow-y: scroll;
+}
+
+.overflowXScroll {
+  overflow-x: scroll;
+}
+
+.noListStyle {
+  list-style: none;
+}
+
+.noMargin {
+  margin: 0;
+}
+
+.noPadding {
+  padding: 0;
+}
+
+.marginAuto {
+  margin: 0 auto;
+}
+
+.fullWidth {
+  width: 100%;
 }
