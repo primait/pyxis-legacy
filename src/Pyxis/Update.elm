@@ -31,6 +31,7 @@ import Pyxis.Helpers
         , delayCmd
         , removeAppMessage
         , updateMenu
+        , urlInterceptor
         , withCmds
         , withoutCmds
         )
@@ -43,52 +44,61 @@ import Pyxis.Model
         , Msg(..)
         , Route(..)
         )
-import Pyxis.Routing exposing (parseLocation)
-import Time exposing (Time)
-import Unique exposing (Id, Unique)
+import Pyxis.Router exposing (urlToRoute)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case Debug.log "update" msg of
-        LocationChange location ->
+        UrlRequested request ->
+            urlInterceptor request model
+
+        UrlChanged url ->
+            let
+                route =
+                    urlToRoute url
+            in
             { model
-                | route = parseLocation location
-                , menu = updateMenu (parseLocation location) model.menu
+                | url = url
+                , route = route
             }
                 |> withoutCmds
 
-        RouteUpdate route ->
-            { model
-                | route = route
-                , menu = updateMenu route model.menu
-            }
-                |> withCmds [ changeRoute route ]
-
         ShowSource source ->
-            { model | htmlSnippet = Just source } |> withoutCmds
+            { model
+                | htmlSnippet = Just source
+            }
+                |> withoutCmds
 
         HideSource ->
-            { model | htmlSnippet = Nothing } |> withoutCmds
+            { model
+                | htmlSnippet = Nothing
+            }
+                |> withoutCmds
 
         Copied ->
-            let
+            {--let
                 uuid =
                     Unique.unique
 
-                duration =
-                    Time.second * 2
 
                 appMessage =
                     AppMessage uuid Default "Color hex copied!" duration
-            in
-            model |> addAppMessage appMessage |> withCmds [ delayCmd duration (RemoveAppMessage uuid) ]
+            in--}
+            model
+                --|> addAppMessage appMessage
+                -- |> withCmds [ delayCmd 2000 (RemoveAppMessage uuid) ]
+                |> withoutCmds
 
         AddAppMessage appMessage ->
-            model |> addAppMessage appMessage |> withCmds [ delayCmd appMessage.duration (RemoveAppMessage appMessage.uuid) ]
+            model
+                |> addAppMessage appMessage
+                |> withCmds [ delayCmd appMessage.duration (RemoveAppMessage appMessage.uuid) ]
 
         RemoveAppMessage uuid ->
-            model |> removeAppMessage uuid |> withoutCmds
+            model
+                |> removeAppMessage uuid
+                |> withoutCmds
 
         AccordionsMsg accordionsMsg ->
             updateAccordions model accordionsMsg model.accordions
@@ -133,7 +143,11 @@ updateAccordions model msg accordionsModel =
         ( newAccordionsModel, cmds ) =
             AccordionsUpdate.update msg accordionsModel
     in
-    { model | accordions = newAccordionsModel } ! [ Cmd.map AccordionsMsg cmds ]
+    ( { model
+        | accordions = newAccordionsModel
+      }
+    , Cmd.map AccordionsMsg cmds
+    )
 
 
 updateColors : Model -> ColorsModel.Msg -> ColorsModel.Model -> ( Model, Cmd Msg )
@@ -142,7 +156,11 @@ updateColors model msg colorsModel =
         ( newColorsModel, cmds ) =
             ColorsUpdate.update msg colorsModel
     in
-    { model | colors = newColorsModel } ! [ Cmd.map ColorsMsg cmds ]
+    ( { model
+        | colors = newColorsModel
+      }
+    , Cmd.map ColorsMsg cmds
+    )
 
 
 updateButtons : Model -> ButtonsModel.Msg -> ButtonsModel.Model -> ( Model, Cmd Msg )
@@ -151,7 +169,11 @@ updateButtons model msg buttonsModel =
         ( newButtonsModel, cmds ) =
             ButtonsUpdate.update msg buttonsModel
     in
-    { model | buttons = newButtonsModel } ! [ Cmd.map ButtonsMsg cmds ]
+    ( { model
+        | buttons = newButtonsModel
+      }
+    , Cmd.map ButtonsMsg cmds
+    )
 
 
 updateForm : Model -> FormModel.Msg -> FormModel.Model -> ( Model, Cmd Msg )
@@ -160,7 +182,11 @@ updateForm model msg formModel =
         ( newFormModel, cmds ) =
             FormUpdate.update msg formModel
     in
-    { model | form = newFormModel } ! [ Cmd.map FormMsg cmds ]
+    ( { model
+        | form = newFormModel
+      }
+    , Cmd.map FormMsg cmds
+    )
 
 
 updateLists : Model -> ListsModel.Msg -> ListsModel.Model -> ( Model, Cmd Msg )
@@ -169,7 +195,11 @@ updateLists model msg listsModel =
         ( newListsModel, cmds ) =
             ListsUpdate.update msg listsModel
     in
-    { model | lists = newListsModel } ! [ Cmd.map ListsMsg cmds ]
+    ( { model
+        | lists = newListsModel
+      }
+    , Cmd.map ListsMsg cmds
+    )
 
 
 updateHeader : Model -> HeaderModel.Msg -> HeaderModel.Model -> ( Model, Cmd Msg )
@@ -178,7 +208,11 @@ updateHeader model msg headerModel =
         ( newHeaderModel, cmds ) =
             HeaderUpdate.update msg headerModel
     in
-    { model | header = newHeaderModel } ! [ Cmd.map HeaderMsg cmds ]
+    ( { model
+        | header = newHeaderModel
+      }
+    , Cmd.map HeaderMsg cmds
+    )
 
 
 updateLoader : Model -> LoaderModel.Msg -> LoaderModel.Model -> ( Model, Cmd Msg )
@@ -187,7 +221,11 @@ updateLoader model msg loaderModel =
         ( newLoaderModel, cmds ) =
             LoaderUpdate.update msg loaderModel
     in
-    { model | loader = newLoaderModel } ! [ Cmd.map LoaderMsg cmds ]
+    ( { model
+        | loader = newLoaderModel
+      }
+    , Cmd.map LoaderMsg cmds
+    )
 
 
 updateFooter : Model -> FooterModel.Msg -> FooterModel.Model -> ( Model, Cmd Msg )
@@ -196,7 +234,11 @@ updateFooter model msg footerModel =
         ( newFooterModel, cmds ) =
             FooterUpdate.update msg footerModel
     in
-    { model | footer = newFooterModel } ! [ Cmd.map FooterMsg cmds ]
+    ( { model
+        | footer = newFooterModel
+      }
+    , Cmd.map FooterMsg cmds
+    )
 
 
 updateMessages : Model -> MessagesModel.Msg -> MessagesModel.Model -> ( Model, Cmd Msg )
@@ -205,7 +247,11 @@ updateMessages model msg messagesModel =
         ( newMessagesModel, cmds ) =
             MessagesUpdate.update msg messagesModel
     in
-    { model | messages = newMessagesModel } ! [ Cmd.map MessagesMsg cmds ]
+    ( { model
+        | messages = newMessagesModel
+      }
+    , Cmd.map MessagesMsg cmds
+    )
 
 
 updateTooltips : Model -> TooltipsModel.Msg -> TooltipsModel.Model -> ( Model, Cmd Msg )
@@ -214,7 +260,11 @@ updateTooltips model msg tooltipsModel =
         ( newTooltipsModel, cmds ) =
             TooltipsUpdate.update msg tooltipsModel
     in
-    { model | tooltips = newTooltipsModel } ! [ Cmd.map TooltipsMsg cmds ]
+    ( { model
+        | tooltips = newTooltipsModel
+      }
+    , Cmd.map TooltipsMsg cmds
+    )
 
 
 updateLogin : Model -> LoginModel.Msg -> LoginModel.Model -> ( Model, Cmd Msg )
@@ -223,7 +273,11 @@ updateLogin model msg loginModel =
         ( newLoginModel, cmds ) =
             LoginUpdate.update msg loginModel
     in
-    { model | login = newLoginModel } ! [ Cmd.map LoginMsg cmds ]
+    ( { model
+        | login = newLoginModel
+      }
+    , Cmd.map LoginMsg cmds
+    )
 
 
 updateJumbotron : Model -> JumbotronModel.Msg -> JumbotronModel.Model -> ( Model, Cmd Msg )
@@ -232,4 +286,8 @@ updateJumbotron model msg jumbotronModel =
         ( newJumbotronModel, cmds ) =
             JumbotronUpdate.update msg jumbotronModel
     in
-    { model | jumbotron = newJumbotronModel } ! [ Cmd.map JumbotronMsg cmds ]
+    ( { model
+        | jumbotron = newJumbotronModel
+      }
+    , Cmd.map JumbotronMsg cmds
+    )

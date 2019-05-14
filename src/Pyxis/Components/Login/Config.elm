@@ -38,7 +38,7 @@ emailFieldConfig =
 
 validateEmail : Regex
 validateEmail =
-    Regex.regex "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$"
+    Maybe.withDefault Regex.never (Regex.fromString "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
 
 
 passwordFieldConfig : FormField Model Msg

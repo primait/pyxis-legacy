@@ -3,30 +3,22 @@ module Pyxis.Helpers exposing
     , capitalize
     , changeRoute
     , delayCmd
-    , formatDate
     , maybeToCmd
     , picture
     , removeAppMessage
-    , routeToUrl
     , sendCmdMsg
     , toInspectableSelector
     , toMaybeCmd
     , updateMenu
-    , urlToRoute
+    , urlInterceptor
     , withCmd
     , withCmds
     , withoutCmds
     )
 
-import Date
-    exposing
-        ( Date
-        , Day(..)
-        , Month(..)
-        )
-import Date.Format
+import Browser exposing (..)
+import Browser.Navigation as Nav
 import Html exposing (Attribute, Html, node)
-import Navigation exposing (Location)
 import Process
 import Pyxis.Model
     exposing
@@ -34,12 +26,13 @@ import Pyxis.Model
         , AppMessageType(..)
         , Menu
         , Model
+        , Msg(..)
         , Route(..)
         , initialModel
         )
+import Pyxis.Router as Router
 import Task
-import Time exposing (Time)
-import Unique exposing (Id, Unique)
+import Url
 
 
 withoutCmds : model -> ( model, Cmd msg )
@@ -57,6 +50,18 @@ withCmds cmd model =
     ( model, Cmd.batch cmd )
 
 
+urlInterceptor : UrlRequest -> Model -> ( Model, Cmd Msg )
+urlInterceptor request model =
+    case request of
+        Internal url ->
+            model
+                |> withCmds [ (Nav.pushUrl model.key << Url.toString) url ]
+
+        External url ->
+            model
+                |> withCmds [ Nav.load url ]
+
+
 toMaybeCmd : (a -> Cmd msg) -> Maybe a -> Maybe (Cmd msg)
 toMaybeCmd mapper something =
     Maybe.map mapper something
@@ -72,120 +77,26 @@ sendCmdMsg =
     Task.perform identity << Task.succeed
 
 
-delayCmd : Time -> msg -> Cmd msg
-delayCmd time msg =
-    Process.sleep time
+delayCmd : Float -> msg -> Cmd msg
+delayCmd duration msg =
+    duration
+        |> Process.sleep
         |> Task.andThen (Task.succeed msg |> always)
         |> Task.perform identity
 
 
-changeRoute : Route -> Cmd msg
-changeRoute =
-    Navigation.newUrl << routeToUrl
-
-
-urlToRoute : String -> Route
-urlToRoute str =
-    case String.toLower str of
-        "/accordions" ->
-            AccordionsRoute
-
-        "/buttons" ->
-            ButtonsRoute
-
-        "/colors" ->
-            ColorsRoute
-
-        "/form" ->
-            FormRoute
-
-        "/header" ->
-            HeaderRoute
-
-        "/lists" ->
-            ListsRoute
-
-        "/messages" ->
-            MessagesRoute
-
-        "/footer" ->
-            FooterRoute
-
-        "/tooltips" ->
-            TooltipsRoute
-
-        "/typography" ->
-            TypographyRoute
-
-        "/jumbotron" ->
-            JumbotronRoute
-
-        _ ->
-            initialModel.route
-
-
-routeToUrl : Route -> String
-routeToUrl route =
-    case route of
-        AccordionsRoute ->
-            "/accordions"
-
-        ButtonsRoute ->
-            "/buttons"
-
-        ColorsRoute ->
-            "/colors"
-
-        FooterRoute ->
-            "/footer"
-
-        FormRoute ->
-            "/form"
-
-        HeaderRoute ->
-            "/header"
-
-        LoginRoute ->
-            "/login"
-
-        LoaderRoute ->
-            "/loader"
-
-        MessagesRoute ->
-            "/messages"
-
-        ListsRoute ->
-            "/lists"
-
-        HomeRoute ->
-            "/"
-
-        TooltipsRoute ->
-            "/tooltips"
-
-        TypographyRoute ->
-            "/typography"
-
-        JumbotronRoute ->
-            "/jumbotron"
-
-        NotFoundRoute ->
-            "/"
-
-
-formatDate : String -> Maybe Date -> String
-formatDate dateFormat date =
-    (Maybe.withDefault "" << Maybe.map (Date.Format.format dateFormat)) date
+changeRoute : Route -> Cmd Msg
+changeRoute route =
+    route
+        |> Router.routeToString
+        |> Url.fromString
+        |> Maybe.map (sendCmdMsg << UrlRequested << Internal)
+        |> Maybe.withDefault Cmd.none
 
 
 updateMenu : Route -> List Menu -> List Menu
 updateMenu route menu =
-    let
-        activateByRoute : Route -> Menu -> Menu
-        activateByRoute route menu =
-            { menu | isActive = menu.route == route }
-    in
-    List.map (activateByRoute route) menu
+    List.map (\m -> { m | isActive = m.route == route }) menu
 
 
 addAppMessage : AppMessage -> Model -> Model
@@ -193,7 +104,7 @@ addAppMessage msg model =
     { model | appMessages = msg :: model.appMessages }
 
 
-removeAppMessage : Unique Id -> Model -> Model
+removeAppMessage : String -> Model -> Model
 removeAppMessage uuid model =
     { model | appMessages = List.filter (not << (==) uuid << .uuid) model.appMessages }
 

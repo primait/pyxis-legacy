@@ -3,8 +3,8 @@ module Pyxis.ViewHelpers exposing (componentInspectorToggle, componentShowdown, 
 import Html exposing (..)
 import Html.Attributes exposing (attribute, class, classList)
 import Html.Events exposing (onClick)
-import HtmlParser exposing (parse)
-import HtmlParser.Util exposing (toVirtualDom)
+import Html.Parser as Parser
+import Html.Parser.Util as ParserUtil
 import Pyxis.Helpers
     exposing
         ( toInspectableSelector
@@ -48,7 +48,7 @@ renderOrNothing maybeHtml =
 
 renderHTMLContent : String -> List (Html msg)
 renderHTMLContent =
-    toVirtualDom << parse
+    Maybe.withDefault [] << Maybe.map ParserUtil.toVirtualDom << Result.toMaybe << Parser.run
 
 
 

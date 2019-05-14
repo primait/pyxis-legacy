@@ -30,13 +30,13 @@ view model =
                     accordionLoop.name
                     accordionLoop.slug
                     InspectHtml
-                    [ accordion accordionLoop ]
+                    [ renderAccordion accordionLoop ]
             )
             model.accordions
 
 
-accordion : Accordion -> Html Msg
-accordion ({ slug, name, title, isOpen, content } as accordion) =
+renderAccordion : Accordion -> Html Msg
+renderAccordion ({ slug, name, title, isOpen, content } as accordion) =
     div
         [ classList
             ([ ( "a-accordion", True )

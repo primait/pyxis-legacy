@@ -1,14 +1,16 @@
 module Pyxis.Nav.View exposing (view)
 
 import Html exposing (..)
-import Html.Attributes exposing (class, classList)
+import Html.Attributes exposing (class, classList, href)
 import Html.Events exposing (onClick)
+import Pyxis.Helpers as Helpers
 import Pyxis.Model
     exposing
         ( Menu
         , Model
         , Msg(..)
         )
+import Pyxis.Router as Router
 
 
 view : Model -> Html Msg
@@ -32,7 +34,6 @@ item { slug, label, route, isActive } =
             [ ( "pyNav__menu__item", True )
             , ( "is-active", isActive )
             ]
-        , (onClick << RouteUpdate) route
         ]
-        [ text label
+        [ a [ (href << Router.routeToString) route ] [ text label ]
         ]

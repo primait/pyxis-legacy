@@ -1,7 +1,6 @@
 module Pyxis.Components.Form.Update exposing (update)
 
-import Date exposing (Date)
-import Date.Format
+import Date
 import Maybe.Extra exposing (isJust, isNothing)
 import Prima.DatePicker as DatePicker
 import Pyxis.Components.Form.Model
@@ -16,14 +15,20 @@ import Pyxis.Helpers
         , withoutCmds
         )
 import Pyxis.Ports as Ports
+import Time
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         FetchTodayDate todayDate ->
+            let
+                today =
+                    Date.fromPosix Time.utc todayDate
+            in
             { model
                 | todayDate = Just todayDate
+                , datepicker = Just <| DatePicker.init today ( today, today )
             }
                 |> withoutCmds
 
@@ -130,9 +135,9 @@ update msg model =
             { model
                 | datepickerField = value
                 , datepicker =
-                    case (Maybe.Extra.join << Maybe.map (Result.toMaybe << Date.fromString)) value of
+                    case (Maybe.Extra.join << Maybe.map (Result.toMaybe << Date.fromIsoString)) value of
                         Just date ->
-                            DatePicker.init date model.datepicker.daysPickerRange
+                            Maybe.map (DatePicker.init date << .daysPickerRange) model.datepicker
 
                         _ ->
                             model.datepicker
@@ -182,11 +187,14 @@ update msg model =
         UpdateDate Datepicker dpMsg ->
             let
                 updatedInstance =
-                    DatePicker.update dpMsg model.datepicker
+                    Maybe.map (DatePicker.update dpMsg) model.datepicker
+
+                formatDate str =
+                    (String.join "/" << List.reverse << String.split "-") str
             in
             { model
                 | datepicker = updatedInstance
-                , datepickerField = (Just << Date.Format.format "%d/%m/%Y" << DatePicker.selectedDate) updatedInstance
+                , datepickerField = Maybe.map (formatDate << Date.toIsoString << DatePicker.selectedDate) updatedInstance
             }
                 |> withoutCmds
 

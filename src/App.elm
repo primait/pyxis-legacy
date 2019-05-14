@@ -1,5 +1,7 @@
 module App exposing (main)
 
+import Browser
+import Browser.Navigation as Nav
 import Html
 import Pyxis.Helpers as Helpers
 import Pyxis.Model
@@ -10,71 +12,42 @@ import Pyxis.Model
         , Route(..)
         , initialModel
         )
+import Pyxis.Router as Router
 import Pyxis.Subscriptions exposing (subscriptions)
 import Pyxis.Tasks as Tasks
 import Pyxis.Update exposing (update)
 import Pyxis.View exposing (view)
+import Url exposing (Url)
 
 
 main : Program Flags Model Msg
 main =
-    Html.programWithFlags
+    Browser.application
         { init = init
         , view = view
         , update = update
         , subscriptions = subscriptions
+        , onUrlRequest = UrlRequested
+        , onUrlChange = UrlChanged
         }
 
 
-init : Flags -> ( Model, Cmd Msg )
-init flags =
-    { initialModel
-        | route = Helpers.urlToRoute flags.route
-        , menu = Helpers.updateMenu (Helpers.urlToRoute flags.route) initialModel.menu
+init : Flags -> Url -> Nav.Key -> ( Model, Cmd Msg )
+init flags url key =
+    let
+        model =
+            initialModel url key
+
+        initialUrl =
+            flags.path
+                |> Url.fromString
+                |> Maybe.withDefault model.url
+
+        route =
+            Router.urlToRoute initialUrl
+    in
+    { model
+        | url = initialUrl
+        , route = route
     }
-        |> Helpers.withCmds
-            [ Tasks.fetchTodayDate
-            , Tasks.fetchHeaderTemplate "static/header.html.txt"
-            , Tasks.fetchFooterTemplate "static/footer.html.txt"
-            , Tasks.fetchMessagesTemplate "static/messages.html.txt"
-            ]
-
-
-toRoute : String -> Route
-toRoute str =
-    case String.toLower str of
-        "/buttons" ->
-            ButtonsRoute
-
-        "/colors" ->
-            ColorsRoute
-
-        "/form" ->
-            FormRoute
-
-        "/header" ->
-            HeaderRoute
-
-        "/lists" ->
-            ListsRoute
-
-        "/loader" ->
-            LoaderRoute
-
-        "/login" ->
-            LoginRoute
-
-        "/messages" ->
-            MessagesRoute
-
-        "/footer" ->
-            FooterRoute
-
-        "/typography" ->
-            TypographyRoute
-
-        "/tooltips" ->
-            TooltipsRoute
-
-        _ ->
-            initialModel.route
+        |> Helpers.withCmds []
