@@ -131,6 +131,20 @@
   overflow-y: scroll;
 }
 
+.sticky {
+  position: sticky;
+}
+
+.stickyBottom {
+  bottom: 0;
+  position: sticky;
+}
+
+.stickyTop {
+  position: sticky;
+  top: 0;
+}
+
 .preWrap {
   white-space: pre-wrap;
 }
@@ -150,7 +164,7 @@
 }
 
 .visuallyHidden {
-  clip: rect(0000);
+  clip: rect(0 0 0 0);
   height: 1px;
   margin: -1px;
   overflow: hidden;
