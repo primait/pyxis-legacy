@@ -45,10 +45,6 @@
   }
 }
 
-.hide {
-  display: none;
-}
-
 @each $mqKey, $size in $containerConfig {
   .hide#{capitalize($mqKey)}Down {
     @include mqDown($mqKey) {
@@ -93,83 +89,5 @@
   }
 
 }
+
 @include fontSizesByBreakpoint(map-remove($fontSizes, "root"), map-remove($breakpoints, "boundDiff"));
-
-.alignLeft {
-  text-align: left;
-}
-
-.alignCenter {
-  text-align: center;
-}
-
-.alignRight {
-  text-align: right;
-}
-
-.lowercase {
-  text-transform: lowercase;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.noDecoration {
-  text-decoration: none;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-.lineThrough {
-  text-decoration: line-through;
-}
-
-.directionColumn {
-  flex-direction: column;
-}
-
-.directionRow {
-  flex-direction: row;
-}
-
-.is-unscrollable {
-  overflow: hidden;
-  position: fixed;
-}
-
-.visuallyHidden {
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0; 
-  position: absolute;
-  width: 1px;
-}
-
-.strong {
-  @extend .fs-xsmall, .fw-heavy;
-}
-
-.noWrap {
-  white-space: nowrap;
-}
-
-.preWrap {
-  white-space: pre-wrap;
-}
-
-.normalWrap {
-  white-space: normal;
-}
-
-.wordBreakAll {
-  word-break: break-all;
-}
-
-.wordBreakWord {
-  word-break: break-word;
-}
