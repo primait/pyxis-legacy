@@ -10,7 +10,7 @@
   padding: 0;
 }
 
-.m-table.m-table--alternateRows .m-table__body__row:nth-child(even) {
+.m-table.m-table--alternateRows .m-table__body__row:nth-child(odd) {
   background: color(background, dark);
 }
 
@@ -18,4 +18,8 @@
 .m-table__body__row__col {
   padding: 5px;
   text-align: left;
+}
+
+.m-table__header__item.m-table__header__item--sortable {
+  cursor: pointer;
 }

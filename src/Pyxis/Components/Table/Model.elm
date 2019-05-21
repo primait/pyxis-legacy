@@ -16,7 +16,7 @@ type Msg
 
 
 type alias Model =
-    { tables : List Table
+    { tables : List ( String, Table )
     , sortOrder : Maybe Sort
     }
 
@@ -24,16 +24,33 @@ type alias Model =
 initialModel : Model
 initialModel =
     Model
-        [ Table
-            "countryTable"
-            [ DefaultHeader "Country", SortableHeader "Capital" Sort ]
-            [ Row [ DefaultColumn "Italy", DefaultColumn "Rome" ]
-            , Row [ DefaultColumn "France", DefaultColumn "Paris" ]
-            , Row [ DefaultColumn "U.K.", DefaultColumn "London" ]
-            , Row [ DefaultColumn "U.S.A", DefaultColumn "Washington" ]
-            ]
+        [ ( "Presentational table", presentationalTable )
+        , ( "Sortable table", sortableTable )
         ]
         Nothing
+
+
+presentationalTable : Table
+presentationalTable =
+    Table
+        "countryTable"
+        [ DefaultHeader "Website", DefaultHeader "Speed Index" ]
+        [ Row [ Column "Prima.it", Column "96" ]
+        , Row [ Column "Facile.it", Column "82" ]
+        , Row [ Column "Quixa", Column "36" ]
+        ]
+
+
+sortableTable : Table
+sortableTable =
+    Table
+        "countryTable"
+        [ SortableHeader "Country" Sort, DefaultHeader "Capital" ]
+        [ Row [ Column "Italy", Column "Rome" ]
+        , Row [ Column "France", Column "Paris" ]
+        , Row [ Column "U.K.", Column "London" ]
+        , Row [ Column "U.S.A", Column "Washington" ]
+        ]
 
 
 type alias Table =
@@ -53,8 +70,7 @@ type Row
 
 
 type Column
-    = DefaultColumn String
-    | HtmlColumn String
+    = Column String
 
 
 type Sort

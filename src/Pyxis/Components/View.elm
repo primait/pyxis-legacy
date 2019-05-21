@@ -11,6 +11,7 @@ import Pyxis.Components.Lists.View as ListsComponent
 import Pyxis.Components.Loader.View as LoaderComponent
 import Pyxis.Components.Login.View as LoginComponent
 import Pyxis.Components.Messages.View as MessagesComponent
+import Pyxis.Components.Table.View as TableComponent
 import Pyxis.Components.Tooltips.View as TooltipsComponent
 import Pyxis.Components.Typography.View as Typography
 import Pyxis.Home.View as Home
@@ -56,6 +57,9 @@ view ({ route } as model) =
 
         LoginRoute ->
             (wrapper << List.map (Html.map LoginMsg)) (LoginComponent.view model.login)
+
+        TableRoute ->
+            (wrapper << List.map (Html.map TableMsg)) (TableComponent.view model.table)
 
         TooltipsRoute ->
             (wrapper << List.map (Html.map TooltipsMsg)) (TooltipsComponent.view model.tooltips)

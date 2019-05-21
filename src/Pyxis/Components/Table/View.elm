@@ -30,8 +30,8 @@ view model =
     , divider
     ]
         ++ List.map
-            (\({ slug } as table) ->
-                (componentShowdown "Sortable table" slug InspectHtml
+            (\( name, { slug } as table ) ->
+                (componentShowdown name slug InspectHtml
                     << List.singleton
                     << renderTable model.sortOrder
                 )
@@ -66,7 +66,7 @@ renderTH header =
 
         SortableHeader title tagger ->
             th
-                [ class "m-table__header__item fsSmall"
+                [ class "m-table__header__item m-table__header__item--sortable fsSmall"
                 , onClick tagger
                 ]
                 [ text title ]
@@ -74,47 +74,46 @@ renderTH header =
 
 renderTBody : Maybe Sort -> List Row -> Html Msg
 renderTBody sortOrder rows =
-    tbody
-        [ class "m-table__body" ]
-        (List.map (renderTR sortOrder) rows)
-
-
-renderTR : Maybe Sort -> Row -> Html Msg
-renderTR sortOrder (Row columns) =
     let
-        sortedColumns =
+        sortedRows : List Row
+        sortedRows =
             case sortOrder of
                 Nothing ->
-                    columns
+                    rows
 
                 Just Asc ->
-                    List.sortBy columnToComparable columns
+                    List.sortBy rowToComparable rows
 
                 Just Desc ->
-                    (List.reverse << List.sortBy columnToComparable) columns
+                    (List.reverse << List.sortBy rowToComparable) rows
 
-        columnToComparable col =
-            case col of
-                DefaultColumn content ->
-                    content
+        rowToComparable : Row -> String
+        rowToComparable (Row columns) =
+            case columns of
+                head :: tail ->
+                    columnToComparable head
 
-                HtmlColumn content ->
-                    content
+                _ ->
+                    ""
+
+        columnToComparable : Column -> String
+        columnToComparable (Column content) =
+            content
     in
+    tbody
+        [ class "m-table__body" ]
+        (List.map renderTR sortedRows)
+
+
+renderTR : Row -> Html Msg
+renderTR (Row columns) =
     tr
         [ class "m-table__body__row" ]
-        (List.map renderTD sortedColumns)
+        (List.map renderTD columns)
 
 
 renderTD : Column -> Html Msg
-renderTD column =
-    case column of
-        DefaultColumn content ->
-            td
-                [ class "m-table__body__row__col fsSmall" ]
-                [ text content ]
-
-        HtmlColumn htmlContent ->
-            td
-                [ class "m-table__body__row__col fsSmall" ]
-                (renderHTMLContent htmlContent)
+renderTD (Column content) =
+    td
+        [ class "m-table__body__row__col fsSmall" ]
+        [ text content ]
