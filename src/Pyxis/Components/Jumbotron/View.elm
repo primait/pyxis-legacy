@@ -2,9 +2,21 @@ module Pyxis.Components.Jumbotron.View exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (alt, attribute, class, classList, src, type_)
-import Pyxis.Components.Jumbotron.Model as Model exposing (Image, Jumbotron, Model, Msg(..))
+import Pyxis.Components.Jumbotron.Model as Model
+    exposing
+        ( Image
+        , Jumbotron
+        , Model
+        , Msg(..)
+        )
 import Pyxis.Helpers exposing (picture)
-import Pyxis.ViewHelpers exposing (componentShowdown, componentTitle, divider, renderHTMLContent)
+import Pyxis.ViewHelpers
+    exposing
+        ( componentShowdown
+        , componentTitle
+        , divider
+        , renderHTMLContent
+        )
 
 
 view : Model -> List (Html Msg)

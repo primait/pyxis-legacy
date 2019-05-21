@@ -51,7 +51,7 @@ renderAccordion ({ slug, name, title, isOpen, content } as accordion) =
                     accordion.tone
             )
         ]
-        [ a
+        [ span
             [ class "a-accordion__toggle a-link--alt fs-xsmall fw-heavy"
             , onClick (Toggle slug)
             ]

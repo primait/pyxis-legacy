@@ -26,10 +26,8 @@ routeParser =
         , map AccordionsRoute (s "accordions")
         , map ButtonsRoute (s "buttons")
         , map FormRoute (s "form")
-        , map HeaderRoute (s "header")
         , map LoaderRoute (s "loader")
         , map MessagesRoute (s "messages")
-        , map FooterRoute (s "footer")
         , map TooltipsRoute (s "tooltips")
         , map LoginRoute (s "login")
         , map ListsRoute (s "lists")
@@ -46,7 +44,7 @@ routeToString : Route -> String
 routeToString route =
     case route of
         HomeRoute ->
-            Url.Builder.relative [] []
+            Url.Builder.relative [ "/" ] []
 
         ColorsRoute ->
             Url.Builder.relative [ "colors" ] []
@@ -63,17 +61,11 @@ routeToString route =
         FormRoute ->
             Url.Builder.relative [ "form" ] []
 
-        HeaderRoute ->
-            Url.Builder.relative [ "header" ] []
-
         LoaderRoute ->
             Url.Builder.relative [ "loader" ] []
 
         MessagesRoute ->
             Url.Builder.relative [ "messages" ] []
-
-        FooterRoute ->
-            Url.Builder.relative [ "footer" ] []
 
         TooltipsRoute ->
             Url.Builder.relative [ "tooltips" ] []
@@ -106,17 +98,11 @@ stringToRoute str =
         "/form" ->
             FormRoute
 
-        "/header" ->
-            HeaderRoute
-
         "/lists" ->
             ListsRoute
 
         "/messages" ->
             MessagesRoute
-
-        "/footer" ->
-            FooterRoute
 
         "/tooltips" ->
             TooltipsRoute
@@ -143,14 +129,8 @@ routeToUrl route =
         ColorsRoute ->
             "/colors"
 
-        FooterRoute ->
-            "/footer"
-
         FormRoute ->
             "/form"
-
-        HeaderRoute ->
-            "/header"
 
         LoginRoute ->
             "/login"

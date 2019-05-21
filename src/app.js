@@ -1,6 +1,5 @@
 const appStyle      = require('./scss/app.scss')
 const helpers       = require('./helpers.js')
-const templates     = require('./templates.js')
 const entryPoint    = require('./index.html')
 
 const isIE          = helpers.detectIE() >= 10 && helpers.detectIE() < 12
