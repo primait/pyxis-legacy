@@ -105,8 +105,8 @@ addAppMessage msg model =
 
 
 removeAppMessage : String -> Model -> Model
-removeAppMessage uuid model =
-    { model | appMessages = List.filter (not << (==) uuid << .uuid) model.appMessages }
+removeAppMessage slug model =
+    { model | appMessages = List.filter (not << (==) slug << .slug) model.appMessages }
 
 
 toInspectableSelector : String -> String

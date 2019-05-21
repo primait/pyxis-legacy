@@ -34,7 +34,6 @@ type Msg
       -------------
     | ShowSource HtmlSnippet
     | HideSource
-    | AddAppMessage AppMessage
     | RemoveAppMessage String
     | Copied
       -------------
@@ -141,7 +140,7 @@ type alias Menu =
 
 
 type alias AppMessage =
-    { uuid : String
+    { slug : String
     , type_ : AppMessageType
     , description : String
     , duration : Float

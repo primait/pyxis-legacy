@@ -73,27 +73,17 @@ update msg model =
                 |> withoutCmds
 
         Copied ->
-            {--let
-                uuid =
-                    Unique.unique
-
-
-                appMessage =
-                    AppMessage uuid Default "Color hex copied!" duration
-            in--}
+            let
+                slug =
+                    "colorCopied"
+            in
             model
-                --|> addAppMessage appMessage
-                -- |> withCmds [ delayCmd 2000 (RemoveAppMessage uuid) ]
-                |> withoutCmds
+                |> addAppMessage (AppMessage slug Default "Color hex copied!" 2000)
+                |> withCmds [ delayCmd 2000 (RemoveAppMessage slug) ]
 
-        AddAppMessage appMessage ->
+        RemoveAppMessage slug ->
             model
-                |> addAppMessage appMessage
-                |> withCmds [ delayCmd appMessage.duration (RemoveAppMessage appMessage.uuid) ]
-
-        RemoveAppMessage uuid ->
-            model
-                |> removeAppMessage uuid
+                |> removeAppMessage slug
                 |> withoutCmds
 
         AccordionsMsg accordionsMsg ->

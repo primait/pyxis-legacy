@@ -35,5 +35,9 @@ item { slug, label, route, isActive } =
             , ( "is-active", isActive )
             ]
         ]
-        [ a [ (href << Router.routeToString) route ] [ text label ]
+        [ a
+            [ class "noDecoration cTextDark"
+            , (href << Router.routeToString) route
+            ]
+            [ text label ]
         ]

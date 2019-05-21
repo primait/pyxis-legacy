@@ -44,7 +44,7 @@ routeToString : Route -> String
 routeToString route =
     case route of
         HomeRoute ->
-            Url.Builder.relative [] []
+            Url.Builder.relative [ "/" ] []
 
         ColorsRoute ->
             Url.Builder.relative [ "colors" ] []
