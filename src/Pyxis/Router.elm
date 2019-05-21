@@ -28,6 +28,7 @@ routeParser =
         , map FormRoute (s "form")
         , map LoaderRoute (s "loader")
         , map MessagesRoute (s "messages")
+        , map TableRoute (s "table")
         , map TooltipsRoute (s "tooltips")
         , map LoginRoute (s "login")
         , map ListsRoute (s "lists")
@@ -79,6 +80,9 @@ routeToString route =
         JumbotronRoute ->
             Url.Builder.relative [ "jumbotron" ] []
 
+        TableRoute ->
+            Url.Builder.relative [ "table" ] []
+
         NotFoundRoute ->
             Url.Builder.relative [ "notfound" ] []
 
@@ -103,6 +107,9 @@ stringToRoute str =
 
         "/messages" ->
             MessagesRoute
+
+        "/table" ->
+            TableRoute
 
         "/tooltips" ->
             TooltipsRoute
@@ -146,6 +153,9 @@ routeToUrl route =
 
         HomeRoute ->
             "/"
+
+        TableRoute ->
+            "/table"
 
         TooltipsRoute ->
             "/tooltips"
