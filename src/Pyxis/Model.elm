@@ -24,6 +24,7 @@ import Pyxis.Components.Lists.Model as Lists
 import Pyxis.Components.Loader.Model as Loader
 import Pyxis.Components.Login.Model as Login
 import Pyxis.Components.Messages.Model as Messages
+import Pyxis.Components.Table.Model as Table
 import Pyxis.Components.Tooltips.Model as Tooltips
 import Url exposing (Url)
 
@@ -43,6 +44,7 @@ type Msg
     | FormMsg Form.Msg
     | JumbotronMsg Jumbotron.Msg
     | LoaderMsg Loader.Msg
+    | TableMsg Table.Msg
     | TooltipsMsg Tooltips.Msg
     | MessagesMsg Messages.Msg
     | LoginMsg Login.Msg
@@ -63,6 +65,7 @@ type alias Model =
     , form : Form.Model
     , jumbotron : Jumbotron.Model
     , loader : Loader.Model
+    , table : Table.Model
     , tooltips : Tooltips.Model
     , messages : Messages.Model
     , login : Login.Model
@@ -86,6 +89,7 @@ initialModel url key =
         Form.initialModel
         Jumbotron.initialModel
         Loader.initialModel
+        Table.initialModel
         Tooltips.initialModel
         Messages.initialModel
         Login.initialModel
@@ -104,6 +108,7 @@ initialMenu =
     , Menu "loader" "Loader" LoaderRoute False
     , Menu "login" "Login" LoginRoute False
     , Menu "messages" "Messages" MessagesRoute False
+    , Menu "table" "Table" TableRoute False
     , Menu "typography" "Typography" TypographyRoute False
     , Menu "tooltips" "Tooltips" TooltipsRoute False
     ]
@@ -124,6 +129,7 @@ type Route
     | ListsRoute
     | MessagesRoute
     | LoaderRoute
+    | TableRoute
     | TypographyRoute
     | TooltipsRoute
     | LoginRoute

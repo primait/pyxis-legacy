@@ -1,4 +1,16 @@
-module Pyxis.ViewHelpers exposing (componentInspectorToggle, componentShowdown, componentTitle, divider, inspectableHtml, renderHTMLContent, renderIf, renderMaybe, renderOrNothing, renderUnless, wrapper)
+module Pyxis.ViewHelpers exposing
+    ( componentInspectorToggle
+    , componentShowdown
+    , componentTitle
+    , divider
+    , inspectableHtml
+    , renderHTMLContent
+    , renderIf
+    , renderMaybe
+    , renderOrNothing
+    , renderUnless
+    , wrapper
+    )
 
 import Html exposing (..)
 import Html.Attributes exposing (attribute, class, classList)

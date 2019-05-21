@@ -18,6 +18,8 @@ import Pyxis.Components.Login.Model as LoginModel
 import Pyxis.Components.Login.Update as LoginUpdate
 import Pyxis.Components.Messages.Model as MessagesModel
 import Pyxis.Components.Messages.Update as MessagesUpdate
+import Pyxis.Components.Table.Model as TableModel
+import Pyxis.Components.Table.Update as TableUpdate
 import Pyxis.Components.Tooltips.Model as TooltipsModel
 import Pyxis.Components.Tooltips.Update as TooltipsUpdate
 import Pyxis.Helpers
@@ -106,6 +108,9 @@ update msg model =
 
         MessagesMsg messagesMsg ->
             updateMessages model messagesMsg model.messages
+
+        TableMsg tableMsg ->
+            updateTable model tableMsg model.table
 
         TooltipsMsg tooltipsMsg ->
             updateTooltips model tooltipsMsg model.tooltips
@@ -205,6 +210,19 @@ updateMessages model msg messagesModel =
         | messages = newMessagesModel
       }
     , Cmd.map MessagesMsg cmds
+    )
+
+
+updateTable : Model -> TableModel.Msg -> TableModel.Model -> ( Model, Cmd Msg )
+updateTable model msg tableModel =
+    let
+        ( newTableModel, cmds ) =
+            TableUpdate.update msg tableModel
+    in
+    ( { model
+        | table = newTableModel
+      }
+    , Cmd.map TableMsg cmds
     )
 
 
