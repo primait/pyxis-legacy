@@ -84,3 +84,13 @@
     }
   }
 }
+
+.checkboxFullText {
+  padding-left: 30px;
+
+  .a-form__field__label {
+    flex: 1;
+    order: 2;
+    text-align: left;
+  }
+}
