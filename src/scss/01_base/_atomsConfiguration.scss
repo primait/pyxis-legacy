@@ -114,4 +114,10 @@ $avatarConfig: (
 $overlayConfig: (
   opacity: 0.7,
   zIndex: 100,
-)
+);
+
+$listChooserConfig: (
+  boxShadow: 0 5px 10px 0 rgba(0,0,0,.1),
+  boxShadowHighlighted: 0 5px 10px 0 rgba(16,161,180,.2),
+  width: 360px,
+);
