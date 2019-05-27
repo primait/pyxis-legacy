@@ -9,7 +9,8 @@
 
         <ul class="routes directionColumn noListStyle">
           <li class="routes__item" v-for="route in domain.routes" :key="toSlug(route.label)">
-            <router-link class="routes__item__link fwBase" :to="route.path" >
+            <router-link class="routes__item__link fwBase" :to="route.path">
+              <object class="routes__item__link__icon" :data="route.icon" type="image/svg+xml"></object>
               {{ route.label }}
             </router-link>
           </li>
@@ -28,11 +29,21 @@ export default {
   name: 'Sidebar',
   data: function () {
     return {
-      domainsList: []
+      domainsList: [
+        { label: '',
+          routes: [{ path: '/', label: 'Default', icon: 'default' }]
+        }
+      ]
     }
   },
   created: function () {
-    this.domainsList = routes.domains
+    this.domainsList = routes.map(domain => {
+      domain['routes'] = domain.routes.map(route => {
+        route['icon'] = require(`@/assets/icons/${route.icon}.svg`)
+        return route
+      })
+      return domain
+    })
   },
   methods: {
     toSlug: function (label) {
@@ -46,9 +57,10 @@ export default {
 @import '@/assets/sass/app.scss';
 
 .sidebar {
+  border-right: 1px solid color(shape);
   display: flex;
   padding: 80px 0;
-  width: 390px;
+  width: 388px;
 }
 
 .domains,
@@ -92,6 +104,7 @@ export default {
 
 .routes__item__link {
   align-items: center;
+  background: #fff;
   color: color(text);
   display: flex;
   font-size: 16px;
@@ -99,22 +112,36 @@ export default {
   padding: 0 0 0 100px;
   position: relative;
   text-decoration: none;
+  transition: background 0.3s;
   width: 100%;
 
+  &:before {
+    background: #6B70D7;
+    bottom: 0;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scaleX(0);
+    transform-origin: 0 100%;
+    transition: ease-out 0.2s 0.1s;
+    width: 5px;
+  }
+
+  &:hover,
   &.router-link-active {
     background: rgba(#6B70D7, 0.06);
     color: #6B70D7;
+  }
 
-    &:before {
-      background: #6B70D7;
-      bottom: 0;
-      content: '';
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 5px;
-    }
+  &.router-link-active:before {
+    transform: scaleX(1);
   }
 }
 
+.routes__item__link__icon {
+  margin-right: 15px;
+  width: 16px;
+}
 </style>
