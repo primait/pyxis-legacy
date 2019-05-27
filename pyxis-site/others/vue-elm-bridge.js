@@ -11,10 +11,14 @@ export default function (elm) {
       }
     },
     render: function (createElement, _context) {
-      return createElement('div')
+      return createElement('div', null, [
+        createElement('div', {
+          ref: 'elmNode'
+        }, null)
+      ])
     },
     mounted: function () {
-      let node = this.$el
+      let node = this.$refs.elmNode
       let app = elm.init({ node: node, flags: this.$props.flags })
 
       if (this.$props.ports) {
