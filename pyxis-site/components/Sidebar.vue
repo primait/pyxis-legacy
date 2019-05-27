@@ -1,16 +1,29 @@
 <template>
-  <div>
-    Sidebar component
-  </div>
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li v-for="item in menu">
+                    <router-link :to=item.path>{{ item.label }}</router-link>
+                </li>
+            </ul>
+        </nav>
+    </aside>
 </template>
 
 <script>
 export default {
-  name: 'Sidebar'
+  name: 'Sidebar',
+  props: {
+      menu: {
+          type: Array,
+          required: true
+      }
+  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style module lang="scss" scoped>
+    .sidebar {
 
+    }
 </style>

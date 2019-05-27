@@ -1,15 +1,27 @@
 <template>
   <div id="app">
     <heading></heading>
-    <sidebar></sidebar>
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <sidebar :menu=menu></sidebar>
   </div>
 </template>
+
+<script>
+import routes from '@/others/routes.js'
+import Heading from "./components/Heading";
+import Sidebar from '@/components/Sidebar.vue'
+
+export default {
+  name: 'app',
+  components: {
+    Heading, Sidebar
+  },
+  data: function() {
+    return {
+      menu: routes
+    }
+  }
+}
+</script>
 
 <style lang="scss">
   #app {
@@ -33,6 +45,7 @@
     }
   }
 </style>
+
 <script>
   import Heading from "./components/Heading";
   import Sidebar from "./components/Sidebar";
