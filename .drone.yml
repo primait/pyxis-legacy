@@ -16,7 +16,8 @@ pipeline:
       - cache-restore --docker-cache-pull --no-files
       - docker-compose build
       - docker-compose run -w $PWD web "yarn install"
-      - docker-compose run -w $PWD web "yarn build:prod"
+      - docker-compose run -w $PWD web "yarn build:site"
+      - docker-compose run -w $PWD web "yarn build:css"
       - if [ -n "${DRONE_TAG}" ]; then ./deploy/deploy production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/deploy staging; fi
       - cache-save ~/.node-modules ~/.elm-stuff
 
