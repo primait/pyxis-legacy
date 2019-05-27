@@ -1,6 +1,5 @@
 @import
-  '../assets/primaIcomoon/style.css',
-  '../assets/pyxisIcomoon/style.css';
+  '../assets/pyxisIconset/style.css';
 
 @import
   '01_base/_variables.scss',
@@ -46,5 +45,5 @@
 
   '03_molecules/_accordion.scss',
   '03_molecules/_pills.scss',
-  
+
   '04_organisms/_login.scss';

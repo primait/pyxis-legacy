@@ -10,9 +10,9 @@
     border-left: map-get($formConfig, borderWidth) solid color(shape);
     bottom: 1px;
     color: color(brandAlt, dark);
-    content: "\e903";
-    font-family: 'pyxis';
-    font-size: 20px;
+    content: "\e912";
+    font-family: 'pyxisIconset';
+    font-size: 25px;
     line-height: map-get($formConfig, fieldHeight);
     pointer-events: none;
     position: absolute;
