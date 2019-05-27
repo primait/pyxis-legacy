@@ -38,8 +38,8 @@ export default {
   },
   created: function () {
     this.domainsList = routes.map(domain => {
-      domain['routes'] = domain.routes.map(route => {
-        route['icon'] = require(`@/assets/icons/${route.icon}.svg`)
+      domain.routes = domain.routes.map(route => {
+        route.icon = require(`@/assets/icons/${route.icon}.svg`)
         return route
       })
       return domain
