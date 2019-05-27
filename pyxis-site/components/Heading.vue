@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="borderTop bg-background-dark">
     Heading component
   </div>
 </template>
