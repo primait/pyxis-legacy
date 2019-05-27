@@ -2,12 +2,13 @@
   <div id="app">
     <heading></heading>
     <sidebar :menu=menu></sidebar>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import routes from '@/others/routes.js'
-import Heading from "./components/Heading";
+import Heading from '@/components/Heading'
 import Sidebar from '@/components/Sidebar.vue'
 
 export default {
@@ -15,7 +16,7 @@ export default {
   components: {
     Heading, Sidebar
   },
-  data: function() {
+  data: function () {
     return {
       menu: routes
     }
@@ -45,14 +46,3 @@ export default {
     }
   }
 </style>
-
-<script>
-  import Heading from "./components/Heading";
-  import Sidebar from "./components/Sidebar";
-
-  export default {
-    components: {
-      Sidebar, Heading
-    }
-  }
-</script>
