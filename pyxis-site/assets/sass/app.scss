@@ -1,12 +1,14 @@
-@import
+@import 
+'reset',
+
 './../../../pyxis-sass/scss/01_base/_variables.scss',
 './../../../pyxis-sass/scss/01_base/_atomsConfiguration.scss',
 './../../../pyxis-sass/scss/01_base/_helpers.scss',
 './../../../pyxis-sass/scss/01_base/_breakpoints.scss',
 './../../../pyxis-sass/scss/01_base/_utilityClasses.scss',
 './../../../pyxis-sass/scss/01_base/_utils.scss',
- // '01_base/_fonts.scss',
 './../../../pyxis-sass/scss/01_base/_base.scss',
+
 './../../../pyxis-sass/scss/02_atoms/_avatar.scss',
 './../../../pyxis-sass/scss/02_atoms/_typography.scss',
 './../../../pyxis-sass/scss/02_atoms/_buttons.scss',
@@ -30,6 +32,7 @@
 './../../../pyxis-sass/scss/02_atoms/_tooltips.scss',
 './../../../pyxis-sass/scss/02_atoms/_icons.scss',
 './../../../pyxis-sass/scss/02_atoms/_overlay.scss',
+
 './../../../pyxis-sass/scss/03_molecules/_buttonGroup.scss',
 './../../../pyxis-sass/scss/03_molecules/_form.scss',
 './../../../pyxis-sass/scss/03_molecules/_nav.scss',
@@ -41,6 +44,7 @@
 './../../../pyxis-sass/scss/03_molecules/_pills.scss',
 './../../../pyxis-sass/scss/03_molecules/_table.scss',
 './../../../pyxis-sass/scss/03_molecules/_listChooser.scss',
+
 './../../../pyxis-sass/scss/04_organisms/_jumbotron.scss',
 './../../../pyxis-sass/scss/04_organisms/_login.scss',
 './../../../pyxis-sass/scss/04_organisms/_modal.scss';

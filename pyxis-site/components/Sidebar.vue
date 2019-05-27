@@ -1,29 +1,120 @@
 <template>
-    <aside class="sidebar">
-        <nav>
-            <ul>
-                <li v-for="item in menu">
-                    <router-link :to=item.path>{{ item.label }}</router-link>
-                </li>
-            </ul>
-        </nav>
-    </aside>
+  <aside class="sidebar">
+    <ul class="domains directionColumn noListStyle">
+      <li class="domains__item" v-for="domain in domainsList" :key="toSlug(domain.label)">
+
+        <h4 class="domains__item__title fwHeavy">
+          {{ domain.label }}
+        </h4>
+
+        <ul class="routes directionColumn noListStyle">
+          <li class="routes__item" v-for="route in domain.routes" :key="toSlug(route.label)">
+            <router-link class="routes__item__link fwBase" :to="route.path" >
+              {{ route.label }}
+            </router-link>
+          </li>
+        </ul>
+
+      </li>
+    </ul>
+  </aside>
 </template>
 
 <script>
+import routes from '@/others/routes.js'
+import helpers from '@/others/helpers.js'
+
 export default {
   name: 'Sidebar',
-  props: {
-      menu: {
-          type: Array,
-          required: true
-      }
+  data: function () {
+    return {
+      domainsList: []
+    }
+  },
+  created: function () {
+    this.domainsList = routes.domains
+  },
+  methods: {
+    toSlug: function (label) {
+      return helpers.toSlug(label)
+    }
   }
 }
 </script>
 
-<style module lang="scss" scoped>
-    .sidebar {
+<style lang="scss" scoped>
+@import '@/assets/sass/app.scss';
 
+.sidebar {
+  display: flex;
+  padding: 80px 0;
+  width: 390px;
+}
+
+.domains,
+.routes {
+  padding: 0;
+  margin: 0;
+}
+
+.domains {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.domains__item {
+  padding: 0;
+  margin: 0;
+
+  & + & {
+    margin-top: 60px;
+  }
+}
+
+.domains__item__title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  padding-left: 80px;
+}
+
+.routes {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.routes__item {
+  align-items: center;
+  display: flex;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.routes__item__link {
+  align-items: center;
+  color: color(text);
+  display: flex;
+  font-size: 16px;
+  height: 100%;
+  padding: 0 0 0 100px;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+
+  &.router-link-active {
+    background: rgba(#6B70D7, 0.06);
+    color: #6B70D7;
+
+    &:before {
+      background: #6B70D7;
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 5px;
     }
+  }
+}
+
 </style>
