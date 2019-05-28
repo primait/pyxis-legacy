@@ -1,5 +1,5 @@
 <template>
-    <elm-counter></elm-counter>
+    <elm-accordion></elm-accordion>
 </template>
 
 <script>
@@ -10,7 +10,7 @@ export default {
     msg: String
   },
   components: {
-    'elm-counter': VueElmBridge(require('../elm-components/Counter.elm').Elm.Counter)
+    'elm-accordion': VueElmBridge(require('../elm-components/Accordion.elm').Elm.Accordion)
   }
 }
 </script>

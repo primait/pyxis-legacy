@@ -1,6 +1,6 @@
 <template>
   <main class="main">
-    <div class="container">
+    <div class="a-container directionColumn">
       <h3>{{ title }}</h3>
       <p>{{ excerpt }}</p>
       <component :is="component"></component>
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style lang="scss" scoped>
 
 .main {
   display: flex;
