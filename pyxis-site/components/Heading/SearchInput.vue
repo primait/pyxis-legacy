@@ -40,7 +40,6 @@ $iconSize: 15px;
 .heading__search__wrapper {
   display: none;
   align-items: center;
-  margin-left: auto;
   position: relative;
 
   &:before {

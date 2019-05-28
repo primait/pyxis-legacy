@@ -56,6 +56,7 @@ export default {
   @include mq(small) {
     align-items: flex-start;
     padding-left: 25px;
+    margin-right: auto;
   }
 }
 
