@@ -84,6 +84,11 @@ const routes = [
         icon: 'tabs'
       },
       {
+        path: '/tables',
+        label: 'Tables',
+        icon: 'tabs'
+      },
+      {
         path: '/tooltips',
         label: 'Tooltips',
         icon: 'tooltips'

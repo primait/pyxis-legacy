@@ -4,6 +4,8 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Container from './components/Container.vue'
 import Accordions from './views/Accordions.vue'
+import Messages from './views/Messages.vue'
+import Tables from './views/Tables.vue'
 
 Vue.use(Router)
 
@@ -25,9 +27,26 @@ export default new Router({
         excerpt: 'Lorem ipsum dolor sit amet',
         component: Accordions
       }
-      // children: [
-      //   { path: '', component: Accordions }
-      // ]
+    },
+    {
+      path: '/messages',
+      name: 'messages',
+      component: Container,
+      props: {
+        title: 'Messages',
+        excerpt: 'Lorem ipsum dolor sit amet',
+        component: Messages
+      }
+    },
+    {
+      path: '/tables',
+      name: 'tables',
+      component: Container,
+      props: {
+        title: 'Tables',
+        excerpt: 'Lorem ipsum dolor sit amet',
+        component: Tables
+      }
     }
   ]
 })
