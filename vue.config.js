@@ -2,6 +2,7 @@ const path = require('path')
 
 const buildDestination = path.resolve(__dirname, 'dist/pyxis-site')
 const sourcesRoot = path.resolve(__dirname, 'pyxis-site')
+const pyxisSassRoot = path.resolve(__dirname, 'pyxis-site')
 
 console.log(sourcesRoot)
 
@@ -14,6 +15,7 @@ module.exports = {
     config
       .resolve.alias
       .set('@', sourcesRoot)
+      .set('pyxis-sass', pyxisSassRoot)
     // Interact with entry points
     config
       .entry('app')
