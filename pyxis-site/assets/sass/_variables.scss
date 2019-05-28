@@ -1,0 +1,14 @@
+@import 
+'pyxis-sass/scss/01_base/_variables.scss';
+
+$fontPath: '../pyxis-sass/assets/fonts';
+
+$siteColors : (
+  primary : (
+    light: #F6F6FD,
+    base: #6B70D7,
+    dark: darken(#6B70D7, 20%)
+  )
+);
+
+$colors: map-merge($colors, $siteColors);
