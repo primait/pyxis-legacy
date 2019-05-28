@@ -1,6 +1,6 @@
 <template>
   <div class="heading__search__wrapper">
-    <input v-on:input='input' type="text" class="heading__search" :placeholder="placeholder" :value="inputValue">
+    <input v-model="myInput" v-on:input='input' type="text" class="heading__search" :placeholder="placeholder" >
   </div>
 </template>
 
@@ -24,16 +24,28 @@ export default {
       myInput: ''
     }
   },
+  created: function () {
+    this.myInput = this.inputValue
+  },
+  watch: {
+    inputValue: function (val) {
+      this.myInput = val
+    }
+  },
   methods: {
     input: function (evt) {
-      console.log(evt)
+      this.$emit('input', { text: this.myInput, lastDigit: evt.data })
     }
   }
 }
 </script>
 
 <style lang="scss">
-@import "@/assets/sass/app.scss";
+
+@import
+'@/assets/sass/_variables.scss',
+'@/assets/sass/_helpers.scss',
+'@/assets/sass/_breakpoints.scss';
 
 $iconSize: 15px;
 

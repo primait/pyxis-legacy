@@ -15,7 +15,7 @@
       </div>
       <span class="fsSmall">Prima.it design system</span>
     </div>
-    <search-input></search-input>
+    <search-input :inputValue="inputValue" :placeholder='placeholder'></search-input>
   </div>
 </template>
 
@@ -29,14 +29,20 @@ export default {
   data: function () {
     return {
       pyxisLastRelease: '1.7.3',
-      logo: logoSvg
+      logo: logoSvg,
+      placeholder: 'search',
+      inputValue: ''
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/app.scss";
+
+@import
+'@/assets/sass/_variables.scss',
+'@/assets/sass/_helpers.scss',
+'@/assets/sass/_breakpoints.scss';
 
 .heading {
   align-items: center;
