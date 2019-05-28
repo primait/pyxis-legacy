@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <heading></heading>
-    <sidebar></sidebar>
-    <router-view></router-view>
+    <div class="appBody">
+      <sidebar></sidebar>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -21,4 +23,8 @@ export default {
 
 <style lang="scss">
   @import '@/assets/sass/app.scss';
+
+  .appBody {
+    display: flex;
+  }
 </style>
