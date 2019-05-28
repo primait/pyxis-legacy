@@ -1,6 +1,6 @@
 <template>
   <div class="heading__search__wrapper">
-    <input v-model="myInput" v-on:input='input' type="text" class="heading__search" :placeholder="placeholder" >
+    <input v-model="myInput" v-on:input='onInput' type="text" class="heading__search" :placeholder="placeholder" >
   </div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
     }
   },
   methods: {
-    input: function (evt) {
+    onInput: function (evt) {
       this.$emit('input', { text: this.myInput, lastDigit: evt.data })
     }
   }
