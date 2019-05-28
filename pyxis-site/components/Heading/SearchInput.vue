@@ -38,10 +38,15 @@ export default {
   border-radius: 100px;
   background-color: rgba(255,255,255,0.1);
   color: color(textAlt, light);
+  display: none;
   height: 40px;
   margin-left: auto;
   padding: 0 20px;
   width: 250px;
+
+  @include mq(small) {
+    display: block;
+  }
 
   &::placeholder {
     color: color(textAlt, light);
