@@ -1,7 +1,12 @@
 <template>
   <div class="heading">
     <div class="heading__logo">
-      <object :data="logo" type="image/svg+xml" class="logo"></object>
+      <simple-svg
+        :filepath="logo"
+        :fill="'#fff'"
+        :width="'32px'"
+        :height="'32px'"
+        />
     </div>
     <div class="heading__intro">
       <div class="heading__name fwHeavy">
