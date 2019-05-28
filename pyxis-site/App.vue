@@ -15,6 +15,10 @@ export default {
   components: {
     Heading,
     Sidebar
+  },
+  data: function () {
+    return {
+    }
   }
 }
 </script>

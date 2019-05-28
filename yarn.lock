@@ -2636,6 +2636,11 @@ csso@^3.5.1:
   dependencies:
     css-tree "1.0.0-alpha.29"
 
+cssom@^0.3.2:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/cssom/-/cssom-0.3.6.tgz#f85206cee04efa841f3c5982a74ba96ab20d65ad"
+  integrity sha512-DtUeseGk9/GBW0hl0vVPpU22iHL6YB5BUX7ml1hB+GMpo0NX5G4voX3kdWiMSEguFtcW3Vh3djqNF4aIe6ne0A==
+
 current-script-polyfill@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/current-script-polyfill/-/current-script-polyfill-1.0.0.tgz#f31cf7e4f3e218b0726e738ca92a02d3488ef615"
@@ -8423,6 +8428,13 @@ vue-router@^3.0.3:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.6.tgz#2e4f0f9cbb0b96d0205ab2690cfe588935136ac3"
   integrity sha512-Ox0ciFLswtSGRTHYhGvx2L44sVbTPNS+uD2kRISuo8B39Y79rOo0Kw0hzupTmiVtftQYCZl87mwldhh2L9Aquw==
+
+vue-simple-svg@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/vue-simple-svg/-/vue-simple-svg-1.3.2.tgz#6062bcedffa28ba344f733b21d124be04d65da1f"
+  integrity sha512-sgHFYFEF4PafWs+00Fk2V73lBZGk7YNr/F1hiSIHV5yY6fHNS4QUAw69zBpjsx+jawiFzBlMyMcSMXzxRKFfIA==
+  dependencies:
+    cssom "^0.3.2"
 
 vue-style-loader@^4.1.0:
   version "4.1.2"
