@@ -5,7 +5,7 @@ module Table.Model exposing
     , initialModel
     )
 
-import Prima.Pyxis.Table.Table as Table
+import Prima.Pyxis.Table as Table
 
 
 type Msg

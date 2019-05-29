@@ -1,7 +1,7 @@
 module Table.View exposing (view)
 
 import Html exposing (Html, div)
-import Prima.Pyxis.Table.Table as Table
+import Prima.Pyxis.Table as Table
 import Pyxis.Helpers as Helpers
 import Table.Model exposing (..)
 
