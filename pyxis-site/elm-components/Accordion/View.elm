@@ -14,7 +14,7 @@ import Accordion.Model
 import Browser
 import Html exposing (..)
 import Html.Attributes exposing (class)
-import Prima.Pyxis.Accordion.Accordion as Accordion
+import Prima.Pyxis.Accordion as Accordion
 import Pyxis.Helpers as Helpers
 
 

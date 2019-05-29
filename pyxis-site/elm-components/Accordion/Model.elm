@@ -7,7 +7,7 @@ module Accordion.Model exposing
     )
 
 import Html exposing (..)
-import Prima.Pyxis.Accordion.Accordion as Accordion
+import Prima.Pyxis.Accordion as Accordion
 import Pyxis.Helpers as Helpers
 
 

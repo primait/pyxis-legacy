@@ -3,7 +3,7 @@ module Message.View exposing (view)
 import Html exposing (Html, div, text)
 import Html.Attributes exposing (class)
 import Message.Model exposing (Model, Msg)
-import Prima.Pyxis.Message.Message as Message
+import Prima.Pyxis.Message as Message
 import Pyxis.Helpers as Helpers
 
 

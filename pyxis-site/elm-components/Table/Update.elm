@@ -1,6 +1,6 @@
 module Table.Update exposing (update)
 
-import Prima.Pyxis.Table.Table as Table
+import Prima.Pyxis.Table as Table
 import Table.Model
     exposing
         ( Model
