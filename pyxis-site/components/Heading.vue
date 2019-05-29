@@ -38,11 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-@import
-'@/assets/sass/_variables.scss',
-'@/assets/sass/_helpers.scss',
-'@/assets/sass/_breakpoints.scss';
+@import '@/assets/sass/helpers.scss';
 
 .heading {
   align-items: center;

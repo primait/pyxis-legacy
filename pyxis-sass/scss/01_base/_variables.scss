@@ -54,15 +54,14 @@ $colors: (
     base: #f7da7e,
   ),
 
-);
-
+) !default;
 
 $fonts: (
   light:     ('avenirltstd-book', Helvetica, Verdana, sans-serif),
   base:      ('avenirltstd-medium', Helvetica, Verdana, sans-serif),
   heavy:     ('avenirltstd-heavy', Helvetica, Verdana, sans-serif),
   monospace: ('Courier New', Courier, monospace),
-);
+) !default;
 
 $fontSizes: (
   root:     16px,
@@ -73,13 +72,12 @@ $fontSizes: (
   large:    1.375rem,  // 22px
   xlarge:   1.5625rem, // 25px
   xxlarge:  2rem,      // 32px
-);
+) !default;
 
-$largeScreenRatio: 1.125;
+$largeScreenRatio: 1.125 !default;
 
-$goldenRatio: 1.618; // https://medium.com/@zkareemz/golden-ratio-62b3b6d4282a
-$zIndexes: tooltip;
-
+$goldenRatio: 1.618 !default; // https://medium.com/@zkareemz/golden-ratio-62b3b6d4282a
+$zIndexes: tooltip !default;
 
 //Relative font asset path
 $fontPath: "../assets/fonts" !default;
