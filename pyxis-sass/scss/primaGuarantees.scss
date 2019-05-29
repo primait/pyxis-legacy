@@ -3,15 +3,7 @@
   '../assets/pyxisIcomoon/style.css';
 
 @import
-  '01_base/_variables.scss',
-  '01_base/_flowVariables.scss',
-  '01_base/_atomsConfiguration.scss',
-  '01_base/_helpers.scss',
-  '01_base/_breakpoints.scss',
-  '01_base/_utilityClasses.scss',
-  '01_base/_utils.scss',
-  // '01_base/_fonts.scss',
-  '01_base/_base.scss',
+  '01_base/_root',
 
   '02_atoms/_avatar.scss',
   '02_atoms/_typography.scss',

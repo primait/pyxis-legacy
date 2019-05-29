@@ -1,6 +1,3 @@
-@import 
-'pyxis-sass/scss/01_base/_variables.scss';
-
 $fontPath: '../pyxis-sass/assets/fonts';
 
 $siteColors : (
@@ -11,4 +8,5 @@ $siteColors : (
   )
 );
 
-$colors: map-merge($colors, $siteColors);
+
+@import 'pyxis-sass/scss/01_base/_variables';

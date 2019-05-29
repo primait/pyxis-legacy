@@ -26,7 +26,7 @@ export default new Router({
     {
       path: '/messages',
       name: 'messages',
-      component: () => import(/* webpackChunkName: "accordions-view" */ '@/views/Messages.vue'),
+      component: () => import(/* webpackChunkName: "messages-view" */ '@/views/Messages.vue'),
       props: {
         title: 'Messages',
         excerpt: 'Lorem ipsum dolor sit amet'
@@ -35,7 +35,7 @@ export default new Router({
     {
       path: '/tables',
       name: 'tables',
-      component: () => import(/* webpackChunkName: "accordions-view" */ '@/views/Messages.vue'),
+      component: () => import(/* webpackChunkName: "tables-view" */ '@/views/Tables.vue'),
       props: {
         title: 'Tables',
         excerpt: 'Lorem ipsum dolor sit amet'
