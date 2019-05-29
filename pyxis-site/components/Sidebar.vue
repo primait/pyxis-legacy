@@ -54,6 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/sass/helpers.scss';
 
 .sidebar {
   border-right: 1px solid color(shape);
@@ -84,8 +85,9 @@ export default {
 }
 
 .domains__item__title {
+  color: color(text, dark);
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding-left: 80px;
 }
 
@@ -109,7 +111,7 @@ export default {
   display: flex;
   font-size: 16px;
   height: 100%;
-  padding: 0 0 0 100px;
+  padding: 0 0 0 90px;
   position: relative;
   text-decoration: none;
   transition: background 0.3s;
@@ -141,7 +143,7 @@ export default {
 }
 
 .routes__item__link__icon {
-  margin-right: 15px;
+  margin-right: 20px;
   width: 16px;
 }
 </style>

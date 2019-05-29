@@ -1,33 +1,17 @@
 <template>
   <main class="main">
     <div class="a-container directionColumn">
-      <h3>{{ title }}</h3>
-      <p>{{ excerpt }}</p>
-      <component :is="component"></component>
+      <slot></slot>
     </div>
   </main>
 </template>
 
 <script>
 export default {
-  name: 'Container',
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    excerpt: {
-      type: String,
-      required: true
-    },
-    component: {
-      required: true
-    }
-  }
+  name: 'Container'
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
 .main {

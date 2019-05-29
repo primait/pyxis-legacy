@@ -17,29 +17,17 @@ export default new Router({
     {
       path: '/accordions',
       name: 'accordions',
-      component: () => import(/* webpackChunkName: "accordions-view" */ '@/views/Accordions.vue'),
-      props: {
-        title: 'Accordions',
-        excerpt: 'Lorem ipsum dolor sit amet'
-      }
+      component: () => import(/* webpackChunkName: "accordions-view" */ '@/views/Accordions.vue')
     },
     {
       path: '/messages',
       name: 'messages',
-      component: () => import(/* webpackChunkName: "messages-view" */ '@/views/Messages.vue'),
-      props: {
-        title: 'Messages',
-        excerpt: 'Lorem ipsum dolor sit amet'
-      }
+      component: () => import(/* webpackChunkName: "messages-view" */ '@/views/Messages.vue')
     },
     {
       path: '/tables',
       name: 'tables',
-      component: () => import(/* webpackChunkName: "tables-view" */ '@/views/Tables.vue'),
-      props: {
-        title: 'Tables',
-        excerpt: 'Lorem ipsum dolor sit amet'
-      }
+      component: () => import(/* webpackChunkName: "tables-view" */ '@/views/Tables.vue')
     }
   ]
 })
