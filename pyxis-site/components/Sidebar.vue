@@ -10,12 +10,16 @@
         <ul class="routes directionColumn noListStyle">
           <li class="routes__item" v-for="route in domain.routes" :key="toSlug(route.label)">
             <router-link class="routes__item__link fwBase" :to="route.path">
-              <object class="routes__item__link__icon" :data="route.icon" type="image/svg+xml"></object>
+              <simple-svg
+                :fill="isActive(route.name)"
+                :filepath="route.icon"
+                :height="'14px'"
+                :width="'14px'"
+                />
               {{ route.label }}
             </router-link>
           </li>
         </ul>
-
       </li>
     </ul>
   </aside>
@@ -48,6 +52,14 @@ export default {
   methods: {
     toSlug: function (label) {
       return helpers.toSlug(label)
+    },
+
+    isActive: function (pathName) {
+      if (this.$route.name === pathName) {
+        return '#6B70D7'
+      } else {
+        return '#4D5969'
+      }
     }
   }
 }
@@ -80,7 +92,7 @@ export default {
   margin: 0;
 
   & + & {
-    margin-top: 60px;
+    margin-top: 50px;
   }
 }
 
@@ -140,10 +152,15 @@ export default {
   &.router-link-active:before {
     transform: scaleX(1);
   }
+
+  &.router-link-active .simple-svg-wrapper svg.simple-svg {
+     fill: #6B70D7;
+  }
 }
 
-.routes__item__link__icon {
+.simple-svg-wrapper {
+  display: flex;
   margin-right: 20px;
-  width: 16px;
 }
+
 </style>

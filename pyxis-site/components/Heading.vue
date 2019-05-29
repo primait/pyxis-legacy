@@ -102,4 +102,8 @@ export default {
     padding: 5px 10px 3px;
   }
 }
+
+.simple-svg-wrapper {
+  display: flex;
+}
 </style>
