@@ -2,10 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from './views/Home.vue'
-import Container from './components/Container.vue'
-import Accordions from './views/Accordions.vue'
-import Messages from './views/Messages.vue'
-import Tables from './views/Tables.vue'
 
 Vue.use(Router)
 
@@ -21,31 +17,28 @@ export default new Router({
     {
       path: '/accordions',
       name: 'accordions',
-      component: Container,
+      component: () => import(/* webpackChunkName: "accordions-view" */ '@/views/Accordions.vue'),
       props: {
         title: 'Accordions',
-        excerpt: 'Lorem ipsum dolor sit amet',
-        component: Accordions
+        excerpt: 'Lorem ipsum dolor sit amet'
       }
     },
     {
       path: '/messages',
       name: 'messages',
-      component: Container,
+      component: () => import(/* webpackChunkName: "accordions-view" */ '@/views/Messages.vue'),
       props: {
         title: 'Messages',
-        excerpt: 'Lorem ipsum dolor sit amet',
-        component: Messages
+        excerpt: 'Lorem ipsum dolor sit amet'
       }
     },
     {
       path: '/tables',
       name: 'tables',
-      component: Container,
+      component: () => import(/* webpackChunkName: "accordions-view" */ '@/views/Messages.vue'),
       props: {
         title: 'Tables',
-        excerpt: 'Lorem ipsum dolor sit amet',
-        component: Tables
+        excerpt: 'Lorem ipsum dolor sit amet'
       }
     }
   ]

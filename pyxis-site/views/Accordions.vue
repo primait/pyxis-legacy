@@ -4,6 +4,7 @@
 
 <script>
 import VueElmBridge from '../others/vue-elm-bridge.js'
+
 export default {
   name: 'Accordions',
   props: {
