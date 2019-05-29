@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import VueElmBridge from '../others/vue-elm-bridge.js'
+import VueElmBridge from '@/others/vue-elm-bridge.js'
 import Container from '@/components/Container.vue'
 import TextBlock from '@/components/TextBlock.vue'
 
