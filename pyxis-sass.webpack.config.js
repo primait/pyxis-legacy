@@ -4,30 +4,36 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const pyxisRootFolder = path.resolve(__dirname, 'pyxis-sass')
+
 const config = {
 
-  context: path.resolve(__dirname, 'pyxis-sass'),
-
-  /* `primaGuarantees` viene chiamato per primo così da
-  poter essere sovrascritto da `prima` */
-
+  context: pyxisRootFolder,
   entry: {
-    primaGuarantees: './primaGuarantees.js',
-    prima: './prima.js'
+    pyxis: path.resolve(pyxisRootFolder, 'pyxis.js'),
+    prima: path.resolve(pyxisRootFolder, 'PrimaTheme', 'prima.js'),
+    primaGuarantees: path.resolve(pyxisRootFolder, 'PrimaGuaranteesTheme', 'primaGuarantees.js'),
+    // primaPayment: path.resolve(pyxisRootFolder, 'PrimaPaymentTheme', 'primaPayment.js'),
+    // primaReservedArea: path.resolve(pyxisRootFolder, 'PrimaReservedAreaTheme', 'primaReservedArea.js'),
+    // primaThankYou: path.resolve(pyxisRootFolder, 'PrimaThankYouTheme', 'primaThankYou.js')
   },
 
   output: {
     path: path.resolve(__dirname, 'dist/pyxis-css'),
     filename: '[name].bundle.[hash].js'
   },
+  resolve: {
+    alias: {
+      'pyxis-assets': path.resolve(pyxisRootFolder, 'assets'),
+      'pyxis-sources': path.resolve(pyxisRootFolder, 'scss')
+    }
+  },
 
   module: {
     rules: [
       {
-        test: /\.scss$/,
-        include: [
-          path.resolve(__dirname, 'pyxis-sass')
-        ],
+        test: /\.(sa|sc|c)ss$/,
+        include: [path.resolve(pyxisRootFolder)],
         use: [
           { loader: MiniCssExtractPlugin.loader },
           { loader: 'css-loader' },
