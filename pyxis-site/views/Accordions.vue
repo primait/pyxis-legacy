@@ -34,9 +34,6 @@ export default {
       accordionTypes: ['dark', 'base', 'light']
     }
   },
-  mounted: function () {
-    console.info('Elm node:', this.$refs.elmAccordiondark.innerHTML, this.$refs.elmAccordiondark.innerText)
-  },
   methods: {
     getFlags (accordionType) {
       return {
