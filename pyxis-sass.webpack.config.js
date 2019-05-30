@@ -25,7 +25,9 @@ const config = {
     rules: [
       {
         test: /\.scss$/,
-        include: [path.resolve(__dirname, 'pyxis-sass', 'scss')],
+        include: [
+          path.resolve(__dirname, 'pyxis-sass')
+        ],
         use: [
           { loader: MiniCssExtractPlugin.loader },
           { loader: 'css-loader' },

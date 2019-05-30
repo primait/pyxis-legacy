@@ -47,10 +47,10 @@
   &:after {
     clip-path: inset( 0 100% 0 0 );
     color: color(brandAlt, dark);
-    content: "\e900";
-    font-family: 'pyxis';
-    font-size: 12px;
-    left: 4px;
+    content: "\e915";
+    font-family: 'pyxisIconset';
+    font-size: 16px;
+    left: 2px;
     line-height: 20px;
     opacity: 0;
     transform: translateY(-50%);

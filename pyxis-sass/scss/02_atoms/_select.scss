@@ -65,8 +65,8 @@
 
   &:after {
     color: color(brandAlt, dark);
-    content: "\e902";
-    font-family: 'pyxis';
+    content: "\e90a";
+    font-family: 'pyxisIconset';
     font-size: map-get($formConfig, iconSize);
     position: absolute;
     top: 50%;
