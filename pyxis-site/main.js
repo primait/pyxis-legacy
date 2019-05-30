@@ -3,9 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueSimpleSvg from 'vue-simple-svg'
+import VueCodeHighlight from 'vue-code-highlight'
 
 Vue.config.productionTip = false
 Vue.use(VueSimpleSvg)
+Vue.use(VueCodeHighlight)
 
 Vue.filter('capitalize', function (value) {
   if (!value) return ''
