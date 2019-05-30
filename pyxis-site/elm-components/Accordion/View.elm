@@ -13,7 +13,7 @@ import Accordion.Model
         )
 import Browser
 import Html exposing (..)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (class, id)
 import Prima.Pyxis.Accordion as Accordion
 import Pyxis.Helpers as Helpers
 
@@ -23,8 +23,7 @@ view model =
     div
         []
         [ Helpers.pyxisStyle
-        , div
-            [ class "a-container a-container--medium directionColumn" ]
+        , Helpers.elmSyntaxWrapper
             ((List.intersperse Helpers.spacer << List.map accordionRender) model.accordionList)
         ]
 

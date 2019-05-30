@@ -7,7 +7,7 @@
     </text-block>
 
     <code-inspector :key="type" v-for="type in accordionTypes" :title="type | capitalize">
-      <elm-accordion :ref="'elmAccordion'+type" :flags="getFlags(type)"></elm-accordion>
+      <elm-accordion :flags="getFlags(type)"></elm-accordion>
     </code-inspector>
 
   </container>

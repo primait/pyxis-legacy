@@ -64,7 +64,7 @@ export default {
       this.codeIconColor = this.getCodeIconColor()
 
       if (this.isActive) {
-        this.code = htmlFormatter.render(inspectorNode.querySelector('[id*=slug-accordion]').parentElement.innerHTML.trim())
+        this.code = htmlFormatter.render(inspectorNode.querySelector('#elmSyntaxWrapper').innerHTML.trim())
       } else {
         this.code = ''
       }
