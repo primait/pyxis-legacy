@@ -1,8 +1,11 @@
 module Accordion.Model exposing
     ( Accordion
     , AccordionType(..)
+    , Flags
     , Model
     , Msg(..)
+    , accordionBuilder
+    , accordionTypeFromString
     , initialModel
     )
 
@@ -22,7 +25,7 @@ type alias Model =
 
 initialModel : Model
 initialModel =
-    Model (List.map accordionBuilder [ Base, Light, Dark ])
+    Model []
 
 
 type alias Accordion =
@@ -36,6 +39,22 @@ type AccordionType
     = Base
     | Dark
     | Light
+
+
+accordionTypeFromString : String -> Maybe AccordionType
+accordionTypeFromString str =
+    case String.toLower str of
+        "base" ->
+            Just Base
+
+        "dark" ->
+            Just Dark
+
+        "light" ->
+            Just Light
+
+        _ ->
+            Nothing
 
 
 accordionBuilder : AccordionType -> Accordion
@@ -72,3 +91,8 @@ accordionTypeToTitle type_ =
 accordionContent : List (Html Msg)
 accordionContent =
     [ text Helpers.loremIpsum ]
+
+
+type alias Flags =
+    { accordionType : String
+    }
