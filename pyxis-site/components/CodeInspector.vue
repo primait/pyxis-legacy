@@ -1,11 +1,11 @@
 <template>
-  <div :class="getInspectorClasses()">
+  <div :class="classObject">
       <h4 class="inspector__title" @click="toggleCodeInspector">
         <simple-svg
           :filepath="codeIcon"
           :fill="codeIconColor"
-          :width="codeIconWidth"
-          :height="codeIconHeight"
+          :width="'20px'"
+          :height="'20px'"
           />
           {{title}}
       </h4>
@@ -14,7 +14,7 @@
           <slot></slot>
         </div>
 
-        <div class="inspector__content__code" v-if="code !== ''" v-highlight>
+        <div class="inspector__content__code" v-if="code" v-highlight>
           <pre class="language-html"><code>{{code}}</code></pre>
         </div>
       </div>
@@ -24,11 +24,6 @@
 <script>
 import codeIcon from '@/assets/icons/code.svg'
 import htmlFormatter from 'html-formatter'
-
-const iconColors = {
-  default: '#6B70D7',
-  active: '#FFFFFF'
-}
 
 export default {
   name: 'CodeInspector',
@@ -42,38 +37,41 @@ export default {
     return {
       isActive: false,
       codeIcon: codeIcon,
-      codeIconWidth: '20px',
-      codeIconHeight: '20px',
-      codeIconColor: iconColors.default,
-      code: ''
+      code: null
     }
   },
   methods: {
-    getInspectorClasses () {
-      return ['inspector', (this.isActive ? 'is-active' : '')].join(' ')
-    },
-    getCodeIconColor () {
-      return this.codeIconColor === iconColors.default
-        ? iconColors.active
-        : iconColors.default
-    },
     toggleCodeInspector (event) {
-      const inspectorNode = event.target.closest('.inspector')
-
       this.isActive = !this.isActive
-      this.codeIconColor = this.getCodeIconColor()
 
-      if (this.isActive) {
-        this.code = htmlFormatter.render(inspectorNode.querySelector('#elmSyntaxWrapper').innerHTML.trim())
-      } else {
-        this.code = ''
+      try {
+        if (this.isActive) {
+          this.code = htmlFormatter.render(event.target.closest('.inspector').querySelector('#elmSyntaxWrapper').innerHTML.trim())
+        } else {
+          this.code = null
+        }
+      } catch {
+        this.code = null
       }
+    }
+  },
+  computed: {
+    classObject: function () {
+      return {
+        'inspector': true,
+        'is-active': this.isActive
+      }
+    },
+    codeIconColor: function () {
+      return this.isActive ? '#FFFFFF' : '#6B70D7'
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss">
+  @import '@/assets/sass/syntaxHighlight.scss';
+</style>
 <style lang="scss" scoped>
   @import '@/assets/sass/helpers.scss';
 
