@@ -66,13 +66,13 @@ accordionTypeToSlug : AccordionType -> String
 accordionTypeToSlug type_ =
     case type_ of
         Base ->
-            "slug-accordion-base"
+            "accordionBase"
 
         Light ->
-            "slug-accordion-light"
+            "accordionLight"
 
         Dark ->
-            "slug-accordion-dark"
+            "accordionDark"
 
 
 accordionTypeToTitle : AccordionType -> String

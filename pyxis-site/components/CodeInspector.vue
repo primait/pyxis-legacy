@@ -99,6 +99,8 @@ export default {
     border-left: 5px solid color(pyxisBrand);
     border-radius: 5px;
     margin: 40px 0;
+    max-height: 200px;
+    overflow: auto;
     padding: 5px;
   }
 
