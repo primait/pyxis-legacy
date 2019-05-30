@@ -15,9 +15,7 @@
         </div>
 
         <div class="inspector__content__code" v-if="code !== ''" v-highlight>
-          <pre class="language-html">
-            <code>{{code}}</code>
-          </pre>
+          <pre class="language-html"><code>{{code}}</code></pre>
         </div>
       </div>
   </div>
@@ -25,6 +23,7 @@
 
 <script>
 import codeIcon from '@/assets/icons/code.svg'
+import htmlFormatter from 'html-formatter'
 
 const iconColors = {
   default: '#6B70D7',
@@ -65,7 +64,7 @@ export default {
       this.codeIconColor = this.getCodeIconColor()
 
       if (this.isActive) {
-        this.code = inspectorNode.querySelector('[id*=slug-accordion]').parentElement.innerHTML.trim()
+        this.code = htmlFormatter.render(inspectorNode.querySelector('[id*=slug-accordion]').parentElement.innerHTML.trim())
       } else {
         this.code = ''
       }
