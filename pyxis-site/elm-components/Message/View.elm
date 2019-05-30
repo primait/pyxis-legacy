@@ -1,7 +1,7 @@
 module Message.View exposing (view)
 
 import Html exposing (Html, div, text)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (class, id)
 import Message.Model exposing (Model, Msg)
 import Prima.Pyxis.Message as Message
 import Pyxis.Helpers as Helpers
@@ -12,12 +12,8 @@ view model =
     div
         []
         [ Helpers.pyxisStyle
-        , div
-            [ class "a-container a-container--medium directionColumn" ]
-            ([ Message.messageInfoConfig
-             , Message.messageSuccessConfig
-             , Message.messageErrorConfig
-             ]
+        , Helpers.elmSyntaxWrapper
+            (model.messageList
                 |> List.map messageBuilder
                 |> List.intersperse Helpers.spacer
             )
@@ -25,5 +21,5 @@ view model =
 
 
 messageBuilder : (List (Html Msg) -> Message.Config Msg) -> Html Msg
-messageBuilder mapper =
-    (Message.render << mapper << List.singleton << text) "Lorem ipsum dolor sit amet."
+messageBuilder config =
+    (Message.render << config << List.singleton << text) "Lorem ipsum dolor sit amet."
