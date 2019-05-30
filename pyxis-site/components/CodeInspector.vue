@@ -84,7 +84,7 @@ export default {
   }
 
   .inspector__content {
-    margin: 30px 0;
+    margin: 40px 0;
   }
 
   .inspector__title {
@@ -98,7 +98,7 @@ export default {
     background: color(backgroundAlt);
     border-left: 5px solid color(pyxisBrand);
     border-radius: 5px;
-    margin: 20px 0;
+    margin: 40px 0;
     padding: 5px;
   }
 

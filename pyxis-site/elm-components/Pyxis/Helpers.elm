@@ -24,7 +24,7 @@ elmSyntaxWrapper =
 
 loremIpsum : String
 loremIpsum =
-    "Lorem Ipsum"
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut."
 
 
 spacer : Html msg
