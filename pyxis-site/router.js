@@ -28,6 +28,11 @@ export default new Router({
       path: '/tables',
       name: 'tables',
       component: () => import(/* webpackChunkName: "tables-view" */ '@/views/Tables.vue')
+    },
+    {
+      path: '/colors',
+      name: 'colors',
+      component: () => import(/* webpackChunkName: "color-view" */ '@/views/Colors.vue')
     }
   ]
 })
