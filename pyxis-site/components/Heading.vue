@@ -46,7 +46,7 @@ export default {
   color: color(textAlt, light);
   display: flex;
   justify-content: center;
-  height: 200px;
+  height: $headerHeight;
   padding: 0 5vw;
 
   @include mq(small) {

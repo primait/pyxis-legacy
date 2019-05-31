@@ -78,25 +78,29 @@ export default {
   $iconWrapperSize: 34px;
 
   .inspector {
-    margin: 30px 0 60px 0;
-  }
+    padding: 50px 0;
+    position: relative;
 
-  .inspector__content {
-    margin: 40px 0;
+    & + & {
+      border-top: 2px solid color(shape, light);
+    }
   }
 
   .inspector__title {
     align-items: center;
+    color: color(text, dark);
+    font-size: size(large);
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    margin-bottom: 40px;
   }
 
   .inspector__content__code {
     background: color(backgroundAlt);
-    border-left: 5px solid color(pyxisBrand);
-    border-radius: 5px;
-    margin: 40px 0;
+    border-left: 8px solid color(pyxisBrand);
+    border-radius: 8px;
+    margin-top: 40px;
     max-height: 200px;
     overflow: auto;
     padding: 5px;
@@ -110,7 +114,7 @@ export default {
     display: flex;
     line-height: $iconWrapperSize;
     justify-content: center;
-    margin-right: 15px;
+    margin-right: 20px;
     text-align: center;
     transition: all 0.3s;
     height: $iconWrapperSize;
