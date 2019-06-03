@@ -1,14 +1,14 @@
 <template>
   <div class="typography__table">
     <div class="typography__heading">
-      <div> Category</div>
-      <div> Size <span>XLarge / Large / Medium / Small</span></div>
-      <div> Typeface</div>
-      <div> Letterspacing</div>
-      <div> Case</div>
+      <div class="typography__heading__category"> Category</div>
+      <div class="typography__heading__size"> Size <span>XLarge / Large / Medium / Small</span></div>
+      <div class="typography__heading__typeface"> Typeface</div>
+      <div class="typography__heading__letterspacing"> Letterspacing</div>
+      <div class="typography__heading__case"> Case</div>
     </div>
     <div>
-      <div v-for="prop in typographyProps" :key="prop" class="typography__row" :data="prop.category">
+      <div v-for="prop in typographyProps" :key="prop" class="typography__row">
         <div v-for="(value, name) in prop" :key="value" :class="'typography__item typography__item--' + name">
           <span v-html="value"></span>
         </div>
@@ -82,6 +82,8 @@ export default {
 
 @import '@/assets/sass/helpers.scss';
 
+  $categoryLabelWidth: 70px;
+
   .typography__table {
     padding-top: 50px;
   }
@@ -92,22 +94,43 @@ export default {
 
     div {
       flex-wrap: nowrap;
+      padding-right: 20px;
     }
   }
 
   .typography__row {
-    align-items: center;
     border-bottom: 1px solid color(shape, base);
-    height: 90px;
+    flex-direction: column;
+    padding-bottom: 20px;
+
+    @include mq(small) {
+      align-items: center;
+      height: 90px;
+      flex-direction: row;
+      padding-bottom: 0;
+    }
+
+     & + & {
+      margin-top: 20px;
+
+      @include mq(small) {
+        margin-top: 0px;
+      }
+    }
   }
 
   .typography__heading {
     color: color(text, base);
+    display: none;
     font-family: font(heavy);
     font-size: 11px;
     letter-spacing: 1px;
     text-transform: uppercase;
     padding-bottom: 20px;
+
+    @include mq(small) {
+      display: flex;
+    }
 
     span {
       background-color: color(pyxisBrand, light);
@@ -123,20 +146,25 @@ export default {
     div {
       flex: 1;
     }
+
+    .typography__heading__size {
+      flex: 1.5;
+    }
+
+    .typography__heading__category {
+      margin-right: $categoryLabelWidth;
+    }
   }
 
   .typography__item {
     flex: 1;
+    line-height: lineHeight(small);
 
     &:not(.typography__item--category):not(.typography__item--label) {
       color: color(text, base);
       font-family: monospace;
-      font-size: 14px;
+      font-size: size(small);
     }
-  }
-
-  .typography__item--category {
-    flex: 0 0 50px;
   }
 
   .typography__item--size {
@@ -147,10 +175,13 @@ export default {
     color: color(pyxisBrand, base);
     font-family: font(heavy);
     font-size: 12px;
-    flex: 0 0 70px;
     letter-spacing: 0.5px;
     padding-top: 3px;
     text-transform: uppercase;
+
+    @include mq(small) {
+      flex: 0 0 $categoryLabelWidth;
+    }
   }
 
   .typography__item--label {

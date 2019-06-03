@@ -14,10 +14,16 @@ export default {
 
 <style lang="scss" scoped>
 
+@import '@/assets/sass/helpers.scss';
+
 .main {
   display: flex;
   flex: 1;
-  padding: 80px;
+  padding: 60px 0;
+
+  @include mq(small) {
+    padding: 80px;
+  }
 }
 
 .a-container {
