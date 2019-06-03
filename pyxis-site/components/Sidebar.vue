@@ -73,7 +73,18 @@ export default {
   display: flex;
   flex: 0 1 auto;
   padding: 80px 0;
-  width: 388px;
+  width: 250px;
+  position: absolute;
+  left: -100%;
+
+  @include mq(small) {
+    position: relative;
+    left: 0;
+  }
+
+  @include mq(medium) {
+    width: 388px;
+  }
 }
 
 .domains,
