@@ -99,9 +99,11 @@ export default {
     font-weight: 700;
   }
 
-  .variant-hex, .variant-rgba {
+  .variant-hex,
+  .variant-rgba {
     color: color(text);
     font-family: monospace;
     font-size: 11px;
+    user-select: all;
   }
 </style>
