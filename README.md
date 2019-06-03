@@ -35,3 +35,9 @@ deploy/deploy new-tag
 
 Aggiornare l'url sui progetti che utilizzano il css:
 `https://d3be8952cnveif.cloudfront.net/css/pyxis-x.x.x.css`
+
+dalla versione 1.7.5 in poi
+```
+https://d3be8952cnveif.cloudfront.net/pyxis/x.x.x/prima.css
+https://d3be8952cnveif.cloudfront.net/pyxis/x.x.x/primaGuarantees.css
+```
