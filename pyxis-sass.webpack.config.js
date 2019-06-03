@@ -11,10 +11,10 @@ const config = {
   context: pyxisRootFolder,
   entry: {
     /**
-     * Keep pyxis as prima entry point name for backward compatibility purpose
+     * Keep pyxis for deploy fonts
      */
-    // pyxis: path.resolve(pyxisRootFolder, 'pyxis.js'),
-    pyxis: path.resolve(pyxisRootFolder, 'PrimaTheme', 'prima.js'),
+    pyxis: path.resolve(pyxisRootFolder, 'pyxis.js'),
+    prima: path.resolve(pyxisRootFolder, 'PrimaTheme', 'prima.js'),
     primaGuarantees: path.resolve(pyxisRootFolder, 'PrimaGuaranteesTheme', 'primaGuarantees.js'),
     // primaPayment: path.resolve(pyxisRootFolder, 'PrimaPaymentTheme', 'primaPayment.js'),
     // primaReservedArea: path.resolve(pyxisRootFolder, 'PrimaReservedAreaTheme', 'primaReservedArea.js'),
@@ -65,13 +65,13 @@ const config = {
       {
         test: /\.(ttf|eot|svg|woff(2)?|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
-        exclude: /src\/assets\/media/,
+        exclude: /assets\/media/,
         options: { name: '[name].[ext]', outputPath: 'assets/fonts/' }
       },
       {
         test: /\.(jpg|svg|png|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
-        exclude: /src\/assets\/fonts/,
+        exclude: /assets\/fonts/,
         options: { name: '[name].[ext]', outputPath: 'assets/media/' }
       }
     ],
