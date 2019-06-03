@@ -10,8 +10,11 @@ const config = {
 
   context: pyxisRootFolder,
   entry: {
-    pyxis: path.resolve(pyxisRootFolder, 'pyxis.js'),
-    prima: path.resolve(pyxisRootFolder, 'PrimaTheme', 'prima.js'),
+    /**
+     * Keep pyxis as prima entry point name for backward compatibility purpose
+     */
+    // pyxis: path.resolve(pyxisRootFolder, 'pyxis.js'),
+    pyxis: path.resolve(pyxisRootFolder, 'PrimaTheme', 'prima.js'),
     primaGuarantees: path.resolve(pyxisRootFolder, 'PrimaGuaranteesTheme', 'primaGuarantees.js'),
     // primaPayment: path.resolve(pyxisRootFolder, 'PrimaPaymentTheme', 'primaPayment.js'),
     // primaReservedArea: path.resolve(pyxisRootFolder, 'PrimaReservedAreaTheme', 'primaReservedArea.js'),
