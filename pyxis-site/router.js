@@ -34,6 +34,7 @@ export default new Router({
       name: 'colors',
       component: () => import(/* webpackChunkName: "color-view" */ '@/views/Colors.vue')
     },
+    {
       path: '/typography',
       name: 'typography',
       component: () => import(/* webpackChunkName: "typography-view" */ '@/views/Typography.vue')
