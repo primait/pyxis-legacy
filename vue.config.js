@@ -1,10 +1,13 @@
+const sassExtract = require('sass-extract')
 const path = require('path')
 
 const buildDestination = path.resolve(__dirname, 'dist/pyxis-site')
 const sourcesRoot = path.resolve(__dirname, 'pyxis-site')
-const pyxisSassRoot = path.resolve(__dirname, 'pyxis-site')
+const pyxisSassRoot = path.resolve(__dirname, 'pyxis-sass')
 
-console.log(sourcesRoot)
+const pyxisVars = sassExtract.renderSync({
+  file: path.resolve(pyxisSassRoot, 'scss', '01_base', '_variables.scss')
+})
 
 module.exports = {
   outputDir: buildDestination,
@@ -22,10 +25,10 @@ module.exports = {
       .clear()
       .add(sourcesRoot + '/main.js')
       .end()
-      // Modify output settings
-      /* .output
-      .path('dist/pyxis-site')
-      .filename('[name].bundle.js') */
+    // Modify output settings
+    /* .output
+    .path('dist/pyxis-site')
+    .filename('[name].bundle.js') */
     config.module
       .rule('elm')
       .test(/\.elm$/)
@@ -45,5 +48,11 @@ module.exports = {
         args[0][0].to = buildDestination
         return args
       })
+    config.plugin('define').tap((definitions) => {
+      definitions[0]['process.env'] = Object.assign(definitions[0]['process.env'], {
+        PYXIS_COLORS: JSON.stringify(pyxisVars.vars.global.$colors)
+      })
+      return definitions
+    })
   }
 }
