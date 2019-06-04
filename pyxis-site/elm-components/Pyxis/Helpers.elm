@@ -11,7 +11,7 @@ import Html.Attributes exposing (class, href, id, rel)
 
 pyxisStyle : Html msg
 pyxisStyle =
-    Html.node "link" [ href "https://d3be8952cnveif.cloudfront.net/pyxis/1.7.5/prima.css", rel "stylesheet" ] []
+    Html.node "link" [ href "https://d3be8952cnveif.cloudfront.net/pyxis/1.7.6/prima.css", rel "stylesheet" ] []
 
 
 elmSyntaxWrapper : List (Html msg) -> Html msg
