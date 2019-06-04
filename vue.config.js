@@ -18,7 +18,7 @@ module.exports = {
     config
       .resolve.alias
       .set('@', sourcesRoot)
-      .set('@pyxis-npm-src', pyxisSassRoot)
+      .set('@pyxis-src', pyxisSassRoot)
     // Interact with entry points
     config
       .entry('app')
