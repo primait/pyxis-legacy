@@ -11,7 +11,7 @@ const pyxisVars = sassExtract.renderSync({
 
 module.exports = {
   outputDir: buildDestination,
-  publicPath: '/pyxis-site',
+  publicPath: '/',
   chainWebpack: config => {
     const buildMode = config.store.get('mode')
     const isDevelopment = buildMode === 'development'
