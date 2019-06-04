@@ -1,12 +1,12 @@
-@import 
-    'pyxis-sass/scss/01_base/_reset',
-    '_variables',
-    'pyxis-sass/scss/01_base/_atomsConfiguration',
-    'pyxis-sass/scss/01_base/_helpers',
-    'pyxis-sass/scss/01_base/_breakpoints',
-    'pyxis-sass/scss/01_base/_utilityClasses',
-    'pyxis-sass/scss/01_base/_utils',
-    'pyxis-sass/scss/01_base/_fonts',
-    '_base';
-    
+@import
+    '@pyxis-src/scss/01_base/_reset.scss',
+    '_variables.scss',
+    '@pyxis-src/scss/01_base/_atomsConfiguration.scss',
+    '@pyxis-src/scss/01_base/_helpers.scss',
+    '@pyxis-src/scss/01_base/_breakpoints.scss',
+    '@pyxis-src/scss/01_base/_utilityClasses.scss',
+    '@pyxis-src/scss/01_base/_utils.scss',
+    '@pyxis-src/scss/01_base/_fonts.scss',
+    '_base.scss';
+
 

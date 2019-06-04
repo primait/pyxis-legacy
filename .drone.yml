@@ -6,6 +6,7 @@ clone:
 pipeline:
   build:
     image: prima/drone-tools:1.14.3
+    secrets: [ npm_token ]
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/cache/ci/${DRONE_REPO}/${DRONE_BRANCH}:/var/cache/ci
@@ -14,12 +15,13 @@ pipeline:
       - . /etc/profile.d/ecs-credentials-endpoint
       - prepare-docker-compose
       - cache-restore --docker-cache-pull --no-files
+      - mv .fakenpmrc .npmrc
       - docker-compose build
-      - docker-compose run -w $PWD web "yarn install"
-      - docker-compose run -w $PWD web "yarn build:site"
-      - docker-compose run -w $PWD web "yarn build:css"
+      - docker-compose run -w $PWD -e NPM_TOKEN=$NPM_TOKEN web "yarn install"
+      - docker-compose run -w $PWD -e NPM_TOKEN=$NPM_TOKEN web "yarn build:site"
+      - docker-compose run -w $PWD -e NPM_TOKEN=$NPM_TOKEN web "yarn build:css"
       - if [ -n "${DRONE_TAG}" ]; then ./deploy/deploy production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/deploy staging; fi
-      - cache-save ~/.node-modules ~/.elm-stuff
+      - cache-save node-modules elm-stuff
 
   notify_email:
     image: drillster/drone-email

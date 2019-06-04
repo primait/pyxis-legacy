@@ -28,7 +28,7 @@ export default {
   components: { SearchInput },
   data: function () {
     return {
-      pyxisLastRelease: '1.7.3',
+      pyxisLastRelease: process.env.PYXIS_VERSION,
       logo: logoSvg,
       placeholder: 'search',
       inputValue: ''

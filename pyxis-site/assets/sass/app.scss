@@ -1,8 +1,8 @@
 @import
-    '../pyxis-sass/assets/pyxisIconset/style.css';
+    '@pyxis-src/assets/pyxisIconset/style.scss';
 
 @import
-    '01_base/_root',
+    '01_base/_root.scss',
 
-    '02_atoms/_root';
+    '02_atoms/_root.scss';
 

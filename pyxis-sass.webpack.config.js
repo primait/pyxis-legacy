@@ -4,18 +4,18 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const pyxisRootFolder = path.resolve(__dirname, 'pyxis-sass')
+const pyxisRootFolder = path.resolve(__dirname, 'pyxis-themes')
 
 const config = {
 
   context: pyxisRootFolder,
   entry: {
     /**
-     * Keep pyxis for deploy fonts
+     * Transpile pyxis for fonts deploy
      */
-    pyxis: path.resolve(pyxisRootFolder, 'pyxis.js'),
+    pyxis: path.resolve(pyxisRootFolder, 'Pyxis', 'pyxis.js'),
     prima: path.resolve(pyxisRootFolder, 'PrimaTheme', 'prima.js'),
-    primaGuarantees: path.resolve(pyxisRootFolder, 'PrimaGuaranteesTheme', 'primaGuarantees.js'),
+    primaGuarantees: path.resolve(pyxisRootFolder, 'PrimaGuaranteesTheme', 'primaGuarantees.js')
     // primaPayment: path.resolve(pyxisRootFolder, 'PrimaPaymentTheme', 'primaPayment.js'),
     // primaReservedArea: path.resolve(pyxisRootFolder, 'PrimaReservedAreaTheme', 'primaReservedArea.js'),
     // primaThankYou: path.resolve(pyxisRootFolder, 'PrimaThankYouTheme', 'primaThankYou.js')
@@ -27,8 +27,8 @@ const config = {
   },
   resolve: {
     alias: {
-      'pyxis-assets': path.resolve(pyxisRootFolder, 'assets'),
-      'pyxis-sources': path.resolve(pyxisRootFolder, 'scss')
+      'pyxis-assets': path.resolve(__dirname, 'node_modules', '@prima-assicurazioni', 'pyxis-npm', 'src', 'assets'),
+      'pyxis-sources': path.resolve(__dirname, 'node_modules', '@prima-assicurazioni', 'pyxis-npm', 'src', 'scss')
     }
   },
 

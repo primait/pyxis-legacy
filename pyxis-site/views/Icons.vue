@@ -22,7 +22,7 @@
 <script>
 import Container from '@/components/Container.vue'
 import TextBlock from '@/components/TextBlock.vue'
-import iconSetConfig from '@/../pyxis-sass/assets/pyxisIconset/selection.json'
+import iconSetConfig from '@pyxis-src/assets/pyxisIconset/selection.json'
 
 const toUnicode = str => str.split('').map(c => '\\u' + ('000' + c.charCodeAt(0).toString(16)).substr(-4)).join('')
 
