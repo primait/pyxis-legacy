@@ -20,6 +20,16 @@ export default new Router({
       component: () => import(/* webpackChunkName: "accordions-view" */ '@/views/Accordions.vue')
     },
     {
+      path: '/colors',
+      name: 'colors',
+      component: () => import(/* webpackChunkName: "colors-view" */ '@/views/Colors.vue')
+    },
+    {
+      path: '/icons',
+      name: 'icons',
+      component: () => import(/* webpackChunkName: "icons-view" */ '@/views/Icons.vue')
+    },
+    {
       path: '/messages',
       name: 'messages',
       component: () => import(/* webpackChunkName: "messages-view" */ '@/views/Messages.vue')
@@ -28,11 +38,6 @@ export default new Router({
       path: '/tables',
       name: 'tables',
       component: () => import(/* webpackChunkName: "tables-view" */ '@/views/Tables.vue')
-    },
-    {
-      path: '/colors',
-      name: 'colors',
-      component: () => import(/* webpackChunkName: "color-view" */ '@/views/Colors.vue')
     },
     {
       path: '/typography',
