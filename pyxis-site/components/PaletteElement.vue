@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '../assets/sass/helpers';
+  @import '@/assets/sass/helpers.scss';
 
   $borderRadius: 10px;
   span {

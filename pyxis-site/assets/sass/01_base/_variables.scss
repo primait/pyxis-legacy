@@ -1,7 +1,7 @@
-$fontPath: '../pyxis-sass/assets/fonts';
+$fontPath: '../node_modules/@prima-assicurazioni/pyxis-npm/src/assets/fonts';
 
 $colors: (
-  
+
   brand: (
     light: #b967d9,
     base:  #8334c2,
@@ -66,4 +66,4 @@ $colors: (
 
 $headerHeight: 200px;
 
-@import 'pyxis-sass/scss/01_base/_variables';
+@import '@pyxis-npm-src/scss/01_base/_variables.scss';

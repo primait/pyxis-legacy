@@ -9,6 +9,7 @@
     "build:css": "./node_modules/.bin/webpack --config pyxis-sass.webpack.config.js"
   },
   "dependencies": {
+    "@prima-assicurazioni/pyxis-npm": "^1.7.6",
     "core-js": "^2.6.5",
     "html-formatter": "^0.1.9",
     "uglifyjs-webpack-plugin": "^2.1.3",
