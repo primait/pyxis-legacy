@@ -15,6 +15,7 @@ pipeline:
       - . /etc/profile.d/ecs-credentials-endpoint
       - prepare-docker-compose
       - cache-restore --docker-cache-pull --no-files
+      - mv .fakenpmrc .npmrc
       - docker-compose build
       - docker-compose run -w $PWD -e NPM_TOKEN=$NPM_TOKEN web "yarn install"
       - docker-compose run -w $PWD -e NPM_TOKEN=$NPM_TOKEN web "yarn build:site"
