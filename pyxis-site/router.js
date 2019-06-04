@@ -30,6 +30,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "icons-view" */ '@/views/Icons.vue')
     },
     {
+      path: '/loaders',
+      name: 'loaders',
+      component: () => import(/* webpackChunkName: "loaders-view" */ '@/views/Loaders.vue')
+    },
+    {
       path: '/messages',
       name: 'messages',
       component: () => import(/* webpackChunkName: "messages-view" */ '@/views/Messages.vue')
