@@ -20,6 +20,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "accordions-view" */ '@/views/Accordions.vue')
     },
     {
+      path: '/classes',
+      name: 'classes',
+      component: () => import(/* webpackChunkName: "classes-view" */ '@/views/Classes.vue')
+    },
+    {
       path: '/colors',
       name: 'colors',
       component: () => import(/* webpackChunkName: "colors-view" */ '@/views/Colors.vue')
