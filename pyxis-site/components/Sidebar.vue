@@ -71,7 +71,7 @@ export default {
 .sidebar {
   border-right: 1px solid color(shape);
   display: flex;
-  flex: 0 1 auto;
+  flex: 0 0 auto;
   padding: 80px 0;
   width: 250px;
   position: absolute;
