@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build:site": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build:css": "./node_modules/.bin/webpack --config pyxis-sass.webpack.config.js"
+    "build:css": "./node_modules/.bin/webpack --config pyxis-sass.webpack.config.js",
+    "serve:prod": "./node_modules/http-server/bin/http-server ./dist/pyxis-site"
   },
   "dependencies": {
     "@prima-assicurazioni/pyxis-npm": "1.7.7",
@@ -30,7 +31,9 @@
     "elm-webpack-loader": "^5.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "http-server": "^0.11.1",
     "node-sass": "^4.12.0",
+    "prerender-spa-plugin": "^3.4.0",
     "sass": "^1.18.0",
     "sass-extract": "^2.1.0",
     "sass-loader": "^7.1.0",

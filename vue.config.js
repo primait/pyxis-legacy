@@ -1,6 +1,7 @@
 const packageJson = require('./package.json')
 const sassExtract = require('sass-extract')
 const path = require('path')
+const PrerenderSpaPlugin = require('prerender-spa-plugin')
 
 const buildDestination = path.resolve(__dirname, 'dist/pyxis-site')
 const sourcesRoot = path.resolve(__dirname, 'pyxis-site')
@@ -15,11 +16,14 @@ module.exports = {
   chainWebpack: config => {
     const buildMode = config.store.get('mode')
     const isDevelopment = buildMode === 'development'
+    const isProduction = buildMode === 'production'
+
     config
       .resolve.alias
       .set('@', sourcesRoot)
       .set('@pyxis-src', pyxisSassRoot)
     // Interact with entry points
+
     config
       .entry('app')
       .clear()
@@ -29,6 +33,7 @@ module.exports = {
     /* .output
     .path('dist/pyxis-site')
     .filename('[name].bundle.js') */
+
     config.module
       .rule('elm')
       .test(/\.elm$/)
@@ -42,12 +47,14 @@ module.exports = {
         forceWatch: true
       })
       .end()
+
     config
       .plugin('copy')
       .tap(args => {
         args[0][0].to = buildDestination
         return args
       })
+
     config.plugin('define').tap((definitions) => {
       definitions[0]['process.env'] = Object.assign(definitions[0]['process.env'], {
         PYXIS_COLORS: JSON.stringify(pyxisVars.vars.global.$colors),
@@ -55,5 +62,25 @@ module.exports = {
       })
       return definitions
     })
+
+    if (isProduction) {
+      console.info('pre-rendering...')
+      config.plugin('prerender').use(
+        new PrerenderSpaPlugin({
+          staticDir: path.join(__dirname, 'dist', 'pyxis-site'),
+          routes: [
+            '/',
+            '/colors',
+            '/about',
+            '/accordions',
+            '/icons',
+            '/loaders',
+            '/messages',
+            '/tables',
+            '/typography'
+          ]
+        })
+      )
+    }
   }
 }
