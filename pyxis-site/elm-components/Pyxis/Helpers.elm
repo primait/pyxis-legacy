@@ -1,5 +1,5 @@
 module Pyxis.Helpers exposing
-    ( elmSyntaxWrapper
+    ( syntaxWrapper
     , loremIpsum
     , pyxisStyle
     , spacer
@@ -14,11 +14,11 @@ pyxisStyle =
     Html.node "link" [ href "https://d3be8952cnveif.cloudfront.net/pyxis/1.7.6/prima.css", rel "stylesheet" ] []
 
 
-elmSyntaxWrapper : List (Html msg) -> Html msg
-elmSyntaxWrapper =
+syntaxWrapper : List (Html msg) -> Html msg
+syntaxWrapper =
     div
         [ class "a-container a-container--medium directionColumn"
-        , id "elmSyntaxWrapper"
+        , id "syntaxWrapper"
         ]
 
 

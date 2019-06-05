@@ -11,7 +11,7 @@ view model =
     div
         []
         [ Helpers.pyxisStyle
-        , Helpers.elmSyntaxWrapper
+        , Helpers.syntaxWrapper
             ((List.singleton << Table.render model.tableState << createTableConfiguration) model)
         ]
 

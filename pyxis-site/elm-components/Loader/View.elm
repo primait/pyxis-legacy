@@ -18,5 +18,5 @@ view model =
     div
         []
         [ Helpers.pyxisStyle
-        , (Helpers.elmSyntaxWrapper << List.map (Loader.render << loaderTypeToConfiguration)) model.loaderList
+        , (Helpers.syntaxWrapper << List.map (Loader.render << loaderTypeToConfiguration)) model.loaderList
         ]

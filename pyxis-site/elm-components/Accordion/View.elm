@@ -23,7 +23,7 @@ view model =
     div
         []
         [ Helpers.pyxisStyle
-        , Helpers.elmSyntaxWrapper
+        , Helpers.syntaxWrapper
             ((List.intersperse Helpers.spacer << List.map accordionRender) model.accordionList)
         ]
 

@@ -1,5 +1,5 @@
 <template>
-  <div :class="classObject">
+  <div :class="getInspectorClassObject">
       <h4 class="inspector__title" @click="toggleCodeInspector">
         <simple-svg
           :filepath="codeIcon"
@@ -41,12 +41,16 @@ export default {
     }
   },
   methods: {
+    formatHtml (str) {
+      return htmlFormatter.render(str.replace(/data-v-\w+=""/gi, ''))
+    },
     toggleCodeInspector (event) {
       this.isActive = !this.isActive
 
       try {
         if (this.isActive) {
-          this.code = htmlFormatter.render(event.target.closest('.inspector').querySelector('#elmSyntaxWrapper').innerHTML.trim())
+          const syntaxSelector = event.target.closest('.inspector').querySelector('#syntaxWrapper')
+          this.code = this.formatHtml(syntaxSelector.innerHTML.trim())
         } else {
           this.code = null
         }
@@ -56,7 +60,7 @@ export default {
     }
   },
   computed: {
-    classObject: function () {
+    getInspectorClassObject: function () {
       return {
         'inspector': true,
         'is-active': this.isActive
@@ -72,6 +76,7 @@ export default {
 <style lang="scss">
   @import '@/assets/sass/syntaxHighlight.scss';
 </style>
+
 <style lang="scss" scoped>
   @import '@/assets/sass/helpers.scss';
 
@@ -101,9 +106,16 @@ export default {
     border-left: 8px solid color(pyxisBrand);
     border-radius: 8px;
     margin-top: 40px;
-    max-height: 200px;
     overflow: auto;
     padding: 5px;
+
+    pre {
+      height: 100%;
+    }
+
+    &.is-visible {
+      height: 180px;
+    }
   }
 
   .simple-svg-wrapper {

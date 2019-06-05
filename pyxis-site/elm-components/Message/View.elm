@@ -12,7 +12,7 @@ view model =
     div
         []
         [ Helpers.pyxisStyle
-        , Helpers.elmSyntaxWrapper
+        , Helpers.syntaxWrapper
             (model.messageList
                 |> List.map messageBuilder
                 |> List.intersperse Helpers.spacer
