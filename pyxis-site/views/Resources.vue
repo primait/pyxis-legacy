@@ -45,12 +45,12 @@ export default {
             {
               label: 'Prima Design System',
               type: 'Adobe XD',
-              downloadPath: ''
+              downloadPath: '/downloads/prima_design_system.zip'
             },
             {
               label: 'Multicolor Icons',
               type: 'SVG',
-              downloadPath: ''
+              downloadPath: '/downloads/multicolor_icons.zip'
             }
           ]
         },
@@ -60,7 +60,7 @@ export default {
             {
               label: 'Logo Prima.it',
               type: 'SVG / PNG',
-              downloadPath: ''
+              downloadPath: '/downloads/logo_prima.zip'
             }
           ]
         }

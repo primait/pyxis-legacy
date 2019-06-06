@@ -50,8 +50,8 @@ export default {
   overflow: hidden;
   padding: 30px;
   position: relative;
+  text-decoration: none;
   transition: all 0.2s ease-in-out;
-  flex: 0 0 32%;
 
   .simple-svg-wrapper {
     transition: all 0.2s ease-in-out;
@@ -91,12 +91,10 @@ export default {
 .asset-element__type {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
-  font-family: font(monospace);
-  font-size: size(small);
+  font-family: monospace;
+  font-size: size(xsmall);
+  letter-spacing: 0.5px;
   padding: 6px 12px;
-}
-
-a {
-  text-decoration: none;
+  font-weight: 500;
 }
 </style>
