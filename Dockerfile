@@ -14,10 +14,7 @@ RUN apt-get update && apt-get install -qqy apt-transport-https gconf-service lib
 
 COPY entrypoint /entrypoint
 
-RUN groupadd -g 515 app && \
-    useradd -g 515 -u 515 --system --create-home app
-
-USER app
+USER node
 
 EXPOSE 8080
 
