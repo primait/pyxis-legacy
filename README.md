@@ -41,3 +41,8 @@ dalla versione 1.7.5 in poi
 https://d3be8952cnveif.cloudfront.net/pyxis/x.x.x/prima.css
 https://d3be8952cnveif.cloudfront.net/pyxis/x.x.x/primaGuarantees.css
 ```
+
+## Prerender PLUGIN
+See the doc for more information on prerendering
+
+https://github.com/chrisvfritz/prerender-spa-plugin
