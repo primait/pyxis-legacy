@@ -121,8 +121,8 @@ const routes = [
         name: 'classes'
       },
       {
-        path: '/design/kit',
-        label: 'Design Kit',
+        path: '/resources',
+        label: 'Resources',
         icon: 'kit',
         name: 'kit'
       }

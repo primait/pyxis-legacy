@@ -26,7 +26,7 @@ import TextBlock from '@/components/TextBlock.vue'
 import PaletteElement from '@/components/PaletteElement'
 
 export default {
-  name: 'Tables',
+  name: 'Colors',
   components: {
     PaletteElement,
     Container,
@@ -69,7 +69,7 @@ export default {
             }
           }
         } catch (e) {
-          console.debug('Error decoding bootstrap variables', e)
+          // console.debug('Error decoding bootstrap variables', e)
           labels = { error: { at_color_decode: { rgba: { r: 1, g: 1, b: 1, a: 1 }, hex: '#e74c3c' } } }
         }
         return labels

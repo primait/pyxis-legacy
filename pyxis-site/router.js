@@ -53,6 +53,11 @@ export default new Router({
       path: '/typography',
       name: 'typography',
       component: () => import(/* webpackChunkName: "typography-view" */ '@/views/Typography.vue')
+    },
+    {
+      path: '/resources',
+      name: 'resources',
+      component: () => import(/* webpackChunkName: "resources-view" */ '@/views/Resources.vue')
     }
   ]
 })

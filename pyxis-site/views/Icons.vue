@@ -67,10 +67,11 @@ export default {
     @import '@/assets/sass/helpers.scss';
 
     .icon-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 15px;
         list-style: none;
+        margin-top: 50px;
     }
 
     .icon-list__item {
@@ -79,7 +80,6 @@ export default {
         border-radius: 8px;
         display: flex;
         flex: 0 0 48%;
-        margin: 10px 0 10px 0;
         padding: 30px;
 
         @include mq(small) {
