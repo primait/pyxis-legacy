@@ -78,12 +78,16 @@ export default {
   left: -100%;
 
   @include mq(small) {
-    position: relative;
+    height: 100vh;
     left: 0;
+    overflow: scroll;
+    position: sticky;
+    top: 0;
+    padding-bottom: 80px;
   }
 
   @include mq(medium) {
-    width: 388px;
+    width: 300px;
   }
 }
 
@@ -111,7 +115,7 @@ export default {
   color: color(text, dark);
   font-size: 18px;
   margin-bottom: 15px;
-  padding-left: 80px;
+  padding-left: 50px;
 }
 
 .routes {
@@ -134,7 +138,7 @@ export default {
   display: flex;
   font-size: 16px;
   height: 100%;
-  padding: 0 0 0 90px;
+  padding: 0 0 0 60px;
   position: relative;
   text-decoration: none;
   transition: background 0.3s;

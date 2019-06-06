@@ -52,6 +52,17 @@ export default {
   @include mq(small) {
     justify-content: flex-start;
   }
+
+  &:before {
+    content: '';
+    background-image: linear-gradient(to right, #667eea, color(brand, base));
+    height: 5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
 }
 
 .heading__intro {
