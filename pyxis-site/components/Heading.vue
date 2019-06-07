@@ -4,8 +4,8 @@
       <simple-svg
         :filepath="logo"
         :fill="'#fff'"
-        :width="'32px'"
-        :height="'32px'"
+        :width="'36px'"
+        :height="'36px'"
         />
     </div>
     <div class="heading__intro">
@@ -13,7 +13,7 @@
         <strong class="fsXlarge">Pyxis</strong>
         <span class="fsXsmall">{{pyxisLastRelease}}</span>
       </div>
-      <span class="fsSmall">Prima.it design system</span>
+      <span class="fsSmall">Prima.it Design System</span>
     </div>
     <search-input :inputValue="inputValue" :placeholder='placeholder'></search-input>
   </div>
@@ -51,17 +51,6 @@ export default {
 
   @include mq(small) {
     justify-content: flex-start;
-  }
-
-  &:before {
-    content: '';
-    background-image: linear-gradient(to right, #667eea, color(brand, base));
-    height: 5px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
   }
 }
 

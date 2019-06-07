@@ -44,30 +44,53 @@ export default {
 <style lang="scss" scoped>
   @import '@/assets/sass/helpers.scss';
 
-  $borderRadius: 10px;
+  $borderRadius: 8px;
+
   span {
     display: block;
   }
 
   .palette-element__wrapper {
-    padding: 5px;
+    width: 100%;
+
+    @include mq(medium) {
+      padding: 5px;
+      width: 220px;
+    }
+  }
+
+  .palette-element__wrapper + .palette-element__wrapper {
+     @include mqDown(medium) {
+       margin-top: 20px;
+    }
   }
 
   .palette-element {
-    width: 200px;
-    height: 200px;
     display: flex;
-    flex-flow: column;
+    height: 100px;
+
+    @include mq(medium) {
+      flex-flow: column;
+      height: 220px;
+    }
   }
 
   .palette-element__picker {
-    border-left: 1px solid color(shape);
-    border-right: 1px solid color(shape);
-    border-top: 1px solid color(shape);
-    border-top-left-radius: $borderRadius;
-    border-top-right-radius: $borderRadius;
-    height: 50%;
+    border: 1px solid color(shape);
+    border-right: 0;
+    border-radius: $borderRadius 0 0 $borderRadius;
+    height: 100px;
+    overflow: hidden;
     position: relative;
+    width: 100px;
+
+    @include mq(medium) {
+      border: 1px solid color(shape);
+      border-bottom: 0;
+      border-radius: $borderRadius $borderRadius 0 0;
+      height: 60%;
+      width: 100%;
+    }
 
     &:before {
       background-image: url('../assets/images/checker.jpg');
@@ -86,17 +109,27 @@ export default {
 
   .palette-element__description {
     border: 1px solid color(shape);
-    border-bottom-left-radius: $borderRadius;
-    border-bottom-right-radius: $borderRadius;
+    border-left: none;
+    border-radius: 0 $borderRadius $borderRadius 0;
     display: flex;
+    flex: 1;
     flex-flow: column;
-    height: 50%;
+    height: 100px;
     justify-content: space-evenly;
-    padding: 10px;
+    padding: 15px 20px;
+
+    @include mq(medium) {
+      border: 1px solid color(shape);
+      border-top: none;
+      border-radius: 0 0 $borderRadius $borderRadius;
+      height: 50%;
+    }
   }
 
   .variant-name {
-    font-weight: 700;
+    color: color(text, dark);
+    font-family: font(heavy);
+    font-size: size(base);
   }
 
   .variant-hex,
@@ -104,6 +137,7 @@ export default {
     color: color(text);
     font-family: monospace;
     font-size: 11px;
+    margin-top: 5px;
     user-select: all;
   }
 </style>

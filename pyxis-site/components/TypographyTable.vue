@@ -103,7 +103,7 @@ export default {
     flex-direction: column;
     padding-bottom: 20px;
 
-    @include mq(small) {
+    @include mq(medium) {
       align-items: center;
       height: 90px;
       flex-direction: row;
@@ -113,7 +113,7 @@ export default {
      & + & {
       margin-top: 20px;
 
-      @include mq(small) {
+      @include mq(medium) {
         margin-top: 0px;
       }
     }
@@ -128,7 +128,7 @@ export default {
     text-transform: uppercase;
     padding-bottom: 20px;
 
-    @include mq(small) {
+    @include mq(medium) {
       display: flex;
     }
 
@@ -163,7 +163,7 @@ export default {
     &:not(.typography__item--category):not(.typography__item--label) {
       color: color(text, base);
       font-family: monospace;
-      font-size: size(small);
+      font-size: size(xsmall);
     }
   }
 
@@ -179,7 +179,7 @@ export default {
     padding-top: 3px;
     text-transform: uppercase;
 
-    @include mq(small) {
+    @include mq(medium) {
       flex: 0 0 $categoryLabelWidth;
     }
   }

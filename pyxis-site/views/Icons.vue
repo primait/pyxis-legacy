@@ -67,11 +67,15 @@ export default {
     @import '@/assets/sass/helpers.scss';
 
     .icon-list {
-        display: grid;
+      display: grid;
+      grid-gap: 15px;
+      grid-template-columns: repeat(2, 1fr);
+      list-style: none;
+      margin-top: 50px;
+
+      @include mq(large) {
         grid-template-columns: repeat(4, 1fr);
-        grid-gap: 15px;
-        list-style: none;
-        margin-top: 50px;
+      }
     }
 
     .icon-list__item {

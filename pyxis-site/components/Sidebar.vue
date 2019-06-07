@@ -109,6 +109,10 @@ export default {
   & + & {
     margin-top: 50px;
   }
+
+  &:last-child {
+    padding-bottom: 50px;
+  }
 }
 
 .domains__item__title {
@@ -138,7 +142,7 @@ export default {
   display: flex;
   font-size: 16px;
   height: 100%;
-  padding: 0 0 0 60px;
+  padding: 2px 0 0 60px;
   position: relative;
   text-decoration: none;
   transition: background 0.3s;
@@ -167,15 +171,12 @@ export default {
   &.router-link-active:before {
     transform: scaleX(1);
   }
-
-  &.router-link-active .simple-svg-wrapper svg.simple-svg {
-     fill: #6B70D7;
-  }
 }
 
 .simple-svg-wrapper {
   display: flex;
   margin-right: 20px;
+  transform: translateY(-2px);
 }
 
 </style>

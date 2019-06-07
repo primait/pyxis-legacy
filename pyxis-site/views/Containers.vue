@@ -46,9 +46,10 @@ export default {
     @import '@/assets/sass/helpers.scss';
 
     .shape > .a-container {
-        background: color(pyxisBrand, light);
-        border: 1px dashed color(pyxisBrand);
-        padding: 15px;
-        margin: 30px auto;
+      background: color(pyxisBrand, light);
+      color: color(text, dark);
+      border: 2px dashed rgba(color(pyxisBrand), 0.3);
+      padding: 30px;
+      margin: 30px auto;
     }
 </style>
