@@ -26,7 +26,7 @@ import TextBlock from '@/components/TextBlock.vue'
 import PaletteElement from '@/components/PaletteElement'
 
 export default {
-  name: 'Tables',
+  name: 'Colors',
   components: {
     PaletteElement,
     Container,
