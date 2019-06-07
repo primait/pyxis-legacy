@@ -35,6 +35,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "icons-view" */ '@/views/Icons.vue')
     },
     {
+      path: '/jumbotrons',
+      name: 'jumbotrons',
+      component: () => import(/* webpackChunkName: "jumbotrons-view" */ '@/views/Jumbotrons.vue')
+    },
+    {
       path: '/loaders',
       name: 'loaders',
       component: () => import(/* webpackChunkName: "loaders-view" */ '@/views/Loaders.vue')
