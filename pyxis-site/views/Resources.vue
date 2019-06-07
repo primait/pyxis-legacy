@@ -5,7 +5,7 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.</p>
     </text-block>
 
-    <div class="resource" v-for="resource in resources" :key="resource">
+    <div class="resource" v-for="resource in resources" :key="resource.category">
       <text-block>
         <h4>{{resource.category}}</h4>
       </text-block>
@@ -13,10 +13,10 @@
       <div class="resource__wrapper">
         <asset-element
         v-for="item in resource.items"
-        :key="item"
+        :key="item.label"
         :type="item.type"
         :label="item.label"
-        :downloadPath="item.downloadPath"
+        :download-path="item.downloadPath"
       ></asset-element>
       </div>
     </div>
@@ -45,12 +45,12 @@ export default {
             {
               label: 'Prima Design System',
               type: 'Adobe XD',
-              downloadPath: '/downloads/prima_design_system.zip'
+              downloadPath: '/downloads/prima_design_system.zip' // Static resource located in `public/downloads`
             },
             {
               label: 'Multicolor Icons',
               type: 'SVG',
-              downloadPath: '/downloads/multicolor_icons.zip'
+              downloadPath: '/downloads/multicolor_icons.zip' // Static resource located in `public/downloads`
             }
           ]
         },
@@ -60,7 +60,7 @@ export default {
             {
               label: 'Logo Prima.it',
               type: 'SVG / PNG',
-              downloadPath: '/downloads/logo_prima.zip'
+              downloadPath: '/downloads/logo_prima.zip' // Static resource located in `public/downloads`
             }
           ]
         }

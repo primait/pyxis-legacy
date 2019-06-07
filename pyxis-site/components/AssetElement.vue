@@ -3,7 +3,7 @@
     <span class="asset-element__label">{{label}}</span>
     <div class="asset-element__footer">
       <div class="asset-element__type">{{type}}</div>
-      <simple-svg :fill="'#fff'" :filepath="downloadIcon" :height="'22px'" :width="'22px'"/>
+      <simple-svg :fill="'#fff'" :filepath="icon.downloadIcon" :height="'22px'" :width="'22px'"/>
     </div>
   </a>
 </template>
@@ -28,9 +28,11 @@ export default {
     }
   },
 
-  data: function () {
-    return {
-      downloadIcon: downloadIcon
+  computed: {
+    icon () {
+      return {
+        downloadIcon: downloadIcon
+      }
     }
   }
 }
