@@ -8,6 +8,10 @@ pre::-webkit-scrollbar-thumb,
 code::-webkit-scrollbar-thumb {
     background: rgba(#fff, 0.2);
     border-radius: 5px;
+
+    &:hover {
+        background: rgba(#fff, 0.3);
+    }
 }
 
 pre::-webkit-scrollbar-track,
