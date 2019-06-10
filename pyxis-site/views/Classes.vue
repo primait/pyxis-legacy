@@ -59,7 +59,7 @@ export default {
   },
   data: function () {
     return {
-      matches
+      matches: matches.sort()
     }
   }
 }
