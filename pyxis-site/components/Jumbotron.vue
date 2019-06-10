@@ -58,18 +58,17 @@ export default {
         } else {
           return true
         }
-      }
-      else {
+      } else {
         return false
       }
     }
   },
   mounted: function () {
     if (!this.canRenderPictureSource() && this.pictureFallback == null) {
-      console.warn('you can\'t use slot picture without defining a pictureFallback' )
+      console.warn('you can\'t use slot picture without defining a pictureFallback')
     }
-    if (this.hasPSTemplate() && this.imageSrc !== null ) {
-      console.warn('you can\'t render both a picture element and image, default fallback is image' )
+    if (this.hasPSTemplate() && this.imageSrc !== null) {
+      console.warn('you can\'t render both a picture element and image, default fallback is image')
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="heading">
-    <div class="heading__menu">
+    <div class="heading__menu" v-on:click="toggleSidebar">
       <simple-svg
         :filepath="icons.menuIcon"
         :fill="'#fff'"
@@ -48,6 +48,11 @@ export default {
         logoSvg: logoSvg,
         menuIcon: menuIcon
       }
+    }
+  },
+  methods: {
+    toggleSidebar: function () {
+      this.$store.commit('toggleSidebar')
     }
   }
 }
