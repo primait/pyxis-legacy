@@ -1,28 +1,28 @@
 <template>
-  <aside class="sidebar">
+  <aside class="sidebar" :class="{'is-open' : $store.getters.isSidebarOpen }">
     <div class="sidebar__wrapper">
-    <div class="sidebar__heading">
-      <div class="sidebar__menu">
-        <simple-svg
-                :fill="'#4D5969'"
-                :filepath="icon.closeIcon"
-                :height="'28px'"
-                :width="'28px'"
-                />
-      </div>
-      <div class="sidebar__info">
-        <div class="sidebar__logo">
+      <div class="sidebar__heading">
+        <div class="sidebar__action" v-on:click="toggleSidebar">
           <simple-svg
-                :fill="'#fff'"
-                :filepath="icon.logoSvg"
-                :height="'20px'"
-                :width="'20px'"
-                />
+                  :fill="'#4D5969'"
+                  :filepath="icon.closeIcon"
+                  :height="'28px'"
+                  :width="'28px'"
+                  />
         </div>
-        <span class="sidebar__logo__name">Pyxis</span>
-        <span class="sidebar__logo__version fsXsmall">{{pyxisLastRelease}}</span>
+        <div class="sidebar__info">
+          <div class="sidebar__logo">
+            <simple-svg
+                  :fill="'#fff'"
+                  :filepath="icon.logoSvg"
+                  :height="'20px'"
+                  :width="'20px'"
+                  />
+          </div>
+          <span class="sidebar__logo__name">Pyxis</span>
+          <span class="sidebar__logo__version fsXsmall">{{pyxisLastRelease}}</span>
+        </div>
       </div>
-    </div>
     <ul class="domains directionColumn noListStyle">
       <li class="domains__item" v-for="domain in domainsList" :key="toSlug(domain.label)">
 
@@ -87,6 +87,9 @@ export default {
       } else {
         return '#4D5969'
       }
+    },
+    toggleSidebar: function () {
+      this.$store.commit('toggleSidebar')
     }
   },
   computed: {
@@ -105,12 +108,19 @@ export default {
 
 .sidebar {
   @include mqDown(small) {
-  position: fixed;
-  top: 0;
-  overflow: scroll;
-  width: 250px;
-  height: 100%;
-  z-index: 9;
+    position: fixed;
+    top: 0;
+    overflow: scroll;
+    width: 250px;
+    height: 100%;
+    z-index: 9;
+    transform: translate3d(-100%, 0, 0);
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+
+    &.is-open {
+      transform: translate3d(0%, 0, 0);
+    }
   }
 }
 
@@ -121,9 +131,8 @@ export default {
   flex-direction: column;
   flex: 0 0 auto;
   overflow: scroll;
-  width: 250px;
   position: absolute;
-  // left: -100%;
+  width: 250px;
 
   @include mq(small) {
     height: 100vh;
@@ -135,7 +144,7 @@ export default {
   }
 
   @include mq(medium) {
-    width: 300px;
+    width: 320px;
   }
 }
 
@@ -160,7 +169,7 @@ export default {
   padding-left: 25px;
 }
 
-.sidebar__menu {
+.sidebar__action {
   align-items: center;
   border-right: 1px solid color(shape);
   display: flex;
@@ -236,7 +245,7 @@ export default {
   padding-left: 30px;
 
   @include mq(small) {
-  padding-left: 50px;
+    padding-left: 4vw;
   }
 }
 
@@ -267,7 +276,7 @@ export default {
   width: 100%;
 
   @include mq(small) {
-    padding: 2px 0 0 60px;
+    padding: 2px 0 0 4.5vw;
   }
 
   &:before {

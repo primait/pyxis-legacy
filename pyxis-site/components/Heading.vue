@@ -1,11 +1,11 @@
 <template>
   <div class="heading">
-    <div class="heading__menu">
+    <div class="heading__menu" v-on:click="toggleSidebar">
       <simple-svg
         :filepath="icons.menuIcon"
         :fill="'#fff'"
-        :width="'36px'"
-        :height="'36px'"
+        :width="'30px'"
+        :height="'30px'"
         />
     </div>
     <div class="heading__logo">
@@ -49,6 +49,11 @@ export default {
         menuIcon: menuIcon
       }
     }
+  },
+  methods: {
+    toggleSidebar: function () {
+      this.$store.commit('toggleSidebar')
+    }
   }
 }
 </script>
@@ -63,7 +68,7 @@ export default {
   display: flex;
   justify-content: center;
   height: $headerHeight;
-  padding: 0 5vw;
+  padding: 0 4vw;
 
   @include mq(small) {
     justify-content: flex-start;
@@ -120,8 +125,9 @@ export default {
 }
 
 .heading__menu {
-  top: 1.5rem;
-  left: 1.5rem;
+  left: 0;
+  top: 0;
+  padding: 1.5rem;
   position: absolute;
 
   @include mq(small) {
