@@ -633,9 +633,9 @@
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
 
-"@prima-assicurazioni/pyxis-npm@1.7.7":
-  version "1.7.7"
-  resolved "https://registry.yarnpkg.com/@prima-assicurazioni/pyxis-npm/-/pyxis-npm-1.7.7.tgz#439de21f430fc9ae69fd57c9bcfadbe7565321b4"
+"@prima-assicurazioni/pyxis-npm@1.8.1":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@prima-assicurazioni/pyxis-npm/-/pyxis-npm-1.8.1.tgz#46d232c2ad0067c5ba6453b49e1727398577c782"
 
 "@soda/friendly-errors-webpack-plugin@^1.7.1":
   version "1.7.1"
