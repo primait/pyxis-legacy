@@ -1,8 +1,16 @@
 <template>
   <div class="heading">
+    <div class="heading__menu">
+      <simple-svg
+        :filepath="icons.menuIcon"
+        :fill="'#fff'"
+        :width="'36px'"
+        :height="'36px'"
+        />
+    </div>
     <div class="heading__logo">
       <simple-svg
-        :filepath="logo"
+        :filepath="icons.logoSvg"
         :fill="'#fff'"
         :width="'36px'"
         :height="'36px'"
@@ -22,6 +30,7 @@
 <script>
 import logoSvg from '@/assets/images/logo.svg'
 import SearchInput from '@/components/Heading/SearchInput.vue'
+import menuIcon from '@/assets/icons/menu.svg'
 
 export default {
   name: 'Heading',
@@ -29,9 +38,16 @@ export default {
   data: function () {
     return {
       pyxisLastRelease: process.env.PYXIS_VERSION,
-      logo: logoSvg,
       placeholder: 'search',
       inputValue: ''
+    }
+  },
+  computed: {
+    icons () {
+      return {
+        logoSvg: logoSvg,
+        menuIcon: menuIcon
+      }
     }
   }
 }
@@ -100,6 +116,16 @@ export default {
     border-radius: 5px;
     margin-left: 15px;
     padding: 5px 10px 3px;
+  }
+}
+
+.heading__menu {
+  top: 1.5rem;
+  left: 1.5rem;
+  position: absolute;
+
+  @include mq(small) {
+    display: none;
   }
 }
 

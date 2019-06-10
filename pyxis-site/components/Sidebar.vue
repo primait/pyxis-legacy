@@ -1,5 +1,28 @@
 <template>
   <aside class="sidebar">
+    <div class="sidebar__wrapper">
+    <div class="sidebar__heading">
+      <div class="sidebar__menu">
+        <simple-svg
+                :fill="'#4D5969'"
+                :filepath="icon.closeIcon"
+                :height="'28px'"
+                :width="'28px'"
+                />
+      </div>
+      <div class="sidebar__info">
+        <div class="sidebar__logo">
+          <simple-svg
+                :fill="'#fff'"
+                :filepath="icon.logoSvg"
+                :height="'20px'"
+                :width="'20px'"
+                />
+        </div>
+        <span class="sidebar__logo__name">Pyxis</span>
+        <span class="sidebar__logo__version fsXsmall">{{pyxisLastRelease}}</span>
+      </div>
+    </div>
     <ul class="domains directionColumn noListStyle">
       <li class="domains__item" v-for="domain in domainsList" :key="toSlug(domain.label)">
 
@@ -22,12 +45,15 @@
         </ul>
       </li>
     </ul>
+  </div>
   </aside>
 </template>
 
 <script>
 import routes from '@/others/routes.js'
 import helpers from '@/others/helpers.js'
+import logoSvg from '@/assets/images/logo.svg'
+import closeIcon from '@/assets/icons/close.svg'
 
 export default {
   name: 'Sidebar',
@@ -37,7 +63,8 @@ export default {
         { label: '',
           routes: [{ path: '/', label: 'Default', icon: 'default' }]
         }
-      ]
+      ],
+      pyxisLastRelease: process.env.PYXIS_VERSION
     }
   },
   created: function () {
@@ -61,6 +88,14 @@ export default {
         return '#4D5969'
       }
     }
+  },
+  computed: {
+    icon () {
+      return {
+        logoSvg: logoSvg,
+        closeIcon: closeIcon
+      }
+    }
   }
 }
 </script>
@@ -69,13 +104,26 @@ export default {
 @import '@/assets/sass/helpers.scss';
 
 .sidebar {
+  @include mqDown(small) {
+  position: fixed;
+  top: 0;
+  overflow: scroll;
+  width: 250px;
+  height: 100%;
+  z-index: 9;
+  }
+}
+
+.sidebar__wrapper {
   border-right: 1px solid color(shape);
+  background-color: #fff;
   display: flex;
+  flex-direction: column;
   flex: 0 0 auto;
-  padding: 80px 0;
+  overflow: scroll;
   width: 250px;
   position: absolute;
-  left: -100%;
+  // left: -100%;
 
   @include mq(small) {
     height: 100vh;
@@ -83,12 +131,78 @@ export default {
     overflow: scroll;
     position: sticky;
     top: 0;
-    padding-bottom: 80px;
+    padding: 80px 0;
   }
 
   @include mq(medium) {
     width: 300px;
   }
+}
+
+.sidebar__heading {
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid color(shape);
+  display: flex;
+  flex: 1;
+  min-height: 70px;
+  margin-bottom: 40px;
+
+  @include mq(small) {
+    display: none;
+  }
+}
+
+.sidebar__info {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  padding-left: 25px;
+}
+
+.sidebar__menu {
+  align-items: center;
+  border-right: 1px solid color(shape);
+  display: flex;
+  justify-content: center;
+  height: 70px;
+  width: 70px;
+
+  .simple-svg-wrapper {
+    margin: 0;
+    transform: translate(0);
+  }
+}
+
+.sidebar__logo {
+  align-items: center;
+  background-color: color(pyxisBrand, base);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  height: 30px;
+  margin-right: 10px;
+  width: 30px;
+
+  .simple-svg-wrapper {
+    margin: 0;
+    padding: 0;
+    transform: translate(0);
+  }
+}
+
+.sidebar__logo__name {
+  color: color(pyxisBrand);
+  font-family: font(heavy);
+  font-size: size(base);
+}
+
+.sidebar__logo__version {
+  color: color(pyxisBrand);
+  font-family: font(heavy);
+  font-size: size(xsmall);
+  padding-left: 5px;
+  opacity: 0.5;
 }
 
 .domains,
@@ -119,7 +233,11 @@ export default {
   color: color(text, dark);
   font-size: 18px;
   margin-bottom: 15px;
+  padding-left: 30px;
+
+  @include mq(small) {
   padding-left: 50px;
+  }
 }
 
 .routes {
@@ -142,11 +260,15 @@ export default {
   display: flex;
   font-size: 16px;
   height: 100%;
-  padding: 2px 0 0 60px;
+  padding: 2px 0 0 40px;
   position: relative;
   text-decoration: none;
   transition: background 0.3s;
   width: 100%;
+
+  @include mq(small) {
+    padding: 2px 0 0 60px;
+  }
 
   &:before {
     background: #6B70D7;
