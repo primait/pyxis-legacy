@@ -116,6 +116,7 @@ export default {
     z-index: 9;
     transform: translate3d(-100%, 0, 0);
     transition: transform 0.3s ease-in-out;
+    will-change: transform;
 
     &.is-open {
       transform: translate3d(0%, 0, 0);
@@ -130,9 +131,8 @@ export default {
   flex-direction: column;
   flex: 0 0 auto;
   overflow: scroll;
-  width: 250px;
   position: absolute;
-  // left: -100%;
+  width: 250px;
 
   @include mq(small) {
     height: 100vh;
@@ -144,7 +144,7 @@ export default {
   }
 
   @include mq(medium) {
-    width: 300px;
+    width: 320px;
   }
 }
 
@@ -245,7 +245,7 @@ export default {
   padding-left: 30px;
 
   @include mq(small) {
-  padding-left: 50px;
+    padding-left: 4vw;
   }
 }
 
@@ -276,7 +276,7 @@ export default {
   width: 100%;
 
   @include mq(small) {
-    padding: 2px 0 0 60px;
+    padding: 2px 0 0 4.5vw;
   }
 
   &:before {
