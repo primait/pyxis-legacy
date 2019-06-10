@@ -10,13 +10,12 @@
         </div>
     </code-inspector>
 
-    <code-inspector title="Jumbotron with img">
+    <code-inspector title="Jumbotron with img" class="dashed">
         <div id="syntaxWrapper">
           <jumbotron
             :title="'Title'"
             :subtitle="'Subtitle'"
-            :imageSrc="imgSrc"
-             class="dashed">
+            :imageSrc="imgSrc">
           </jumbotron>
         </div>
     </code-inspector>
