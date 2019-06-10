@@ -15,20 +15,18 @@ module.exports = {
   chainWebpack: config => {
     const buildMode = config.store.get('mode')
     const isDevelopment = buildMode === 'development'
+
     config
       .resolve.alias
       .set('@', sourcesRoot)
       .set('@pyxis-src', pyxisSassRoot)
-    // Interact with entry points
+
     config
       .entry('app')
       .clear()
       .add(sourcesRoot + '/main.js')
       .end()
-    // Modify output settings
-    /* .output
-    .path('dist/pyxis-site')
-    .filename('[name].bundle.js') */
+
     config.module
       .rule('elm')
       .test(/\.elm$/)
@@ -42,18 +40,22 @@ module.exports = {
         forceWatch: true
       })
       .end()
+
     config
       .plugin('copy')
       .tap(args => {
         args[0][0].to = buildDestination
         return args
       })
-    config.plugin('define').tap((definitions) => {
-      definitions[0]['process.env'] = Object.assign(definitions[0]['process.env'], {
-        PYXIS_COLORS: JSON.stringify(pyxisVars.vars.global.$colors),
-        PYXIS_VERSION: JSON.stringify(packageJson['dependencies']['@prima-assicurazioni/pyxis-npm'])
+
+    config
+      .plugin('define')
+      .tap((definitions) => {
+        definitions[0]['process.env'] = Object.assign(definitions[0]['process.env'], {
+          PYXIS_COLORS: JSON.stringify(pyxisVars.vars.global.$colors),
+          PYXIS_VERSION: JSON.stringify(packageJson['dependencies']['@prima-assicurazioni/pyxis-npm'])
+        })
+        return definitions
       })
-      return definitions
-    })
   }
 }
