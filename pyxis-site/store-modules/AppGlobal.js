@@ -20,7 +20,6 @@ export default {
   },
   actions: {
     toggleSidebar ({ state, commit }) {
-      console.log(state.sidebarOpen)
       if (state.sidebarOpen) {
         commit('closeSidebar')
       } else {
