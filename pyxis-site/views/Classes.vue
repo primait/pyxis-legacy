@@ -6,32 +6,39 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.</p>
     </text-block>
 
-    <hr/>
-    <h4>Design</h4>
+    <text-block>
+      <h4>Design</h4>
+    </text-block>
     <div class="rules">
       <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches.design">
         {{match}}
       </div>
     </div>
-    <hr/>
 
-    <h4>Colors</h4>
+    <text-block>
+      <hr/>
+      <h4>Colors</h4>
+    </text-block>
     <div class="rules">
       <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches.colors">
         {{match}}
       </div>
     </div>
-    <hr/>
 
-    <h4>Fonts</h4>
+    <text-block>
+      <hr/>
+      <h4>Fonts</h4>
+    </text-block>
     <div class="rules">
       <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches.fonts">
         {{match}}
       </div>
     </div>
-    <hr/>
 
-    <h4>Others</h4>
+    <text-block>
+      <hr/>
+      <h4>Others</h4>
+    </text-block>
     <div class="rules">
       <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches.others">
         {{match}}
@@ -48,20 +55,37 @@
     display: grid;
 
     @include mq(small) {
-      grid-column-gap: 15px;
+      grid-gap: 15px;
       grid-template-columns: repeat(5, 1fr);
     }
   }
 
   .rules__item {
-    background: color(backgroundAlt);
-    border-radius: 5px;
-    color: color(textAlt, light);
-    font-family: font(monospace);
-    font-weight: 700;
-    margin: 15px 0 0 0;
-    padding: 15px;
+    border: 1px solid color(shape);
+    border-radius: 8px;
+    color: color(text, base);
+    font-family: monospace;
+    padding: 20px;
     text-align: center;
+    user-select: all;
+    transition: all 0.1s ease-in-out;
+    font-size: size(small);
+    position: relative;
+
+    &:hover {
+      background: color(backgroundAlt);
+      color: color(textAlt, light);
+      border: 1px solid color(backgroundAlt);
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top:0;
+      left: 0;
+    }
   }
 </style>
 

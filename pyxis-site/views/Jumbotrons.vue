@@ -89,7 +89,7 @@ export default {
     @import '@/assets/sass/helpers.scss';
 
     .dashed {
-        border: 1px dashed color(pyxisBrand);
-        padding: 20px;
+      border: 2px dashed rgba(color(pyxisBrand), 0.3);
+      padding: 20px;
     }
 </style>
