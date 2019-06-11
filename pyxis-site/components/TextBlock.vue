@@ -34,6 +34,11 @@ export default {
     color: color(text, base);
     margin: 10px 0;
   }
+
+  hr {
+    background-color: color(shape, light);
+    height: 2px;
+  }
 }
 
 </style>
