@@ -19,7 +19,7 @@
     <div class="heading__intro">
       <div class="heading__name fwHeavy">
         <strong class="fsXlarge">Pyxis</strong>
-        <span class="fsXsmall">{{pyxisLastRelease}}</span>
+        <span class="fsXsmall">{{ pyxisLastRelease }}</span>
       </div>
       <span class="fsSmall">Prima.it Design System</span>
     </div>
@@ -31,6 +31,7 @@
 import logoSvg from '@/assets/images/logo.svg'
 import SearchInput from '@/components/Heading/SearchInput.vue'
 import menuIcon from '@/assets/icons/menu.svg'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Heading',
@@ -51,9 +52,9 @@ export default {
     }
   },
   methods: {
-    toggleSidebar: function () {
-      this.$store.commit('toggleSidebar')
-    }
+    ...mapActions([
+      'toggleSidebar'
+    ])
   }
 }
 </script>
