@@ -1,23 +1,23 @@
 export default {
   state: {
-    sidebarOpen: false
+    isSidebarOpen: false
   },
   mutations: {
     openSidebar (state) {
-      state.sidebarOpen = true
+      state.isSidebarOpen = true
     },
     closeSidebar (state) {
-      state.sidebarOpen = false
+      state.isSidebarOpen = false
     }
   },
   getters: {
     isSidebarOpen: (state) => {
-      return state.sidebarOpen
+      return state.isSidebarOpen
     }
   },
   actions: {
     toggleSidebar ({ state, commit }) {
-      if (state.sidebarOpen) {
+      if (state.isSidebarOpen) {
         commit('closeSidebar')
       } else {
         commit('openSidebar')
