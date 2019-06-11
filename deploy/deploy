@@ -20,24 +20,6 @@ fi
 ENV=$1
 GIT_REV=$(git rev-parse --verify HEAD | cut -b 1-15)
 
-if [ "${ENV}" = "new-tag" ]; then
-  set +x
-  CURRENT_BRANCH="$(git branch | grep \* | cut -d ' ' -f2)"
-  if [ "${CURRENT_BRANCH}" != "master" ]; then
-    echo "Non puoi creare un tag se non sei sul branch master!! Branch corrente: ${CURRENT_BRANCH}"
-    exit 1
-  fi
-  set +e
-  git fetch && git fetch --tags && git pull
-  LAST_TAG="$(git describe --tags "$(git rev-list --tags --max-count=1)" || echo 1.0.0)"
-  set -e
-  NEW_TAG="$(echo "$LAST_TAG" | awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{if(length($NF+1)>length($NF))$(NF-1)++; $NF=sprintf("%0*d", length($NF), ($NF+1)%(10^length($NF))); print}')"
-  echo "Creating new tag: $NEW_TAG"
-  git tag "$NEW_TAG" && git push --tags
-  echo "The tag $NEW_TAG has been successfully pushed :)"
-  exit
-fi
-
 if [ "$ENV" = "staging" ]; then
   HOSTNAME_PRIORITY="6001"
   HOSTNAME_PATTERN="pyxis-staging.prima.it"

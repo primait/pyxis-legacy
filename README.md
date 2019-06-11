@@ -30,7 +30,8 @@
 ## Deploy del css
 Per utilizzare il css su altri progetti, come fosse una dipendenza:
 ```
-deploy/deploy new-tag
+git tag x.x.x
+git push --tags
 ```
 
 Aggiornare l'url sui progetti che utilizzano il css:
