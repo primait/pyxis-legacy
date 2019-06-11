@@ -3,9 +3,6 @@ export default {
     sidebarOpen: false
   },
   mutations: {
-    setSidebarOpen (state, isOpen) {
-      state.sidebarOpen = isOpen
-    },
     openSidebar (state) {
       state.sidebarOpen = true
     },
