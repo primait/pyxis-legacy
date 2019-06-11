@@ -1,7 +1,7 @@
 # Pyxis Site
 
 
-- [Costellazione della bussola](https://it.wikipedia.org/wiki/Bussola_(costellazione)
+- [Costellazione della bussola](https://it.wikipedia.org/wiki/Bussola_(costellazione))
 
 - [Repository Pyxis NPM](https://github.com/primait/pyxis-npm)
 
