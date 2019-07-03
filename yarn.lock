@@ -633,10 +633,10 @@
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
 
-"@prima-assicurazioni/pyxis-npm@1.8.5":
-  version "1.8.5"
-  resolved "https://registry.yarnpkg.com/@prima-assicurazioni/pyxis-npm/-/pyxis-npm-1.8.5.tgz#29dfceb40cdfd8c3046d2bc74a73e628c01625f1"
-  integrity sha512-cRSaT4a09bV93yISieO7GVpEry6+duVhzvd5ejlkIHDEi2zEPFEJdRzsVn0LO2kU+fV29bE3hJVwqCdjV67z8w==
+"@prima-assicurazioni/pyxis-npm@1.8.9":
+  version "1.8.9"
+  resolved "https://registry.yarnpkg.com/@prima-assicurazioni/pyxis-npm/-/pyxis-npm-1.8.9.tgz#1c7648b7ff3988dc7951679e6edad73b67a384d2"
+  integrity sha512-ThS4q2pv/40yzKSOERm/2ZfmgtWuoy33+Be4NA9ew+YjO9zHGftxKPmRSLo0jWHx2Ylio+xOiZVkt3JlBv7NbQ==
   dependencies:
     html-webpack-plugin "^3.2.0"
 
