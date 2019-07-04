@@ -1,8 +1,8 @@
 module Pyxis.Helpers exposing
-    ( syntaxWrapper
-    , loremIpsum
+    ( loremIpsum
     , pyxisStyle
     , spacer
+    , syntaxWrapper
     )
 
 import Html exposing (Html, br, div)
