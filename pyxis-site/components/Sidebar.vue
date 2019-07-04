@@ -1,26 +1,26 @@
 <template>
-  <aside class="sidebar" :class="{'is-open' : $store.getters.isSidebarOpen }">
+  <aside class="sidebar" :class="{'is-open' : isSidebarOpen }">
     <div class="sidebar__wrapper">
       <div class="sidebar__heading">
         <div class="sidebar__action" v-on:click="toggleSidebar">
           <simple-svg
-                  :fill="'#4D5969'"
+                  fill="#4D5969"
                   :filepath="icon.closeIcon"
-                  :height="'28px'"
-                  :width="'28px'"
+                  height="28px"
+                  width="28px"
                   />
         </div>
         <div class="sidebar__info">
           <div class="sidebar__logo">
             <simple-svg
-                  :fill="'#fff'"
+                  fill="#fff"
                   :filepath="icon.logoSvg"
-                  :height="'20px'"
-                  :width="'20px'"
+                  height="20px"
+                  width="20px"
                   />
           </div>
           <span class="sidebar__logo__name">Pyxis</span>
-          <span class="sidebar__logo__version fsXsmall">{{pyxisLastRelease}}</span>
+          <span class="sidebar__logo__version fsXsmall">{{ pyxisLastRelease }}</span>
         </div>
       </div>
     <ul class="domains directionColumn noListStyle">
@@ -36,8 +36,8 @@
               <simple-svg
                 :fill="isActive(route.name)"
                 :filepath="route.icon"
-                :height="'14px'"
-                :width="'14px'"
+                height="14px"
+                width="14px"
                 />
               {{ route.label }}
             </router-link>
@@ -54,6 +54,7 @@ import routes from '@/others/routes.js'
 import helpers from '@/others/helpers.js'
 import logoSvg from '@/assets/images/logo.svg'
 import closeIcon from '@/assets/icons/close.svg'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Sidebar',
@@ -88,9 +89,9 @@ export default {
         return '#4D5969'
       }
     },
-    toggleSidebar: function () {
-      this.$store.commit('toggleSidebar')
-    }
+    ...mapActions([
+      'toggleSidebar'
+    ])
   },
   computed: {
     icon () {
@@ -98,7 +99,10 @@ export default {
         logoSvg: logoSvg,
         closeIcon: closeIcon
       }
-    }
+    },
+    ...mapGetters([
+      'isSidebarOpen'
+    ])
   }
 }
 </script>

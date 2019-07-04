@@ -87,7 +87,7 @@ export default {
   margin-top: 50px;
 
   & + & {
-    border-top: 1px solid color(shape, base);
+    border-top: 2px solid color(shape, light);
     padding-top: 30px;
   }
 }

@@ -4,8 +4,8 @@
         <simple-svg
           :filepath="codeIcon"
           :fill="codeIconColor"
-          :width="'20px'"
-          :height="'20px'"
+          width="20px"
+          height="20px"
           />
           {{title}}
       </h4>

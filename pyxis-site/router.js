@@ -20,6 +20,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "accordions-view" */ '@/views/Accordions.vue')
     },
     {
+      path: '/buttons',
+      name: 'buttons',
+      component: () => import(/* webpackChunkName: "buttons-view" */ '@/views/Buttons.vue')
+    },
+    {
       path: '/classes',
       name: 'classes',
       component: () => import(/* webpackChunkName: "classes-view" */ '@/views/Classes.vue')

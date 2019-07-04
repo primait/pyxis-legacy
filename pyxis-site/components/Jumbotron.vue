@@ -76,5 +76,5 @@ export default {
 
 <style lang="scss" scoped>
     @import '@/assets/sass/helpers.scss';
-    @import '@pyxis-src/scss/04_organisms/_jumbotron.scss'
+    @import '@pyxis-src/scss/04_organisms/_jumbotron.scss';
 </style>

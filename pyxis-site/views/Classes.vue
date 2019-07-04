@@ -6,8 +6,41 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.</p>
     </text-block>
 
+    <text-block>
+      <h4>Design</h4>
+    </text-block>
     <div class="rules">
-      <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches">
+      <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches.design">
+        {{match}}
+      </div>
+    </div>
+
+    <text-block>
+      <hr/>
+      <h4>Colors</h4>
+    </text-block>
+    <div class="rules">
+      <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches.colors">
+        {{match}}
+      </div>
+    </div>
+
+    <text-block>
+      <hr/>
+      <h4>Fonts</h4>
+    </text-block>
+    <div class="rules">
+      <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches.fonts">
+        {{match}}
+      </div>
+    </div>
+
+    <text-block>
+      <hr/>
+      <h4>Others</h4>
+    </text-block>
+    <div class="rules">
+      <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches.others">
         {{match}}
       </div>
     </div>
@@ -22,20 +55,37 @@
     display: grid;
 
     @include mq(small) {
-      grid-column-gap: 15px;
+      grid-gap: 15px;
       grid-template-columns: repeat(5, 1fr);
     }
   }
 
   .rules__item {
-    background: color(backgroundAlt);
-    border-radius: 5px;
-    color: color(textAlt, light);
-    font-family: font(monospace);
-    font-weight: 700;
-    margin: 15px 0 0 0;
-    padding: 15px;
+    border: 1px solid color(shape);
+    border-radius: 8px;
+    color: color(text, base);
+    font-family: monospace;
+    padding: 20px;
     text-align: center;
+    user-select: all;
+    transition: all 0.1s ease-in-out;
+    font-size: size(small);
+    position: relative;
+
+    &:hover {
+      background: color(backgroundAlt);
+      color: color(textAlt, light);
+      border: 1px solid color(backgroundAlt);
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top:0;
+      left: 0;
+    }
   }
 </style>
 
@@ -46,10 +96,7 @@ import TextBlock from '@/components/TextBlock.vue'
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import styles from '!css-loader!sass-loader?modules!@/assets/sass/utilityClasses.scss'
 
-const pyxisStyle = styles[0][1]
-const regExp = /^\.(?![amo]-)[\w-]+/igm
-const matches = []
-pyxisStyle.replace(regExp, (match, g1, g2) => { matches.push(match) })
+const toCamelCase = str => str.split('-').map(s => s[0].toUpperCase() + s.slice(1)).join('')
 
 export default {
   name: 'Classes',
@@ -57,9 +104,65 @@ export default {
     Container,
     TextBlock
   },
-  data: function () {
-    return {
-      matches: matches.sort()
+  computed: {
+    matches: function () {
+      const pyxisStyle = styles[0][1]
+      const regExp = /^\.(?![amo]-)[\w-]+/igm
+      let rules = []
+      const matches = {
+        design: [],
+        colors: [],
+        fonts: [],
+        others: []
+      }
+
+      pyxisStyle.replace(regExp, (match, g1, g2) => { rules.push(match) })
+
+      rules = rules.map(item => toCamelCase(item))
+
+      matches.design = rules.filter(item => {
+        return (
+          item.startsWith('.align') ||
+          item.startsWith('.border') ||
+          item.startsWith('.line') ||
+          item.startsWith('.no') ||
+          item.startsWith('.overflow') ||
+          item.startsWith('.lowercase') ||
+          item.startsWith('.sticky') ||
+          item.startsWith('.underline') ||
+          item.startsWith('.uppercase') ||
+          item.startsWith('.word')
+        )
+      })
+
+      matches.colors = rules.filter(item => {
+        return (
+          item.startsWith('.bg') ||
+          item.startsWith('.c')
+        )
+      })
+
+      matches.fonts = rules.filter(item => {
+        return (
+          item.startsWith('.fs') ||
+          item.startsWith('.fw')
+        )
+      })
+
+      matches.others = rules.filter(item => {
+        return (
+          !matches.colors.includes(item) &&
+          !matches.design.includes(item) &&
+          !matches.fonts.includes(item)
+        )
+      })
+
+      return {
+        design: [...new Set(matches.design.sort())],
+        colors: [...new Set(matches.colors.sort())],
+        fonts: [...new Set(matches.fonts.sort())],
+        others: [...new Set(matches.others.sort())]
+      }
     }
   }
 }
