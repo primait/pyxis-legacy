@@ -111,6 +111,12 @@ export default {
 @import '@/assets/sass/helpers.scss';
 
 .sidebar {
+  height: 100vh;
+  display: block;
+  overflow-x: hidden;
+  position: sticky;
+  top: 0;
+
   @include mqDown(small) {
     position: fixed;
     top: 0;
@@ -134,7 +140,8 @@ export default {
   display: flex;
   flex-direction: column;
   flex: 0 0 auto;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   position: absolute;
   width: 250px;
 
@@ -312,6 +319,28 @@ export default {
   display: flex;
   margin-right: 20px;
   transform: translateY(-2px);
+}
+
+::-webkit-scrollbar {
+  background: color(background);
+  width: 0px;
+  -webkit-border-radius: 100px;
+}
+
+::-webkit-scrollbar:hover {
+  background: color(background);
+}
+
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal {
+  background: color(background);
+  -webkit-border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:vertical:active,
+::-webkit-scrollbar-thumb:horizontal:active {
+  background: color(background);
+  -webkit-border-radius: 100px;
 }
 
 </style>

@@ -20,3 +20,11 @@ code::-webkit-scrollbar-track {
 }
 
 @import '@pyxis-src/scss/01_base/_base.scss';
+
+/* 
+    Da rimuovere quando il css dei componenti in elm sarà scoped.
+*/
+body {
+    height: 100vh !important;
+}
+ 
