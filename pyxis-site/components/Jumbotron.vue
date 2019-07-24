@@ -53,11 +53,7 @@ export default {
     },
     canRenderPictureSource () {
       if (this.hasPSTemplate()) {
-        if (this.pictureFallback == null) {
-          return false
-        } else {
-          return true
-        }
+        return this.pictureFallback != null
       } else {
         return false
       }

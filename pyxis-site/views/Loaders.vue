@@ -7,7 +7,7 @@
     </text-block>
 
     <code-inspector :key="type" v-for="type in loaderTypes" :title="type | capitalize">
-      <elm-loader :flags="getFlags(type)"></elm-loader>
+      <elm-loader class="elm-loader" :flags="getFlags(type)"></elm-loader>
     </code-inspector>
 
   </container>
@@ -41,3 +41,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .elm-loader::v-deep {
+    @import "../elm-components/pyxis.scss";
+  }
+</style>

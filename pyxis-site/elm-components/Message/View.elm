@@ -1,7 +1,6 @@
 module Message.View exposing (view)
 
 import Html exposing (Html, div, text)
-import Html.Attributes exposing (class, id)
 import Message.Model exposing (Model, Msg)
 import Prima.Pyxis.Message as Message
 import Pyxis.Helpers as Helpers
@@ -11,8 +10,7 @@ view : Model -> Html Msg
 view model =
     div
         []
-        [ Helpers.pyxisStyle
-        , Helpers.syntaxWrapper
+        [ Helpers.syntaxWrapper
             (model.messageList
                 |> List.map messageBuilder
                 |> List.intersperse Helpers.spacer

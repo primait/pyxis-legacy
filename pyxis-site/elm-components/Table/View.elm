@@ -10,8 +10,7 @@ view : Model -> Html Msg
 view model =
     div
         []
-        [ Helpers.pyxisStyle
-        , Helpers.syntaxWrapper
+        [ Helpers.syntaxWrapper
             ((List.singleton << Table.render model.tableState << createTableConfiguration) model)
         ]
 

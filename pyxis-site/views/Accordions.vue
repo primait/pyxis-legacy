@@ -7,7 +7,7 @@
     </text-block>
 
     <code-inspector :key="type" v-for="type in accordionTypes" :title="type | capitalize">
-      <elm-accordion :flags="getFlags(type)"></elm-accordion>
+      <elm-accordion class="elm-accordion" :flags="getFlags(type)"></elm-accordion>
     </code-inspector>
 
   </container>
@@ -41,3 +41,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .elm-accordion::v-deep {
+    @import "../elm-components/pyxis.scss";
+  }
+</style>

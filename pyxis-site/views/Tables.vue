@@ -7,7 +7,7 @@
     </text-block>
 
     <code-inspector :title="'Table'">
-      <elm-table></elm-table>
+      <elm-table class="elm-table"></elm-table>
     </code-inspector>
 
   </container>
@@ -29,3 +29,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .elm-table::v-deep {
+    @import "../elm-components/pyxis.scss";
+  }
+</style>

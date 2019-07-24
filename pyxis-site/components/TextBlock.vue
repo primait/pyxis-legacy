@@ -32,12 +32,17 @@ export default {
 
   p {
     color: color(text, base);
-    margin: 10px 0;
+    margin: 2.5px 0;
   }
 
   hr {
     background-color: color(shape, light);
     height: 2px;
+  }
+
+  strong, b {
+    font-family: font(heavy);
+    font-weight: 400;
   }
 }
 
