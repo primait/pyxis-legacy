@@ -28,10 +28,6 @@ export default {
 <style lang="scss">
   @import '@/assets/sass/app.scss';
 
-  body {
-    overflow-x: hidden;
-  }
-
   .appBody {
     display: flex;
   }

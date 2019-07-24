@@ -19,12 +19,8 @@ code::-webkit-scrollbar-track {
     background: transparent;
 }
 
-@import '@pyxis-src/scss/01_base/_base.scss';
-
-/* 
-    Da rimuovere quando il css dei componenti in elm sarà scoped.
-*/
 body {
-    height: 100vh !important;
+    height: 100vh;
+    overflow: scroll;
+    width: 100vw;
 }
- 
