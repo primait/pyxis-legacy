@@ -1,6 +1,6 @@
 {
   "name": "pyxis-site",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,7 +9,7 @@
     "build:css": "./node_modules/.bin/webpack --config pyxis-sass.webpack.config.js"
   },
   "dependencies": {
-    "@prima-assicurazioni/pyxis-npm": "1.9.0",
+    "@prima-assicurazioni/pyxis-npm": "1.9.1",
     "core-js": "^2.6.5",
     "html-formatter": "^0.1.9",
     "uglifyjs-webpack-plugin": "^2.1.3",
