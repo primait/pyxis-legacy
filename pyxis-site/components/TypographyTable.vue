@@ -8,7 +8,7 @@
       <div class="typography__heading__case"> Case</div>
     </div>
     <div>
-      <div v-for="prop in typographyProps" :key="prop" class="typography__row">
+      <div v-for="prop in typographyProps" :key="prop.category" class="typography__row">
         <div v-for="(value, name) in prop" :key="value" :class="'typography__item typography__item--' + name">
           <span v-html="value"></span>
         </div>

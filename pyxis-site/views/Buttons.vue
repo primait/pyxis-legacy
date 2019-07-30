@@ -1,6 +1,6 @@
 <template>
   <container>
-
+    <design-mode-btn></design-mode-btn>
     <text-block>
       <h3>Bottoni a dimensione standard</h3>
       <p>Aggiungere la classe a-btn con i suoi vari modificatori per ottenere un bottone di dimensioni standard</p>
@@ -128,10 +128,12 @@ import VueElmBridge from '../others/vue-elm-bridge.js'
 import Container from '@/components/Container.vue'
 import TextBlock from '@/components/TextBlock.vue'
 import CodeInspector from '@/components/CodeInspector.vue'
+import DesignModeBtn from '@/components/DesignModeBtn'
 
 export default {
   name: 'Buttons',
   components: {
+    DesignModeBtn,
     CodeInspector,
     Container,
     TextBlock,

@@ -1,14 +1,34 @@
 <template>
-  <main class="main">
-    <div class="a-container directionColumn">
+    <div :class="containerClasses">
       <slot></slot>
     </div>
-  </main>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'Container'
+  name: 'Container',
+  props: {
+    fluid: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'isDesignModeEnabled'
+    ]),
+    containerClasses () {
+      return {
+        'a-container': !this.fluid,
+        'a-containerFluid': this.fluid,
+        'directionColumn': true,
+        'design-mode': this.isDesignModeEnabled
+      }
+    }
+  }
+
 }
 </script>
 
@@ -26,17 +46,9 @@ export default {
   }
 }
 
-.a-container {
+.a-container:not(.design-mode) {
   display: flex;
   margin: 0 auto;
   width: 90%;
-}
-
-.sidebar {
-  border-right: 1px solid color(shape);
-  display: flex;
-  flex: 1 0 auto;
-  padding: 80px 0;
-  width: 388px;
 }
 </style>

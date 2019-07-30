@@ -25,8 +25,7 @@
 
 export default {
   name: 'Jumbotron',
-  components: {
-  },
+  components: {},
   props: {
     title: {
       required: true,
@@ -71,6 +70,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import '@/assets/sass/helpers.scss';
-    @import '@pyxis-src/scss/04_organisms/_jumbotron.scss';
+  @import '@/assets/sass/helpers.scss';
+  @import '@pyxis-src/scss/04_organisms/_jumbotron.scss';
 </style>

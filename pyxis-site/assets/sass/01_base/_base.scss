@@ -1,5 +1,3 @@
-@import '@pyxis-src/scss/01_base/_base.scss';
-
 pre::-webkit-scrollbar,
 code::-webkit-scrollbar {
     width: 7px;
@@ -20,6 +18,8 @@ pre::-webkit-scrollbar-track,
 code::-webkit-scrollbar-track {
     background: transparent;
 }
+
+@import '@pyxis-src/scss/01_base/_base.scss';
 
 body {
     height: 100vh;
