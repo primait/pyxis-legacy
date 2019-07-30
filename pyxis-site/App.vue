@@ -3,7 +3,9 @@
     <heading></heading>
     <div class="appBody">
       <sidebar></sidebar>
-      <router-view></router-view>
+      <main-wrapper>
+        <router-view></router-view>
+      </main-wrapper>
     </div>
   </div>
 </template>
@@ -11,10 +13,12 @@
 <script>
 import Heading from '@/components/Heading.vue'
 import Sidebar from '@/components/Sidebar.vue'
+import MainWrapper from '@/components/MainWrapper'
 
 export default {
   name: 'app',
   components: {
+    MainWrapper,
     Heading,
     Sidebar
   },
@@ -27,10 +31,6 @@ export default {
 
 <style lang="scss">
   @import '@/assets/sass/app.scss';
-
-  body {
-    overflow-x: hidden;
-  }
 
   .appBody {
     display: flex;

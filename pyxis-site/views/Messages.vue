@@ -7,9 +7,8 @@
     </text-block>
 
     <code-inspector :key="type" v-for="type in messageTypes" :title="type | capitalize">
-      <elm-message :flags="getFlags(type)"></elm-message>
+      <elm-message class="elm-message" :flags="getFlags(type)"></elm-message>
     </code-inspector>
-
   </container>
 </template>
 
@@ -41,3 +40,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .elm-message::v-deep {
+    @import "../elm-components/pyxis.scss";
+  }
+</style>

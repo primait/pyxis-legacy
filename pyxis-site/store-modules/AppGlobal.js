@@ -1,6 +1,7 @@
 export default {
   state: {
-    isSidebarOpen: false
+    isSidebarOpen: false,
+    isDesignModeEnabled: false
   },
   mutations: {
     openSidebar (state) {
@@ -8,11 +9,20 @@ export default {
     },
     closeSidebar (state) {
       state.isSidebarOpen = false
+    },
+    enableDesignMode (state) {
+      state.isDesignModeEnabled = true
+    },
+    disableDesignMode (state) {
+      state.isDesignModeEnabled = false
     }
   },
   getters: {
     isSidebarOpen: (state) => {
       return state.isSidebarOpen
+    },
+    isDesignModeEnabled: (state) => {
+      return state.isDesignModeEnabled
     }
   },
   actions: {
@@ -21,6 +31,13 @@ export default {
         commit('closeSidebar')
       } else {
         commit('openSidebar')
+      }
+    },
+    toggleDesignMode ({ state, commit }) {
+      if (state.isDesignModeEnabled) {
+        commit('disableDesignMode')
+      } else {
+        commit('enableDesignMode')
       }
     }
   }

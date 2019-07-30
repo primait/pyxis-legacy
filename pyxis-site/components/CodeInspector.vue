@@ -1,32 +1,38 @@
 <template>
-  <div :class="getInspectorClassObject">
+    <div :class="inspectorClasses">
+      <container :fluid="!isDesignModeEnabled">
       <h4 class="inspector__title" @click="toggleCodeInspector">
         <simple-svg
           :filepath="codeIcon"
           :fill="codeIconColor"
           width="20px"
           height="20px"
-          />
-          {{title}}
+        />
+        {{title}}
       </h4>
+      </container>
       <div class="inspector__content">
-        <div class="inspector__content__sandbox">
+        <div :class="inspectorContentSandboxClasses">
           <slot></slot>
         </div>
-
-        <div class="inspector__content__code" v-if="code" v-highlight>
-          <pre class="language-html"><code>{{code}}</code></pre>
-        </div>
+        <container :fluid="!isDesignModeEnabled">
+          <div class="inspector__content__code" v-if="code" v-highlight>
+            <pre class="language-html"><code>{{code}}</code></pre>
+          </div>
+        </container>
       </div>
-  </div>
+    </div>
 </template>
 
 <script>
 import codeIcon from '@/assets/icons/code.svg'
 import htmlFormatter from 'html-formatter'
+import { mapGetters } from 'vuex'
+import Container from '@/components/Container'
 
 export default {
   name: 'CodeInspector',
+  components: { Container },
   props: {
     title: {
       type: String,
@@ -60,15 +66,24 @@ export default {
     }
   },
   computed: {
-    getInspectorClassObject: function () {
+    inspectorClasses () {
       return {
         'inspector': true,
-        'is-active': this.isActive
+        'is-active': this.isActive,
+        'design-mode': this.isDesignModeEnabled
       }
     },
-    codeIconColor: function () {
+    inspectorContentSandboxClasses () {
+      return {
+        'inspector__content__sandbox': true
+      }
+    },
+    codeIconColor () {
       return this.isActive ? '#FFFFFF' : '#6B70D7'
-    }
+    },
+    ...mapGetters([
+      'isDesignModeEnabled'
+    ])
   }
 }
 </script>
@@ -135,5 +150,9 @@ export default {
     .inspector.is-active & {
       background: color(pyxisBrand);
     }
+  }
+
+  .language-html {
+    white-space: pre-wrap;
   }
 </style>

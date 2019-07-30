@@ -1,6 +1,5 @@
 module Loader.View exposing (view)
 
-import Browser
 import Html exposing (..)
 import Loader.Model
     exposing
@@ -17,6 +16,5 @@ view : Model -> Html Msg
 view model =
     div
         []
-        [ Helpers.pyxisStyle
-        , (Helpers.syntaxWrapper << List.map (Loader.render << loaderTypeToConfiguration)) model.loaderList
+        [ (Helpers.syntaxWrapper << List.map (Loader.render << loaderTypeToConfiguration)) model.loaderList
         ]

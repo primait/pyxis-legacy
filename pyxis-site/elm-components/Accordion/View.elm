@@ -11,9 +11,7 @@ import Accordion.Model
         , Model
         , Msg(..)
         )
-import Browser
 import Html exposing (..)
-import Html.Attributes exposing (class, id)
 import Prima.Pyxis.Accordion as Accordion
 import Pyxis.Helpers as Helpers
 
@@ -22,8 +20,7 @@ view : Model -> Html Msg
 view model =
     div
         []
-        [ Helpers.pyxisStyle
-        , Helpers.syntaxWrapper
+        [ Helpers.syntaxWrapper
             ((List.intersperse Helpers.spacer << List.map accordionRender) model.accordionList)
         ]
 

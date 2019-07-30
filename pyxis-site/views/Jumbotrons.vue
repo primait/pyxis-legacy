@@ -1,5 +1,6 @@
 <template>
   <container>
+    <design-mode-btn></design-mode-btn>
     <text-block>
       <h3>Jumbotrons</h3>
       <p>Scroll down to see the code</p>
@@ -63,10 +64,12 @@ import Container from '@/components/Container.vue'
 import TextBlock from '@/components/TextBlock.vue'
 import Jumbotron from '@/components/Jumbotron.vue'
 import CodeInspector from '@/components/CodeInspector.vue'
+import DesignModeBtn from '@/components/DesignModeBtn'
 
 export default {
   name: 'Jumbotrons',
   components: {
+    DesignModeBtn,
     Container,
     TextBlock,
     Jumbotron,

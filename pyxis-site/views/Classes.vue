@@ -1,6 +1,5 @@
 <template>
   <container>
-
     <text-block>
       <h3>Classes</h3>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.</p>
@@ -96,7 +95,7 @@ import TextBlock from '@/components/TextBlock.vue'
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import styles from '!css-loader!sass-loader?modules!@/assets/sass/utilityClasses.scss'
 
-const toCamelCase = str => str.split('-').map(s => s[0].toUpperCase() + s.slice(1)).join('')
+let toCamelCase = str => str.split('-').map(s => s[0].toUpperCase() + s.slice(1)).join('')
 
 export default {
   name: 'Classes',
@@ -106,10 +105,10 @@ export default {
   },
   computed: {
     matches: function () {
-      const pyxisStyle = styles[0][1]
-      const regExp = /^\.(?![amo]-)[\w-]+/igm
+      let pyxisStyle = styles[0][1]
+      let regExp = /^\.(?![amo]-)[\w-]+/igm
       let rules = []
-      const matches = {
+      let matches = {
         design: [],
         colors: [],
         fonts: [],

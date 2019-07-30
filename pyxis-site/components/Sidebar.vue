@@ -1,5 +1,5 @@
 <template>
-  <aside class="sidebar" :class="{'is-open' : isSidebarOpen }">
+  <aside v-if="!isDesignModeEnabled" class="sidebar" :class="{'is-open' : isSidebarOpen }">
     <div class="sidebar__wrapper">
       <div class="sidebar__heading">
         <div class="sidebar__action" v-on:click="toggleSidebar">
@@ -101,7 +101,8 @@ export default {
       }
     },
     ...mapGetters([
-      'isSidebarOpen'
+      'isSidebarOpen',
+      'isDesignModeEnabled'
     ])
   }
 }
