@@ -1,5 +1,5 @@
 <template>
-  <container fluid="true">
+  <container :fluid="true">
     <design-mode-btn></design-mode-btn>
     <container>
       <text-block>
@@ -34,34 +34,7 @@
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi nobis maxime
             autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.</p>
         </container>
-        <div class="vue-accordion" id="syntaxWrapper">
-          <div class="m-accordionGroup">
-            <div id="accordionLight" class="a-accordion a-accordion--light">
-              <span class="a-accordion__toggle fs-xsmall fw-heavy a-link--alt">I am a light accordion<i
-                class="a-icon a-icon-info"></i></span>
-              <div class="a-accordion__content fs-small">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur in rerum amet modi nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas
-                vero veritatis ea debitis aut ut.
-              </div>
-            </div>
-            <div id="accordionLight" class="a-accordion a-accordion--light"><span
-              class="a-accordion__toggle fs-xsmall fw-heavy a-link--alt">I am a light accordion<i
-              class="a-icon a-icon-info"></i></span>
-              <div class="a-accordion__content fs-small">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur in rerum amet modi nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas
-                vero veritatis ea debitis aut ut.
-              </div>
-            </div>
-            <div id="accordionLight" class="a-accordion a-accordion--light"><span
-              class="a-accordion__toggle fs-xsmall fw-heavy a-link--alt">I am a light accordion<i
-              class="a-icon a-icon-info"></i></span>
-              <div class="a-accordion__content fs-small">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur in rerum amet modi nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas
-                vero veritatis ea debitis aut ut.
-              </div>
-            </div>
-          </div>
-        </div>
+        <accordion-group></accordion-group>
       </code-inspector>
     </container>
   </container>
@@ -74,10 +47,12 @@ import TextBlock from '@/components/TextBlock.vue'
 import CodeInspector from '@/components/CodeInspector.vue'
 import { mapGetters } from 'vuex'
 import DesignModeBtn from '@/components/DesignModeBtn'
+import AccordionGroup from '@/components/AccordionGroup'
 
 export default {
   name: 'Accordions',
   components: {
+    AccordionGroup,
     DesignModeBtn,
     CodeInspector,
     Container,
@@ -105,7 +80,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .elm-accordion::v-deep, .vue-accordion {
+  .elm-accordion::v-deep {
     @import "../elm-components/pyxis.scss";
   }
 </style>
