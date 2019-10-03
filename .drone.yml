@@ -80,7 +80,7 @@ steps:
         from_secret: npm_token
     commands:
       - . /etc/profile.d/ecs-credentials-endpoint
-      - if [ -n "${DRONE_TAG}" ]; then ./deploy/deploy production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/deploy staging; fi
+      - if [ -n "${DRONE_TAG}" ]; then ./deploy/deploy production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "feature/PRIMA-1732-drone-v1" ]; then ./deploy/deploy staging; fi
     depends_on:
       - build-site
       - build-css
@@ -92,7 +92,7 @@ steps:
         path: /etc/profile.d/ecs-credentials-endpoint
     commands:
       - . /etc/profile.d/ecs-credentials-endpoint
-      - if [ -n "${DRONE_TAG}" ]; then ./deploy/wait_for_stack production; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/wait_for_stack staging; fi
+      - if [ -n "${DRONE_TAG}" ]; then ./deploy/wait_for_stack production; elif [ "${DRONE_BRANCH}" = "feature/PRIMA-1732-drone-v1" ]; then ./deploy/wait_for_stack staging; fi
     depends_on:
       - deploy
 
