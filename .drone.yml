@@ -108,9 +108,9 @@ steps:
       - cache-save .cache elm-stuff
     depends_on:
       - deploy
-    # when:
-    #   branch:
-    #     - master
+    when:
+      branch:
+        - master
 
 ---
 kind: pipeline
