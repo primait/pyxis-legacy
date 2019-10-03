@@ -57,6 +57,7 @@ if [ "$ENV" = "staging" ]; then
   fi
 
   set -e
+
   aws --region="eu-west-1" cloudformation ${ACTION} --stack-name ecs-task-pyxis-"${ENV}" \
     --template-body file://$PWD/deploy/task.yml \
     --parameters ParameterKey=ReleaseVersion,ParameterValue=${VERSION} \
@@ -65,8 +66,6 @@ if [ "$ENV" = "staging" ]; then
                 ParameterKey=HostnamePatternPriority,ParameterValue=${HOSTNAME_PRIORITY} \
                 ParameterKey=HostnamePattern,ParameterValue=${HOSTNAME_PATTERN} \
     --capabilities CAPABILITY_IAM
-
-  bash deploy/wait_for_stack staging
 
 elif [ "$ENV" = "production" ]; then
   VERSION=$2

@@ -1,41 +1,138 @@
-clone:
-  git:
-    image: plugins/git
-    recursive: false
+kind: pipeline
+name: default
 
-pipeline:
-  build:
-    image: prima/drone-tools:1.14.3
-    secrets: [ npm_token ]
+volumes:
+  - name: docker
+    host:
+      path: /var/run/docker.sock
+  - name: ecs
+    host:
+      path: /etc/profile.d/ecs-credentials-endpoint
+
+clone:
+  depth: 1
+
+steps:
+  - name: cache-restore
+    image: prima/drone-tools:1.15.0
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /var/cache/ci/${DRONE_REPO}/${DRONE_BRANCH}:/var/cache/ci
-      - /etc/profile.d/ecs-credentials-endpoint:/etc/profile.d/ecs-credentials-endpoint
+      - name: ecs
+        path: /etc/profile.d/ecs-credentials-endpoint
+      - name: docker
+        path: /var/run/docker.sock
     commands:
       - . /etc/profile.d/ecs-credentials-endpoint
-      - prepare-docker-compose
-      - cache-restore --docker-cache-pull --no-files
-      - mv .fakenpmrc .npmrc
-      - docker-compose build
-      - docker-compose run -w $PWD -e NPM_TOKEN=$NPM_TOKEN web "yarn install"
-      - docker-compose run -w $PWD -e NPM_TOKEN=$NPM_TOKEN web "yarn build:site"
-      - docker-compose run -w $PWD -e NPM_TOKEN=$NPM_TOKEN web "yarn build:css"
-      - if [ -n "${DRONE_TAG}" ]; then ./deploy/deploy production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/deploy staging; fi
-      - cache-save node-modules elm-stuff
+      - cache-restore
 
-  notify_email:
-    image: drillster/drone-email
-    host: email-smtp.eu-west-1.amazonaws.com
-    secrets: [ email_username, email_password ]
-    from: noreply@prima.it
-    when:
-      status: [ changed, failure ]
-
-  cleanup:
-    image: prima/drone-tools:1.14.3
+  - name: build-image
+    image: prima/drone-tools:1.15.0
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - name: docker
+        path: /var/run/docker.sock
     commands:
-      - teardown
+      - sed -i 's/USER node/USER root/g' Dockerfile
+      - docker build -t prima/pyxis-ci:1 .
+    depends_on:
+      - cache-restore
+
+  - name: init
+    image: prima/pyxis-ci:1
+    environment:
+      YARN_CACHE_FOLDER: /drone/src/.cache
+      ELM_HOME: /drone/src/.elm
+      NPM_TOKEN:
+        from_secret: npm_token
+    commands:
+      - mv .fakenpmrc .npmrc
+      - yarn install
+    depends_on:
+      - build-image
+
+  - name: build-site
+    image: prima/pyxis-ci:1
+    environment:
+      YARN_CACHE_FOLDER: /drone/src/.cache
+      ELM_HOME: /drone/src/.elm
+      NPM_TOKEN:
+        from_secret: npm_token
+    commands:
+      - yarn build:site
+    depends_on:
+      - init
+
+  - name: build-css
+    image: prima/pyxis-ci:1
+    environment:
+      YARN_CACHE_FOLDER: /drone/src/.cache
+      ELM_HOME: /drone/src/.elm
+      NPM_TOKEN:
+        from_secret: npm_token
+    commands:
+      - yarn build:css
+    depends_on:
+      - init
+
+  - name: deploy
+    image: prima/drone-tools:1.15.0
+    volumes:
+      - name: ecs
+        path: /etc/profile.d/ecs-credentials-endpoint
+    commands:
+      - . /etc/profile.d/ecs-credentials-endpoint
+      - if [ -n "${DRONE_TAG}" ]; then ./deploy/deploy production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/deploy staging; fi
+    depends_on:
+      - build-site
+      - build-css
+
+  - name: wait_for_stack
+    image: prima/drone-tools:1.15.0
+    volumes:
+      - name: ecs
+        path: /etc/profile.d/ecs-credentials-endpoint
+    commands:
+      - . /etc/profile.d/ecs-credentials-endpoint
+      - if [ -n "${DRONE_TAG}" ]; then ./deploy/wait_for_stack production; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/wait_for_stack staging; fi
+    depends_on:
+      - deploy
+
+  - name: cache-save
+    image: prima/drone-tools:1.15.0
+    volumes:
+      - name: ecs
+        path: /etc/profile.d/ecs-credentials-endpoint
+      - name: docker
+        path: /var/run/docker.sock
+    commands:
+      - . /etc/profile.d/ecs-credentials-endpoint
+      - cache-save .cache .elm node_modules elm-stuff
+    depends_on:
+      - deploy
     when:
-      status: [ success, killed, failure ]
+      branch:
+        - master
+
+---
+kind: pipeline
+name: notify
+
+clone:
+  disable: true
+
+steps:
+  - name: notify_email
+    image: drillster/drone-email
+    environment:
+      PLUGIN_USERNAME:
+        from_secret: email_username
+      PLUGIN_PASSWORD:
+        from_secret: email_password
+    settings:
+      host: email-smtp.eu-west-1.amazonaws.com
+      from: noreply@prima.it
+
+trigger:
+  status:
+    - failure
+
+depends_on:
+  - default
