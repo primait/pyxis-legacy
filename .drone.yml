@@ -39,6 +39,7 @@ steps:
     image: prima/pyxis-ci:1
     environment:
       YARN_CACHE_FOLDER: /drone/src/.cache
+      ELM_HOME: /drone/src/.elm
       NPM_TOKEN:
         from_secret: npm_token
     commands:
@@ -51,6 +52,7 @@ steps:
     image: prima/pyxis-ci:1
     environment:
       YARN_CACHE_FOLDER: /drone/src/.cache
+      ELM_HOME: /drone/src/.elm
       NPM_TOKEN:
         from_secret: npm_token
     commands:
@@ -62,6 +64,7 @@ steps:
     image: prima/pyxis-ci:1
     environment:
       YARN_CACHE_FOLDER: /drone/src/.cache
+      ELM_HOME: /drone/src/.elm
       NPM_TOKEN:
         from_secret: npm_token
     commands:
@@ -74,10 +77,6 @@ steps:
     volumes:
       - name: ecs
         path: /etc/profile.d/ecs-credentials-endpoint
-    environment:
-      YARN_CACHE_FOLDER: /drone/src/.cache
-      NPM_TOKEN:
-        from_secret: npm_token
     commands:
       - . /etc/profile.d/ecs-credentials-endpoint
       - if [ -n "${DRONE_TAG}" ]; then ./deploy/deploy production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "feature/PRIMA-1732-drone-v1" ]; then ./deploy/deploy staging; fi
@@ -105,12 +104,12 @@ steps:
         path: /var/run/docker.sock
     commands:
       - . /etc/profile.d/ecs-credentials-endpoint
-      - cache-save .cache elm-stuff
+      - cache-save .cache .elm node_modules elm-stuff
     depends_on:
       - deploy
-    when:
-      branch:
-        - master
+    # when:
+    #   branch:
+    #     - master
 
 ---
 kind: pipeline
