@@ -105,7 +105,7 @@ steps:
         path: /var/run/docker.sock
     commands:
       - . /etc/profile.d/ecs-credentials-endpoint
-      - cache-save .cache node-modules elm-stuff
+      - cache-save .cache elm-stuff
     depends_on:
       - deploy
     # when:
