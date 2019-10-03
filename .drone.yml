@@ -73,7 +73,7 @@ steps:
       - init
 
   - name: deploy
-    image: prima/pyxis-ci:1
+    image: prima/drone-tools:1.15.0
     volumes:
       - name: ecs
         path: /etc/profile.d/ecs-credentials-endpoint
