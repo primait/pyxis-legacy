@@ -30,7 +30,7 @@ steps:
       - name: docker
         path: /var/run/docker.sock
     commands:
-      - sed -i 's/USER app/USER root/g' Dockerfile
+      - sed -i 's/USER node/USER root/g' Dockerfile
       - docker build -t prima/pyxis-ci:1 .
     depends_on:
       - cache-restore
