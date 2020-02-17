@@ -1,5 +1,5 @@
 const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -7,7 +7,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const pyxisRootFolder = path.resolve(__dirname, 'pyxis-themes')
 
 const config = {
-
   context: pyxisRootFolder,
   entry: {
     /**
@@ -46,7 +45,9 @@ const config = {
             options: {
               implementation: require('sass'),
               sourceMap: false,
-              indentedSyntax: false
+              sassOptions: {
+                indentedSyntax: false
+              }
             }
           }
         ]
