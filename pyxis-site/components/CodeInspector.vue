@@ -3,7 +3,7 @@
       <container :fluid="!isDesignModeEnabled">
       <h4 class="inspector__title" @click="toggleCodeInspector">
         <simple-svg
-          :filepath="codeIcon"
+          :src="codeIcon"
           :fill="codeIconColor"
           width="20px"
           height="20px"

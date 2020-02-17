@@ -5,7 +5,7 @@
         <div class="sidebar__action" v-on:click="toggleSidebar">
           <simple-svg
                   fill="#4D5969"
-                  :filepath="icon.closeIcon"
+                  :src="icon.closeIcon"
                   height="28px"
                   width="28px"
                   />
@@ -14,7 +14,7 @@
           <div class="sidebar__logo">
             <simple-svg
                   fill="#fff"
-                  :filepath="icon.logoSvg"
+                  :src="icon.logoSvg"
                   height="20px"
                   width="20px"
                   />
@@ -35,7 +35,7 @@
             <router-link class="routes__item__link fwBase" :to="route.path">
               <simple-svg
                 :fill="isActive(route.name)"
-                :filepath="route.icon"
+                :src="route.icon"
                 height="14px"
                 width="14px"
                 />

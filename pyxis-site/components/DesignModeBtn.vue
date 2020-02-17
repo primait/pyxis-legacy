@@ -1,7 +1,7 @@
 <template>
   <button class="design-mode-btn" v-on:click="toggleDesignMode">
     <simple-svg
-      :filepath="icons.logoSvg"
+      :src="icons.logoSvg"
       :fill="'#fff'"
       :width="'36px'"
       :height="'36px'"

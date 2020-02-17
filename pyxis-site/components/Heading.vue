@@ -2,7 +2,7 @@
   <div class="heading">
     <div class="heading__menu" v-on:click="toggleSidebar">
       <simple-svg
-        :filepath="icons.menuIcon"
+        :src="icons.menuIcon"
         :fill="'#fff'"
         :width="'30px'"
         :height="'30px'"
@@ -10,7 +10,7 @@
     </div>
     <div class="heading__logo">
       <simple-svg
-        :filepath="icons.logoSvg"
+        :src="icons.logoSvg"
         :fill="'#fff'"
         :width="'36px'"
         :height="'36px'"
