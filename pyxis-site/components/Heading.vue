@@ -3,18 +3,18 @@
     <div class="heading__menu" v-on:click="toggleSidebar">
       <simple-svg
         :src="icons.menuIcon"
-        :fill="'#fff'"
-        :width="'30px'"
-        :height="'30px'"
-        />
+        fill="#fff"
+        width="30px"
+        height="30px"
+        custom-class-name="simple-svg-wrapper" />
     </div>
     <div class="heading__logo">
       <simple-svg
         :src="icons.logoSvg"
-        :fill="'#fff'"
-        :width="'36px'"
-        :height="'36px'"
-        />
+        fill="#fff"
+        width="36px"
+        height="36px"
+        custom-class-name="simple-svg-wrapper" />
     </div>
     <div class="heading__intro">
       <div class="heading__name fwHeavy">
@@ -136,7 +136,7 @@ export default {
   }
 }
 
-.simple-svg-wrapper {
+/deep/ .simple-svg-wrapper {
   display: flex;
 }
 </style>

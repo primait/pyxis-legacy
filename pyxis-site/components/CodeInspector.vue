@@ -7,6 +7,7 @@
           :fill="codeIconColor"
           width="20px"
           height="20px"
+          custom-class-name="simple-svg-wrapper"
         />
         {{title}}
       </h4>
@@ -133,7 +134,7 @@ export default {
     }
   }
 
-  .simple-svg-wrapper {
+  /deep/ .simple-svg-wrapper {
     align-items: center;
     background: color(pyxisBrand, light);
     border-radius: 5px;

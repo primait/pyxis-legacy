@@ -4,20 +4,20 @@
       <div class="sidebar__heading">
         <div class="sidebar__action" v-on:click="toggleSidebar">
           <simple-svg
-                  fill="#4D5969"
-                  :src="icon.closeIcon"
-                  height="28px"
-                  width="28px"
-                  />
+            :src="icon.closeIcon"
+            fill="#4D5969"
+            height="28px"
+            width="28px"
+            custom-class-name="simple-svg-wrapper" />
         </div>
         <div class="sidebar__info">
           <div class="sidebar__logo">
             <simple-svg
-                  fill="#fff"
-                  :src="icon.logoSvg"
-                  height="20px"
-                  width="20px"
-                  />
+              :src="icon.logoSvg"
+              fill="#fff"
+              height="20px"
+              width="20px"
+              custom-class-name="simple-svg-wrapper" />
           </div>
           <span class="sidebar__logo__name">Pyxis</span>
           <span class="sidebar__logo__version fsXsmall">{{ pyxisLastRelease }}</span>
@@ -38,7 +38,7 @@
                 :src="route.icon"
                 height="14px"
                 width="14px"
-                />
+                custom-class-name="simple-svg-wrapper" />
               {{ route.label }}
             </router-link>
           </li>
@@ -189,7 +189,7 @@ export default {
   height: 70px;
   width: 70px;
 
-  .simple-svg-wrapper {
+  /deep/ .simple-svg-wrapper {
     margin: 0;
     transform: translate(0);
   }
@@ -205,7 +205,7 @@ export default {
   margin-right: 10px;
   width: 30px;
 
-  .simple-svg-wrapper {
+  /deep/ .simple-svg-wrapper {
     margin: 0;
     padding: 0;
     transform: translate(0);
@@ -316,7 +316,7 @@ export default {
   }
 }
 
-.simple-svg-wrapper {
+/deep/ .simple-svg-wrapper {
   display: flex;
   margin-right: 20px;
   transform: translateY(-2px);

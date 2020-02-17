@@ -2,9 +2,10 @@
   <button class="design-mode-btn" v-on:click="toggleDesignMode">
     <simple-svg
       :src="icons.logoSvg"
-      :fill="'#fff'"
-      :width="'36px'"
-      :height="'36px'"
+      fill="#fff"
+      width="36px"
+      height="36px"
+      custom-class-name="simple-svg-wrapper"
     /> Design mode: {{ isDesignModeEnabled }}
   </button>
 </template>

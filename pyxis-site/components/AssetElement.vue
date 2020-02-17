@@ -3,7 +3,12 @@
     <span class="asset-element__label">{{label}}</span>
     <div class="asset-element__footer">
       <div class="asset-element__type">{{type}}</div>
-      <simple-svg fill="#fff" :src="icon.downloadIcon" height="22px" width="22px"/>
+      <simple-svg
+        :src="icon.downloadIcon"
+        fill="#fff"
+        height="22px"
+        width="22px"
+        custom-class-name="simple-svg-wrapper" />
     </div>
   </a>
 </template>
@@ -55,7 +60,7 @@ export default {
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 
-  .simple-svg-wrapper {
+  /deep/ .simple-svg-wrapper {
     transition: all 0.2s ease-in-out;
   }
 
