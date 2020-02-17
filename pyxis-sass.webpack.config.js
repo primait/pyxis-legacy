@@ -43,7 +43,7 @@ const config = {
           {
             loader: 'sass-loader',
             options: {
-              implementation: require('sass'),
+              implementation: require('node-sass'),
               sourceMap: false,
               sassOptions: {
                 indentedSyntax: false
