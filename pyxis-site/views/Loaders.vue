@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .elm-loader::v-deep {
+  /deep/.elm-loader {
     @import "../elm-components/pyxis.scss";
   }
 </style>

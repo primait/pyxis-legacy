@@ -24,15 +24,23 @@
         </div>
       </div>
     <ul class="domains directionColumn noListStyle">
-      <li class="domains__item" v-for="domain in domainsList" :key="toSlug(domain.label)">
+      <li
+        v-for="domain in domainsList"
+        :key="toSlug(domain.label)"
+        class="domains__item">
 
         <h4 class="domains__item__title fwHeavy">
           {{ domain.label }}
         </h4>
 
         <ul class="routes directionColumn noListStyle">
-          <li class="routes__item" v-for="route in domain.routes" :key="toSlug(route.label)">
-            <router-link class="routes__item__link fwBase" :to="route.path">
+          <li
+            v-for="route in domain.routes"
+            :key="toSlug(route.label)"
+            class="routes__item" >
+            <router-link
+              :to="route.path"
+              class="routes__item__link fwBase">
               <simple-svg
                 :fill="isActive(route.name)"
                 :src="route.icon"
@@ -54,11 +62,11 @@ import routes from '@/others/routes.js'
 import helpers from '@/others/helpers.js'
 import logoSvg from '@/assets/images/logo.svg'
 import closeIcon from '@/assets/icons/close.svg'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapState } from 'vuex'
 
 export default {
   name: 'Sidebar',
-  data: function () {
+  data () {
     return {
       domainsList: [
         { label: '',
@@ -68,7 +76,7 @@ export default {
       pyxisLastRelease: process.env.PYXIS_VERSION
     }
   },
-  created: function () {
+  created () {
     this.domainsList = routes.map(domain => {
       domain.routes = domain.routes.map(route => {
         route.icon = require(`@/assets/icons/${route.icon}.svg`)
@@ -78,11 +86,11 @@ export default {
     })
   },
   methods: {
-    toSlug: function (label) {
+    toSlug (label) {
       return helpers.toSlug(label)
     },
 
-    isActive: function (pathName) {
+    isActive (pathName) {
       if (this.$route.name === pathName) {
         return '#6B70D7'
       } else {
@@ -100,6 +108,9 @@ export default {
         closeIcon: closeIcon
       }
     },
+    ...mapState([
+      'currentSearchQuery'
+    ]),
     ...mapGetters([
       'isSidebarOpen',
       'isDesignModeEnabled'
@@ -189,7 +200,7 @@ export default {
   height: 70px;
   width: 70px;
 
-  /deep/ .simple-svg-wrapper {
+  /deep/.simple-svg-wrapper {
     margin: 0;
     transform: translate(0);
   }
@@ -205,7 +216,7 @@ export default {
   margin-right: 10px;
   width: 30px;
 
-  /deep/ .simple-svg-wrapper {
+  /deep/.simple-svg-wrapper {
     margin: 0;
     padding: 0;
     transform: translate(0);
@@ -316,7 +327,7 @@ export default {
   }
 }
 
-/deep/ .simple-svg-wrapper {
+/deep/.simple-svg-wrapper {
   display: flex;
   margin-right: 20px;
   transform: translateY(-2px);

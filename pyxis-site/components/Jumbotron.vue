@@ -8,12 +8,12 @@
       </div>
       <div v-if="canRenderPictureSource() || imageSrc" class="o-jumbotron__wrapper--picture">
         <template v-if="imageSrc !== null">
-          <img class="o-jumbotron__picture__image" :src="imageSrc" alt="alt-placeholder">
+          <img class="o-jumbotron__picture" :src="imageSrc" alt="alt-placeholder">
         </template>
         <template v-else>
-          <picture class="o-jumbotron__picture">
+          <picture class="o-jumbotron__wrapper--picture">
             <slot name="picture-sources"></slot>
-            <img class="o-jumbotron__picture__image" alt="alt-placeholder" :src="pictureFallback">
+            <img class="o-jumbotron__picture" alt="alt-placeholder" :src="pictureFallback">
           </picture>
         </template>
       </div>

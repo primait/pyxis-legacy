@@ -50,6 +50,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "jumbotrons-view" */ '@/views/Jumbotrons.vue')
     },
     {
+      path: '/links',
+      name: 'links',
+      component: () => import(/* webpackChunkName: "links-view" */ '@/views/Links.vue')
+    },
+    {
       path: '/loaders',
       name: 'loaders',
       component: () => import(/* webpackChunkName: "loaders-view" */ '@/views/Loaders.vue')
@@ -58,6 +63,11 @@ export default new Router({
       path: '/messages',
       name: 'messages',
       component: () => import(/* webpackChunkName: "messages-view" */ '@/views/Messages.vue')
+    },
+    {
+      path: '/tooltips',
+      name: 'tooltips',
+      component: () => import(/* webpackChunkName: "tooltips-view" */ '@/views/Tooltips.vue')
     },
     {
       path: '/tables',

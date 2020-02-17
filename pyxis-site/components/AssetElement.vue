@@ -60,7 +60,7 @@ export default {
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 
-  /deep/ .simple-svg-wrapper {
+  /deep/.simple-svg-wrapper {
     transition: all 0.2s ease-in-out;
   }
 

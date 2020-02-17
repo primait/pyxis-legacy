@@ -23,7 +23,10 @@
       </div>
       <span class="fsSmall">Prima.it Design System</span>
     </div>
-    <search-input :inputValue="inputValue" :placeholder='placeholder'></search-input>
+    <search-input
+      :value="currentSearchQuery"
+      :placeholder="placeholder"
+      @input="setCurrentSearchQuery" />
   </div>
 </template>
 
@@ -31,19 +34,23 @@
 import logoSvg from '@/assets/images/logo.svg'
 import SearchInput from '@/components/Heading/SearchInput.vue'
 import menuIcon from '@/assets/icons/menu.svg'
-import { mapActions } from 'vuex'
+import { mapActions, mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'Heading',
-  components: { SearchInput },
+  components: {
+    SearchInput
+  },
   data: function () {
     return {
       pyxisLastRelease: process.env.PYXIS_VERSION,
-      placeholder: 'search',
-      inputValue: ''
+      placeholder: 'search'
     }
   },
   computed: {
+    ...mapState([
+      'currentSearchQuery'
+    ]),
     icons () {
       return {
         logoSvg: logoSvg,
@@ -52,6 +59,9 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'setCurrentSearchQuery'
+    ]),
     ...mapActions([
       'toggleSidebar'
     ])
@@ -136,7 +146,7 @@ export default {
   }
 }
 
-/deep/ .simple-svg-wrapper {
+/deep/.simple-svg-wrapper {
   display: flex;
 }
 </style>

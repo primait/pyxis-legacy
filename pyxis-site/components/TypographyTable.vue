@@ -9,7 +9,7 @@
     </div>
     <div>
       <div v-for="prop in typographyProps" :key="prop.category" class="typography__row">
-        <div v-for="(value, name) in prop" :key="value" :class="'typography__item typography__item--' + name">
+        <div v-for="(value, name) in prop" :key="value" :class="['typography__item', `typography__item--${name}`]">
           <span v-html="value"></span>
         </div>
       </div>
@@ -186,6 +186,12 @@ export default {
 
   .typography__item--label {
     color: color(text, dark);
+
+    @for $i from 1 through 7 {
+      /deep/h#{$i} {
+        margin-bottom: 0;
+      }
+    }
   }
 
 </style>

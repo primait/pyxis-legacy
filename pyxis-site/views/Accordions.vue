@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .elm-accordion::v-deep {
+  /deep/.elm-accordion {
     @import "../elm-components/pyxis.scss";
   }
 </style>

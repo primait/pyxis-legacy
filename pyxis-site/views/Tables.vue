@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .elm-table::v-deep {
+  /deep/.elm-table {
     @import "../elm-components/pyxis.scss";
   }
 </style>

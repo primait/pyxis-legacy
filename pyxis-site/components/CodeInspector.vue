@@ -134,7 +134,7 @@ export default {
     }
   }
 
-  /deep/ .simple-svg-wrapper {
+  /deep/.simple-svg-wrapper {
     align-items: center;
     background: color(pyxisBrand, light);
     border-radius: 5px;

@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .elm-message::v-deep {
+  /deep/.elm-message {
     @import "../elm-components/pyxis.scss";
   }
 </style>
