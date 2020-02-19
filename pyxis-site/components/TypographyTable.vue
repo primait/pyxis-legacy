@@ -204,7 +204,7 @@ export default {
     color: color(text, dark);
 
     @for $i from 1 through 7 {
-      /deep/h#{$i} {
+      ::v-deep h#{$i} {
         margin-bottom: 0;
       }
     }

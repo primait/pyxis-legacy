@@ -171,7 +171,7 @@ export default {
       border: 1px solid color(backgroundAlt);
     }
 
-    &:before {
+    &::before {
       content: '';
       position: absolute;
       width: 100%;

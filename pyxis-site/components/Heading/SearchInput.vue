@@ -42,7 +42,7 @@ $iconSize: 15px;
   align-items: center;
   position: relative;
 
-  &:before {
+  &::before {
     content: url('../../assets/icons/search.svg');
     height: $iconSize;
     left: $iconSize + 5px;

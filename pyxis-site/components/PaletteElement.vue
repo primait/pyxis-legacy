@@ -100,7 +100,7 @@ export default {
       width: 100%;
     }
 
-    &:before {
+    &::before {
       background-image: url('../assets/images/checker.jpg');
       background-size: auto auto;
       position: absolute;

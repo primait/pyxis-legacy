@@ -11,7 +11,7 @@
         {{ type }}
       </div>
       <simple-svg
-        :src="icon.downloadIcon"
+        :src="require('@/assets/icons/download.svg')"
         fill="#fff"
         height="22px"
         width="22px"
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import downloadIcon from '@/assets/icons/download.svg'
 
 export default {
   name: 'AssetElement',
@@ -37,13 +36,6 @@ export default {
     type: {
       type: String,
       required: true
-    }
-  },
-  computed: {
-    icon () {
-      return {
-        downloadIcon: downloadIcon
-      }
     }
   }
 }
@@ -66,11 +58,11 @@ export default {
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 
-  /deep/.simple-svg-wrapper {
+  ::v-deep .simple-svg-wrapper {
     transition: all 0.2s ease-in-out;
   }
 
-  &:after {
+  &::after {
     content: url("../assets/icons/kit.svg");
     opacity: 0.05;
     position: absolute;

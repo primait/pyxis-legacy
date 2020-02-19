@@ -2,7 +2,7 @@
   <div class="heading">
     <div class="heading__menu" v-on:click="toggleSidebar">
       <simple-svg
-        :src="icons.menuIcon"
+        :src="require('@/assets/icons/menu.svg')"
         fill="#fff"
         width="30px"
         height="30px"
@@ -10,7 +10,7 @@
     </div>
     <div class="heading__logo">
       <simple-svg
-        :src="icons.logoSvg"
+        :src="require('@/assets/images/logo.svg')"
         fill="#fff"
         width="36px"
         height="36px"
@@ -25,15 +25,13 @@
     </div>
     <search-input
       :value="currentSearchQuery"
-      :placeholder="placeholder"
+      placeholder="search"
       @input="setCurrentSearchQuery" />
   </div>
 </template>
 
 <script>
-import logoSvg from '@/assets/images/logo.svg'
 import SearchInput from '@/components/Heading/SearchInput'
-import menuIcon from '@/assets/icons/menu.svg'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
@@ -41,22 +39,15 @@ export default {
   components: {
     SearchInput
   },
-  data: function () {
+  data () {
     return {
-      pyxisLastRelease: process.env.PYXIS_VERSION,
-      placeholder: 'search'
+      pyxisLastRelease: process.env.PYXIS_VERSION
     }
   },
   computed: {
     ...mapGetters([
       'currentSearchQuery'
-    ]),
-    icons () {
-      return {
-        logoSvg: logoSvg,
-        menuIcon: menuIcon
-      }
-    }
+    ])
   },
   methods: {
     ...mapMutations([
@@ -83,6 +74,10 @@ export default {
 
   @include mq(small) {
     justify-content: flex-start;
+  }
+
+  ::v-deep .simple-svg-wrapper {
+    display: flex;
   }
 }
 
@@ -144,9 +139,5 @@ export default {
   @include mq(small) {
     display: none;
   }
-}
-
-/deep/.simple-svg-wrapper {
-  display: flex;
 }
 </style>

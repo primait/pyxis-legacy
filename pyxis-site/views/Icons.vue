@@ -54,7 +54,7 @@ export default {
     updateIconCode: function () {
       this.iconSet = this.iconSet.map(icon => {
         const selector = ['.', icon.prefix, icon.name].join('')
-        const unicodeIconCode = getComputedStyle(document.querySelector(selector), ':before').getPropertyValue('content')
+        const unicodeIconCode = getComputedStyle(document.querySelector(selector), '::before').getPropertyValue('content')
 
         return {
           prefix: icon.prefix,

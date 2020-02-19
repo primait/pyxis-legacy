@@ -1,10 +1,14 @@
 <template>
-  <aside v-if="!isDesignModeEnabled" class="sidebar" :class="{'is-open' : isSidebarOpen }">
+  <aside
+    v-if="!isDesignModeEnabled"
+    :class="['sidebar', {'is-open' : isSidebarOpen }]">
     <div class="sidebar__wrapper">
       <div class="sidebar__heading">
-        <div class="sidebar__action" v-on:click="toggleSidebar">
+        <div
+          class="sidebar__action"
+          @click="toggleSidebar">
           <simple-svg
-            src="@/assets/icons/close.svg"
+            :src="require('@/assets/icons/close.svg')"
             fill="#4D5969"
             height="28px"
             width="28px"
@@ -13,14 +17,16 @@
         <div class="sidebar__info">
           <div class="sidebar__logo">
             <simple-svg
-              src="@/assets/images/logo.svg"
+              :src="require('@/assets/images/logo.svg')"
               fill="#fff"
               height="20px"
               width="20px"
               custom-class-name="simple-svg-wrapper" />
           </div>
           <span class="sidebar__logo__name">Pyxis</span>
-          <span class="sidebar__logo__version fsXsmall">{{ pyxisLastRelease }}</span>
+          <span class="sidebar__logo__version fsXsmall">
+            {{ pyxisLastRelease }}
+          </span>
         </div>
       </div>
     <ul class="domains directionColumn noListStyle">
@@ -114,6 +120,13 @@ export default {
       transform: translate3d(0%, 0, 0);
     }
   }
+
+  ::v-deep .simple-svg-wrapper {
+    display: flex;
+    margin-right: 20px;
+    transform: translateY(-2px);
+  }
+
 }
 
 .sidebar__wrapper {
@@ -170,7 +183,7 @@ export default {
   height: 70px;
   width: 70px;
 
-  /deep/.simple-svg-wrapper {
+  ::v-deep .simple-svg-wrapper {
     margin: 0;
     transform: translate(0);
   }
@@ -186,7 +199,7 @@ export default {
   margin-right: 10px;
   width: 30px;
 
-  /deep/.simple-svg-wrapper {
+  ::v-deep .simple-svg-wrapper {
     margin: 0;
     padding: 0;
     transform: translate(0);
@@ -274,7 +287,7 @@ export default {
     padding: 2px 0 0 4.5vw;
   }
 
-  &:before {
+  &::before {
     background: #6B70D7;
     bottom: 0;
     content: '';
@@ -294,12 +307,12 @@ export default {
     color: #6B70D7;
   }
 
-  /deep/ svg {
+  ::v-deep svg {
     fill: #4D5969;
   }
 
   &.router-link-active {
-    /deep/ svg {
+    ::v-deep svg {
       fill: #6B70D7;
     }
     &::before {
@@ -307,12 +320,6 @@ export default {
     }
   }
 
-}
-
-/deep/.simple-svg-wrapper {
-  display: flex;
-  margin-right: 20px;
-  transform: translateY(-2px);
 }
 
 ::-webkit-scrollbar {

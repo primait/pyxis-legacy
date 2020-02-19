@@ -257,7 +257,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  /deep/.elm-buttons {
+  ::v-deep .elm-buttons {
     @import "../elm-components/pyxis.scss";
   }
 

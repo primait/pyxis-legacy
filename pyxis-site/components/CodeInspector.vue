@@ -5,7 +5,7 @@
           class="inspector__title"
           @click="toggleCodeInspector">
           <simple-svg
-            :src="codeIcon"
+            :src="require('@/assets/icons/code.svg')"
             :fill="codeIconColor"
             width="20px"
             height="20px"
@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import codeIcon from '@/assets/icons/code.svg'
 import htmlFormatter from 'html-formatter'
 import { mapGetters } from 'vuex'
 import Container from '@/components/Container'
@@ -53,7 +52,6 @@ export default {
   data () {
     return {
       isActive: false,
-      codeIcon: codeIcon,
       code: null
     }
   },
@@ -144,7 +142,7 @@ export default {
     }
   }
 
-  /deep/.simple-svg-wrapper {
+  ::v-deep .simple-svg-wrapper {
     align-items: center;
     background: color(pyxisBrand, light);
     border-radius: 5px;
