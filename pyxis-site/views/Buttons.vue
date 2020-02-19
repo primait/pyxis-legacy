@@ -1,6 +1,6 @@
 <template>
   <container>
-    <design-mode-btn></design-mode-btn>
+    <design-mode-btn />
     <text-block>
       <h3>Bottoni a dimensione standard</h3>
       <p>Aggiungere la classe a-btn con i suoi vari modificatori per ottenere un bottone di dimensioni standard</p>
@@ -8,8 +8,13 @@
       <p>Le varianti dark sono visibili correttamente solo su un background scuro</p>
     </text-block>
 
-    <code-inspector :key="type.btn" v-for="type in standardButtonTypes" :title="getTitle(type.btn) | capitalize">
-      <elm-button :class="{'elm-buttons': true, 'bgDark': type.bgDark}" :flags="getFlags(type.btn)"></elm-button>
+    <code-inspector
+      v-for="type in standardButtonTypes"
+      :key="type.btn"
+      :title="getTitle(type.btn) | capitalize">
+      <elm-button
+        :flags="getFlags(type.btn)"
+        :class="['elm-buttons', { 'bgDark': type.bgDark }]" />
     </code-inspector>
 
     <text-block>
@@ -17,8 +22,13 @@
       <p>Aggiungere il modificatore a-btn--small a un a-btn standard</p>
     </text-block>
 
-    <code-inspector :key="type.btn" v-for="type in smallButtonTypes" :title="getTitle(type.btn) | capitalize">
-      <elm-button :class="{'elm-buttons': true, 'bgDark': type.bgDark}" :flags="getFlags(type.btn)"></elm-button>
+    <code-inspector
+      v-for="type in smallButtonTypes"
+      :key="type.btn"
+      :title="getTitle(type.btn) | capitalize">
+      <elm-button
+        :flags="getFlags(type.btn)"
+        :class="['elm-buttons', { 'bgDark': type.bgDark }]" />
     </code-inspector>
 
     <text-block>
@@ -28,11 +38,19 @@
     </text-block>
 
     <code-inspector title="Button Group">
-      <div class="elm-buttons" id="syntaxWrapper">
+      <div
+        id="syntaxWrapper"
+        class="elm-buttons">
         <div class="m-btnGroup">
-          <button class="a-btn a-btn--callout"><span>A</span></button>
-          <button class="a-btn a-btn--callout"><span>B</span></button>
-          <button class="a-btn a-btn--callout"><span>C</span></button>
+          <button class="a-btn a-btn--callout">
+            <span>A</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>B</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>C</span>
+          </button>
         </div>
       </div>
     </code-inspector>
@@ -40,56 +58,104 @@
       <p>Button group non applica giustificazioni ai bottoni, per ottenere una giustificazione dello spazio si può combinare con le opportune classi di utility</p>
     </text-block>
     <code-inspector title="Button Group giustificato space-between">
-      <div class="elm-buttons" id="syntaxWrapper">
+      <div
+        id="syntaxWrapper"
+        class="elm-buttons">
         <div class="m-btnGroup justifyContentBetween">
-          <button class="a-btn a-btn--callout"><span>A</span></button>
-          <button class="a-btn a-btn--callout"><span>B</span></button>
-          <button class="a-btn a-btn--callout"><span>C</span></button>
+          <button class="a-btn a-btn--callout">
+            <span>A</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>B</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>C</span>
+          </button>
         </div>
       </div>
     </code-inspector>
     <code-inspector title="Button Group giustificato space-evenly">
-      <div class="elm-buttons" id="syntaxWrapper">
+      <div
+        id="syntaxWrapper"
+        class="elm-buttons">
         <div class="m-btnGroup justifyContentEvenly">
-          <button class="a-btn a-btn--callout"><span>A</span></button>
-          <button class="a-btn a-btn--callout"><span>B</span></button>
-          <button class="a-btn a-btn--callout"><span>C</span></button>
+          <button class="a-btn a-btn--callout">
+            <span>A</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>B</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>C</span>
+          </button>
         </div>
       </div>
     </code-inspector>
     <code-inspector title="Button Group giustificato al centro">
-      <div class="elm-buttons" id="syntaxWrapper">
+      <div
+        id="syntaxWrapper"
+        class="elm-buttons">
         <div class="m-btnGroup justifyContentCenter">
-          <button class="a-btn a-btn--callout"><span>A</span></button>
-          <button class="a-btn a-btn--callout"><span>B</span></button>
-          <button class="a-btn a-btn--callout"><span>C</span></button>
+          <button class="a-btn a-btn--callout">
+            <span>A</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>B</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>C</span>
+          </button>
         </div>
       </div>
     </code-inspector>
     <code-inspector title="Button Group giustificato space-around">
-      <div class="elm-buttons" id="syntaxWrapper">
+      <div
+        id="syntaxWrapper"
+        class="elm-buttons">
         <div class="m-btnGroup justifyContentAround">
-          <button class="a-btn a-btn--callout"><span>A</span></button>
-          <button class="a-btn a-btn--callout"><span>B</span></button>
-          <button class="a-btn a-btn--callout"><span>C</span></button>
+          <button class="a-btn a-btn--callout">
+            <span>A</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>B</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>C</span>
+          </button>
         </div>
       </div>
     </code-inspector>
     <code-inspector title="Button Group giustificato content-end">
-      <div class="elm-buttons" id="syntaxWrapper">
+      <div
+        id="syntaxWrapper"
+        class="elm-buttons">
         <div class="m-btnGroup justifyContentEnd">
-          <button class="a-btn a-btn--callout"><span>A</span></button>
-          <button class="a-btn a-btn--callout"><span>B</span></button>
-          <button class="a-btn a-btn--callout"><span>C</span></button>
+          <button class="a-btn a-btn--callout">
+            <span>A</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>B</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>C</span>
+          </button>
         </div>
       </div>
     </code-inspector>
     <code-inspector title="Button Group giustificato content-start">
-      <div class="elm-buttons" id="syntaxWrapper">
+      <div
+        id="syntaxWrapper"
+        class="elm-buttons">
         <div class="m-btnGroup justifyContentStart">
-          <button class="a-btn a-btn--callout"><span>A</span></button>
-          <button class="a-btn a-btn--callout"><span>B</span></button>
-          <button class="a-btn a-btn--callout"><span>C</span></button>
+          <button class="a-btn a-btn--callout">
+            <span>A</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>B</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>C</span>
+          </button>
         </div>
       </div>
     </code-inspector>
@@ -103,20 +169,34 @@
     </text-block>
 
     <code-inspector title="Button Group Cover Fluid">
-      <div class="elm-buttons" id="syntaxWrapper">
+      <div
+        id="syntaxWrapper"
+        class="elm-buttons">
         <div class="m-btnGroup m-btnGroup--coverFluid">
-          <button class="a-btn a-btn--callout"><span>A</span></button>
+          <button class="a-btn a-btn--callout">
+            <span>A</span>
+          </button>
         </div>
       </div>
     </code-inspector>
 
     <code-inspector title="Button Group Cover Fluid">
-      <div class="elm-buttons" id="syntaxWrapper">
+      <div
+        id="syntaxWrapper"
+        class="elm-buttons">
         <div class="m-btnGroup m-btnGroup--coverFluid">
-          <button class="a-btn a-btn--callout"><span>SONO</span></button>
-          <button class="a-btn a-btn--callout"><span>UN</span></button>
-          <button class="a-btn a-btn--callout"><span>BOTTONE</span></button>
-          <button class="a-btn a-btn--callout"><span>SONO UN BOTTONE</span></button>
+          <button class="a-btn a-btn--callout">
+            <span>SONO</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>UN</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>BOTTONE</span>
+          </button>
+          <button class="a-btn a-btn--callout">
+            <span>SONO UN BOTTONE</span>
+          </button>
         </div>
       </div>
     </code-inspector>
@@ -124,10 +204,10 @@
 </template>
 
 <script>
-import VueElmBridge from '../others/vue-elm-bridge.js'
-import Container from '@/components/Container.vue'
-import TextBlock from '@/components/TextBlock.vue'
-import CodeInspector from '@/components/CodeInspector.vue'
+import VueElmBridge from '../others/vue-elm-bridge'
+import Container from '@/components/Container'
+import TextBlock from '@/components/TextBlock'
+import CodeInspector from '@/components/CodeInspector'
 import DesignModeBtn from '@/components/DesignModeBtn'
 
 export default {
@@ -137,9 +217,9 @@ export default {
     CodeInspector,
     Container,
     TextBlock,
-    'elm-button': VueElmBridge(require('../elm-components/Button.elm').Elm.Button)
+    ElmButton: VueElmBridge(require('../elm-components/Button.elm').Elm.Button)
   },
-  data: function () {
+  data () {
     return {
       standardButtonTypes: [
         { btn: 'call_out', bgDark: false },

@@ -2,18 +2,30 @@
   <div class="o-jumbotron">
     <div class="a-container o-jumbotron__container">
       <div class="o-jumbotron__wrapper">
-        <h1 class="o-jumbotron__title">{{title}}</h1>
-        <h2 class="o-jumbotron__subtitle">{{subtitle}}</h2>
+        <h1 class="o-jumbotron__title">
+          {{ title }}
+        </h1>
+        <h2 class="o-jumbotron__subtitle">
+          {{ subtitle }}
+        </h2>
         <slot name="content"></slot>
       </div>
-      <div v-if="canRenderPictureSource() || imageSrc" class="o-jumbotron__wrapper--picture">
+      <div
+        v-if="canRenderPictureSource() || imageSrc"
+        class="o-jumbotron__wrapper--picture">
         <template v-if="imageSrc !== null">
-          <img class="o-jumbotron__picture" :src="imageSrc" alt="alt-placeholder">
+          <img
+            :src="imageSrc"
+            alt="alt-placeholder"
+            class="o-jumbotron__picture">
         </template>
         <template v-else>
           <picture class="o-jumbotron__wrapper--picture">
-            <slot name="picture-sources"></slot>
-            <img class="o-jumbotron__picture" alt="alt-placeholder" :src="pictureFallback">
+            <slot name="picture-sources" />
+            <img
+              :src="pictureFallback"
+              class="o-jumbotron__picture"
+              alt="alt-placeholder">
           </picture>
         </template>
       </div>
@@ -25,7 +37,6 @@
 
 export default {
   name: 'Jumbotron',
-  components: {},
   props: {
     title: {
       required: true,
@@ -58,7 +69,7 @@ export default {
       }
     }
   },
-  mounted: function () {
+  mounted () {
     if (!this.canRenderPictureSource() && this.pictureFallback == null) {
       console.warn('you can\'t use slot picture without defining a pictureFallback')
     }

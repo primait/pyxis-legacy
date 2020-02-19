@@ -32,9 +32,9 @@
 
 <script>
 import logoSvg from '@/assets/images/logo.svg'
-import SearchInput from '@/components/Heading/SearchInput.vue'
+import SearchInput from '@/components/Heading/SearchInput'
 import menuIcon from '@/assets/icons/menu.svg'
-import { mapActions, mapState, mapMutations } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Heading',
@@ -48,7 +48,7 @@ export default {
     }
   },
   computed: {
-    ...mapState([
+    ...mapGetters([
       'currentSearchQuery'
     ]),
     icons () {

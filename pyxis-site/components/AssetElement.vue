@@ -1,8 +1,15 @@
 <template>
-  <a :href="downloadPath" download class="asset-element">
-    <span class="asset-element__label">{{label}}</span>
+  <a
+    :href="downloadPath"
+    download
+    class="asset-element">
+    <span class="asset-element__label">
+      {{ label }}
+    </span>
     <div class="asset-element__footer">
-      <div class="asset-element__type">{{type}}</div>
+      <div class="asset-element__type">
+        {{ type }}
+      </div>
       <simple-svg
         :src="icon.downloadIcon"
         fill="#fff"
@@ -32,7 +39,6 @@ export default {
       required: true
     }
   },
-
   computed: {
     icon () {
       return {

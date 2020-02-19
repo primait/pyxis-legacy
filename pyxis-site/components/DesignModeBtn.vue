@@ -1,12 +1,14 @@
 <template>
-  <button class="design-mode-btn" v-on:click="toggleDesignMode">
+  <button
+    class="design-mode-btn"
+    @click="toggleDesignMode">
     <simple-svg
       :src="icons.logoSvg"
       fill="#fff"
       width="36px"
       height="36px"
-      custom-class-name="simple-svg-wrapper"
-    /> Design mode: {{ isDesignModeEnabled }}
+      custom-class-name="simple-svg-wrapper" />
+      Design mode: {{ isDesignModeEnabled }}
   </button>
 </template>
 
@@ -16,11 +18,6 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'DesignModeBtn',
-  // components: { SearchInput },
-  data: function () {
-    return {
-    }
-  },
   computed: {
     icons () {
       return {

@@ -5,28 +5,30 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.</p>
     </text-block>
 
-    <div class="resource" v-for="resource in resources" :key="resource.category">
+    <div
+      v-for="resource in resources"
+      :key="resource.category"
+      class="resource">
       <text-block>
-        <h4>{{resource.category}}</h4>
+        <h4>{{ resource.category }}</h4>
       </text-block>
 
       <div class="resource__wrapper">
         <asset-element
-        v-for="item in resource.items"
-        :key="item.label"
-        :type="item.type"
-        :label="item.label"
-        :download-path="item.downloadPath"
-      ></asset-element>
+          v-for="item in resource.items"
+          :key="item.label"
+          :type="item.type"
+          :label="item.label"
+          :download-path="item.downloadPath" />
       </div>
     </div>
   </container>
 </template>
 
 <script>
-import Container from '@/components/Container.vue'
-import TextBlock from '@/components/TextBlock.vue'
-import AssetElement from '@/components/AssetElement.vue'
+import Container from '@/components/Container'
+import TextBlock from '@/components/TextBlock'
+import AssetElement from '@/components/AssetElement'
 
 export default {
   name: 'Resources',
@@ -35,7 +37,6 @@ export default {
     TextBlock,
     AssetElement
   },
-
   computed: {
     resources () {
       return [

@@ -12,6 +12,7 @@
     "@prima-assicurazioni/pyxis-npm": "2.1.0",
     "core-js": "^3.6.4",
     "html-formatter": "^0.1.9",
+    "lodash.groupby": "^4.6.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue": "^2.6.11",
     "vue-code-highlight": "^0.7.4",

@@ -4,7 +4,7 @@
       <div class="sidebar__heading">
         <div class="sidebar__action" v-on:click="toggleSidebar">
           <simple-svg
-            :src="icon.closeIcon"
+            src="@/assets/icons/close.svg"
             fill="#4D5969"
             height="28px"
             width="28px"
@@ -13,7 +13,7 @@
         <div class="sidebar__info">
           <div class="sidebar__logo">
             <simple-svg
-              :src="icon.logoSvg"
+              src="@/assets/images/logo.svg"
               fill="#fff"
               height="20px"
               width="20px"
@@ -25,29 +25,28 @@
       </div>
     <ul class="domains directionColumn noListStyle">
       <li
-        v-for="domain in domainsList"
-        :key="toSlug(domain.label)"
+        v-for="(children, domain) in routes"
+        :key="toSlug(domain)"
         class="domains__item">
 
         <h4 class="domains__item__title fwHeavy">
-          {{ domain.label }}
+          {{ domain }}
         </h4>
 
         <ul class="routes directionColumn noListStyle">
           <li
-            v-for="route in domain.routes"
-            :key="toSlug(route.label)"
+            v-for="route in children"
+            :key="toSlug(route.meta.label)"
             class="routes__item" >
             <router-link
-              :to="route.path"
+              :to="route"
               class="routes__item__link fwBase">
               <simple-svg
-                :fill="isActive(route.name)"
-                :src="route.icon"
+                :src="require(`@/assets/icons/${route.meta.icon}.svg`)"
                 height="14px"
                 width="14px"
                 custom-class-name="simple-svg-wrapper" />
-              {{ route.label }}
+              {{ route.meta.label }}
             </router-link>
           </li>
         </ul>
@@ -58,63 +57,34 @@
 </template>
 
 <script>
-import routes from '@/others/routes.js'
-import helpers from '@/others/helpers.js'
-import logoSvg from '@/assets/images/logo.svg'
-import closeIcon from '@/assets/icons/close.svg'
-import { mapGetters, mapActions, mapState } from 'vuex'
+import helpers from '@/others/helpers'
+import { mapGetters, mapActions } from 'vuex'
+import groupBy from 'lodash.groupby'
 
 export default {
   name: 'Sidebar',
   data () {
     return {
-      domainsList: [
-        { label: '',
-          routes: [{ path: '/', label: 'Default', icon: 'default' }]
-        }
-      ],
       pyxisLastRelease: process.env.PYXIS_VERSION
     }
-  },
-  created () {
-    this.domainsList = routes.map(domain => {
-      domain.routes = domain.routes.map(route => {
-        route.icon = require(`@/assets/icons/${route.icon}.svg`)
-        return route
-      })
-      return domain
-    })
   },
   methods: {
     toSlug (label) {
       return helpers.toSlug(label)
-    },
-
-    isActive (pathName) {
-      if (this.$route.name === pathName) {
-        return '#6B70D7'
-      } else {
-        return '#4D5969'
-      }
     },
     ...mapActions([
       'toggleSidebar'
     ])
   },
   computed: {
-    icon () {
-      return {
-        logoSvg: logoSvg,
-        closeIcon: closeIcon
-      }
-    },
-    ...mapState([
-      'currentSearchQuery'
-    ]),
     ...mapGetters([
+      'currentSearchQuery',
       'isSidebarOpen',
       'isDesignModeEnabled'
-    ])
+    ]),
+    routes () {
+      return groupBy(this.$router.options.routes.filter(item => item.meta && item.meta.label.includes(this.currentSearchQuery)), item => item.meta.category)
+    }
   }
 }
 </script>
@@ -266,6 +236,7 @@ export default {
   font-size: 18px;
   margin-bottom: 15px;
   padding-left: 30px;
+  text-transform: capitalize;
 
   @include mq(small) {
     padding-left: 4vw;
@@ -295,6 +266,7 @@ export default {
   padding: 2px 0 0 40px;
   position: relative;
   text-decoration: none;
+  text-transform: capitalize;
   transition: background 0.3s;
   width: 100%;
 
@@ -322,9 +294,19 @@ export default {
     color: #6B70D7;
   }
 
-  &.router-link-active:before {
-    transform: scaleX(1);
+  /deep/ svg {
+    fill: #4D5969;
   }
+
+  &.router-link-active {
+    /deep/ svg {
+      fill: #6B70D7;
+    }
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+
 }
 
 /deep/.simple-svg-wrapper {

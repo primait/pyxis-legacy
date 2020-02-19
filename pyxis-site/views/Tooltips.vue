@@ -13,7 +13,9 @@
       </text-block>
     </container>
     <container>
-      <code-inspector title="Warning tooltip" class="dashed">
+      <code-inspector
+        title="Warning tooltip"
+        class="dashed">
         <div id="syntaxWrapper">
           <div class="tooltip-wrapper tooltip-wrapper--bottom">
             <div>
@@ -31,7 +33,9 @@
           </div>
         </div>
       </code-inspector>
-      <code-inspector title="Error Tooltip" class="dashed">
+      <code-inspector
+        title="Error Tooltip"
+        class="dashed">
         <div id="syntaxWrapper">
           <div class="tooltip-wrapper tooltip-wrapper--bottom">
             <div>
@@ -57,7 +61,9 @@
       </text-block>
     </container>
     <container>
-      <code-inspector title="Top tooltip" class="dashed">
+      <code-inspector
+        title="Top tooltip"
+        class="dashed">
         <div id="syntaxWrapper">
           <div class="tooltip-wrapper tooltip-wrapper--top">
             <div>
@@ -75,7 +81,9 @@
           </div>
         </div>
       </code-inspector>
-      <code-inspector title="Right Tooltip" class="dashed">
+      <code-inspector
+        title="Right Tooltip"
+        class="dashed">
         <div id="syntaxWrapper">
           <div class="tooltip-wrapper">
             <div>
@@ -93,7 +101,9 @@
           </div>
         </div>
       </code-inspector>
-      <code-inspector title="Bottom tooltip" class="dashed">
+      <code-inspector
+        title="Bottom tooltip"
+        class="dashed">
         <div id="syntaxWrapper">
           <div class="tooltip-wrapper tooltip-wrapper--bottom">
             <div>
@@ -111,7 +121,9 @@
           </div>
         </div>
       </code-inspector>
-      <code-inspector title="Left Tooltip" class="dashed">
+      <code-inspector
+        title="Left Tooltip"
+        class="dashed">
         <div id="syntaxWrapper">
           <div class="tooltip-wrapper">
             <div>
@@ -134,9 +146,9 @@
 </template>
 
 <script>
-import Container from '@/components/Container.vue'
-import TextBlock from '@/components/TextBlock.vue'
-import CodeInspector from '@/components/CodeInspector.vue'
+import Container from '@/components/Container'
+import TextBlock from '@/components/TextBlock'
+import CodeInspector from '@/components/CodeInspector'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -146,7 +158,7 @@ export default {
     Container,
     TextBlock
   },
-  data: function () {
+  data () {
     return {
       sizes: ['default', 'xsmall', 'small', 'fluid']
     }

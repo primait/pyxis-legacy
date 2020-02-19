@@ -1,5 +1,5 @@
 <template>
-  <container :fluid="true">
+  <container fluid>
     <container>
       <text-block>
         <h3>Links</h3>
@@ -7,16 +7,24 @@
       </text-block>
     </container>
     <container>
-      <code-inspector title="Regular link" class="dashed">
+      <code-inspector
+        title="Regular link"
+        class="dashed">
         <div id="syntaxWrapper">
-          <a href="#" class="a-link">
+          <a
+            href="#"
+            class="a-link">
             Text
           </a>
         </div>
       </code-inspector>
-      <code-inspector title="Standalone link" class="dashed">
+      <code-inspector
+        title="Standalone link"
+        class="dashed">
         <div id="syntaxWrapper">
-          <a href="#" class="a-link a-link--standalone">
+          <a
+            href="#"
+            class="a-link a-link--standalone">
             Text
           </a>
         </div>
@@ -26,9 +34,9 @@
 </template>
 
 <script>
-import Container from '@/components/Container.vue'
-import TextBlock from '@/components/TextBlock.vue'
-import CodeInspector from '@/components/CodeInspector.vue'
+import Container from '@/components/Container'
+import TextBlock from '@/components/TextBlock'
+import CodeInspector from '@/components/CodeInspector'
 
 export default {
   name: 'Links',

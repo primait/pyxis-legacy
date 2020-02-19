@@ -1,7 +1,7 @@
 <template>
-  <container :fluid="true">
+  <container fluid>
     <container>
-      <design-mode-btn></design-mode-btn>
+      <design-mode-btn />
       <text-block>
         <h3>Container</h3>
         <p>I container sono l'elemento base in cui contenere qualunque componente di pyxis e gestire
@@ -16,27 +16,34 @@
     </container>
     <container :fluid="isDesignModeEnabled">
       <code-inspector title="Container regolare, direzione riga">
-        <div id="syntaxWrapper" :class="codeInspectorContentClasses">
+        <div
+          id="syntaxWrapper"
+          :class="codeInspectorContentClasses">
           <div class="a-container directionRow">
-            <p class="fs-small" style="padding: 10px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum
-              amet modi
-              nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut
-              ut.</p>
+            <p
+              class="fs-small"
+              style="padding: 10px">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum
+              amet modi nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.</p>
             <div class="block-wrapper dashedLeft">
-              <div class="block"></div>
+              <div class="block" />
             </div>
           </div>
         </div>
       </code-inspector>
       <code-inspector title="Container regolare, direzione colonna">
-        <div id="syntaxWrapper" :class="codeInspectorContentClasses">
+        <div
+          id="syntaxWrapper"
+          :class="codeInspectorContentClasses">
           <div class="a-container directionColumn">
-            <p class="fs-small" style="padding: 10px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum
-              amet modi
-              nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut
+            <p
+              class="fs-small"
+              style="padding: 10px">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum
+              amet modi nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut
               ut.</p>
             <div class="block-wrapper dashedTop">
-              <div class="block"></div>
+              <div class="block" />
             </div>
           </div>
         </div>
@@ -50,15 +57,20 @@
     </container>
     <container :fluid="isDesignModeEnabled">
       <code-inspector title="Container fluido, direzione colonna">
-        <div id="syntaxWrapper" :class="codeInspectorContentClasses">
+        <div
+          id="syntaxWrapper"
+          :class="codeInspectorContentClasses">
           <div class="a-containerFluid directionColumn">
-            <p class="fs-small" style="padding: 10px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum
+            <p
+              class="fs-small"
+              style="padding: 10px">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum
               amet modi
               nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut
               ut.
             </p>
             <div class="block-wrapper dashedTop">
-              <div class="block"></div>
+              <div class="block" />
             </div>
           </div>
         </div>
@@ -75,43 +87,52 @@
     </container>
     <container :fluid="isDesignModeEnabled">
       <code-inspector title="Container fluido, regolare su small">
-        <div id="syntaxWrapper" :class="codeInspectorContentClasses">
+        <div
+          id="syntaxWrapper"
+          :class="codeInspectorContentClasses">
           <div class="a-containerFluid a-containerOnBpSmall directionColumn">
-            <p class="fs-small" style="padding: 10px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum
-              amet modi
-              nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut
-              ut.
+            <p
+              class="fs-small"
+              style="padding: 10px">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi
+              nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.
             </p>
             <div class="block-wrapper dashedTop">
-              <div class="block"></div>
+              <div class="block" />
             </div>
           </div>
         </div>
       </code-inspector>
       <code-inspector title="Container regolare, fluido su small">
-        <div id="syntaxWrapper" :class="codeInspectorContentClasses">
+        <div
+          id="syntaxWrapper"
+          :class="codeInspectorContentClasses">
           <div class="a-container a-containerFluidOnBpSmall directionColumn">
-            <p class="fs-small" style="padding: 10px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum
-              amet modi
-              nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut
-              ut.
+            <p
+              class="fs-small"
+              style="padding: 10px">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi
+              nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.
             </p>
             <div class="block-wrapper dashedTop">
-              <div class="block"></div>
+              <div class="block" />
             </div>
           </div>
         </div>
       </code-inspector>
       <code-inspector title="Container fluido fino a small compreso, regolare a salire">
-        <div id="syntaxWrapper" :class="codeInspectorContentClasses">
+        <div
+          id="syntaxWrapper"
+          :class="codeInspectorContentClasses">
           <div class="a-containerFluid a-containerOnBpMedium a-containerOnBpLarge a-containerOnBpXlarge directionColumn">
-            <p class="fs-small" style="padding: 10px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum
-              amet modi
-              nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut
-              ut.
+            <p
+              class="fs-small"
+              style="padding: 10px">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi
+              nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.
             </p>
             <div class="block-wrapper dashedTop">
-              <div class="block"></div>
+              <div class="block" />
             </div>
           </div>
         </div>
@@ -125,16 +146,19 @@
     </container>
     <container :fluid="isDesignModeEnabled">
       <code-inspector title="Container regolare dentro a un container fluido">
-        <div id="syntaxWrapper" :class="codeInspectorContentClasses">
+        <div
+          id="syntaxWrapper"
+          :class="codeInspectorContentClasses">
           <div class="a-containerFluid">
             <div class="a-container">
-              <p class="fs-small dashedLeft" style="padding: 10px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum
-                amet modi
-                nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut
-                ut.
+              <p
+                class="fs-small dashedLeft"
+                style="padding: 10px">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi
+                nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.
               </p>
               <div class="block-wrapper dashedLeft dashedRight">
-                <div class="block"></div>
+                <div class="block" />
               </div>
             </div>
           </div>
@@ -145,9 +169,9 @@
 </template>
 
 <script>
-import Container from '@/components/Container.vue'
-import TextBlock from '@/components/TextBlock.vue'
-import CodeInspector from '@/components/CodeInspector.vue'
+import Container from '@/components/Container'
+import TextBlock from '@/components/TextBlock'
+import CodeInspector from '@/components/CodeInspector'
 import DesignModeBtn from '@/components/DesignModeBtn'
 import { mapGetters } from 'vuex'
 
@@ -159,7 +183,7 @@ export default {
     Container,
     TextBlock
   },
-  data: function () {
+  data () {
     return {
       sizes: ['default', 'xsmall', 'small', 'fluid']
     }

@@ -1,11 +1,19 @@
 <template>
   <div class="palette-element__wrapper">
     <div class="palette-element">
-      <div class="palette-element__picker" :style="pickerStyle"></div>
+      <div
+        :style="pickerStyle"
+        class="palette-element__picker" />
       <div class="palette-element__description">
-        <span class="variant-name">{{ variant | capitalize }}</span>
-        <span class="variant-hex">{{ hex }}</span>
-        <span class="variant-rgba">{{ formattedRGBA }}</span>
+        <span class="variant-name">
+          {{ variant | capitalize }}
+        </span>
+        <span class="variant-hex">
+          {{ hex }}
+        </span>
+        <span class="variant-rgba">
+          {{ formattedRGBA }}
+        </span>
       </div>
     </div>
   </div>
@@ -29,12 +37,12 @@ export default {
     }
   },
   computed: {
-    pickerStyle: function () {
+    pickerStyle () {
       return {
         'background': `rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, ${this.rgba.a})`
       }
     },
-    formattedRGBA: function () {
+    formattedRGBA () {
       return `rgba (${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, ${this.rgba.a})`
     }
   }
