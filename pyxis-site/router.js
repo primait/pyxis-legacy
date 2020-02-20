@@ -82,7 +82,7 @@ export default new Router({
         label: 'Forms',
         icon: 'forms'
       },
-      component: () => import(/* webpackChunkName: "empty-view" */ '@/views/Empty.vue')
+      component: () => import(/* webpackChunkName: "form-view" */ '@/views/Form.vue')
     },
     {
       path: '/icons',

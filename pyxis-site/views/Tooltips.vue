@@ -1,5 +1,5 @@
 <template>
-  <container :fluid="true">
+  <container fluid>
     <container>
       <text-block>
         <h3>Tooltips</h3>
@@ -141,6 +141,11 @@
           </div>
         </div>
       </code-inspector>
+      <code-inspector
+        title="Tooltip on form"
+        class="dashed">
+        <elm-form-tooltip class="elm-form-tooltip" />
+      </code-inspector>
     </container>
   </container>
 </template>
@@ -149,6 +154,7 @@
 import Container from '@/components/Container'
 import TextBlock from '@/components/TextBlock'
 import CodeInspector from '@/components/CodeInspector'
+import VueElmBridge from '../others/vue-elm-bridge'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -156,7 +162,8 @@ export default {
   components: {
     CodeInspector,
     Container,
-    TextBlock
+    TextBlock,
+    ElmFormTooltip: VueElmBridge(require('../elm-components/FormTooltip.elm').Elm.FormTooltip)
   },
   data () {
     return {
@@ -204,5 +211,10 @@ export default {
     > div {
       margin-bottom: 4.375rem;
     }
+  }
+
+  ::v-deep .elm-form-tooltip {
+    margin-top: 50px;
+    @import "../elm-components/pyxis.scss";
   }
 </style>
