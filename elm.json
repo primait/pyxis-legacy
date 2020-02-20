@@ -20,7 +20,7 @@
             "hecrj/html-parser": "2.3.4",
             "justinmimbs/date": "3.1.2",
             "primait/forms": "2.0.0",
-            "primait/pyxis-components": "4.1.0"
+            "primait/pyxis-components": "6.0.0"
         },
         "indirect": {
             "elm/bytes": "1.0.8",
