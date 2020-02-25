@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  ::v-deep .elm-form {
+  .elm-form::v-deep {
     @import "../elm-components/pyxis.scss";
   }
 </style>

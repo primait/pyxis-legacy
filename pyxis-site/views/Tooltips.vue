@@ -213,7 +213,7 @@ export default {
     }
   }
 
-  ::v-deep .elm-form-tooltip {
+  .elm-form-tooltip::v-deep {
     margin-top: 50px;
     @import "../elm-components/pyxis.scss";
   }
