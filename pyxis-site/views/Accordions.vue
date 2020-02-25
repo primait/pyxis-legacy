@@ -1,6 +1,6 @@
 <template>
-  <container :fluid="true">
-    <design-mode-btn></design-mode-btn>
+  <container fluid>
+    <design-mode-btn />
     <container>
       <text-block>
         <h3>Accordion</h3>
@@ -10,13 +10,18 @@
       </text-block>
     </container>
     <container :fluid="isDesignModeEnabled">
-      <code-inspector :key="type" v-for="type in accordionTypes" :title="type | capitalize">
+      <code-inspector
+        v-for="type in accordionTypes"
+        :key="type"
+        :title="type | capitalize">
         <container :fluid="!isDesignModeEnabled">
           <h1>Text</h1>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi nobis maxime
             autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.</p>
         </container>
-        <elm-accordion class="elm-accordion" :flags="getFlags(type)"></elm-accordion>
+        <elm-accordion
+          :flags="getFlags(type)"
+          class="elm-accordion" />
         </code-inspector>
     </container>
     <hr>
@@ -34,17 +39,17 @@
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi nobis maxime
             autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.</p>
         </container>
-        <accordion-group></accordion-group>
+        <accordion-group />
       </code-inspector>
     </container>
   </container>
 </template>
 
 <script>
-import VueElmBridge from '../others/vue-elm-bridge.js'
-import Container from '@/components/Container.vue'
-import TextBlock from '@/components/TextBlock.vue'
-import CodeInspector from '@/components/CodeInspector.vue'
+import VueElmBridge from '../others/vue-elm-bridge'
+import Container from '@/components/Container'
+import TextBlock from '@/components/TextBlock'
+import CodeInspector from '@/components/CodeInspector'
 import { mapGetters } from 'vuex'
 import DesignModeBtn from '@/components/DesignModeBtn'
 import AccordionGroup from '@/components/AccordionGroup'
@@ -57,9 +62,9 @@ export default {
     CodeInspector,
     Container,
     TextBlock,
-    'elm-accordion': VueElmBridge(require('../elm-components/Accordion.elm').Elm.Accordion)
+    'ElmAccordion': VueElmBridge(require('../elm-components/Accordion.elm').Elm.Accordion)
   },
-  data: function () {
+  data () {
     return {
       accordionTypes: ['dark', 'base', 'light']
     }

@@ -2,27 +2,29 @@
   <container>
     <text-block>
       <h3>Colors</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi nobis maxime autem?
-      </p>
-      <div :key="colorName" class="palette__container" v-for="(variants, colorName) in pyxisColors">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi nobis maxime autem?</p>
+      <div
+        v-for="(variants, colorName) in pyxisColors"
+        :key="colorName"
+        class="palette__container">
         <h4>{{ colorName | capitalize }}</h4>
         <div class="palette__row">
-        <palette-element v-for="(variant, variantName) in variants"
-                         :key="colorName+variantName"
-                         :variant="variantName"
-                         :hex="variant.hex"
-                         :rgba="variant.rgba">
-        </palette-element>
+          <palette-element
+            v-for="(variant, variantName) in variants"
+            :key="colorName+variantName"
+            :variant="variantName"
+            :hex="variant.hex"
+            :rgba="variant.rgba" />
         </div>
-        <hr/>
+        <hr />
       </div>
     </text-block>
   </container>
 </template>
 
 <script>
-import Container from '@/components/Container.vue'
-import TextBlock from '@/components/TextBlock.vue'
+import Container from '@/components/Container'
+import TextBlock from '@/components/TextBlock'
 import PaletteElement from '@/components/PaletteElement'
 
 export default {
@@ -31,11 +33,6 @@ export default {
     PaletteElement,
     Container,
     TextBlock
-  },
-  data: function () {
-    return {}
-  },
-  mounted: function () {
   },
   computed: {
     pyxisColors () {

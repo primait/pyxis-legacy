@@ -1,5 +1,6 @@
 module Pyxis.Helpers exposing
-    ( loremIpsum
+    ( isJust
+    , loremIpsum
     , spacer
     , syntaxWrapper
     )
@@ -24,3 +25,13 @@ loremIpsum =
 spacer : Html msg
 spacer =
     br [] []
+
+
+isJust : Maybe a -> Bool
+isJust v =
+    case v of
+        Just _ ->
+            True
+
+        Nothing ->
+            False

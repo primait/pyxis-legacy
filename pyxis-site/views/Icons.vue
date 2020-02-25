@@ -1,27 +1,34 @@
 <template>
   <container>
-
     <text-block>
       <h3>Icons</h3>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in rerum amet modi nobis maxime autem? Et, iure tempora libero dolorem soluta ipsum, quas vero veritatis ea debitis aut ut.</p>
     </text-block>
 
     <ul class="icon-list">
-        <li class="icon-list__item" v-for="icon in iconSet" :key="icon.name">
-            <i :class="icon.prefix + icon.name"></i>
-            <div class="icon-list__item__description">
-              <span class="icon-list__item__description__name">{{icon.name}}</span>
-              <span class="icon-list__item__description__code" v-if="icon.code">{{icon.code}}</span>
-            </div>
-        </li>
+      <li
+        v-for="icon in iconSet"
+        :key="icon.name"
+        class="icon-list__item" >
+        <i :class="icon.prefix + icon.name" />
+        <div class="icon-list__item__description">
+          <span class="icon-list__item__description__name">
+            {{ icon.name }}
+          </span>
+          <span
+            v-if="icon.code"
+            class="icon-list__item__description__code">
+            {{ icon.code }}
+          </span>
+        </div>
+      </li>
     </ul>
-
   </container>
 </template>
 
 <script>
-import Container from '@/components/Container.vue'
-import TextBlock from '@/components/TextBlock.vue'
+import Container from '@/components/Container'
+import TextBlock from '@/components/TextBlock'
 import iconSetConfig from '@pyxis-src/assets/pyxisIconset/selection.json'
 
 const toUnicode = str => str.split('').map(c => '\\u' + ('000' + c.charCodeAt(0).toString(16)).substr(-4)).join('')
@@ -47,7 +54,7 @@ export default {
     updateIconCode: function () {
       this.iconSet = this.iconSet.map(icon => {
         const selector = ['.', icon.prefix, icon.name].join('')
-        const unicodeIconCode = getComputedStyle(document.querySelector(selector), ':before').getPropertyValue('content')
+        const unicodeIconCode = getComputedStyle(document.querySelector(selector), '::before').getPropertyValue('content')
 
         return {
           prefix: icon.prefix,

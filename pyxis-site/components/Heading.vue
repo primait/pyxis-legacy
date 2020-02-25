@@ -2,19 +2,19 @@
   <div class="heading">
     <div class="heading__menu" v-on:click="toggleSidebar">
       <simple-svg
-        :filepath="icons.menuIcon"
-        :fill="'#fff'"
-        :width="'30px'"
-        :height="'30px'"
-        />
+        :src="require('@/assets/icons/menu.svg')"
+        fill="#fff"
+        width="30px"
+        height="30px"
+        custom-class-name="simple-svg-wrapper" />
     </div>
     <div class="heading__logo">
       <simple-svg
-        :filepath="icons.logoSvg"
-        :fill="'#fff'"
-        :width="'36px'"
-        :height="'36px'"
-        />
+        :src="require('@/assets/images/logo.svg')"
+        fill="#fff"
+        width="36px"
+        height="36px"
+        custom-class-name="simple-svg-wrapper" />
     </div>
     <div class="heading__intro">
       <div class="heading__name fwHeavy">
@@ -23,35 +23,36 @@
       </div>
       <span class="fsSmall">Prima.it Design System</span>
     </div>
-    <search-input :inputValue="inputValue" :placeholder='placeholder'></search-input>
+    <search-input
+      :value="currentSearchQuery"
+      placeholder="search"
+      @input="setCurrentSearchQuery" />
   </div>
 </template>
 
 <script>
-import logoSvg from '@/assets/images/logo.svg'
-import SearchInput from '@/components/Heading/SearchInput.vue'
-import menuIcon from '@/assets/icons/menu.svg'
-import { mapActions } from 'vuex'
+import SearchInput from '@/components/Heading/SearchInput'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Heading',
-  components: { SearchInput },
-  data: function () {
+  components: {
+    SearchInput
+  },
+  data () {
     return {
-      pyxisLastRelease: process.env.PYXIS_VERSION,
-      placeholder: 'search',
-      inputValue: ''
+      pyxisLastRelease: process.env.PYXIS_VERSION
     }
   },
   computed: {
-    icons () {
-      return {
-        logoSvg: logoSvg,
-        menuIcon: menuIcon
-      }
-    }
+    ...mapGetters([
+      'currentSearchQuery'
+    ])
   },
   methods: {
+    ...mapMutations([
+      'setCurrentSearchQuery'
+    ]),
     ...mapActions([
       'toggleSidebar'
     ])
@@ -73,6 +74,10 @@ export default {
 
   @include mq(small) {
     justify-content: flex-start;
+  }
+
+  ::v-deep .simple-svg-wrapper {
+    display: flex;
   }
 }
 
@@ -134,9 +139,5 @@ export default {
   @include mq(small) {
     display: none;
   }
-}
-
-.simple-svg-wrapper {
-  display: flex;
 }
 </style>

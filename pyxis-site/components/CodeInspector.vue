@@ -1,23 +1,32 @@
 <template>
     <div :class="inspectorClasses">
       <container :fluid="!isDesignModeEnabled">
-      <h4 class="inspector__title" @click="toggleCodeInspector">
-        <simple-svg
-          :filepath="codeIcon"
-          :fill="codeIconColor"
-          width="20px"
-          height="20px"
-        />
-        {{title}}
-      </h4>
+        <h4
+          class="inspector__title"
+          @click="toggleCodeInspector">
+          <simple-svg
+            :src="require('@/assets/icons/code.svg')"
+            :fill="codeIconColor"
+            width="20px"
+            height="20px"
+            custom-class-name="simple-svg-wrapper" />
+          {{ title }}
+        </h4>
       </container>
       <div class="inspector__content">
         <div :class="inspectorContentSandboxClasses">
-          <slot></slot>
+          <slot />
         </div>
         <container :fluid="!isDesignModeEnabled">
-          <div class="inspector__content__code" v-if="code" v-highlight>
-            <pre class="language-html"><code>{{code}}</code></pre>
+          <div
+            v-if="code"
+            v-highlight
+            class="inspector__content__code">
+            <pre class="language-html">
+              <code>
+                {{ code }}
+              </code>
+            </pre>
           </div>
         </container>
       </div>
@@ -25,24 +34,24 @@
 </template>
 
 <script>
-import codeIcon from '@/assets/icons/code.svg'
 import htmlFormatter from 'html-formatter'
 import { mapGetters } from 'vuex'
 import Container from '@/components/Container'
 
 export default {
   name: 'CodeInspector',
-  components: { Container },
+  components: {
+    Container
+  },
   props: {
     title: {
       type: String,
       required: true
     }
   },
-  data: function () {
+  data () {
     return {
       isActive: false,
-      codeIcon: codeIcon,
       code: null
     }
   },
@@ -133,7 +142,7 @@ export default {
     }
   }
 
-  .simple-svg-wrapper {
+  ::v-deep .simple-svg-wrapper {
     align-items: center;
     background: color(pyxisBrand, light);
     border-radius: 5px;

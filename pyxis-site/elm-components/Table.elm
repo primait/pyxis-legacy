@@ -8,8 +8,14 @@ import Table.View exposing (view)
 
 main : Program () Model Msg
 main =
-    Browser.sandbox
-        { init = initialModel
+    Browser.element
+        { init = init
         , view = view
         , update = update
+        , subscriptions = \_ -> Sub.none
         }
+
+
+init : () -> ( Model, Cmd Msg )
+init _ =
+    ( initialModel, Cmd.none )

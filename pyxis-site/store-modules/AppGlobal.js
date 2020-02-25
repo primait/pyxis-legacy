@@ -1,7 +1,8 @@
 export default {
   state: {
     isSidebarOpen: false,
-    isDesignModeEnabled: false
+    isDesignModeEnabled: false,
+    currentSearchQuery: ''
   },
   mutations: {
     openSidebar (state) {
@@ -15,6 +16,9 @@ export default {
     },
     disableDesignMode (state) {
       state.isDesignModeEnabled = false
+    },
+    setCurrentSearchQuery (state, value) {
+      state.currentSearchQuery = value
     }
   },
   getters: {
@@ -23,6 +27,9 @@ export default {
     },
     isDesignModeEnabled: (state) => {
       return state.isDesignModeEnabled
+    },
+    currentSearchQuery: (state) => {
+      return state.currentSearchQuery
     }
   },
   actions: {

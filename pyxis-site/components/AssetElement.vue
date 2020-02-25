@@ -1,15 +1,26 @@
 <template>
-  <a :href="downloadPath" download class="asset-element">
-    <span class="asset-element__label">{{label}}</span>
+  <a
+    :href="downloadPath"
+    download
+    class="asset-element">
+    <span class="asset-element__label">
+      {{ label }}
+    </span>
     <div class="asset-element__footer">
-      <div class="asset-element__type">{{type}}</div>
-      <simple-svg fill="#fff" :filepath="icon.downloadIcon" height="22px" width="22px"/>
+      <div class="asset-element__type">
+        {{ type }}
+      </div>
+      <simple-svg
+        :src="require('@/assets/icons/download.svg')"
+        fill="#fff"
+        height="22px"
+        width="22px"
+        custom-class-name="simple-svg-wrapper" />
     </div>
   </a>
 </template>
 
 <script>
-import downloadIcon from '@/assets/icons/download.svg'
 
 export default {
   name: 'AssetElement',
@@ -25,14 +36,6 @@ export default {
     type: {
       type: String,
       required: true
-    }
-  },
-
-  computed: {
-    icon () {
-      return {
-        downloadIcon: downloadIcon
-      }
     }
   }
 }
@@ -55,11 +58,11 @@ export default {
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 
-  .simple-svg-wrapper {
+  ::v-deep .simple-svg-wrapper {
     transition: all 0.2s ease-in-out;
   }
 
-  &:after {
+  &::after {
     content: url("../assets/icons/kit.svg");
     opacity: 0.05;
     position: absolute;

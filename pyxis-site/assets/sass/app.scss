@@ -2,7 +2,8 @@
     '@pyxis-src/assets/pyxisIconset/style.scss';
 
 @import
+    '00_reset/_root.scss',
     '01_base/_root.scss',
-
-    '02_atoms/_root.scss';
-
+    '02_atoms/_root.scss',
+    '05_utils/_root.scss',
+    '06_fonts/_root.scss';

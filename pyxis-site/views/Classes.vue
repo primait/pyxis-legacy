@@ -9,8 +9,12 @@
       <h4>Design</h4>
     </text-block>
     <div class="rules">
-      <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches.design">
-        {{match}}
+      <div
+        v-for="(match, index) in matches.design"
+        :key="index"
+        v-highlight
+        class="rules__item fsXsmall">
+        {{ match }}
       </div>
     </div>
 
@@ -19,8 +23,12 @@
       <h4>Colors</h4>
     </text-block>
     <div class="rules">
-      <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches.colors">
-        {{match}}
+      <div
+        v-for="(match, index) in matches.colors"
+        :key="index"
+        v-highlight
+        class="rules__item fsXsmall">
+        {{ match }}
       </div>
     </div>
 
@@ -29,8 +37,12 @@
       <h4>Fonts</h4>
     </text-block>
     <div class="rules">
-      <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches.fonts">
-        {{match}}
+      <div
+        v-for="(match, index) in matches.fonts"
+        :key="index"
+        v-highlight
+        class="rules__item fsXsmall">
+        {{ match }}
       </div>
     </div>
 
@@ -39,58 +51,20 @@
       <h4>Others</h4>
     </text-block>
     <div class="rules">
-      <div class="rules__item fsXsmall" v-highlight :key="index" v-for="(match, index) in matches.others">
-        {{match}}
+      <div
+        v-for="(match, index) in matches.others"
+        :key="index"
+        v-highlight
+        class="rules__item fsXsmall">
+        {{ match }}
       </div>
     </div>
-
   </container>
 </template>
 
-<style lang="scss" scoped>
-  @import '@/assets/sass/helpers.scss';
-
-  .rules {
-    display: grid;
-
-    @include mq(small) {
-      grid-gap: 15px;
-      grid-template-columns: repeat(5, 1fr);
-    }
-  }
-
-  .rules__item {
-    border: 1px solid color(shape);
-    border-radius: 8px;
-    color: color(text, base);
-    font-family: monospace;
-    padding: 20px;
-    text-align: center;
-    user-select: all;
-    transition: all 0.1s ease-in-out;
-    font-size: size(small);
-    position: relative;
-
-    &:hover {
-      background: color(backgroundAlt);
-      color: color(textAlt, light);
-      border: 1px solid color(backgroundAlt);
-    }
-
-    &:before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top:0;
-      left: 0;
-    }
-  }
-</style>
-
 <script>
-import Container from '@/components/Container.vue'
-import TextBlock from '@/components/TextBlock.vue'
+import Container from '@/components/Container'
+import TextBlock from '@/components/TextBlock'
 // Keep the comment below
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import styles from '!css-loader!sass-loader?modules!@/assets/sass/utilityClasses.scss'
@@ -104,7 +78,7 @@ export default {
     TextBlock
   },
   computed: {
-    matches: function () {
+    matches () {
       let pyxisStyle = styles[0][1]
       let regExp = /^\.(?![amo]-)[\w-]+/igm
       let rules = []
@@ -166,3 +140,44 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  @import '@/assets/sass/helpers.scss';
+
+  .rules {
+    display: grid;
+
+    @include mq(small) {
+      grid-gap: 15px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .rules__item {
+    border: 1px solid color(shape);
+    border-radius: 8px;
+    color: color(text, base);
+    font-family: monospace;
+    padding: 20px;
+    text-align: center;
+    user-select: all;
+    transition: all 0.1s ease-in-out;
+    font-size: size(small);
+    position: relative;
+
+    &:hover {
+      background: color(backgroundAlt);
+      color: color(textAlt, light);
+      border: 1px solid color(backgroundAlt);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top:0;
+      left: 0;
+    }
+  }
+</style>

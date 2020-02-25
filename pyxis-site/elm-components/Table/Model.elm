@@ -1,7 +1,6 @@
 module Table.Model exposing
     ( Model
     , Msg(..)
-    , Sort(..)
     , initialModel
     )
 
@@ -18,7 +17,8 @@ type alias Model =
     , rows : List (List String)
     , tableState : Table.State
     , sortByColumn : Maybe String
-    , sortBy : Maybe Sort
+    , sortBy : Maybe Table.Sort
+    , footers : List String
     }
 
 
@@ -27,14 +27,20 @@ initialModel =
     Model
         initialHeaders
         initialRows
-        Table.initialState
+        (Table.initialState Nothing Nothing)
         Nothing
         Nothing
+        initialFooters
 
 
 initialHeaders : List String
 initialHeaders =
     [ "Nazione", "Capitale" ]
+
+
+initialFooters : List String
+initialFooters =
+    []
 
 
 initialRows : List (List String)
@@ -46,8 +52,3 @@ initialRows =
     , [ "Spagna", "Madrid" ]
     , [ "Olanda", "Amsterdam" ]
     ]
-
-
-type Sort
-    = Asc
-    | Desc

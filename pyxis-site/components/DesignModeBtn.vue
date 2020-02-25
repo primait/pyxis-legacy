@@ -1,31 +1,23 @@
 <template>
-  <button class="design-mode-btn" v-on:click="toggleDesignMode">
+  <button
+    class="design-mode-btn"
+    @click="toggleDesignMode">
     <simple-svg
-      :filepath="icons.logoSvg"
-      :fill="'#fff'"
-      :width="'36px'"
-      :height="'36px'"
-    /> Design mode: {{ isDesignModeEnabled }}
+      :src="require('@/assets/images/logo.svg')"
+      fill="#fff"
+      width="36px"
+      height="36px"
+      custom-class-name="simple-svg-wrapper" />
+      Design mode: {{ isDesignModeEnabled }}
   </button>
 </template>
 
 <script>
-import logoSvg from '@/assets/images/logo.svg'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'DesignModeBtn',
-  // components: { SearchInput },
-  data: function () {
-    return {
-    }
-  },
   computed: {
-    icons () {
-      return {
-        logoSvg: logoSvg
-      }
-    },
     ...mapGetters([
       'isDesignModeEnabled'
     ])
@@ -41,7 +33,7 @@ export default {
 <style lang="scss" scoped>
   @import '@/assets/sass/helpers.scss';
 
-  .design-mode-btn{
+  .design-mode-btn {
     align-items: center;
     align-content: center;
     align-self: center;

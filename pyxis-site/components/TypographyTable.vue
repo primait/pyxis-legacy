@@ -1,16 +1,32 @@
 <template>
   <div class="typography__table">
     <div class="typography__heading">
-      <div class="typography__heading__category"> Category</div>
-      <div class="typography__heading__size"> Size <span>XLarge / Large / Medium / Small</span></div>
-      <div class="typography__heading__typeface"> Typeface</div>
-      <div class="typography__heading__letterspacing"> Letterspacing</div>
-      <div class="typography__heading__case"> Case</div>
+      <div class="typography__heading__category">
+        Category
+      </div>
+      <div class="typography__heading__size">
+        Size <span>XLarge / Large / Medium / Small</span>
+      </div>
+      <div class="typography__heading__typeface">
+        Typeface
+      </div>
+      <div class="typography__heading__letterspacing">
+        Letterspacing
+      </div>
+      <div class="typography__heading__case">
+        Case
+      </div>
     </div>
     <div>
-      <div v-for="prop in typographyProps" :key="prop.category" class="typography__row">
-        <div v-for="(value, name) in prop" :key="value" :class="'typography__item typography__item--' + name">
-          <span v-html="value"></span>
+      <div
+        v-for="prop in typographyProps"
+        :key="prop.category"
+        class="typography__row">
+        <div
+          v-for="(value, name) in prop"
+          :key="value"
+          :class="['typography__item', `typography__item--${name}`]">
+          <span v-html="value" />
         </div>
       </div>
     </div>
@@ -186,6 +202,12 @@ export default {
 
   .typography__item--label {
     color: color(text, dark);
+
+    @for $i from 1 through 7 {
+      ::v-deep h#{$i} {
+        margin-bottom: 0;
+      }
+    }
   }
 
 </style>

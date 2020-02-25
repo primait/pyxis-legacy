@@ -1,6 +1,11 @@
 <template>
   <div class="heading__search__wrapper">
-    <input v-model="myInput" v-on:input='onInput' type="text" class="heading__search" :placeholder="placeholder" >
+    <input
+      :value="value"
+      :placeholder="placeholder"
+      type="text"
+      class="heading__search"
+      @input="onInput" />
   </div>
 </template>
 
@@ -13,28 +18,15 @@ export default {
       default: 'placeholder',
       required: false
     },
-    inputValue: {
+    value: {
       type: String,
       default: null,
       required: false
     }
   },
-  data: function () {
-    return {
-      myInput: ''
-    }
-  },
-  created: function () {
-    this.myInput = this.inputValue
-  },
-  watch: {
-    inputValue: function (val) {
-      this.myInput = val
-    }
-  },
   methods: {
-    onInput: function (evt) {
-      this.$emit('input', { text: this.myInput, lastDigit: evt.data })
+    onInput (event) {
+      this.$emit('input', event.target.value)
     }
   }
 }
@@ -50,7 +42,7 @@ $iconSize: 15px;
   align-items: center;
   position: relative;
 
-  &:before {
+  &::before {
     content: url('../../assets/icons/search.svg');
     height: $iconSize;
     left: $iconSize + 5px;

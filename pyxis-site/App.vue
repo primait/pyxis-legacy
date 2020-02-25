@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <heading></heading>
+    <heading />
     <div class="appBody">
-      <sidebar></sidebar>
+      <sidebar />
       <main-wrapper>
-        <router-view></router-view>
+        <router-view />
       </main-wrapper>
     </div>
   </div>
 </template>
 
 <script>
-import Heading from '@/components/Heading.vue'
-import Sidebar from '@/components/Sidebar.vue'
+import Heading from '@/components/Heading'
+import Sidebar from '@/components/Sidebar'
 import MainWrapper from '@/components/MainWrapper'
 
 export default {
@@ -21,10 +21,6 @@ export default {
     MainWrapper,
     Heading,
     Sidebar
-  },
-  data: function () {
-    return {
-    }
   }
 }
 </script>

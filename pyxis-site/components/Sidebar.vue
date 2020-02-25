@@ -1,45 +1,58 @@
 <template>
-  <aside v-if="!isDesignModeEnabled" class="sidebar" :class="{'is-open' : isSidebarOpen }">
+  <aside
+    v-if="!isDesignModeEnabled"
+    :class="['sidebar', {'is-open' : isSidebarOpen }]">
     <div class="sidebar__wrapper">
       <div class="sidebar__heading">
-        <div class="sidebar__action" v-on:click="toggleSidebar">
+        <div
+          class="sidebar__action"
+          @click="toggleSidebar">
           <simple-svg
-                  fill="#4D5969"
-                  :filepath="icon.closeIcon"
-                  height="28px"
-                  width="28px"
-                  />
+            :src="require('@/assets/icons/close.svg')"
+            fill="#4D5969"
+            height="28px"
+            width="28px"
+            custom-class-name="simple-svg-wrapper" />
         </div>
         <div class="sidebar__info">
           <div class="sidebar__logo">
             <simple-svg
-                  fill="#fff"
-                  :filepath="icon.logoSvg"
-                  height="20px"
-                  width="20px"
-                  />
+              :src="require('@/assets/images/logo.svg')"
+              fill="#fff"
+              height="20px"
+              width="20px"
+              custom-class-name="simple-svg-wrapper" />
           </div>
           <span class="sidebar__logo__name">Pyxis</span>
-          <span class="sidebar__logo__version fsXsmall">{{ pyxisLastRelease }}</span>
+          <span class="sidebar__logo__version fsXsmall">
+            {{ pyxisLastRelease }}
+          </span>
         </div>
       </div>
     <ul class="domains directionColumn noListStyle">
-      <li class="domains__item" v-for="domain in domainsList" :key="toSlug(domain.label)">
+      <li
+        v-for="(children, domain) in routes"
+        :key="toSlug(domain)"
+        class="domains__item">
 
         <h4 class="domains__item__title fwHeavy">
-          {{ domain.label }}
+          {{ domain }}
         </h4>
 
         <ul class="routes directionColumn noListStyle">
-          <li class="routes__item" v-for="route in domain.routes" :key="toSlug(route.label)">
-            <router-link class="routes__item__link fwBase" :to="route.path">
+          <li
+            v-for="route in children"
+            :key="toSlug(route.meta.label)"
+            class="routes__item" >
+            <router-link
+              :to="route"
+              class="routes__item__link fwBase">
               <simple-svg
-                :fill="isActive(route.name)"
-                :filepath="route.icon"
+                :src="require(`@/assets/icons/${route.meta.icon}.svg`)"
                 height="14px"
                 width="14px"
-                />
-              {{ route.label }}
+                custom-class-name="simple-svg-wrapper" />
+              {{ route.meta.label }}
             </router-link>
           </li>
         </ul>
@@ -50,60 +63,34 @@
 </template>
 
 <script>
-import routes from '@/others/routes.js'
-import helpers from '@/others/helpers.js'
-import logoSvg from '@/assets/images/logo.svg'
-import closeIcon from '@/assets/icons/close.svg'
+import helpers from '@/others/helpers'
 import { mapGetters, mapActions } from 'vuex'
+import groupBy from 'lodash.groupby'
 
 export default {
   name: 'Sidebar',
-  data: function () {
+  data () {
     return {
-      domainsList: [
-        { label: '',
-          routes: [{ path: '/', label: 'Default', icon: 'default' }]
-        }
-      ],
       pyxisLastRelease: process.env.PYXIS_VERSION
     }
   },
-  created: function () {
-    this.domainsList = routes.map(domain => {
-      domain.routes = domain.routes.map(route => {
-        route.icon = require(`@/assets/icons/${route.icon}.svg`)
-        return route
-      })
-      return domain
-    })
-  },
   methods: {
-    toSlug: function (label) {
+    toSlug (label) {
       return helpers.toSlug(label)
-    },
-
-    isActive: function (pathName) {
-      if (this.$route.name === pathName) {
-        return '#6B70D7'
-      } else {
-        return '#4D5969'
-      }
     },
     ...mapActions([
       'toggleSidebar'
     ])
   },
   computed: {
-    icon () {
-      return {
-        logoSvg: logoSvg,
-        closeIcon: closeIcon
-      }
-    },
     ...mapGetters([
+      'currentSearchQuery',
       'isSidebarOpen',
       'isDesignModeEnabled'
-    ])
+    ]),
+    routes () {
+      return groupBy(this.$router.options.routes.filter(item => item.meta && item.meta.label.includes(this.currentSearchQuery)), item => item.meta.category)
+    }
   }
 }
 </script>
@@ -133,6 +120,13 @@ export default {
       transform: translate3d(0%, 0, 0);
     }
   }
+
+  ::v-deep .simple-svg-wrapper {
+    display: flex;
+    margin-right: 20px;
+    transform: translateY(-2px);
+  }
+
 }
 
 .sidebar__wrapper {
@@ -189,7 +183,7 @@ export default {
   height: 70px;
   width: 70px;
 
-  .simple-svg-wrapper {
+  ::v-deep .simple-svg-wrapper {
     margin: 0;
     transform: translate(0);
   }
@@ -205,7 +199,7 @@ export default {
   margin-right: 10px;
   width: 30px;
 
-  .simple-svg-wrapper {
+  ::v-deep .simple-svg-wrapper {
     margin: 0;
     padding: 0;
     transform: translate(0);
@@ -255,6 +249,7 @@ export default {
   font-size: 18px;
   margin-bottom: 15px;
   padding-left: 30px;
+  text-transform: capitalize;
 
   @include mq(small) {
     padding-left: 4vw;
@@ -284,6 +279,7 @@ export default {
   padding: 2px 0 0 40px;
   position: relative;
   text-decoration: none;
+  text-transform: capitalize;
   transition: background 0.3s;
   width: 100%;
 
@@ -291,7 +287,7 @@ export default {
     padding: 2px 0 0 4.5vw;
   }
 
-  &:before {
+  &::before {
     background: #6B70D7;
     bottom: 0;
     content: '';
@@ -311,15 +307,19 @@ export default {
     color: #6B70D7;
   }
 
-  &.router-link-active:before {
-    transform: scaleX(1);
+  ::v-deep svg {
+    fill: #4D5969;
   }
-}
 
-.simple-svg-wrapper {
-  display: flex;
-  margin-right: 20px;
-  transform: translateY(-2px);
+  &.router-link-active {
+    ::v-deep svg {
+      fill: #6B70D7;
+    }
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+
 }
 
 ::-webkit-scrollbar {

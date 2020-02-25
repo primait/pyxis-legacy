@@ -1,16 +1,14 @@
 <template>
   <main :class="mainClasses">
-      <slot></slot>
+    <slot />
   </main>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+
 export default {
   name: 'MainWrapper',
-  data: function () {
-    return {}
-  },
   computed: {
     ...mapGetters([
       'isDesignModeEnabled'

@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import GlobalModule from '@/store-modules/AppGlobal.js'
+import GlobalModule from '@/store-modules/AppGlobal'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: {
-    global: GlobalModule
-  }
+  ...GlobalModule
 })
