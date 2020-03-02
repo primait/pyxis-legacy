@@ -80,7 +80,7 @@ export default {
   computed: {
     matches () {
       let pyxisStyle = styles[0][1]
-      let regExp = /^\.(?![amo]-)[\w-]+/igm
+      let regExp = /\.(?![amo]-)[\w-]+/igm
       let rules = []
       let matches = {
         design: [],
