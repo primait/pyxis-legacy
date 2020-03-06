@@ -5,6 +5,7 @@ Parameters:
     Type: String
     AllowedValues:
     - staging
+    - production
   ReleaseVersion:
     Type: String
   TaskDesiredCount:
@@ -25,6 +26,13 @@ Mappings:
       DeploymentMaximumPercent: '100'
       DeploymentMinimumHealthyPercent: '50'
       ALBShortName: pyxis-staging
+    production:
+      id: ecs-cluster-microservices-vpc-production-ECSCluster-1R9CD4IMHJTAJ
+      PyxisRam: '100'
+      HealthyThreshold: 10
+      DeploymentMaximumPercent: '100'
+      DeploymentMinimumHealthyPercent: '50'
+      ALBShortName: pyxis-production
 
 Conditions:
   ManageDNS: !Equals [ !Ref Environment, staging ]
