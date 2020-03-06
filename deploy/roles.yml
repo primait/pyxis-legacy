@@ -5,6 +5,7 @@ Parameters:
     Type: String
     AllowedValues:
     - staging
+    - production
 
 Resources:
   ECSTaskRole:
