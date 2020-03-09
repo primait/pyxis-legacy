@@ -60,18 +60,6 @@ steps:
     depends_on:
       - init
 
-  - name: build-css
-    image: prima/pyxis-ci:1
-    environment:
-      YARN_CACHE_FOLDER: /drone/src/.cache
-      ELM_HOME: /drone/src/.elm
-      NPM_TOKEN:
-        from_secret: npm_token
-    commands:
-      - yarn build:css
-    depends_on:
-      - init
-
   - name: deploy
     image: prima/drone-tools:1.15.0
     volumes:
@@ -82,7 +70,6 @@ steps:
       - if [ -n "${DRONE_TAG}" ]; then ./deploy/deploy production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/deploy staging; fi
     depends_on:
       - build-site
-      - build-css
 
   - name: wait_for_stack
     image: prima/drone-tools:1.15.0
