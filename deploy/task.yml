@@ -150,6 +150,6 @@ Resources:
         Values:
         - !Ref HostnamePattern
       ListenerArn:
-        Fn::ImportValue: !Sub AlbPublicDefaultHttpsListener-http-${Environment}
+        Fn::ImportValue: !Sub ALBPublicDefaultHttpsListener-http-${Environment}
       Priority: !Ref HostnamePatternPriority
       
