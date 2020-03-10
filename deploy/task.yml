@@ -77,7 +77,7 @@ Resources:
           Fn::Sub: ecs-roles-pyxis-${Environment}-task
       ContainerDefinitions:
       - Name: pyxis
-        Image: prima/pyxis:1.12.2-1
+        Image: prima/pyxis:1.12.2-2
         Essential: true
         MemoryReservation:
           Fn::FindInMap:
