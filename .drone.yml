@@ -14,7 +14,7 @@ clone:
 
 steps:
   - name: cache-restore
-    image: prima/drone-tools:1.15.0
+    image: prima/drone-tools:1.17.5
     volumes:
       - name: ecs
         path: /etc/profile.d/ecs-credentials-endpoint
@@ -24,8 +24,19 @@ steps:
       - . /etc/profile.d/ecs-credentials-endpoint
       - cache-restore
 
+  - name: linter-deploy-files
+    image: prima/drone-tools:1.17.5
+    volumes:
+      - name: ecs
+        path: /etc/profile.d/ecs-credentials-endpoint
+      - name: docker
+        path: /var/run/docker.sock
+    commands:
+      - cfn-lint
+      - shellcheck deploy/deploy deploy/wait_for_stack
+
   - name: build-image
-    image: prima/drone-tools:1.15.0
+    image: prima/drone-tools:1.17.5
     volumes:
       - name: docker
         path: /var/run/docker.sock
@@ -61,7 +72,7 @@ steps:
       - init
 
   - name: deploy
-    image: prima/drone-tools:1.15.0
+    image: prima/drone-tools:1.17.5
     volumes:
       - name: ecs
         path: /etc/profile.d/ecs-credentials-endpoint
@@ -72,7 +83,7 @@ steps:
       - build-site
 
   - name: wait_for_stack
-    image: prima/drone-tools:1.15.0
+    image: prima/drone-tools:1.17.5
     volumes:
       - name: ecs
         path: /etc/profile.d/ecs-credentials-endpoint
@@ -83,7 +94,7 @@ steps:
       - deploy
 
   - name: cache-save
-    image: prima/drone-tools:1.15.0
+    image: prima/drone-tools:1.17.5
     volumes:
       - name: ecs
         path: /etc/profile.d/ecs-credentials-endpoint
