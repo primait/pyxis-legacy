@@ -78,7 +78,7 @@ steps:
         path: /etc/profile.d/ecs-credentials-endpoint
     commands:
       - . /etc/profile.d/ecs-credentials-endpoint
-      - if [ -n "${DRONE_TAG}" ]; then ./deploy/deploy production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "user-story/rifacimento-totale-del-sistema-di-autoscaling/PRIMA-4545" ]; then ./deploy/deploy staging; fi
+      - if [ -n "${DRONE_TAG}" ]; then ./deploy/deploy production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/deploy staging; fi
     depends_on:
       - build-site
 
@@ -89,7 +89,7 @@ steps:
         path: /etc/profile.d/ecs-credentials-endpoint
     commands:
       - . /etc/profile.d/ecs-credentials-endpoint
-      - if [ -n "${DRONE_TAG}" ]; then ./deploy/wait_for_stack production; elif [ "${DRONE_BRANCH}" = "user-story/rifacimento-totale-del-sistema-di-autoscaling/PRIMA-4545" ]; then ./deploy/wait_for_stack staging; fi
+      - if [ -n "${DRONE_TAG}" ]; then ./deploy/wait_for_stack production; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/wait_for_stack staging; fi
     depends_on:
       - deploy
 
