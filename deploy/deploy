@@ -79,8 +79,7 @@ function get_action() {
   fi
 }
 
-# get_action "ecs-task-pyxis-${ENV}" "ECSServicePyxis"
-get_action "ecs-task-pyxis-${ENV}"
+get_action "ecs-task-pyxis-${ENV}" "ECSServicePyxis"
 
 aws --region="eu-west-1" cloudformation "${ACTION}" --stack-name "ecs-task-pyxis-${ENV}" \
   --template-body file://"${PWD}"/deploy/task.yml \
