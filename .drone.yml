@@ -44,7 +44,7 @@ steps:
 - name: build-image
   image: prima/drone-tools:1.17.6
   commands:
-  - sed -i 's/USER app/USER root/g' ./Dockerfile
+  - sed -i 's/USER node/USER root/g' ./Dockerfile
   - docker build -t prima/pyxis-ci:1 ./
   volumes:
   - name: docker
@@ -52,7 +52,7 @@ steps:
   depends_on:
   - cache-restore
 
-- name: init
+- name: frontend-dependencies
   image: prima/pyxis-ci:1
   commands:
   - mv .fakenpmrc .npmrc
@@ -75,7 +75,7 @@ steps:
       from_secret: npm_token
     YARN_CACHE_FOLDER: /drone/src/.cache
   depends_on:
-  - init
+  - frontend-dependencies
 
 - name: deploy-staging
   image: prima/pyxis-ci:1
@@ -89,7 +89,7 @@ steps:
     branch:
     - master
   depends_on:
-  - init
+  - frontend-dependencies
   - build-site
 
 - name: wait-for-stack-staging
@@ -174,7 +174,7 @@ steps:
 - name: build-image
   image: prima/drone-tools:1.17.6
   commands:
-  - sed -i 's/USER app/USER root/g' ./Dockerfile
+  - sed -i 's/USER node/USER root/g' ./Dockerfile
   - docker build -t prima/pyxis-ci:1 ./
   volumes:
   - name: docker
@@ -370,6 +370,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: fbdd86465b0a3961afaea62b149fcd0ebd64a406ef04a8c4623d75710a8c774b
+hmac: 02d8e1423318995ca6b4272c6ad4d78876f4f34c7009d5d327af2a0c52586b45
 
 ...
