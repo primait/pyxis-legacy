@@ -241,12 +241,13 @@ steps:
       from_secret: email_username
 
 trigger:
+  event:
+  - push
   status:
   - failure
 
 depends_on:
 - default
-- deploy
 
 ---
 kind: pipeline
@@ -370,6 +371,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 02d8e1423318995ca6b4272c6ad4d78876f4f34c7009d5d327af2a0c52586b45
+hmac: 440e5b813d42ca6f576fd2a19359f997a25e9ea4c4d97367c079709392e8b046
 
 ...
