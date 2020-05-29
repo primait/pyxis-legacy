@@ -82,6 +82,11 @@ steps:
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - ./deploy/deploy staging
+  environment:
+    ELM_HOME: /drone/src/.elm
+    NPM_TOKEN:
+      from_secret: npm_token
+    YARN_CACHE_FOLDER: /drone/src/.cache
   volumes:
   - name: ecs
     path: /etc/profile.d/ecs-credentials-endpoint
@@ -110,7 +115,7 @@ steps:
   image: prima/drone-tools:1.17.6
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
-  - cache-save .gitignore
+  - cache-save .cache .elm node_modules elm-stuff
   volumes:
   - name: ecs
     path: /etc/profile.d/ecs-credentials-endpoint
@@ -187,6 +192,11 @@ steps:
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - ./deploy/deploy production ${DRONE_TAG}
+  environment:
+    ELM_HOME: /drone/src/.elm
+    NPM_TOKEN:
+      from_secret: npm_token
+    YARN_CACHE_FOLDER: /drone/src/.cache
   volumes:
   - name: ecs
     path: /etc/profile.d/ecs-credentials-endpoint
@@ -251,7 +261,7 @@ depends_on:
 
 ---
 kind: pipeline
-name: notify-failure-staging
+name: notify-captainhook-production
 
 platform:
   os: linux
@@ -261,28 +271,26 @@ clone:
   disable: true
 
 steps:
-- name: slack-failure
-  image: plugins/slack
+- name: send
+  image: prima/drone-webhook
   settings:
-    channel: deploy-staging
-    template: "{{repo.name}} aggiornamento staging fallito: {{build.link}}"
-    webhook:
-      from_secret: slack_staging_alert_webhook
+    secret:
+      from_secret: captainhook_secret
+    urls: http://captainhook-internal.prima.it/drone/deploy
 
 trigger:
-  branch:
-  - master
   event:
-  - push
+  - tag
   status:
+  - success
   - failure
 
 depends_on:
-- default
+- deploy
 
 ---
 kind: pipeline
-name: notify-success-staging
+name: notify-captainhook-staging
 
 platform:
   os: linux
@@ -292,13 +300,12 @@ clone:
   disable: true
 
 steps:
-- name: slack-success
-  image: plugins/slack
+- name: send
+  image: prima/drone-webhook
   settings:
-    channel: deploy-staging
-    template: "{{repo.name}} aggiornamento staging completato: {{build.link}}"
-    webhook:
-      from_secret: slack_staging_alert_webhook
+    secret:
+      from_secret: captainhook_secret
+    urls: http://captainhook-internal.prima.it/drone/deploy
 
 trigger:
   branch:
@@ -307,70 +314,13 @@ trigger:
   - push
   status:
   - success
-
-depends_on:
-- default
-
----
-kind: pipeline
-name: notify-failure-production
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  disable: true
-
-steps:
-- name: slack-failure
-  image: plugins/slack
-  settings:
-    channel: deploy
-    template: "{{repo.name}} release {{build.tag}} fallita: {{build.link}}"
-    webhook:
-      from_secret: slack_deploy_alert_webhook
-
-trigger:
-  event:
-  - tag
-  status:
   - failure
 
 depends_on:
-- deploy
-
----
-kind: pipeline
-name: notify-success-production
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  disable: true
-
-steps:
-- name: slack-success
-  image: plugins/slack
-  settings:
-    channel: deploy
-    template: "{{repo.name}} release {{build.tag}} completata: {{build.link}}"
-    webhook:
-      from_secret: slack_deploy_alert_webhook
-
-trigger:
-  event:
-  - tag
-  status:
-  - success
-
-depends_on:
-- deploy
+- default
 
 ---
 kind: signature
-hmac: 440e5b813d42ca6f576fd2a19359f997a25e9ea4c4d97367c079709392e8b046
+hmac: a0ef40cc0c0c76fbe5c2fbfd38783042362e25fe67193529eadf7b6d88478f36
 
 ...
