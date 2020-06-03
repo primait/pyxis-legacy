@@ -92,7 +92,7 @@ steps:
     path: /etc/profile.d/ecs-credentials-endpoint
   when:
     branch:
-    - master
+    - user-story/npm-proxy-deps/PRIMA-5005
   depends_on:
   - frontend-dependencies
   - build-site
@@ -107,7 +107,7 @@ steps:
     path: /etc/profile.d/ecs-credentials-endpoint
   when:
     branch:
-    - master
+    - user-story/npm-proxy-deps/PRIMA-5005
   depends_on:
   - deploy-staging
 
