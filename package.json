@@ -9,7 +9,7 @@
     "build:site": "vue-cli-service build"
   },
   "dependencies": {
-    "@prima-assicurazioni/pyxis-npm": "2.1.5009",
+    "@prima-assicurazioni/pyxis-npm": "2.1.1",
     "core-js": "^3.6.4",
     "html-formatter": "^0.1.9",
     "lodash.groupby": "^4.6.0",

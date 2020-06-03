@@ -876,10 +876,10 @@
   resolved "http://verdaccio.prima.it/@nodelib%2ffs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@prima-assicurazioni/pyxis-npm@2.1.5009":
-  version "2.1.5009"
-  resolved "http://verdaccio.prima.it/@prima-assicurazioni%2fpyxis-npm/-/pyxis-npm-2.1.5009.tgz#fc1e2eadeeb79a31beacc81b73e94400e2487130"
-  integrity sha512-qb1750ZLGGKqwjL7IutJ7IE69Pky+a2ANSgTg374NB9y0Eokh9kY9fAG5i6ud6wHao7lssygQrbyVXQ5uMW74Q==
+"@prima-assicurazioni/pyxis-npm@2.1.1":
+  version "2.1.1"
+  resolved "http://verdaccio.prima.it/@prima-assicurazioni%2fpyxis-npm/-/pyxis-npm-2.1.1.tgz#e64973fa6af8e35a2a3e0cd7464d7dace54d013a"
+  integrity sha512-BNgMsndks8XPDyn/+29QFa2wzk480sLFWQ5ALYSdRRdG+3+Va0JqpyIBEmuX3bDlkDHx0L+I3eK3XLY0mtx1BQ==
   dependencies:
     html-webpack-plugin "^3.2.0"
 
