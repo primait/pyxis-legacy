@@ -28,7 +28,6 @@ export VERSION
 
 export ENV=$1
 
-
 echo "deploying ${ENV}"
 mv .fakenpmrc .npmrc
 yarn install
