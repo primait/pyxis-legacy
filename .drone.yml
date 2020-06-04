@@ -1,136 +1,326 @@
+---
 kind: pipeline
 name: default
 
-volumes:
-  - name: docker
-    host:
-      path: /var/run/docker.sock
-  - name: ecs
-    host:
-      path: /etc/profile.d/ecs-credentials-endpoint
+platform:
+  os: linux
+  arch: amd64
 
 clone:
   depth: 1
 
 steps:
-  - name: cache-restore
-    image: prima/drone-tools:1.17.5
-    volumes:
-      - name: ecs
-        path: /etc/profile.d/ecs-credentials-endpoint
-      - name: docker
-        path: /var/run/docker.sock
-    commands:
-      - . /etc/profile.d/ecs-credentials-endpoint
-      - cache-restore
+- name: pre-start
+  image: prima/drone-tools:1.17.6
+  commands:
+  - pre-start-scripts
 
-  - name: linter-deploy-files
-    image: prima/drone-tools:1.17.5
-    volumes:
-      - name: ecs
-        path: /etc/profile.d/ecs-credentials-endpoint
-      - name: docker
-        path: /var/run/docker.sock
-    commands:
-      - cfn-lint
-      - shellcheck deploy/deploy deploy/wait_for_stack
+- name: cache-restore
+  image: prima/drone-tools:1.17.6
+  commands:
+  - . /etc/profile.d/ecs-credentials-endpoint
+  - cache-restore
+  volumes:
+  - name: ecs
+    path: /etc/profile.d/ecs-credentials-endpoint
+  - name: docker
+    path: /var/run/docker.sock
 
-  - name: build-image
-    image: prima/drone-tools:1.17.5
-    volumes:
-      - name: docker
-        path: /var/run/docker.sock
-    commands:
-      - sed -i 's/USER node/USER root/g' Dockerfile
-      - docker build -t prima/pyxis-ci:1 .
-    depends_on:
-      - cache-restore
+- name: linter-deploy-files
+  image: prima/drone-tools:1.17.6
+  commands:
+  - cfn-lint
+  - shellcheck deploy/deploy deploy/wait_for_stack
 
-  - name: init
-    image: prima/pyxis-ci:1
-    environment:
-      YARN_CACHE_FOLDER: /drone/src/.cache
-      ELM_HOME: /drone/src/.elm
-      NPM_TOKEN:
-        from_secret: npm_token
-    commands:
-      - mv .fakenpmrc .npmrc
-      - yarn install
-    depends_on:
-      - build-image
+- name: check-secrets
+  image: prima/drone-tools:1.17.6
+  commands:
+  - . /etc/profile.d/ecs-credentials-endpoint
+  - check-secrets-grants
+  volumes:
+  - name: ecs
+    path: /etc/profile.d/ecs-credentials-endpoint
 
-  - name: build-site
-    image: prima/pyxis-ci:1
-    environment:
-      YARN_CACHE_FOLDER: /drone/src/.cache
-      ELM_HOME: /drone/src/.elm
-      NPM_TOKEN:
-        from_secret: npm_token
-    commands:
-      - yarn build:site
-    depends_on:
-      - init
+- name: build-image
+  image: prima/drone-tools:1.17.6
+  commands:
+  - sed -i 's/USER node/USER root/g' ./Dockerfile
+  - docker build -t prima/pyxis-ci:1 ./
+  volumes:
+  - name: docker
+    path: /var/run/docker.sock
+  depends_on:
+  - cache-restore
 
-  - name: deploy
-    image: prima/drone-tools:1.17.5
-    volumes:
-      - name: ecs
-        path: /etc/profile.d/ecs-credentials-endpoint
-    commands:
-      - . /etc/profile.d/ecs-credentials-endpoint
-      - if [ -n "${DRONE_TAG}" ]; then ./deploy/deploy production ${DRONE_TAG}; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/deploy staging; fi
-    depends_on:
-      - build-site
+- name: frontend-dependencies
+  image: prima/pyxis-ci:1
+  commands:
+  - mv .fakenpmrc .npmrc
+  - yarn install
+  environment:
+    ELM_HOME: /drone/src/.elm
+    NPM_TOKEN:
+      from_secret: npm_token
+    YARN_CACHE_FOLDER: /drone/src/.cache
+  depends_on:
+  - build-image
 
-  - name: wait_for_stack
-    image: prima/drone-tools:1.17.5
-    volumes:
-      - name: ecs
-        path: /etc/profile.d/ecs-credentials-endpoint
-    commands:
-      - . /etc/profile.d/ecs-credentials-endpoint
-      - if [ -n "${DRONE_TAG}" ]; then ./deploy/wait_for_stack production; elif [ "${DRONE_BRANCH}" = "master" ]; then ./deploy/wait_for_stack staging; fi
-    depends_on:
-      - deploy
+- name: build-site
+  image: prima/pyxis-ci:1
+  commands:
+  - yarn build:site
+  environment:
+    ELM_HOME: /drone/src/.elm
+    NPM_TOKEN:
+      from_secret: npm_token
+    YARN_CACHE_FOLDER: /drone/src/.cache
+  depends_on:
+  - frontend-dependencies
 
-  - name: cache-save
-    image: prima/drone-tools:1.17.5
-    volumes:
-      - name: ecs
-        path: /etc/profile.d/ecs-credentials-endpoint
-      - name: docker
-        path: /var/run/docker.sock
-    commands:
-      - . /etc/profile.d/ecs-credentials-endpoint
-      - cache-save .cache .elm node_modules elm-stuff
-    depends_on:
-      - deploy
-    when:
-      branch:
-        - master
+- name: deploy-staging
+  image: prima/pyxis-ci:1
+  commands:
+  - . /etc/profile.d/ecs-credentials-endpoint
+  - ./deploy/deploy staging
+  environment:
+    ELM_HOME: /drone/src/.elm
+    NPM_TOKEN:
+      from_secret: npm_token
+    YARN_CACHE_FOLDER: /drone/src/.cache
+  volumes:
+  - name: ecs
+    path: /etc/profile.d/ecs-credentials-endpoint
+  when:
+    branch:
+    - master
+  depends_on:
+  - frontend-dependencies
+  - build-site
+
+- name: wait-for-stack-staging
+  image: prima/drone-tools:1.17.6
+  commands:
+  - . /etc/profile.d/ecs-credentials-endpoint
+  - ./deploy/wait_for_stack staging
+  volumes:
+  - name: ecs
+    path: /etc/profile.d/ecs-credentials-endpoint
+  when:
+    branch:
+    - master
+  depends_on:
+  - deploy-staging
+
+- name: cache-save
+  image: prima/drone-tools:1.17.6
+  commands:
+  - . /etc/profile.d/ecs-credentials-endpoint
+  - cache-save .cache .elm node_modules elm-stuff
+  volumes:
+  - name: ecs
+    path: /etc/profile.d/ecs-credentials-endpoint
+  - name: docker
+    path: /var/run/docker.sock
+  when:
+    branch:
+    - master
+  depends_on:
+  - deploy-staging
+
+volumes:
+- name: docker
+  host:
+    path: /var/run/docker.sock
+- name: ecs
+  host:
+    path: /etc/profile.d/ecs-credentials-endpoint
+
+trigger:
+  event:
+  - push
 
 ---
 kind: pipeline
-name: notify
+name: deploy
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+- name: pre-start
+  image: prima/drone-tools:1.17.6
+  commands:
+  - pre-start-scripts
+
+- name: cache-restore
+  image: prima/drone-tools:1.17.6
+  commands:
+  - . /etc/profile.d/ecs-credentials-endpoint
+  - cache-restore
+  volumes:
+  - name: ecs
+    path: /etc/profile.d/ecs-credentials-endpoint
+  - name: docker
+    path: /var/run/docker.sock
+
+- name: check-secrets
+  image: prima/drone-tools:1.17.6
+  commands:
+  - . /etc/profile.d/ecs-credentials-endpoint
+  - check-secrets-grants
+  volumes:
+  - name: ecs
+    path: /etc/profile.d/ecs-credentials-endpoint
+
+- name: build-image
+  image: prima/drone-tools:1.17.6
+  commands:
+  - sed -i 's/USER node/USER root/g' ./Dockerfile
+  - docker build -t prima/pyxis-ci:1 ./
+  volumes:
+  - name: docker
+    path: /var/run/docker.sock
+  depends_on:
+  - cache-restore
+
+- name: deploy-production
+  image: prima/pyxis-ci:1
+  commands:
+  - . /etc/profile.d/ecs-credentials-endpoint
+  - ./deploy/deploy production ${DRONE_TAG}
+  environment:
+    ELM_HOME: /drone/src/.elm
+    NPM_TOKEN:
+      from_secret: npm_token
+    YARN_CACHE_FOLDER: /drone/src/.cache
+  volumes:
+  - name: ecs
+    path: /etc/profile.d/ecs-credentials-endpoint
+  depends_on:
+  - check-secrets
+  - build-image
+
+- name: wait-for-stack-production
+  image: prima/drone-tools:1.17.6
+  commands:
+  - . /etc/profile.d/ecs-credentials-endpoint
+  - ./deploy/wait_for_stack production ${DRONE_TAG}
+  volumes:
+  - name: ecs
+    path: /etc/profile.d/ecs-credentials-endpoint
+  depends_on:
+  - deploy-production
+
+volumes:
+- name: docker
+  host:
+    path: /var/run/docker.sock
+- name: ecs
+  host:
+    path: /etc/profile.d/ecs-credentials-endpoint
+
+trigger:
+  event:
+  - tag
+
+---
+kind: pipeline
+name: email-failure
+
+platform:
+  os: linux
+  arch: amd64
 
 clone:
   disable: true
 
 steps:
-  - name: notify_email
-    image: drillster/drone-email
-    environment:
-      PLUGIN_USERNAME:
-        from_secret: email_username
-      PLUGIN_PASSWORD:
-        from_secret: email_password
-    settings:
-      host: email-smtp.eu-west-1.amazonaws.com
-      from: noreply@prima.it
+- name: email-failure
+  image: drillster/drone-email
+  settings:
+    from: noreply@prima.it
+    host: email-smtp.eu-west-1.amazonaws.com
+  environment:
+    PLUGIN_PASSWORD:
+      from_secret: email_password
+    PLUGIN_USERNAME:
+      from_secret: email_username
 
 trigger:
+  event:
+  - push
   status:
-    - failure
+  - failure
 
 depends_on:
-  - default
+- default
+
+---
+kind: pipeline
+name: notify-captainhook-production
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  disable: true
+
+steps:
+- name: send
+  image: prima/drone-webhook
+  settings:
+    secret:
+      from_secret: captainhook_secret
+    urls: http://captainhook-internal.prima.it/drone/deploy
+
+trigger:
+  event:
+  - tag
+  status:
+  - success
+  - failure
+
+depends_on:
+- deploy
+
+---
+kind: pipeline
+name: notify-captainhook-staging
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  disable: true
+
+steps:
+- name: send
+  image: prima/drone-webhook
+  settings:
+    secret:
+      from_secret: captainhook_secret
+    urls: http://captainhook-internal.prima.it/drone/deploy
+
+trigger:
+  branch:
+  - master
+  event:
+  - push
+  status:
+  - success
+  - failure
+
+depends_on:
+- default
+
+---
+kind: signature
+hmac: a0ef40cc0c0c76fbe5c2fbfd38783042362e25fe67193529eadf7b6d88478f36
+
+...

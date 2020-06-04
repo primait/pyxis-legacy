@@ -28,7 +28,10 @@ export VERSION
 
 export ENV=$1
 
-
+echo "deploying ${ENV}"
+mv .fakenpmrc .npmrc
+yarn install
+yarn build:site
 tar czf "${VERSION}"-"${ENV}".tar.gz -C dist/pyxis-site .
 aws --region="eu-west-1" s3 cp "${VERSION}"-"${ENV}".tar.gz s3://prima-artifacts-encrypted/microservices/pyxis/"${VERSION}"-"${ENV}".tar.gz
 
