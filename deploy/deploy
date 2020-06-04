@@ -28,8 +28,8 @@ export VERSION
 
 export ENV=$1
 
+
 echo "deploying ${ENV}"
-mv .fakenpmrc .npmrc
 yarn install
 yarn build:site
 tar czf "${VERSION}"-"${ENV}".tar.gz -C dist/pyxis-site .
