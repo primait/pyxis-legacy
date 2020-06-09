@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "build:css": "./node_modules/.bin/webpack --config pyxis-sass.webpack.config.js",
-    "build:site": "vue-cli-service build"
+    "build:site": "vue-cli-service build",
+    "release": "yarn install && yarn build:site && tar czf ${VERSION}-${ENV}.tar.gz -C dist/pyxis-site ."
   },
   "dependencies": {
     "@prima-assicurazioni/pyxis-npm": "2.1.0",
