@@ -34,7 +34,7 @@ Mappings:
       PyxisCpu: 128
       PyxisRam: 128
       MinServiceSize: 2
-      MaxServiceSize: 30
+      MaxServiceSize: 5
       HealthyThreshold: 10
       DeploymentMaximumPercent: 100
       DeploymentMinimumHealthyPercent: 50
