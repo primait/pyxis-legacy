@@ -1,0 +1,9 @@
+$fontPath: "./fonts/";
+
+@import "../pyxis-npm/src/scss/pyxis";
+
+.pyxis {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  grid-template-rows: auto;
+}
