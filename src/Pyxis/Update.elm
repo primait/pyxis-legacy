@@ -17,3 +17,8 @@ update msg model =
         ClickedLink urlRequest ->
             model
                 |> PH.withoutCmds
+
+        AccordionMsg subMsg ->
+            model
+                |> UH.dispatchAccordionSubMsg subMsg
+                |> PH.withoutCmds

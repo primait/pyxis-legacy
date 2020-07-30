@@ -7,6 +7,7 @@ module Pyxis.Model exposing
 
 import Browser exposing (UrlRequest)
 import Browser.Navigation
+import Pyxis.Pages.Accordion.Model as Accordion
 import Pyxis.Router as Router exposing (Route)
 import Url exposing (Url)
 
@@ -14,25 +15,21 @@ import Url exposing (Url)
 type Msg
     = ChangedUrl Url
     | ClickedLink UrlRequest
+    | AccordionMsg Accordion.Msg
 
 
 type alias Model =
     { key : Browser.Navigation.Key
     , currentRoute : Route
+    , accordionModel : Accordion.Model
     }
 
 
 initialModel : Url -> Browser.Navigation.Key -> Model
 initialModel url key =
-    let
-        _ =
-            Debug.log "url" url
-    in
     { key = key
-    , currentRoute =
-        url
-            |> Router.fromUrl
-            |> Maybe.withDefault Router.Homepage
+    , currentRoute = Maybe.withDefault Router.Homepage <| Router.fromUrl url
+    , accordionModel = Accordion.initialModel
     }
 
 

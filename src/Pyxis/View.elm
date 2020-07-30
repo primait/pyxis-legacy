@@ -4,7 +4,7 @@ import Browser exposing (Document)
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
 import Pyxis.Commons.Menu as Menu
-import Pyxis.Model exposing (Model, Msg)
+import Pyxis.Model exposing (Model, Msg(..))
 import Pyxis.Pages.Accordion as Accordion
 import Pyxis.Pages.Home as Home
 import Pyxis.Pages.NotFound as NotFound
@@ -35,7 +35,7 @@ viewBody model =
             Router.Accordion ->
                 [ Menu.view model
                 , viewContent
-                    [ Accordion.view model
+                    [ Html.map AccordionMsg <| Accordion.view model.accordionModel
                     ]
                 ]
 

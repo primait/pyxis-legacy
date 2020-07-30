@@ -1,13 +1,11 @@
 module Pyxis.Helpers exposing (..)
 
-import Pyxis.Model exposing (Model, Msg)
 
-
-withCmds : List (Cmd Msg) -> Model -> ( Model, Cmd Msg )
+withCmds : List (Cmd msg) -> model -> ( model, Cmd msg )
 withCmds cmds model =
     ( model, Cmd.batch cmds )
 
 
-withoutCmds : Model -> ( Model, Cmd Msg )
+withoutCmds : model -> ( model, Cmd msg )
 withoutCmds =
     withCmds []
