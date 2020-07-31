@@ -36,11 +36,14 @@ module.exports = {
         test: /\.scss$/,
         include: [/scss\/.*/, /compass\/.*/],
         use: [
-          { loader: MiniCssExtractPlugin.loader
+          {
+            loader: MiniCssExtractPlugin.loader
           },
-          { loader: 'css-loader',
+          {
+            loader: 'css-loader',
           },
-          { loader: 'sass-loader'
+          {
+            loader: 'sass-loader'
           }]
       },
       {
@@ -57,7 +60,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 8080,
+    port: 10080,
     hot: true,
     publicPath: '/',
     historyApiFallback: true,
