@@ -22,3 +22,8 @@ update msg model =
             model
                 |> UH.dispatchAccordionSubMsg subMsg
                 |> PH.withoutCmds
+
+        ButtonMsg subMsg ->
+            model
+                |> UH.dispatchButtonSubMsg subMsg
+                |> PH.withoutCmds

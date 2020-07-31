@@ -12,6 +12,7 @@ import Url.Parser exposing (s)
 type Route
     = Homepage
     | Accordion
+    | Button
     | NotFound
 
 
@@ -20,6 +21,7 @@ parser =
     Url.Parser.oneOf
         [ Url.Parser.map Homepage Url.Parser.top
         , Url.Parser.map Accordion (s "accordion")
+        , Url.Parser.map Button (s "button")
         , Url.Parser.map NotFound (s "404")
         ]
 
@@ -32,6 +34,9 @@ routeToPieces page =
 
         Accordion ->
             [ "accordion" ]
+
+        Button ->
+            [ "button" ]
 
         NotFound ->
             [ "404" ]
