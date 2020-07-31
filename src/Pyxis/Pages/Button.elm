@@ -10,11 +10,11 @@ view model =
     div
         []
         [ h1 [] [ text "Buttons" ]
-        , PyxisButton.primary "Primary"
-        , PyxisButton.secondary "Secondary"
-        , PyxisButton.tertiary "Tertiary"
-        , PyxisButton.loading "Loading"
-        , PyxisButton.primaryAlt "Primary Alt."
-        , PyxisButton.secondaryAlt "Secondary Alt."
-        , PyxisButton.tertiaryAlt "Tertiary Alt."
+        , PyxisButton.render <| PyxisButton.primary "Primary"
+        , PyxisButton.render <| PyxisButton.secondary "Secondary"
+        , PyxisButton.render <| PyxisButton.tertiary "Tertiary"
+        , PyxisButton.render <| PyxisButton.loading "Loading"
+        , PyxisButton.render <| PyxisButton.primaryAlt "Primary Alt."
+        , PyxisButton.render <| PyxisButton.secondaryAlt "Secondary Alt."
+        , PyxisButton.render <| PyxisButton.tertiaryAlt "Tertiary Alt."
         ]

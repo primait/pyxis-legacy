@@ -1,3 +1,4 @@
+const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
@@ -44,17 +45,21 @@ module.exports = {
           },
           {
             loader: 'sass-loader'
-          }]
+          }
+        ]
       },
       {
         test: /\.(jpe?g|svg|png|gif|webp|otf|ttf|eot|woff(2)?)(\?[a-z0-9=&.]+)?$/,
         loader: 'file-loader',
-        options: { name: '[name].[ext]', outputPath: '/' }
+        options: { name: '[name].[ext]', outputPath: 'assets' }
       },
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'index.html'
+    }),
     new MiniCssExtractPlugin()
   ],
   devServer: {
@@ -64,5 +69,6 @@ module.exports = {
     hot: true,
     publicPath: '/',
     historyApiFallback: true,
+    overlay: true,
   }
 }
