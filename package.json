@@ -9,7 +9,8 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js --env.NODE_ENV='production'",
-    "serve": "webpack-dev-server"
+    "serve": "webpack-dev-server --env.NODE_ENV='development'",
+    "deploy:local": "docker-compose up --build -d web"
   },
   "dependencies": {},
   "devDependencies": {

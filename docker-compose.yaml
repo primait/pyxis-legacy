@@ -1,0 +1,6 @@
+version: "2"
+services:
+  web:
+    build: .
+    ports:
+    - "10080:80"
