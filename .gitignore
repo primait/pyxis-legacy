@@ -7,3 +7,18 @@ elm-stuff/*
 dist/
 
 .idea/
+.vscode/
+
+# we only use yarn, therefore we ignore npm's lock file to avoid conflicts
+package-lock.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
