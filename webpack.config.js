@@ -40,7 +40,6 @@ module.exports = env => {
         },
         {
           test: /\.scss$/,
-          include: [/scss\/.*/, /compass\/.*/],
           use: [
             {
               loader: MiniCssExtractPlugin.loader
@@ -49,7 +48,10 @@ module.exports = env => {
               loader: 'css-loader',
             },
             {
-              loader: 'sass-loader'
+              loader: 'sass-loader',
+              options: {
+                sourceMap: !isProduction
+              }
             }
           ]
         },
