@@ -1,4 +1,4 @@
-module Pyxis.Router exposing
+module Router exposing
     ( Route(..)
     , fromUrl
     , parser

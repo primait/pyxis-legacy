@@ -1,11 +1,11 @@
-module Pyxis.Update.Helpers exposing (..)
+module Update.Helpers exposing (..)
 
-import Pyxis.Model exposing (Model)
-import Pyxis.Pages.Accordion.Model as AccordionModel
-import Pyxis.Pages.Accordion.Update as AccordionUpdate
-import Pyxis.Pages.Button.Model as ButtonModel
-import Pyxis.Pages.Button.Update as ButtonUpdate
-import Pyxis.Router as Router exposing (Route(..))
+import Model exposing (Model)
+import Pages.Accordion.Model as AccordionModel
+import Pages.Accordion.Update as AccordionUpdate
+import Pages.Button.Model as ButtonModel
+import Pages.Button.Update as ButtonUpdate
+import Router as Router exposing (Route(..))
 
 
 updateRoute : Maybe Route -> Model -> Model

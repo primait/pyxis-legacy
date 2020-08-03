@@ -1,4 +1,4 @@
-module Pyxis.Pages.Accordion.Model exposing
+module Pages.Accordion.Model exposing
     ( Accordion(..)
     , Model
     , Msg(..)

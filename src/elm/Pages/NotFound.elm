@@ -1,7 +1,7 @@
-module Pyxis.Pages.NotFound exposing (..)
+module Pages.NotFound exposing (view)
 
 import Html exposing (Html, div, text)
-import Pyxis.Model exposing (Msg)
+import Model exposing (Msg)
 
 
 view : Html Msg

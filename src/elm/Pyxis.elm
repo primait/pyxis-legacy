@@ -1,12 +1,12 @@
-module Pyxis exposing (..)
+module Pyxis exposing (main)
 
 import Browser
 import Browser.Navigation
-import Pyxis.Helpers as PH
-import Pyxis.Model as M exposing (Flags, Model, Msg(..))
-import Pyxis.Update as Update
-import Pyxis.View as View
+import Helpers as PH
+import Model as M exposing (Flags, Model, Msg(..))
+import Update as Update
 import Url exposing (Url)
+import View as View
 
 
 main : Program Flags Model Msg

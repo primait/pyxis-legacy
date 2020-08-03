@@ -1,7 +1,7 @@
 {
     "type": "application",
     "source-directories": [
-        "src",
+        "src/elm",
         "lib/pyxis-components/src"
     ],
     "elm-version": "0.19.1",

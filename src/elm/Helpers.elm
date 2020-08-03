@@ -1,4 +1,4 @@
-module Pyxis.Helpers exposing (..)
+module Helpers exposing (..)
 
 
 withCmds : List (Cmd msg) -> model -> ( model, Cmd msg )

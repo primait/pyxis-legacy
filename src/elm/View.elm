@@ -1,15 +1,15 @@
-module Pyxis.View exposing (..)
+module View exposing (view)
 
 import Browser exposing (Document)
+import Commons.Menu as Menu
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
-import Pyxis.Commons.Menu as Menu
-import Pyxis.Model exposing (Model, Msg(..))
-import Pyxis.Pages.Accordion as Accordion
-import Pyxis.Pages.Button as Button
-import Pyxis.Pages.Home as Home
-import Pyxis.Pages.NotFound as NotFound
-import Pyxis.Router as Router
+import Model exposing (Model, Msg(..))
+import Pages.Accordion as Accordion
+import Pages.Button as Button
+import Pages.Home as Home
+import Pages.NotFound as NotFound
+import Router
 
 
 view : Model -> Document Msg

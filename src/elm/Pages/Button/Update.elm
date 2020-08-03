@@ -1,7 +1,7 @@
-module Pyxis.Pages.Button.Update exposing (update)
+module Pages.Button.Update exposing (update)
 
-import Pyxis.Helpers as PH
-import Pyxis.Pages.Button.Model exposing (Model, Msg(..))
+import Helpers as PH
+import Pages.Button.Model exposing (Model, Msg(..))
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

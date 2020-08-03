@@ -1,4 +1,4 @@
-module Pyxis.Pages.Button.Model exposing (Model, Msg(..), initialModel)
+module Pages.Button.Model exposing (Model, Msg(..), initialModel)
 
 
 type Msg

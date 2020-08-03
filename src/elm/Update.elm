@@ -1,9 +1,9 @@
-module Pyxis.Update exposing (..)
+module Update exposing (update)
 
-import Pyxis.Helpers as PH
-import Pyxis.Model exposing (Model, Msg(..))
-import Pyxis.Router as Router
-import Pyxis.Update.Helpers as UH
+import Helpers as PH
+import Model exposing (Model, Msg(..))
+import Router as Router
+import Update.Helpers as UH
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

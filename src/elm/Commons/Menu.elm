@@ -1,8 +1,8 @@
-module Pyxis.Commons.Menu exposing (view)
+module Commons.Menu exposing (view)
 
 import Html exposing (Html, div, nav, text)
 import Html.Attributes exposing (class)
-import Pyxis.Model exposing (Model, Msg)
+import Model exposing (Model, Msg)
 
 
 view : Model -> Html Msg

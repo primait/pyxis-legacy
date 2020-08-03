@@ -1,4 +1,4 @@
-module Pyxis.Model exposing
+module Model exposing
     ( Flags
     , Model
     , Msg(..)
@@ -7,9 +7,9 @@ module Pyxis.Model exposing
 
 import Browser exposing (UrlRequest)
 import Browser.Navigation
-import Pyxis.Pages.Accordion.Model as Accordion
-import Pyxis.Pages.Button.Model as Button
-import Pyxis.Router as Router exposing (Route)
+import Pages.Accordion.Model as Accordion
+import Pages.Button.Model as Button
+import Router as Router exposing (Route)
 import Url exposing (Url)
 
 

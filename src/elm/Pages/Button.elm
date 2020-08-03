@@ -1,8 +1,8 @@
-module Pyxis.Pages.Button exposing (view)
+module Pages.Button exposing (view)
 
-import Html exposing (Html, br, div, h1, text)
+import Html exposing (Html, div, h1, text)
+import Pages.Button.Model exposing (Model, Msg)
 import Prima.Pyxis.Button as PyxisButton
-import Pyxis.Pages.Button.Model exposing (Model, Msg)
 
 
 view : Model -> Html Msg

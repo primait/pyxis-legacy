@@ -1,8 +1,8 @@
-module Pyxis.Pages.Accordion.Update exposing (..)
+module Pages.Accordion.Update exposing (update)
 
+import Helpers as PH
+import Pages.Accordion.Model as M exposing (Accordion(..), Model, Msg(..))
 import Prima.Pyxis.Accordion as PyxisAccordion
-import Pyxis.Helpers as PH
-import Pyxis.Pages.Accordion.Model as M exposing (Accordion(..), Model, Msg(..))
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

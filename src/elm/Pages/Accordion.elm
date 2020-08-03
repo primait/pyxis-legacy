@@ -1,8 +1,8 @@
-module Pyxis.Pages.Accordion exposing (view)
+module Pages.Accordion exposing (view)
 
 import Html exposing (Html, br, div, text)
+import Pages.Accordion.Model as M exposing (Accordion(..), Model, Msg)
 import Prima.Pyxis.Accordion as PyxisAccordion
-import Pyxis.Pages.Accordion.Model as M exposing (Accordion(..), Model, Msg)
 
 
 view : Model -> Html Msg
