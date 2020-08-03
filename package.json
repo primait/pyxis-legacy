@@ -8,7 +8,7 @@
     "url": "https://github.com/primait/pyxis.git"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js --env.NODE_ENV='production'",
     "serve": "webpack-dev-server"
   },
   "dependencies": {
