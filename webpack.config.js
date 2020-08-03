@@ -1,6 +1,7 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path')
 
 module.exports = env => {
@@ -9,8 +10,7 @@ module.exports = env => {
 
   return {
     mode: isProduction ? "production" : "development",
-    context: path.resolve(__dirname, 'src'),
-    entry: './index.js',
+    entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
@@ -64,8 +64,13 @@ module.exports = env => {
     },
     plugins: [
       new CleanWebpackPlugin(),
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: 'public', to: 'public' }
+        ]
+      }),
       new HtmlWebpackPlugin({
-        template: 'index.html'
+        template: 'src/index.html'
       }),
       new MiniCssExtractPlugin()
     ],
