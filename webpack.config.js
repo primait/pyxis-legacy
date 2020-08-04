@@ -25,6 +25,7 @@ module.exports = env => {
           options: {
             pathToElm: path.resolve(__dirname, 'node_modules/.bin/elm'),
             debug: !isProduction,
+            optimize: isProduction,
             forceWatch: true,
             runtimeOptions: ['-A128M', '-H128M', '-n8m']
           }
