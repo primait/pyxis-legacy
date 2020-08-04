@@ -57,6 +57,10 @@ module.exports = env => {
           ]
         },
         {
+          test: /\.(txt|ya?ml)$/i,
+          use: 'raw-loader',
+        },
+        {
           test: /\.(jpe?g|svg|png|gif|webp|otf|ttf|eot|woff(2)?)(\?[a-z0-9=&.]+)?$/,
           loader: 'file-loader',
           options: { name: '[name].[ext]', outputPath: 'assets' }
