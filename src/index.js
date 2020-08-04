@@ -1,7 +1,11 @@
 require('./scss/app.scss')
 
-import itText from "./i18n/it.json"; // TODO: add i18n loader
+import YAML from "yaml";
 import { flatten } from "./utils"
+
+import ymlItText from './i18n/it.yaml';
+
+const itText = YAML.parse(ymlItText); // TODO: add error handling
 
 import { Elm } from './elm/Pyxis.elm'
 

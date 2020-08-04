@@ -1,9 +1,0 @@
-{
-  "hello": "Hello, {{name}}!",
-  "nested": {
-    "hello": "nested string",
-    "subnest": {
-      "hi": "hello, {{name}}"
-    }
-  }
-}

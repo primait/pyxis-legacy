@@ -10,4 +10,5 @@ view ({ t } as model) =
         []
         [ h1 [] [ text "This is homepage" ]
         , text <| t "nested.subnest.hi" [ ( "name", "World" ) ]
+        , div [] [ text <| t "nested.subnest.multi" [ ( "name", "Multiline string" ) ] ]
         ]

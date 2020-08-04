@@ -1,0 +1,11 @@
+hello: "Hello, {{name}}!"
+nested:
+  hello: nested string
+  subnest:
+    hi: "hello, {{name}}"
+    multi: >-
+      this is
+      a multiline
+      string, the name is {{name}}
+      and the spaces and linefeeds will be chopped off
+
