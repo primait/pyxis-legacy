@@ -9,5 +9,5 @@ view ({ t } as model) =
     div
         []
         [ h1 [] [ text "This is homepage" ]
-        , text <| t "hello" [ ( "name", "World" ) ]
+        , text <| t "nested.subnest.hi" [ ( "name", "World" ) ]
         ]
