@@ -23,5 +23,5 @@ main =
 
 init : Flags -> Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
 init flags url key =
-    M.initialModel url key
+    M.initialModel flags url key
         |> PH.withoutCmds

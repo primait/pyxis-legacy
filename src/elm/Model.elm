@@ -7,6 +7,7 @@ module Model exposing
 
 import Browser exposing (UrlRequest)
 import Browser.Navigation
+import Helpers as H
 import Pages.Accordion.Model as Accordion
 import Pages.Button.Model as Button
 import Router as Router exposing (Route)
@@ -25,17 +26,20 @@ type alias Model =
     , currentRoute : Route
     , accordionModel : Accordion.Model
     , buttonModel : Button.Model
+    , t : H.Translator
     }
 
 
-initialModel : Url -> Browser.Navigation.Key -> Model
-initialModel url key =
+initialModel : Flags -> Url -> Browser.Navigation.Key -> Model
+initialModel flags url key =
     { key = key
     , currentRoute = Maybe.withDefault Router.Homepage <| Router.fromUrl url
     , accordionModel = Accordion.initialModel
     , buttonModel = Button.initialModel
+    , t = H.i18nInit flags.translations
     }
 
 
 type alias Flags =
-    ()
+    { translations : List ( String, String )
+    }

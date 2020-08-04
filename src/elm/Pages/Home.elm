@@ -1,11 +1,13 @@
 module Pages.Home exposing (view)
 
-import Html exposing (Html, div, text)
+import Html exposing (Html, div, h1, text)
 import Model exposing (Model, Msg)
 
 
 view : Model -> Html Msg
-view model =
+view ({ t } as model) =
     div
         []
-        [ text "This is homepage" ]
+        [ h1 [] [ text "This is homepage" ]
+        , text <| t "hello" [ ( "name", "World" ) ]
+        ]
