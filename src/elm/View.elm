@@ -3,7 +3,7 @@ module View exposing (view)
 import Browser exposing (Document)
 import Commons.Menu as Menu
 import Html exposing (Html, div)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (class, style)
 import Model exposing (Model, Msg(..))
 import Pages.Accordion as Accordion
 import Pages.Button as Button
@@ -25,38 +25,23 @@ viewBody : Model -> Html Msg
 viewBody model =
     div
         [ class "pyxis" ]
-        (case model.currentRoute of
-            Router.Homepage ->
-                [ Menu.view model
-                , viewContent
-                    [ Home.view model
-                    ]
-                ]
-
-            Router.Accordion ->
-                [ Menu.view model
-                , viewContent
-                    [ Html.map AccordionMsg <| Accordion.view model.accordionModel
-                    ]
-                ]
-
-            Router.Button ->
-                [ Menu.view model
-                , viewContent
-                    [ Html.map ButtonMsg <| Button.view model.buttonModel
-                    ]
-                ]
-
-            Router.NotFound ->
-                [ Menu.view model
-                , viewContent
-                    [ NotFound.view
-                    ]
-                ]
-        )
+        [ Menu.view model
+        , div [ class "pyxis-content" ]
+            [ div [ style "padding" "16px" ] [ viewRouter model ] ]
+        ]
 
 
-viewContent : List (Html Msg) -> Html Msg
-viewContent =
-    div
-        [ class "pyxis__content" ]
+viewRouter : Model -> Html Msg
+viewRouter model =
+    case model.currentRoute of
+        Router.Homepage ->
+            Home.view model
+
+        Router.Accordion ->
+            Html.map AccordionMsg <| Accordion.view model.accordionModel
+
+        Router.Button ->
+            Html.map ButtonMsg <| Button.view model.buttonModel
+
+        Router.NotFound ->
+            NotFound.view
