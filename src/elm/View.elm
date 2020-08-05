@@ -3,7 +3,7 @@ module View exposing (view)
 import Browser exposing (Document)
 import Commons.Menu as Menu
 import Html exposing (Html, div)
-import Html.Attributes exposing (class, style)
+import Html.Attributes exposing (class, classList, style)
 import Model exposing (Model, Msg(..))
 import Pages.Accordion as Accordion
 import Pages.Button as Button
@@ -25,9 +25,15 @@ viewBody : Model -> Html Msg
 viewBody model =
     div
         [ class "pyxis" ]
-        [ Menu.view model
-        , div [ class "pyxis-content" ]
-            [ div [ style "padding" "16px" ] [ viewRouter model ] ]
+        [ div
+            [ class "pyxis__navbar", classList [ ( "pyxis__navbar--open", model.isMenuOpen ) ] ]
+            [ Menu.view model ]
+        , div
+            [ class "pyxis__content" ]
+            [ div
+                [ style "padding" "16px" ]
+                [ viewRouter model ]
+            ]
         ]
 
 

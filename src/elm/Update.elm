@@ -30,6 +30,9 @@ update msg model =
                     model
                         |> H.withCmds [ Nav.load href ]
 
+        ToggleMenu value ->
+            ( { model | isMenuOpen = value }, Cmd.none )
+
         AccordionMsg subMsg ->
             model
                 |> UH.dispatchAccordionSubMsg subMsg

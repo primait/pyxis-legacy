@@ -2,8 +2,73 @@ $fontPath: "./fonts/";
 
 @import "../../lib/pyxis-npm/src/scss/pyxis";
 
+@import
+  "navbar";
+
+
+// MOBILE
 .pyxis {
-  display: grid;
-  grid-template-columns: 25% 1fr;
-  grid-template-rows: auto;
+  font-family: font(base);
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+
+  &__navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    overflow-y: hidden;
+    z-index: 2;
+    background: white;
+
+    &--open {
+      overflow-y: auto;
+      height: 100%;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    overflow-y: scroll;
+    z-index: 1;
+  }
+}
+
+// DESKTOP
+@include mq(small) {
+  .pyxis {
+    display: flex;
+    flex-direction: row;
+    flex: 0 1 100%;
+
+    > * {
+      width: 100%;
+      height: 100%;
+    }
+
+    &__navbar {
+      position: initial;
+      max-width: 340px;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 60px 0 rgba(77,89,105,0.1);
+      overflow-y: auto;
+      z-index: 2;
+    }
+
+    &__content {
+      position: initial;
+      overflow-y: scroll;
+      z-index: 1;
+    }
+  }
 }
