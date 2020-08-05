@@ -5,12 +5,12 @@ import Pages.Accordion.Model as AccordionModel
 import Pages.Accordion.Update as AccordionUpdate
 import Pages.Button.Model as ButtonModel
 import Pages.Button.Update as ButtonUpdate
-import Router as Router exposing (Route(..))
+import Route exposing (Route(..))
 
 
 updateRoute : Maybe Route -> Model -> Model
 updateRoute maybeRoute model =
-    { model | currentRoute = Maybe.withDefault Router.NotFound maybeRoute }
+    { model | currentRoute = Maybe.withDefault Route.NotFound maybeRoute }
 
 
 dispatchAccordionSubMsg : AccordionModel.Msg -> Model -> Model

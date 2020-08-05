@@ -2,7 +2,7 @@ module Update exposing (update)
 
 import Helpers as H
 import Model exposing (Model, Msg(..))
-import Router as Router
+import Route
 import Update.Helpers as UH
 
 
@@ -15,7 +15,7 @@ update msg model =
 
         ChangedUrl route ->
             model
-                |> UH.updateRoute (Router.fromUrl route)
+                |> UH.updateRoute (Route.fromUrl route)
                 |> H.withoutCmds
 
         ClickedLink urlRequest ->

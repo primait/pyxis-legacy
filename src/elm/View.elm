@@ -9,7 +9,7 @@ import Pages.Accordion as Accordion
 import Pages.Button as Button
 import Pages.Home as Home
 import Pages.NotFound as NotFound
-import Router
+import Route
 
 
 view : Model -> Document Msg
@@ -34,14 +34,14 @@ viewBody model =
 viewRouter : Model -> Html Msg
 viewRouter model =
     case model.currentRoute of
-        Router.Homepage ->
+        Route.Homepage ->
             Home.view model
 
-        Router.Accordion ->
+        Route.Accordion ->
             Html.map AccordionMsg <| Accordion.view model.accordionModel
 
-        Router.Button ->
+        Route.Button ->
             Html.map ButtonMsg <| Button.view model.buttonModel
 
-        Router.NotFound ->
+        Route.NotFound ->
             NotFound.view
