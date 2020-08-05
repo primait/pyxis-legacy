@@ -15,7 +15,8 @@ import Url exposing (Url)
 
 
 type Msg
-    = ChangedUrl Url
+    = NoOp
+    | ChangedUrl Url
     | ClickedLink UrlRequest
     | AccordionMsg Accordion.Msg
     | ButtonMsg Button.Msg
