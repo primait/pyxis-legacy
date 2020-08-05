@@ -8,9 +8,9 @@ import Pages.Button.Update as ButtonUpdate
 import Route exposing (Route(..))
 
 
-updateRoute : Maybe Route -> Model -> Model
-updateRoute maybeRoute model =
-    { model | currentRoute = Maybe.withDefault Route.NotFound maybeRoute }
+setRoute : Maybe Route -> Model -> Model
+setRoute newRoute model =
+    { model | currentRoute = Maybe.withDefault Route.NotFound newRoute }
 
 
 dispatchAccordionSubMsg : AccordionModel.Msg -> Model -> Model

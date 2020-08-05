@@ -1,5 +1,7 @@
 module Update exposing (update)
 
+import Browser
+import Browser.Navigation as Nav
 import Helpers as H
 import Model exposing (Model, Msg(..))
 import Route
@@ -13,14 +15,20 @@ update msg model =
             model
                 |> H.withoutCmds
 
-        ChangedUrl route ->
+        ChangedUrl url ->
             model
-                |> UH.updateRoute (Route.fromUrl route)
+                |> UH.setRoute (Route.fromUrl url)
                 |> H.withoutCmds
 
         ClickedLink urlRequest ->
-            model
-                |> H.withoutCmds
+            case urlRequest of
+                Browser.Internal url ->
+                    model
+                        |> H.withCmds [ Route.pushUrl model.key (Route.fromUrl url) ]
+
+                Browser.External href ->
+                    model
+                        |> H.withCmds [ Nav.load href ]
 
         AccordionMsg subMsg ->
             model
