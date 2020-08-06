@@ -1,6 +1,6 @@
 module Commons.Menu exposing (view)
 
-import Html exposing (Html, a, button, div, h1, header, img, li, nav, span, text, ul)
+import Html exposing (Html, a, button, div, header, img, li, nav, span, text, ul)
 import Html.Attributes exposing (alt, class, classList, src)
 import Html.Events exposing (onClick)
 import Model exposing (Model, Msg(..))
@@ -83,33 +83,35 @@ view model =
                 [ text "3.0" ]
             ]
         , div [ class "navbar__content" ] <|
-            List.map viewMenu menuItems
+            List.map (\menu -> viewMenu menu model.currentRoute) menuItems
         ]
 
 
-viewMenu : Menu -> Html Msg
-viewMenu menu =
+viewMenu : Menu -> Route -> Html Msg
+viewMenu menu currentRoute =
     case menu of
         MenuItem config ->
-            viewMenuItem config
+            viewMenuItem config currentRoute
 
         DropDown config ->
-            viewDropDownMenu config
+            viewDropDownMenu config currentRoute
 
 
-viewMenuItem : MenuItemConfig -> Html Msg
-viewMenuItem config =
-    div [ class "menu-item" ]
+viewMenuItem : MenuItemConfig -> Route -> Html Msg
+viewMenuItem config currentRoute =
+    div
+        [ class "menu-item" ]
         [ a
             [ class "menu-item__link"
+            , classList [ ( "menu-item__link--active", config.route == currentRoute ) ]
             , Route.href config.route
             ]
             [ text config.label ]
         ]
 
 
-viewDropDownMenu : DropDownConfig -> Html Msg
-viewDropDownMenu menu =
+viewDropDownMenu : DropDownConfig -> Route -> Html Msg
+viewDropDownMenu menu currentRoute =
     div
         [ class "dropdown-menu"
         , classList [ ( "dropdown-menu--open", menu.isOpen ) ]
@@ -120,13 +122,24 @@ viewDropDownMenu menu =
                 [ class "dropdown-menu__label" ]
                 [ text menu.label ]
             , span
-                [ class "dropdown-menu__open-indicator" ]
+                [ class "dropdown-menu__open-indicator"
+                , classList [ ( "visually-hidden", List.isEmpty menu.items ) ]
+                ]
                 [ text "+" ]
             ]
         , ul [ class "dropdown-menu__list" ] <|
             List.map
                 (\item ->
-                    li [ class "dropdown-menu__list-item" ] [ viewMenuItem item ]
+                    li
+                        [ class "dropdown-menu__list-item"
+                        ]
+                        [ a
+                            [ class "dropdown-menu__link"
+                            , classList [ ( "dropdown-menu__link--active", item.route == currentRoute ) ]
+                            , Route.href item.route
+                            ]
+                            [ text item.label ]
+                        ]
                 )
                 menu.items
         ]

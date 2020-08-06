@@ -64,3 +64,87 @@
         padding: 40px;
     }
 }
+
+.menu-item {
+    overflow: hidden;
+    border-radius: 5px;
+
+    &__link {
+        display: block;
+        padding: 12px;
+        font-size: 16px;
+        color: color(text, dark);
+        border-left: solid 3px transparent;
+
+        &--active {
+            background-color: color(brandAlt, light);
+            color: color(brandAlt, base);
+            border-left-color: color(brandAlt, base);
+        }
+    }
+
+}
+
+.dropdown-menu {
+    border: solid 1px color(shape, base);
+    border-width: 1px 0;
+    overflow: hidden;
+
+    & + & {
+        border-top: none;
+    }
+
+    &__toggler {
+        display: block;
+        padding: 12px;
+        font-size: 16px;
+        color: color(text, dark);
+        display: flex;
+    }
+
+    &__label {
+        flex-grow: 1;
+    }
+
+    &__open-indicator {
+        color: color(brandAlt, base);
+        flex-grow: 0;
+        font-weight: bold;
+        font-size: 1.25em;
+        transition: .3s transform;
+    }
+
+    &--open &__open-indicator {
+        transform: rotate(45deg);
+    }
+
+    &__list {
+        transition: .3s ease-out max-height;
+        max-height: 0;
+    }
+
+    &--open &__list {
+        max-height: 2000px;
+    }
+
+    &__list-item {
+        overflow: hidden;
+        border-radius: 5px;
+        color: color(text, dark);
+        font-size: .9em;
+    }
+
+    &__link {
+        display: block;
+        padding: 8px 12px;
+        color: color(text, base);
+        border-left: solid 3px transparent;
+
+        &--active {
+            background-color: color(brandAlt, light);
+            color: color(brandAlt, base);
+            border-left-color: color(brandAlt, base);
+        }
+    }
+
+}
