@@ -36,6 +36,11 @@ update msg model =
                 |> UH.setMenuOpen value
                 |> H.withoutCmds
 
+        ToggleDropDown id value ->
+            model
+                |> UH.setDropdownOpen id value
+                |> H.withoutCmds
+
         AccordionMsg subMsg ->
             model
                 |> UH.dispatchAccordionSubMsg subMsg

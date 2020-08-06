@@ -1,63 +1,11 @@
 module Commons.Menu exposing (view)
 
+import Array
 import Html exposing (Html, a, button, div, header, img, li, nav, span, text, ul)
 import Html.Attributes exposing (alt, class, classList, src)
 import Html.Events exposing (onClick)
-import Model exposing (Model, Msg(..))
+import Model exposing (DropdownMenu, MenuLink, Model, Msg(..))
 import Route exposing (Route(..), href)
-
-
-type Menu
-    = MenuItem MenuItemConfig
-    | DropDown DropDownConfig
-
-
-type alias MenuItemConfig =
-    { label : String
-    , route : Route
-    }
-
-
-type alias DropDownConfig =
-    { label : String
-    , isOpen : Bool
-    , items : List MenuItemConfig
-    }
-
-
-menuItems : List Menu
-menuItems =
-    [ MenuItem { label = "Welcome", route = Route.Homepage }
-    , MenuItem { label = "Start using pyxis", route = Route.NotFound }
-    , DropDown
-        { label = "Style"
-        , isOpen = True
-        , items = []
-        }
-    , DropDown
-        { label = "Content"
-        , isOpen = True
-        , items = []
-        }
-    , DropDown
-        { label = "Patterns"
-        , isOpen = True
-        , items = []
-        }
-    , DropDown
-        { label = "Components"
-        , isOpen = True
-        , items =
-            [ { label = "Accordion", route = Route.Accordion }
-            , { label = "Button", route = Route.Button }
-            ]
-        }
-    , DropDown
-        { label = "Tools and resources"
-        , isOpen = True
-        , items = []
-        }
-    ]
 
 
 view : Model -> Html Msg
@@ -83,8 +31,14 @@ view model =
                 [ text "3.0" ]
             ]
         , div [ class "navbar__content" ]
-            [ div [] <|
-                List.map (\menu -> viewMenu menu model.currentRoute) menuItems
+            [ div []
+                (model.menuList
+                    |> Array.toIndexedList
+                    |> List.map
+                        (\( index, menu ) ->
+                            viewDropdownMenu ( index, menu ) model.currentRoute
+                        )
+                )
             ]
         ]
 
@@ -98,59 +52,55 @@ viewHamburgerIcon active =
         [ div [ class "hamburger-icon__line" ] [] ]
 
 
-viewMenu : Menu -> Route -> Html Msg
-viewMenu menu currentRoute =
-    case menu of
-        MenuItem config ->
-            viewMenuItem config currentRoute
-
-        DropDown config ->
-            viewDropDownMenu config currentRoute
-
-
-viewMenuItem : MenuItemConfig -> Route -> Html Msg
-viewMenuItem config currentRoute =
-    div
-        [ class "menu-item" ]
-        [ a
-            [ class "menu-item__link"
-            , classList [ ( "menu-item__link--active", config.route == currentRoute ) ]
-            , Route.href config.route
-            ]
-            [ text config.label ]
-        ]
-
-
-viewDropDownMenu : DropDownConfig -> Route -> Html Msg
-viewDropDownMenu menu currentRoute =
+viewDropdownMenu : ( Int, DropdownMenu ) -> Route -> Html Msg
+viewDropdownMenu ( id, menu ) currentRoute =
     div
         [ class "dropdown-menu"
-        , classList [ ( "dropdown-menu--open", menu.isOpen ) ]
-        ]
-        [ div
-            [ class "dropdown-menu__toggler" ]
-            [ span
-                [ class "dropdown-menu__label" ]
-                [ text menu.label ]
-            , span
-                [ class "dropdown-menu__open-indicator"
-                , classList [ ( "visually-hidden", List.isEmpty menu.items ) ]
-                ]
-                [ text "+" ]
+        , classList
+            [ ( "dropdown-menu--open", menu.isOpen )
             ]
+        ]
+        [ viewDropdownToggler ( id, menu ) currentRoute
         , ul [ class "dropdown-menu__list" ] <|
             List.map
                 (\item ->
                     li
                         [ class "dropdown-menu__list-item"
                         ]
-                        [ a
-                            [ class "dropdown-menu__link"
-                            , classList [ ( "dropdown-menu__link--active", item.route == currentRoute ) ]
-                            , Route.href item.route
-                            ]
-                            [ text item.label ]
-                        ]
+                        [ viewMenuLink item currentRoute ]
                 )
                 menu.items
+        ]
+
+
+viewDropdownToggler : ( Int, DropdownMenu ) -> Route -> Html Msg
+viewDropdownToggler ( id, menu ) currentRoute =
+    div
+        [ class "dropdown-menu__toggler"
+        , onClick (ToggleDropDown id (not menu.isOpen))
+        ]
+        [ div [ class "dropdown-menu__toggler-label" ] [ viewMenuLink menu.link currentRoute ]
+        , button
+            [ class "dropdown-menu__open-indicator"
+            , classList [ ( "visually-hidden", List.isEmpty menu.items ) ]
+            ]
+            [ text "+" ]
+        ]
+
+
+viewMenuLink : MenuLink -> Route -> Html Msg
+viewMenuLink link currentRoute =
+    div [ class "dropdown-menu__link-wrapper" ]
+        [ case link.route of
+            Just route ->
+                a
+                    [ class "dropdown-menu__link"
+                    , classList [ ( "dropdown-menu__link--active", route == currentRoute ) ]
+                    , Route.href route
+                    ]
+                    [ text link.label ]
+
+            Nothing ->
+                span [ class "dropdown-menu__link" ]
+                    [ text link.label ]
         ]

@@ -71,53 +71,36 @@
     }
 }
 
-.menu-item {
-    overflow: hidden;
-    border-radius: 5px;
-
-    &__link {
-        display: block;
-        padding: 12px;
-        font-size: 16px;
-        color: color(text, dark);
-        border-left: solid 3px transparent;
-
-        &--active {
-            background-color: color(brandAlt, light);
-            color: color(brandAlt, base);
-            border-left-color: color(brandAlt, base);
-        }
-    }
-
-}
-
 .dropdown-menu {
-    border: solid 1px color(shape, base);
-    border-width: 1px 0;
+    border-bottom: solid 1px color(shape, base);
     overflow: hidden;
-
-    & + & {
-        border-top: none;
-    }
 
     &__toggler {
-        display: block;
-        padding: 12px;
-        font-size: 16px;
-        color: color(text, dark);
+        align-items: center;
         display: flex;
+        font-size: 16px;
     }
 
-    &__label {
+    &__toggler-label {
+        color: color(text, dark);
         flex-grow: 1;
     }
 
     &__open-indicator {
+        background: none;
+        border: none;
+        border-radius: 100%;
         color: color(brandAlt, base);
+        cursor: pointer;
         flex-grow: 0;
         font-weight: bold;
         font-size: 1.25em;
+        height: 40px;
+        outline: none;
+        text-align: center;
+        transform-origin: 50% 50%;
         transition: .3s transform;
+        width: 40px;
     }
 
     &--open &__open-indicator {
@@ -125,29 +108,36 @@
     }
 
     &__list {
-        transition: .3s ease-out max-height;
-        max-height: 0;
+        display: none;
     }
 
     &--open &__list {
-        max-height: 2000px;
+        display: initial;
     }
 
     &__list-item {
+        font-size: .8em;
+        color: color(text, base);
+    }
+
+    &__link-wrapper {
         overflow: hidden;
         border-radius: 5px;
-        color: color(text, dark);
-        font-size: .9em;
     }
 
     &__link {
+        color: inherit;
         display: block;
-        padding: 8px 12px;
-        color: color(text, base);
+        padding: .75em 8px;
         border-left: solid 3px transparent;
 
+        &[href]:hover {
+            cursor: pointer;
+            background-color: color(shape, light);
+        }
+
         &--active {
-            background-color: color(brandAlt, light);
+            background-color: color(brandAlt, light) !important;
             color: color(brandAlt, base);
             border-left-color: color(brandAlt, base);
         }
