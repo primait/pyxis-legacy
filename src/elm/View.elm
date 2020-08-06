@@ -1,7 +1,7 @@
 module View exposing (view)
 
 import Browser exposing (Document)
-import Commons.Menu as Menu
+import Commons.NavBar as NavBar
 import Html exposing (Html, div)
 import Html.Attributes exposing (class, classList, style)
 import Model exposing (Model, Msg(..))
@@ -27,7 +27,7 @@ viewBody model =
         [ class "pyxis" ]
         [ div
             [ class "pyxis__navbar", classList [ ( "pyxis__navbar--open", model.isMenuOpen ) ] ]
-            [ Menu.view model ]
+            [ NavBar.view model ]
         , div
             [ class "pyxis__content" ]
             [ div

@@ -1,4 +1,4 @@
-module Commons.Menu exposing (view)
+module Commons.NavBar exposing (view)
 
 import Array
 import Html exposing (Html, a, button, div, header, img, li, nav, span, text, ul)
