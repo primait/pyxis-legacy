@@ -68,7 +68,7 @@ view model =
                 [ class "navbar__button"
                 , onClick (ToggleMenu (not model.isMenuOpen))
                 ]
-                [ text "Menu" ]
+                [ viewHamburgerIcon model.isMenuOpen ]
             , div
                 [ class "navbar__logo-container" ]
                 [ img
@@ -82,9 +82,20 @@ view model =
                 [ class "navbar__logo-version" ]
                 [ text "3.0" ]
             ]
-        , div [ class "navbar__content" ] <|
-            List.map (\menu -> viewMenu menu model.currentRoute) menuItems
+        , div [ class "navbar__content" ]
+            [ div [] <|
+                List.map (\menu -> viewMenu menu model.currentRoute) menuItems
+            ]
         ]
+
+
+viewHamburgerIcon : Bool -> Html msg
+viewHamburgerIcon active =
+    div
+        [ class "hamburger-icon"
+        , classList [ ( "hamburger-icon--active", active ) ]
+        ]
+        [ div [ class "hamburger-icon__line" ] [] ]
 
 
 viewMenu : Menu -> Route -> Html Msg

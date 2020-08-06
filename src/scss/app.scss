@@ -3,6 +3,7 @@ $fontPath: "./fonts/";
 @import "../../lib/pyxis-npm/src/scss/pyxis";
 
 @import
+  "hamburger-icon",
   "navbar";
 
 
@@ -21,20 +22,21 @@ $fontPath: "./fonts/";
     top: 0;
     left: 0;
     right: 0;
+    overflow: hidden;
     height: 60px;
-    overflow-y: hidden;
     z-index: 2;
-    background: white;
+    background: color(background, base);
+    border-bottom: solid 1px color(shape, base);
+    transition: .3s ease-out height;
 
     &--open {
-      overflow-y: auto;
       height: 100%;
     }
   }
 
   &__content {
     position: absolute;
-    top: 50px;
+    top: 60px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -59,9 +61,8 @@ $fontPath: "./fonts/";
     &__navbar {
       position: initial;
       max-width: 340px;
-      background-color: #FFFFFF;
+      background-color: color(background, base);
       box-shadow: 0 0 60px 0 rgba(77,89,105,0.1);
-      overflow-y: auto;
       z-index: 2;
     }
 

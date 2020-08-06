@@ -8,6 +8,11 @@ import Pages.Button.Update as ButtonUpdate
 import Route exposing (Route(..))
 
 
+setMenuOpen : Bool -> Model -> Model
+setMenuOpen open model =
+    { model | isMenuOpen = open }
+
+
 setRoute : Maybe Route -> Model -> Model
 setRoute newRoute model =
     { model | currentRoute = Maybe.withDefault Route.NotFound newRoute }

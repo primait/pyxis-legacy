@@ -24,6 +24,7 @@ update msg model =
             case urlRequest of
                 Browser.Internal url ->
                     model
+                        |> UH.setMenuOpen False
                         |> H.withCmds [ Route.pushUrl model.key (Route.fromUrl url) ]
 
                 Browser.External href ->
@@ -31,7 +32,9 @@ update msg model =
                         |> H.withCmds [ Nav.load href ]
 
         ToggleMenu value ->
-            ( { model | isMenuOpen = value }, Cmd.none )
+            model
+                |> UH.setMenuOpen value
+                |> H.withoutCmds
 
         AccordionMsg subMsg ->
             model
