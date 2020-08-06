@@ -51,7 +51,7 @@
         display: inline-block;
         line-height: 100%;
         background-color: #f8eefa;
-        color: #b967d9;
+        color: color(brand, light);
         font-size: 12px;
         letter-spacing: 0.3px;
         border-radius: 10px;
@@ -60,7 +60,7 @@
 
         @include mq(small) {
             position: relative;
-            top: -16px;
+            top: -10px;
         }
     }
 
