@@ -31,7 +31,7 @@ viewBody model =
         , div
             [ class "pyxis__content" ]
             [ div
-                [ style "padding" "16px" ]
+                [ class "pyxis__page-wrapper" ]
                 [ viewRouter model ]
             ]
         ]

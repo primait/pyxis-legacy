@@ -43,7 +43,16 @@ $fontPath: "./fonts/";
     overflow-y: scroll;
     z-index: 1;
   }
+
+  &__page-wrapper {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+  }
 }
+
 
 // DESKTOP
 @include mq(small) {
