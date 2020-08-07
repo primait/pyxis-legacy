@@ -36,7 +36,7 @@ view model =
                     |> Array.toIndexedList
                     |> List.map
                         (\( index, menu ) ->
-                            viewDropdownMenu ( index, menu ) model.currentRoute
+                            viewDropdownMenu ( index, menu ) model
                         )
                 )
             ]
@@ -52,34 +52,34 @@ viewHamburgerIcon active =
         [ div [ class "hamburger-icon__line" ] [] ]
 
 
-viewDropdownMenu : ( Int, DropdownMenu ) -> Route -> Html Msg
-viewDropdownMenu ( id, menu ) currentRoute =
+viewDropdownMenu : ( Int, DropdownMenu ) -> Model -> Html Msg
+viewDropdownMenu ( id, menu ) model =
     div
         [ class "dropdown-menu"
         , classList
             [ ( "dropdown-menu--open", menu.isOpen )
             ]
         ]
-        [ viewDropdownToggler ( id, menu ) currentRoute
+        [ viewDropdownToggler ( id, menu ) model
         , ul [ class "dropdown-menu__list" ] <|
             List.map
                 (\item ->
                     li
                         [ class "dropdown-menu__list-item"
                         ]
-                        [ viewMenuLink item currentRoute ]
+                        [ viewMenuLink item model ]
                 )
                 menu.items
         ]
 
 
-viewDropdownToggler : ( Int, DropdownMenu ) -> Route -> Html Msg
-viewDropdownToggler ( id, menu ) currentRoute =
+viewDropdownToggler : ( Int, DropdownMenu ) -> Model -> Html Msg
+viewDropdownToggler ( id, menu ) model =
     div
         [ class "dropdown-menu__toggler"
         , onClick (ToggleDropDown id (not menu.isOpen))
         ]
-        [ div [ class "dropdown-menu__toggler-label" ] [ viewMenuLink menu.link currentRoute ]
+        [ div [ class "dropdown-menu__toggler-label" ] [ viewMenuLink menu.link model ]
         , button
             [ class "dropdown-menu__open-indicator"
             , classList [ ( "visually-hidden", List.isEmpty menu.items ) ]
@@ -88,8 +88,8 @@ viewDropdownToggler ( id, menu ) currentRoute =
         ]
 
 
-viewMenuLink : MenuLink -> Route -> Html Msg
-viewMenuLink link currentRoute =
+viewMenuLink : MenuLink -> Model -> Html Msg
+viewMenuLink link { t, currentRoute } =
     div [ class "dropdown-menu__link-wrapper" ]
         [ case link.route of
             Just route ->
@@ -98,9 +98,9 @@ viewMenuLink link currentRoute =
                     , classList [ ( "dropdown-menu__link--active", route == currentRoute ) ]
                     , Route.href route
                     ]
-                    [ text link.label ]
+                    [ text <| t link.label [] ]
 
             Nothing ->
                 span [ class "dropdown-menu__link" ]
-                    [ text link.label ]
+                    [ text <| t link.label [] ]
         ]

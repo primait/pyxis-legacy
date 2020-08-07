@@ -75,35 +75,35 @@ type alias MenuLink =
 initialMenuListModel : Array DropdownMenu
 initialMenuListModel =
     Array.fromList
-        [ { link = { label = "Welcome", route = Just Route.Homepage }
+        [ { link = { label = "navbar.welcome", route = Just Route.Homepage }
           , isOpen = False
           , items = []
           }
-        , { link = { label = "Start using pyxis", route = Nothing }
+        , { link = { label = "navbar.start", route = Nothing }
           , isOpen = False
           , items = []
           }
-        , { link = { label = "Style", route = Nothing }
+        , { link = { label = "navbar.style.title", route = Nothing }
           , isOpen = False
           , items = [ { label = "...", route = Nothing } ]
           }
-        , { link = { label = "Content", route = Nothing }
+        , { link = { label = "navbar.content.title", route = Nothing }
           , isOpen = False
           , items = [ { label = "...", route = Nothing } ]
           }
-        , { link = { label = "Patterns", route = Nothing }
+        , { link = { label = "navbar.patterns.title", route = Nothing }
           , isOpen = False
           , items = [ { label = "...", route = Nothing } ]
           }
-        , { link = { label = "Components", route = Nothing }
+        , { link = { label = "navbar.components.title", route = Nothing }
           , isOpen = False
           , items =
-                [ { label = "Accordion", route = Just Route.Accordion }
-                , { label = "Button", route = Just Route.Button }
+                [ { label = "navbar.components.accordion", route = Just Route.Accordion }
+                , { label = "navbar.components.button", route = Just Route.Button }
                 , { label = "...", route = Nothing }
                 ]
           }
-        , { link = { label = "Tools and resources", route = Nothing }
+        , { link = { label = "navbar.tools.title", route = Nothing }
           , isOpen = False
           , items = [ { label = "...", route = Nothing } ]
           }

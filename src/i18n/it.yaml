@@ -1,11 +1,34 @@
-hello: "Hello, {{name}}!"
-nested:
-  hello: nested string
-  subnest:
-    hi: "hello, {{name}}"
-    multi: >-
-      this is
-      a multiline
-      string, the name is {{name}}
-      and the spaces and linefeeds will be chopped off
+common:
+  yes: Si
+  no: No
+  search: Cerca
+
+
+navbar:
+  welcome: Benvenuti
+  start: Inizia ad usare Pyxis
+  style:
+    title: Stile
+    logo-menu: Logo
+    typography-menu: Tipografia
+    color-menu: Colori
+    illustration-menu: Illustrazioni
+    iconography-menu: Iconografia
+  content:
+    title: Contenuto
+  patterns:
+    title: Patterns
+  components:
+    title: Componenti
+    accordion: Accordion
+    button: Bottoni
+  tools:
+    title: Strumenti e risorse
+
+home:
+  pyxis-description: >-
+    Pyxis è il Design System di Prima.it. Una raccolta di strumenti, regole e
+    linee guida per progettare, sviluppare e raccontare il nostro brand.
+    Una risorsa unica per lavorare in sintonia e migliorare l'esperienza
+    di utenti e clienti.
 

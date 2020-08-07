@@ -1,0 +1,32 @@
+common:
+  yes: Yes
+  no: No
+  search: Search
+
+
+navbar:
+  welcome: Welcome
+  start: Start using Pyxis
+  style:
+    title: Style
+    logo-menu: Logo
+    typography-menu: Typography
+    color-menu: Colors
+    illustration-menu: Illustrations
+    iconography-menu: Iconography
+  content:
+    title: Content
+  patterns:
+    title: Patterns
+  components:
+    title: Components
+    accordion: Accordion
+    button: Buttons
+  tools:
+    title: Tools and resources
+
+home:
+  pyxis-description: >-
+    Pyxis is Prima.it's design system. It is a set of tools, rules and
+    guidelines to help design, develop and tell our brand.
+    A unique resource to work in sync and to help improve our customers' experience.
