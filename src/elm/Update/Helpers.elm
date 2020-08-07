@@ -31,7 +31,12 @@ setDropdownOpen id open model =
 
 setRoute : Maybe Route -> Model -> Model
 setRoute newRoute model =
-    { model | currentRoute = Maybe.withDefault Route.NotFound newRoute }
+    case newRoute of
+        Nothing ->
+            model
+
+        Just route ->
+            { model | currentRoute = route }
 
 
 dispatchAccordionSubMsg : AccordionModel.Msg -> Model -> Model

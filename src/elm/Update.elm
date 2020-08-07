@@ -31,6 +31,11 @@ update msg model =
                     model
                         |> H.withCmds [ Nav.load href ]
 
+        ChangeRoute route ->
+            model
+                |> UH.setRoute route
+                |> H.withoutCmds
+
         ToggleMenu value ->
             model
                 |> UH.setMenuOpen value

@@ -21,6 +21,7 @@ type Msg
     = NoOp
     | ChangedUrl Url
     | ClickedLink UrlRequest
+    | ChangeRoute (Maybe Route)
     | ToggleMenu Bool
     | ToggleDropDown Int Bool
     | AccordionMsg Accordion.Msg

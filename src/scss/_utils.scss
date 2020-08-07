@@ -1,0 +1,108 @@
+@include mqDown(small) {
+    .mq-mobile-hidden {
+        display: none !important;
+    }
+}
+
+@include mqUp(small) {
+    .mq-desktop-hidden {
+        display: none !important;
+    }
+}
+
+.box {
+    background-color: white;
+    border: 1px solid hsla(0, 0%, 87.8%, .5);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 16px;
+}
+
+.nav-box {
+    @extend .box;
+
+    font: font(base);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px;
+    box-shadow: 0 30px 60px -20px rgba(77,89,105,0.2);
+    cursor: pointer;
+
+    @include mq(small) {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px;
+    }
+
+    &__header {}
+
+    &__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(185,103,217,0.15);;
+        color: color(brand, base);
+        border-radius: 20px;
+        width: 50px;
+        height: 50px;
+        margin: 0;
+        margin-right: 10px;
+
+        @include mq(small) {
+            margin: 0;
+            margin-bottom: 8px;
+        }
+
+        img {
+            max-width: 66%;
+        }
+    }
+
+    &__content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        font-size: 14px;
+        color: color(text, dark);
+        font: font(heavy);
+        margin: 0;
+        margin-bottom: .5em;
+
+        @include mq(small) {
+            font-size: 16px;
+        }
+    }
+
+    &__description {
+        font-size: 14px;
+        color: color(text, base);
+        font: font(light);
+
+        @include mq(small) {
+            font-size: 16px;
+            margin-bottom: .75em;
+
+        }
+    }
+
+    &__footer {
+
+    }
+
+    &__arrow {
+        border: solid 1px color(brandAlt, base);
+        border-left: none;
+        border-bottom: none;
+        transform: rotate(45deg);
+        width: 10px;
+        height: 10px;
+
+        @include mq(small) {
+            display: none !important;
+        }
+    }
+}
