@@ -3,7 +3,9 @@ $fontPath: "./fonts/";
 @import "../../lib/pyxis-npm/src/scss/pyxis";
 
 @import
-  "navbar/all";
+  "navbar/all",
+  "pages/all",
+  "page";
 
 
 // MOBILE
@@ -42,14 +44,6 @@ $fontPath: "./fonts/";
     width: 100%;
     overflow-y: scroll;
     z-index: 1;
-  }
-
-  &__page-wrapper {
-    display: block;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 16px;
   }
 }
 

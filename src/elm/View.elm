@@ -2,8 +2,8 @@ module View exposing (view)
 
 import Browser exposing (Document)
 import Commons.NavBar as NavBar
-import Html exposing (Html, div)
-import Html.Attributes exposing (class, classList, style)
+import Html exposing (Html, div, footer, img, span, text)
+import Html.Attributes exposing (class, classList, src)
 import Model exposing (Model, Msg(..))
 import Pages.Accordion as Accordion
 import Pages.Button as Button
@@ -31,9 +31,29 @@ viewBody model =
         , div
             [ class "pyxis__content" ]
             [ div
-                [ class "pyxis__page-wrapper" ]
-                [ viewRouter model ]
+                [ class "page" ]
+                [ div
+                    [ class "page__content" ]
+                    [ viewRouter model ]
+                , footer [ class "page__footer" ]
+                    [ viewBrandLogo ]
+                ]
             ]
+        ]
+
+
+viewBrandLogo : Html Msg
+viewBrandLogo =
+    div
+        [ class "brand-logo" ]
+        [ img
+            [ class "brand-logo__image"
+            , src "public/logo-prima.svg"
+            ]
+            []
+        , span
+            [ class "brand-logo__label" ]
+            [ text "© Prima Assicurazioni S.p.A." ]
         ]
 
 
