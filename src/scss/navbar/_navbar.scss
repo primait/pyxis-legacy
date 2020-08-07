@@ -48,14 +48,6 @@
     }
 
     &__logo-version {
-        display: inline-block;
-        line-height: 100%;
-        background-color: #f8eefa;
-        color: color(brand, light);
-        font-size: 12px;
-        letter-spacing: 0.3px;
-        border-radius: 10px;
-        padding: .33em .75em;
         margin: 4px;
 
         @include mq(small) {

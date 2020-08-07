@@ -27,7 +27,7 @@ view model =
                     []
                 ]
             , span
-                [ class "navbar__logo-version" ]
+                [ class "badge badge--primary navbar__logo-version " ]
                 [ text "3.0" ]
             ]
         , div [ class "navbar__content" ]
