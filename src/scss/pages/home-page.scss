@@ -1,9 +1,39 @@
 .home-page {
+    font: font(base);
+
     section {
+        margin-bottom: 80px;
+
+        h1 {
+            font: font(heavy);
+            font-size: 25px;
+            color: color(text, dark);
+        }
+
+        p {
+            color: color(text, base);
+        }
+
+        dl {
+            margin: 20px 10px;
+        }
+
+        dt {
+            font: font(heavy);
+            color: color(text, dark);
+            display: list-item;
+            list-style-image: check;
+        }
+
+        dd {
+            color: color(text, base);
+        }
+    }
+
+    .flex-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin: 20px 0;
 
         @include mq(small) {
             flex-direction: row;
@@ -11,6 +41,27 @@
 
         > * {
             flex: 1 1 100%;
+            margin: 10px 0;
+
+            @include mq(small) {
+                margin: 0 10px;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        &--reversed {
+            flex-direction: column-reverse;
+
+            @include mq(small) {
+                flex-direction: row-reverse;
+            }
         }
     }
 }
