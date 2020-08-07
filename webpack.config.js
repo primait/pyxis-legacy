@@ -80,12 +80,13 @@ module.exports = env => {
       new MiniCssExtractPlugin()
     ],
     devServer: {
-      contentBase: path.join(__dirname, 'dist'),
       compress: true,
-      port: 10080,
+      port: 3000,
       hot: true,
       publicPath: '/',
-      historyApiFallback: true,
+      historyApiFallback: {
+        index: "/"
+      },
       overlay: true,
     }
   }

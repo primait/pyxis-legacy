@@ -36,8 +36,7 @@ pushUrl key maybeRoute =
 
 fromUrl : Url -> Maybe Route
 fromUrl url =
-    { url | path = Maybe.withDefault "/" url.fragment, fragment = Nothing }
-        |> Url.Parser.parse parser
+    url |> Url.Parser.parse parser
 
 
 
@@ -56,7 +55,7 @@ parser =
 
 routeToString : Route -> String
 routeToString route =
-    "#/" ++ String.join "/" (routeToPieces route)
+    "/" ++ String.join "/" (routeToPieces route)
 
 
 routeToPieces : Route -> List String
