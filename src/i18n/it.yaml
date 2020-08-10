@@ -9,29 +9,33 @@ navbar:
   start: Inizia ad usare Pyxis
   style:
     title: Stile
-    sub-menu-1: Logo
-    sub-menu-2: Tipografia
-    sub-menu-3: Colori
-    sub-menu-4: Illustrazioni
-    sub-menu-5: Iconografia
+    sub-menu:
+      - Logo
+      - Tipografia
+      - Colori
+      - Illustrazioni
+      - Iconografia
   content:
     title: Contenuto
-    sub-menu-1: Voce e Tono
-    sub-menu-2: Grammatica e Meccaniche
+    sub-menu:
+      - Voce e Tono
+      - Grammatica e Meccaniche
   patterns:
     title: Patterns
-    sub-menu-1: Elevazione ed ombre
-    sub-menu-2: Raggio bordi
-    sub-menu-3: Contenitori
+    sub-menu:
+      - Elevazione ed ombre
+      - Raggio bordi
+      - Contenitori
   components:
     title: Componenti
     accordion: Accordion
     button: Bottoni
   tools:
     title: Strumenti e risorse
-    sub-menu-1: Kit UI
-    sub-menu-2: Caratteri
-    sub-menu-3: Icone
+    sub-menu:
+      - Kit UI
+      - Caratteri
+      - Icone
 
 home:
   section-0:
@@ -45,16 +49,13 @@ home:
     content: Con Pyxis hai tutto quello che ti serve per semplificare il tuo lavoro
   section-2:
     boxes:
-      1:
-        title: Design
+      - title: Design
         content: Esplora documentazione e reference per progettare al meglio.
         button: Esplora
-      2:
-        title: Sviluppo
+      - title: Sviluppo
         content: Ricerca componenti e soluzioni per lavorare in completa autonomia.
         button: Ricerca
-      3:
-        title: Brand
+      - title: Brand
         content: Scopri materiali e guideline per raccontare il nostro brand.
         button: Scopri
   section-3:
@@ -64,14 +65,11 @@ home:
       condizioni: è un bagaglio di strumenti e informazioni che ci
       permette di osare di più senza perdere di vista l’obiettivo.
     list:
-      1:
-        title: Modelli, esempi, riferimenti
+      - title: Modelli, esempi, riferimenti
         content: Permette di creare documentazione utile in ogni situazione.
-      2:
-        title: Tempo ed energia
+      - title: Tempo ed energia
         content: Velocizza il lavoro e aiuta a concentrarsi sugli aspetti importanti.
-      3:
-        title: Cultura collettiva
+      - title: Cultura collettiva
         content: Genera e diffonde conoscenza, per tutti e a tutti i livelli.
   section-4:
     title: Quello che facciamo, lo facciamo insieme
@@ -80,14 +78,11 @@ home:
       di design, sviluppo front-end e creazione di contenuti. Somiglia a noi
       e al nostro modo di pensare:
     list:
-      1:
-        title: Semplice
+      - title: Semplice
         content: È uno strumento efficace ed essenziale, chiaro e alla portata di tutti.
-      2:
-        title: Scalabile
+      - title: Scalabile
         content: È composto da soluzioni adattabili a ogni esigenza di business.
-      3:
-        title: Originale
+      - title: Originale
         content: È innovativo per il suo settore e non teme di anticipare la concorrenza.
   section-5:
     title: >-

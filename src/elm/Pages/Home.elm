@@ -28,23 +28,23 @@ view ({ t } as model) =
         , section [ class "flex-container" ]
             [ viewNavBox
                 { icon = "1"
+                , title = t [] "home.section-2.boxes.0.title"
+                , description = t [] "home.section-2.boxes.0.content"
+                , linkText = t [] "home.section-2.boxes.0.button"
+                , linkTo = Nothing
+                }
+            , viewNavBox
+                { icon = "2"
                 , title = t [] "home.section-2.boxes.1.title"
                 , description = t [] "home.section-2.boxes.1.content"
                 , linkText = t [] "home.section-2.boxes.1.button"
                 , linkTo = Nothing
                 }
             , viewNavBox
-                { icon = "2"
+                { icon = "3"
                 , title = t [] "home.section-2.boxes.2.title"
                 , description = t [] "home.section-2.boxes.2.content"
                 , linkText = t [] "home.section-2.boxes.2.button"
-                , linkTo = Nothing
-                }
-            , viewNavBox
-                { icon = "3"
-                , title = t [] "home.section-2.boxes.3.title"
-                , description = t [] "home.section-2.boxes.3.content"
-                , linkText = t [] "home.section-2.boxes.3.button"
                 , linkTo = Nothing
                 }
             ]
@@ -57,15 +57,15 @@ view ({ t } as model) =
                 , ul []
                     [ li []
                         [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-3.list.1.title" ]
-                        , p [] [ text <| t [] "home.section-3.list.1.content" ]
+                        , p [] [ text <| t [] "home.section-3.list.0.content" ]
                         ]
                     , li []
                         [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-3.list.2.title" ]
-                        , p [] [ text <| t [] "home.section-3.list.2.content" ]
+                        , p [] [ text <| t [] "home.section-3.list.1.content" ]
                         ]
                     , li []
                         [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-3.list.3.title" ]
-                        , p [] [ text <| t [] "home.section-3.list.3.content" ]
+                        , p [] [ text <| t [] "home.section-3.list.2.content" ]
                         ]
                     ]
                 ]
@@ -80,16 +80,16 @@ view ({ t } as model) =
                     ]
                 , ul []
                     [ li []
+                        [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-4.list.0.title" ]
+                        , p [] [ text <| t [] "home.section-4.list.0.content" ]
+                        ]
+                    , li []
                         [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-4.list.1.title" ]
                         , p [] [ text <| t [] "home.section-4.list.1.content" ]
                         ]
                     , li []
                         [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-4.list.2.title" ]
                         , p [] [ text <| t [] "home.section-4.list.2.content" ]
-                        ]
-                    , li []
-                        [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-4.list.3.title" ]
-                        , p [] [ text <| t [] "home.section-4.list.3.content" ]
                         ]
                     ]
                 ]

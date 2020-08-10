@@ -87,26 +87,26 @@ initialMenuListModel =
         , { link = { label = "navbar.style.title", route = Nothing }
           , isOpen = False
           , items =
-                [ { label = "navbar.style.sub-menu-1", route = Nothing }
-                , { label = "navbar.style.sub-menu-2", route = Nothing }
-                , { label = "navbar.style.sub-menu-3", route = Nothing }
-                , { label = "navbar.style.sub-menu-4", route = Nothing }
-                , { label = "navbar.style.sub-menu-5", route = Nothing }
+                [ { label = "navbar.style.sub-menu.0", route = Nothing }
+                , { label = "navbar.style.sub-menu.1", route = Nothing }
+                , { label = "navbar.style.sub-menu.2", route = Nothing }
+                , { label = "navbar.style.sub-menu.3", route = Nothing }
+                , { label = "navbar.style.sub-menu.4", route = Nothing }
                 ]
           }
         , { link = { label = "navbar.content.title", route = Nothing }
           , isOpen = False
           , items =
-                [ { label = "navbar.content.sub-menu-1", route = Nothing }
-                , { label = "navbar.content.sub-menu-2", route = Nothing }
+                [ { label = "navbar.content.sub-menu.0", route = Nothing }
+                , { label = "navbar.content.sub-menu.1", route = Nothing }
                 ]
           }
         , { link = { label = "navbar.patterns.title", route = Nothing }
           , isOpen = False
           , items =
-                [ { label = "navbar.patterns.sub-menu-1", route = Nothing }
-                , { label = "navbar.patterns.sub-menu-2", route = Nothing }
-                , { label = "navbar.patterns.sub-menu-3", route = Nothing }
+                [ { label = "navbar.patterns.sub-menu.0", route = Nothing }
+                , { label = "navbar.patterns.sub-menu.1", route = Nothing }
+                , { label = "navbar.patterns.sub-menu.2", route = Nothing }
                 ]
           }
         , { link = { label = "navbar.components.title", route = Nothing }
@@ -120,9 +120,9 @@ initialMenuListModel =
         , { link = { label = "navbar.tools.title", route = Nothing }
           , isOpen = False
           , items =
-                [ { label = "navbar.tools.sub-menu-1", route = Nothing }
-                , { label = "navbar.patterns.sub-menu-2", route = Nothing }
-                , { label = "navbar.patterns.sub-menu-3", route = Nothing }
+                [ { label = "navbar.tools.sub-menu.0", route = Nothing }
+                , { label = "navbar.patterns.sub-menu.1", route = Nothing }
+                , { label = "navbar.patterns.sub-menu.2", route = Nothing }
                 ]
           }
         ]
