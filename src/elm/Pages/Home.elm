@@ -16,59 +16,56 @@ view ({ t } as model) =
             [ div [ class "main-box" ]
                 [ div [ class "main-box__content" ]
                     [ div [ class "mq-mobile-hidden" ] [ img [ src "public/logo-pyxis.png", style "filter" "grayscale(1)", style "width" "150px" ] [] ]
-                    , p [] [ text <| t "home.pyxis-description" [] ]
+                    , p [] [ text <| t [] "home.section-0.content" ]
                     ]
                 , img [ class "main-box__image", src "public/pyxis-1.png" ] []
                 ]
             ]
         , section []
-            [ h2 [ class "c-text-dark" ] [ text "Progetta, sviluppa, racconta" ]
-            , p [] [ text "Con Pyxis hai tutto quello che ti serve per semplificare il tuo lavoro" ]
+            [ h2 [ class "c-text-dark" ] [ text <| t [] "home.section-1.title" ]
+            , p [] [ text <| t [] "home.section-1.content" ]
             ]
         , section [ class "flex-container" ]
             [ viewNavBox
                 { icon = "1"
-                , title = "Design"
-                , description = """Esplora documentazione e reference per progettare al meglio."""
-                , linkText = "Esplora"
+                , title = t [] "home.section-2.boxes.1.title"
+                , description = t [] "home.section-2.boxes.1.content"
+                , linkText = t [] "home.section-2.boxes.1.button"
                 , linkTo = Nothing
                 }
             , viewNavBox
                 { icon = "2"
-                , title = "Sviluppo"
-                , description = """Ricerca componenti e soluzioni per lavorare in completa autonomia."""
-                , linkText = "Ricerca"
+                , title = t [] "home.section-2.boxes.2.title"
+                , description = t [] "home.section-2.boxes.2.content"
+                , linkText = t [] "home.section-2.boxes.2.button"
                 , linkTo = Nothing
                 }
             , viewNavBox
                 { icon = "3"
-                , title = "Brand"
-                , description = """Scopri materiali e guideline per raccontare il nostro brand."""
-                , linkText = "Scopri"
+                , title = t [] "home.section-2.boxes.3.title"
+                , description = t [] "home.section-2.boxes.3.content"
+                , linkText = t [] "home.section-2.boxes.3.button"
                 , linkTo = Nothing
                 }
             ]
         , section [ class "flex-container" ]
             [ div []
-                [ h2 [ class "c-text-dark" ] [ text "Più veloce, più sicuro, più coerente" ]
+                [ h2 [ class "c-text-dark" ] [ text <| t [] "home.section-3.title" ]
                 , p []
-                    [ text """
-                        Un design system non è una zavorra di vincoli e
-                        condizioni: è un bagaglio di strumenti e informazioni che ci
-                        permette di osare di più senza perdere di vista l’obiettivo."""
+                    [ text <| t [] "home.section-3.content"
                     ]
                 , ul []
                     [ li []
-                        [ h6 [ class "c-text-dark" ] [ text "Modelli, esempi, riferimenti" ]
-                        , p [] [ text "Permette di creare documentazione utile in ogni situazione." ]
+                        [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-3.list.1.title" ]
+                        , p [] [ text <| t [] "home.section-3.list.1.content" ]
                         ]
                     , li []
-                        [ h6 [ class "c-text-dark" ] [ text "Tempo ed energia" ]
-                        , p [] [ text "Velocizza il lavoro e aiuta a concentrarsi sugli aspetti importanti." ]
+                        [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-3.list.2.title" ]
+                        , p [] [ text <| t [] "home.section-3.list.2.content" ]
                         ]
                     , li []
-                        [ h6 [ class "c-text-dark" ] [ text "Cultura collettiva" ]
-                        , p [] [ text "Genera e diffonde conoscenza, per tutti e a tutti i livelli." ]
+                        [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-3.list.3.title" ]
+                        , p [] [ text <| t [] "home.section-3.list.3.content" ]
                         ]
                     ]
                 ]
@@ -77,26 +74,22 @@ view ({ t } as model) =
             ]
         , section [ class "flex-container flex-container--reversed" ]
             [ div []
-                [ h2 [ class "c-text-dark" ] [ text "Quello che facciamo, lo facciamo insieme" ]
+                [ h2 [ class "c-text-dark" ] [ text <| t [] "home.section-4.title" ]
                 , p []
-                    [ text """
-                        Pyxis è l’unica fonte di risorse e documentazione per
-                        tutti i processi di design, sviluppo front-end e
-                        creazione di contenuti. Somiglia a noi e al nostro modo
-                        di pensare:"""
+                    [ text <| t [] "home.section-4.content"
                     ]
                 , ul []
                     [ li []
-                        [ h6 [ class "c-text-dark" ] [ text "Semplice" ]
-                        , p [] [ text "È uno strumento efficace ed essenziale, chiaro e alla portata di tutti." ]
+                        [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-4.list.1.title" ]
+                        , p [] [ text <| t [] "home.section-4.list.1.content" ]
                         ]
                     , li []
-                        [ h6 [ class "c-text-dark" ] [ text "Scalabile" ]
-                        , p [] [ text "È composto da soluzioni adattabili a ogni esigenza di business." ]
+                        [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-4.list.2.title" ]
+                        , p [] [ text <| t [] "home.section-4.list.2.content" ]
                         ]
                     , li []
-                        [ h6 [ class "c-text-dark" ] [ text "Originale" ]
-                        , p [] [ text "È innovativo per il suo settore e non teme di anticipare la concorrenza." ]
+                        [ h6 [ class "c-text-dark" ] [ text <| t [] "home.section-4.list.3.title" ]
+                        , p [] [ text <| t [] "home.section-4.list.3.content" ]
                         ]
                     ]
                 ]
@@ -106,13 +99,9 @@ view ({ t } as model) =
         , section []
             [ div [ class "footer-box" ]
                 [ div [ class "footer-box__content" ]
-                    [ div [ class "footer-box__title" ] [ text """Design e necessità di business sono
-                        conseguenza uno dell’altra, perché la coerenza tra
-                        loro è parte di una precisa strategia.""" ]
+                    [ div [ class "footer-box__title" ] [ text <| t [] "home.section-5.title" ]
                     , p []
-                        [ text """L’immagine che diamo di noi ha
-                                bisogno di cura e attenzione, perché il modo in
-                                cui ci mostriamo è parte del nostro brand e della nostra identità."""
+                        [ text <| t [] "home.section-5.content"
                         ]
                     ]
                 , img [ class "footer-box__image", src "public/prima-it-home.png", alt "" ] []

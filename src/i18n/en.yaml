@@ -34,7 +34,64 @@ navbar:
     sub-menu-3: Icons
 
 home:
-  pyxis-description: >-
-    Pyxis is Prima.it's design system. It is a set of tools, rules and
-    guidelines to help design, develop and tell our brand.
-    A unique resource to work in sync and to help improve our customers' experience.
+  section-0:
+    content: >-
+      Pyxis is Prima.it's design system. It is a set of tools, rules and
+      guidelines to help design, develop and tell our brand.
+      A unique resource to work in sync and to help improve our customers' experience.
+  section-1:
+    title: Degisn, develop, tell
+    content: With Pyxis you have everything you need to simplify your work
+  section-2:
+    boxes:
+      1:
+        title: Design
+        content: Explore documentation and references to develop in the best way.
+        button: Explore
+      2:
+        title: Develop
+        content: Search for components and solutions to work in complete autonomy.
+        button: Search
+      3:
+        title: Brand
+        content: Discover materials and guidelines to tell our brand.
+        button: Discover
+  section-3:
+    title: Faster, safer, more coherent
+    content: >-
+      A design system is not just a bunch of limits and conditions:
+      it is a set of tools and informations that allow us to dare even more
+      without losing focus on the objective.
+    list:
+      1:
+        title: Models, examples, references
+        content: Allow creating documentation useful in every situation.
+      2:
+        title: Time and energy
+        content: Speed up the work and helps concentrating only on the important things.
+      3:
+        title: Global Culture
+        content: Creates and spreads knowledge, for all and at every level.
+  section-4:
+    title: What we do, we do it together
+    content: >-
+      Pyxis is the only source of assets and documentation for all design's
+      processes, front-end development and content creation.
+      It looks like us and our way of thinking:
+    list:
+      1:
+        title: Simple
+        content: It's a simple but efficient tool, just for everybody to use.
+      2:
+        title: Scalable
+        content: It's made of solutions taylored to every business' solution.
+      3:
+        title: Original
+        content: It's innovative for it's field and it's not afraid to anticipate the competition
+  section-5:
+    title: >-
+      Design and business' needs are consequence of each other, and coherence
+      between the two is part of a clear strategy
+    content: >-
+      The image we give of ourselves needs care and attention, because the way
+      we present ourselves is part of our brand and our own identity.

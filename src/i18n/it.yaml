@@ -34,9 +34,65 @@ navbar:
     sub-menu-3: Icone
 
 home:
-  pyxis-description: >-
-    Pyxis è il Design System di Prima.it. Una raccolta di strumenti, regole e
-    linee guida per progettare, sviluppare e raccontare il nostro brand.
-    Una risorsa unica per lavorare in sintonia e migliorare l'esperienza
-    di utenti e clienti.
-
+  section-0:
+    content: >-
+      Pyxis è il Design System di Prima.it. Una raccolta di strumenti, regole e
+      linee guida per progettare, sviluppare e raccontare il nostro brand.
+      Una risorsa unica per lavorare in sintonia e migliorare l'esperienza
+      di utenti e clienti.
+  section-1:
+    title: Progetta, sviluppa, racconta
+    content: Con Pyxis hai tutto quello che ti serve per semplificare il tuo lavoro
+  section-2:
+    boxes:
+      1:
+        title: Design
+        content: Esplora documentazione e reference per progettare al meglio.
+        button: Esplora
+      2:
+        title: Sviluppo
+        content: Ricerca componenti e soluzioni per lavorare in completa autonomia.
+        button: Ricerca
+      3:
+        title: Brand
+        content: Scopri materiali e guideline per raccontare il nostro brand.
+        button: Scopri
+  section-3:
+    title: Più veloce, più sicuro, più coerente
+    content: >-
+      Un design system non è una zavorra di vincoli e
+      condizioni: è un bagaglio di strumenti e informazioni che ci
+      permette di osare di più senza perdere di vista l’obiettivo.
+    list:
+      1:
+        title: Modelli, esempi, riferimenti
+        content: Permette di creare documentazione utile in ogni situazione.
+      2:
+        title: Tempo ed energia
+        content: Velocizza il lavoro e aiuta a concentrarsi sugli aspetti importanti.
+      3:
+        title: Cultura collettiva
+        content: Genera e diffonde conoscenza, per tutti e a tutti i livelli.
+  section-4:
+    title: Quello che facciamo, lo facciamo insieme
+    content: >-
+      Pyxis è l’unica fonte di risorse e documentazione per tutti i processi
+      di design, sviluppo front-end e creazione di contenuti. Somiglia a noi
+      e al nostro modo di pensare:
+    list:
+      1:
+        title: Semplice
+        content: È uno strumento efficace ed essenziale, chiaro e alla portata di tutti.
+      2:
+        title: Scalabile
+        content: È composto da soluzioni adattabili a ogni esigenza di business.
+      3:
+        title: Originale
+        content: È innovativo per il suo settore e non teme di anticipare la concorrenza.
+  section-5:
+    title: >-
+      Design e necessità di business sono conseguenza uno dell’altra,
+      perché la coerenza tra loro è parte di una precisa strategia.
+    content: >-
+      L’immagine che diamo di noi ha bisogno di cura e attenzione, perché il
+      modo in cui ci mostriamo è parte del nostro brand e della nostra identità.

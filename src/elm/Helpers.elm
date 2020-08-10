@@ -21,18 +21,18 @@ withoutCmds =
 
     The function replaces all the placeholders with the values contained in the substitution list.
     Example:
-        strFormat "I am {{age}} years old" [("name", 18)]
+        "I am {{age}} years old" |> strFormat [("name", "18")]
         outputs: "I am 18 years old"
 
 -}
-strFormat : String -> List ( String, String ) -> String
-strFormat format values =
+strFormat : List ( String, String ) -> String -> String
+strFormat values format =
     values
         |> List.foldl (\( k, v ) s -> String.replace ("{{" ++ k ++ "}}") v s) format
 
 
 type alias Translator =
-    String -> List ( String, String ) -> String
+    List ( String, String ) -> String -> String
 
 
 i18nInit : List ( String, String ) -> Translator
@@ -50,11 +50,11 @@ i18nInit list =
 
 -}
 t : Dict String String -> Translator
-t translations key values =
+t translations values key =
     let
         text =
             translations
                 |> Dict.get key
                 |> Maybe.withDefault key
     in
-    strFormat text values
+    strFormat values text

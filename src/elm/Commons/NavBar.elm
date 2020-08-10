@@ -98,9 +98,9 @@ viewMenuLink link { t, currentRoute } =
                     , classList [ ( "dropdown-menu__link--active", route == currentRoute ) ]
                     , Route.href route
                     ]
-                    [ text <| t link.label [] ]
+                    [ text <| t [] link.label ]
 
             Nothing ->
                 span [ class "dropdown-menu__link" ]
-                    [ text <| t link.label [] ]
+                    [ text <| t [] link.label ]
         ]
