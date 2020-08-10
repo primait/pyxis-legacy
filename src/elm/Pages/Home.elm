@@ -1,6 +1,6 @@
 module Pages.Home exposing (view)
 
-import Html exposing (Html, a, dd, div, dl, dt, h1, img, p, section, text)
+import Html exposing (Html, a, div, h1, h2, h6, img, li, p, section, text, ul)
 import Html.Attributes as Attr exposing (alt, class, src, style)
 import Html.Events exposing (onClick)
 import Model exposing (Model, Msg(..))
@@ -13,15 +13,16 @@ view ({ t } as model) =
     div
         [ class "home-page" ]
         [ section []
-            [ div [ class "box box--jumbotron" ]
-                [ div [ class "box__content" ]
+            [ div [ class "main-box" ]
+                [ div [ class "main-box__content" ]
                     [ div [ class "mq-mobile-hidden" ] [ img [ src "public/logo-pyxis.png", style "filter" "grayscale(1)", style "width" "150px" ] [] ]
                     , p [] [ text <| t "home.pyxis-description" [] ]
                     ]
+                , img [ class "main-box__image", src "public/pyxis-1.png" ] []
                 ]
             ]
         , section []
-            [ h1 [] [ text "Progetta, sviluppa, racconta" ]
+            [ h2 [ class "c-text-dark" ] [ text "Progetta, sviluppa, racconta" ]
             , p [] [ text "Con Pyxis hai tutto quello che ti serve per semplificare il tuo lavoro" ]
             ]
         , section [ class "flex-container" ]
@@ -40,7 +41,7 @@ view ({ t } as model) =
                 , linkTo = Nothing
                 }
             , viewNavBox
-                { icon = "1"
+                { icon = "3"
                 , title = "Brand"
                 , description = """Scopri materiali e guideline per raccontare il nostro brand."""
                 , linkText = "Scopri"
@@ -49,28 +50,34 @@ view ({ t } as model) =
             ]
         , section [ class "flex-container" ]
             [ div []
-                [ h1 [] [ text "Più veloce, più sicuro, più coerente" ]
+                [ h2 [ class "c-text-dark" ] [ text "Più veloce, più sicuro, più coerente" ]
                 , p []
                     [ text """
                         Un design system non è una zavorra di vincoli e
                         condizioni: è un bagaglio di strumenti e informazioni che ci
                         permette di osare di più senza perdere di vista l’obiettivo."""
                     ]
-                , dl []
-                    [ dt [] [ text "Modelli, esempi, riferimenti" ]
-                    , dd [] [ text "Permette di creare documentazione utile in ogni situazione." ]
-                    , dt [] [ text "Tempo ed energia" ]
-                    , dd [] [ text "Velocizza il lavoro e aiuta a concentrarsi sugli aspetti importanti." ]
-                    , dt [] [ text "Cultura collettiva" ]
-                    , dd [] [ text "Genera e diffonde conoscenza, per tutti e a tutti i livelli." ]
+                , ul []
+                    [ li []
+                        [ h6 [ class "c-text-dark" ] [ text "Modelli, esempi, riferimenti" ]
+                        , p [] [ text "Permette di creare documentazione utile in ogni situazione." ]
+                        ]
+                    , li []
+                        [ h6 [ class "c-text-dark" ] [ text "Tempo ed energia" ]
+                        , p [] [ text "Velocizza il lavoro e aiuta a concentrarsi sugli aspetti importanti." ]
+                        ]
+                    , li []
+                        [ h6 [ class "c-text-dark" ] [ text "Cultura collettiva" ]
+                        , p [] [ text "Genera e diffonde conoscenza, per tutti e a tutti i livelli." ]
+                        ]
                     ]
                 ]
-            , div []
-                [ img [ alt "placeholder image" ] [] ]
+            , div [ class "u-pos-center" ]
+                [ img [ src "REPLACE ME", alt "placeholder image" ] [] ]
             ]
         , section [ class "flex-container flex-container--reversed" ]
             [ div []
-                [ h1 [] [ text "Quello che facciamo, lo facciamo insieme" ]
+                [ h2 [ class "c-text-dark" ] [ text "Quello che facciamo, lo facciamo insieme" ]
                 , p []
                     [ text """
                         Pyxis è l’unica fonte di risorse e documentazione per
@@ -78,22 +85,28 @@ view ({ t } as model) =
                         creazione di contenuti. Somiglia a noi e al nostro modo
                         di pensare:"""
                     ]
-                , dl []
-                    [ dt [] [ text "Semplice" ]
-                    , dd [] [ text "È uno strumento efficace ed essenziale, chiaro e alla portata di tutti." ]
-                    , dt [] [ text "Scalabile" ]
-                    , dd [] [ text "È composto da soluzioni adattabili a ogni esigenza di business." ]
-                    , dt [] [ text "Originale" ]
-                    , dd [] [ text "È innovativo per il suo settore e non teme di anticipare la concorrenza." ]
+                , ul []
+                    [ li []
+                        [ h6 [ class "c-text-dark" ] [ text "Semplice" ]
+                        , p [] [ text "È uno strumento efficace ed essenziale, chiaro e alla portata di tutti." ]
+                        ]
+                    , li []
+                        [ h6 [ class "c-text-dark" ] [ text "Scalabile" ]
+                        , p [] [ text "È composto da soluzioni adattabili a ogni esigenza di business." ]
+                        ]
+                    , li []
+                        [ h6 [ class "c-text-dark" ] [ text "Originale" ]
+                        , p [] [ text "È innovativo per il suo settore e non teme di anticipare la concorrenza." ]
+                        ]
                     ]
                 ]
-            , div []
-                [ img [ alt "placeholder image 2" ] [] ]
+            , div [ class "u-pos-center" ]
+                [ img [ src "REPLACE ME", alt "placeholder image 2" ] [] ]
             ]
         , section []
-            [ div [ class "box box--jumbotron" ]
-                [ div [ class "box__content" ]
-                    [ h1 [] [ text """Design e necessità di business sono
+            [ div [ class "footer-box" ]
+                [ div [ class "footer-box__content" ]
+                    [ div [ class "footer-box__title" ] [ text """Design e necessità di business sono
                         conseguenza uno dell’altra, perché la coerenza tra
                         loro è parte di una precisa strategia.""" ]
                     , p []
@@ -102,6 +115,7 @@ view ({ t } as model) =
                                 cui ci mostriamo è parte del nostro brand e della nostra identità."""
                         ]
                     ]
+                , img [ class "footer-box__image", src "public/prima-it-home.png", alt "" ] []
                 ]
             ]
         ]
