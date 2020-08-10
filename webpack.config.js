@@ -61,6 +61,13 @@ module.exports = env => {
           use: 'raw-loader',
         },
         {
+          test: /i18n\/.+\.ya?ml$/i,
+          loader: 'file-loader',
+          // this is excluded because we embed the fallback translations in the bundle
+          exclude: /en\.yaml/,
+          options: { name: '[name].yaml', outputPath: 'i18n' }
+        },
+        {
           test: /\.(jpe?g|svg|png|gif|webp|otf|ttf|eot|woff(2)?)(\?[a-z0-9=&.]+)?$/,
           loader: 'file-loader',
           options: { name: '[name].[ext]', outputPath: 'assets' }
