@@ -9,21 +9,29 @@ navbar:
   start: Start using Pyxis
   style:
     title: Style
-    logo-menu: Logo
-    typography-menu: Typography
-    color-menu: Colors
-    illustration-menu: Illustrations
-    iconography-menu: Iconography
+    sub-menu-1: Logo
+    sub-menu-2: Typography
+    sub-menu-3: Colors
+    sub-menu-4: Illustrations
+    sub-menu-5: Iconography
   content:
     title: Content
+    sub-menu-1: Voice and Tone
+    sub-menu-2: Grammar and Mechanics
   patterns:
     title: Patterns
+    sub-menu-1: Elevation and shadow
+    sub-menu-2: Border radius
+    sub-menu-3: Containers
   components:
     title: Components
     accordion: Accordion
     button: Buttons
   tools:
     title: Tools and resources
+    sub-menu-1: UI Kits
+    sub-menu-2: Fonts
+    sub-menu-3: Icons
 
 home:
   pyxis-description: >-
