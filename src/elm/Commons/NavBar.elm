@@ -21,7 +21,7 @@ view model =
                 [ class "navbar__logo-container" ]
                 [ img
                     [ class "navbar__logo-image"
-                    , src "public/logo-pyxis.png"
+                    , src "public/images/home/logo-pyxis-color.svg"
                     , alt "Logo"
                     ]
                     []

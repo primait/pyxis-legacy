@@ -53,11 +53,10 @@
             position: absolute;
             right: 0;
             bottom: 0;
-            width: 60px;
+            width: 70px;
+            transform: translate(10%, 30%);
 
             @include mq(small) {
-                right: -25px;
-                bottom: -50px;
                 width: 50%;
             }
         }

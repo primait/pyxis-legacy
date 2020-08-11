@@ -15,10 +15,14 @@ view ({ t } as model) =
         [ section []
             [ div [ class "main-box" ]
                 [ div [ class "main-box__content" ]
-                    [ div [ class "mq-mobile-hidden" ] [ img [ src "public/logo-pyxis.png", style "filter" "grayscale(1)", style "width" "150px" ] [] ]
+                    [ div [ class "mq-mobile-hidden" ]
+                        [ img
+                            [ src "public/images/home/logo-pyxis-grey.svg", style "width" "150px" ]
+                            []
+                        ]
                     , p [] [ text <| t [] "home.section-0.content" ]
                     ]
-                , img [ class "main-box__image", src "public/pyxis-1.png" ] []
+                , img [ class "main-box__image", src "public/images/home/isometric-logo.svg" ] []
                 ]
             ]
         , section []
@@ -27,21 +31,21 @@ view ({ t } as model) =
             ]
         , section [ class "flex-container" ]
             [ viewNavBox
-                { icon = "1"
+                { icon = "public/images/home/icon-brush.svg"
                 , title = t [] "home.section-2.boxes.0.title"
                 , description = t [] "home.section-2.boxes.0.content"
                 , linkText = t [] "home.section-2.boxes.0.button"
                 , linkTo = Nothing
                 }
             , viewNavBox
-                { icon = "2"
+                { icon = "public/images/home/icon-development.svg"
                 , title = t [] "home.section-2.boxes.1.title"
                 , description = t [] "home.section-2.boxes.1.content"
                 , linkText = t [] "home.section-2.boxes.1.button"
                 , linkTo = Nothing
                 }
             , viewNavBox
-                { icon = "3"
+                { icon = "public/images/home/icon-player.svg"
                 , title = t [] "home.section-2.boxes.2.title"
                 , description = t [] "home.section-2.boxes.2.content"
                 , linkText = t [] "home.section-2.boxes.2.button"
@@ -70,7 +74,7 @@ view ({ t } as model) =
                     ]
                 ]
             , div [ class "u-pos-center" ]
-                [ img [ src "REPLACE ME", alt "placeholder image" ] [] ]
+                [ img [ src "public/images/home/illustration-1.svg", alt "placeholder image" ] [] ]
             ]
         , section [ class "flex-container flex-container--reversed" ]
             [ div []
@@ -93,8 +97,8 @@ view ({ t } as model) =
                         ]
                     ]
                 ]
-            , div [ class "u-pos-center" ]
-                [ img [ src "REPLACE ME", alt "placeholder image 2" ] [] ]
+            , div [ class "u-pos-center mq-mobile-hidden" ]
+                [ img [ src "public/images/home/illustration-2.svg", alt "placeholder image 2" ] [] ]
             ]
         , section []
             [ div [ class "footer-box" ]
@@ -104,7 +108,9 @@ view ({ t } as model) =
                         [ text <| t [] "home.section-5.content"
                         ]
                     ]
-                , img [ class "footer-box__image", src "public/prima-it-home.png", alt "" ] []
+                , div [ class "u-pos-center mq-mobile-hidden" ]
+                    [ img [ class "footer-box__image mq-mobile-hidden", src "public/images/home/home-prima-mockup.png", alt "" ] []
+                    ]
                 ]
             ]
         ]
