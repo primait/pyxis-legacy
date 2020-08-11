@@ -1,6 +1,6 @@
 module Pages.Home exposing (view)
 
-import Html exposing (Html, a, div, h1, h2, h6, img, li, p, section, text, ul)
+import Html exposing (Html, a, div, h1, h2, h6, img, li, p, section, span, text, ul)
 import Html.Attributes as Attr exposing (alt, class, src, style)
 import Html.Events exposing (onClick)
 import Model exposing (Model, Msg(..))
@@ -54,7 +54,13 @@ view ({ t } as model) =
             ]
         , section [ class "flex-container" ]
             [ div []
-                [ h2 [ class "c-text-dark" ] [ text <| t [] "home.section-3.title" ]
+                [ h2 [ class "c-text-dark" ]
+                    [ img [ class "mq-desktop-hidden", src "public/images/home/illustration-2-mobile.svg" ]
+                        []
+                    , span
+                        []
+                        [ text <| t [] "home.section-3.title" ]
+                    ]
                 , p []
                     [ text <| t [] "home.section-3.content"
                     ]
@@ -73,12 +79,15 @@ view ({ t } as model) =
                         ]
                     ]
                 ]
-            , div [ class "u-pos-center" ]
+            , div [ class "u-pos-center mq-mobile-hidden" ]
                 [ img [ src "public/images/home/illustration-1.svg", alt "placeholder image" ] [] ]
             ]
         , section [ class "flex-container flex-container--reversed" ]
             [ div []
-                [ h2 [ class "c-text-dark" ] [ text <| t [] "home.section-4.title" ]
+                [ h2 [ class "c-text-dark" ]
+                    [ img [ class "mq-desktop-hidden", src "public/images/home/illustration-2-mobile.svg" ] []
+                    , span [] [ text <| t [] "home.section-4.title" ]
+                    ]
                 , p []
                     [ text <| t [] "home.section-4.content"
                     ]
@@ -108,9 +117,7 @@ view ({ t } as model) =
                         [ text <| t [] "home.section-5.content"
                         ]
                     ]
-                , div [ class "u-pos-center mq-mobile-hidden" ]
-                    [ img [ class "footer-box__image mq-mobile-hidden", src "public/images/home/home-prima-mockup.png", alt "" ] []
-                    ]
+                , img [ class "footer-box__image", src "public/images/home/home-prima-mockup.png", alt "" ] []
                 ]
             ]
         ]
