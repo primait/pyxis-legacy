@@ -1,33 +1,37 @@
+@mixin hamburger-icon-line {
+  background-color: #cccccc;
+  border-radius: 1px;
+  content: "";
+  display: inline-block;
+  height: 2px;
+  position: relative;
+  transition: all ease .3s;
+  width: 20px;
+}
+
+
 .hamburger-icon {
   position: relative;
+}
 
-  @mixin line {
-    background-color: #cccccc;
-    border-radius: 1px;
-    content: "";
-    display: inline-block;
-    height: 2px;
-    position: relative;
-    transition: all ease .3s;
-    width: 20px;
+
+.hamburger-icon__line {
+  @include hamburger-icon-line;
+  width: 15px;
+
+  &:before {
+    @include hamburger-icon-line;
+    top: -7px;
   }
 
-  &__line {
-    @include line;
-    width: 15px;
-
-    &:before {
-      @include line;
-      top: -7px;
-    }
-
-    &:after {
-      @include line;
-      top: 6px;
-    }
+  &:after {
+    @include hamburger-icon-line;
+    top: 6px;
   }
+}
 
-  &--active &__line {
+.hamburger-icon--active {
+  .hamburger-icon__line {
     transform: rotate(45deg);
     width: 20px;
 

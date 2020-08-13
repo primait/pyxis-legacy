@@ -1,73 +1,78 @@
 .dropdown-menu {
   border-bottom: solid 1px color(shape, base);
   overflow: hidden;
+}
 
-  &__toggler {
-    align-items: center;
-    display: flex;
-    font-size: 16px;
-  }
+.dropdown-menu__toggler {
+  align-items: center;
+  display: flex;
+  font-size: 16px;
+}
 
-  &__toggler-label {
-    color: color(text, dark);
-    flex-grow: 1;
-  }
+.dropdown-menu__toggler-label {
+  color: color(text, dark);
+  flex-grow: 1;
+}
 
-  &__open-indicator {
-    background: none;
-    border: none;
-    border-radius: 100%;
-    color: color(brandAlt, base);
+.dropdown-menu__open-indicator {
+  background: none;
+  border: none;
+  border-radius: 100%;
+  color: color(brandAlt, base);
+  cursor: pointer;
+  flex-grow: 0;
+  font-size: 1.25em;
+  font-weight: 900;
+  height: 40px;
+  outline: none;
+  text-align: center;
+  transform-origin: 50% 50%;
+  transition: .3s transform;
+  width: 40px;
+}
+
+.dropdown-menu__list {
+  display: none;
+}
+
+.dropdown-menu__list-item {
+  color: color(text, base);
+  font-size: .8em;
+}
+
+.dropdown-menu__link-wrapper {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.dropdown-menu__link {
+  border-left: solid 3px transparent;
+  color: inherit;
+  display: block;
+  padding: .75em 8px;
+
+  &[href]:hover {
+    background-color: color(shape, light);
     cursor: pointer;
-    flex-grow: 0;
-    font-size: 1.25em;
-    font-weight: 900;
-    height: 40px;
-    outline: none;
-    text-align: center;
-    transform-origin: 50% 50%;
-    transition: .3s transform;
-    width: 40px;
   }
 
-  &--open &__open-indicator {
-    transform: rotate(45deg);
-  }
+}
 
-  &__list {
-    display: none;
-  }
+.dropdown-menu__link--active {
+  /* stylelint-disable-next-line declaration-no-important */
+  background-color: color(brandAlt, light) !important;
+  border-left-color: color(brandAlt, base);
+  color: color(brandAlt, base);
+}
 
-  &--open &__list {
+.dropdown-menu--open {
+
+  .dropdown-menu__list {
     display: initial;
   }
 
-  &__list-item {
-    color: color(text, base);
-    font-size: .8em;
+  .dropdown-menu__open-indicator {
+    transform: rotate(45deg);
   }
 
-  &__link-wrapper {
-    border-radius: 5px;
-    overflow: hidden;
-  }
-
-  &__link {
-    border-left: solid 3px transparent;
-    color: inherit;
-    display: block;
-    padding: .75em 8px;
-
-    &[href]:hover {
-      background-color: color(shape, light);
-      cursor: pointer;
-    }
-
-    &--active {
-      /* stylelint-disable-next-line declaration-no-important */
-      background-color: color(brandAlt, light) !important;
-      border-left-color: color(brandAlt, base);
-      color: color(brandAlt, base);
-    }
-  }
 }

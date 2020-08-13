@@ -1,0 +1,34 @@
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include mq(small) {
+    flex-direction: row;
+  }
+}
+
+.flex-container > * {
+  flex: 1 1 100%;
+  margin: 10px 0;
+
+  @include mq(small) {
+    margin: 0 10px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.flex-container--reversed {
+  flex-direction: column-reverse;
+
+  @include mq(small) {
+    flex-direction: row-reverse;
+  }
+}

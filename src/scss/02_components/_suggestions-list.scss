@@ -1,0 +1,35 @@
+.suggestions-list {
+  margin: 20px 0;
+}
+
+.suggestions-list__header {
+  align-items: center;
+  display: flex;
+  flex: 0 1 100%;
+  flex-direction: row;
+}
+
+.suggestions-list__label {
+  padding: 5px;
+  width: 4em;
+}
+
+.suggestions-list__separator {
+  border-top: solid 1px #000000;
+  flex-grow: 1;
+  height: 1px;
+}
+
+.suggestions-list--do {
+  .suggestions-list__header * {
+    border-color: #21c7a7;
+    color: #21c7a7;
+  }
+}
+
+.suggestions-list--dont {
+  .suggestions-list__header * {
+    border-color: #e74c3c;
+    color: #e74c3c;
+  }
+}

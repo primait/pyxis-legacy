@@ -17,34 +17,34 @@ $fontPath: "./fonts/";
   position: fixed;
   right: 0;
   top: 0;
+}
 
-  &__navbar {
-    background: color(background, base);
-    border-bottom: solid 1px color(shape, base);
-    height: 60px;
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .3s ease-out height;
-    z-index: 2;
+.pyxis__navbar {
+  background: color(background, base);
+  border-bottom: solid 1px color(shape, base);
+  height: 60px;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .3s ease-out height;
+  z-index: 2;
+}
 
-    &--open {
-      height: 100%;
-    }
-  }
+.pyxis__navbar--open {
+  height: 100%;
+}
 
-  &__content {
-    bottom: 0;
-    left: 0;
-    overflow-y: scroll;
-    position: absolute;
-    right: 0;
-    top: 60px;
-    width: 100%;
-    z-index: 1;
-  }
+.pyxis__content {
+  bottom: 0;
+  left: 0;
+  overflow-y: scroll;
+  position: absolute;
+  right: 0;
+  top: 60px;
+  width: 100%;
+  z-index: 1;
 }
 
 
@@ -54,24 +54,25 @@ $fontPath: "./fonts/";
     display: flex;
     flex: 0 1 100%;
     flex-direction: row;
-
-    > * {
-      height: 100%;
-      width: 100%;
-    }
-
-    &__navbar {
-      background-color: color(background, base);
-      box-shadow: 0 0 60px 0 rgba(77, 89, 105, 0.1);
-      max-width: 340px;
-      position: initial;
-      z-index: 2;
-    }
-
-    &__content {
-      overflow-y: scroll;
-      position: initial;
-      z-index: 1;
-    }
   }
+
+  .pyxis > * {
+    height: 100%;
+    width: 100%;
+  }
+
+  .pyxis__navbar {
+    background-color: color(background, base);
+    box-shadow: 0 0 60px 0 rgba(77, 89, 105, 0.1);
+    max-width: 340px;
+    position: initial;
+    z-index: 2;
+  }
+
+  .pyxis__content {
+    overflow-y: scroll;
+    position: initial;
+    z-index: 1;
+  }
+
 }

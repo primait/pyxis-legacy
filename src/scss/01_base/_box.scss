@@ -1,0 +1,32 @@
+.box {
+  background-color: #ffffff;
+  border: 1px solid hsla(0, 0%, 87.8%, .5);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.box--big {
+  @include mq(small) {
+    padding: 90px;
+  }
+}
+
+.box--bg-light {
+  background: color(shape, light);
+}
+
+.box--bg-gradient {
+  background: linear-gradient(120deg, #b261d0, #863dbe);
+
+  * {
+    color: #ffffff;
+  }
+}
+
+.box--bg-dark {
+  background: color(backgroundAlt, dark);
+
+  * {
+    color: #ffffff;
+  }
+}
