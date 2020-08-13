@@ -3,10 +3,9 @@ $fontPath: "./fonts/";
 @import "../../lib/pyxis-npm/src/scss/pyxis";
 
 @import
-  "utils",
-  "navbar/all",
-  "pages/all",
-  "page";
+  "01_base/all",
+  "02_components/all",
+  "03_pages/all";
 
 
 // MOBILE

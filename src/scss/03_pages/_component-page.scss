@@ -1,0 +1,58 @@
+%component-page {
+  color: color(text, base);
+  font: font(base);
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1em;
+  }
+
+  ul {
+    li {
+      color: color(text, base);
+
+      &:before {
+        color: color(brand, base);
+        content: "\2022";
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+  }
+
+}
+
+.suggestions-list {
+  margin: 20px 0;
+
+  &__header {
+    align-items: center;
+    display: flex;
+    flex: 0 1 100%;
+    flex-direction: row;
+  }
+
+  &__label {
+    padding: 5px;
+    width: 4em;
+  }
+
+  &__separator {
+    border-top: solid 1px #000000;
+    flex-grow: 1;
+    height: 1px;
+
+    &--modifier {
+      color: #ffffff;
+    }
+  }
+
+  &--do &__header * {
+    border-color: #21c7a7;
+    color: #21c7a7;
+  }
+
+  &--dont &__header * {
+    border-color: #e74c3c;
+    color: #e74c3c;
+  }
+}
