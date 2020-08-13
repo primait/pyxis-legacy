@@ -1,0 +1,37 @@
+.tabs {
+  display: block;
+  margin-bottom: 25px;
+}
+
+.tabs__header {
+  margin-bottom: 20px;
+}
+
+.tabs__tab {
+  background: none;
+  border: none;
+  color: color(text, base);
+  font: font(heavy);
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 1em;
+  outline: none;
+  padding: 1em 1.5em;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: color(shape, light);
+  }
+}
+
+.tabs__tab-label {
+  border-bottom: solid 2px transparent;
+}
+
+.tabs__tab--active {
+  .tabs__tab-label {
+    border-color: color(brand, light);
+  }
+}
+
+// .tabs__content {}

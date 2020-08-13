@@ -41,13 +41,17 @@ type alias Model =
 
 initialModel : Flags -> Url -> Browser.Navigation.Key -> Model
 initialModel flags url key =
+    let
+        translator =
+            H.i18nInit flags.translations
+    in
     { key = key
     , currentRoute = Maybe.withDefault Route.Homepage <| Route.fromUrl url
-    , t = H.i18nInit flags.translations
+    , t = translator
     , isMenuOpen = False
     , menuList = initialMenuListModel
     , accordionModel = Accordion.initialModel
-    , buttonModel = Button.initialModel
+    , buttonModel = Button.initialModel translator
     }
 
 

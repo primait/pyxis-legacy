@@ -1,0 +1,46 @@
+.code-viewer {
+  @extend .box;
+
+  overflow: hidden;
+  padding: 0;
+
+}
+
+.code-viewer__header {
+  background-color: color(backgroundAlt, base);
+  padding: 8px 30px;
+}
+
+.code-viewer__button {
+  background: none;
+  border: none;
+  color: color(textAlt, light);
+  display: inline-block;
+  outline: none;
+  padding: 0.5em 1em;
+
+  &:before {
+    background: color(backgroundAlt, dark);
+    border-radius: 100%;
+    content: " ";
+    display: inline-block;
+    height: 10px;
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 10px;
+  }
+
+  &:hover {
+    background-color: color(backgroundAlt, light);
+    &:before {
+      background-color: color(textAlt, light);
+    }
+  }
+}
+
+.code-viewer__content {
+  background-color: color(backgroundAlt, dark);
+  font-family: "Courier New", "Courier", monospace;
+  font-size: 12px;
+  padding: 1.5em 2em;
+}

@@ -1,27 +1,21 @@
 module Pages.Button.Model exposing (Model, Msg(..), initialModel)
 
+import Helpers exposing (Translator)
+
 
 type Msg
-    = Click
-    | DoubleClick
+    = NoOp
+    | ToggleInspectMode Bool
 
 
 type alias Model =
-    { buttons : List Button
+    { t : Translator
+    , isInspecting : Bool
     }
 
 
-initialModel : Model
-initialModel =
-    { buttons =
-        [ Primary
-        , Secondary
-        , Loading
-        ]
+initialModel : Translator -> Model
+initialModel t =
+    { t = t
+    , isInspecting = False
     }
-
-
-type Button
-    = Primary
-    | Secondary
-    | Loading
