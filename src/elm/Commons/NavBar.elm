@@ -89,7 +89,7 @@ viewDropdownToggler ( id, menu ) model =
 
 
 viewMenuLink : MenuLink -> Model -> Html Msg
-viewMenuLink link { t, currentRoute } =
+viewMenuLink link { translate, currentRoute } =
     div [ class "dropdown-menu__link-wrapper" ]
         [ case link.route of
             Just route ->
@@ -98,9 +98,9 @@ viewMenuLink link { t, currentRoute } =
                     , classList [ ( "dropdown-menu__link--active", route == currentRoute ) ]
                     , Route.href route
                     ]
-                    [ text <| t [] link.label ]
+                    [ text <| translate [] link.label ]
 
             Nothing ->
                 span [ class "dropdown-menu__link" ]
-                    [ text <| t [] link.label ]
+                    [ text <| translate [] link.label ]
         ]

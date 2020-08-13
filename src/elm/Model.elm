@@ -31,7 +31,7 @@ type Msg
 type alias Model =
     { key : Browser.Navigation.Key
     , currentRoute : Route
-    , t : H.Translator
+    , translate : H.Translator
     , isMenuOpen : Bool
     , menuList : Array DropdownMenu
     , accordionModel : Accordion.Model
@@ -47,7 +47,7 @@ initialModel flags url key =
     in
     { key = key
     , currentRoute = Maybe.withDefault Route.Homepage <| Route.fromUrl url
-    , t = translator
+    , translate = translator
     , isMenuOpen = False
     , menuList = initialMenuListModel
     , accordionModel = Accordion.initialModel
