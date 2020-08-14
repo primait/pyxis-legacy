@@ -31,6 +31,7 @@ type Msg
 type alias Model =
     { key : Browser.Navigation.Key
     , currentRoute : Route
+    , language : String
     , translate : H.Translator
     , isMenuOpen : Bool
     , menuList : Array DropdownMenu
@@ -47,6 +48,7 @@ initialModel flags url key =
     in
     { key = key
     , currentRoute = Maybe.withDefault Route.Homepage <| Route.fromUrl url
+    , language = flags.language
     , translate = translator
     , isMenuOpen = False
     , menuList = initialMenuListModel
@@ -56,7 +58,8 @@ initialModel flags url key =
 
 
 type alias Flags =
-    { translations : List ( String, String )
+    { language : String
+    , translations : List ( String, String )
     }
 
 

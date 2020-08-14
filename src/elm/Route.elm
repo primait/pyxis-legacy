@@ -24,14 +24,14 @@ href route =
     Attr.href (routeToString route)
 
 
-pushUrl : Nav.Key -> Maybe Route -> Cmd msg
-pushUrl key maybeRoute =
+pushUrl : Nav.Key -> String -> Maybe Route -> Cmd msg
+pushUrl key language maybeRoute =
     case maybeRoute of
         Nothing ->
             Cmd.none
 
         Just route ->
-            Nav.pushUrl key (routeToString route)
+            Nav.pushUrl key (routeToString route ++ "?lang=" ++ language)
 
 
 fromUrl : Url -> Maybe Route

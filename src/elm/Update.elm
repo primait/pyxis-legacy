@@ -25,7 +25,7 @@ update msg model =
                 Browser.Internal url ->
                     model
                         |> UH.setMenuOpen False
-                        |> H.withCmds [ Route.pushUrl model.key (Route.fromUrl url) ]
+                        |> H.withCmds [ Route.pushUrl model.key model.language (Route.fromUrl url) ]
 
                 Browser.External href ->
                     model

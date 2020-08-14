@@ -8,50 +8,51 @@ import { flatten } from "./utils"
 import { Elm } from './elm/Pyxis.elm'
 
 function buildI18nDict(text) {
-  try {
-    const parsedObject = YAML.parse(text)
-    return flatten(parsedObject);
-  } catch (err) {
-    console.error(err);
-    return {} // TODO: improve error handling
-  }
+    try {
+        const parsedObject = YAML.parse(text)
+        return flatten(parsedObject);
+    } catch (err) {
+        console.error(err);
+        return {} // TODO: improve error handling
+    }
 }
 
 async function fetchLocale(locale) {
-  try {
-    const response = await fetch(`./i18n/${locale}.yaml`);
-    if (!response.ok) {
-      throw new Error(response.statusText);
+    try {
+        const response = await fetch(`./i18n/${locale}.yaml`);
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return await response.text();
+    } catch (err) {
+        console.error(`Can't load translations of '${locale}' locale. Falling back to locale 'en'`);
+        return defaultTranslations;
     }
-    return await response.text();
-  } catch (err) {
-    console.error(`Can't load translations of '${locale}' locale. Falling back to locale 'en'`);
-    return defaultTranslations;
-  }
 }
 
 async function initI18n() {
-  let lang = 'en';
-  const langMatch = location.href.match(/lang=(\w+)/);
+    let lang = 'en';
+    const langMatch = location.href.match(/lang=(\w+)/);
 
-  if (!langMatch) {
-    return buildI18nDict(defaultTranslations);
-  } else {
-    lang = langMatch[1];
-  }
+    if (!langMatch) {
+        return [lang, buildI18nDict(defaultTranslations)];
+    } else {
+        lang = langMatch[1];
+    }
 
-  const loadedLocale = await fetchLocale(lang);
+    const loadedLocale = await fetchLocale(lang);
 
-  return buildI18nDict(loadedLocale);
+    return [lang, buildI18nDict(loadedLocale)];
 }
 
 
-initI18n().then(translations => {
-  Elm.Pyxis.init({
-    node: document.getElementById('app'),
-    flags: {
-      currentPath: window.location.pathname,
-      translations: Object.entries(translations)
-    }
-  })
+initI18n().then(([lang, translations]) => {
+    Elm.Pyxis.init({
+        node: document.getElementById('app'),
+        flags: {
+            currentPath: window.location.pathname,
+            language: lang,
+            translations: Object.entries(translations).filter((([k, v]) => v !== null))
+        }
+    })
 });
