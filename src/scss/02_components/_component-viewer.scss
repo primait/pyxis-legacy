@@ -1,10 +1,18 @@
 .component-viewer {
   display: flex;
   flex-direction: row;
+
+  @include mqUp(small) {
+    padding: 16px;
+  }
 }
 
 .component-viewer__description {
   flex-grow: 0;
+
+  @include mqUp(small) {
+    width: 20%;
+  }
 }
 
 .component-viewer__container {

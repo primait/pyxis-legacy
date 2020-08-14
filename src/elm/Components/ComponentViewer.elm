@@ -12,13 +12,14 @@ import Html.Lazy exposing (lazy)
 type alias ViewModel msg =
     { isCodeVisible : Bool
     , boxType : Box.Type
+    , label : String
     , example : String
     , onTogglePreview : Bool -> msg
     }
 
 
 view : ViewModel msg -> List (Html msg) -> Html msg
-view { isCodeVisible, boxType, example, onTogglePreview } content =
+view { isCodeVisible, label, boxType, example, onTogglePreview } content =
     let
         activeTab =
             stateToTabIndex isCodeVisible
@@ -28,7 +29,7 @@ view { isCodeVisible, boxType, example, onTogglePreview } content =
         , tabs =
             Array.fromList
                 [ { name = "Preview"
-                  , view = lazy (\_ -> viewComponentBox boxType content) ()
+                  , view = lazy (\_ -> viewComponentBox boxType label content) ()
                   }
                 , { name = "</> Code"
                   , view = lazy viewCodeViewer example
@@ -60,25 +61,13 @@ tabIndexToState index =
 -- VIEW HELPERS
 
 
-viewComponentBox : Box.Type -> List (Html msg) -> Html msg
-viewComponentBox boxType content =
-    let
-        typeLabel =
-            case boxType of
-                Box.Light ->
-                    "light color"
-
-                Box.Dark ->
-                    "dark color"
-
-                Box.Gradient ->
-                    "brand gradient"
-    in
+viewComponentBox : Box.Type -> String -> List (Html msg) -> Html msg
+viewComponentBox boxType componentLabel content =
     Box.view boxType
         [ div [ class "component-viewer" ]
             [ div [ class "component-viewer__description" ]
                 [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
-                , div [] [ text <| "on " ++ typeLabel ]
+                , div [] [ text componentLabel ]
                 ]
             , div
                 [ class "component-viewer__container"

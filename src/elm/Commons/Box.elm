@@ -14,7 +14,7 @@ bgColorToClass : Type -> String
 bgColorToClass bg =
     case bg of
         Light ->
-            "box--bg-light"
+            ""
 
         Gradient ->
             "box--bg-gradient"

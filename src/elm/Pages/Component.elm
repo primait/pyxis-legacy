@@ -1,7 +1,9 @@
-module Pages.Component exposing (SectionViewModel, ViewModel, view)
+module Pages.Component exposing (SectionViewModel, Suggestions, ViewModel, view)
 
+import Helpers as H
 import Html exposing (Html, div, h1, h2, h5, li, p, section, text, ul)
 import Html.Attributes exposing (class, classList, style)
+import ViewHelpers as VH
 
 
 type alias ViewModel msg =
@@ -15,9 +17,14 @@ type alias ViewModel msg =
 
 type alias SectionViewModel msg =
     { title : String
-    , dontList : List String
-    , doList : List String
+    , suggestions : Maybe Suggestions
     , content : List (Html msg)
+    }
+
+
+type alias Suggestions =
+    { dontList : List String
+    , doList : List String
     }
 
 
@@ -40,8 +47,7 @@ view model =
                 (\config ->
                     viewSection
                         { title = config.title
-                        , dontList = config.dontList
-                        , doList = config.doList
+                        , suggestions = config.suggestions
                         }
                         config.content
                 )
@@ -71,31 +77,44 @@ viewTechSpecs specs component =
 
 type alias ViewSectionConfig =
     { title : String
-    , dontList : List String
-    , doList : List String
+    , suggestions : Maybe Suggestions
     }
 
 
 viewSection : ViewSectionConfig -> List (Html msg) -> Html msg
 viewSection config content =
+    let
+        hasSuggestions =
+            H.isJust config.suggestions
+
+        doList =
+            Maybe.map .doList config.suggestions
+                |> Maybe.withDefault []
+
+        dontList =
+            Maybe.map .dontList config.suggestions
+                |> Maybe.withDefault []
+    in
     section [ class "section" ]
         [ h2 [] [ text config.title ]
         , div
             []
             content
-        , div
-            [ class "flex-container" ]
-            [ viewSuggestions
-                { label = "Don't"
-                , isRecommendation = False
-                , items = config.dontList
-                }
-            , viewSuggestions
-                { label = "Do"
-                , isRecommendation = True
-                , items = config.doList
-                }
-            ]
+        , VH.viewIf hasSuggestions
+            (div
+                [ class "flex-container" ]
+                [ viewSuggestions
+                    { label = "Don't"
+                    , isRecommendation = False
+                    , items = dontList
+                    }
+                , viewSuggestions
+                    { label = "Do"
+                    , isRecommendation = True
+                    , items = doList
+                    }
+                ]
+            )
         ]
 
 

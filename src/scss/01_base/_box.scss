@@ -17,16 +17,10 @@
 
 .box--bg-gradient {
   background: linear-gradient(120deg, #b261d0, #863dbe);
-
-  * {
-    color: #ffffff;
-  }
+  color: #ffffff;
 }
 
 .box--bg-dark {
   background: color(backgroundAlt, dark);
-
-  * {
-    color: #ffffff;
-  }
+  color: #ffffff;
 }

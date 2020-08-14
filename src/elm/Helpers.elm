@@ -13,6 +13,21 @@ withoutCmds =
     withCmds []
 
 
+isJust : Maybe x -> Bool
+isJust maybeVal =
+    case maybeVal of
+        Just _ ->
+            True
+
+        Nothing ->
+            False
+
+
+isNothing : Maybe x -> Bool
+isNothing =
+    not << isJust
+
+
 {-|
 
     This function accepts a format string and a substitution list.
