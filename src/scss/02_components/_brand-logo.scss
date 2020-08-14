@@ -1,0 +1,15 @@
+.brand-logo {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-logo__image {
+  max-width: 150px;
+}
+
+.brand-logo__label {
+  color: color(text, base);
+  font-size: 12px;
+}

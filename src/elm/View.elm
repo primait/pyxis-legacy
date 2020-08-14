@@ -31,11 +31,11 @@ viewBody model =
         , div
             [ class "pyxis__content" ]
             [ div
-                [ class "page" ]
+                [ class "pyxis-page" ]
                 [ div
-                    [ class "page__content" ]
+                    [ class "pyxis-page__content" ]
                     [ viewRouter model ]
-                , footer [ class "page__footer" ]
+                , footer [ class "pyxis-page__footer" ]
                     [ viewBrandLogo ]
                 ]
             ]

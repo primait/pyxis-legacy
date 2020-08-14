@@ -13,9 +13,9 @@ view ({ translate } as model) =
     div
         [ class "home-page" ]
         [ viewHeader model
-        , section []
-            [ h2 [ class "c-text-dark" ] [ text <| translate [] "home.intro.title" ]
-            , p [] [ text <| translate [] "home.intro.content" ]
+        , section [ class "section" ]
+            [ h2 [ class "heading c-text-dark" ] [ text <| translate [] "home.intro.title" ]
+            , p [ class "paragraph" ] [ text <| translate [] "home.intro.content" ]
             ]
         , viewNavBoxesSection model
         , viewSectionWithImage
@@ -60,7 +60,7 @@ view ({ translate } as model) =
 
 viewHeader : Model -> Html Msg
 viewHeader { translate } =
-    section []
+    section [ class "section" ]
         [ div [ class "main-box" ]
             [ div [ class "main-box__content" ]
                 [ div [ class "mq-mobile-hidden" ]
@@ -77,7 +77,7 @@ viewHeader { translate } =
 
 viewNavBoxesSection : Model -> Html Msg
 viewNavBoxesSection { translate } =
-    section [ class "flex-container" ]
+    section [ class "section flex-container" ]
         [ viewNavBox
             { icon = "public/images/home/icon-brush.svg"
             , title = translate [] "home.nav-boxes.0.title"
@@ -119,13 +119,13 @@ type alias SectionWithImageConfig =
 viewSectionWithImage : SectionWithImageConfig -> Html Msg
 viewSectionWithImage config =
     section
-        [ class "flex-container"
+        [ class "section flex-container"
         , classList [ ( "flex-container--reversed", config.reversed ) ]
         ]
         [ div []
-            [ h2 [ class "c-text-dark" ]
-                [ img [ class "mq-desktop-hidden", src config.titleImage ] []
-                , span [] [ text config.titleText ]
+            [ div [ class "heading-container" ]
+                [ img [ class "heading-container__img", src config.titleImage ] []
+                , h2 [ class "heading-container__text" ] [ text config.titleText ]
                 ]
             , p []
                 [ text config.paragraph ]
@@ -146,7 +146,7 @@ viewListItem { title, content } =
 
 viewFooter : Model -> Html Msg
 viewFooter ({ translate } as model) =
-    section []
+    section [ class "section" ]
         [ div [ class "footer-box" ]
             [ div [ class "footer-box__content" ]
                 [ div [ class "footer-box__title" ] [ text <| translate [] "home.footer.title" ]

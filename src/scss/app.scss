@@ -47,6 +47,29 @@ $fontPath: "./fonts/";
   z-index: 1;
 }
 
+.pyxis-page {
+  display: flex;
+  flex-direction: column;
+  font: font(base);
+  margin: 0 auto;
+  max-width: 1200px;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.pyxis-page__content {
+  flex-grow: 1;
+  padding: 16px;
+}
+
+.pyxis-page__footer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px;
+}
+
 
 // DESKTOP
 @include mq(small) {

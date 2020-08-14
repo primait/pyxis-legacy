@@ -25,7 +25,7 @@ view : ViewModel msg -> Html msg
 view model =
     div
         [ class "component-page" ]
-        [ section []
+        [ section [ class "section" ]
             [ h1
                 [ class "c-text-dark" ]
                 [ text model.title ]
@@ -52,7 +52,7 @@ view model =
 
 viewTechSpecs : List String -> Html msg -> Html msg
 viewTechSpecs specs component =
-    section [ class "flex-container" ]
+    section [ class "section flex-container" ]
         [ div [ class "u-pos-center" ]
             [ div
                 [ class "box u-pos-center", style "width" "100%" ]
@@ -78,7 +78,7 @@ type alias ViewSectionConfig =
 
 viewSection : ViewSectionConfig -> List (Html msg) -> Html msg
 viewSection config content =
-    section []
+    section [ class "section" ]
         [ h2 [] [ text config.title ]
         , div
             []
