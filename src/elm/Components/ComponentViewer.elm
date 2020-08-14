@@ -75,14 +75,13 @@ viewComponentBox boxType content =
                     "brand gradient"
     in
     Box.view boxType
-        [ div [ class "display-flex" ]
-            [ div [ style "flex-grow" "0" ]
+        [ div [ class "component-viewer" ]
+            [ div [ class "component-viewer__description" ]
                 [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
                 , div [] [ text <| "on " ++ typeLabel ]
                 ]
             , div
-                [ class "u-pos-center"
-                , style "flex-grow" "1"
+                [ class "component-viewer__container"
                 ]
                 content
             ]

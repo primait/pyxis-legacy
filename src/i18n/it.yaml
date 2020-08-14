@@ -90,3 +90,13 @@ home:
     content: >-
       L’immagine che diamo di noi ha bisogno di cura e attenzione, perché il
       modo in cui ci mostriamo è parte del nostro brand e della nostra identità.
+
+buttons-page:
+  title: Bottoni
+  description: >-
+    Aggiungere la classe 'a-btn' con i suoi vari modificatori per ottenere un
+    bottone di dimensioni standard. Un bottone standard di default si dispone
+    automaticamente al centro orizzontale del suo elemento padre. Le varianti
+    dark sono visibili correttamente solo su un background scuro. Quando è
+    necessario impilare più bottoni in uno stesso contenuto è opportuno
+    utilizzare la classe m-btnGroup e le sue varianti.

@@ -2,134 +2,45 @@ module Pages.Button exposing (view)
 
 import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
-import Html exposing (Html, div, h1, h2, h5, li, p, section, text, ul)
-import Html.Attributes exposing (class, classList, style)
+import Html exposing (Html, div, text)
+import Html.Attributes exposing (class)
 import Pages.Button.Model exposing (Model, Msg(..))
+import Pages.Component as ComponentPage
 
 
 view : Model -> Html Msg
-view ({ translate } as model) =
-    let
-        viewModel =
-            { title = "Component"
-            , description = """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat."""
-            , specs = [ "Spec 1", "Spec 2", "Spec 3" ]
-            , viewComponent = \_ -> div [] [ text "[Rendered Component]" ]
-            }
-    in
+view model =
     div
         [ class "button-page" ]
-        [ section []
-            [ h1
-                [ class "c-text-dark" ]
-                [ text viewModel.title ]
-            , p []
-                [ text viewModel.description ]
-            ]
-        , viewTechSpecs
-            viewModel.specs
-            (viewModel.viewComponent ())
-        , viewSection
-            { title = "Component Variation 1"
-            , dontList = [ "no, this is wrong", "dont use it" ]
-            , doList = [ "do this", "yes, it's correct" ]
-            }
+        [ ComponentPage.view (pageModel model) ]
+
+
+pageModel : Model -> ComponentPage.ViewModel Msg
+pageModel ({ translate } as model) =
+    { title = translate [] "buttons-page.title"
+    , description = translate [] "buttons-page.description"
+    , specsList = [ "Spec 1", "Spec 2", "Spec 3" ]
+    , viewComponent = \_ -> Html.button [] [ text "Button" ]
+    , sections = pageSections model
+    }
+
+
+pageSections : Model -> List (ComponentPage.SectionViewModel Msg)
+pageSections model =
+    [ { title = "Primary Button"
+      , dontList = [ "dont do 1", "dont do 2", "dont do 3" ]
+      , doList = [ "do 1", "do 2", "do 3" ]
+      , content =
             [ ComponentViewer.view
                 { isCodeVisible = model.isInspecting
                 , boxType = Box.Light
-                , example = """<div class="c-component-name is-light" />"""
+                , example = """<button></button>"""
                 , onTogglePreview = ToggleInspectMode
                 }
-                [ viewModel.viewComponent () ]
-            , ComponentViewer.view
-                { isCodeVisible = model.isInspecting
-                , boxType = Box.Dark
-                , example = """<div class="c-component-name is-dark" />"""
-                , onTogglePreview = ToggleInspectMode
-                }
-                []
-            , ComponentViewer.view
-                { isCodeVisible = model.isInspecting
-                , boxType = Box.Gradient
-                , example = """<div class="c-component-name is-gradient" />"""
-                , onTogglePreview = ToggleInspectMode
-                }
-                []
+                [ Html.button [] [ text "1" ]
+                , Html.button [] [ text "2" ]
+                , Html.button [] [ text "3" ]
+                ]
             ]
-        ]
-
-
-viewTechSpecs : List String -> Html Msg -> Html Msg
-viewTechSpecs specs component =
-    section [ class "flex-container" ]
-        [ div [ class "u-pos-center" ]
-            [ div
-                [ class "box u-pos-center", style "width" "100%" ]
-                [ component ]
-            ]
-        , div []
-            [ h5 [ class "c-text-dark" ]
-                [ text "SPECIFICHE TECNICHE" ]
-            , ul [] <|
-                List.map
-                    (\item -> li [] [ text item ])
-                    specs
-            ]
-        ]
-
-
-type alias SectionConfig =
-    { title : String
-    , dontList : List String
-    , doList : List String
-    }
-
-
-viewSection : SectionConfig -> List (Html Msg) -> Html Msg
-viewSection config content =
-    section []
-        [ h2 [] [ text config.title ]
-        , div
-            []
-            content
-        , div
-            [ class "flex-container" ]
-            [ viewSuggestions
-                { label = "Don't"
-                , isRecommended = False
-                , items = config.dontList
-                }
-            , viewSuggestions
-                { label = "Do"
-                , isRecommended = True
-                , items = config.doList
-                }
-            ]
-        ]
-
-
-type alias SuggestionsConfig =
-    { label : String
-    , isRecommended : Bool
-    , items : List String
-    }
-
-
-viewSuggestions : SuggestionsConfig -> Html Msg
-viewSuggestions { label, isRecommended, items } =
-    div
-        [ class "suggestions-list"
-        , classList
-            [ ( "suggestions-list--do", isRecommended )
-            , ( "suggestions-list--dont", not isRecommended )
-            ]
-        ]
-        [ div [ class "suggestions-list__header" ]
-            [ div [ class "suggestions-list__label" ]
-                [ text label ]
-            , div [ class "suggestions-list__separator" ] []
-            ]
-        , ul [] <| List.map (\item -> li [] [ text item ]) items
-        ]
+      }
+    ]

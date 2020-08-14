@@ -1,0 +1,15 @@
+.component-viewer {
+  display: flex;
+  flex-direction: row;
+}
+
+.component-viewer__description {
+  flex-grow: 0;
+}
+
+.component-viewer__container {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-around;
+}
