@@ -38,26 +38,25 @@ navbar:
       - Icons
 
 home:
-  section-0:
+  header:
     content: >-
       Pyxis is Prima.it's design system. It is a set of tools, rules and
       guidelines to help design, develop and tell our brand.
       A unique resource to work in sync and to help improve our customers' experience.
-  section-1:
+  intro:
     title: Design, develop, tell
     content: With Pyxis you have everything you need to simplify your work
-  section-2:
-    boxes:
-      - title: Design
-        content: Explore documentation and references to develop in the best way.
-        button: Explore
-      - title: Develop
-        content: Search for components and solutions to work in complete autonomy.
-        button: Search
-      - title: Brand
-        content: Discover materials and guidelines to tell our brand.
-        button: Discover
-  section-3:
+  nav-boxes:
+    - title: Design
+      content: Explore documentation and references to develop in the best way.
+      button: Explore
+    - title: Develop
+      content: Search for components and solutions to work in complete autonomy.
+      button: Search
+    - title: Brand
+      content: Discover materials and guidelines to tell our brand.
+      button: Discover
+  section-1:
     title: Faster, safer, more coherent
     content: >-
       A design system is not just a bunch of limits and conditions:
@@ -70,7 +69,7 @@ home:
         content: Speed up the work and helps concentrating only on the important things.
       - title: Global Culture
         content: Creates and spreads knowledge, for all and at every level.
-  section-4:
+  section-2:
     title: What we do, we do it together
     content: >-
       Pyxis is the only source of assets and documentation for all design's
@@ -83,7 +82,7 @@ home:
         content: It's made of solutions taylored to every business' solution.
       - title: Original
         content: It's innovative for it's field and it's not afraid to anticipate the competition
-  section-5:
+  footer:
     title: >-
       Design and business' needs are consequence of each other, and coherence
       between the two is part of a clear strategy

@@ -20,35 +20,35 @@ view ({ translate } as model) =
                             [ src "public/images/home/logo-pyxis-grey.svg", style "width" "150px" ]
                             []
                         ]
-                    , p [] [ text <| translate [] "home.section-0.content" ]
+                    , p [] [ text <| translate [] "home.header.content" ]
                     ]
                 , img [ class "main-box__image", src "public/images/home/isometric-logo.svg" ] []
                 ]
             ]
         , section []
-            [ h2 [ class "c-text-dark" ] [ text <| translate [] "home.section-1.title" ]
-            , p [] [ text <| translate [] "home.section-1.content" ]
+            [ h2 [ class "c-text-dark" ] [ text <| translate [] "home.intro.title" ]
+            , p [] [ text <| translate [] "home.intro.content" ]
             ]
         , section [ class "flex-container" ]
             [ viewNavBox
                 { icon = "public/images/home/icon-brush.svg"
-                , title = translate [] "home.section-2.boxes.0.title"
-                , description = translate [] "home.section-2.boxes.0.content"
-                , linkText = translate [] "home.section-2.boxes.0.button"
+                , title = translate [] "home.nav-boxes.0.title"
+                , description = translate [] "home.nav-boxes.0.content"
+                , linkText = translate [] "home.nav-boxes.0.button"
                 , linkTo = Nothing
                 }
             , viewNavBox
                 { icon = "public/images/home/icon-development.svg"
-                , title = translate [] "home.section-2.boxes.1.title"
-                , description = translate [] "home.section-2.boxes.1.content"
-                , linkText = translate [] "home.section-2.boxes.1.button"
+                , title = translate [] "home.nav-boxes.1.title"
+                , description = translate [] "home.nav-boxes.1.content"
+                , linkText = translate [] "home.nav-boxes.1.button"
                 , linkTo = Nothing
                 }
             , viewNavBox
                 { icon = "public/images/home/icon-player.svg"
-                , title = translate [] "home.section-2.boxes.2.title"
-                , description = translate [] "home.section-2.boxes.2.content"
-                , linkText = translate [] "home.section-2.boxes.2.button"
+                , title = translate [] "home.nav-boxes.2.title"
+                , description = translate [] "home.nav-boxes.2.content"
+                , linkText = translate [] "home.nav-boxes.2.button"
                 , linkTo = Nothing
                 }
             ]
@@ -59,23 +59,23 @@ view ({ translate } as model) =
                         []
                     , span
                         []
-                        [ text <| translate [] "home.section-3.title" ]
+                        [ text <| translate [] "home.section-1.title" ]
                     ]
                 , p []
-                    [ text <| translate [] "home.section-3.content"
+                    [ text <| translate [] "home.section-1.content"
                     ]
                 , ul []
                     [ li []
-                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-3.list.0.title" ]
-                        , p [] [ text <| translate [] "home.section-3.list.0.content" ]
+                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-1.list.0.title" ]
+                        , p [] [ text <| translate [] "home.section-1.list.0.content" ]
                         ]
                     , li []
-                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-3.list.1.title" ]
-                        , p [] [ text <| translate [] "home.section-3.list.1.content" ]
+                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-1.list.1.title" ]
+                        , p [] [ text <| translate [] "home.section-1.list.1.content" ]
                         ]
                     , li []
-                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-3.list.2.title" ]
-                        , p [] [ text <| translate [] "home.section-3.list.2.content" ]
+                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-1.list.2.title" ]
+                        , p [] [ text <| translate [] "home.section-1.list.2.content" ]
                         ]
                     ]
                 ]
@@ -86,23 +86,23 @@ view ({ translate } as model) =
             [ div []
                 [ h2 [ class "c-text-dark" ]
                     [ img [ class "mq-desktop-hidden", src "public/images/home/illustration-2-mobile.svg" ] []
-                    , span [] [ text <| translate [] "home.section-4.title" ]
+                    , span [] [ text <| translate [] "home.section-2.title" ]
                     ]
                 , p []
-                    [ text <| translate [] "home.section-4.content"
+                    [ text <| translate [] "home.section-2.content"
                     ]
                 , ul []
                     [ li []
-                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-4.list.0.title" ]
-                        , p [] [ text <| translate [] "home.section-4.list.0.content" ]
+                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-2.list.0.title" ]
+                        , p [] [ text <| translate [] "home.section-2.list.0.content" ]
                         ]
                     , li []
-                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-4.list.1.title" ]
-                        , p [] [ text <| translate [] "home.section-4.list.1.content" ]
+                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-2.list.1.title" ]
+                        , p [] [ text <| translate [] "home.section-2.list.1.content" ]
                         ]
                     , li []
-                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-4.list.2.title" ]
-                        , p [] [ text <| translate [] "home.section-4.list.2.content" ]
+                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-2.list.2.title" ]
+                        , p [] [ text <| translate [] "home.section-2.list.2.content" ]
                         ]
                     ]
                 ]
@@ -112,9 +112,9 @@ view ({ translate } as model) =
         , section []
             [ div [ class "footer-box" ]
                 [ div [ class "footer-box__content" ]
-                    [ div [ class "footer-box__title" ] [ text <| translate [] "home.section-5.title" ]
+                    [ div [ class "footer-box__title" ] [ text <| translate [] "home.footer.title" ]
                     , p []
-                        [ text <| translate [] "home.section-5.content"
+                        [ text <| translate [] "home.footer.content"
                         ]
                     ]
                 , img [ class "footer-box__image", src "public/images/home/home-prima-mockup.png", alt "" ] []

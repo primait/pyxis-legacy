@@ -38,27 +38,26 @@ navbar:
       - Icone
 
 home:
-  section-0:
+  header:
     content: >-
       Pyxis è il Design System di Prima.it. Una raccolta di strumenti, regole e
       linee guida per progettare, sviluppare e raccontare il nostro brand.
       Una risorsa unica per lavorare in sintonia e migliorare l'esperienza
       di utenti e clienti.
-  section-1:
+  intro:
     title: Progetta, sviluppa, racconta
     content: Con Pyxis hai tutto quello che ti serve per semplificare il tuo lavoro
-  section-2:
-    boxes:
-      - title: Design
-        content: Esplora documentazione e reference per progettare al meglio.
-        button: Esplora
-      - title: Sviluppo
-        content: Ricerca componenti e soluzioni per lavorare in completa autonomia.
-        button: Ricerca
-      - title: Brand
-        content: Scopri materiali e guideline per raccontare il nostro brand.
-        button: Scopri
-  section-3:
+  nav-boxes:
+    - title: Design
+      content: Esplora documentazione e reference per progettare al meglio.
+      button: Esplora
+    - title: Sviluppo
+      content: Ricerca componenti e soluzioni per lavorare in completa autonomia.
+      button: Ricerca
+    - title: Brand
+      content: Scopri materiali e guideline per raccontare il nostro brand.
+      button: Scopri
+  section-1:
     title: Più veloce, più sicuro, più coerente
     content: >-
       Un design system non è una zavorra di vincoli e
@@ -71,7 +70,7 @@ home:
         content: Velocizza il lavoro e aiuta a concentrarsi sugli aspetti importanti.
       - title: Cultura collettiva
         content: Genera e diffonde conoscenza, per tutti e a tutti i livelli.
-  section-4:
+  section-2:
     title: Quello che facciamo, lo facciamo insieme
     content: >-
       Pyxis è l’unica fonte di risorse e documentazione per tutti i processi
@@ -84,7 +83,7 @@ home:
         content: È composto da soluzioni adattabili a ogni esigenza di business.
       - title: Originale
         content: È innovativo per il suo settore e non teme di anticipare la concorrenza.
-  section-5:
+  footer:
     title: >-
       Design e necessità di business sono conseguenza uno dell’altra,
       perché la coerenza tra loro è parte di una precisa strategia.
