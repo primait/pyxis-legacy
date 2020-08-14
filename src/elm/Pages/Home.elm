@@ -1,7 +1,7 @@
 module Pages.Home exposing (view)
 
 import Html exposing (Html, a, div, h1, h2, h6, img, li, p, section, span, text, ul)
-import Html.Attributes as Attr exposing (alt, class, src, style)
+import Html.Attributes as Attr exposing (alt, class, classList, src, style)
 import Html.Events exposing (onClick)
 import Model exposing (Model, Msg(..))
 import Prima.Pyxis.Button as PyxisButton
@@ -12,113 +12,149 @@ view : Model -> Html Msg
 view ({ translate } as model) =
     div
         [ class "home-page" ]
-        [ section []
-            [ div [ class "main-box" ]
-                [ div [ class "main-box__content" ]
-                    [ div [ class "mq-mobile-hidden" ]
-                        [ img
-                            [ src "public/images/home/logo-pyxis-grey.svg", style "width" "150px" ]
-                            []
-                        ]
-                    , p [] [ text <| translate [] "home.header.content" ]
-                    ]
-                , img [ class "main-box__image", src "public/images/home/isometric-logo.svg" ] []
-                ]
-            ]
+        [ viewHeader model
         , section []
             [ h2 [ class "c-text-dark" ] [ text <| translate [] "home.intro.title" ]
             , p [] [ text <| translate [] "home.intro.content" ]
             ]
-        , section [ class "flex-container" ]
-            [ viewNavBox
-                { icon = "public/images/home/icon-brush.svg"
-                , title = translate [] "home.nav-boxes.0.title"
-                , description = translate [] "home.nav-boxes.0.content"
-                , linkText = translate [] "home.nav-boxes.0.button"
-                , linkTo = Nothing
-                }
-            , viewNavBox
-                { icon = "public/images/home/icon-development.svg"
-                , title = translate [] "home.nav-boxes.1.title"
-                , description = translate [] "home.nav-boxes.1.content"
-                , linkText = translate [] "home.nav-boxes.1.button"
-                , linkTo = Nothing
-                }
-            , viewNavBox
-                { icon = "public/images/home/icon-player.svg"
-                , title = translate [] "home.nav-boxes.2.title"
-                , description = translate [] "home.nav-boxes.2.content"
-                , linkText = translate [] "home.nav-boxes.2.button"
-                , linkTo = Nothing
-                }
-            ]
-        , section [ class "flex-container" ]
-            [ div []
-                [ h2 [ class "c-text-dark" ]
-                    [ img [ class "mq-desktop-hidden", src "public/images/home/illustration-2-mobile.svg" ]
+        , viewNavBoxesSection model
+        , viewSectionWithImage
+            { reversed = False
+            , titleText = translate [] "home.section-1.title"
+            , titleImage = "public/images/home/illustration-1-mobile.svg"
+            , paragraph = translate [] "home.section-1.content"
+            , image = "public/images/home/illustration-1.svg"
+            , items =
+                [ { title = translate [] "home.section-1.list.0.title"
+                  , content = translate [] "home.section-1.list.0.content"
+                  }
+                , { title = translate [] "home.section-1.list.1.title"
+                  , content = translate [] "home.section-1.list.1.content"
+                  }
+                , { title = translate [] "home.section-1.list.2.title"
+                  , content = translate [] "home.section-1.list.2.content"
+                  }
+                ]
+            }
+        , viewSectionWithImage
+            { reversed = True
+            , titleText = translate [] "home.section-2.title"
+            , titleImage = "public/images/home/illustration-2-mobile.svg"
+            , paragraph = translate [] "home.section-2.content"
+            , image = "public/images/home/illustration-2.svg"
+            , items =
+                [ { title = translate [] "home.section-2.list.0.title"
+                  , content = translate [] "home.section-2.list.0.content"
+                  }
+                , { title = translate [] "home.section-2.list.1.title"
+                  , content = translate [] "home.section-2.list.1.content"
+                  }
+                , { title = translate [] "home.section-2.list.2.title"
+                  , content = translate [] "home.section-2.list.2.content"
+                  }
+                ]
+            }
+        , viewFooter model
+        ]
+
+
+viewHeader : Model -> Html Msg
+viewHeader { translate } =
+    section []
+        [ div [ class "main-box" ]
+            [ div [ class "main-box__content" ]
+                [ div [ class "mq-mobile-hidden" ]
+                    [ img
+                        [ src "public/images/home/logo-pyxis-grey.svg", style "width" "150px" ]
                         []
-                    , span
-                        []
-                        [ text <| translate [] "home.section-1.title" ]
                     ]
-                , p []
-                    [ text <| translate [] "home.section-1.content"
-                    ]
-                , ul []
-                    [ li []
-                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-1.list.0.title" ]
-                        , p [] [ text <| translate [] "home.section-1.list.0.content" ]
-                        ]
-                    , li []
-                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-1.list.1.title" ]
-                        , p [] [ text <| translate [] "home.section-1.list.1.content" ]
-                        ]
-                    , li []
-                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-1.list.2.title" ]
-                        , p [] [ text <| translate [] "home.section-1.list.2.content" ]
-                        ]
-                    ]
+                , p [] [ text <| translate [] "home.header.content" ]
                 ]
-            , div [ class "u-pos-center mq-mobile-hidden" ]
-                [ img [ src "public/images/home/illustration-1.svg", alt "placeholder image" ] [] ]
+            , img [ class "main-box__image", src "public/images/home/isometric-logo.svg" ] []
             ]
-        , section [ class "flex-container flex-container--reversed" ]
-            [ div []
-                [ h2 [ class "c-text-dark" ]
-                    [ img [ class "mq-desktop-hidden", src "public/images/home/illustration-2-mobile.svg" ] []
-                    , span [] [ text <| translate [] "home.section-2.title" ]
-                    ]
-                , p []
-                    [ text <| translate [] "home.section-2.content"
-                    ]
-                , ul []
-                    [ li []
-                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-2.list.0.title" ]
-                        , p [] [ text <| translate [] "home.section-2.list.0.content" ]
-                        ]
-                    , li []
-                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-2.list.1.title" ]
-                        , p [] [ text <| translate [] "home.section-2.list.1.content" ]
-                        ]
-                    , li []
-                        [ h6 [ class "c-text-dark" ] [ text <| translate [] "home.section-2.list.2.title" ]
-                        , p [] [ text <| translate [] "home.section-2.list.2.content" ]
-                        ]
-                    ]
+        ]
+
+
+viewNavBoxesSection : Model -> Html Msg
+viewNavBoxesSection { translate } =
+    section [ class "flex-container" ]
+        [ viewNavBox
+            { icon = "public/images/home/icon-brush.svg"
+            , title = translate [] "home.nav-boxes.0.title"
+            , description = translate [] "home.nav-boxes.0.content"
+            , linkText = translate [] "home.nav-boxes.0.button"
+            , linkTo = Nothing
+            }
+        , viewNavBox
+            { icon = "public/images/home/icon-development.svg"
+            , title = translate [] "home.nav-boxes.1.title"
+            , description = translate [] "home.nav-boxes.1.content"
+            , linkText = translate [] "home.nav-boxes.1.button"
+            , linkTo = Nothing
+            }
+        , viewNavBox
+            { icon = "public/images/home/icon-player.svg"
+            , title = translate [] "home.nav-boxes.2.title"
+            , description = translate [] "home.nav-boxes.2.content"
+            , linkText = translate [] "home.nav-boxes.2.button"
+            , linkTo = Nothing
+            }
+        ]
+
+
+type alias SectionWithImageConfig =
+    { reversed : Bool
+    , titleText : String
+    , titleImage : String
+    , paragraph : String
+    , image : String
+    , items :
+        List
+            { title : String
+            , content : String
+            }
+    }
+
+
+viewSectionWithImage : SectionWithImageConfig -> Html Msg
+viewSectionWithImage config =
+    section
+        [ class "flex-container"
+        , classList [ ( "flex-container--reversed", config.reversed ) ]
+        ]
+        [ div []
+            [ h2 [ class "c-text-dark" ]
+                [ img [ class "mq-desktop-hidden", src config.titleImage ] []
+                , span [] [ text config.titleText ]
                 ]
-            , div [ class "u-pos-center mq-mobile-hidden" ]
-                [ img [ src "public/images/home/illustration-2.svg", alt "placeholder image 2" ] [] ]
+            , p []
+                [ text config.paragraph ]
+            , ul [] (List.map viewListItem config.items)
             ]
-        , section []
-            [ div [ class "footer-box" ]
-                [ div [ class "footer-box__content" ]
-                    [ div [ class "footer-box__title" ] [ text <| translate [] "home.footer.title" ]
-                    , p []
-                        [ text <| translate [] "home.footer.content"
-                        ]
+        , div [ class "u-pos-center mq-mobile-hidden" ]
+            [ img [ src config.image ] [] ]
+        ]
+
+
+viewListItem : { title : String, content : String } -> Html Msg
+viewListItem { title, content } =
+    div []
+        [ h6 [ class "c-text-dark" ] [ text title ]
+        , p [] [ text <| content ]
+        ]
+
+
+viewFooter : Model -> Html Msg
+viewFooter ({ translate } as model) =
+    section []
+        [ div [ class "footer-box" ]
+            [ div [ class "footer-box__content" ]
+                [ div [ class "footer-box__title" ] [ text <| translate [] "home.footer.title" ]
+                , p []
+                    [ text <| translate [] "home.footer.content"
                     ]
-                , img [ class "footer-box__image", src "public/images/home/home-prima-mockup.png", alt "" ] []
                 ]
+            , img [ class "footer-box__image", src "public/images/home/home-prima-mockup.png", alt "" ] []
             ]
         ]
 
