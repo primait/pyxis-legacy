@@ -9,13 +9,13 @@ type Msg
 
 
 type alias Model =
-    { t : Translator
+    { translate : Translator
     , isInspecting : Bool
     }
 
 
 initialModel : Translator -> Model
-initialModel t =
-    { t = t
+initialModel translate =
+    { translate = translate
     , isInspecting = False
     }

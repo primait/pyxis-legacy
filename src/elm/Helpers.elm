@@ -37,7 +37,7 @@ type alias Translator =
 
 i18nInit : List ( String, String ) -> Translator
 i18nInit list =
-    Dict.fromList list |> t
+    Dict.fromList list |> translate
 
 
 {-|
@@ -49,8 +49,8 @@ i18nInit list =
     with the values contained in the association list.
 
 -}
-t : Dict String String -> Translator
-t translations values key =
+translate : Dict String String -> Translator
+translate translations values key =
     let
         text =
             translations

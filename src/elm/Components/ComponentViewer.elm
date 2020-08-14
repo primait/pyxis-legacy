@@ -1,13 +1,12 @@
 module Components.ComponentViewer exposing (view)
 
-import Array exposing (Array)
+import Array
 import Commons.Box as Box
 import Commons.CodeViewer as CodeViewer
 import Commons.Tabs as Tabs
 import Html exposing (Html, div, text)
 import Html.Attributes exposing (class, style)
 import Html.Lazy exposing (lazy)
-import Prima.Pyxis.Accordion exposing (state)
 
 
 type alias ViewModel msg =

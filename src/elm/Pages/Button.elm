@@ -1,15 +1,14 @@
 module Pages.Button exposing (view)
 
-import Commons.Box as Box exposing (Type)
+import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
 import Html exposing (Html, div, h1, h2, h5, li, p, section, text, ul)
 import Html.Attributes exposing (class, classList, style)
-import Html.Lazy exposing (lazy)
 import Pages.Button.Model exposing (Model, Msg(..))
 
 
 view : Model -> Html Msg
-view ({ t } as model) =
+view ({ translate } as model) =
     let
         viewModel =
             { title = "Component"
