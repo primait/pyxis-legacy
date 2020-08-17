@@ -24,6 +24,7 @@
   justify-content: space-around;
 
   > * {
+    flex-basis: 100%;
     margin-bottom: 1.5rem;
 
     &:last-child {

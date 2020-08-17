@@ -35,6 +35,20 @@
     @extend .c-text-dark;
   }
 
+  .preview-box {
+    @extend .box;
+    @extend .u-pos-center;
+
+    height: 100%;
+    width: 100%;
+
+    > * {
+      /* required because some elements with flex-basis auto
+        stretch outside of the container element */
+      flex-basis: 100% !important; // stylelint-disable-line
+    }
+  }
+
 
   p {
     margin-bottom: 1em;

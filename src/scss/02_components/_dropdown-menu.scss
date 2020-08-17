@@ -22,19 +22,11 @@
 }
 
 .dropdown-menu__open-indicator {
+  @extend .accordion__toggle__icon;
   background: none;
   border: none;
-  border-radius: 100%;
-  color: color(brandAlt, base);
   flex-grow: 0;
-  font-size: 1.25em;
-  font-weight: 900;
-  height: 40px;
   outline: none;
-  text-align: center;
-  transform-origin: 50% 50%;
-  transition: .3s transform;
-  width: 40px;
 }
 
 .dropdown-menu__list {
@@ -44,7 +36,6 @@
 .dropdown-menu__list-item {
   color: color(text, base);
   font-size: 12px;
-  padding-left: 12px;
 }
 
 .dropdown-menu__link-wrapper {
@@ -74,10 +65,15 @@
 .dropdown-menu--open {
 
   > .dropdown-menu__list {
-    display: initial;
+    display: block;
+    padding: 12px;
   }
 
   > .dropdown-menu__toggler .dropdown-menu__open-indicator {
     transform: rotate(45deg);
   }
+}
+
+.dropdown-menu__list-item .dropdown-menu {
+  border-top: 0;
 }
