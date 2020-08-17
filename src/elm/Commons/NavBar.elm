@@ -115,7 +115,7 @@ navbarMenuItems { translate, navbarMenuState } =
                 , items =
                     [ MenuLink { label = "Tab", route = Just (Route.Component Route.Tab) }
                     , MenuLink { label = "Dropdown menu", route = Just (Route.Component Route.DropdownMenu) }
-                    , MenuLink { label = "Navigation elements", route = Just (Route.Component Route.Button) }
+                    , MenuLink { label = "Navigation elements", route = Just (Route.Component Route.NavigationElements) }
                     ]
                 }
             , DropdownMenu
