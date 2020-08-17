@@ -41,4 +41,9 @@
     margin-top: 0.5em;
   }
 
+  // this is required to avoid images breaking equally sized columns in flex containers
+  img {
+    max-width: 100%;
+  }
+
 }
