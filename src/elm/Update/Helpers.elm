@@ -1,6 +1,6 @@
 module Update.Helpers exposing (..)
 
-import Array
+import Dict
 import Model exposing (Model)
 import Pages.Accordion.Model as AccordionModel
 import Pages.Accordion.Update as AccordionUpdate
@@ -14,19 +14,13 @@ setMenuOpen open model =
     { model | isMenuOpen = open }
 
 
-setDropdownOpen : Int -> Bool -> Model -> Model
+setDropdownOpen : String -> Bool -> Model -> Model
 setDropdownOpen id open model =
     let
         updatedMenu =
-            Array.get id model.menuList
-                |> Maybe.map (\m -> { m | isOpen = open })
+            Dict.insert id open model.navbarMenuState
     in
-    case updatedMenu of
-        Just menu ->
-            { model | menuList = model.menuList |> Array.set id menu }
-
-        Nothing ->
-            model
+    { model | navbarMenuState = updatedMenu }
 
 
 setRoute : Maybe Route -> Model -> Model

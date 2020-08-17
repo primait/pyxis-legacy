@@ -1,11 +1,109 @@
 module Commons.NavBar exposing (view)
 
-import Array
+import Dict
 import Html exposing (Html, a, button, div, header, img, li, nav, span, text, ul)
 import Html.Attributes exposing (alt, class, classList, src)
 import Html.Events exposing (onClick)
-import Model exposing (DropdownMenu, MenuLink, Model, Msg(..))
+import Model exposing (Model, Msg(..))
 import Route exposing (Route(..), href)
+
+
+type NavBarItem
+    = DropdownMenu DropdownMenuConfig
+    | MenuLink MenuLinkConfig
+
+
+type alias DropdownMenuConfig =
+    { id : String
+    , label : String
+    , isOpen : Bool
+    , items : List NavBarItem
+    }
+
+
+type alias MenuLinkConfig =
+    { label : String
+    , route : Maybe Route
+    }
+
+
+type alias ViewModel =
+    List NavBarItem
+
+
+navbarMenuItems : Model -> ViewModel
+navbarMenuItems { translate, navbarMenuState } =
+    let
+        isMenuOpen id =
+            Maybe.withDefault False (Dict.get id navbarMenuState)
+    in
+    [ MenuLink { label = translate [] "navbar.welcome", route = Just Route.Homepage }
+    , MenuLink { label = translate [] "navbar.start", route = Nothing }
+    , DropdownMenu
+        { id = "style-menu"
+        , label = translate [] "navbar.style.title"
+        , isOpen = isMenuOpen "style-menu"
+        , items =
+            [ MenuLink { label = translate [] "navbar.style.sub-menu.0", route = Nothing }
+            , MenuLink { label = translate [] "navbar.style.sub-menu.1", route = Nothing }
+            , MenuLink { label = translate [] "navbar.style.sub-menu.2", route = Nothing }
+            , MenuLink { label = translate [] "navbar.style.sub-menu.3", route = Nothing }
+            , MenuLink { label = translate [] "navbar.style.sub-menu.4", route = Nothing }
+            ]
+        }
+    , DropdownMenu
+        { id = "content-menu"
+        , label = translate [] "navbar.content.title"
+        , isOpen = isMenuOpen "content-menu"
+        , items =
+            [ MenuLink { label = translate [] "navbar.content.sub-menu.0", route = Nothing }
+            , MenuLink { label = translate [] "navbar.content.sub-menu.1", route = Nothing }
+            ]
+        }
+    , DropdownMenu
+        { id = "patterns-menu"
+        , label = translate [] "navbar.patterns.title"
+        , isOpen = isMenuOpen "patterns-menu"
+        , items =
+            [ MenuLink { label = translate [] "navbar.patterns.sub-menu.0", route = Nothing }
+            , MenuLink { label = translate [] "navbar.patterns.sub-menu.1", route = Nothing }
+            , MenuLink { label = translate [] "navbar.patterns.sub-menu.2", route = Nothing }
+            ]
+        }
+    , DropdownMenu
+        { id = "components-menu"
+        , label = translate [] "navbar.components.title"
+        , isOpen = isMenuOpen "components-menu"
+        , items =
+            [ DropdownMenu
+                { id = "actions-menu"
+                , label = "Actions"
+                , isOpen = isMenuOpen "actions-menu"
+                , items =
+                    [ MenuLink { label = translate [] "navbar.components.accordion", route = Just Route.Accordion }
+                    , MenuLink { label = translate [] "navbar.components.button", route = Just Route.Button }
+                    , MenuLink { label = "...", route = Nothing }
+                    ]
+                }
+            , DropdownMenu
+                { id = ""
+                , label = "Input"
+                , isOpen = isMenuOpen ""
+                , items = [ MenuLink { label = "...", route = Nothing } ]
+                }
+            ]
+        }
+    , DropdownMenu
+        { id = "tools-menu"
+        , label = translate [] "navbar.tools.title"
+        , isOpen = isMenuOpen "tools-menu"
+        , items =
+            [ MenuLink { label = translate [] "navbar.tools.sub-menu.0", route = Nothing }
+            , MenuLink { label = translate [] "navbar.patterns.sub-menu.1", route = Nothing }
+            , MenuLink { label = translate [] "navbar.patterns.sub-menu.2", route = Nothing }
+            ]
+        }
+    ]
 
 
 view : Model -> Html Msg
@@ -32,11 +130,10 @@ view model =
             ]
         , div [ class "navbar__content" ]
             [ div []
-                (model.menuList
-                    |> Array.toIndexedList
+                (navbarMenuItems model
                     |> List.map
-                        (\( index, menu ) ->
-                            viewDropdownMenu ( index, menu ) model
+                        (\menu ->
+                            viewNavbarItem menu model
                         )
                 )
             ]
@@ -52,34 +149,45 @@ viewHamburgerIcon active =
         [ div [ class "hamburger-icon__line" ] [] ]
 
 
-viewDropdownMenu : ( Int, DropdownMenu ) -> Model -> Html Msg
-viewDropdownMenu ( id, menu ) model =
+viewNavbarItem : NavBarItem -> Model -> Html Msg
+viewNavbarItem item model =
+    case item of
+        DropdownMenu config ->
+            viewDropdownMenu config model
+
+        MenuLink config ->
+            viewMenuLink config model
+
+
+viewDropdownMenu : DropdownMenuConfig -> Model -> Html Msg
+viewDropdownMenu menu model =
     div
         [ class "dropdown-menu"
         , classList
             [ ( "dropdown-menu--open", menu.isOpen )
             ]
         ]
-        [ viewDropdownToggler ( id, menu ) model
+        [ viewDropdownToggler menu model
         , ul [ class "dropdown-menu__list" ] <|
             List.map
                 (\item ->
                     li
                         [ class "dropdown-menu__list-item"
                         ]
-                        [ viewMenuLink item model ]
+                        [ viewNavbarItem item model ]
                 )
                 menu.items
         ]
 
 
-viewDropdownToggler : ( Int, DropdownMenu ) -> Model -> Html Msg
-viewDropdownToggler ( id, menu ) model =
+viewDropdownToggler : DropdownMenuConfig -> Model -> Html Msg
+viewDropdownToggler menu _ =
     div
         [ class "dropdown-menu__toggler"
-        , onClick (ToggleDropDown id (not menu.isOpen))
+        , onClick (ToggleDropDown menu.id (not menu.isOpen))
         ]
-        [ div [ class "dropdown-menu__toggler-label" ] [ viewMenuLink menu.link model ]
+        [ div [ class "dropdown-menu__toggler-label" ]
+            [ span [] [ text menu.label ] ]
         , button
             [ class "dropdown-menu__open-indicator"
             , classList [ ( "visually-hidden", List.isEmpty menu.items ) ]
@@ -88,8 +196,8 @@ viewDropdownToggler ( id, menu ) model =
         ]
 
 
-viewMenuLink : MenuLink -> Model -> Html Msg
-viewMenuLink link { translate, currentRoute } =
+viewMenuLink : MenuLinkConfig -> Model -> Html Msg
+viewMenuLink link { currentRoute } =
     div [ class "dropdown-menu__link-wrapper" ]
         [ case link.route of
             Just route ->
@@ -98,9 +206,9 @@ viewMenuLink link { translate, currentRoute } =
                     , classList [ ( "dropdown-menu__link--active", route == currentRoute ) ]
                     , Route.href route
                     ]
-                    [ text <| translate [] link.label ]
+                    [ text link.label ]
 
             Nothing ->
                 span [ class "dropdown-menu__link" ]
-                    [ text <| translate [] link.label ]
+                    [ text link.label ]
         ]
