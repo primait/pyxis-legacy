@@ -7,9 +7,10 @@ import Html.Attributes exposing (class, classList, src)
 import Model exposing (Model, Msg(..))
 import Pages.Accordion as Accordion
 import Pages.Button as Button
+import Pages.Component as ComponentPage
 import Pages.Home as Home
 import Pages.NotFound as NotFound
-import Route exposing (ComponentRoute)
+import Route
 
 
 view : Model -> Document Msg
@@ -70,7 +71,15 @@ viewRouter model =
             Html.map ButtonMsg <| Button.view model.buttonModel
 
         Route.Component _ ->
-            div [] [ text "Page under construction" ]
+            div []
+                [ ComponentPage.view
+                    { title = "Component"
+                    , description = "Page under construction"
+                    , specsList = [ "..." ]
+                    , viewComponent = \_ -> text "<Preview>"
+                    , sections = []
+                    }
+                ]
 
         Route.NotFound ->
             NotFound.view
