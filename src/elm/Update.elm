@@ -31,10 +31,15 @@ update msg model =
                     model
                         |> H.withCmds [ Nav.load href ]
 
-        ChangeRoute route ->
-            model
-                |> UH.setRoute route
-                |> H.withoutCmds
+        ChangeRoute maybeRoute ->
+            case maybeRoute of
+                Nothing ->
+                    model |> H.withoutCmds
+
+                Just route ->
+                    model
+                        |> UH.setRoute route
+                        |> H.withoutCmds
 
         ToggleMenu value ->
             model

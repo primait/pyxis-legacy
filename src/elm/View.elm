@@ -9,7 +9,7 @@ import Pages.Accordion as Accordion
 import Pages.Button as Button
 import Pages.Home as Home
 import Pages.NotFound as NotFound
-import Route
+import Route exposing (ComponentRoute)
 
 
 view : Model -> Document Msg
@@ -63,11 +63,14 @@ viewRouter model =
         Route.Homepage ->
             Home.view model
 
-        Route.Accordion ->
+        Route.Component Route.Accordion ->
             Html.map AccordionMsg <| Accordion.view model.accordionModel
 
-        Route.Button ->
+        Route.Component Route.Button ->
             Html.map ButtonMsg <| Button.view model.buttonModel
+
+        Route.Component _ ->
+            div [] [ text "Page under construction" ]
 
         Route.NotFound ->
             NotFound.view

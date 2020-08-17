@@ -45,7 +45,7 @@ initialModel flags url key =
             H.i18nInit flags.translations
     in
     { key = key
-    , currentRoute = Maybe.withDefault Route.Homepage <| Route.fromUrl url
+    , currentRoute = Route.fromUrl url
     , language = flags.language
     , translate = translator
     , isMenuOpen = False

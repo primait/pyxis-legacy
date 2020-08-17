@@ -23,14 +23,9 @@ setDropdownOpen id open model =
     { model | navbarMenuState = updatedMenu }
 
 
-setRoute : Maybe Route -> Model -> Model
+setRoute : Route -> Model -> Model
 setRoute newRoute model =
-    case newRoute of
-        Nothing ->
-            model
-
-        Just route ->
-            { model | currentRoute = route }
+    { model | currentRoute = newRoute }
 
 
 dispatchAccordionSubMsg : AccordionModel.Msg -> Model -> Model

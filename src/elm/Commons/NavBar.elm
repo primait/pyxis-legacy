@@ -76,20 +76,62 @@ navbarMenuItems { translate, navbarMenuState } =
         , isOpen = isMenuOpen "components-menu"
         , items =
             [ DropdownMenu
-                { id = "actions-menu"
+                { id = "components-actions-menu"
                 , label = "Actions"
-                , isOpen = isMenuOpen "actions-menu"
+                , isOpen = isMenuOpen "components-actions-menu"
                 , items =
-                    [ MenuLink { label = translate [] "navbar.components.accordion", route = Just Route.Accordion }
-                    , MenuLink { label = translate [] "navbar.components.button", route = Just Route.Button }
-                    , MenuLink { label = "...", route = Nothing }
+                    [ MenuLink { label = translate [] "navbar.components.button", route = Just (Route.Component Route.Button) }
+                    , MenuLink { label = "Link", route = Just (Route.Component Route.Link) }
                     ]
                 }
             , DropdownMenu
-                { id = ""
+                { id = "components-input"
                 , label = "Input"
-                , isOpen = isMenuOpen ""
-                , items = [ MenuLink { label = "...", route = Nothing } ]
+                , isOpen = isMenuOpen "components-input"
+                , items =
+                    [ MenuLink { label = "Dropdown / Select", route = Just (Route.Component Route.Select) }
+                    , MenuLink { label = "Checkbox", route = Just (Route.Component Route.Checkbox) }
+                    , MenuLink { label = "Radio Button", route = Just (Route.Component Route.RadioButton) }
+                    , MenuLink { label = "Text field & Text area", route = Just (Route.Component Route.TextField) }
+                    , MenuLink { label = "Date field", route = Just (Route.Component Route.DateField) }
+                    , MenuLink { label = "Pill button", route = Just (Route.Component Route.PillButton) }
+                    , MenuLink { label = "Autocomplete", route = Just (Route.Component Route.Autocomplete) }
+                    ]
+                }
+            , DropdownMenu
+                { id = "components-feedback"
+                , label = "Feedback"
+                , isOpen = isMenuOpen "components-feedback"
+                , items =
+                    [ MenuLink { label = "Messages", route = Just (Route.Component Route.Message) }
+                    , MenuLink { label = "Tooltip", route = Just (Route.Component Route.Tooltip) }
+                    , MenuLink { label = "Loader", route = Just (Route.Component Route.Loader) }
+                    ]
+                }
+            , DropdownMenu
+                { id = "components-navigation"
+                , label = "Navigation"
+                , isOpen = isMenuOpen "components-navigation"
+                , items =
+                    [ MenuLink { label = "Tab", route = Just (Route.Component Route.Tab) }
+                    , MenuLink { label = "Dropdown menu", route = Just (Route.Component Route.DropdownMenu) }
+                    , MenuLink { label = "Navigation elements", route = Just (Route.Component Route.Button) }
+                    ]
+                }
+            , DropdownMenu
+                { id = "components-status"
+                , label = "Status"
+                , isOpen = isMenuOpen "components-status"
+                , items = [ MenuLink { label = "Badges", route = Just (Route.Component Route.Badge) } ]
+                }
+            , DropdownMenu
+                { id = "components-other"
+                , label = "Altro"
+                , isOpen = isMenuOpen "components-other"
+                , items =
+                    [ MenuLink { label = "Jumbotrons", route = Just (Route.Component Route.Jumbotron) }
+                    , MenuLink { label = "Accordions", route = Just (Route.Component Route.Accordion) }
+                    ]
                 }
             ]
         }
@@ -104,6 +146,10 @@ navbarMenuItems { translate, navbarMenuState } =
             ]
         }
     ]
+
+
+
+-- VIEW
 
 
 view : Model -> Html Msg
