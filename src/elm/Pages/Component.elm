@@ -61,7 +61,10 @@ viewTechSpecs specs component =
     section [ class "section flex-container" ]
         [ div [ class "u-pos-center" ]
             [ div
-                [ class "box u-pos-center", style "width" "100%" ]
+                [ class "box u-pos-center"
+                , style "width" "100%"
+                , style "height" "100%"
+                ]
                 [ component ]
             ]
         , div []
@@ -139,5 +142,11 @@ viewSuggestions { label, isRecommendation, items } =
                 [ text label ]
             , div [ class "suggestions-list__separator" ] []
             ]
-        , ul [] <| List.map (\item -> li [] [ text item ]) items
+        , ul [] <|
+            List.map
+                (\item ->
+                    li [ class "suggestions-list__item" ]
+                        [ text item ]
+                )
+                items
         ]

@@ -2,8 +2,9 @@ module Pages.Button exposing (view)
 
 import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
+import Helpers as H
 import Html exposing (Html, div, text)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (class, classList, style)
 import Pages.Button.Model exposing (Model, Msg(..))
 import Pages.Component as ComponentPage
 import Prima.Pyxis.Button as PyxisButton
@@ -20,7 +21,11 @@ pageModel : Model -> ComponentPage.ViewModel Msg
 pageModel ({ translate } as model) =
     { title = translate [] "buttons-page.title"
     , description = translate [] "buttons-page.description"
-    , specsList = [ "Font: uppercase", "Font family: Heavy", "Letter spacing: 1px" ]
+    , specsList =
+        [ "Font: uppercase"
+        , "Font family: Heavy"
+        , "Letter spacing: 1px"
+        ]
     , viewComponent = \_ -> buttonPreview
     , sections = pageSections model
     }
@@ -28,7 +33,7 @@ pageModel ({ translate } as model) =
 
 buttonPreview : Html msg
 buttonPreview =
-    PyxisButton.callOut "Large button" |> PyxisButton.render
+    PyxisButton.primary "Large button" |> PyxisButton.render
 
 
 pageSections : Model -> List (ComponentPage.SectionViewModel Msg)
@@ -38,7 +43,7 @@ pageSections model =
     , secondaryButtonSection
     , tertiaryButtonSection
     , buttonGroupSection
-    , buttonGroupCoverSection
+    , buttonGroupCoverFluidSection
     ]
 
 
@@ -142,8 +147,49 @@ tertiaryButtonSection =
         }
 
 
-buttonGroupCoverSection : ComponentPage.SectionViewModel Msg
-buttonGroupCoverSection =
+buttonGroupSection : ComponentPage.SectionViewModel Msg
+buttonGroupSection =
+    let
+        list =
+            [ ( "button-group", "" )
+            , ( "space-between", "justify-content-space-around" )
+            , ( "space-evenly", "justify-content-space-evenly" )
+            , ( "giustificato al centro", "justify-content-center" )
+            , ( "space-around", "justify-content-space-around" )
+            , ( "giustificato content-start", "justify-content-flex-start" )
+            , ( "giustificato content-end", "justify-content-flex-end" )
+            ]
+    in
+    { title = "ButtonGroup"
+    , suggestions = Nothing
+    , content =
+        List.map
+            (\( name, cssClass ) ->
+                ComponentViewer.view
+                    { isCodeVisible = False
+                    , boxType = Box.Light
+                    , example =
+                        """<div class="btn-group {{modifier}}">...</div>"""
+                            |> H.strFormat [ ( "modifier", cssClass ) ]
+                    , label = name
+                    , onTogglePreview = ToggleInspectMode
+                    }
+                    [ div
+                        [ classList [ ( "btn-group", True ), ( cssClass, True ) ]
+                        , style "width" "100%"
+                        ]
+                        [ buttonPreview
+                        , buttonPreview
+                        , buttonPreview
+                        ]
+                    ]
+            )
+            list
+    }
+
+
+buttonGroupCoverFluidSection : ComponentPage.SectionViewModel Msg
+buttonGroupCoverFluidSection =
     { title = "Button Group Cover Fluid"
     , suggestions =
         Just
@@ -165,7 +211,7 @@ buttonGroupCoverSection =
             , label = "Cover Fluid"
             , onTogglePreview = ToggleInspectMode
             }
-            [ text "TODO"
+            [ div [ class "btn-group btn-group--cover-fluid", style "width" "100%" ] [ buttonPreview ]
             ]
         , ComponentViewer.view
             { isCodeVisible = False
@@ -174,7 +220,8 @@ buttonGroupCoverSection =
             , label = "Group Cover Fluid"
             , onTogglePreview = ToggleInspectMode
             }
-            [ text "TODO"
+            [ div [ class "btn-group btn-group--cover-fluid", style "width" "100%" ]
+                [ buttonPreview, buttonPreview, buttonPreview ]
             ]
         ]
     }
@@ -234,36 +281,4 @@ buttonsShowcase { title, suggestions, normalButton, altButton } =
             , "tiny button" |> altButton |> PyxisButton.withTinySize |> PyxisButton.render
             ]
         ]
-    }
-
-
-buttonGroupSection : ComponentPage.SectionViewModel Msg
-buttonGroupSection =
-    let
-        list =
-            [ "button-group"
-            , "space-between"
-            , "space-evenly"
-            , "giustificato al centro"
-            , "space-around"
-            , "giustificato content-start"
-            , "giustificato content-end"
-            ]
-    in
-    { title = "ButtonGroup"
-    , suggestions = Nothing
-    , content =
-        List.map
-            (\name ->
-                ComponentViewer.view
-                    { isCodeVisible = False
-                    , boxType = Box.Light
-                    , example = """<button></button>"""
-                    , label = name
-                    , onTogglePreview = ToggleInspectMode
-                    }
-                    [ text "TODO"
-                    ]
-            )
-            list
     }

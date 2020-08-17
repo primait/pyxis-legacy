@@ -20,6 +20,10 @@
   height: 1px;
 }
 
+.suggestions-list__item {
+  margin: 1em;
+}
+
 .suggestions-list--do {
   .suggestions-list__header * {
     border-color: #21c7a7;

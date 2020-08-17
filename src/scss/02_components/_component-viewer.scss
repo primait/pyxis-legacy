@@ -1,8 +1,9 @@
 .component-viewer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   @include mqUp(small) {
+    flex-direction: row;
     padding: 16px;
   }
 }
@@ -18,6 +19,24 @@
 .component-viewer__container {
   align-items: center;
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
   justify-content: space-around;
+
+  > * {
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  @include mqUp(small) {
+    flex-direction: row;
+    margin: 0;
+
+    > * {
+      margin-bottom: 0;
+    }
+  }
 }
