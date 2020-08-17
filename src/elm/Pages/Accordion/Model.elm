@@ -7,23 +7,27 @@ module Pages.Accordion.Model exposing
     , toSlug
     )
 
+import Helpers exposing (Translator)
 import Prima.Pyxis.Accordion as Accordion
 
 
 type Msg
-    = Toggle String Bool
+    = NoOp
+    | Toggle String Bool
 
 
 type alias Model =
-    { accordionLight : Accordion.State
+    { translate : Translator
+    , accordionLight : Accordion.State
     , accordionBase : Accordion.State
     , accordionDark : Accordion.State
     }
 
 
-initialModel : Model
-initialModel =
-    { accordionLight = Accordion.close
+initialModel : Translator -> Model
+initialModel translate =
+    { translate = translate
+    , accordionLight = Accordion.close
     , accordionBase = Accordion.close
     , accordionDark = Accordion.close
     }

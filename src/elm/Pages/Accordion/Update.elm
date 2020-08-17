@@ -8,6 +8,10 @@ import Prima.Pyxis.Accordion as PyxisAccordion
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        NoOp ->
+            model
+                |> PH.withoutCmds
+
         Toggle slug isOpen ->
             model
                 |> updateAccordion slug isOpen

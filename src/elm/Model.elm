@@ -58,7 +58,7 @@ initialModel flags url key =
             , ( "nested-menu", False )
             , ( "tools-menu", False )
             ]
-    , accordionModel = Accordion.initialModel
+    , accordionModel = Accordion.initialModel translator
     , buttonModel = Button.initialModel translator
     }
 

@@ -100,3 +100,10 @@ buttons-page:
     dark sono visibili correttamente solo su un background scuro. Quando è
     necessario impilare più bottoni in uno stesso contenuto è opportuno
     utilizzare la classe m-btnGroup e le sue varianti.
+
+accordion-page:
+  title: Accordion
+  description: >-
+    Un accordion è un elemento che offre una sezione con un titolo e un
+    corpo collassabile. Un accordion può essere singolo o contenuto
+    in un accordion group.

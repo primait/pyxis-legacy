@@ -61,9 +61,7 @@ viewTechSpecs specs component =
     section [ class "section flex-container" ]
         [ div [ class "u-pos-center" ]
             [ div
-                [ class "box u-pos-center"
-                , style "width" "100%"
-                , style "height" "100%"
+                [ class "preview-box"
                 ]
                 [ component ]
             ]
