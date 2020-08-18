@@ -8,6 +8,7 @@ import Html.Attributes exposing (class, classList, style)
 import Pages.Button.Model exposing (Model, Msg(..))
 import Pages.Component as ComponentPage
 import Prima.Pyxis.Button as PyxisButton
+import Prima.Pyxis.DownloadButton as PyxisDownloadButton
 
 
 view : Model -> Html Msg
@@ -42,6 +43,7 @@ pageSections model =
     , primaryButtonSection
     , secondaryButtonSection
     , tertiaryButtonSection
+    , downloadButtonSection
     , buttonGroupSection
     , buttonGroupCoverFluidSection
     ]
@@ -65,7 +67,7 @@ calloutButtonSection =
         [ ComponentViewer.view
             { isCodeVisible = False
             , boxType = Box.Light
-            , example = """<button></button>"""
+            , example = """TODO"""
             , label = "on light color"
             , onTogglePreview = ToggleInspectMode
             }
@@ -77,7 +79,7 @@ calloutButtonSection =
         , ComponentViewer.view
             { isCodeVisible = False
             , boxType = Box.Dark
-            , example = """<button></button>"""
+            , example = """TODO"""
             , label = "on dark color"
             , onTogglePreview = ToggleInspectMode
             }
@@ -147,6 +149,48 @@ tertiaryButtonSection =
         }
 
 
+downloadButtonPreview : Html msg
+downloadButtonPreview =
+    PyxisDownloadButton.download "Title" "Subtitle"
+        |> PyxisDownloadButton.render
+
+
+downloadButtonSection : ComponentPage.SectionViewModel Msg
+downloadButtonSection =
+    { title = "Download Button"
+    , suggestions = Nothing
+    , content =
+        [ ComponentViewer.view
+            { isCodeVisible = False
+            , boxType = Box.Light
+            , example = """TODO"""
+            , label = "on light color"
+            , onTogglePreview = ToggleInspectMode
+            }
+            [ downloadButtonPreview
+            ]
+        , ComponentViewer.view
+            { isCodeVisible = False
+            , boxType = Box.Dark
+            , example = """TODO"""
+            , label = "on dark color"
+            , onTogglePreview = ToggleInspectMode
+            }
+            [ downloadButtonPreview
+            ]
+        , ComponentViewer.view
+            { isCodeVisible = False
+            , boxType = Box.Gradient
+            , example = """TODO"""
+            , label = "on brand gradient"
+            , onTogglePreview = ToggleInspectMode
+            }
+            [ downloadButtonPreview
+            ]
+        ]
+    }
+
+
 buttonGroupSection : ComponentPage.SectionViewModel Msg
 buttonGroupSection =
     let
@@ -207,7 +251,7 @@ buttonGroupCoverFluidSection =
         [ ComponentViewer.view
             { isCodeVisible = False
             , boxType = Box.Light
-            , example = """<button></button>"""
+            , example = """TODO"""
             , label = "Cover Fluid"
             , onTogglePreview = ToggleInspectMode
             }
@@ -216,7 +260,7 @@ buttonGroupCoverFluidSection =
         , ComponentViewer.view
             { isCodeVisible = False
             , boxType = Box.Light
-            , example = """<button></button>"""
+            , example = """TODO"""
             , label = "Group Cover Fluid"
             , onTogglePreview = ToggleInspectMode
             }
@@ -247,7 +291,7 @@ buttonsShowcase { title, suggestions, normalButton, altButton } =
         [ ComponentViewer.view
             { isCodeVisible = False
             , boxType = Box.Light
-            , example = """<button></button>"""
+            , example = """TODO"""
             , label = "on light color"
             , onTogglePreview = ToggleInspectMode
             }
@@ -259,7 +303,7 @@ buttonsShowcase { title, suggestions, normalButton, altButton } =
         , ComponentViewer.view
             { isCodeVisible = False
             , boxType = Box.Dark
-            , example = """<button></button>"""
+            , example = """TODO"""
             , label = "on dark color"
             , onTogglePreview = ToggleInspectMode
             }
@@ -271,7 +315,7 @@ buttonsShowcase { title, suggestions, normalButton, altButton } =
         , ComponentViewer.view
             { isCodeVisible = False
             , boxType = Box.Gradient
-            , example = """<button></button>"""
+            , example = """TODO"""
             , label = "on brand gradient"
             , onTogglePreview = ToggleInspectMode
             }
