@@ -1,0 +1,7 @@
+.accordion-page {
+  @extend %component-page;
+
+  .accordion {
+    flex-basis: 100% !important; // stylelint-disable-line
+  }
+}

@@ -3,6 +3,7 @@ module Pages.Accordion exposing (view)
 import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
 import Html exposing (Html, br, div, text)
+import Html.Attributes exposing (class)
 import Pages.Accordion.Model as M exposing (Accordion(..), Model, Msg)
 import Pages.Component as ComponentPage
 import Prima.Pyxis.Accordion as PyxisAccordion
@@ -10,7 +11,7 @@ import Prima.Pyxis.Accordion as PyxisAccordion
 
 view : Model -> Html Msg
 view ({ translate } as model) =
-    div []
+    div [ class "accordion-page" ]
         [ ComponentPage.view
             { title = translate [] "accordion-page.title"
             , description = translate [] "accordion-page.description"

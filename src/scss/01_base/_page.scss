@@ -41,12 +41,6 @@
 
     height: 100%;
     width: 100%;
-
-    > * {
-      /* required because some elements with flex-basis auto
-        stretch outside of the container element */
-      flex-basis: 100% !important; // stylelint-disable-line
-    }
   }
 
 
