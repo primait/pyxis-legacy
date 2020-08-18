@@ -73,44 +73,32 @@ routeToPieces page =
 
 type ComponentRoute
     = Accordion
-    | Autocomplete
-    | Badge
+    | AtrTable
     | Button
-    | Checkbox
-    | DateField
-    | DropdownMenu
-    | Jumbotron
+    | Container
+    | Form
     | Link
+    | ListChooser
     | Loader
     | Message
-    | NavigationElements
-    | PillButton
-    | RadioButton
-    | Select
-    | Tab
-    | TextField
+    | Modal
+    | Table
     | Tooltip
 
 
 componentRoutes : List (Parser (ComponentRoute -> a) a)
 componentRoutes =
     [ Url.Parser.map Accordion (s "accordion")
-    , Url.Parser.map Autocomplete (s "autocomplete")
-    , Url.Parser.map Badge (s "badge")
+    , Url.Parser.map AtrTable (s "atr-table")
     , Url.Parser.map Button (s "button")
-    , Url.Parser.map Checkbox (s "checkbox")
-    , Url.Parser.map DateField (s "date-field")
-    , Url.Parser.map DropdownMenu (s "dropdown-menu")
-    , Url.Parser.map Jumbotron (s "jumbotron")
+    , Url.Parser.map Container (s "container")
+    , Url.Parser.map Form (s "form")
     , Url.Parser.map Link (s "link")
+    , Url.Parser.map ListChooser (s "list-chooser")
     , Url.Parser.map Loader (s "loader")
     , Url.Parser.map Message (s "message")
-    , Url.Parser.map NavigationElements (s "nav-elements")
-    , Url.Parser.map PillButton (s "pill-button")
-    , Url.Parser.map RadioButton (s "radio-button")
-    , Url.Parser.map Select (s "select")
-    , Url.Parser.map Tab (s "tab")
-    , Url.Parser.map TextField (s "text-field")
+    , Url.Parser.map Modal (s "modal")
+    , Url.Parser.map Table (s "table")
     , Url.Parser.map Tooltip (s "tooltip")
     ]
 
@@ -121,29 +109,23 @@ componentToUrl route =
         Accordion ->
             "accordion"
 
-        Autocomplete ->
-            "autocomplete"
-
-        Badge ->
-            "badge"
+        AtrTable ->
+            "atr-table"
 
         Button ->
             "button"
 
-        Checkbox ->
-            "checkbox"
+        Container ->
+            "container"
 
-        DateField ->
-            "date-field"
-
-        DropdownMenu ->
-            "dropdown-menu"
-
-        Jumbotron ->
-            "jumbotron"
+        Form ->
+            "form"
 
         Link ->
             "link"
+
+        ListChooser ->
+            "list-chooser"
 
         Loader ->
             "loader"
@@ -151,23 +133,11 @@ componentToUrl route =
         Message ->
             "message"
 
-        NavigationElements ->
-            "nav-elements"
+        Modal ->
+            "modal"
 
-        PillButton ->
-            "pill-button"
-
-        RadioButton ->
-            "radio-button"
-
-        Select ->
-            "select"
-
-        Tab ->
-            "tab"
-
-        TextField ->
-            "text-field"
+        Table ->
+            "table"
 
         Tooltip ->
             "tooltip"

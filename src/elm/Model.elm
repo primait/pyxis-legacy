@@ -3,6 +3,7 @@ module Model exposing
     , Model
     , Msg(..)
     , initialModel
+    , isDropdownOpen
     )
 
 import Browser exposing (UrlRequest)
@@ -23,9 +24,21 @@ type Msg
     | ChangeRoute (Maybe Route)
     | ToggleMenu Bool
     | ToggleDropDown String Bool
-    | AccordionMsg Accordion.Msg
-    | ButtonMsg Button.Msg
-    | LoaderMsg LoaderPage.Msg
+      {-
+         COMPONENT PAGES
+      -}
+    | AccordionPageMsg Accordion.Msg
+    | AtrTablePageMsg
+    | ButtonPageMsg Button.Msg
+    | ContainerPage
+    | FormPageMsg
+    | LinkPageMsg
+    | ListChooserPageMsg
+    | LoaderPageMsg LoaderPage.Msg
+    | MessagePageMsg
+    | ModalPageMsg
+    | TablePageMsg
+    | TooltipPageMsg
 
 
 type alias Model =
@@ -65,6 +78,11 @@ initialModel flags url key =
     , buttonModel = Button.initialModel translator
     , loaderModel = LoaderPage.initialModel translator
     }
+
+
+isDropdownOpen : String -> Model -> Bool
+isDropdownOpen id model =
+    Maybe.withDefault False (Dict.get id model.navbarMenuState)
 
 
 type alias Flags =

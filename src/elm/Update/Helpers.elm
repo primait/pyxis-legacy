@@ -18,10 +18,14 @@ setMenuOpen open model =
 setDropdownOpen : String -> Bool -> Model -> Model
 setDropdownOpen id open model =
     let
-        updatedMenu =
-            Dict.insert id open model.navbarMenuState
+        updatedState =
+            if Dict.member id model.navbarMenuState then
+                Dict.insert id open model.navbarMenuState
+
+            else
+                model.navbarMenuState
     in
-    { model | navbarMenuState = updatedMenu }
+    { model | navbarMenuState = updatedState }
 
 
 setRoute : Route -> Model -> Model

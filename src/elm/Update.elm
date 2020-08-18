@@ -51,17 +51,21 @@ update msg model =
                 |> UH.setDropdownOpen id value
                 |> H.withoutCmds
 
-        AccordionMsg subMsg ->
+        AccordionPageMsg subMsg ->
             model
                 |> UH.dispatchAccordionSubMsg subMsg
                 |> H.withoutCmds
 
-        ButtonMsg subMsg ->
+        ButtonPageMsg subMsg ->
             model
                 |> UH.dispatchButtonSubMsg subMsg
                 |> H.withoutCmds
 
-        LoaderMsg submsg ->
+        LoaderPageMsg submsg ->
             model
                 |> UH.dispatchLoaderSubMsg submsg
+                |> H.withoutCmds
+
+        _ ->
+            model
                 |> H.withoutCmds
