@@ -9,7 +9,7 @@ import Html.Attributes exposing (class, style)
 import Html.Lazy exposing (lazy)
 
 
-type alias ViewModel msg =
+type alias ViewConfig msg =
     { isCodeVisible : Bool
     , boxType : Box.Type
     , label : String
@@ -18,7 +18,7 @@ type alias ViewModel msg =
     }
 
 
-view : ViewModel msg -> List (Html msg) -> Html msg
+view : ViewConfig msg -> List (Html msg) -> Html msg
 view { isCodeVisible, label, boxType, example, onTogglePreview } content =
     let
         activeTab =

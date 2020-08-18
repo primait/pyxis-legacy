@@ -50,11 +50,11 @@ view : Model -> Html Msg
 view model =
     div
         [ class "loader-page" ]
-        [ ComponentPage.view (pageModel model) ]
+        [ ComponentPage.view (pageConfig model) ]
 
 
-pageModel : Model -> ComponentPage.ViewModel Msg
-pageModel ({ translate } as model) =
+pageConfig : Model -> ComponentPage.ViewConfig Msg
+pageConfig ({ translate } as config) =
     { title = "Loader"
     , description = "..."
     , specsList =
@@ -70,7 +70,7 @@ componentPreview =
     loaderSpinnerMedium "Loading Text..."
 
 
-section : ComponentPage.SectionViewModel Msg
+section : ComponentPage.SectionViewConfig Msg
 section =
     { title = ""
     , suggestions = Nothing

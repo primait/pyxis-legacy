@@ -28,7 +28,7 @@ view ({ translate } as model) =
         ]
 
 
-singleAccordionSection : Model -> ComponentPage.SectionViewModel Msg
+singleAccordionSection : Model -> ComponentPage.SectionViewConfig Msg
 singleAccordionSection model =
     { title = "Single Accordion"
     , suggestions = Nothing

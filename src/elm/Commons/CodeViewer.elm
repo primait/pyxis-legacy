@@ -5,14 +5,14 @@ import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 
 
-type alias ViewModel =
+type alias ViewConfig =
     { code : String
     , copyButtonText : String
     , onCopyCode : String -> ()
     }
 
 
-view : ViewModel -> Html msg
+view : ViewConfig -> Html msg
 view { code, copyButtonText } =
     div [ class "code-viewer" ]
         [ div

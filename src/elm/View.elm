@@ -94,19 +94,19 @@ viewRouter model =
 
 
 navbarConfig : Model -> NavBar.ViewConfig Msg
-navbarConfig ({ translate } as model) =
-    { isOpen = model.isMenuOpen
-    , currentRoute = model.currentRoute
+navbarConfig ({ translate } as config) =
+    { isOpen = config.isMenuOpen
+    , currentRoute = config.currentRoute
     , onToggleMenu = Model.ToggleMenu
     , onToggleDropdown = Model.ToggleDropDown
     , menuList =
         [ MenuLink { label = translate [] "navbar.welcome", route = Just Route.Homepage }
         , MenuLink { label = translate [] "navbar.start", route = Nothing }
-        , styleDropdownMenu "style-menu" model
-        , contentDropdownMenu "content-menu" model
-        , patternsDropdownMenu "patterns-menu" model
-        , componentsDropdownMenu "components-menu" model
-        , toolsDropdownMenu "tools-menu" model
+        , styleDropdownMenu "style-menu" config
+        , contentDropdownMenu "content-menu" config
+        , patternsDropdownMenu "patterns-menu" config
+        , componentsDropdownMenu "components-menu" config
+        , toolsDropdownMenu "tools-menu" config
         ]
     }
 

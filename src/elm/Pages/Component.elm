@@ -1,4 +1,4 @@
-module Pages.Component exposing (SectionViewModel, Suggestions, ViewModel, view)
+module Pages.Component exposing (SectionViewConfig, Suggestions, ViewConfig, view)
 
 import Helpers as H
 import Html exposing (Html, div, h1, h2, h5, li, p, section, text, ul)
@@ -6,16 +6,16 @@ import Html.Attributes exposing (class, classList, style)
 import ViewHelpers as VH
 
 
-type alias ViewModel msg =
+type alias ViewConfig msg =
     { title : String
     , description : String
     , specsList : List String
     , viewComponent : () -> Html msg
-    , sections : List (SectionViewModel msg)
+    , sections : List (SectionViewConfig msg)
     }
 
 
-type alias SectionViewModel msg =
+type alias SectionViewConfig msg =
     { title : String
     , suggestions : Maybe Suggestions
     , content : List (Html msg)
@@ -28,30 +28,30 @@ type alias Suggestions =
     }
 
 
-view : ViewModel msg -> Html msg
-view model =
+view : ViewConfig msg -> Html msg
+view config =
     div
         [ class "component-page" ]
         [ section [ class "section" ]
             [ h1
                 [ class "c-text-dark" ]
-                [ text model.title ]
+                [ text config.title ]
             , p []
-                [ text model.description ]
+                [ text config.description ]
             ]
         , viewTechSpecs
-            model.specsList
-            (model.viewComponent ())
+            config.specsList
+            (config.viewComponent ())
         , div []
             (List.map
-                (\config ->
+                (\sectionConfig ->
                     viewSection
-                        { title = config.title
-                        , suggestions = config.suggestions
+                        { title = sectionConfig.title
+                        , suggestions = sectionConfig.suggestions
                         }
-                        config.content
+                        sectionConfig.content
                 )
-                model.sections
+                config.sections
             )
         ]
 

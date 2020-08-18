@@ -7,7 +7,7 @@ import Html.Events exposing (onClick)
 import ViewHelpers as VH
 
 
-type alias ViewModel msg =
+type alias ViewConfig msg =
     { active : Int
     , tabs :
         Array
@@ -18,7 +18,7 @@ type alias ViewModel msg =
     }
 
 
-view : ViewModel msg -> Html msg
+view : ViewConfig msg -> Html msg
 view { active, tabs, onTabClick } =
     let
         tabView =

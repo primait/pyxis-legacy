@@ -15,11 +15,11 @@ view : Model -> Html Msg
 view model =
     div
         [ class "button-page" ]
-        [ ComponentPage.view (pageModel model) ]
+        [ ComponentPage.view (pageConfig model) ]
 
 
-pageModel : Model -> ComponentPage.ViewModel Msg
-pageModel ({ translate } as model) =
+pageConfig : Model -> ComponentPage.ViewConfig Msg
+pageConfig ({ translate } as config) =
     { title = translate [] "buttons-page.title"
     , description = translate [] "buttons-page.description"
     , specsList =
@@ -28,7 +28,7 @@ pageModel ({ translate } as model) =
         , "Letter spacing: 1px"
         ]
     , viewComponent = \_ -> buttonPreview
-    , sections = pageSections model
+    , sections = pageSections config
     }
 
 
@@ -37,8 +37,8 @@ buttonPreview =
     PyxisButton.primary "Large button" |> PyxisButton.render
 
 
-pageSections : Model -> List (ComponentPage.SectionViewModel Msg)
-pageSections model =
+pageSections : Model -> List (ComponentPage.SectionViewConfig Msg)
+pageSections _ =
     [ calloutButtonSection
     , primaryButtonSection
     , secondaryButtonSection
@@ -49,7 +49,7 @@ pageSections model =
     ]
 
 
-calloutButtonSection : ComponentPage.SectionViewModel Msg
+calloutButtonSection : ComponentPage.SectionViewConfig Msg
 calloutButtonSection =
     { title = "Call out button"
     , suggestions =
@@ -92,7 +92,7 @@ calloutButtonSection =
     }
 
 
-primaryButtonSection : ComponentPage.SectionViewModel Msg
+primaryButtonSection : ComponentPage.SectionViewConfig Msg
 primaryButtonSection =
     buttonsShowcase
         { title = "Primary Button"
@@ -111,7 +111,7 @@ primaryButtonSection =
         }
 
 
-secondaryButtonSection : ComponentPage.SectionViewModel Msg
+secondaryButtonSection : ComponentPage.SectionViewConfig Msg
 secondaryButtonSection =
     buttonsShowcase
         { title = "Secondary Button"
@@ -130,7 +130,7 @@ secondaryButtonSection =
         }
 
 
-tertiaryButtonSection : ComponentPage.SectionViewModel Msg
+tertiaryButtonSection : ComponentPage.SectionViewConfig Msg
 tertiaryButtonSection =
     buttonsShowcase
         { title = "Tertiary Button"
@@ -155,7 +155,7 @@ downloadButtonPreview =
         |> PyxisDownloadButton.render
 
 
-downloadButtonSection : ComponentPage.SectionViewModel Msg
+downloadButtonSection : ComponentPage.SectionViewConfig Msg
 downloadButtonSection =
     { title = "Download Button"
     , suggestions = Nothing
@@ -191,7 +191,7 @@ downloadButtonSection =
     }
 
 
-buttonGroupSection : ComponentPage.SectionViewModel Msg
+buttonGroupSection : ComponentPage.SectionViewConfig Msg
 buttonGroupSection =
     let
         list =
@@ -232,7 +232,7 @@ buttonGroupSection =
     }
 
 
-buttonGroupCoverFluidSection : ComponentPage.SectionViewModel Msg
+buttonGroupCoverFluidSection : ComponentPage.SectionViewConfig Msg
 buttonGroupCoverFluidSection =
     { title = "Button Group Cover Fluid"
     , suggestions =
@@ -283,7 +283,7 @@ type alias ButtonShowCase =
     }
 
 
-buttonsShowcase : ButtonShowCase -> ComponentPage.SectionViewModel Msg
+buttonsShowcase : ButtonShowCase -> ComponentPage.SectionViewConfig Msg
 buttonsShowcase { title, suggestions, normalButton, altButton } =
     { title = title
     , suggestions = suggestions
