@@ -60,3 +60,8 @@ update msg model =
             model
                 |> UH.dispatchButtonSubMsg subMsg
                 |> H.withoutCmds
+
+        LoaderMsg submsg ->
+            model
+                |> UH.dispatchLoaderSubMsg submsg
+                |> H.withoutCmds

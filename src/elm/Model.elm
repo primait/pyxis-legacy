@@ -11,6 +11,7 @@ import Dict exposing (Dict)
 import Helpers as H
 import Pages.Accordion.Model as Accordion
 import Pages.Button.Model as Button
+import Pages.Loader as LoaderPage
 import Route exposing (Route)
 import Url exposing (Url)
 
@@ -24,6 +25,7 @@ type Msg
     | ToggleDropDown String Bool
     | AccordionMsg Accordion.Msg
     | ButtonMsg Button.Msg
+    | LoaderMsg LoaderPage.Msg
 
 
 type alias Model =
@@ -35,6 +37,7 @@ type alias Model =
     , navbarMenuState : Dict String Bool
     , accordionModel : Accordion.Model
     , buttonModel : Button.Model
+    , loaderModel : LoaderPage.Model
     }
 
 
@@ -60,6 +63,7 @@ initialModel flags url key =
             ]
     , accordionModel = Accordion.initialModel translator
     , buttonModel = Button.initialModel translator
+    , loaderModel = LoaderPage.initialModel translator
     }
 
 

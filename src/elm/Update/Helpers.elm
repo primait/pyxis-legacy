@@ -6,6 +6,7 @@ import Pages.Accordion.Model as AccordionModel
 import Pages.Accordion.Update as AccordionUpdate
 import Pages.Button.Model as ButtonModel
 import Pages.Button.Update as ButtonUpdate
+import Pages.Loader as LoaderPage
 import Route exposing (Route(..))
 
 
@@ -36,3 +37,8 @@ dispatchAccordionSubMsg msg model =
 dispatchButtonSubMsg : ButtonModel.Msg -> Model -> Model
 dispatchButtonSubMsg msg model =
     { model | buttonModel = Tuple.first <| ButtonUpdate.update msg model.buttonModel }
+
+
+dispatchLoaderSubMsg : LoaderPage.Msg -> Model -> Model
+dispatchLoaderSubMsg msg model =
+    { model | loaderModel = Tuple.first <| LoaderPage.update msg model.loaderModel }

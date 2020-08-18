@@ -9,6 +9,7 @@ import Pages.Accordion as Accordion
 import Pages.Button as Button
 import Pages.Component as ComponentPage
 import Pages.Home as Home
+import Pages.Loader as LoaderPage
 import Pages.NotFound as NotFound
 import Route
 
@@ -69,6 +70,9 @@ viewRouter model =
 
         Route.Component Route.Button ->
             Html.map ButtonMsg <| Button.view model.buttonModel
+
+        Route.Component Route.Loader ->
+            Html.map LoaderMsg <| LoaderPage.view model.loaderModel
 
         Route.Component _ ->
             div []
