@@ -1,5 +1,18 @@
 @import
   "component-page",
   "home-page",
-  "accordion-page",
-  "button-page";
+  "accordion-page";
+
+.button-page,
+.atr-table-page,
+.container-page,
+.form-page,
+.link-page,
+.list-chooser-page,
+.loader-page,
+.message-page,
+.modal-page,
+.table-page,
+.tooltip-page {
+  @extend %component-page;
+}

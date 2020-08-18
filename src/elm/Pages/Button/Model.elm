@@ -1,4 +1,4 @@
-module Pages.Button.Model exposing (Model, Msg(..), initialModel)
+module Pages.Button.Model exposing (Model, Msg(..), init)
 
 import Helpers exposing (Translator)
 
@@ -14,8 +14,8 @@ type alias Model =
     }
 
 
-initialModel : Translator -> Model
-initialModel translate =
+init : Translator -> Model
+init translate =
     { translate = translate
     , isInspecting = False
     }

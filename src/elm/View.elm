@@ -5,12 +5,21 @@ import Commons.NavBar as NavBar exposing (NavBarItem(..))
 import Html exposing (Html, div, footer, img, span, text)
 import Html.Attributes exposing (class, classList, src)
 import Model exposing (Model, Msg(..))
-import Pages.Accordion as AccordionPage
-import Pages.Button as ButtonPage
-import Pages.Component as ComponentPage
-import Pages.Home as Home
-import Pages.Loader as LoaderPage
-import Pages.NotFound as NotFound
+import Pages.Accordion
+import Pages.AtrTable
+import Pages.Button
+import Pages.Component
+import Pages.Container
+import Pages.Form
+import Pages.Home
+import Pages.Link
+import Pages.ListChooser
+import Pages.Loader
+import Pages.Message
+import Pages.Modal
+import Pages.NotFound
+import Pages.Table
+import Pages.Tooltip
 import Route
 
 
@@ -63,30 +72,53 @@ viewRouter : Model -> Html Msg
 viewRouter model =
     case model.currentRoute of
         Route.Homepage ->
-            Home.view model
+            Pages.Home.view model
 
-        Route.Component Route.Accordion ->
-            Html.map AccordionPageMsg <| AccordionPage.view model.accordionModel
-
-        Route.Component Route.Button ->
-            Html.map ButtonPageMsg <| ButtonPage.view model.buttonModel
-
-        Route.Component Route.Loader ->
-            Html.map LoaderPageMsg <| LoaderPage.view model.loaderModel
-
-        Route.Component _ ->
-            div []
-                [ ComponentPage.view
-                    { title = "Component"
-                    , description = "Page under construction"
-                    , specsList = [ "..." ]
-                    , viewComponent = \_ -> text "<Preview>"
-                    , sections = []
-                    }
-                ]
+        Route.Component subroute ->
+            viewComponentRouter subroute model
 
         Route.NotFound ->
-            NotFound.view
+            Pages.NotFound.view
+
+
+viewComponentRouter : Route.ComponentRoute -> Model -> Html Msg
+viewComponentRouter route model =
+    case route of
+        Route.Accordion ->
+            Html.map AccordionPageMsg <| Pages.Accordion.view model.accordionModel
+
+        Route.AtrTable ->
+            Html.map AtrTablePageMsg <| Pages.AtrTable.view model.atrTableModel
+
+        Route.Button ->
+            Html.map ButtonPageMsg <| Pages.Button.view model.buttonModel
+
+        Route.Container ->
+            Html.map ContainerPageMsg <| Pages.Container.view model.containerModel
+
+        Route.Form ->
+            Html.map FormPageMsg <| Pages.Form.view model.formModel
+
+        Route.Link ->
+            Html.map LinkPageMsg <| Pages.Link.view model.linkModel
+
+        Route.ListChooser ->
+            Html.map ListChooserPageMsg <| Pages.ListChooser.view model.listChooserModel
+
+        Route.Loader ->
+            Html.map LoaderPageMsg <| Pages.Loader.view model.loaderModel
+
+        Route.Message ->
+            Html.map MessagePageMsg <| Pages.Message.view model.messageModel
+
+        Route.Modal ->
+            Html.map ModalPageMsg <| Pages.Modal.view model.modalModel
+
+        Route.Table ->
+            Html.map TablePageMsg <| Pages.Table.view model.tableModel
+
+        Route.Tooltip ->
+            Html.map TooltipPageMsg <| Pages.Tooltip.view model.tooltipModel
 
 
 

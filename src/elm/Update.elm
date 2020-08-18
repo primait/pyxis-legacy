@@ -56,9 +56,29 @@ update msg model =
                 |> UH.dispatchAccordionSubMsg subMsg
                 |> H.withoutCmds
 
+        AtrTablePageMsg submsg ->
+            model
+                |> H.withoutCmds
+
         ButtonPageMsg subMsg ->
             model
                 |> UH.dispatchButtonSubMsg subMsg
+                |> H.withoutCmds
+
+        ContainerPageMsg submsg ->
+            model
+                |> H.withoutCmds
+
+        FormPageMsg submsg ->
+            model
+                |> H.withoutCmds
+
+        LinkPageMsg submsg ->
+            model
+                |> H.withoutCmds
+
+        ListChooserPageMsg submsg ->
+            model
                 |> H.withoutCmds
 
         LoaderPageMsg submsg ->
@@ -66,6 +86,18 @@ update msg model =
                 |> UH.dispatchLoaderSubMsg submsg
                 |> H.withoutCmds
 
-        _ ->
+        MessagePageMsg submsg ->
+            model
+                |> H.withoutCmds
+
+        ModalPageMsg submsg ->
+            model
+                |> H.withoutCmds
+
+        TablePageMsg submsg ->
+            model
+                |> H.withoutCmds
+
+        TooltipPageMsg submsg ->
             model
                 |> H.withoutCmds

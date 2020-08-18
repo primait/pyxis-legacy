@@ -1,4 +1,4 @@
-module Pages.Loader exposing (Model, Msg, initialModel, update, view)
+module Pages.Loader exposing (Model, Msg, init, update, view)
 
 import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
@@ -20,8 +20,8 @@ type alias Model =
     }
 
 
-initialModel : Translator -> Model
-initialModel translate =
+init : Translator -> Model
+init translate =
     { translate = translate
     , data = Dict.empty
     }

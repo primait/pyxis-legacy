@@ -3,7 +3,7 @@ module Pages.Accordion.Model exposing
     , Model
     , Msg(..)
     , fromSlug
-    , initialModel
+    , init
     , toSlug
     )
 
@@ -24,8 +24,8 @@ type alias Model =
     }
 
 
-initialModel : Translator -> Model
-initialModel translate =
+init : Translator -> Model
+init translate =
     { translate = translate
     , accordionLight = Accordion.close
     , accordionBase = Accordion.close
