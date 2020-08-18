@@ -1,5 +1,6 @@
 module Pages.Button.Update exposing (update)
 
+import Dict
 import Helpers as PH
 import Pages.Button.Model exposing (Model, Msg(..))
 
@@ -10,5 +11,5 @@ update msg model =
         NoOp ->
             model |> PH.withoutCmds
 
-        ToggleInspectMode newState ->
-            ( { model | isInspecting = newState }, Cmd.none )
+        ToggleInspectMode id newState ->
+            ( { model | isInspecting = Dict.insert id newState model.isInspecting }, Cmd.none )
