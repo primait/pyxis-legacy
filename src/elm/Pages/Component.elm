@@ -1,9 +1,39 @@
-module Pages.Component exposing (SectionViewConfig, Suggestions, ViewConfig, view)
+module Pages.Component exposing
+    ( SectionViewConfig
+    , Suggestions
+    , ViewConfig
+    , WithCodeInspectors
+    , isInspecting
+    , toggleInspect
+    , view
+    )
 
+import Dict exposing (Dict)
 import Helpers as H
 import Html exposing (Html, div, h1, h2, h5, li, p, section, text, ul)
 import Html.Attributes exposing (class, classList)
 import ViewHelpers as VH
+
+
+type alias WithCodeInspectors a =
+    { a
+        | inspectMode : Dict String Bool
+    }
+
+
+toggleInspect : String -> Bool -> WithCodeInspectors a -> WithCodeInspectors a
+toggleInspect id isActive model =
+    { model | inspectMode = Dict.insert id isActive model.inspectMode }
+
+
+isInspecting : String -> WithCodeInspectors a -> Bool
+isInspecting id { inspectMode } =
+    Dict.get id inspectMode
+        |> Maybe.withDefault False
+
+
+
+-- VIEW
 
 
 type alias ViewConfig msg =
