@@ -8,7 +8,6 @@ import Model exposing (Model, Msg(..))
 import Pages.Accordion
 import Pages.AtrTable
 import Pages.Button
-import Pages.Component
 import Pages.Container
 import Pages.Form
 import Pages.Home

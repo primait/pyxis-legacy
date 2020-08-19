@@ -2,35 +2,23 @@ module Pages.Loader exposing (Model, Msg, init, update, view)
 
 import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
-import Dict exposing (Dict)
-import Helpers exposing (Translator)
+import Dict
+import Helpers as H exposing (Translator, WithTranslator)
 import Html exposing (Html, div)
-import Html.Attributes exposing (class, classList)
-import Pages.Component as ComponentPage
+import Html.Attributes exposing (class)
+import Pages.Component as ComponentPage exposing (WithCodeInspectors)
 import Prima.Pyxis.Loader as PyxisLoader
 
 
-
--- MODEL
-
-
 type alias Model =
-    { translate : Translator
-    , inspectMode : Dict String Bool
-    }
+    WithCodeInspectors (WithTranslator {})
 
 
 init : Translator -> Model
 init translate =
-    { translate = translate
-    , inspectMode = Dict.empty
+    { inspectMode = Dict.empty
+    , translate = translate
     }
-
-
-isInspectModeActive : String -> Model -> Bool
-isInspectModeActive id model =
-    Dict.get id model.inspectMode
-        |> Maybe.withDefault False
 
 
 
@@ -46,16 +34,18 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NoOp ->
-            ( model, Cmd.none )
+            model
+                |> H.withoutCmds
 
-        ToggleInspect id isOpen ->
-            ( { model
-                | inspectMode =
-                    model.inspectMode
-                        |> Dict.insert id isOpen
-              }
-            , Cmd.none
-            )
+        ToggleInspect id isActive ->
+            model
+                |> ComponentPage.toggleInspect id isActive
+                |> H.withoutCmds
+
+
+isInspectModeActive : String -> Model -> Bool
+isInspectModeActive id model =
+    ComponentPage.isInspecting id model
 
 
 
@@ -70,7 +60,7 @@ view model =
 
 
 pageConfig : Model -> ComponentPage.ViewConfig Msg
-pageConfig ({ translate } as model) =
+pageConfig model =
     { title = "Loader"
     , description = ""
     , specs = Nothing

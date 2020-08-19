@@ -50,6 +50,12 @@ type alias Translator =
     List ( String, String ) -> String -> String
 
 
+type alias WithTranslator a =
+    { a
+        | translate : Translator
+    }
+
+
 i18nInit : List ( String, String ) -> Translator
 i18nInit list =
     Dict.fromList list |> translate

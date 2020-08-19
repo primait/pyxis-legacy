@@ -6,20 +6,21 @@ module Pages.Tooltip exposing
     , view
     )
 
-import Dict exposing (Dict)
+import Dict
 import Helpers as H
-import Html exposing (Html, div, text)
+import Html exposing (Html, div)
 import Html.Attributes exposing (class)
-import Pages.Component as ComponentPage
+import Pages.Component as ComponentPage exposing (WithCodeInspectors)
 
 
 type alias Model =
-    Dict String String
+    WithCodeInspectors {}
 
 
 init : Model
 init =
-    Dict.empty
+    { inspectMode = Dict.empty
+    }
 
 
 
@@ -28,6 +29,7 @@ init =
 
 type Msg
     = NoOp
+    | ToggleInspect String Bool
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -37,13 +39,18 @@ update msg model =
             model
                 |> H.withoutCmds
 
+        ToggleInspect id isActive ->
+            model
+                |> ComponentPage.toggleInspect id isActive
+                |> H.withoutCmds
+
 
 
 -- VIEW
 
 
 view : Model -> Html Msg
-view model =
+view _ =
     div [ class "tooltip-page" ]
         [ ComponentPage.view
             { title = "Tooltip"
