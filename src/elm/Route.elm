@@ -9,7 +9,6 @@ module Route exposing
 import Browser.Navigation as Nav
 import Html
 import Html.Attributes as Attr
-import Pages.Accordion.Model exposing (Accordion)
 import Url exposing (Url)
 import Url.Parser exposing ((</>), Parser, map, oneOf, parse, s)
 

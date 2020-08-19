@@ -1,46 +1,62 @@
 module Pages.Accordion.Model exposing
-    ( Accordion(..)
+    ( AccordionId(..)
     , Model
     , Msg(..)
-    , fromSlug
+    , getAccordionState
+    , idToString
     , init
-    , toSlug
+    , isInspecting
     )
 
+import Dict exposing (Dict)
 import Helpers exposing (Translator)
 import Prima.Pyxis.Accordion as Accordion
 
 
 type Msg
     = NoOp
-    | Toggle String Bool
+    | ToggleInspect String Bool
+    | ToggleAccordion String Bool
 
 
 type alias Model =
     { translate : Translator
-    , accordionLight : Accordion.State
-    , accordionBase : Accordion.State
-    , accordionDark : Accordion.State
+    , isInspecting : Dict String Bool
+    , accordionsState : Dict String Accordion.State
     }
 
 
 init : Translator -> Model
 init translate =
     { translate = translate
-    , accordionLight = Accordion.close
-    , accordionBase = Accordion.close
-    , accordionDark = Accordion.close
+    , isInspecting = Dict.empty
+    , accordionsState = Dict.empty
     }
 
 
-type Accordion
+getAccordionState : String -> Model -> Accordion.State
+getAccordionState id model =
+    Dict.get id model.accordionsState
+        |> Maybe.withDefault Accordion.close
+
+
+isInspecting : String -> Model -> Bool
+isInspecting id model =
+    Dict.get id model.isInspecting
+        |> Maybe.withDefault False
+
+
+type AccordionId
     = Light
     | Base
     | Dark
+    | LightGroup Int
+    | BaseGroup Int
+    | DarkGroup Int
 
 
-toSlug : Accordion -> String
-toSlug accordion =
+idToString : AccordionId -> String
+idToString accordion =
     case accordion of
         Light ->
             "accordion_light"
@@ -51,18 +67,11 @@ toSlug accordion =
         Dark ->
             "accordion_dark"
 
+        LightGroup index ->
+            "light-group-" ++ String.fromInt index
 
-fromSlug : String -> Maybe Accordion
-fromSlug str =
-    case str of
-        "accordion_light" ->
-            Just Light
+        BaseGroup index ->
+            "base-group-" ++ String.fromInt index
 
-        "accordion_base" ->
-            Just Base
-
-        "accordion_dark" ->
-            Just Dark
-
-        _ ->
-            Nothing
+        DarkGroup index ->
+            "dark-group" ++ String.fromInt index

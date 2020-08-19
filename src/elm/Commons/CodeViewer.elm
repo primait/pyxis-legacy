@@ -24,7 +24,7 @@ view { code, copyButtonText } =
                 ]
                 [ text copyButtonText ]
             ]
-        , div
+        , Html.code
             [ class "code-viewer__content" ]
             [ text code ]
         ]

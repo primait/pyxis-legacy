@@ -63,7 +63,9 @@ viewTechSpecs specs component =
             [ div
                 [ class "preview-box"
                 ]
-                [ component ]
+                [ component
+                , div [ class "preview-box__overlay" ] []
+                ]
             ]
         , div []
             [ h5 [ class "c-text-dark" ]

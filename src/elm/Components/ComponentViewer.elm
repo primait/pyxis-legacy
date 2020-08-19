@@ -10,16 +10,17 @@ import Html.Lazy exposing (lazy)
 
 
 type alias ViewConfig msg =
-    { isCodeVisible : Bool
+    { id : String
+    , isCodeVisible : Bool
     , boxType : Box.Type
     , label : String
     , example : String
-    , onTogglePreview : Bool -> msg
+    , onTogglePreview : String -> Bool -> msg
     }
 
 
 view : ViewConfig msg -> List (Html msg) -> Html msg
-view { isCodeVisible, label, boxType, example, onTogglePreview } content =
+view { id, isCodeVisible, label, boxType, example, onTogglePreview } content =
     let
         activeTab =
             stateToTabIndex isCodeVisible
@@ -35,7 +36,7 @@ view { isCodeVisible, label, boxType, example, onTogglePreview } content =
                   , view = lazy viewCodeViewer example
                   }
                 ]
-        , onTabClick = \int -> onTogglePreview (tabIndexToState int)
+        , onTabClick = \int -> onTogglePreview id (tabIndexToState int)
         }
 
 

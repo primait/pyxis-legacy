@@ -40,7 +40,9 @@
 
 .code-viewer__content {
   background-color: color(backgroundAlt, dark);
+  display: block;
   font-family: "Courier New", "Courier", monospace;
   font-size: 12px;
   padding: 1.5em 2em;
+  white-space: pre-wrap;
 }

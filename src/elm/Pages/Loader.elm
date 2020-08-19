@@ -17,6 +17,7 @@ import Prima.Pyxis.Loader as PyxisLoader
 type alias Model =
     { translate : Translator
     , data : Dict String String
+    , inspectMode : Dict String Bool
     }
 
 
@@ -24,6 +25,7 @@ init : Translator -> Model
 init translate =
     { translate = translate
     , data = Dict.empty
+    , inspectMode = Dict.empty
     }
 
 
@@ -33,6 +35,7 @@ init translate =
 
 type Msg
     = NoOp
+    | ToggleInspect String Bool
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -40,6 +43,15 @@ update msg model =
     case msg of
         NoOp ->
             ( model, Cmd.none )
+
+        ToggleInspect id isOpen ->
+            ( { model
+                | inspectMode =
+                    model.inspectMode
+                        |> Dict.insert id isOpen
+              }
+            , Cmd.none
+            )
 
 
 
@@ -76,29 +88,32 @@ section =
     , suggestions = Nothing
     , content =
         [ ComponentViewer.view
-            { isCodeVisible = False
+            { id = "loader-vehicle"
+            , isCodeVisible = False
             , boxType = Box.Light
             , example = """TODO"""
             , label = "loader vehicle"
-            , onTogglePreview = always NoOp
+            , onTogglePreview = ToggleInspect
             }
             [ loaderVehicle "Attendi. Stiamo caricando i tuoi dati..."
             ]
         , ComponentViewer.view
-            { isCodeVisible = False
+            { id = "spinner-small"
+            , isCodeVisible = False
             , boxType = Box.Light
             , example = """TODO"""
             , label = "spinner small"
-            , onTogglePreview = always NoOp
+            , onTogglePreview = ToggleInspect
             }
             [ loaderSpinnerSmall
             ]
         , ComponentViewer.view
-            { isCodeVisible = False
+            { id = "spinner-medium"
+            , isCodeVisible = False
             , boxType = Box.Light
             , example = """TODO"""
             , label = "spinner medium"
-            , onTogglePreview = always NoOp
+            , onTogglePreview = ToggleInspect
             }
             [ loaderSpinnerMedium "Attendi. Stiamo caricando i tuoi dati..."
             ]

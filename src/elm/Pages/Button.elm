@@ -65,11 +65,12 @@ calloutButtonSection model =
             }
     , content =
         [ ComponentViewer.view
-            { isCodeVisible = M.isInspecting "light-callout" model
+            { id = "light-callout"
+            , isCodeVisible = M.isInspecting "light-callout" model
             , boxType = Box.Light
             , example = """TODO"""
             , label = "on light color"
-            , onTogglePreview = ToggleInspectMode "light-callout"
+            , onTogglePreview = ToggleInspectMode
             }
             [ PyxisButton.callOut "Large button" |> PyxisButton.render
             , PyxisButton.callOut "Disable button" |> PyxisButton.withDisabled True |> PyxisButton.render
@@ -77,11 +78,12 @@ calloutButtonSection model =
             , Html.span [] [ text "(/) no tiny size" ]
             ]
         , ComponentViewer.view
-            { isCodeVisible = M.isInspecting "dark-callout" model
+            { id = "dark-callout"
+            , isCodeVisible = M.isInspecting "dark-callout" model
             , boxType = Box.Dark
             , example = """TODO"""
             , label = "on dark color"
-            , onTogglePreview = ToggleInspectMode "dark-callout"
+            , onTogglePreview = ToggleInspectMode
             }
             [ PyxisButton.callOut "Large button" |> PyxisButton.render
             , PyxisButton.callOut "Disable button" |> PyxisButton.withDisabled True |> PyxisButton.render
@@ -161,29 +163,32 @@ downloadButtonSection model =
     , suggestions = Nothing
     , content =
         [ ComponentViewer.view
-            { isCodeVisible = M.isInspecting "light-download" model
+            { id = "light-download"
+            , isCodeVisible = M.isInspecting "light-download" model
             , boxType = Box.Light
             , example = """TODO"""
             , label = "on light color"
-            , onTogglePreview = ToggleInspectMode "light-download"
+            , onTogglePreview = ToggleInspectMode
             }
             [ downloadButtonPreview
             ]
         , ComponentViewer.view
-            { isCodeVisible = M.isInspecting "dark-download" model
+            { id = "dark-download"
+            , isCodeVisible = M.isInspecting "dark-download" model
             , boxType = Box.Dark
             , example = """TODO"""
             , label = "on dark color"
-            , onTogglePreview = ToggleInspectMode "dark-download"
+            , onTogglePreview = ToggleInspectMode
             }
             [ downloadButtonPreview
             ]
         , ComponentViewer.view
-            { isCodeVisible = M.isInspecting "brand-download" model
+            { id = "brand-download"
+            , isCodeVisible = M.isInspecting "brand-download" model
             , boxType = Box.Gradient
             , example = """TODO"""
             , label = "on brand gradient"
-            , onTogglePreview = ToggleInspectMode "brand-download"
+            , onTogglePreview = ToggleInspectMode
             }
             [ downloadButtonPreview
             ]
@@ -210,13 +215,14 @@ buttonGroupSection model =
         List.map
             (\( name, cssClass ) ->
                 ComponentViewer.view
-                    { isCodeVisible = M.isInspecting (name ++ "brand-download") model
+                    { id = name ++ "-group"
+                    , isCodeVisible = M.isInspecting (name ++ "-group") model
                     , boxType = Box.Light
                     , example =
                         """<div class="btn-group {{modifier}}">...</div>"""
                             |> H.strFormat [ ( "modifier", cssClass ) ]
                     , label = name
-                    , onTogglePreview = ToggleInspectMode (name ++ "brand-download")
+                    , onTogglePreview = ToggleInspectMode
                     }
                     [ div
                         [ classList [ ( "btn-group", True ), ( cssClass, True ) ]
@@ -256,20 +262,22 @@ buttonGroupCoverFluidSection model =
             }
     , content =
         [ ComponentViewer.view
-            { isCodeVisible = M.isInspecting "cover-fluid" model
+            { id = "cover-fluid"
+            , isCodeVisible = M.isInspecting "cover-fluid" model
             , boxType = Box.Light
             , example = """TODO"""
             , label = "Cover Fluid"
-            , onTogglePreview = ToggleInspectMode "cover-fluid"
+            , onTogglePreview = ToggleInspectMode
             }
             [ div [ class "btn-group btn-group--cover-fluid", style "width" "100%" ] [ buttonPreview ]
             ]
         , ComponentViewer.view
-            { isCodeVisible = M.isInspecting "group-cover-fluid" model
+            { id = "group-cover-fluid"
+            , isCodeVisible = M.isInspecting "group-cover-fluid" model
             , boxType = Box.Light
             , example = """TODO"""
             , label = "Group Cover Fluid"
-            , onTogglePreview = ToggleInspectMode "group-cover-fluid"
+            , onTogglePreview = ToggleInspectMode
             }
             [ div [ class "btn-group btn-group--cover-fluid", style "width" "100%" ]
                 [ buttonPreview, buttonPreview, buttonPreview ]
@@ -296,11 +304,12 @@ buttonsShowcase model { title, suggestions, normalButton, altButton } =
     , suggestions = suggestions
     , content =
         [ ComponentViewer.view
-            { isCodeVisible = M.isInspecting (title ++ "light") model
+            { id = title ++ "light"
+            , isCodeVisible = M.isInspecting (title ++ "light") model
             , boxType = Box.Light
             , example = """TODO"""
             , label = "on light color"
-            , onTogglePreview = ToggleInspectMode (title ++ "light")
+            , onTogglePreview = ToggleInspectMode
             }
             [ "large button" |> normalButton |> PyxisButton.render
             , "disable button" |> normalButton |> PyxisButton.withDisabled True |> PyxisButton.render
@@ -308,11 +317,12 @@ buttonsShowcase model { title, suggestions, normalButton, altButton } =
             , "tiny button" |> normalButton |> PyxisButton.withTinySize |> PyxisButton.render
             ]
         , ComponentViewer.view
-            { isCodeVisible = M.isInspecting (title ++ "dark") model
+            { id = title ++ "dark"
+            , isCodeVisible = M.isInspecting (title ++ "dark") model
             , boxType = Box.Dark
             , example = """TODO"""
             , label = "on dark color"
-            , onTogglePreview = ToggleInspectMode (title ++ "dark")
+            , onTogglePreview = ToggleInspectMode
             }
             [ "large button" |> altButton |> PyxisButton.render
             , "disable button" |> altButton |> PyxisButton.withDisabled True |> PyxisButton.render
@@ -320,11 +330,12 @@ buttonsShowcase model { title, suggestions, normalButton, altButton } =
             , "tiny button" |> altButton |> PyxisButton.withTinySize |> PyxisButton.render
             ]
         , ComponentViewer.view
-            { isCodeVisible = M.isInspecting (title ++ "brand") model
+            { id = title ++ "brand"
+            , isCodeVisible = M.isInspecting (title ++ "brand") model
             , boxType = Box.Gradient
             , example = """TODO"""
             , label = "on brand gradient"
-            , onTogglePreview = ToggleInspectMode (title ++ "brand")
+            , onTogglePreview = ToggleInspectMode
             }
             [ "large button" |> altButton |> PyxisButton.render
             , "disable button" |> altButton |> PyxisButton.withDisabled True |> PyxisButton.render

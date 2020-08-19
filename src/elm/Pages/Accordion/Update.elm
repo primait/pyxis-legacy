@@ -1,7 +1,8 @@
 module Pages.Accordion.Update exposing (update)
 
+import Dict
 import Helpers as PH
-import Pages.Accordion.Model as M exposing (Accordion(..), Model, Msg(..))
+import Pages.Accordion.Model as M exposing (AccordionId(..), Model, Msg(..))
 import Prima.Pyxis.Accordion as PyxisAccordion
 
 
@@ -12,14 +13,24 @@ update msg model =
             model
                 |> PH.withoutCmds
 
-        Toggle slug isOpen ->
+        ToggleInspect id isOpen ->
             model
-                |> updateAccordion slug isOpen
+                |> updateCodeViewer id isOpen
+                |> PH.withoutCmds
+
+        ToggleAccordion id isOpen ->
+            model
+                |> updateAccordion id isOpen
                 |> PH.withoutCmds
 
 
+updateCodeViewer : String -> Bool -> Model -> Model
+updateCodeViewer id isOpen model =
+    { model | isInspecting = Dict.insert id isOpen model.isInspecting }
+
+
 updateAccordion : String -> Bool -> Model -> Model
-updateAccordion slug isOpen model =
+updateAccordion id isOpen model =
     let
         newState =
             if isOpen then
@@ -28,15 +39,8 @@ updateAccordion slug isOpen model =
             else
                 PyxisAccordion.open
     in
-    case M.fromSlug slug of
-        Just Light ->
-            { model | accordionLight = newState }
-
-        Just Base ->
-            { model | accordionBase = newState }
-
-        Just Dark ->
-            { model | accordionDark = newState }
-
-        _ ->
-            model
+    { model
+        | accordionsState =
+            model.accordionsState
+                |> Dict.insert id newState
+    }
