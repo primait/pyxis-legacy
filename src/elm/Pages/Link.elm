@@ -47,9 +47,8 @@ view model =
     div [ class "link-page" ]
         [ ComponentPage.view
             { title = "Link"
-            , description = "Page under construction"
-            , specsList = [ "..." ]
-            , viewComponent = \_ -> text "<Preview>"
+            , description = ""
+            , specs = Nothing
             , sections = []
             }
         ]

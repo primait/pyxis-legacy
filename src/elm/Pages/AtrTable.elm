@@ -48,8 +48,7 @@ view model =
         [ ComponentPage.view
             { title = "Atr-Table"
             , description = "Page under construction"
-            , specsList = [ "..." ]
-            , viewComponent = \_ -> text "<Preview>"
+            , specs = Nothing
             , sections = []
             }
         ]

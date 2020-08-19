@@ -2,15 +2,18 @@ module Pages.Component exposing (SectionViewConfig, Suggestions, ViewConfig, vie
 
 import Helpers as H
 import Html exposing (Html, div, h1, h2, h5, li, p, section, text, ul)
-import Html.Attributes exposing (class, classList, style)
+import Html.Attributes exposing (class, classList)
 import ViewHelpers as VH
 
 
 type alias ViewConfig msg =
     { title : String
     , description : String
-    , specsList : List String
-    , viewComponent : () -> Html msg
+    , specs :
+        Maybe
+            { list : List String
+            , viewComponent : Html msg
+            }
     , sections : List (SectionViewConfig msg)
     }
 
@@ -39,9 +42,12 @@ view config =
             , p []
                 [ text config.description ]
             ]
-        , viewTechSpecs
-            config.specsList
-            (config.viewComponent ())
+        , case config.specs of
+            Nothing ->
+                text ""
+
+            Just specs ->
+                viewTechSpecs specs.list specs.viewComponent
         , div []
             (List.map
                 (\sectionConfig ->
@@ -106,12 +112,12 @@ viewSection config content =
         , VH.viewIf hasSuggestions
             (div
                 [ class "flex-container" ]
-                [ viewSuggestions
+                [ viewSuggestionsList
                     { label = "Don't"
                     , isRecommendation = False
                     , items = dontList
                     }
-                , viewSuggestions
+                , viewSuggestionsList
                     { label = "Do"
                     , isRecommendation = True
                     , items = doList
@@ -128,8 +134,8 @@ type alias ViewSuggestionsListConfig =
     }
 
 
-viewSuggestions : ViewSuggestionsListConfig -> Html msg
-viewSuggestions { label, isRecommendation, items } =
+viewSuggestionsList : ViewSuggestionsListConfig -> Html msg
+viewSuggestionsList { label, isRecommendation, items } =
     div
         [ class "suggestions-list"
         , classList

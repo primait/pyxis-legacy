@@ -15,12 +15,15 @@ view ({ translate } as model) =
         [ ComponentPage.view
             { title = translate [] "accordion-page.title"
             , description = translate [] "accordion-page.description"
-            , specsList =
-                [ "Border: 1px solid"
-                , "Padding: 20px"
-                , "Icon: icon-info"
-                ]
-            , viewComponent = \_ -> exampleAccordion
+            , specs =
+                Just
+                    { list =
+                        [ "Border: 1px solid"
+                        , "Padding: 20px"
+                        , "Icon: icon-info"
+                        ]
+                    , viewComponent = exampleAccordion
+                    }
             , sections =
                 [ singleAccordionSection model
                 , accordionGroupSection model

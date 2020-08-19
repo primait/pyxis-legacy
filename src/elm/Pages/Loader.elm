@@ -16,7 +16,6 @@ import Prima.Pyxis.Loader as PyxisLoader
 
 type alias Model =
     { translate : Translator
-    , data : Dict String String
     , inspectMode : Dict String Bool
     }
 
@@ -24,9 +23,14 @@ type alias Model =
 init : Translator -> Model
 init translate =
     { translate = translate
-    , data = Dict.empty
     , inspectMode = Dict.empty
     }
+
+
+isInspectModeActive : String -> Model -> Bool
+isInspectModeActive id model =
+    Dict.get id model.inspectMode
+        |> Maybe.withDefault False
 
 
 
@@ -66,30 +70,22 @@ view model =
 
 
 pageConfig : Model -> ComponentPage.ViewConfig Msg
-pageConfig ({ translate } as config) =
+pageConfig ({ translate } as model) =
     { title = "Loader"
-    , description = "..."
-    , specsList =
-        [ "..."
-        ]
-    , viewComponent = \_ -> componentPreview
-    , sections = [ section ]
+    , description = ""
+    , specs = Nothing
+    , sections = [ mainSection model ]
     }
 
 
-componentPreview : Html Msg
-componentPreview =
-    loaderSpinnerMedium "Loading Text..."
-
-
-section : ComponentPage.SectionViewConfig Msg
-section =
+mainSection : Model -> ComponentPage.SectionViewConfig Msg
+mainSection model =
     { title = ""
     , suggestions = Nothing
     , content =
         [ ComponentViewer.view
             { id = "loader-vehicle"
-            , isCodeVisible = False
+            , isCodeVisible = isInspectModeActive "loader-vehicle" model
             , boxType = Box.Light
             , example = """TODO"""
             , label = "loader vehicle"
@@ -99,7 +95,7 @@ section =
             ]
         , ComponentViewer.view
             { id = "spinner-small"
-            , isCodeVisible = False
+            , isCodeVisible = isInspectModeActive "spinner-small" model
             , boxType = Box.Light
             , example = """TODO"""
             , label = "spinner small"
@@ -109,7 +105,7 @@ section =
             ]
         , ComponentViewer.view
             { id = "spinner-medium"
-            , isCodeVisible = False
+            , isCodeVisible = isInspectModeActive "spinner-medium" model
             , boxType = Box.Light
             , example = """TODO"""
             , label = "spinner medium"

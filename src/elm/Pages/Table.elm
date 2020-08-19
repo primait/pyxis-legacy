@@ -48,8 +48,7 @@ view model =
         [ ComponentPage.view
             { title = "Table"
             , description = "Page under construction"
-            , specsList = [ "..." ]
-            , viewComponent = \_ -> text "<Preview>"
+            , specs = Nothing
             , sections = []
             }
         ]

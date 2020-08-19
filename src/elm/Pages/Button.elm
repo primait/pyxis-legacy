@@ -22,12 +22,15 @@ pageConfig : Model -> ComponentPage.ViewConfig Msg
 pageConfig ({ translate } as config) =
     { title = translate [] "buttons-page.title"
     , description = translate [] "buttons-page.description"
-    , specsList =
-        [ "Font: uppercase"
-        , "Font family: Heavy"
-        , "Letter spacing: 1px"
-        ]
-    , viewComponent = \_ -> buttonPreview
+    , specs =
+        Just
+            { list =
+                [ "Font: uppercase"
+                , "Font family: Heavy"
+                , "Letter spacing: 1px"
+                ]
+            , viewComponent = buttonPreview
+            }
     , sections = pageSections config
     }
 
