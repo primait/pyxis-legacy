@@ -7,6 +7,8 @@ import YAML from "yaml";
 import { flatten } from "./utils"
 import { Elm } from './elm/Pyxis.elm'
 
+const defaultLocale = 'en';
+
 function buildI18nDict(text) {
     try {
         const parsedObject = YAML.parse(text)
@@ -31,18 +33,19 @@ async function fetchLocale(locale) {
 }
 
 async function initI18n() {
-    let lang = 'en';
+    let lang = defaultLocale;
+    let loadedText = defaultTranslations;
     const langMatch = location.href.match(/lang=(\w+)/);
 
-    if (!langMatch) {
-        return [lang, buildI18nDict(defaultTranslations)];
-    } else {
+    if (langMatch) {
         lang = langMatch[1];
     }
 
-    const loadedLocale = await fetchLocale(lang);
+    if (lang !== defaultLocale) {
+        loadedText = await fetchLocale(lang);
+    }
 
-    return [lang, buildI18nDict(loadedLocale)];
+    return [lang, buildI18nDict(loadedText)];
 }
 
 
