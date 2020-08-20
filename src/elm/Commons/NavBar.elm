@@ -117,11 +117,11 @@ viewDropdownToggler menu config =
         ]
         [ div [ class "dropdown-menu__toggler-label" ]
             [ span [] [ text menu.label ] ]
-        , button
+        , Html.i
             [ class "dropdown-menu__open-indicator"
             , classList [ ( "visually-hidden", List.isEmpty menu.items ) ]
             ]
-            [ text "+" ]
+            []
         ]
 
 
