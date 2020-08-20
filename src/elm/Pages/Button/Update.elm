@@ -12,4 +12,4 @@ update msg model =
             model |> PH.withoutCmds
 
         ToggleInspectMode id newState ->
-            ( { model | isInspecting = Dict.insert id newState model.isInspecting }, Cmd.none )
+            ( { model | inspectMode = Dict.insert id newState model.inspectMode }, Cmd.none )

@@ -26,7 +26,7 @@ update msg model =
 
 updateCodeViewer : String -> Bool -> Model -> Model
 updateCodeViewer id isOpen model =
-    { model | isInspecting = Dict.insert id isOpen model.isInspecting }
+    { model | inspectMode = Dict.insert id isOpen model.inspectMode }
 
 
 updateAccordion : String -> Bool -> Model -> Model

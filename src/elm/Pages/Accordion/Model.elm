@@ -9,7 +9,8 @@ module Pages.Accordion.Model exposing
     )
 
 import Dict exposing (Dict)
-import Helpers exposing (Translator)
+import Helpers exposing (Translator, WithTranslator)
+import Pages.Component exposing (WithCodeInspectors)
 import Prima.Pyxis.Accordion as Accordion
 
 
@@ -20,16 +21,17 @@ type Msg
 
 
 type alias Model =
-    { translate : Translator
-    , isInspecting : Dict String Bool
-    , accordionsState : Dict String Accordion.State
-    }
+    WithCodeInspectors
+        (WithTranslator
+            { accordionsState : Dict String Accordion.State
+            }
+        )
 
 
 init : Translator -> Model
 init translate =
     { translate = translate
-    , isInspecting = Dict.empty
+    , inspectMode = Dict.empty
     , accordionsState = Dict.empty
     }
 
@@ -42,7 +44,7 @@ getAccordionState id model =
 
 isInspecting : String -> Model -> Bool
 isInspecting id model =
-    Dict.get id model.isInspecting
+    Dict.get id model.inspectMode
         |> Maybe.withDefault False
 
 

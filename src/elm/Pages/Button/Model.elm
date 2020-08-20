@@ -1,7 +1,8 @@
 module Pages.Button.Model exposing (Model, Msg(..), init, isInspecting)
 
 import Dict exposing (Dict)
-import Helpers exposing (Translator)
+import Helpers exposing (Translator, WithTranslator)
+import Pages.Component exposing (WithCodeInspectors)
 
 
 type Msg
@@ -10,19 +11,17 @@ type Msg
 
 
 type alias Model =
-    { translate : Translator
-    , isInspecting : Dict String Bool
-    }
+    WithCodeInspectors (WithTranslator {})
 
 
 init : Translator -> Model
 init translate =
     { translate = translate
-    , isInspecting = Dict.empty
+    , inspectMode = Dict.empty
     }
 
 
 isInspecting : String -> Model -> Bool
 isInspecting id model =
-    Dict.get id model.isInspecting
+    Dict.get id model.inspectMode
         |> Maybe.withDefault False
