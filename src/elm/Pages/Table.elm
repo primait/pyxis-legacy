@@ -120,9 +120,9 @@ tableShowcase model { id, tableType, alternateRows } =
     ComponentViewer.view
         { id = id
         , isCodeVisible = ComponentPage.isInspecting id model
-        , boxType = Box.Gray
+        , boxType = Box.Base
         , example = """TODO"""
-        , label = ComponentViewer.boxTypeToLabel Box.Gray
+        , label = ComponentViewer.boxTypeToLabel Box.Base
         , onTogglePreview = ToggleInspect
         }
         [ tableType True (UpdateTable id)

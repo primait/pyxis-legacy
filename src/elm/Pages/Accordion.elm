@@ -57,7 +57,7 @@ singleAccordionSection model =
         , ComponentViewer.view
             { id = "single-base"
             , isCodeVisible = M.isInspecting "single-base" model
-            , boxType = Box.Gray
+            , boxType = Box.Base
             , example = """TODO"""
             , label = "on base color"
             , onTogglePreview = M.ToggleInspect
@@ -119,7 +119,7 @@ accordionGroupSection model =
         , ComponentViewer.view
             { id = "group-base"
             , isCodeVisible = M.isInspecting "group-base" model
-            , boxType = Box.Gray
+            , boxType = Box.Base
             , example = """TODO"""
             , label = "on base color"
             , onTogglePreview = M.ToggleInspect

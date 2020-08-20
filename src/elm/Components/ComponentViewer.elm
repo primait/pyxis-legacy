@@ -97,7 +97,7 @@ boxTypeToLabel boxType =
         Box.Light ->
             "on light color"
 
-        Box.Gray ->
+        Box.Base ->
             "on base color"
 
         Box.Dark ->

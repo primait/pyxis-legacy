@@ -6,7 +6,7 @@ import Html.Attributes exposing (class)
 
 type Type
     = Light
-    | Gray
+    | Base
     | Gradient
     | Dark
 
@@ -17,8 +17,8 @@ bgColorToClass bg =
         Light ->
             ""
 
-        Gray ->
-            "box--bg-light"
+        Base ->
+            "box--bg-base"
 
         Gradient ->
             "box--bg-gradient"

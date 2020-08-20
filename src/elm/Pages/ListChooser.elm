@@ -117,7 +117,7 @@ mainSection model =
         [ ComponentViewer.view
             { id = "chooser-1"
             , isCodeVisible = ComponentPage.isInspecting "chooser-1" model
-            , boxType = Box.Gray
+            , boxType = Box.Base
             , example = """TODO"""
             , label = "single select"
             , onTogglePreview = ToggleInspect
@@ -128,7 +128,7 @@ mainSection model =
         , ComponentViewer.view
             { id = "multi-chooser"
             , isCodeVisible = ComponentPage.isInspecting "multi-chooser" model
-            , boxType = Box.Gray
+            , boxType = Box.Base
             , example = """TODO"""
             , label = "multi select"
             , onTogglePreview = ToggleInspect

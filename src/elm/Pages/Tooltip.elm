@@ -91,7 +91,7 @@ viewComponent model index tooltipConfig =
     ComponentViewer.view
         { id = id
         , isCodeVisible = ComponentPage.isInspecting id model
-        , boxType = Box.Gray
+        , boxType = Box.Base
         , example = """TODO"""
         , label = ComponentViewer.boxTypeToLabel Box.Light
         , onTogglePreview = ToggleInspect
