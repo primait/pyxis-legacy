@@ -1,11 +1,11 @@
-module Components.ComponentViewer exposing (view)
+module Components.ComponentViewer exposing (boxTypeToLabel, view)
 
 import Array
 import Commons.Box as Box
 import Commons.CodeViewer as CodeViewer
 import Commons.Tabs as Tabs
 import Html exposing (Html, div, text)
-import Html.Attributes exposing (class, style)
+import Html.Attributes exposing (class)
 import Html.Lazy exposing (lazy)
 
 
@@ -85,3 +85,23 @@ viewCodeViewer code =
         , copyButtonText = "Copia Codice"
         , onCopyCode = always ()
         }
+
+
+
+-- HELPERS
+
+
+boxTypeToLabel : Box.Type -> String
+boxTypeToLabel boxType =
+    case boxType of
+        Box.Light ->
+            "on light color"
+
+        Box.Gray ->
+            "on base color"
+
+        Box.Dark ->
+            "on dark color"
+
+        Box.Gradient ->
+            "on brand gradient"
