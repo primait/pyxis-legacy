@@ -6,14 +6,21 @@
     margin-bottom: 1em;
   }
 
-  ul li {
+  .specs-list {
+    @include mqUp(small) {
+      padding-left: 20px;
+    }
+  }
+
+  .specs-list__list {
+    list-style-type: none;
+  }
+
+  .specs-list__item {
     color: color(text, base);
 
     &:before {
-      color: color(brand, base);
-      content: "\2022";
-      display: inline-block;
-      margin-right: 10px;
+      @include list-item-disc(color(brand, base));
     }
   }
 }

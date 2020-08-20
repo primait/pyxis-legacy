@@ -22,6 +22,10 @@
 
 .suggestions-list__item {
   margin: 1em;
+
+  &:before {
+    @include list-item-disc(color(brand, base));
+  }
 }
 
 .suggestions-list--do {

@@ -103,12 +103,12 @@ viewTechSpecs specs component =
                 , div [ class "preview-box__overlay" ] []
                 ]
             ]
-        , div []
-            [ h5 [ class "c-text-dark" ]
+        , div [ class "specs-list" ]
+            [ h5 [ class "specs-list__header" ]
                 [ text "SPECIFICHE TECNICHE" ]
-            , ul [] <|
+            , ul [ class "specs-list__list" ] <|
                 List.map
-                    (\item -> li [] [ text item ])
+                    (\item -> li [ class "specs-list__item" ] [ text item ])
                     specs
             ]
         ]

@@ -12,6 +12,13 @@
   }
 }
 
+@mixin list-item-disc($color: "#000") {
+  color: $color;
+  content: "\2022";
+  display: inline-block;
+  margin-right: 10px;
+}
+
 .u-pos-center {
   align-items: center;
   display: flex;
