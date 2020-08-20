@@ -182,7 +182,7 @@ patternsDropdownMenu id ({ translate } as model) =
         , items =
             [ MenuLink { label = translate [] "navbar.patterns.sub-menu.0", route = Nothing }
             , MenuLink { label = translate [] "navbar.patterns.sub-menu.1", route = Nothing }
-            , MenuLink { label = translate [] "navbar.patterns.sub-menu.2", route = Nothing }
+            , MenuLink { label = translate [] "navbar.patterns.sub-menu.2", route = Just (Route.Component Route.Container) }
             ]
         }
 
@@ -197,7 +197,6 @@ componentsDropdownMenu id ({ translate } as model) =
             [ MenuLink { label = "Accordion", route = Just (Route.Component Route.Accordion) }
             , MenuLink { label = "AtrTable", route = Just (Route.Component Route.AtrTable) }
             , MenuLink { label = "Button", route = Just (Route.Component Route.Button) }
-            , MenuLink { label = "Container", route = Just (Route.Component Route.Container) }
             , MenuLink { label = "Form", route = Just (Route.Component Route.Form) }
             , MenuLink { label = "Link", route = Just (Route.Component Route.Link) }
             , MenuLink { label = "List-Chooser", route = Just (Route.Component Route.ListChooser) }
@@ -218,7 +217,7 @@ toolsDropdownMenu id ({ translate } as model) =
         , isOpen = Model.isDropdownOpen id model
         , items =
             [ MenuLink { label = translate [] "navbar.tools.sub-menu.0", route = Nothing }
-            , MenuLink { label = translate [] "navbar.patterns.sub-menu.1", route = Nothing }
-            , MenuLink { label = translate [] "navbar.patterns.sub-menu.2", route = Nothing }
+            , MenuLink { label = translate [] "navbar.tools.sub-menu.1", route = Nothing }
+            , MenuLink { label = translate [] "navbar.tools.sub-menu.2", route = Nothing }
             ]
         }
