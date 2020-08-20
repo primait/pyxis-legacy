@@ -28,8 +28,13 @@ update msg model =
                         |> H.withCmds [ Route.pushUrl model.key model.language (Route.fromUrl url) ]
 
                 Browser.External href ->
-                    model
-                        |> H.withCmds [ Nav.load href ]
+                    if String.isEmpty href then
+                        model
+                            |> H.withoutCmds
+
+                    else
+                        model
+                            |> H.withCmds [ Nav.load href ]
 
         ChangeRoute maybeRoute ->
             case maybeRoute of
