@@ -6,11 +6,14 @@ module Pages.Tooltip exposing
     , view
     )
 
+import Commons.Box as Box
+import Components.ComponentViewer as ComponentViewer
 import Dict
 import Helpers as H
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
 import Pages.Component as ComponentPage exposing (WithCodeInspectors)
+import Prima.Pyxis.Tooltip as PyxisTooltip
 
 
 type alias Model =
@@ -45,17 +48,54 @@ update msg model =
                 |> H.withoutCmds
 
 
+tooltipExamples : List (PyxisTooltip.Config Msg)
+tooltipExamples =
+    [ PyxisTooltip.left [ Html.text "Left" ]
+    , PyxisTooltip.right [ Html.text "Right" ]
+    , PyxisTooltip.top [ Html.text "Top" ]
+    , PyxisTooltip.bottom [ Html.text "Bottom" ]
+    ]
+
+
 
 -- VIEW
 
 
 view : Model -> Html Msg
-view _ =
+view model =
     div [ class "tooltip-page" ]
         [ ComponentPage.view
             { title = "Tooltip"
-            , description = "Page under construction"
+            , description = ""
             , specs = Nothing
-            , sections = []
+            , sections = [ sectionConfig model ]
             }
+        ]
+
+
+sectionConfig : Model -> ComponentPage.SectionViewConfig Msg
+sectionConfig model =
+    { title = "Positioning"
+    , suggestions = Nothing
+    , content =
+        List.indexedMap (viewComponent model) tooltipExamples
+    }
+
+
+viewComponent : Model -> Int -> PyxisTooltip.Config Msg -> Html Msg
+viewComponent model index tooltipConfig =
+    let
+        id =
+            String.fromInt index
+    in
+    ComponentViewer.view
+        { id = id
+        , isCodeVisible = ComponentPage.isInspecting id model
+        , boxType = Box.Gray
+        , example = """TODO"""
+        , label = ComponentViewer.boxTypeToLabel Box.Light
+        , onTogglePreview = ToggleInspect
+        }
+        [ Html.div [ class "tooltip-example-block" ]
+            [ PyxisTooltip.render tooltipConfig ]
         ]

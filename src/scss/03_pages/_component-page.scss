@@ -23,4 +23,11 @@
       @include list-item-disc(color(brand, base));
     }
   }
+
+  .tooltip-example-block {
+    background: color(brandAlt, base);
+    height: 25px;
+    margin: 50px 0;
+    width: 25px;
+  }
 }
