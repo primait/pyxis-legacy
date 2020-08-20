@@ -19,6 +19,7 @@ import Pages.Modal
 import Pages.NotFound
 import Pages.Table
 import Pages.Tooltip
+import Prima.Pyxis.Helpers as PyxisHelpers
 import Route
 
 
@@ -26,7 +27,8 @@ view : Model -> Document Msg
 view model =
     { title = "Pyxis"
     , body =
-        [ viewBody model
+        [ PyxisHelpers.pyxisIconSetStyle
+        , viewBody model
         ]
     }
 
