@@ -28,14 +28,13 @@ view { id, isCodeVisible, label, boxType, example, onTogglePreview } content =
     Tabs.view
         { active = activeTab
         , tabs =
-            Array.fromList
-                [ { name = "Preview"
-                  , view = lazy (\_ -> viewComponentBox boxType label content) ()
-                  }
-                , { name = "</> Code"
-                  , view = lazy viewCodeViewer example
-                  }
-                ]
+            [ { name = "Preview"
+              , view = lazy (\_ -> viewComponentBox boxType label content) ()
+              }
+            , { name = "</> Code"
+              , view = lazy viewCodeViewer example
+              }
+            ]
         , onTabClick = \int -> onTogglePreview id (tabIndexToState int)
         }
 

@@ -10,7 +10,7 @@ import ViewHelpers as VH
 type alias ViewConfig msg =
     { active : Int
     , tabs :
-        Array
+        List
             { name : String
             , view : Html msg
             }
@@ -22,14 +22,15 @@ view : ViewConfig msg -> Html msg
 view { active, tabs, onTabClick } =
     let
         tabView =
-            Array.get active tabs
+            tabs
+                |> List.drop active
+                |> List.head
                 |> Maybe.map .view
     in
     div
         [ class "tabs" ]
         [ div [ class "tabs__header" ]
             (tabs
-                |> Array.toList
                 |> List.indexedMap
                     (\i tab ->
                         button
