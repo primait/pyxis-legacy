@@ -154,10 +154,14 @@ tertiaryButtonSection model =
         }
 
 
-downloadButtonPreview : Html msg
-downloadButtonPreview =
-    PyxisDownloadButton.download "Title" "Subtitle"
+downloadButtons : List (Html msg)
+downloadButtons =
+    [ PyxisDownloadButton.download "Title" "Subtitle"
         |> PyxisDownloadButton.render
+    , PyxisDownloadButton.download "Disabled" "Download button"
+        |> PyxisDownloadButton.withDisabled True
+        |> PyxisDownloadButton.render
+    ]
 
 
 downloadButtonSection : Model -> ComponentPage.SectionViewConfig Msg
@@ -173,8 +177,7 @@ downloadButtonSection model =
             , label = "on light color"
             , onTogglePreview = ToggleInspectMode
             }
-            [ downloadButtonPreview
-            ]
+            downloadButtons
         , ComponentViewer.view
             { id = "dark-download"
             , isCodeVisible = M.isInspecting "dark-download" model
@@ -183,8 +186,7 @@ downloadButtonSection model =
             , label = "on dark color"
             , onTogglePreview = ToggleInspectMode
             }
-            [ downloadButtonPreview
-            ]
+            downloadButtons
         , ComponentViewer.view
             { id = "brand-download"
             , isCodeVisible = M.isInspecting "brand-download" model
@@ -193,8 +195,7 @@ downloadButtonSection model =
             , label = "on brand gradient"
             , onTogglePreview = ToggleInspectMode
             }
-            [ downloadButtonPreview
-            ]
+            downloadButtons
         ]
     }
 
