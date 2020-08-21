@@ -78,11 +78,31 @@ regularLinkSection model =
             , isCodeVisible = ComponentPage.isInspecting "link" model
             , boxType = Box.Light
             , example = """TODO"""
-            , label = "link"
+            , label = ComponentViewer.boxTypeToLabel Box.Light
             , onTogglePreview = ToggleInspect
             }
             [ PyxisLink.simple "Regular Link"
                 |> PyxisLink.withHref "#"
+                |> PyxisLink.render
+            , PyxisLink.simple "Link with icon"
+                |> PyxisLink.withHref "#"
+                |> PyxisLink.withIcon "art"
+                |> PyxisLink.render
+            ]
+        , ComponentViewer.view
+            { id = "link-dark"
+            , isCodeVisible = ComponentPage.isInspecting "link-dark" model
+            , boxType = Box.Dark
+            , example = """TODO"""
+            , label = ComponentViewer.boxTypeToLabel Box.Dark
+            , onTogglePreview = ToggleInspect
+            }
+            [ PyxisLink.simple "Regular Link"
+                |> PyxisLink.withHref "#"
+                |> PyxisLink.render
+            , PyxisLink.simple "Link with icon"
+                |> PyxisLink.withHref "#"
+                |> PyxisLink.withIcon "art"
                 |> PyxisLink.render
             ]
         ]
@@ -99,11 +119,31 @@ standaloneLink model =
             , isCodeVisible = ComponentPage.isInspecting "standalone" model
             , boxType = Box.Light
             , example = """TODO"""
-            , label = "standalone link"
+            , label = "on light color"
             , onTogglePreview = ToggleInspect
             }
             [ PyxisLink.standalone "Standalone Link"
                 |> PyxisLink.withHref "#"
+                |> PyxisLink.render
+            , PyxisLink.standalone "Standalone with icon"
+                |> PyxisLink.withHref "#"
+                |> PyxisLink.withIcon "art"
+                |> PyxisLink.render
+            ]
+        , ComponentViewer.view
+            { id = "standalone-dark"
+            , isCodeVisible = ComponentPage.isInspecting "standalone-dark" model
+            , boxType = Box.Dark
+            , example = """TODO"""
+            , label = "on dark color"
+            , onTogglePreview = ToggleInspect
+            }
+            [ PyxisLink.standalone "Standalone Link"
+                |> PyxisLink.withHref "#"
+                |> PyxisLink.render
+            , PyxisLink.standalone "Standalone with icon"
+                |> PyxisLink.withHref "#"
+                |> PyxisLink.withIcon "art"
                 |> PyxisLink.render
             ]
         ]
