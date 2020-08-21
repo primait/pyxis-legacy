@@ -30,4 +30,13 @@
     margin: 50px 0;
     width: 25px;
   }
+
+  .container--debug {
+    border: dashed 3px #e0e0e0;
+    margin-bottom: 20px;
+
+    > *:nth-child(2n) {
+      background: color(shape, light);
+    }
+  }
 }

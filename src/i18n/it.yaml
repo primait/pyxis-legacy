@@ -37,6 +37,7 @@ navbar:
       - Caratteri
       - Icone
 
+
 home:
   header:
     content: >-
@@ -91,6 +92,7 @@ home:
       L’immagine che diamo di noi ha bisogno di cura e attenzione, perché il
       modo in cui ci mostriamo è parte del nostro brand e della nostra identità.
 
+
 buttons-page:
   title: Bottoni
   description: >-
@@ -101,9 +103,29 @@ buttons-page:
     necessario impilare più bottoni in uno stesso contenuto è opportuno
     utilizzare la classe m-btnGroup e le sue varianti.
 
+
 accordion-page:
   title: Accordion
   description: >-
     Un accordion è un elemento che offre una sezione con un titolo e un
     corpo collassabile. Un accordion può essere singolo o contenuto
     in un accordion group.
+
+
+container-page:
+  title: Container
+  description: >
+    I container sono l'elemento base in cui contenere qualunque componente
+    di pyxis e gestire l'aspetto base della pagina.
+    I container di default non hanno una flex direction assegnata, utilizzare
+    l'utility class flexDirection per impostare una direzione di flexing ed
+    eventualmente specificare un wrap.
+    I container non applicano di default padding o margini ai componenti interni
+  normal-containers:
+    title: Container Regolari
+    description: >
+      I container regolari hanno una dimensione massima che dipende dal breakpoint e dei margini laterali
+  fluid-containers:
+    title: Container Fluidi
+    description: >
+      I container fluidi occupano sempre il 100% della larghezza della pagina
