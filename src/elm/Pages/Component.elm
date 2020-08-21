@@ -99,9 +99,7 @@ viewTechSpecs specs component =
             [ div
                 [ class "preview-box"
                 ]
-                [ component
-                , div [ class "preview-box__overlay" ] []
-                ]
+                [ component ]
             ]
         , div [ class "specs-list" ]
             [ h5 [ class "specs-list__header" ]
