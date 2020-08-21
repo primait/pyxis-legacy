@@ -66,6 +66,11 @@ update msg model =
                 |> UH.dispatchAtrTableSubMsg submsg
                 |> H.withoutCmds
 
+        BadgePageMsg subMsg ->
+            model
+                |> UH.dispatchBadgeSubMsg subMsg
+                |> H.withoutCmds
+
         ButtonPageMsg subMsg ->
             model
                 |> UH.dispatchButtonSubMsg subMsg

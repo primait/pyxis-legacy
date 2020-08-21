@@ -7,6 +7,7 @@ import Html.Attributes exposing (class, classList, src)
 import Model exposing (Model, Msg(..))
 import Pages.Accordion
 import Pages.AtrTable
+import Pages.Badge
 import Pages.Button
 import Pages.Container
 import Pages.Form
@@ -90,6 +91,9 @@ viewComponentRouter route model =
 
         Route.AtrTable ->
             Html.map AtrTablePageMsg <| Pages.AtrTable.view model.atrTableModel
+
+        Route.Badge ->
+            Html.map BadgePageMsg <| Pages.Badge.view model.badgeModel
 
         Route.Button ->
             Html.map ButtonPageMsg <| Pages.Button.view model.buttonModel
@@ -196,6 +200,7 @@ componentsDropdownMenu id ({ translate } as model) =
         , items =
             [ MenuLink { label = "Accordion", route = Just (Route.Component Route.Accordion) }
             , MenuLink { label = "AtrTable", route = Just (Route.Component Route.AtrTable) }
+            , MenuLink { label = "Badge", route = Just (Route.Component Route.Badge) }
             , MenuLink { label = "Button", route = Just (Route.Component Route.Button) }
             , MenuLink { label = "Form", route = Just (Route.Component Route.Form) }
             , MenuLink { label = "Link", route = Just (Route.Component Route.Link) }

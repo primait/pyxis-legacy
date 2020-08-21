@@ -73,6 +73,7 @@ routeToPieces page =
 type ComponentRoute
     = Accordion
     | AtrTable
+    | Badge
     | Button
     | Container
     | Form
@@ -89,6 +90,7 @@ componentRoutes : List (Parser (ComponentRoute -> a) a)
 componentRoutes =
     [ Url.Parser.map Accordion (s "accordion")
     , Url.Parser.map AtrTable (s "atr-table")
+    , Url.Parser.map Badge (s "badge")
     , Url.Parser.map Button (s "button")
     , Url.Parser.map Container (s "container")
     , Url.Parser.map Form (s "form")
@@ -110,6 +112,9 @@ componentToUrl route =
 
         AtrTable ->
             "atr-table"
+
+        Badge ->
+            "badge"
 
         Button ->
             "button"
