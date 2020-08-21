@@ -1,13 +1,13 @@
 require('./scss/app.scss')
 
-import defaultTranslations from "./i18n/en.yaml"; // embedded in the bundle
-import "./i18n/it.yaml"; // just a reference so that webpack can imports the file in the build
+import defaultTranslations from "./i18n/it.yaml"; // embedded in the bundle
+import "./i18n/en.yaml"; // just a reference so that webpack can imports the file in the build
 
 import YAML from "yaml";
 import { flatten } from "./utils"
 import { Elm } from './elm/Pyxis.elm'
 
-const defaultLocale = 'en';
+const defaultLocale = 'it';
 
 function buildI18nDict(text) {
     try {
@@ -27,7 +27,7 @@ async function fetchLocale(locale) {
         }
         return await response.text();
     } catch (err) {
-        console.error(`Can't load translations of '${locale}' locale. Falling back to locale 'en'`);
+        console.error(`Can't load translations of '${locale}' locale. Falling back to locale '${defaultLocale}'`);
         return defaultTranslations;
     }
 }
@@ -44,6 +44,8 @@ async function initI18n() {
     if (lang !== defaultLocale) {
         loadedText = await fetchLocale(lang);
     }
+
+    document.documentElement.lang = lang;
 
     return [lang, buildI18nDict(loadedText)];
 }

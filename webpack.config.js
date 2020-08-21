@@ -65,7 +65,7 @@ module.exports = env => {
                     test: /i18n\/.+\.ya?ml$/i,
                     loader: 'file-loader',
                     // this is excluded because we embed the fallback translations in the bundle
-                    exclude: /en\.yaml/,
+                    exclude: /it\.yaml/,
                     options: { name: '[name].yaml', outputPath: 'i18n' }
                 },
                 {
