@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: row;
 
-  font: font(base);
+  font-family: font(base);
   padding: 15px;
 
   @include mq(small) {
@@ -48,7 +48,7 @@
 
 .nav-box__title {
   color: color(text, dark);
-  font: font(heavy);
+  font-family: font(heavy);
   font-size: 14px;
   margin: 0;
   margin-bottom: .5em;
@@ -60,7 +60,7 @@
 
 .nav-box__description {
   color: color(text, base);
-  font: font(light);
+  font-family: font(light);
   font-size: 14px;
 
   @include mq(small) {

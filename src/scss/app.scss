@@ -50,7 +50,7 @@ $fontPath: "./fonts/";
 .pyxis-page {
   display: flex;
   flex-direction: column;
-  font: font(base);
+  font-family: font(base);
   margin: 0 auto;
   max-width: 1200px;
   min-height: 100vh;
