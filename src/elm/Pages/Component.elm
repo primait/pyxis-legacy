@@ -141,12 +141,12 @@ viewSection config content =
             (div
                 [ class "flex-container" ]
                 [ viewSuggestionsList
-                    { label = "Don't"
+                    { label = "DON'T"
                     , isRecommendation = False
                     , items = dontList
                     }
                 , viewSuggestionsList
-                    { label = "Do"
+                    { label = "DO"
                     , isRecommendation = True
                     , items = doList
                     }

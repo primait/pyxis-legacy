@@ -7,10 +7,11 @@
   display: flex;
   flex: 0 1 100%;
   flex-direction: row;
+  font-size: 12px;
 }
 
 .suggestions-list__label {
-  padding: 5px;
+  padding: 0;
   width: 4em;
 }
 
@@ -21,7 +22,9 @@
 }
 
 .suggestions-list__item {
-  margin: 1em;
+  display: flex;
+  flex-direction: row;
+  margin: 1em 0;
 
   &:before {
     @include list-item-disc(color(brand, base));
@@ -36,6 +39,10 @@
 }
 
 .suggestions-list--dont {
+  @include mqUp(small) {
+    margin-right: 1.5em;
+  }
+
   .suggestions-list__header * {
     border-color: #e74c3c;
     color: #e74c3c;
