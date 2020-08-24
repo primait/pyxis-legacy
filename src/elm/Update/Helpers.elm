@@ -1,7 +1,9 @@
 module Update.Helpers exposing (..)
 
+import Date
 import Dict
-import Model exposing (Model)
+import Helpers as H
+import Model exposing (Model, Msg(..))
 import Pages.Accordion.Model as AccordionModel
 import Pages.Accordion.Update as AccordionUpdate
 import Pages.AtrTable
@@ -70,7 +72,11 @@ dispatchContainerSubMsg msg model =
 
 dispatchFormSubMsg : Pages.Form.Msg -> Model -> Model
 dispatchFormSubMsg msg model =
-    { model | formModel = Tuple.first <| Pages.Form.update msg model.formModel }
+    let
+        newState =
+            Pages.Form.update msg model.formModel
+    in
+    { model | formModel = Tuple.first newState }
 
 
 dispatchLinkSubMsg : Pages.Link.Msg -> Model -> Model
