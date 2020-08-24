@@ -1,6 +1,6 @@
 module Pages.Button.Model exposing (Model, Msg(..), init, isInspecting)
 
-import Dict exposing (Dict)
+import Dict
 import Helpers exposing (Translator, WithTranslator)
 import Pages.Component exposing (WithCodeInspectors)
 

@@ -2,7 +2,7 @@ module Pages.Accordion.Update exposing (update)
 
 import Dict
 import Helpers as PH
-import Pages.Accordion.Model as M exposing (AccordionId(..), Model, Msg(..))
+import Pages.Accordion.Model exposing (AccordionId(..), Model, Msg(..))
 import Prima.Pyxis.Accordion as PyxisAccordion
 
 

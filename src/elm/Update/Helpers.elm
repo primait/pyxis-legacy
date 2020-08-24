@@ -1,12 +1,11 @@
 module Update.Helpers exposing (..)
 
-import Date
 import Dict
-import Helpers as H
 import Model exposing (Model, Msg(..))
 import Pages.Accordion.Model as AccordionModel
 import Pages.Accordion.Update as AccordionUpdate
-import Pages.AtrTable
+import Pages.AtrTable.Model as AtrTableModel
+import Pages.AtrTable.Update as AtrTableUpdate
 import Pages.Badge
 import Pages.Button.Model as ButtonModel
 import Pages.Button.Update as ButtonUpdate
@@ -50,9 +49,9 @@ dispatchAccordionSubMsg msg model =
     { model | accordionModel = Tuple.first <| AccordionUpdate.update msg model.accordionModel }
 
 
-dispatchAtrTableSubMsg : Pages.AtrTable.Msg -> Model -> Model
+dispatchAtrTableSubMsg : AtrTableModel.Msg -> Model -> Model
 dispatchAtrTableSubMsg msg model =
-    { model | atrTableModel = Tuple.first <| Pages.AtrTable.update msg model.atrTableModel }
+    { model | atrTableModel = Tuple.first <| AtrTableUpdate.update msg model.atrTableModel }
 
 
 dispatchBadgeSubMsg : Pages.Badge.Msg -> Model -> Model
