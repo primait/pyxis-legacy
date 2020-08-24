@@ -6,7 +6,8 @@ import Pages.Accordion.Model as AccordionModel
 import Pages.Accordion.Update as AccordionUpdate
 import Pages.AtrTable.Model as AtrTableModel
 import Pages.AtrTable.Update as AtrTableUpdate
-import Pages.Badge
+import Pages.Badge.Model as BadgeModel
+import Pages.Badge.Update as BadgeUpdate
 import Pages.Button.Model as ButtonModel
 import Pages.Button.Update as ButtonUpdate
 import Pages.Container
@@ -54,9 +55,9 @@ dispatchAtrTableSubMsg msg model =
     { model | atrTableModel = Tuple.first <| AtrTableUpdate.update msg model.atrTableModel }
 
 
-dispatchBadgeSubMsg : Pages.Badge.Msg -> Model -> Model
+dispatchBadgeSubMsg : BadgeModel.Msg -> Model -> Model
 dispatchBadgeSubMsg msg model =
-    { model | badgeModel = Tuple.first <| Pages.Badge.update msg model.badgeModel }
+    { model | badgeModel = Tuple.first <| BadgeUpdate.update msg model.badgeModel }
 
 
 dispatchButtonSubMsg : ButtonModel.Msg -> Model -> Model

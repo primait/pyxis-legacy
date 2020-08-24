@@ -12,7 +12,7 @@ import Dict exposing (Dict)
 import Helpers as H
 import Pages.Accordion.Model
 import Pages.AtrTable.Model
-import Pages.Badge
+import Pages.Badge.Model
 import Pages.Button.Model
 import Pages.Container
 import Pages.Form
@@ -39,7 +39,7 @@ type Msg
       -}
     | AccordionPageMsg Pages.Accordion.Model.Msg
     | AtrTablePageMsg Pages.AtrTable.Model.Msg
-    | BadgePageMsg Pages.Badge.Msg
+    | BadgePageMsg Pages.Badge.Model.Msg
     | ButtonPageMsg Pages.Button.Model.Msg
     | ContainerPageMsg Pages.Container.Msg
     | FormPageMsg Pages.Form.Msg
@@ -63,7 +63,7 @@ type alias Model =
     {- PAGES MODELS -}
     , accordionModel : Pages.Accordion.Model.Model
     , atrTableModel : Pages.AtrTable.Model.Model
-    , badgeModel : Pages.Badge.Model
+    , badgeModel : Pages.Badge.Model.Model
     , buttonModel : Pages.Button.Model.Model
     , containerModel : Pages.Container.Model
     , formModel : Pages.Form.Model
@@ -101,7 +101,7 @@ initialModel flags url key =
     {- PAGES MODELS -}
     , accordionModel = Pages.Accordion.Model.init translator
     , atrTableModel = Pages.AtrTable.Model.init
-    , badgeModel = Pages.Badge.init
+    , badgeModel = Pages.Badge.Model.init
     , buttonModel = Pages.Button.Model.init translator
     , containerModel = Pages.Container.init translator
     , formModel = Pages.Form.init
