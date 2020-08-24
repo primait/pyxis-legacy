@@ -48,6 +48,10 @@
   display: block;
   padding: 12px 8px;
 
+  &:not([href]) {
+    color: color(text, light);
+  }
+
   &[href]:hover {
     background-color: color(shape, light);
     cursor: pointer;
