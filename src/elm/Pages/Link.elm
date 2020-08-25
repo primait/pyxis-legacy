@@ -1,56 +1,12 @@
-module Pages.Link exposing
-    ( Model
-    , Msg(..)
-    , init
-    , update
-    , view
-    )
+module Pages.Link exposing (view)
 
 import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
-import Dict
-import Helpers as H
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
-import Pages.Accordion.Model exposing (Msg(..))
 import Pages.Component as ComponentPage exposing (WithCodeInspectors)
+import Pages.Link.Model exposing (Model, Msg(..))
 import Prima.Pyxis.Link as PyxisLink
-
-
-type alias Model =
-    WithCodeInspectors {}
-
-
-init : Model
-init =
-    { inspectMode = Dict.empty
-    }
-
-
-
--- UPDATE
-
-
-type Msg
-    = NoOp
-    | ToggleInspect String Bool
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        NoOp ->
-            model
-                |> H.withoutCmds
-
-        ToggleInspect id isActive ->
-            model
-                |> ComponentPage.toggleInspect id isActive
-                |> H.withoutCmds
-
-
-
--- VIEW
 
 
 view : Model -> Html Msg
@@ -81,13 +37,8 @@ regularLinkSection model =
             , label = ComponentViewer.boxTypeToLabel Box.Light
             , onTogglePreview = ToggleInspect
             }
-            [ PyxisLink.simple "Regular Link"
-                |> PyxisLink.withHref "#"
-                |> PyxisLink.render
-            , PyxisLink.simple "Link with icon"
-                |> PyxisLink.withHref "#"
-                |> PyxisLink.withIcon "art"
-                |> PyxisLink.render
+            [ viewRegularLink "Regular Link"
+            , viewRegularLinkWithIcon "Link with icon"
             ]
         , ComponentViewer.view
             { id = "link-dark"
@@ -97,13 +48,8 @@ regularLinkSection model =
             , label = ComponentViewer.boxTypeToLabel Box.Dark
             , onTogglePreview = ToggleInspect
             }
-            [ PyxisLink.simple "Regular Link"
-                |> PyxisLink.withHref "#"
-                |> PyxisLink.render
-            , PyxisLink.simple "Link with icon"
-                |> PyxisLink.withHref "#"
-                |> PyxisLink.withIcon "art"
-                |> PyxisLink.render
+            [ viewRegularLink "Regular Link"
+            , viewRegularLinkWithIcon "Link with icon"
             ]
         ]
     }
@@ -122,13 +68,8 @@ standaloneLink model =
             , label = "on light color"
             , onTogglePreview = ToggleInspect
             }
-            [ PyxisLink.standalone "Standalone Link"
-                |> PyxisLink.withHref "#"
-                |> PyxisLink.render
-            , PyxisLink.standalone "Standalone with icon"
-                |> PyxisLink.withHref "#"
-                |> PyxisLink.withIcon "art"
-                |> PyxisLink.render
+            [ viewStandaloneLink "Standalone Link"
+            , viewStandaloneLinkWithIcon "Standalone with icon"
             ]
         , ComponentViewer.view
             { id = "standalone-dark"
@@ -138,13 +79,38 @@ standaloneLink model =
             , label = "on dark color"
             , onTogglePreview = ToggleInspect
             }
-            [ PyxisLink.standalone "Standalone Link"
-                |> PyxisLink.withHref "#"
-                |> PyxisLink.render
-            , PyxisLink.standalone "Standalone with icon"
-                |> PyxisLink.withHref "#"
-                |> PyxisLink.withIcon "art"
-                |> PyxisLink.render
+            [ viewStandaloneLink "Standalone Link"
+            , viewStandaloneLinkWithIcon "Standalone with icon"
             ]
         ]
     }
+
+
+viewRegularLink : String -> Html Msg
+viewRegularLink text =
+    PyxisLink.simple text
+        |> PyxisLink.withHref "#"
+        |> PyxisLink.render
+
+
+viewRegularLinkWithIcon : String -> Html Msg
+viewRegularLinkWithIcon text =
+    PyxisLink.simple text
+        |> PyxisLink.withHref "#"
+        |> PyxisLink.withIcon "art"
+        |> PyxisLink.render
+
+
+viewStandaloneLink : String -> Html Msg
+viewStandaloneLink text =
+    PyxisLink.standalone text
+        |> PyxisLink.withHref "#"
+        |> PyxisLink.render
+
+
+viewStandaloneLinkWithIcon : String -> Html Msg
+viewStandaloneLinkWithIcon text =
+    PyxisLink.standalone text
+        |> PyxisLink.withHref "#"
+        |> PyxisLink.withIcon "art"
+        |> PyxisLink.render
