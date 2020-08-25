@@ -54,74 +54,118 @@ setRoute newRoute model =
     { model | currentRoute = newRoute }
 
 
-dispatchAccordionSubMsg : AccordionModel.Msg -> Model -> Model
+dispatchAccordionSubMsg : AccordionModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchAccordionSubMsg msg model =
-    { model | accordionModel = Tuple.first <| AccordionUpdate.update msg model.accordionModel }
+    let
+        ( newState, cmd ) =
+            AccordionUpdate.update msg model.accordionModel
+    in
+    ( { model | accordionModel = newState }, Cmd.map AccordionPageMsg cmd )
 
 
-dispatchAtrTableSubMsg : AtrTableModel.Msg -> Model -> Model
+dispatchAtrTableSubMsg : AtrTableModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchAtrTableSubMsg msg model =
-    { model | atrTableModel = Tuple.first <| AtrTableUpdate.update msg model.atrTableModel }
+    let
+        ( newState, cmd ) =
+            AtrTableUpdate.update msg model.atrTableModel
+    in
+    ( { model | atrTableModel = newState }, Cmd.map AtrTablePageMsg cmd )
 
 
-dispatchBadgeSubMsg : BadgeModel.Msg -> Model -> Model
+dispatchBadgeSubMsg : BadgeModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchBadgeSubMsg msg model =
-    { model | badgeModel = Tuple.first <| BadgeUpdate.update msg model.badgeModel }
+    let
+        ( newState, cmd ) =
+            BadgeUpdate.update msg model.badgeModel
+    in
+    ( { model | badgeModel = newState }, Cmd.map BadgePageMsg cmd )
 
 
 dispatchButtonSubMsg : ButtonModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchButtonSubMsg msg model =
     let
-        newState =
+        ( newState, cmd ) =
             ButtonUpdate.update msg model.buttonModel
     in
-    ( { model | buttonModel = Tuple.first newState }, Cmd.map ButtonPageMsg (Tuple.second newState) )
+    ( { model | buttonModel = newState }, Cmd.map ButtonPageMsg cmd )
 
 
-dispatchContainerSubMsg : ContainerModel.Msg -> Model -> Model
+dispatchContainerSubMsg : ContainerModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchContainerSubMsg msg model =
-    { model | containerModel = Tuple.first <| ContainerUpdate.update msg model.containerModel }
+    let
+        ( newState, cmd ) =
+            ContainerUpdate.update msg model.containerModel
+    in
+    ( { model | containerModel = newState }, Cmd.map ContainerPageMsg cmd )
 
 
-dispatchFormSubMsg : FormModel.Msg -> Model -> Model
+dispatchFormSubMsg : FormModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchFormSubMsg msg model =
     let
-        newState =
+        ( newState, cmd ) =
             FormUpdate.update msg model.formModel
     in
-    { model | formModel = Tuple.first newState }
+    ( { model | formModel = newState }, Cmd.map FormPageMsg cmd )
 
 
-dispatchLinkSubMsg : LinkModel.Msg -> Model -> Model
+dispatchLinkSubMsg : LinkModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchLinkSubMsg msg model =
-    { model | linkModel = Tuple.first <| LinkUpdate.update msg model.linkModel }
+    let
+        ( newState, cmd ) =
+            LinkUpdate.update msg model.linkModel
+    in
+    ( { model | linkModel = newState }, Cmd.map LinkPageMsg cmd )
 
 
-dispatchListChooserSubMsg : ListChooserModel.Msg -> Model -> Model
+dispatchListChooserSubMsg : ListChooserModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchListChooserSubMsg msg model =
-    { model | listChooserModel = Tuple.first <| ListChooserUpdate.update msg model.listChooserModel }
+    let
+        ( newState, cmd ) =
+            ListChooserUpdate.update msg model.listChooserModel
+    in
+    ( { model | listChooserModel = newState }, Cmd.map ListChooserPageMsg cmd )
 
 
-dispatchLoaderSubMsg : LoaderModel.Msg -> Model -> Model
+dispatchLoaderSubMsg : LoaderModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchLoaderSubMsg msg model =
-    { model | loaderModel = Tuple.first <| LoaderUpdate.update msg model.loaderModel }
+    let
+        ( newState, cmd ) =
+            LoaderUpdate.update msg model.loaderModel
+    in
+    ( { model | loaderModel = newState }, Cmd.map LoaderPageMsg cmd )
 
 
-dispatchMessageSubMsg : MessageModel.Msg -> Model -> Model
+dispatchMessageSubMsg : MessageModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchMessageSubMsg msg model =
-    { model | messageModel = Tuple.first <| MessageUpdate.update msg model.messageModel }
+    let
+        ( newState, cmd ) =
+            MessageUpdate.update msg model.messageModel
+    in
+    ( { model | messageModel = newState }, Cmd.map MessagePageMsg cmd )
 
 
-dispatchModalSubMsg : ModalModel.Msg -> Model -> Model
+dispatchModalSubMsg : ModalModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchModalSubMsg msg model =
-    { model | modalModel = Tuple.first <| ModalUpdate.update msg model.modalModel }
+    let
+        ( newState, cmd ) =
+            ModalUpdate.update msg model.modalModel
+    in
+    ( { model | modalModel = newState }, Cmd.map ModalPageMsg cmd )
 
 
-dispatchTableSubMsg : TableModel.Msg -> Model -> Model
+dispatchTableSubMsg : TableModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchTableSubMsg msg model =
-    { model | tableModel = Tuple.first <| TableUpdate.update msg model.tableModel }
+    let
+        ( newState, cmd ) =
+            TableUpdate.update msg model.tableModel
+    in
+    ( { model | tableModel = newState }, Cmd.map TablePageMsg cmd )
 
 
-dispatchTooltipSubMsg : TooltipModel.Msg -> Model -> Model
+dispatchTooltipSubMsg : TooltipModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchTooltipSubMsg msg model =
-    { model | tooltipModel = Tuple.first <| TooltipUpdate.update msg model.tooltipModel }
+    let
+        ( newState, cmd ) =
+            TooltipUpdate.update msg model.tooltipModel
+    in
+    ( { model | tooltipModel = newState }, Cmd.map TooltipPageMsg cmd )
