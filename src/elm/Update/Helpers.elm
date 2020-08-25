@@ -18,7 +18,8 @@ import Pages.Link.Model as LinkModel
 import Pages.Link.Update as LinkUpdate
 import Pages.ListChooser.Model as ListChooserModel
 import Pages.ListChooser.Update as ListChooserUpdate
-import Pages.Loader
+import Pages.Loader.Model as LoaderModel
+import Pages.Loader.Update as LoaderUpdate
 import Pages.Message
 import Pages.Modal
 import Pages.Table
@@ -93,9 +94,9 @@ dispatchListChooserSubMsg msg model =
     { model | listChooserModel = Tuple.first <| ListChooserUpdate.update msg model.listChooserModel }
 
 
-dispatchLoaderSubMsg : Pages.Loader.Msg -> Model -> Model
+dispatchLoaderSubMsg : LoaderModel.Msg -> Model -> Model
 dispatchLoaderSubMsg msg model =
-    { model | loaderModel = Tuple.first <| Pages.Loader.update msg model.loaderModel }
+    { model | loaderModel = Tuple.first <| LoaderUpdate.update msg model.loaderModel }
 
 
 dispatchMessageSubMsg : Pages.Message.Msg -> Model -> Model

@@ -1,55 +1,12 @@
-module Pages.Loader exposing (Model, Msg, init, update, view)
+module Pages.Loader exposing (view)
 
 import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
-import Dict
-import Helpers as H exposing (Translator, WithTranslator)
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
-import Pages.Component as ComponentPage exposing (WithCodeInspectors)
+import Pages.Component as ComponentPage
+import Pages.Loader.Model as M exposing (Model, Msg(..))
 import Prima.Pyxis.Loader as PyxisLoader
-
-
-type alias Model =
-    WithCodeInspectors (WithTranslator {})
-
-
-init : Translator -> Model
-init translate =
-    { inspectMode = Dict.empty
-    , translate = translate
-    }
-
-
-
--- UPDATE
-
-
-type Msg
-    = NoOp
-    | ToggleInspect String Bool
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        NoOp ->
-            model
-                |> H.withoutCmds
-
-        ToggleInspect id isActive ->
-            model
-                |> ComponentPage.toggleInspect id isActive
-                |> H.withoutCmds
-
-
-isInspectModeActive : String -> Model -> Bool
-isInspectModeActive id model =
-    ComponentPage.isInspecting id model
-
-
-
--- VIEW
 
 
 view : Model -> Html Msg
@@ -75,7 +32,7 @@ mainSection model =
     , content =
         [ ComponentViewer.view
             { id = "loader-vehicle"
-            , isCodeVisible = isInspectModeActive "loader-vehicle" model
+            , isCodeVisible = M.isInspectModeActive "loader-vehicle" model
             , boxType = Box.Light
             , example = """TODO"""
             , label = "loader vehicle"
@@ -85,7 +42,7 @@ mainSection model =
             ]
         , ComponentViewer.view
             { id = "spinner-small"
-            , isCodeVisible = isInspectModeActive "spinner-small" model
+            , isCodeVisible = M.isInspectModeActive "spinner-small" model
             , boxType = Box.Light
             , example = """TODO"""
             , label = "spinner small"
@@ -95,7 +52,7 @@ mainSection model =
             ]
         , ComponentViewer.view
             { id = "spinner-medium"
-            , isCodeVisible = isInspectModeActive "spinner-medium" model
+            , isCodeVisible = M.isInspectModeActive "spinner-medium" model
             , boxType = Box.Light
             , example = """TODO"""
             , label = "spinner medium"
