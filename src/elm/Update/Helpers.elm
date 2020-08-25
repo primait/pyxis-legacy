@@ -22,8 +22,10 @@ import Pages.Loader.Model as LoaderModel
 import Pages.Loader.Update as LoaderUpdate
 import Pages.Message.Model as MessageModel
 import Pages.Message.Update as MessageUpdate
-import Pages.Modal
-import Pages.Table
+import Pages.Modal.Model as ModalModel
+import Pages.Modal.Update as ModalUpdate
+import Pages.Table.Model as TableModel
+import Pages.Table.Update as TableUpdate
 import Pages.Tooltip
 import Route exposing (Route(..))
 
@@ -105,14 +107,14 @@ dispatchMessageSubMsg msg model =
     { model | messageModel = Tuple.first <| MessageUpdate.update msg model.messageModel }
 
 
-dispatchModalSubMsg : Pages.Modal.Msg -> Model -> Model
+dispatchModalSubMsg : ModalModel.Msg -> Model -> Model
 dispatchModalSubMsg msg model =
-    { model | modalModel = Tuple.first <| Pages.Modal.update msg model.modalModel }
+    { model | modalModel = Tuple.first <| ModalUpdate.update msg model.modalModel }
 
 
-dispatchTableSubMsg : Pages.Table.Msg -> Model -> Model
+dispatchTableSubMsg : TableModel.Msg -> Model -> Model
 dispatchTableSubMsg msg model =
-    { model | tableModel = Tuple.first <| Pages.Table.update msg model.tableModel }
+    { model | tableModel = Tuple.first <| TableUpdate.update msg model.tableModel }
 
 
 dispatchTooltipSubMsg : Pages.Tooltip.Msg -> Model -> Model

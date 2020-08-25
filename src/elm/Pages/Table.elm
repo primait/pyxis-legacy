@@ -1,90 +1,12 @@
-module Pages.Table exposing
-    ( Model
-    , Msg(..)
-    , init
-    , update
-    , view
-    )
+module Pages.Table exposing (view)
 
 import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
-import Dict exposing (Dict)
-import Helpers as H
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
 import Pages.Component as ComponentPage exposing (WithCodeInspectors)
+import Pages.Table.Model as M exposing (Model, Msg(..))
 import Prima.Pyxis.Table as PyxisTable
-
-
-type alias Model =
-    WithCodeInspectors
-        { tableState : Dict String PyxisTable.State
-        }
-
-
-init : Model
-init =
-    { inspectMode = Dict.empty
-    , tableState =
-        Dict.fromList
-            [ ( "base", initialTableState )
-            , ( "light", initialTableState )
-            , ( "base-alt", initialTableState )
-            , ( "light-alt", initialTableState )
-            ]
-    }
-
-
-initialTableState : PyxisTable.State
-initialTableState =
-    PyxisTable.init Nothing Nothing
-
-
-getTableState : String -> Model -> PyxisTable.State
-getTableState id model =
-    Dict.get id model.tableState
-        |> Maybe.withDefault initialTableState
-
-
-
--- UPDATE
-
-
-type Msg
-    = NoOp
-    | ToggleInspect String Bool
-    | UpdateTable String PyxisTable.State
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        NoOp ->
-            model
-                |> H.withoutCmds
-
-        ToggleInspect id isActive ->
-            model
-                |> ComponentPage.toggleInspect id isActive
-                |> H.withoutCmds
-
-        UpdateTable id newState ->
-            model
-                |> updateTableState id newState
-                |> H.withoutCmds
-
-
-updateTableState : String -> PyxisTable.State -> Model -> Model
-updateTableState id newState model =
-    if Dict.member id model.tableState then
-        { model | tableState = Dict.insert id newState model.tableState }
-
-    else
-        model
-
-
-
--- VIEW
 
 
 view : Model -> Html Msg
@@ -130,7 +52,7 @@ tableShowcase model { id, tableType, alternateRows } =
             |> PyxisTable.addHeaders (createHeaders initialHeaders)
             |> PyxisTable.addRows (createRows initialRows)
             |> PyxisTable.addFooters (createRows [ initialHeaders ])
-            |> PyxisTable.render (getTableState id model)
+            |> PyxisTable.render (M.getTableState id model)
         ]
 
 

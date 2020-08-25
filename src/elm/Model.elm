@@ -20,8 +20,8 @@ import Pages.Link.Model
 import Pages.ListChooser.Model
 import Pages.Loader.Model
 import Pages.Message.Model
-import Pages.Modal
-import Pages.Table
+import Pages.Modal.Model
+import Pages.Table.Model
 import Pages.Tooltip
 import Route exposing (Route)
 import Url exposing (Url)
@@ -47,8 +47,8 @@ type Msg
     | ListChooserPageMsg Pages.ListChooser.Model.Msg
     | LoaderPageMsg Pages.Loader.Model.Msg
     | MessagePageMsg Pages.Message.Model.Msg
-    | ModalPageMsg Pages.Modal.Msg
-    | TablePageMsg Pages.Table.Msg
+    | ModalPageMsg Pages.Modal.Model.Msg
+    | TablePageMsg Pages.Table.Model.Msg
     | TooltipPageMsg Pages.Tooltip.Msg
 
 
@@ -71,8 +71,8 @@ type alias Model =
     , listChooserModel : Pages.ListChooser.Model.Model
     , loaderModel : Pages.Loader.Model.Model
     , messageModel : Pages.Message.Model.Model
-    , modalModel : Pages.Modal.Model
-    , tableModel : Pages.Table.Model
+    , modalModel : Pages.Modal.Model.Model
+    , tableModel : Pages.Table.Model.Model
     , tooltipModel : Pages.Tooltip.Model
     }
 
@@ -109,8 +109,8 @@ initialModel flags url key =
     , listChooserModel = Pages.ListChooser.Model.init
     , loaderModel = Pages.Loader.Model.init translator
     , messageModel = Pages.Message.Model.init
-    , modalModel = Pages.Modal.init
-    , tableModel = Pages.Table.init
+    , modalModel = Pages.Modal.Model.init
+    , tableModel = Pages.Table.Model.init
     , tooltipModel = Pages.Tooltip.init
     }
 
