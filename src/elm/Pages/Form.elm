@@ -1,18 +1,12 @@
-module Pages.Form exposing
-    ( Model
-    , Msg(..)
-    , init
-    , update
-    , view
-    )
+module Pages.Form exposing (view)
 
 import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
 import Dict exposing (Dict)
-import Helpers as H
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
 import Pages.Component as ComponentPage exposing (WithCodeInspectors)
+import Pages.Form.Model exposing (Model, Msg(..))
 import Prima.Pyxis.Form.Checkbox as Checkbox
 import Prima.Pyxis.Form.CheckboxFlag as CheckboxFlag
 import Prima.Pyxis.Form.Input as FormInput
@@ -22,113 +16,6 @@ import Prima.Pyxis.Form.RadioButton as RadioButton
 import Prima.Pyxis.Form.RadioFlag as RadioFlag
 import Prima.Pyxis.Form.TextArea as TextArea
 import Set exposing (Set)
-
-
-type alias Model =
-    WithCodeInspectors
-        { form : FormData
-        }
-
-
-type alias FormData =
-    { strData : Dict String String
-    , boolData : Dict String Bool
-    , stringSets : Dict String (Set String)
-    }
-
-
-initialFormData : FormData
-initialFormData =
-    { strData = Dict.empty
-    , boolData = Dict.empty
-    , stringSets = Dict.empty
-    }
-
-
-init : Model
-init =
-    { inspectMode = Dict.empty
-    , form = initialFormData
-    }
-
-
-
--- UPDATE
-
-
-type Msg
-    = NoOp
-    | ToggleInspect String Bool
-    | UpdateStringField String String
-    | ToggleBoolField String Bool
-    | ToggleStringSet String String
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        NoOp ->
-            model
-                |> H.withoutCmds
-
-        ToggleInspect id isActive ->
-            model
-                |> ComponentPage.toggleInspect id isActive
-                |> H.withoutCmds
-
-        UpdateStringField id value ->
-            model
-                |> setFieldValue id value
-                |> H.withoutCmds
-
-        ToggleBoolField id value ->
-            model
-                |> setBoolField id value
-                |> H.withoutCmds
-
-        ToggleStringSet id value ->
-            model
-                |> toggleCheckboxValue id value
-                |> H.withoutCmds
-
-
-setFieldValue : String -> String -> Model -> Model
-setFieldValue id value model =
-    let
-        form =
-            model.form
-    in
-    { model | form = { form | strData = Dict.insert id value form.strData } }
-
-
-setBoolField : String -> Bool -> Model -> Model
-setBoolField id value model =
-    let
-        form =
-            model.form
-    in
-    { model | form = { form | boolData = Dict.insert id value form.boolData } }
-
-
-toggleCheckboxValue : String -> String -> Model -> Model
-toggleCheckboxValue id value model =
-    let
-        form =
-            model.form
-
-        set =
-            Dict.get id form.stringSets
-                |> Maybe.withDefault Set.empty
-
-        newSet : Set String
-        newSet =
-            if Set.member value set then
-                Set.remove value set
-
-            else
-                Set.insert value set
-    in
-    { model | form = { form | stringSets = Dict.insert id newSet form.stringSets } }
 
 
 

@@ -12,7 +12,8 @@ import Pages.Button.Model as ButtonModel
 import Pages.Button.Update as ButtonUpdate
 import Pages.Container.Model as ContainerModel
 import Pages.Container.Update as ContainerUpdate
-import Pages.Form
+import Pages.Form.Model as FormModel
+import Pages.Form.Update as FormUpdate
 import Pages.Link
 import Pages.ListChooser
 import Pages.Loader
@@ -71,11 +72,11 @@ dispatchContainerSubMsg msg model =
     { model | containerModel = Tuple.first <| ContainerUpdate.update msg model.containerModel }
 
 
-dispatchFormSubMsg : Pages.Form.Msg -> Model -> Model
+dispatchFormSubMsg : FormModel.Msg -> Model -> Model
 dispatchFormSubMsg msg model =
     let
         newState =
-            Pages.Form.update msg model.formModel
+            FormUpdate.update msg model.formModel
     in
     { model | formModel = Tuple.first newState }
 

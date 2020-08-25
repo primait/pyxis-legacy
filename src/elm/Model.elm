@@ -15,7 +15,7 @@ import Pages.AtrTable.Model
 import Pages.Badge.Model
 import Pages.Button.Model
 import Pages.Container.Model
-import Pages.Form
+import Pages.Form.Model
 import Pages.Link
 import Pages.ListChooser
 import Pages.Loader
@@ -42,7 +42,7 @@ type Msg
     | BadgePageMsg Pages.Badge.Model.Msg
     | ButtonPageMsg Pages.Button.Model.Msg
     | ContainerPageMsg Pages.Container.Model.Msg
-    | FormPageMsg Pages.Form.Msg
+    | FormPageMsg Pages.Form.Model.Msg
     | LinkPageMsg Pages.Link.Msg
     | ListChooserPageMsg Pages.ListChooser.Msg
     | LoaderPageMsg Pages.Loader.Msg
@@ -66,7 +66,7 @@ type alias Model =
     , badgeModel : Pages.Badge.Model.Model
     , buttonModel : Pages.Button.Model.Model
     , containerModel : Pages.Container.Model.Model
-    , formModel : Pages.Form.Model
+    , formModel : Pages.Form.Model.Model
     , linkModel : Pages.Link.Model
     , listChooserModel : Pages.ListChooser.Model
     , loaderModel : Pages.Loader.Model
@@ -104,7 +104,7 @@ initialModel flags url key =
     , badgeModel = Pages.Badge.Model.init
     , buttonModel = Pages.Button.Model.init translator
     , containerModel = Pages.Container.Model.init translator
-    , formModel = Pages.Form.init
+    , formModel = Pages.Form.Model.init
     , linkModel = Pages.Link.init
     , listChooserModel = Pages.ListChooser.init
     , loaderModel = Pages.Loader.init translator
