@@ -14,7 +14,7 @@ import Pages.Accordion.Model
 import Pages.AtrTable.Model
 import Pages.Badge.Model
 import Pages.Button.Model
-import Pages.Container
+import Pages.Container.Model
 import Pages.Form
 import Pages.Link
 import Pages.ListChooser
@@ -41,7 +41,7 @@ type Msg
     | AtrTablePageMsg Pages.AtrTable.Model.Msg
     | BadgePageMsg Pages.Badge.Model.Msg
     | ButtonPageMsg Pages.Button.Model.Msg
-    | ContainerPageMsg Pages.Container.Msg
+    | ContainerPageMsg Pages.Container.Model.Msg
     | FormPageMsg Pages.Form.Msg
     | LinkPageMsg Pages.Link.Msg
     | ListChooserPageMsg Pages.ListChooser.Msg
@@ -65,7 +65,7 @@ type alias Model =
     , atrTableModel : Pages.AtrTable.Model.Model
     , badgeModel : Pages.Badge.Model.Model
     , buttonModel : Pages.Button.Model.Model
-    , containerModel : Pages.Container.Model
+    , containerModel : Pages.Container.Model.Model
     , formModel : Pages.Form.Model
     , linkModel : Pages.Link.Model
     , listChooserModel : Pages.ListChooser.Model
@@ -103,7 +103,7 @@ initialModel flags url key =
     , atrTableModel = Pages.AtrTable.Model.init
     , badgeModel = Pages.Badge.Model.init
     , buttonModel = Pages.Button.Model.init translator
-    , containerModel = Pages.Container.init translator
+    , containerModel = Pages.Container.Model.init translator
     , formModel = Pages.Form.init
     , linkModel = Pages.Link.init
     , listChooserModel = Pages.ListChooser.init

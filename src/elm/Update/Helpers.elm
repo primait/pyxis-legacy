@@ -10,7 +10,8 @@ import Pages.Badge.Model as BadgeModel
 import Pages.Badge.Update as BadgeUpdate
 import Pages.Button.Model as ButtonModel
 import Pages.Button.Update as ButtonUpdate
-import Pages.Container
+import Pages.Container.Model as ContainerModel
+import Pages.Container.Update as ContainerUpdate
 import Pages.Form
 import Pages.Link
 import Pages.ListChooser
@@ -65,9 +66,9 @@ dispatchButtonSubMsg msg model =
     { model | buttonModel = Tuple.first <| ButtonUpdate.update msg model.buttonModel }
 
 
-dispatchContainerSubMsg : Pages.Container.Msg -> Model -> Model
+dispatchContainerSubMsg : ContainerModel.Msg -> Model -> Model
 dispatchContainerSubMsg msg model =
-    { model | containerModel = Tuple.first <| Pages.Container.update msg model.containerModel }
+    { model | containerModel = Tuple.first <| ContainerUpdate.update msg model.containerModel }
 
 
 dispatchFormSubMsg : Pages.Form.Msg -> Model -> Model
