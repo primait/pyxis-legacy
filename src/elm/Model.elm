@@ -22,7 +22,7 @@ import Pages.Loader.Model
 import Pages.Message.Model
 import Pages.Modal.Model
 import Pages.Table.Model
-import Pages.Tooltip
+import Pages.Tooltip.Model
 import Route exposing (Route)
 import Url exposing (Url)
 
@@ -49,7 +49,7 @@ type Msg
     | MessagePageMsg Pages.Message.Model.Msg
     | ModalPageMsg Pages.Modal.Model.Msg
     | TablePageMsg Pages.Table.Model.Msg
-    | TooltipPageMsg Pages.Tooltip.Msg
+    | TooltipPageMsg Pages.Tooltip.Model.Msg
 
 
 type alias Model =
@@ -73,7 +73,7 @@ type alias Model =
     , messageModel : Pages.Message.Model.Model
     , modalModel : Pages.Modal.Model.Model
     , tableModel : Pages.Table.Model.Model
-    , tooltipModel : Pages.Tooltip.Model
+    , tooltipModel : Pages.Tooltip.Model.Model
     }
 
 
@@ -111,7 +111,7 @@ initialModel flags url key =
     , messageModel = Pages.Message.Model.init
     , modalModel = Pages.Modal.Model.init
     , tableModel = Pages.Table.Model.init
-    , tooltipModel = Pages.Tooltip.init
+    , tooltipModel = Pages.Tooltip.Model.init
     }
 
 

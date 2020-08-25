@@ -26,7 +26,8 @@ import Pages.Modal.Model as ModalModel
 import Pages.Modal.Update as ModalUpdate
 import Pages.Table.Model as TableModel
 import Pages.Table.Update as TableUpdate
-import Pages.Tooltip
+import Pages.Tooltip.Model as TooltipModel
+import Pages.Tooltip.Update as TooltipUpdate
 import Route exposing (Route(..))
 
 
@@ -117,6 +118,6 @@ dispatchTableSubMsg msg model =
     { model | tableModel = Tuple.first <| TableUpdate.update msg model.tableModel }
 
 
-dispatchTooltipSubMsg : Pages.Tooltip.Msg -> Model -> Model
+dispatchTooltipSubMsg : TooltipModel.Msg -> Model -> Model
 dispatchTooltipSubMsg msg model =
-    { model | tooltipModel = Tuple.first <| Pages.Tooltip.update msg model.tooltipModel }
+    { model | tooltipModel = Tuple.first <| TooltipUpdate.update msg model.tooltipModel }
