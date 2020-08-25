@@ -1,100 +1,12 @@
-module Pages.ListChooser exposing
-    ( Model
-    , Msg(..)
-    , init
-    , update
-    , view
-    )
+module Pages.ListChooser exposing (view)
 
 import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
-import Dict
-import Helpers as H
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
-import Pages.Component as ComponentPage exposing (WithCodeInspectors)
+import Pages.Component as ComponentPage
+import Pages.ListChooser.Model as M exposing (Model, Msg(..))
 import Prima.Pyxis.ListChooser as PyxisListChooser
-
-
-type alias Model =
-    WithCodeInspectors
-        { singleSelectList : PyxisListChooser.State
-        , multiSelectList : PyxisListChooser.State
-        }
-
-
-init : Model
-init =
-    { inspectMode = Dict.empty
-    , singleSelectList = initialListState
-    , multiSelectList = initialListState
-    }
-
-
-initialListState : PyxisListChooser.State
-initialListState =
-    PyxisListChooser.init PyxisListChooser.Partial
-        |> PyxisListChooser.withItems exampleItems
-
-
-exampleItems : List PyxisListChooser.ChooserItem
-exampleItems =
-    List.range 1 5
-        |> List.map
-            (\index ->
-                PyxisListChooser.createItem
-                    (String.fromInt index)
-                    ("Item " ++ String.fromInt index)
-                    False
-            )
-
-
-
--- UPDATE
-
-
-type Msg
-    = NoOp
-    | ToggleInspect String Bool
-    | UpdateSingleSelect PyxisListChooser.Msg
-    | UpdateMultiSelect PyxisListChooser.Msg
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        NoOp ->
-            model
-                |> H.withoutCmds
-
-        ToggleInspect id isActive ->
-            model
-                |> ComponentPage.toggleInspect id isActive
-                |> H.withoutCmds
-
-        UpdateSingleSelect submsg ->
-            model
-                |> updateSingleSelectList submsg
-                |> H.withoutCmds
-
-        UpdateMultiSelect submsg ->
-            model
-                |> updateMultiSelectList submsg
-                |> H.withoutCmds
-
-
-updateSingleSelectList : PyxisListChooser.Msg -> Model -> Model
-updateSingleSelectList msg model =
-    { model | singleSelectList = PyxisListChooser.update msg baseConfig model.singleSelectList }
-
-
-updateMultiSelectList : PyxisListChooser.Msg -> Model -> Model
-updateMultiSelectList msg model =
-    { model | multiSelectList = PyxisListChooser.update msg multiSelectConfig model.multiSelectList }
-
-
-
--- VIEW
 
 
 view : Model -> Html Msg
@@ -123,7 +35,7 @@ mainSection model =
             , onTogglePreview = ToggleInspect
             }
             [ Html.map UpdateSingleSelect <|
-                PyxisListChooser.render model.singleSelectList baseConfig
+                PyxisListChooser.render model.singleSelectList M.baseConfig
             ]
         , ComponentViewer.view
             { id = "multi-chooser"
@@ -134,17 +46,7 @@ mainSection model =
             , onTogglePreview = ToggleInspect
             }
             [ Html.map UpdateMultiSelect <|
-                PyxisListChooser.render model.multiSelectList multiSelectConfig
+                PyxisListChooser.render model.multiSelectList M.multiSelectConfig
             ]
         ]
     }
-
-
-baseConfig : PyxisListChooser.Config
-baseConfig =
-    PyxisListChooser.config 3 "View All" "View first 3"
-
-
-multiSelectConfig : PyxisListChooser.Config
-multiSelectConfig =
-    baseConfig |> PyxisListChooser.withMultipleSelection True

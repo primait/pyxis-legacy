@@ -17,7 +17,7 @@ import Pages.Button.Model
 import Pages.Container.Model
 import Pages.Form.Model
 import Pages.Link.Model
-import Pages.ListChooser
+import Pages.ListChooser.Model
 import Pages.Loader
 import Pages.Message
 import Pages.Modal
@@ -44,7 +44,7 @@ type Msg
     | ContainerPageMsg Pages.Container.Model.Msg
     | FormPageMsg Pages.Form.Model.Msg
     | LinkPageMsg Pages.Link.Model.Msg
-    | ListChooserPageMsg Pages.ListChooser.Msg
+    | ListChooserPageMsg Pages.ListChooser.Model.Msg
     | LoaderPageMsg Pages.Loader.Msg
     | MessagePageMsg Pages.Message.Msg
     | ModalPageMsg Pages.Modal.Msg
@@ -68,7 +68,7 @@ type alias Model =
     , containerModel : Pages.Container.Model.Model
     , formModel : Pages.Form.Model.Model
     , linkModel : Pages.Link.Model.Model
-    , listChooserModel : Pages.ListChooser.Model
+    , listChooserModel : Pages.ListChooser.Model.Model
     , loaderModel : Pages.Loader.Model
     , messageModel : Pages.Message.Model
     , modalModel : Pages.Modal.Model
@@ -106,7 +106,7 @@ initialModel flags url key =
     , containerModel = Pages.Container.Model.init translator
     , formModel = Pages.Form.Model.init
     , linkModel = Pages.Link.Model.init
-    , listChooserModel = Pages.ListChooser.init
+    , listChooserModel = Pages.ListChooser.Model.init
     , loaderModel = Pages.Loader.init translator
     , messageModel = Pages.Message.init
     , modalModel = Pages.Modal.init

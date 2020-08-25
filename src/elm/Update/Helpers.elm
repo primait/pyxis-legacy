@@ -16,7 +16,8 @@ import Pages.Form.Model as FormModel
 import Pages.Form.Update as FormUpdate
 import Pages.Link.Model as LinkModel
 import Pages.Link.Update as LinkUpdate
-import Pages.ListChooser
+import Pages.ListChooser.Model as ListChooserModel
+import Pages.ListChooser.Update as ListChooserUpdate
 import Pages.Loader
 import Pages.Message
 import Pages.Modal
@@ -87,9 +88,9 @@ dispatchLinkSubMsg msg model =
     { model | linkModel = Tuple.first <| LinkUpdate.update msg model.linkModel }
 
 
-dispatchListChooserSubMsg : Pages.ListChooser.Msg -> Model -> Model
+dispatchListChooserSubMsg : ListChooserModel.Msg -> Model -> Model
 dispatchListChooserSubMsg msg model =
-    { model | listChooserModel = Tuple.first <| Pages.ListChooser.update msg model.listChooserModel }
+    { model | listChooserModel = Tuple.first <| ListChooserUpdate.update msg model.listChooserModel }
 
 
 dispatchLoaderSubMsg : Pages.Loader.Msg -> Model -> Model
