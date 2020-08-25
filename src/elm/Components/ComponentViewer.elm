@@ -1,12 +1,11 @@
 module Components.ComponentViewer exposing (boxTypeToLabel, view)
 
-import Array
 import Commons.Box as Box
 import Commons.CodeViewer as CodeViewer
 import Commons.Tabs as Tabs
 import Html exposing (Html, div, text)
 import Html.Attributes exposing (class)
-import Html.Lazy exposing (lazy)
+import Html.Lazy exposing (lazy2, lazy3)
 
 
 type alias ViewConfig msg =
@@ -16,11 +15,12 @@ type alias ViewConfig msg =
     , label : String
     , example : String
     , onTogglePreview : String -> Bool -> msg
+    , onCopyCode : String -> msg
     }
 
 
 view : ViewConfig msg -> List (Html msg) -> Html msg
-view { id, isCodeVisible, label, boxType, example, onTogglePreview } content =
+view { id, isCodeVisible, label, boxType, example, onTogglePreview, onCopyCode } content =
     let
         activeTab =
             stateToTabIndex isCodeVisible
@@ -29,10 +29,10 @@ view { id, isCodeVisible, label, boxType, example, onTogglePreview } content =
         { active = activeTab
         , tabs =
             [ { name = "Preview"
-              , view = lazy (\_ -> viewComponentBox boxType label content) ()
+              , view = lazy3 viewComponentBox boxType label content
               }
             , { name = "</> Code"
-              , view = lazy viewCodeViewer example
+              , view = lazy2 viewCodeViewer example onCopyCode
               }
             ]
         , onTabClick = \int -> onTogglePreview id (tabIndexToState int)
@@ -77,12 +77,12 @@ viewComponentBox boxType componentLabel content =
         ]
 
 
-viewCodeViewer : String -> Html msg
-viewCodeViewer code =
+viewCodeViewer : String -> (String -> msg) -> Html msg
+viewCodeViewer code onCopyCode =
     CodeViewer.view
         { code = code
         , copyButtonText = "Copia Codice"
-        , onCopyCode = always ()
+        , onCopyCode = onCopyCode
         }
 
 

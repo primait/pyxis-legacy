@@ -74,6 +74,7 @@ calloutButtonSection model =
             , example = """TODO"""
             , label = "on light color"
             , onTogglePreview = ToggleInspectMode
+            , onCopyCode = CopyToClipboard
             }
             [ PyxisButton.callOut "Large button" |> PyxisButton.render
             , PyxisButton.callOut "Disable button" |> PyxisButton.withDisabled True |> PyxisButton.render
@@ -87,6 +88,7 @@ calloutButtonSection model =
             , example = """TODO"""
             , label = "on dark color"
             , onTogglePreview = ToggleInspectMode
+            , onCopyCode = CopyToClipboard
             }
             [ PyxisButton.callOut "Large button" |> PyxisButton.render
             , PyxisButton.callOut "Disable button" |> PyxisButton.withDisabled True |> PyxisButton.render
@@ -176,6 +178,7 @@ downloadButtonSection model =
             , example = """TODO"""
             , label = "on light color"
             , onTogglePreview = ToggleInspectMode
+            , onCopyCode = CopyToClipboard
             }
             downloadButtons
         , ComponentViewer.view
@@ -185,6 +188,7 @@ downloadButtonSection model =
             , example = """TODO"""
             , label = "on dark color"
             , onTogglePreview = ToggleInspectMode
+            , onCopyCode = CopyToClipboard
             }
             downloadButtons
         , ComponentViewer.view
@@ -194,6 +198,7 @@ downloadButtonSection model =
             , example = """TODO"""
             , label = "on brand gradient"
             , onTogglePreview = ToggleInspectMode
+            , onCopyCode = CopyToClipboard
             }
             downloadButtons
         ]
@@ -227,6 +232,7 @@ buttonGroupSection model =
                             |> H.strFormat [ ( "modifier", cssClass ) ]
                     , label = name
                     , onTogglePreview = ToggleInspectMode
+                    , onCopyCode = CopyToClipboard
                     }
                     [ div
                         [ classList [ ( "btn-group", True ), ( cssClass, True ) ]
@@ -272,6 +278,7 @@ buttonGroupCoverFluidSection model =
             , example = """TODO"""
             , label = "Cover Fluid"
             , onTogglePreview = ToggleInspectMode
+            , onCopyCode = CopyToClipboard
             }
             [ div [ class "btn-group btn-group--cover-fluid", style "width" "100%" ] [ buttonPreview ]
             ]
@@ -282,6 +289,7 @@ buttonGroupCoverFluidSection model =
             , example = """TODO"""
             , label = "Group Cover Fluid"
             , onTogglePreview = ToggleInspectMode
+            , onCopyCode = CopyToClipboard
             }
             [ div [ class "btn-group btn-group--cover-fluid", style "width" "100%" ]
                 [ buttonPreview, buttonPreview, buttonPreview ]
@@ -314,6 +322,7 @@ buttonsShowcase model { title, suggestions, normalButton, altButton } =
             , example = """TODO"""
             , label = "on light color"
             , onTogglePreview = ToggleInspectMode
+            , onCopyCode = CopyToClipboard
             }
             [ "large button" |> normalButton |> PyxisButton.render
             , "disable button" |> normalButton |> PyxisButton.withDisabled True |> PyxisButton.render
@@ -327,6 +336,7 @@ buttonsShowcase model { title, suggestions, normalButton, altButton } =
             , example = """TODO"""
             , label = "on dark color"
             , onTogglePreview = ToggleInspectMode
+            , onCopyCode = CopyToClipboard
             }
             [ "large button" |> altButton |> PyxisButton.render
             , "disable button" |> altButton |> PyxisButton.withDisabled True |> PyxisButton.render
@@ -340,6 +350,7 @@ buttonsShowcase model { title, suggestions, normalButton, altButton } =
             , example = """TODO"""
             , label = "on brand gradient"
             , onTogglePreview = ToggleInspectMode
+            , onCopyCode = CopyToClipboard
             }
             [ "large button" |> altButton |> PyxisButton.render
             , "disable button" |> altButton |> PyxisButton.withDisabled True |> PyxisButton.render

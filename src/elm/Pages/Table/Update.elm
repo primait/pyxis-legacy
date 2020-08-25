@@ -4,6 +4,7 @@ import Dict
 import Helpers as H
 import Pages.Component as ComponentPage
 import Pages.Table.Model exposing (Model, Msg(..))
+import Ports as P
 import Prima.Pyxis.Table as PyxisTable
 
 
@@ -18,6 +19,9 @@ update msg model =
             model
                 |> ComponentPage.toggleInspect id isActive
                 |> H.withoutCmds
+
+        CopyToClipboard text ->
+            ( model, P.copyToClipboard text )
 
         UpdateTable id newState ->
             model

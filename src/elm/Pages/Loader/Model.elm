@@ -8,6 +8,7 @@ import Pages.Component as ComponentPage exposing (WithCodeInspectors)
 type Msg
     = NoOp
     | ToggleInspect String Bool
+    | CopyToClipboard String
 
 
 type alias Model =

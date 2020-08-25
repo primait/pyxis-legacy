@@ -3,6 +3,7 @@ module Pages.AtrTable.Update exposing (update)
 import Helpers as H
 import Pages.AtrTable.Model exposing (Model, Msg(..))
 import Pages.Component as ComponentPage
+import Ports as P
 import Prima.Pyxis.AtrTable as AtrTable
 
 
@@ -17,6 +18,9 @@ update msg model =
             model
                 |> ComponentPage.toggleInspect id isActive
                 |> H.withoutCmds
+
+        CopyToClipboard text ->
+            ( model, P.copyToClipboard text )
 
         UpdateAtrTable submsg ->
             model

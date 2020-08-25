@@ -34,6 +34,7 @@ type Msg
     | ChangeRoute (Maybe Route)
     | ToggleMenu Bool
     | ToggleDropDown String Bool
+    | CopyToClipboard String
       {-
          COMPONENT PAGES
       -}

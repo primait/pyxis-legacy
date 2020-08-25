@@ -69,9 +69,13 @@ dispatchBadgeSubMsg msg model =
     { model | badgeModel = Tuple.first <| BadgeUpdate.update msg model.badgeModel }
 
 
-dispatchButtonSubMsg : ButtonModel.Msg -> Model -> Model
+dispatchButtonSubMsg : ButtonModel.Msg -> Model -> ( Model, Cmd Msg )
 dispatchButtonSubMsg msg model =
-    { model | buttonModel = Tuple.first <| ButtonUpdate.update msg model.buttonModel }
+    let
+        newState =
+            ButtonUpdate.update msg model.buttonModel
+    in
+    ( { model | buttonModel = Tuple.first newState }, Cmd.map ButtonPageMsg (Tuple.second newState) )
 
 
 dispatchContainerSubMsg : ContainerModel.Msg -> Model -> Model

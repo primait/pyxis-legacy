@@ -45,6 +45,7 @@ viewForm model =
                         { id = config.title
                         , isCodeVisible = ComponentPage.isInspecting config.title model
                         , onTogglePreview = ToggleInspect
+                        , onCopyCode = CopyToClipboard
                         , boxType = Box.Light
                         , label = config.title
                         , example = "TODO"

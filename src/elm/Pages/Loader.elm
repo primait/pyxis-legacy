@@ -37,6 +37,7 @@ mainSection model =
             , example = """TODO"""
             , label = "loader vehicle"
             , onTogglePreview = ToggleInspect
+            , onCopyCode = CopyToClipboard
             }
             [ loaderVehicle "Attendi. Stiamo caricando i tuoi dati..."
             ]
@@ -47,6 +48,7 @@ mainSection model =
             , example = """TODO"""
             , label = "spinner small"
             , onTogglePreview = ToggleInspect
+            , onCopyCode = CopyToClipboard
             }
             [ loaderSpinnerSmall
             ]
@@ -57,6 +59,7 @@ mainSection model =
             , example = """TODO"""
             , label = "spinner medium"
             , onTogglePreview = ToggleInspect
+            , onCopyCode = CopyToClipboard
             }
             [ loaderSpinnerMedium "Attendi. Stiamo caricando i tuoi dati..."
             ]

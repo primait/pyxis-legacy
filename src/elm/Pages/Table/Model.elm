@@ -8,6 +8,7 @@ import Prima.Pyxis.Table as PyxisTable
 type Msg
     = NoOp
     | ToggleInspect String Bool
+    | CopyToClipboard String
     | UpdateTable String PyxisTable.State
 
 

@@ -43,6 +43,7 @@ viewComponent model index tooltipConfig =
         , example = """TODO"""
         , label = ComponentViewer.boxTypeToLabel Box.Light
         , onTogglePreview = ToggleInspect
+        , onCopyCode = CopyToClipboard
         }
         [ Html.div [ class "tooltip-example-block" ]
             [ PyxisTooltip.render tooltipConfig ]

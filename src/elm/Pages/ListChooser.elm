@@ -33,6 +33,7 @@ mainSection model =
             , example = """TODO"""
             , label = "single select"
             , onTogglePreview = ToggleInspect
+            , onCopyCode = CopyToClipboard
             }
             [ Html.map UpdateSingleSelect <|
                 PyxisListChooser.render model.singleSelectList M.baseConfig
@@ -44,6 +45,7 @@ mainSection model =
             , example = """TODO"""
             , label = "multi select"
             , onTogglePreview = ToggleInspect
+            , onCopyCode = CopyToClipboard
             }
             [ Html.map UpdateMultiSelect <|
                 PyxisListChooser.render model.multiSelectList M.multiSelectConfig

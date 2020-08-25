@@ -34,6 +34,7 @@ mainSection model =
             , example = """TODO"""
             , label = ComponentViewer.boxTypeToLabel Box.Light
             , onTogglePreview = ToggleInspect
+            , onCopyCode = CopyToClipboard
             }
             normalBadges
         , ComponentViewer.view
@@ -43,6 +44,7 @@ mainSection model =
             , example = """TODO"""
             , label = ComponentViewer.boxTypeToLabel Box.Dark
             , onTogglePreview = ToggleInspect
+            , onCopyCode = CopyToClipboard
             }
             altBadges
         , ComponentViewer.view
@@ -52,6 +54,7 @@ mainSection model =
             , example = """TODO"""
             , label = ComponentViewer.boxTypeToLabel Box.Gradient
             , onTogglePreview = ToggleInspect
+            , onCopyCode = CopyToClipboard
             }
             altBadges
         ]

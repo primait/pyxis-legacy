@@ -18,6 +18,7 @@ type Msg
     = NoOp
     | ToggleInspect String Bool
     | ToggleAccordion String Bool
+    | CopyToClipboard String
 
 
 type alias Model =

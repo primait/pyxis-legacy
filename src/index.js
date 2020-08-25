@@ -52,12 +52,22 @@ async function initI18n() {
 
 
 initI18n().then(([lang, translations]) => {
-    Elm.Pyxis.init({
+    const app = Elm.Pyxis.init({
         node: document.getElementById('app'),
         flags: {
             currentPath: window.location.pathname,
             language: lang,
             translations: Object.entries(translations).filter((([k, v]) => v !== null))
         }
-    })
+    });
+
+    app.ports.copyToClipboard.subscribe(text => {
+        const editor = document.createElement("textarea");
+        document.body.appendChild(editor);
+        editor.value = text;
+        editor.select();
+        editor.setSelectionRange(0, text.length);
+        document.execCommand("copy");
+        editor.remove();
+    });
 });

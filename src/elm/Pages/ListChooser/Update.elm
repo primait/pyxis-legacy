@@ -3,6 +3,7 @@ module Pages.ListChooser.Update exposing (..)
 import Helpers as H
 import Pages.Component as ComponentPage
 import Pages.ListChooser.Model as M exposing (Model, Msg(..))
+import Ports as P
 import Prima.Pyxis.ListChooser as PyxisListChooser
 
 
@@ -17,6 +18,9 @@ update msg model =
             model
                 |> ComponentPage.toggleInspect id isActive
                 |> H.withoutCmds
+
+        CopyToClipboard text ->
+            ( model, P.copyToClipboard text )
 
         UpdateSingleSelect submsg ->
             model

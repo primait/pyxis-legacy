@@ -35,6 +35,7 @@ sectionsConfig configList model =
                     , example = """TODO"""
                     , label = ComponentViewer.boxTypeToLabel boxType
                     , onTogglePreview = ToggleInspect
+                    , onCopyCode = CopyToClipboard
                     }
                     [ Message.render (config [ text exampleText ])
                     ]

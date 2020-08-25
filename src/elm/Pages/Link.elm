@@ -4,7 +4,7 @@ import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
-import Pages.Component as ComponentPage exposing (WithCodeInspectors)
+import Pages.Component as ComponentPage
 import Pages.Link.Model exposing (Model, Msg(..))
 import Prima.Pyxis.Link as PyxisLink
 
@@ -36,6 +36,7 @@ regularLinkSection model =
             , example = """TODO"""
             , label = ComponentViewer.boxTypeToLabel Box.Light
             , onTogglePreview = ToggleInspect
+            , onCopyCode = CopyToClipboard
             }
             [ viewRegularLink "Regular Link"
             , viewRegularLinkWithIcon "Link with icon"
@@ -47,6 +48,7 @@ regularLinkSection model =
             , example = """TODO"""
             , label = ComponentViewer.boxTypeToLabel Box.Dark
             , onTogglePreview = ToggleInspect
+            , onCopyCode = CopyToClipboard
             }
             [ viewRegularLink "Regular Link"
             , viewRegularLinkWithIcon "Link with icon"
@@ -67,6 +69,7 @@ standaloneLink model =
             , example = """TODO"""
             , label = "on light color"
             , onTogglePreview = ToggleInspect
+            , onCopyCode = CopyToClipboard
             }
             [ viewStandaloneLink "Standalone Link"
             , viewStandaloneLinkWithIcon "Standalone with icon"
@@ -78,6 +81,7 @@ standaloneLink model =
             , example = """TODO"""
             , label = "on dark color"
             , onTogglePreview = ToggleInspect
+            , onCopyCode = CopyToClipboard
             }
             [ viewStandaloneLink "Standalone Link"
             , viewStandaloneLinkWithIcon "Standalone with icon"

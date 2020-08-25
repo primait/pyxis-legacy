@@ -49,6 +49,7 @@ singleAccordionSection model =
             , example = """TODO"""
             , label = "on light color"
             , onTogglePreview = M.ToggleInspect
+            , onCopyCode = M.CopyToClipboard
             }
             [ PyxisAccordion.render
                 (accordionStateOf M.Light)
@@ -61,6 +62,7 @@ singleAccordionSection model =
             , example = """TODO"""
             , label = "on base color"
             , onTogglePreview = M.ToggleInspect
+            , onCopyCode = M.CopyToClipboard
             }
             [ PyxisAccordion.render
                 (accordionStateOf M.Base)
@@ -73,6 +75,7 @@ singleAccordionSection model =
             , example = """TODO"""
             , label = "on brand gradient"
             , onTogglePreview = M.ToggleInspect
+            , onCopyCode = M.CopyToClipboard
             }
             [ PyxisAccordion.render
                 (accordionStateOf M.Dark)
@@ -109,6 +112,7 @@ accordionGroupSection model =
             , example = """TODO"""
             , label = "on light color"
             , onTogglePreview = M.ToggleInspect
+            , onCopyCode = M.CopyToClipboard
             }
             [ PyxisAccordion.renderGroup
                 [ ( accordionStateOf (M.LightGroup 1), lightAccordionConfig (M.LightGroup 1) )
@@ -123,6 +127,7 @@ accordionGroupSection model =
             , example = """TODO"""
             , label = "on base color"
             , onTogglePreview = M.ToggleInspect
+            , onCopyCode = M.CopyToClipboard
             }
             [ PyxisAccordion.renderGroup
                 [ ( accordionStateOf (M.BaseGroup 1), baseAccordionConfig (M.BaseGroup 1) )
@@ -137,6 +142,7 @@ accordionGroupSection model =
             , example = """TODO"""
             , label = "on light color"
             , onTogglePreview = M.ToggleInspect
+            , onCopyCode = M.CopyToClipboard
             }
             [ PyxisAccordion.renderGroup
                 [ ( accordionStateOf (M.DarkGroup 1), darkAccordionConfig (M.DarkGroup 1) )

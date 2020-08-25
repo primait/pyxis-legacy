@@ -3,6 +3,7 @@ module Pages.Accordion.Update exposing (update)
 import Dict
 import Helpers as PH
 import Pages.Accordion.Model exposing (AccordionId(..), Model, Msg(..))
+import Ports as P
 import Prima.Pyxis.Accordion as PyxisAccordion
 
 
@@ -17,6 +18,9 @@ update msg model =
             model
                 |> updateCodeViewer id isOpen
                 |> PH.withoutCmds
+
+        CopyToClipboard text ->
+            ( model, P.copyToClipboard text )
 
         ToggleAccordion id isOpen ->
             model

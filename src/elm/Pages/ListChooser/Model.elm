@@ -8,6 +8,7 @@ import Prima.Pyxis.ListChooser as PyxisListChooser
 type Msg
     = NoOp
     | ToggleInspect String Bool
+    | CopyToClipboard String
     | UpdateSingleSelect PyxisListChooser.Msg
     | UpdateMultiSelect PyxisListChooser.Msg
 

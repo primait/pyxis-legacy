@@ -4,6 +4,7 @@ import Browser
 import Browser.Navigation as Nav
 import Helpers as H
 import Model exposing (Model, Msg(..))
+import Ports as P
 import Route
 import Update.Helpers as UH
 
@@ -56,6 +57,11 @@ update msg model =
                 |> UH.setDropdownOpen id value
                 |> H.withoutCmds
 
+        CopyToClipboard text ->
+            model
+                |> H.withCmds [ P.copyToClipboard text ]
+
+        {- PAGES UPDATES -}
         AccordionPageMsg subMsg ->
             model
                 |> UH.dispatchAccordionSubMsg subMsg
@@ -74,7 +80,6 @@ update msg model =
         ButtonPageMsg subMsg ->
             model
                 |> UH.dispatchButtonSubMsg subMsg
-                |> H.withoutCmds
 
         ContainerPageMsg submsg ->
             model

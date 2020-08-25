@@ -8,6 +8,7 @@ import Set exposing (Set)
 type Msg
     = NoOp
     | ToggleInspect String Bool
+    | CopyToClipboard String
     | UpdateStringField String String
     | ToggleBoolField String Bool
     | ToggleStringSet String String

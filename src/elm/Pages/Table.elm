@@ -46,6 +46,7 @@ tableShowcase model { id, tableType, alternateRows } =
         , example = """TODO"""
         , label = ComponentViewer.boxTypeToLabel Box.Base
         , onTogglePreview = ToggleInspect
+        , onCopyCode = CopyToClipboard
         }
         [ tableType True (UpdateTable id)
             |> PyxisTable.withAlternateRows alternateRows

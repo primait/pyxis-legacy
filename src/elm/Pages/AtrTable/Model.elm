@@ -8,6 +8,7 @@ import Prima.Pyxis.AtrTable as AtrTable
 type Msg
     = NoOp
     | ToggleInspect String Bool
+    | CopyToClipboard String
     | UpdateAtrTable AtrTable.Msg
 
 
