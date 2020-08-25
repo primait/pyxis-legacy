@@ -1,6 +1,6 @@
 module Pages.Home exposing (view)
 
-import Html exposing (Html, a, div, h1, h2, h6, img, li, p, section, span, text, ul)
+import Html exposing (Html, a, div, h1, h2, h6, img, p, section, text, ul)
 import Html.Attributes as Attr exposing (alt, class, classList, src, style)
 import Html.Events exposing (onClick)
 import Model exposing (Model, Msg(..))
@@ -145,7 +145,7 @@ viewListItem { title, content } =
 
 
 viewFooter : Model -> Html Msg
-viewFooter ({ translate } as model) =
+viewFooter { translate } =
     section [ class "section" ]
         [ div [ class "footer-box" ]
             [ div [ class "footer-box__content" ]

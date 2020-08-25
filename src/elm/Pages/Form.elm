@@ -2,10 +2,10 @@ module Pages.Form exposing (view)
 
 import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
-import Dict exposing (Dict)
+import Dict
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
-import Pages.Component as ComponentPage exposing (WithCodeInspectors)
+import Pages.Component as ComponentPage
 import Pages.Form.Model exposing (Model, Msg(..))
 import Prima.Pyxis.Form.Checkbox as Checkbox
 import Prima.Pyxis.Form.CheckboxFlag as CheckboxFlag
@@ -15,7 +15,7 @@ import Prima.Pyxis.Form.Radio as Radio
 import Prima.Pyxis.Form.RadioButton as RadioButton
 import Prima.Pyxis.Form.RadioFlag as RadioFlag
 import Prima.Pyxis.Form.TextArea as TextArea
-import Set exposing (Set)
+import Set
 
 
 

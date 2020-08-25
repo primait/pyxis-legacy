@@ -4,7 +4,7 @@ import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
-import Pages.Component as ComponentPage exposing (WithCodeInspectors)
+import Pages.Component as ComponentPage
 import Pages.Table.Model as M exposing (Model, Msg(..))
 import Prima.Pyxis.Table as PyxisTable
 
