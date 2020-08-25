@@ -1,55 +1,12 @@
-module Pages.Message exposing
-    ( Model
-    , Msg(..)
-    , init
-    , update
-    , view
-    )
+module Pages.Message exposing (view)
 
 import Commons.Box as Box
 import Components.ComponentViewer as ComponentViewer
-import Dict
-import Helpers as H
 import Html exposing (Html, div, text)
 import Html.Attributes exposing (class)
-import Pages.Component as ComponentPage exposing (WithCodeInspectors)
+import Pages.Component as ComponentPage
+import Pages.Message.Model exposing (Model, Msg(..))
 import Prima.Pyxis.Message as Message
-
-
-type alias Model =
-    WithCodeInspectors {}
-
-
-init : Model
-init =
-    { inspectMode = Dict.empty
-    }
-
-
-
--- UPDATE
-
-
-type Msg
-    = NoOp
-    | ToggleInspect String Bool
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        NoOp ->
-            model
-                |> H.withoutCmds
-
-        ToggleInspect id isActive ->
-            model
-                |> ComponentPage.toggleInspect id isActive
-                |> H.withoutCmds
-
-
-
--- VIEW
 
 
 view : Model -> Html Msg

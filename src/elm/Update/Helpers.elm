@@ -20,7 +20,8 @@ import Pages.ListChooser.Model as ListChooserModel
 import Pages.ListChooser.Update as ListChooserUpdate
 import Pages.Loader.Model as LoaderModel
 import Pages.Loader.Update as LoaderUpdate
-import Pages.Message
+import Pages.Message.Model as MessageModel
+import Pages.Message.Update as MessageUpdate
 import Pages.Modal
 import Pages.Table
 import Pages.Tooltip
@@ -99,9 +100,9 @@ dispatchLoaderSubMsg msg model =
     { model | loaderModel = Tuple.first <| LoaderUpdate.update msg model.loaderModel }
 
 
-dispatchMessageSubMsg : Pages.Message.Msg -> Model -> Model
+dispatchMessageSubMsg : MessageModel.Msg -> Model -> Model
 dispatchMessageSubMsg msg model =
-    { model | messageModel = Tuple.first <| Pages.Message.update msg model.messageModel }
+    { model | messageModel = Tuple.first <| MessageUpdate.update msg model.messageModel }
 
 
 dispatchModalSubMsg : Pages.Modal.Msg -> Model -> Model

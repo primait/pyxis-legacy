@@ -19,7 +19,7 @@ import Pages.Form.Model
 import Pages.Link.Model
 import Pages.ListChooser.Model
 import Pages.Loader.Model
-import Pages.Message
+import Pages.Message.Model
 import Pages.Modal
 import Pages.Table
 import Pages.Tooltip
@@ -46,7 +46,7 @@ type Msg
     | LinkPageMsg Pages.Link.Model.Msg
     | ListChooserPageMsg Pages.ListChooser.Model.Msg
     | LoaderPageMsg Pages.Loader.Model.Msg
-    | MessagePageMsg Pages.Message.Msg
+    | MessagePageMsg Pages.Message.Model.Msg
     | ModalPageMsg Pages.Modal.Msg
     | TablePageMsg Pages.Table.Msg
     | TooltipPageMsg Pages.Tooltip.Msg
@@ -70,7 +70,7 @@ type alias Model =
     , linkModel : Pages.Link.Model.Model
     , listChooserModel : Pages.ListChooser.Model.Model
     , loaderModel : Pages.Loader.Model.Model
-    , messageModel : Pages.Message.Model
+    , messageModel : Pages.Message.Model.Model
     , modalModel : Pages.Modal.Model
     , tableModel : Pages.Table.Model
     , tooltipModel : Pages.Tooltip.Model
@@ -108,7 +108,7 @@ initialModel flags url key =
     , linkModel = Pages.Link.Model.init
     , listChooserModel = Pages.ListChooser.Model.init
     , loaderModel = Pages.Loader.Model.init translator
-    , messageModel = Pages.Message.init
+    , messageModel = Pages.Message.Model.init
     , modalModel = Pages.Modal.init
     , tableModel = Pages.Table.init
     , tooltipModel = Pages.Tooltip.init
