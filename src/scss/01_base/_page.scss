@@ -28,6 +28,7 @@
   }
 
   .heading-container__img {
+    @extend .mq-desktop-hidden;
     transform: translateY(-5%);
   }
 
