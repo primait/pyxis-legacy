@@ -2,11 +2,11 @@
   color: color(text, base);
 
   .section {
-    margin: 25px 0;
+    margin-bottom: 25px;
     padding: 0;
 
     @include mq(small) {
-      margin: 80px 0;
+      margin-bottom: 80px 0;
     }
 
     &:first-child {

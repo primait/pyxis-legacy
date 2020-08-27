@@ -47,6 +47,7 @@ $fontPath: "./fonts/";
   z-index: 1;
 }
 
+
 .pyxis-page {
   display: flex;
   flex-direction: column;
@@ -60,6 +61,10 @@ $fontPath: "./fonts/";
 .pyxis-page__content {
   flex-grow: 1;
   padding: 16px;
+
+  @include mqUp(small) {
+    padding-top: 96px;
+  }
 }
 
 .pyxis-page__footer {
