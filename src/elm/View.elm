@@ -8,18 +8,31 @@ import Model exposing (Model, Msg(..))
 import Pages.Accordion
 import Pages.AtrTable
 import Pages.Badge
+import Pages.BorderRadius
 import Pages.Button
+import Pages.Color
 import Pages.Container
+import Pages.ElevationAndShadows
+import Pages.Fonts
 import Pages.Form
+import Pages.GrammarAndMechanics
 import Pages.Home
+import Pages.Iconography
+import Pages.Icons
+import Pages.Illustration
 import Pages.Link
 import Pages.ListChooser
 import Pages.Loader
+import Pages.Logo
 import Pages.Message
 import Pages.Modal
 import Pages.NotFound
+import Pages.StartUsing
 import Pages.Table
 import Pages.Tooltip
+import Pages.Typography
+import Pages.UIKit
+import Pages.VoiceAndTone
 import Prima.Pyxis.Helpers as PyxisHelpers
 import Route
 
@@ -76,9 +89,57 @@ viewRouter model =
         Route.Homepage ->
             Pages.Home.view model
 
+        Route.StartUsing ->
+            Pages.StartUsing.view model
+
+        -- Style
+        Route.Logo ->
+            Pages.Logo.view model
+
+        Route.Typography ->
+            Pages.Typography.view model
+
+        Route.Color ->
+            Pages.Color.view model
+
+        Route.Illustration ->
+            Pages.Illustration.view model
+
+        Route.Iconography ->
+            Pages.Iconography.view model
+
+        -- Content
+        Route.VoiceAndTone ->
+            Pages.VoiceAndTone.view model
+
+        Route.GrammarAndMechanics ->
+            Pages.GrammarAndMechanics.view model
+
+        -- Patterns
+        Route.ElevationAndShadows ->
+            Pages.ElevationAndShadows.view model
+
+        Route.BorderRadius ->
+            Pages.BorderRadius.view model
+
+        Route.Container ->
+            Html.map ContainerPageMsg <| Pages.Container.view model.containerModel
+
+        -- Components
         Route.Component subroute ->
             viewComponentRouter subroute model
 
+        -- Tools and Resources
+        Route.UIKit ->
+            Pages.UIKit.view model
+
+        Route.Fonts ->
+            Pages.Fonts.view model
+
+        Route.Icons ->
+            Pages.Icons.view model
+
+        -- Others
         Route.NotFound ->
             Pages.NotFound.view
 
@@ -97,9 +158,6 @@ viewComponentRouter route model =
 
         Route.Button ->
             Html.map ButtonPageMsg <| Pages.Button.view model.buttonModel
-
-        Route.Container ->
-            Html.map ContainerPageMsg <| Pages.Container.view model.containerModel
 
         Route.Form ->
             Html.map FormPageMsg <| Pages.Form.view model.formModel
@@ -138,7 +196,7 @@ navbarConfig ({ translate } as config) =
     , onToggleDropdown = Model.ToggleDropDown
     , menuList =
         [ MenuLink { label = translate [] "navbar.welcome", route = Just Route.Homepage }
-        , MenuLink { label = translate [] "navbar.start", route = Nothing }
+        , MenuLink { label = translate [] "navbar.start", route = Just Route.StartUsing }
         , styleDropdownMenu "style-menu" config
         , contentDropdownMenu "content-menu" config
         , patternsDropdownMenu "patterns-menu" config
@@ -155,11 +213,11 @@ styleDropdownMenu id ({ translate } as model) =
         , label = translate [] "navbar.style.title"
         , isOpen = Model.isDropdownOpen id model
         , items =
-            [ MenuLink { label = translate [] "navbar.style.sub-menu.0", route = Nothing }
-            , MenuLink { label = translate [] "navbar.style.sub-menu.1", route = Nothing }
-            , MenuLink { label = translate [] "navbar.style.sub-menu.2", route = Nothing }
-            , MenuLink { label = translate [] "navbar.style.sub-menu.3", route = Nothing }
-            , MenuLink { label = translate [] "navbar.style.sub-menu.4", route = Nothing }
+            [ MenuLink { label = translate [] "navbar.style.sub-menu.logo", route = Just Route.Logo }
+            , MenuLink { label = translate [] "navbar.style.sub-menu.typography", route = Just Route.Typography }
+            , MenuLink { label = translate [] "navbar.style.sub-menu.color", route = Just Route.Color }
+            , MenuLink { label = translate [] "navbar.style.sub-menu.illustration", route = Just Route.Illustration }
+            , MenuLink { label = translate [] "navbar.style.sub-menu.iconography", route = Just Route.Iconography }
             ]
         }
 
@@ -171,8 +229,8 @@ contentDropdownMenu id ({ translate } as model) =
         , label = translate [] "navbar.content.title"
         , isOpen = Model.isDropdownOpen id model
         , items =
-            [ MenuLink { label = translate [] "navbar.content.sub-menu.0", route = Nothing }
-            , MenuLink { label = translate [] "navbar.content.sub-menu.1", route = Nothing }
+            [ MenuLink { label = translate [] "navbar.content.sub-menu.voice-and-tone", route = Just Route.VoiceAndTone }
+            , MenuLink { label = translate [] "navbar.content.sub-menu.grammar-and-mechanics", route = Just Route.GrammarAndMechanics }
             ]
         }
 
@@ -184,9 +242,9 @@ patternsDropdownMenu id ({ translate } as model) =
         , label = translate [] "navbar.patterns.title"
         , isOpen = Model.isDropdownOpen id model
         , items =
-            [ MenuLink { label = translate [] "navbar.patterns.sub-menu.0", route = Nothing }
-            , MenuLink { label = translate [] "navbar.patterns.sub-menu.1", route = Nothing }
-            , MenuLink { label = translate [] "navbar.patterns.sub-menu.2", route = Just (Route.Component Route.Container) }
+            [ MenuLink { label = translate [] "navbar.patterns.sub-menu.elevation-and-shadows", route = Just Route.ElevationAndShadows }
+            , MenuLink { label = translate [] "navbar.patterns.sub-menu.border-radius", route = Just Route.BorderRadius }
+            , MenuLink { label = translate [] "navbar.patterns.sub-menu.containers", route = Just Route.Container }
             ]
         }
 
@@ -221,8 +279,8 @@ toolsDropdownMenu id ({ translate } as model) =
         , label = translate [] "navbar.tools.title"
         , isOpen = Model.isDropdownOpen id model
         , items =
-            [ MenuLink { label = translate [] "navbar.tools.sub-menu.0", route = Nothing }
-            , MenuLink { label = translate [] "navbar.tools.sub-menu.1", route = Nothing }
-            , MenuLink { label = translate [] "navbar.tools.sub-menu.2", route = Nothing }
+            [ MenuLink { label = translate [] "navbar.tools.sub-menu.ui-kit", route = Just Route.UIKit }
+            , MenuLink { label = translate [] "navbar.tools.sub-menu.fonts", route = Just Route.Fonts }
+            , MenuLink { label = translate [] "navbar.tools.sub-menu.icons", route = Just Route.Icons }
             ]
         }

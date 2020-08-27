@@ -1,7 +1,10 @@
 common:
-  yes: Yes
-  no: No
+  "yes": "Yes"
+  "no": "No"
+  confirm: Confirm
+  cancel: Cancel
   search: Search
+  page-under-construction: Page under construction
 
 
 navbar:
@@ -10,22 +13,22 @@ navbar:
   style:
     title: Style
     sub-menu:
-      - Logo
-      - Typography
-      - Colors
-      - Illustrations
-      - Iconography
+      logo: Logo
+      typography: Typography
+      color: Color
+      illustration: Illustration
+      iconography: Iconography
   content:
     title: Content
     sub-menu:
-      - Voice and Tone
-      - Grammar and Mechanics
+      voice-and-tone: Voice and Tone
+      grammar-and-mechanics: Grammar and Mechanics
   patterns:
     title: Patterns
     sub-menu:
-      - Elevation and shadow
-      - Border radius
-      - Containers
+      elevation-and-shadows: Elevation and shadow
+      border-radius: Border radius
+      containers: Containers
   components:
     title: Components
     accordion: Accordion
@@ -33,9 +36,15 @@ navbar:
   tools:
     title: Tools and resources
     sub-menu:
-      - UI Kits
-      - Fonts
-      - Icons
+      ui-kit: UI Kit
+      fonts: Fonts
+      icons: Icons
+
+
+
+################################################################################
+# PAGES
+################################################################################
 
 home:
   header:
@@ -89,3 +98,84 @@ home:
     content: >-
       The image we give of ourselves needs care and attention, because the way
       we present ourselves is part of our brand and our own identity.
+
+
+start-using-page:
+  title: Start Using Pyxis
+
+
+################################################################################
+# STYLE
+################################################################################
+
+logo-page:
+  title: Logo
+
+
+typography-page:
+  title: Tipography
+
+
+color-page:
+  title: Color
+
+
+illustration-page:
+  title: Illustration
+
+
+iconography-page:
+  title: Iconography
+
+
+
+################################################################################
+# CONTENT
+################################################################################
+
+voice-and-tone-page:
+  title: Voice and Tone
+
+
+grammar-and-mechanics-page:
+  title: Grammar and Mechanics
+
+
+
+################################################################################
+# PATTERNS
+################################################################################
+
+elevation-and-shadows-page:
+  title: Elevation and Shadows
+
+
+border-radius-page:
+  title: Border Radius
+
+
+container-page:
+  title: Container
+
+
+
+################################################################################
+# COMPONENTS
+################################################################################
+
+# TODO
+
+
+
+################################################################################
+# TOOLS AND RESOURCES
+################################################################################
+
+ui-kit-page:
+  title: UI Kit
+
+fonts-page:
+  title: Fonts
+
+icons-page:
+  title: Icons

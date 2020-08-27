@@ -1,7 +1,10 @@
 common:
-  yes: Si
-  no: No
+  "yes": "Si"
+  "no": "No"
+  confirm: Conferma
+  cancel: Annulla
   search: Cerca
+  page-under-construction: Pagina in costruzione
 
 
 navbar:
@@ -10,22 +13,22 @@ navbar:
   style:
     title: Stile
     sub-menu:
-      - Logo
-      - Tipografia
-      - Colori
-      - Illustrazioni
-      - Iconografia
+      logo: Logo
+      typography: Tipografia
+      color: Colore
+      illustration: Illustrazione
+      iconography: Iconografia
   content:
     title: Contenuto
     sub-menu:
-      - Voce e Tono
-      - Grammatica e Meccaniche
+      voice-and-tone: Voce e Tono
+      grammar-and-mechanics: Grammatica e Meccaniche
   patterns:
     title: Patterns
     sub-menu:
-      - Elevazione ed ombre
-      - Raggio bordi
-      - Contenitori
+      elevation-and-shadows: Elevazione ed ombre
+      border-radius: Raggio bordi
+      containers: Contenitori
   components:
     title: Componenti
     accordion: Accordion
@@ -33,10 +36,15 @@ navbar:
   tools:
     title: Strumenti e risorse
     sub-menu:
-      - Kit UI
-      - Caratteri
-      - Icone
+      ui-kit: Kit UI
+      fonts: Caratteri
+      icons: Icone
 
+
+
+################################################################################
+# PAGES
+################################################################################
 
 home:
   header:
@@ -91,29 +99,66 @@ home:
     content: >-
       L’immagine che diamo di noi ha bisogno di cura e attenzione, perché il
       modo in cui ci mostriamo è parte del nostro brand e della nostra identità.
+# end home
 
 
-buttons-page:
-  title: Bottoni
-  description: >-
-    Aggiungere la classe 'a-btn' con i suoi vari modificatori per ottenere un
-    bottone di dimensioni standard. Un bottone standard di default si dispone
-    automaticamente al centro orizzontale del suo elemento padre. Le varianti
-    dark sono visibili correttamente solo su un background scuro. Quando è
-    necessario impilare più bottoni in uno stesso contenuto è opportuno
-    utilizzare la classe m-btnGroup e le sue varianti.
+start-using-page:
+  title: Inizia as usare Pyxis
 
 
-accordion-page:
-  title: Accordion
-  description: >-
-    Un accordion è un elemento che offre una sezione con un titolo e un
-    corpo collassabile. Un accordion può essere singolo o contenuto
-    in un accordion group.
+
+################################################################################
+# STYLE
+################################################################################
+
+logo-page:
+  title: Logo
+
+
+typography-page:
+  title: Tipografia
+
+
+color-page:
+  title: Colore
+
+
+illustration-page:
+  title: Illustrazione
+
+
+iconography-page:
+  title: Iconografia
+
+
+
+################################################################################
+# CONTENT
+################################################################################
+
+voice-and-tone-page:
+  title: Voce e Tono
+
+
+grammar-and-mechanics-page:
+  title: Grammatica e Meccaniche
+
+
+
+################################################################################
+# PATTERNS
+################################################################################
+
+elevation-and-shadows-page:
+  title: Elevazione ed Ombre
+
+
+border-radius-page:
+  title: Raggio bordi
 
 
 container-page:
-  title: Container
+  title: Contenitori
   description: >
     I container sono l'elemento base in cui contenere qualunque componente
     di pyxis e gestire l'aspetto base della pagina.
@@ -129,3 +174,40 @@ container-page:
     title: Container Fluidi
     description: >
       I container fluidi occupano sempre il 100% della larghezza della pagina
+
+
+
+################################################################################
+# COMPONENTS
+################################################################################
+
+accordion-page:
+  title: Accordion
+  description: >-
+    Un accordion è un elemento che offre una sezione con un titolo e un
+    corpo collassabile. Un accordion può essere singolo o contenuto
+    in un accordion group.
+
+
+buttons-page:
+  title: Bottoni
+  description: >-
+    Aggiungere la classe 'a-btn' con i suoi vari modificatori per ottenere un
+    bottone di dimensioni standard. Un bottone standard di default si dispone
+    automaticamente al centro orizzontale del suo elemento padre. Le varianti
+    dark sono visibili correttamente solo su un background scuro. Quando è
+    necessario impilare più bottoni in uno stesso contenuto è opportuno
+    utilizzare la classe m-btnGroup e le sue varianti.
+
+################################################################################
+# TOOLS AND RESOURCES
+################################################################################
+
+ui-kit-page:
+  title: Kit UI
+
+fonts-page:
+  title: Caratteri
+
+icons-page:
+  title: Icone

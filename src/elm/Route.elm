@@ -15,7 +15,39 @@ import Url.Parser exposing ((</>), Parser, map, oneOf, parse, s)
 
 type Route
     = Homepage
+    | StartUsing
+      {-
+         Style
+      -}
+    | Logo
+    | Typography
+    | Color
+    | Illustration
+    | Iconography
+      {-
+         Content
+      -}
+    | VoiceAndTone
+    | GrammarAndMechanics
+      {-
+         Patterns
+      -}
+    | ElevationAndShadows
+    | BorderRadius
+    | Container
+      {-
+         Components
+      -}
     | Component ComponentRoute
+      {-
+         Tools and Resources
+      -}
+    | UIKit
+    | Fonts
+    | Icons
+      {-
+         Others
+      -}
     | NotFound
 
 
@@ -44,7 +76,31 @@ parser : Parser (Route -> a) a
 parser =
     oneOf
         [ Url.Parser.map Homepage Url.Parser.top
+        , Url.Parser.map StartUsing (s "start-using")
+
+        -- Style
+        , Url.Parser.map Logo (s "logo")
+        , Url.Parser.map Typography (s "typography")
+        , Url.Parser.map Color (s "color")
+        , Url.Parser.map Illustration (s "illustration")
+        , Url.Parser.map Iconography (s "iconography")
+
+        -- Content
+        , Url.Parser.map VoiceAndTone (s "voice-and-tone")
+        , Url.Parser.map GrammarAndMechanics (s "grammar-and-mechanics")
+
+        -- Patterns
+        , Url.Parser.map ElevationAndShadows (s "elevation-and-shadows")
+        , Url.Parser.map BorderRadius (s "border-radius")
+        , Url.Parser.map Container (s "containers")
+
+        -- Components
         , Url.Parser.map Component (s "component" </> oneOf componentRoutes)
+
+        -- Tools and Resources
+        , Url.Parser.map UIKit (s "ui-kits")
+        , Url.Parser.map Fonts (s "fonts")
+        , Url.Parser.map Icons (s "icons")
         ]
 
 
@@ -59,9 +115,57 @@ routeToPieces page =
         Homepage ->
             []
 
+        StartUsing ->
+            [ "start-using" ]
+
+        -- Style
+        Logo ->
+            [ "logo" ]
+
+        Typography ->
+            [ "typography" ]
+
+        Color ->
+            [ "color" ]
+
+        Illustration ->
+            [ "illustration" ]
+
+        Iconography ->
+            [ "iconography" ]
+
+        --Content
+        VoiceAndTone ->
+            [ "voice-and-tone" ]
+
+        GrammarAndMechanics ->
+            [ "grammar-and-mechanics" ]
+
+        --Patterns
+        ElevationAndShadows ->
+            [ "elevation-and-shadows" ]
+
+        BorderRadius ->
+            [ "border-radius" ]
+
+        Container ->
+            [ "containers" ]
+
+        -- Components
         Component component ->
             [ "component", componentToUrl component ]
 
+        -- Tools and Resources
+        UIKit ->
+            [ "ui-kits" ]
+
+        Fonts ->
+            [ "fonts" ]
+
+        Icons ->
+            [ "icons" ]
+
+        -- Others
         NotFound ->
             [ "404" ]
 
@@ -75,7 +179,6 @@ type ComponentRoute
     | AtrTable
     | Badge
     | Button
-    | Container
     | Form
     | Link
     | ListChooser
@@ -92,7 +195,6 @@ componentRoutes =
     , Url.Parser.map AtrTable (s "atr-table")
     , Url.Parser.map Badge (s "badge")
     , Url.Parser.map Button (s "button")
-    , Url.Parser.map Container (s "container")
     , Url.Parser.map Form (s "form")
     , Url.Parser.map Link (s "link")
     , Url.Parser.map ListChooser (s "list-chooser")
@@ -118,9 +220,6 @@ componentToUrl route =
 
         Button ->
             "button"
-
-        Container ->
-            "container"
 
         Form ->
             "form"
