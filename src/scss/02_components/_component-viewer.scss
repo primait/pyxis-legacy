@@ -4,7 +4,7 @@
 
   @include mqUp(small) {
     flex-direction: row;
-    padding: 16px;
+    padding: 24px;
   }
 }
 
@@ -22,6 +22,10 @@
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-around;
+
+  @include mqDown(small) {
+    margin: 16px 0;
+  }
 
   > * {
     align-self: center;
