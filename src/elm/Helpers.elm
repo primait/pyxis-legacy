@@ -1,6 +1,7 @@
 module Helpers exposing (..)
 
 import Dict exposing (Dict)
+import List
 
 
 withCmds : List (Cmd msg) -> model -> ( model, Cmd msg )
@@ -13,6 +14,8 @@ withoutCmds =
     withCmds []
 
 
+{-| returns True if the a Maybe is Just, False otherwise
+-}
 isJust : Maybe x -> Bool
 isJust maybeVal =
     case maybeVal of
@@ -23,9 +26,35 @@ isJust maybeVal =
             False
 
 
+{-| returns True if a Maybe is Nothing, False otherwise
+-}
 isNothing : Maybe x -> Bool
 isNothing =
     not << isJust
+
+
+{-| It returns a portion of the list, containing the elements between "start"
+and "end" (end excluded).
+
+ex. listSlice 2 4 [1, 2, 3, 4, 5, 6] -> [2, 3, 4]
+
+The arguments can also be negative, representing the offset from the last element
+of the list
+
+-}
+listSlice : Int -> Int -> List a -> List a
+listSlice start end list =
+    let
+        adjustIndex index =
+            if index < 0 then
+                List.length list + index
+
+            else
+                index
+    in
+    list
+        |> List.drop (adjustIndex start)
+        |> List.take (adjustIndex end - adjustIndex start)
 
 
 {-|
@@ -68,6 +97,9 @@ i18nInit list =
 
     The second argument is used to replace all the occurrences of {{...}}
     with the values contained in the association list.
+
+    ex. "My name is {{name}}" |> translate [("name", "John Doe")]
+        -> "My name is John Doe"
 
 -}
 translate : Dict String String -> Translator
