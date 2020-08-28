@@ -121,6 +121,21 @@ typography-page:
 
 color-page:
   title: Colore
+  introduction: >-
+    In questa sezione puoi trovare palette ufficiali e specifiche di utilizzo
+    dei colori istituzionali.
+  institutional-colors:
+    title: I colori istituzionali
+    description: >-
+      Rispetta sempre il set di colori ufficiale in tutte le situazioni in cui
+      è il nostro brand a parlare. Puoi copiare gli esadecimali di riferimento
+      direttamente da qui, oppure utilizzare le specifiche Pantone.
+  prima-colors:
+    title: I colori di Prima.it
+    description: >-
+      Qui puoi trovare la palette completa dei colori che utilizziamo su
+      Prima.it. Fai sempre attenzione ad applicarli in modo corretto, copiando
+      gli esadecimali di riferimento o verificando le specifiche RGBA.
 
 
 illustration-page:

@@ -18,7 +18,8 @@
             "elm/url": "1.0.0",
             "elm-community/list-extra": "8.2.4",
             "elm-community/maybe-extra": "5.2.0",
-            "justinmimbs/date": "3.2.1"
+            "justinmimbs/date": "3.2.1",
+            "rtfeldman/elm-hex": "1.0.0"
         },
         "indirect": {
             "elm/bytes": "1.0.8",
