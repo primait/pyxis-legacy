@@ -11,14 +11,14 @@ clone:
 
 steps:
 - name: pre-start
-  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.12
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.16
   commands:
   - pre-start-scripts
   environment:
     COUNTRY: it
 
 - name: cache-restore
-  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.12
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.16
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - cache-restore
@@ -29,15 +29,17 @@ steps:
     path: /etc/profile.d/ecs-credentials-endpoint
   - name: docker
     path: /var/run/docker.sock
+  - name: docker-conf
+    path: /root/.docker
 
 - name: linter-deploy-files
-  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.12
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.16
   commands:
   - cfn-lint
   - shellcheck deploy/deploy deploy/wait_for_stack
 
 - name: check-secrets
-  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.12
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.16
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - check-secrets-grants
@@ -46,7 +48,7 @@ steps:
     path: /etc/profile.d/ecs-credentials-endpoint
 
 - name: build-image
-  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.12
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.16
   commands:
   - sed -i 's/USER node/USER root/g' ./Dockerfile
   - docker build -t prima/pyxis-ci:1 ./
@@ -105,7 +107,7 @@ steps:
   - build-site
 
 - name: wait-for-stack-staging
-  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.12
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.16
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - ./deploy/wait_for_stack staging
@@ -119,7 +121,7 @@ steps:
   - deploy-staging
 
 - name: cache-save
-  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.12
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.16
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - cache-save .cache .elm node_modules elm-stuff
@@ -130,6 +132,8 @@ steps:
     path: /etc/profile.d/ecs-credentials-endpoint
   - name: docker
     path: /var/run/docker.sock
+  - name: docker-conf
+    path: /root/.docker
   when:
     branch:
     - master
@@ -164,14 +168,14 @@ clone:
 
 steps:
 - name: pre-start
-  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.12
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.16
   commands:
   - pre-start-scripts
   environment:
     COUNTRY: it
 
 - name: cache-restore
-  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.12
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.16
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - cache-restore
@@ -182,9 +186,11 @@ steps:
     path: /etc/profile.d/ecs-credentials-endpoint
   - name: docker
     path: /var/run/docker.sock
+  - name: docker-conf
+    path: /root/.docker
 
 - name: check-secrets
-  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.12
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.16
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - check-secrets-grants
@@ -193,7 +199,7 @@ steps:
     path: /etc/profile.d/ecs-credentials-endpoint
 
 - name: build-image
-  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.12
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.16
   commands:
   - sed -i 's/USER node/USER root/g' ./Dockerfile
   - docker build -t prima/pyxis-ci:1 ./
@@ -223,7 +229,7 @@ steps:
   - build-image
 
 - name: wait-for-stack-production
-  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.12
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-tools:1.17.16
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - ./deploy/wait_for_stack production ${DRONE_TAG}
@@ -295,7 +301,7 @@ clone:
 
 steps:
 - name: send
-  image: prima/drone-webhook
+  image: 001575623345.dkr.ecr.eu-west-1.amazonaws.com/drone-webhook
   settings:
     signature-secret:
       from_secret: captainhook_secret
@@ -344,6 +350,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 5bf559611e83be6bd1f324a16ba6d2f6e24a5e2d3ca99c20fb5c4a8f1979c64c
+hmac: 193a71a9dff07cf204d3989fe296037f85ffb0692ffdd9fedb51835dc0ea731f
 
 ...
