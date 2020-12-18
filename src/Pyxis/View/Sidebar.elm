@@ -16,6 +16,10 @@ view model =
             ([ Route.Welcome
              , Route.GetStarted
              , Route.Components
+             , Route.Content
+             , Route.Style
+             , Route.Tools
+             , Route.Patterns
              ]
                 |> List.map (routeToElement model.route)
             )
@@ -34,12 +38,3 @@ routeToElement currentRoute route =
             |> Route.routeToLabel
             |> text
         ]
-
-
-
--- routeToElement : Route.Route -> Html Msg
--- routeToElement route =
---     li
---         []
---         [ (Route.routeToLabel >> text) route
---         ]

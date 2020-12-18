@@ -6,7 +6,11 @@ import Html.Events exposing (onClick, onInput)
 import Pyxis.Model exposing (Model, Msg(..))
 import Pyxis.Model.Route as Route
 import Pyxis.View.Pages.Components as Components
+import Pyxis.View.Pages.Content as Content
 import Pyxis.View.Pages.GetStarted as GetStarted
+import Pyxis.View.Pages.Patterns as Patterns
+import Pyxis.View.Pages.Style as Style
+import Pyxis.View.Pages.Tools as Tools
 import Pyxis.View.Pages.Welcome as Welcome
 import Pyxis.View.Sidebar as Sidebar
 
@@ -34,8 +38,17 @@ currentPage route =
         Route.GetStarted ->
             GetStarted.view
 
+        Route.Style ->
+            Style.view
+
+        Route.Content ->
+            Content.view
+
+        Route.Patterns ->
+            Patterns.view
+
         Route.Components ->
             Components.view
 
-        _ ->
-            text ""
+        Route.Tools ->
+            Tools.view
