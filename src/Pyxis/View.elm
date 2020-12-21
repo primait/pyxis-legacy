@@ -3,6 +3,7 @@ module Pyxis.View exposing (view)
 import Browser exposing (Document)
 import Html exposing (Html, button, input, text)
 import Html.Events exposing (onClick, onInput)
+import Pyxis.Helpers as Helpers
 import Pyxis.Model exposing (Model, Msg(..))
 import Pyxis.Model.Route as Route
 import Pyxis.View.Pages.Components as Components
@@ -24,7 +25,8 @@ view model =
 
 body : Model -> List (Html Msg)
 body model =
-    [ Sidebar.view model
+    [ Helpers.pyxisStyle
+    , Sidebar.view model
     , currentPage model.route
     ]
 
@@ -52,3 +54,9 @@ currentPage route =
 
         Route.Tools ->
             Tools.view
+
+        Route.Typography ->
+            text "Typography"
+
+        _ ->
+            text "404 :("
