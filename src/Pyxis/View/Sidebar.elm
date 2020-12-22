@@ -19,7 +19,11 @@ renderRoute : Sidebar.Route -> Html Sidebar.Msg
 renderRoute route =
     case route of
         Sidebar.Default { key } ->
-            renderLink key
+            a
+                [ class "pyxis__sidebar__item"
+                ]
+                [ (Route.routeToLabel >> text) key
+                ]
 
         Sidebar.WithChildren { key, children, accordionState } ->
             Sidebar.Toggle

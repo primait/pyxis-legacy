@@ -1,7 +1,7 @@
 module Pyxis.View exposing (view)
 
 import Browser exposing (Document)
-import Html exposing (Html, button, input, main_, text)
+import Html exposing (Html, button, div, input, main_, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick, onInput)
 import Pyxis.Model exposing (Model, Msg(..))
@@ -29,7 +29,7 @@ body model =
         [ class "pyxis"
         ]
         [ Html.map SidebarMsg (Sidebar.view model.sidebar)
-        , currentPage model.route
+        , div [ class "pyxis__content" ] [ currentPage model.route ]
         ]
     ]
 

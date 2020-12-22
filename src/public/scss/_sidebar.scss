@@ -3,6 +3,13 @@
     max-width: get($sidebarConfig, maxWidth);
 }
 
+.pyxis__sidebar__item {
+    @extend .accordion__toggle;
+
+    color: color(text, dark);
+
+}
+
 .pyxis__sidebar__list {
     list-style: none;
 }
