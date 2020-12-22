@@ -1,12 +1,20 @@
-module Pyxis.Model.Sidebar exposing (Model, Msg(..), Route(..), RouteDefaultConfig, RouteWithChildrenConfig, initialModel, update)
+module Pyxis.Model.Sidebar exposing
+    ( Model
+    , Msg(..)
+    , Route(..)
+    , RouteDefaultConfig
+    , RouteWithChildrenConfig
+    , initialModel
+    , routeToKey
+    )
 
 import Prima.Pyxis.Accordion as Accordion
 import Pyxis.Model.Route as Route
-import Pyxis.Update.Helpers as UH
 
 
 type Msg
     = Toggle String Bool
+    | OnRouteChange Route.Route
 
 
 type alias Model =
@@ -18,19 +26,27 @@ initialModel : Model
 initialModel =
     { routes =
         [ defaultRoute Route.Welcome
+        , defaultRoute Route.GetStarted
         , withChildrenRoute Route.Style
             [ Route.Logo
             , Route.Typography
-            , Route.Color
+            , Route.Colors
             , Route.Illustration
             , Route.Iconography
             ]
-        , withChildrenRoute Route.Welcome
-            [ Route.Logo
-            , Route.Typography
-            , Route.Color
-            , Route.Illustration
-            , Route.Iconography
+        , withChildrenRoute Route.Content
+            [ Route.VoiceAndTone
+            , Route.GrammarAndMechanics
+            ]
+        , withChildrenRoute Route.Patterns
+            [ Route.ElevationAndShadows
+            , Route.BorderRadius
+            , Route.Containers
+            ]
+        , withChildrenRoute Route.Tools
+            [ Route.UIKits
+            , Route.Fonts
+            , Route.Icons
             ]
         ]
     }
@@ -75,39 +91,3 @@ routeToKey route =
 
         WithChildren { key } ->
             key
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        Toggle slug isOpen ->
-            model
-                |> updateRoute (recalcRouteAccordionState slug isOpen)
-                |> UH.withoutCmds
-
-
-updateRoute : (Route -> Route) -> Model -> Model
-updateRoute mapper model =
-    { model
-        | routes = List.map mapper model.routes
-    }
-
-
-recalcRouteAccordionState : String -> Bool -> Route -> Route
-recalcRouteAccordionState slug isOpen route =
-    case ( slug == Route.routeToSlug (routeToKey route), isOpen ) of
-        ( True, False ) ->
-            updateRouteAccordionState Accordion.open route
-
-        ( _, _ ) ->
-            updateRouteAccordionState Accordion.close route
-
-
-updateRouteAccordionState : Accordion.State -> Route -> Route
-updateRouteAccordionState state route =
-    case route of
-        Default _ ->
-            route
-
-        WithChildren config ->
-            WithChildren { config | accordionState = state }

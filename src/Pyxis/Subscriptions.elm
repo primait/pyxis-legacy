@@ -1,8 +1,11 @@
 module Pyxis.Subscriptions exposing (subscriptions)
 
-import Pyxis.Model exposing (Model, Msg)
+import Pyxis.Model as PyxisModel
+import Pyxis.Model.Style.Colors as Colors
+import Pyxis.Ports as Ports
 
 
-subscriptions : Model -> Sub Msg
+subscriptions : PyxisModel.Model -> Sub PyxisModel.Msg
 subscriptions model =
-    Sub.none
+    Sub.batch
+        [ Ports.copyAcknowledgement (PyxisModel.ColorsMsg << always Colors.CopyAcknowledgement) ]

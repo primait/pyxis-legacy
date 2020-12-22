@@ -3,15 +3,19 @@ module Pyxis.Model exposing
     , Model
     , Msg(..)
     , initialModel
+    , updateColors
     , updateModel
     , updateRoute
+    , updateSidebar
     )
 
 import Browser exposing (UrlRequest)
+import Browser.Navigation as Nav
 import Html
 import Prima.Pyxis.Accordion as Accordion
-import Pyxis.Model.Route as Route exposing (routeToLabel, routeToSlug)
+import Pyxis.Model.Route as Route
 import Pyxis.Model.Sidebar as Sidebar
+import Pyxis.Model.Style.Colors as Colors
 import Url exposing (Url)
 
 
@@ -20,18 +24,23 @@ type Msg
     | OnUrlRequest UrlRequest
     | OnRouteChange Route.Route
     | SidebarMsg Sidebar.Msg
+    | ColorsMsg Colors.Msg
 
 
 type alias Model =
     { route : Route.Route
-    , sidebar : Sidebar.Model
+    , routeKey : Nav.Key
+    , sidebarModel : Sidebar.Model
+    , colorsModel : Colors.Model
     }
 
 
-initialModel : Model
-initialModel =
+initialModel : Nav.Key -> Model
+initialModel key =
     { route = Route.Welcome
-    , sidebar = Sidebar.initialModel
+    , routeKey = key
+    , sidebarModel = Sidebar.initialModel
+    , colorsModel = Colors.initialModel
     }
 
 
@@ -43,6 +52,16 @@ updateModel mapper =
 updateRoute : Route.Route -> Model -> Model
 updateRoute route =
     updateModel (\m -> { m | route = route })
+
+
+updateSidebar : Sidebar.Model -> Model -> Model
+updateSidebar sidebarModel =
+    updateModel (\m -> { m | sidebarModel = sidebarModel })
+
+
+updateColors : Colors.Model -> Model -> Model
+updateColors colorsModel =
+    updateModel (\m -> { m | colorsModel = colorsModel })
 
 
 type alias Flags =

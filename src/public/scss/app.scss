@@ -3,6 +3,8 @@ $fontPath : "/fonts";
 @import "pyxis-npm/src/scss/pyxis";
 @import "variables";
 @import "sidebar";
+@import "pages/style/root";
+@import "icons";
 
 .pyxis {
     display: grid;
@@ -11,5 +13,5 @@ $fontPath : "/fonts";
 }
 
 .pyxis__content {
-    padding: rem(30px);
+    padding: rem(80px);
 }

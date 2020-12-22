@@ -1,26 +1,39 @@
 module Pyxis exposing (..)
 
 import Browser
-import Browser.Navigation exposing (Key)
-import Pyxis.Model exposing (Flags, Model, Msg(..), initialModel)
+import Browser.Navigation as Nav
+import Pyxis.Model as PyxisModel
+import Pyxis.Model.Route as Route
+import Pyxis.Ports as Ports
 import Pyxis.Subscriptions as Subscriptions
 import Pyxis.Update as Update
+import Pyxis.Update.Helpers as UH
 import Pyxis.View as View
 import Url exposing (Url)
 
 
-main : Program Flags Model Msg
+main : Program PyxisModel.Flags PyxisModel.Model PyxisModel.Msg
 main =
     Browser.application
         { init = init
         , view = View.view
         , update = Update.update
         , subscriptions = Subscriptions.subscriptions
-        , onUrlChange = OnUrlChange
-        , onUrlRequest = OnUrlRequest
+        , onUrlChange = PyxisModel.OnUrlChange
+        , onUrlRequest = PyxisModel.OnUrlRequest
         }
 
 
-init : Flags -> Url -> Key -> ( Model, Cmd Msg )
+init : PyxisModel.Flags -> Url -> Nav.Key -> ( PyxisModel.Model, Cmd PyxisModel.Msg )
 init flags url key =
-    ( initialModel, Cmd.none )
+    let
+        initialModel =
+            PyxisModel.initialModel key
+    in
+    initialModel
+        |> PyxisModel.updateRoute
+            (url
+                |> Route.routeFromUrl
+                |> Maybe.withDefault initialModel.route
+            )
+        |> UH.withoutCmds

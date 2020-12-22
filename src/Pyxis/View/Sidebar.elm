@@ -1,7 +1,7 @@
 module Pyxis.View.Sidebar exposing (view)
 
 import Html exposing (..)
-import Html.Attributes exposing (class, classList, href)
+import Html.Attributes exposing (class, href)
 import Html.Events exposing (onClick)
 import Prima.Pyxis.Accordion as Accordion
 import Pyxis.Model.Route as Route
@@ -22,7 +22,7 @@ renderRoute route =
             a
                 [ class "pyxis__sidebar__item"
                 ]
-                [ (Route.routeToLabel >> text) key
+                [ renderLink key
                 ]
 
         Sidebar.WithChildren { key, children, accordionState } ->
@@ -37,13 +37,15 @@ renderChildren : List Route.Route -> Html Sidebar.Msg
 renderChildren children =
     ul
         [ class "pyxis__sidebar__list" ]
-        (List.map (li [ class "pyxis__sidebar__list__item" ] << List.singleton << renderLink) children)
+        (List.map (\child -> li [ class "pyxis__sidebar__list__item" ] [ renderLink child ]) children)
 
 
 renderLink : Route.Route -> Html Sidebar.Msg
 renderLink route =
     a
         [ class "pyxis__sidebar__list__item__link"
+        , href "#"
+        , onClick <| Sidebar.OnRouteChange route
         ]
         [ (Route.routeToLabel >> text) route
         ]

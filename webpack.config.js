@@ -34,7 +34,7 @@ module.exports = (env, options, mode) => {
             pathToElm: path.resolve(__dirname, 'node_modules/.bin/elm'),
             optimize: mode === 'production',
             verbose: mode === 'development',
-            debug: mode === 'development',
+            debug: true,
             runtimeOptions: ['-A128M', '-H128M', '-n8m']
           }
         }
@@ -82,16 +82,6 @@ module.exports = (env, options, mode) => {
       new HtmlWebpackPlugin({
         inject: true
       }),
-      // ValidationError: Invalid options object. Copy Plugin has been initialized using an options object that does not match the API schema.
-      // - options[0] misses the property 'patterns'. Should be:
-      //   [non-empty string | object { from, to?, context?, globOptions?, filter?, toType?, force?, info?, transform?, transformPath?, noErrorOnMissing? }, ...] (should not have fewer than 1 item)
-      // - options[1] misses the property 'patterns'. Should be:
-      //   [non-empty string | object { from, to?, context?, globOptions?, filter?, toType?, force?, info?, transform?, transformPath?, noErrorOnMissing? }, ...] (should not have fewer than 1 item)
-      // - options[2] misses the property 'patterns'. Should be:
-      //   [non-empty string | object { from, to?, context?, globOptions?, filter?, toType?, force?, info?, transform?, transformPath?, noErrorOnMissing? }, ...] (should not have fewer than 1 item)
-      // - options[3] misses the property 'patterns'. Should be:
-      //   [non-empty string | object { from, to?, context?, globOptions?, filter?, toType?, force?, info?, transform?, transformPath?, noErrorOnMissing? }, ...] (should not have fewer than 1 item)
-
       new CopyWebpackPlugin({ patterns: [
         {
           from: './public/fonts',

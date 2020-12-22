@@ -1,24 +1,57 @@
 module Pyxis.Update exposing (update)
 
-import Maybe
-import Prima.Pyxis.Accordion as Accordion
-import Pyxis.Model exposing (Model, Msg(..), initialModel, updateModel, updateRoute)
-import Pyxis.Model.Route as Route
+import Pyxis.Model as PyxisModel
 import Pyxis.Model.Sidebar as Sidebar
+import Pyxis.Model.Style.Colors as Colors
 import Pyxis.Update.Helpers as UH
+import Pyxis.Update.Sidebar as SidebarUpdate
+import Pyxis.Update.Style.Colors as ColorsUpdate
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : PyxisModel.Msg -> PyxisModel.Model -> ( PyxisModel.Model, Cmd PyxisModel.Msg )
 update msg model =
     case Debug.log "update" msg of
-        OnRouteChange route ->
+        PyxisModel.OnRouteChange route ->
             model
-                |> updateRoute route
-                |> UH.withoutCmds
+                |> PyxisModel.updateRoute route
+                |> UH.withCmds
+                    [ UH.replaceUrl model.routeKey route
+                    ]
 
-        SidebarMsg sidebarMsg ->
-            { model | sidebar = Tuple.first (Sidebar.update sidebarMsg model.sidebar) }
-                |> UH.withoutCmds
+        PyxisModel.SidebarMsg sidebarMsg ->
+            dispatchSidebarMsg sidebarMsg model
+
+        PyxisModel.ColorsMsg colorsMsg ->
+            dispatchColorsMsg colorsMsg model
 
         _ ->
             ( model, Cmd.none )
+
+
+dispatchSidebarMsg : Sidebar.Msg -> PyxisModel.Model -> ( PyxisModel.Model, Cmd PyxisModel.Msg )
+dispatchSidebarMsg subMsg model =
+    let
+        ( sidebarModel, sidebarCmd, maybeRoute ) =
+            SidebarUpdate.update subMsg model.sidebarModel
+    in
+    model
+        |> PyxisModel.updateSidebar sidebarModel
+        |> UH.withCmds
+            [ Cmd.map PyxisModel.SidebarMsg sidebarCmd
+            , maybeRoute
+                |> Maybe.map (UH.sendCmd << PyxisModel.OnRouteChange)
+                |> Maybe.withDefault Cmd.none
+            ]
+
+
+dispatchColorsMsg : Colors.Msg -> PyxisModel.Model -> ( PyxisModel.Model, Cmd PyxisModel.Msg )
+dispatchColorsMsg subMsg model =
+    let
+        ( colorsModel, colorsCmd ) =
+            ColorsUpdate.update subMsg model.colorsModel
+    in
+    model
+        |> PyxisModel.updateColors colorsModel
+        |> UH.withCmds
+            [ Cmd.map PyxisModel.ColorsMsg colorsCmd
+            ]

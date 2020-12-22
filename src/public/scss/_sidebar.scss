@@ -1,13 +1,16 @@
 .pyxis__sidebar {
+    display: block;
+    position: sticky;
+    top: 0;
+    padding: rem(80px);
     height: 100vh;
     max-width: get($sidebarConfig, maxWidth);
+    box-shadow: 0 0 rem(60px)  rgba(77,89,105,0.1);
 }
 
 .pyxis__sidebar__item {
     @extend .accordion__toggle;
-
     color: color(text, dark);
-
 }
 
 .pyxis__sidebar__list {

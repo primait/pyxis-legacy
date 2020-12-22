@@ -5,12 +5,15 @@ import Html exposing (Html, button, div, input, main_, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick, onInput)
 import Pyxis.Model exposing (Model, Msg(..))
-import Pyxis.Model.Route as Route
+import Pyxis.Model.Route as Route exposing (Route(..))
 import Pyxis.View.Pages.Components as Components
 import Pyxis.View.Pages.Content as Content
 import Pyxis.View.Pages.GetStarted as GetStarted
 import Pyxis.View.Pages.Patterns as Patterns
 import Pyxis.View.Pages.Style as Style
+import Pyxis.View.Pages.Style.Colors as Colors
+import Pyxis.View.Pages.Style.Logo as Logo
+import Pyxis.View.Pages.Style.Typography as Typography
 import Pyxis.View.Pages.Tools as Tools
 import Pyxis.View.Pages.Welcome as Welcome
 import Pyxis.View.Sidebar as Sidebar
@@ -28,15 +31,15 @@ body model =
     [ main_
         [ class "pyxis"
         ]
-        [ Html.map SidebarMsg (Sidebar.view model.sidebar)
-        , div [ class "pyxis__content" ] [ currentPage model.route ]
+        [ Html.map SidebarMsg (Sidebar.view model.sidebarModel)
+        , div [ class "pyxis__content" ] [ currentPage model ]
         ]
     ]
 
 
-currentPage : Route.Route -> Html Msg
-currentPage route =
-    case route of
+currentPage : Model -> Html Msg
+currentPage model =
+    case model.route of
         Route.Welcome ->
             Welcome.view
 
@@ -59,7 +62,40 @@ currentPage route =
             Tools.view
 
         Route.Typography ->
-            text "Typography"
+            Typography.view
 
-        _ ->
-            text "404 :("
+        Route.Colors ->
+            Html.map ColorsMsg (Colors.view model.colorsModel)
+
+        Route.BorderRadius ->
+            text "placeholderBorderRadius"
+
+        Route.Containers ->
+            text "placeholderContainers"
+
+        Route.ElevationAndShadows ->
+            text "placeholderElevationAndShadows"
+
+        Route.Fonts ->
+            text "placeholderFonts"
+
+        Route.GrammarAndMechanics ->
+            text "placeholderGrammarAndMechanics"
+
+        Route.Iconography ->
+            text "placeholderIconography"
+
+        Route.Icons ->
+            text "placeholderIcons"
+
+        Route.Illustration ->
+            text "placeholderIllustration"
+
+        Route.Logo ->
+            Logo.view
+
+        Route.UIKits ->
+            text "placeholderUIKits"
+
+        Route.VoiceAndTone ->
+            text "placeholderVoiceAndTone"
