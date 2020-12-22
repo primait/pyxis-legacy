@@ -1,4 +1,4 @@
-module Pyxis.Model.Route exposing (Route(..), RouteHierarchy, initialRouteHierarchy, routeToLabel)
+module Pyxis.Model.Route exposing (Route(..), routeToLabel, routeToSlug)
 
 
 type Route
@@ -14,27 +14,6 @@ type Route
     | Color
     | Illustration
     | Iconography
-
-
-type alias RouteHierarchy =
-    { parent : Route
-    , children : List Route
-    }
-
-
-initialRouteHierarchy : List RouteHierarchy
-initialRouteHierarchy =
-    [ { parent = Welcome, children = [] }
-    , { parent = Style
-      , children =
-            [ Logo
-            , Typography
-            , Color
-            , Illustration
-            , Iconography
-            ]
-      }
-    ]
 
 
 routeToLabel : Route -> String
@@ -75,3 +54,11 @@ routeToLabel route =
 
         Iconography ->
             "Iconography"
+
+
+routeToSlug : Route -> String
+routeToSlug =
+    routeToLabel
+        >> String.toLower
+        >> String.split " "
+        >> String.join "_"

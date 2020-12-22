@@ -1,0 +1,11 @@
+$fontPath : "/fonts";
+
+@import "pyxis-npm/src/scss/pyxis";
+@import "variables";
+@import "sidebar";
+
+.pyxis {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: get($sidebarConfig, maxWidth) 1fr;
+}
