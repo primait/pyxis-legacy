@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin")
 module.exports = (env, options, mode) => {
   return {
     context: path.resolve(__dirname, 'src'),
-    entry: 
+    entry:
       {
         index: "./public/index.js"
       }
@@ -34,7 +34,7 @@ module.exports = (env, options, mode) => {
             pathToElm: path.resolve(__dirname, 'node_modules/.bin/elm'),
             optimize: mode === 'production',
             verbose: mode === 'development',
-            debug: true,
+            debug: mode === 'development',
             runtimeOptions: ['-A128M', '-H128M', '-n8m']
           }
         }

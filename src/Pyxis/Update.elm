@@ -1,16 +1,15 @@
 module Pyxis.Update exposing (update)
 
 import Pyxis.Model as PyxisModel
-import Pyxis.Model.Sidebar as Sidebar
 import Pyxis.Model.Style.Colors as Colors
+import Pyxis.Sidebar as Sidebar
 import Pyxis.Update.Helpers as UH
-import Pyxis.Update.Sidebar as SidebarUpdate
 import Pyxis.Update.Style.Colors as ColorsUpdate
 
 
 update : PyxisModel.Msg -> PyxisModel.Model -> ( PyxisModel.Model, Cmd PyxisModel.Msg )
 update msg model =
-    case Debug.log "update" msg of
+    case msg of
         PyxisModel.OnRouteChange route ->
             model
                 |> PyxisModel.updateRoute route
@@ -32,7 +31,7 @@ dispatchSidebarMsg : Sidebar.Msg -> PyxisModel.Model -> ( PyxisModel.Model, Cmd 
 dispatchSidebarMsg subMsg model =
     let
         ( sidebarModel, sidebarCmd, maybeRoute ) =
-            SidebarUpdate.update subMsg model.sidebarModel
+            Sidebar.update subMsg model.sidebar
     in
     model
         |> PyxisModel.updateSidebar sidebarModel

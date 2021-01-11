@@ -6,6 +6,7 @@ import Html.Attributes exposing (class)
 import Html.Events exposing (onClick, onInput)
 import Pyxis.Model exposing (Model, Msg(..))
 import Pyxis.Model.Route as Route exposing (Route(..))
+import Pyxis.Sidebar as Sidebar exposing (Sidebar)
 import Pyxis.View.Pages.Components as Components
 import Pyxis.View.Pages.Content as Content
 import Pyxis.View.Pages.GetStarted as GetStarted
@@ -16,7 +17,6 @@ import Pyxis.View.Pages.Style.Logo as Logo
 import Pyxis.View.Pages.Style.Typography as Typography
 import Pyxis.View.Pages.Tools as Tools
 import Pyxis.View.Pages.Welcome as Welcome
-import Pyxis.View.Sidebar as Sidebar
 
 
 view : Model -> Document Msg
@@ -31,7 +31,7 @@ body model =
     [ main_
         [ class "pyxis"
         ]
-        [ Html.map SidebarMsg (Sidebar.view model.sidebarModel)
+        [ Html.map SidebarMsg (Sidebar.view model.sidebar)
         , div [ class "pyxis__content" ] [ currentPage model ]
         ]
     ]

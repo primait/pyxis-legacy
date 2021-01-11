@@ -11,11 +11,9 @@ module Pyxis.Model exposing
 
 import Browser exposing (UrlRequest)
 import Browser.Navigation as Nav
-import Html
-import Prima.Pyxis.Accordion as Accordion
 import Pyxis.Model.Route as Route
-import Pyxis.Model.Sidebar as Sidebar
 import Pyxis.Model.Style.Colors as Colors
+import Pyxis.Sidebar as Sidebar exposing (Sidebar)
 import Url exposing (Url)
 
 
@@ -30,16 +28,18 @@ type Msg
 type alias Model =
     { route : Route.Route
     , routeKey : Nav.Key
-    , sidebarModel : Sidebar.Model
+    , sidebar : Sidebar
     , colorsModel : Colors.Model
     }
 
 
-initialModel : Nav.Key -> Model
-initialModel key =
-    { route = Route.Welcome
+initialModel : Url -> Nav.Key -> Model
+initialModel url key =
+    { route =
+        Route.routeFromUrl url
+            |> Maybe.withDefault Route.Welcome
     , routeKey = key
-    , sidebarModel = Sidebar.initialModel
+    , sidebar = Sidebar.sidebar
     , colorsModel = Colors.initialModel
     }
 
@@ -54,9 +54,9 @@ updateRoute route =
     updateModel (\m -> { m | route = route })
 
 
-updateSidebar : Sidebar.Model -> Model -> Model
+updateSidebar : Sidebar -> Model -> Model
 updateSidebar sidebarModel =
-    updateModel (\m -> { m | sidebarModel = sidebarModel })
+    updateModel (\m -> { m | sidebar = sidebarModel })
 
 
 updateColors : Colors.Model -> Model -> Model

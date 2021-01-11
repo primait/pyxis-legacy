@@ -26,14 +26,5 @@ main =
 
 init : PyxisModel.Flags -> Url -> Nav.Key -> ( PyxisModel.Model, Cmd PyxisModel.Msg )
 init flags url key =
-    let
-        initialModel =
-            PyxisModel.initialModel key
-    in
-    initialModel
-        |> PyxisModel.updateRoute
-            (url
-                |> Route.routeFromUrl
-                |> Maybe.withDefault initialModel.route
-            )
+    PyxisModel.initialModel url key
         |> UH.withoutCmds

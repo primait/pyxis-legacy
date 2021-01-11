@@ -1,5 +1,6 @@
 module Pyxis.Model.Route exposing
     ( Route(..)
+    , eq
     , parser
     , routeFromUrl
     , routeToLabel
@@ -210,3 +211,8 @@ routeToSlug =
         >> String.toLower
         >> String.split " "
         >> String.join "_"
+
+
+eq : Route -> Route -> Bool
+eq a b =
+    routeToSlug a == routeToSlug b
