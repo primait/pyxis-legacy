@@ -1,25 +1,41 @@
-.pyxis__content__typography {
-}
+// .typography {
+// }
 
-.pyxis__content__typography__section {
+.typography__section {
   margin: rem(20px) 0;
 }
 
-.h1-like {
+.typography-table {
+  border-collapse: separate;
+  border-spacing: 0 rem(20px);
+  width: 100%;
+}
+
+.typography-table__row {
+  border-bottom-width: 1px;
+  border-color: color(shape);
+  border-style: solid;
+}
+
+.typography-table__cell {
+  text-align: left;
+}
+
+.typography-h1 {
   @extend h1;
 }
-.h2-like {
+.typography-h2 {
   @extend h2;
 }
-.h3-like {
+.typography-h3 {
   @extend h3;
 }
-.h4-like {
+.typography-h4 {
   @extend h4;
 }
-.h5-like {
+.typography-h5 {
   @extend h5;
 }
-.h6-like {
+.typography-h6 {
   @extend h6;
 }

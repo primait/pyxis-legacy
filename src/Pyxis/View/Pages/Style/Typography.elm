@@ -134,7 +134,7 @@ contents =
     { headCells =
         [ [ text "NAME" ]
         , [ text "ELEMENT" ]
-        , [ span [] [ text "SIZE" ], span [] [ text "XLarge / Large / Medium / Small" ] ]
+        , [ span [] [ text "SIZE " ], span [] [ text "XLarge / Large / Medium / Small" ] ]
         , [ text "TYPEFACE" ]
         ]
     , bodyRows =
@@ -181,7 +181,7 @@ renderSectionHeadingStyles : Html Msg
 renderSectionHeadingStyles =
     section []
         [ h2 [] [ text "Heading Styles" ]
-        , table []
+        , table [ class "pyxis__content__typography__section__headings__table" ]
             [ thead []
                 [ tr []
                     (List.map
@@ -209,7 +209,7 @@ renderSectionBodyStyles =
                 [ tr []
                     [ th [] [ text "NAME" ]
                     , th [] [ text "ELEMENT" ]
-                    , th [] [ span [] [ text "SIZE" ], span [] [ text "XLarge / Large / Medium / Small" ] ]
+                    , th [] [ span [] [ text "SIZE " ], span [] [ text "XLarge / Large / Medium / Small" ] ]
                     , th [] [ text "TYPEFACE" ]
                     , th [] [ text "L-SPACING" ]
                     , th [] [ text "CASE" ]

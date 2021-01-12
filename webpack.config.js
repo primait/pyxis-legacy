@@ -3,6 +3,7 @@ const webpack = require("webpack")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
+const StylelintPlugin = require('stylelint-webpack-plugin')
 
 module.exports = (env, options, mode) => {
   return {
@@ -88,6 +89,15 @@ module.exports = (env, options, mode) => {
           to: './fonts/[path][name].[ext]'
         }
       ]}),
+      new StylelintPlugin({
+        configFile: '.stylelintrc',
+        context: 'public/scss',
+        emitError: true,
+        emitWarning: true,
+        failOnWarning: true,
+        ignoreDisables: true,
+        syntax: 'scss',
+    }),
     ],
     watchOptions: {
       ignored: /node_modules/,

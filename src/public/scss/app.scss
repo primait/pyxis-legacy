@@ -1,4 +1,4 @@
-$fontPath : "/fonts";
+$fontPath: "/fonts";
 
 @import "pyxis-npm/src/scss/pyxis";
 @import "variables";
@@ -7,11 +7,11 @@ $fontPath : "/fonts";
 @import "icons";
 
 .pyxis {
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: get($sidebarConfig, maxWidth) 1fr;
+  display: grid;
+  grid-template-columns: get($sidebarConfig, maxWidth) 1fr;
+  grid-template-rows: auto;
 }
 
 .pyxis__content {
-    padding: rem(80px);
+  padding: rem(80px);
 }
