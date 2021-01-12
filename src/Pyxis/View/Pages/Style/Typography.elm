@@ -1,6 +1,6 @@
 module Pyxis.View.Pages.Style.Typography exposing (..)
 
-import Html exposing (Html, a, br, div, h1, h2, h5, li, p, section, span, table, tbody, td, text, th, thead, tr, ul)
+import Html exposing (Html, a, br, div, h1, h2, h3, h4, h5, li, p, section, span, table, tbody, td, text, th, thead, tr, ul)
 import Html.Attributes exposing (class, style)
 import Html.Events exposing (onClick)
 import Pyxis.Model exposing (Msg)
@@ -9,19 +9,18 @@ import Pyxis.Model.Style.Colors as Colors exposing (Color, PyxisColor, pyxisColo
 
 view : Html Msg
 view =
-    div [ class "pyxis__content__colors" ] [ renderTypographyPage ]
+    div [ class "pyxis__content__typography" ] [ renderTypographyPage ]
 
 
 renderTypographyPage : Html Msg
 renderTypographyPage =
     section
-        [ class "pyxis__content__colors__section"
+        [ class "pyxis__content__typography__section"
         ]
         [ renderSectionIntroduction
-        , br
-            [-- 1px visible br
-            ]
-            []
+
+        -- 1px visible br
+        , br [] []
         , renderSectionFont
         , renderSectionFontWeight
         , renderSectionHeadingStyles
@@ -48,30 +47,30 @@ renderSectionIntroduction =
 
 renderSectionFont : Html Msg
 renderSectionFont =
+    -- 1px border, flex
     section
-        [-- 1px border, flex
-        ]
-        [ div
-            [-- LEFT, vertically centered
-            ]
+        []
+        -- LEFT, vertically centered
+        [ div []
             [ h2
                 []
                 [ text "Il font istituzionale" ]
-            , p [] [ text "Il nostro font istituzionale è Avenir, che utilizziamo con pesi diversi a seconda dei casi. In francese significa \"futuro\": Avenir, infatti, è una versione meno geometrica e razionale del font Futura, molto apprezzato da grafici e architetti per leggibilità e semplicità. Utilizza sempre questo font per tutti i contenuti testuali, a eccezione del marchio." ]
-            ]
-        , div
-            [-- RIGHT, vertically centered
-            ]
-            [ div
-                [-- Flex
+            , p []
+                [ text "Il nostro font istituzionale è Avenir, che utilizziamo con pesi diversi a seconda dei casi. In francese significa \"futuro\": Avenir, infatti, è una versione meno geometrica e razionale del font Futura, molto apprezzato da grafici e architetti per leggibilità e semplicità. Utilizza sempre questo font per tutti i contenuti testuali, a eccezione del marchio."
                 ]
-                [ div
-                    [-- vertically centered, massive font size
-                    ]
+            ]
+
+        -- RIGHT, vertically centered
+        , div
+            []
+            -- Flex
+            [ div []
+                -- vertically centered, massive font size
+                [ div []
                     [ text "Aa" ]
-                , div
-                    [-- vertically centered, 1px border-left
-                    ]
+
+                -- vertically centered, 1px border-left
+                , div []
                     [ div [] [ span [] [ text "CATEGORY" ], span [] [ text "Sans-serif" ] ]
                     , div [] [ span [] [ text "CLASSIFICATION" ], span [] [ text "Geometric" ] ]
                     , div [] [ span [] [ text "DESIGNER" ], span [] [ text "Adrian Frutiger" ] ]
@@ -118,58 +117,83 @@ renderSectionFontWeight =
         ]
 
 
+type alias HeadingTableCell =
+    { text : String
+    , attributes : List (Html.Attribute Msg)
+    }
+
+
+type alias HeadingTableContents =
+    { headCells : List (List (Html Msg))
+    , bodyRows : List (List HeadingTableCell)
+    }
+
+
+contents : HeadingTableContents
+contents =
+    { headCells =
+        [ [ text "NAME" ]
+        , [ text "ELEMENT" ]
+        , [ span [] [ text "SIZE" ], span [] [ text "XLarge / Large / Medium / Small" ] ]
+        , [ text "TYPEFACE" ]
+        ]
+    , bodyRows =
+        [ [ { text = "Header", attributes = [ style "color" "red" ] }
+          , { text = "H1", attributes = [] }
+          , { text = "36px / 32px / 25px / 22px", attributes = [] }
+          , { text = "Avenir Heavy", attributes = [] }
+          ]
+        , [ { text = "Header", attributes = [ style "color" "red" ] }
+          , { text = "H2", attributes = [] }
+          , { text = "36px / 32px / 25px / 22px", attributes = [] }
+          , { text = "Avenir Medium", attributes = [] }
+          ]
+        , [ { text = "Header", attributes = [ style "color" "red" ] }
+          , { text = "H3", attributes = [] }
+          , { text = "36px / 32px / 25px / 22px", attributes = [] }
+          , { text = "Avenir Medium", attributes = [] }
+          ]
+        , [ { text = "Header", attributes = [ style "color" "red" ] }
+          , { text = "H4", attributes = [] }
+          , { text = "36px / 32px / 25px / 22px", attributes = [] }
+          , { text = "Avenir Medium", attributes = [] }
+          ]
+        , [ { text = "Header", attributes = [ style "color" "red" ] }
+          , { text = "H5", attributes = [] }
+          , { text = "36px / 32px / 25px / 22px", attributes = [] }
+          , { text = "Avenir Medium", attributes = [] }
+          ]
+        ]
+    }
+
+
+renderBodyRow : List HeadingTableCell -> Html Msg
+renderBodyRow row =
+    tr [] (List.map renderTableCell row)
+
+
+renderTableCell : HeadingTableCell -> Html Msg
+renderTableCell cell =
+    td cell.attributes [ text cell.text ]
+
+
 renderSectionHeadingStyles : Html Msg
 renderSectionHeadingStyles =
-    section
-        []
+    section []
         [ h2 [] [ text "Heading Styles" ]
-        , table
-            []
+        , table []
             [ thead []
                 [ tr []
-                    [ th [] [ text "NAME" ]
-                    , th [] [ text "ELEMENT" ]
-                    , th [] [ span [] [ text "SIZE" ], span [] [ text "XLarge / Large / Medium / Small" ] ]
-                    , th [] [ text "TYPEFACE" ]
-                    ]
+                    (List.map
+                        (\c -> th [] c)
+                        contents.headCells
+                    )
                 ]
             , tbody []
-                [ tr
-                    []
-                    [ td [] [ text "Header" ]
-                    , td [] [ text "H1" ]
-                    , td [] [ text "36px / 32px / 25px / 22px" ]
-                    , td [] [ text "Avenir Heavy" ]
-                    ]
-                , tr
-                    []
-                    [ td [] [ text "Header" ]
-                    , td [] [ text "H2" ]
-                    , td [] [ text "36px / 32px / 25px / 22px" ]
-                    , td [] [ text "Avenir Medium" ]
-                    ]
-                , tr
-                    []
-                    [ td [] [ text "Header" ]
-                    , td [] [ text "H3" ]
-                    , td [] [ text "36px / 32px / 25px / 22px" ]
-                    , td [] [ text "Avenir Medium" ]
-                    ]
-                , tr
-                    []
-                    [ td [] [ text "Header" ]
-                    , td [] [ text "H4" ]
-                    , td [] [ text "36px / 32px / 25px / 22px" ]
-                    , td [] [ text "Avenir Medium" ]
-                    ]
-                , tr
-                    []
-                    [ td [] [ text "Header" ]
-                    , td [] [ text "H5" ]
-                    , td [] [ text "36px / 32px / 25px / 22px" ]
-                    , td [] [ text "Avenir Medium" ]
-                    ]
-                ]
+                (List.map
+                    renderBodyRow
+                    contents.bodyRows
+                )
             ]
         ]
 
@@ -230,20 +254,18 @@ renderSectionBodyStyles =
 
 renderSectionMarkFont : Html Msg
 renderSectionMarkFont =
-    section
-        [-- BG gradient, flex
-        ]
-        [ div
-            [-- LEFT, vertically centered
-            ]
+    -- BG gradient, flex
+    section []
+        -- LEFT, vertically centered
+        [ div []
             [ h2
                 []
                 [ text "Il font del marchio" ]
             , p [] [ text "Il font del logo è il Rubrik nelle varianti: Light, Regular, Semibold e Bold" ]
             ]
-        , div
-            [-- RIGHT, vertically centered
-            ]
+
+        -- RIGHT, vertically centered
+        , div []
             [ div []
                 [ div [] [ h5 [] [ text "RUBRIK LIGHT" ], p [] [ text "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890RUBRIK" ] ]
                 , div [] [ h5 [] [ text "RUBRIK REGULAR" ], p [] [ text "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890RUBRIK" ] ]
