@@ -138,27 +138,27 @@ contents =
         , [ text "TYPEFACE" ]
         ]
     , bodyRows =
-        [ [ { text = "Header", attributes = [ style "color" "red" ] }
+        [ [ { text = "Header", attributes = [ class "h1-like" ] }
           , { text = "H1", attributes = [] }
           , { text = "36px / 32px / 25px / 22px", attributes = [] }
           , { text = "Avenir Heavy", attributes = [] }
           ]
-        , [ { text = "Header", attributes = [ style "color" "red" ] }
+        , [ { text = "Header", attributes = [ class "h2-like" ] }
           , { text = "H2", attributes = [] }
           , { text = "36px / 32px / 25px / 22px", attributes = [] }
           , { text = "Avenir Medium", attributes = [] }
           ]
-        , [ { text = "Header", attributes = [ style "color" "red" ] }
+        , [ { text = "Header", attributes = [ class "h3-like" ] }
           , { text = "H3", attributes = [] }
           , { text = "36px / 32px / 25px / 22px", attributes = [] }
           , { text = "Avenir Medium", attributes = [] }
           ]
-        , [ { text = "Header", attributes = [ style "color" "red" ] }
+        , [ { text = "Header", attributes = [ class "h4-like" ] }
           , { text = "H4", attributes = [] }
           , { text = "36px / 32px / 25px / 22px", attributes = [] }
           , { text = "Avenir Medium", attributes = [] }
           ]
-        , [ { text = "Header", attributes = [ style "color" "red" ] }
+        , [ { text = "Header", attributes = [ class "h5-like" ] }
           , { text = "H5", attributes = [] }
           , { text = "36px / 32px / 25px / 22px", attributes = [] }
           , { text = "Avenir Medium", attributes = [] }
