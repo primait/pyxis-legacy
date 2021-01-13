@@ -9,11 +9,29 @@ $fontPath: "/fonts";
 
 .pyxis {
   color: color(text, dark);
-  display: grid;
-  grid-template-columns: get($sidebarConfig, maxWidth) 1fr;
-  grid-template-rows: auto;
+  display: flex;
+  flex-flow: row nowrap;
+  // grid-template-columns: get($sidebarConfig, maxWidth) 1fr;
+  // grid-template-rows: auto;
 }
 
 .pyxis__content {
-  padding: rem(80px);
+  overflow: scroll;
+  width: 100%;
+
+  @include mq(medium) {
+    padding: rem(80px) rem(200px);
+    width: 100% - get($sidebarConfig, maxWidth);
+  }
+}
+
+.inset-section {
+  @include mq(small) {
+    border: 1px solid color(shape);
+    border-radius: rem(5px);
+    padding: rem(20px);
+  }
+  @include mq(medium) {
+    padding: rem(71px) rem(90px);
+  }
 }

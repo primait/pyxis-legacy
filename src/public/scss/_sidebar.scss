@@ -1,11 +1,17 @@
 .pyxis__sidebar {
   box-shadow: 0 0 rem(60px) rgba(77, 89, 105, 0.1);
-  display: block;
+  display: none;
   height: 100vh;
   max-width: get($sidebarConfig, maxWidth);
-  padding: rem(80px);
+  padding: rem(80px) 0;
   position: sticky;
   top: 0;
+
+  width: get($sidebarConfig, maxWidth);
+
+  @include mq(medium) {
+    display: block;
+  }
 }
 
 .pyxis__sidebar__item {

@@ -49,9 +49,9 @@ renderSectionFont : Html Msg
 renderSectionFont =
     -- 1px border, flex
     section
-        []
-        -- LEFT, vertically centered
-        [ div []
+        [ class "inset-section typography-font-section" ]
+        [ div [ class "typography-font-section__intro" ]
+            -- LEFT, vertically centered
             [ h2
                 []
                 [ text "Il font istituzionale" ]
@@ -59,24 +59,31 @@ renderSectionFont =
                 [ text "Il nostro font istituzionale è Avenir, che utilizziamo con pesi diversi a seconda dei casi. In francese significa \"futuro\": Avenir, infatti, è una versione meno geometrica e razionale del font Futura, molto apprezzato da grafici e architetti per leggibilità e semplicità. Utilizza sempre questo font per tutti i contenuti testuali, a eccezione del marchio."
                 ]
             ]
-
-        -- RIGHT, vertically centered
         , div
-            []
-            -- Flex
-            [ div []
-                -- vertically centered, massive font size
-                [ div []
-                    [ text "Aa" ]
-
-                -- vertically centered, 1px border-left
-                , div []
-                    [ div [] [ span [] [ text "CATEGORY" ], span [] [ text "Sans-serif" ] ]
-                    , div [] [ span [] [ text "CLASSIFICATION" ], span [] [ text "Geometric" ] ]
-                    , div [] [ span [] [ text "DESIGNER" ], span [] [ text "Adrian Frutiger" ] ]
-                    , div [] [ span [] [ text "FOUNDRY" ], span [] [ text "Linotype GmbH" ] ]
-                    , div [] [ span [] [ text "RELEASED" ], span [] [ text "1988" ] ]
-                    ]
+            -- vertically centered, massive font size
+            [ class "typography-font-section__sample" ]
+            [ text "Aa" ]
+        , div [ class "typography-font-section__specs" ]
+            -- vertically centered, 1px border-left
+            [ div [ class "typography-font-section__specs__item" ]
+                [ span [ class "typography-font-section__specs__item__label" ] [ text "CATEGORY" ]
+                , span [] [ text "Sans-serif" ]
+                ]
+            , div [ class "typography-font-section__specs__item" ]
+                [ span [ class "typography-font-section__specs__item__label" ] [ text "CLASSIFICATION" ]
+                , span [] [ text "Geometric" ]
+                ]
+            , div [ class "typography-font-section__specs__item" ]
+                [ span [ class "typography-font-section__specs__item__label" ] [ text "DESIGNER" ]
+                , span [] [ text "Adrian Frutiger" ]
+                ]
+            , div [ class "typography-font-section__specs__item" ]
+                [ span [ class "typography-font-section__specs__item__label" ] [ text "FOUNDRY" ]
+                , span [] [ text "Linotype GmbH" ]
+                ]
+            , div [ class "typography-font-section__specs__item" ]
+                [ span [ class "typography-font-section__specs__item__label" ] [ text "RELEASED" ]
+                , span [] [ text "1988" ]
                 ]
             ]
         ]
@@ -85,7 +92,7 @@ renderSectionFont =
 renderSectionFontWeight : Html Msg
 renderSectionFontWeight =
     section
-        []
+        [ class "typography-font-weight-section" ]
         [ h2 [] [ text "Font Weight" ]
         , table
             [ class "typography-table" ]
@@ -179,7 +186,7 @@ renderTableCell cell =
 
 renderSectionHeadingStyles : Html Msg
 renderSectionHeadingStyles =
-    section []
+    section [ class "typography-heading-styles-section" ]
         [ h2 [] [ text "Heading Styles" ]
         , table [ class "typography-table" ]
             [ thead []
@@ -195,7 +202,7 @@ renderSectionHeadingStyles =
 renderSectionBodyStyles : Html Msg
 renderSectionBodyStyles =
     section
-        []
+        [ class "typography-body-styles-section" ]
         [ h2 [] [ text "Body Styles" ]
         , table
             [ class "typography-table" ]
@@ -249,7 +256,7 @@ renderSectionBodyStyles =
 renderSectionMarkFont : Html Msg
 renderSectionMarkFont =
     -- BG gradient, flex
-    section []
+    section [ class "typography-mark-font-section" ]
         -- LEFT, vertically centered
         [ div []
             [ h2
@@ -261,9 +268,24 @@ renderSectionMarkFont =
         -- RIGHT, vertically centered
         , div []
             [ div []
-                [ div [] [ h5 [] [ text "RUBRIK LIGHT" ], p [] [ text "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890RUBRIK" ] ]
-                , div [] [ h5 [] [ text "RUBRIK REGULAR" ], p [] [ text "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890RUBRIK" ] ]
-                , div [] [ h5 [] [ text "RUBRIK SEMIBOLD" ], p [] [ text "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890RUBRIK" ] ]
+                [ div []
+                    [ h5 [] [ text "RUBRIK LIGHT" ]
+                    , p [ class "typography-alphabet-sample" ]
+                        [ text "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890RUBRIK"
+                        ]
+                    ]
+                , div []
+                    [ h5 [] [ text "RUBRIK REGULAR" ]
+                    , p [ class "typography-alphabet-sample" ]
+                        [ text "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890RUBRIK"
+                        ]
+                    ]
+                , div []
+                    [ h5 [] [ text "RUBRIK SEMIBOLD" ]
+                    , p [ class "typography-alphabet-sample" ]
+                        [ text "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890RUBRIK"
+                        ]
+                    ]
                 ]
             ]
         ]

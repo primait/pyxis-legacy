@@ -1,6 +1,6 @@
 module Pyxis.PageHead exposing (Link, PageHead, view)
 
-import Html exposing (Html, a, div, h1, p, section, text)
+import Html exposing (Html, a, div, h1, p, section, span, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 
@@ -30,9 +30,9 @@ view pageHead =
 
 linkBar : List (Link msg) -> Html msg
 linkBar links =
-    div [] (List.map link links)
+    div [ class "page-head__link-bar" ] (List.map link links)
 
 
 link : Link msg -> Html msg
 link { label, clickMsg } =
-    a [ onClick clickMsg ] [ text label ]
+    a [ class "page-head__link", onClick clickMsg ] [ span [ class "icon-arrow-dx-button" ] [], text label ]
