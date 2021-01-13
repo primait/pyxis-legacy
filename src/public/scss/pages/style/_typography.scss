@@ -1,41 +1,54 @@
 // .typography {
 // }
 
-.typography__section {
+.typography-section {
   margin: rem(20px) 0;
+
+  section {
+    margin-bottom: rem(60px);
+    margin-top: rem(60px);
+  }
+}
+
+.typography-br {
+  border-bottom: 1px solid color(shape);
 }
 
 .typography-table {
-  border-collapse: separate;
+  border-collapse: collapse;
   border-spacing: 0 rem(20px);
+
   width: 100%;
+
+  > thead {
+    font-family: font("heavy");
+  }
+
+  > tbody > tr {
+    border-bottom: 1px solid color(shape);
+  }
+
+  td,
+  th {
+    padding: rem(18px);
+    text-align: left;
+  }
 }
 
-.typography-table__row {
-  border-bottom-width: 1px;
-  border-color: color(shape);
-  border-style: solid;
+$hTypes: h1, h2, h3, h4, h5, h6;
+@each $hType in $hTypes {
+  .typography-#{$hType} {
+    @extend #{$hType};
+  }
 }
 
-.typography-table__cell {
-  text-align: left;
-}
-
-.typography-h1 {
-  @extend h1;
-}
-.typography-h2 {
-  @extend h2;
-}
-.typography-h3 {
-  @extend h3;
-}
-.typography-h4 {
-  @extend h4;
-}
+// NONCOMPLIANT PYXIS STUFF?
+.typography-h3,
+.typography-h4,
 .typography-h5 {
-  @extend h5;
+  font-family: font("light");
 }
-.typography-h6 {
-  @extend h6;
+
+.typography-table__aside {
+  @include fontSize("xsmall");
 }

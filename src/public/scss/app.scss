@@ -3,10 +3,12 @@ $fontPath: "/fonts";
 @import "pyxis-npm/src/scss/pyxis";
 @import "variables";
 @import "sidebar";
+@import "pagehead";
 @import "pages/style/root";
 @import "icons";
 
 .pyxis {
+  color: color(text, dark);
   display: grid;
   grid-template-columns: get($sidebarConfig, maxWidth) 1fr;
   grid-template-rows: auto;

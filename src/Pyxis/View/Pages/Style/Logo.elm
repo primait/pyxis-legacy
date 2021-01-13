@@ -3,9 +3,10 @@ module Pyxis.View.Pages.Style.Logo exposing (..)
 import Html exposing (Html, a, br, div, h1, h2, h3, h5, li, p, section, span, table, tbody, td, text, th, thead, tr, ul)
 import Html.Attributes exposing (class, style)
 import Html.Events exposing (onClick)
-import Pyxis.Model exposing (Msg)
+import Pyxis.Model exposing (Msg(..))
+import Pyxis.Model.Route as Route
 import Pyxis.Model.Style.Colors as Colors exposing (Color, PyxisColor, pyxisColorToHexRGB)
-import Pyxis.View.Pages.Style.Typography exposing (renderSectionIntroduction)
+import Pyxis.PageHead as PageHead exposing (PageHead)
 
 
 view : Html Msg
@@ -18,7 +19,7 @@ renderLogoPage =
     section
         [ class "pyxis__content__colors__section"
         ]
-        [ renderSectionIntroduction
+        [ PageHead.view logoHead
         , br [] []
         , renderSectionMeaning
         , renderSectionMark
@@ -30,22 +31,20 @@ renderLogoPage =
         ]
 
 
-renderSectionIntroduction : Html Msg
-renderSectionIntroduction =
-    section
-        []
-        [ h1 [] [ text "Logo" ]
-        , p [] [ text "In questa sezione puoi trovare dettagli e declinazioni del marchio Prima, specifiche grafiche e materiali scaricabili in diversi formati." ]
-        , div []
-            [ a [] [ text "Il significato" ]
-            , a [] [ text "Il marchio" ]
-            , a [] [ text "L'area di rispetto" ]
-            , a [] [ text "I colori e lo sfondo" ]
-            , a [] [ text "Download" ]
-            , a [] [ text "Logo Prima Black" ]
-            , a [] [ text "Logo Prima Café" ]
-            ]
+logoHead : PageHead Msg
+logoHead =
+    { title = "Logo"
+    , subtitle = "In questa sezione puoi trovare dettagli e declinazioni del marchio Prima, specifiche grafiche e materiali scaricabili in diversi formati."
+    , links =
+        [ { label = "Il significato", clickMsg = OnRouteChange Route.Logo }
+        , { label = "Il marchio", clickMsg = OnRouteChange Route.Logo }
+        , { label = "L'area di rispetto", clickMsg = OnRouteChange Route.Logo }
+        , { label = "I colori e lo sfondo", clickMsg = OnRouteChange Route.Logo }
+        , { label = "Download", clickMsg = OnRouteChange Route.Logo }
+        , { label = "Logo Prima Black", clickMsg = OnRouteChange Route.Logo }
+        , { label = "Logo Prima Café", clickMsg = OnRouteChange Route.Logo }
         ]
+    }
 
 
 renderSectionMeaning : Html Msg

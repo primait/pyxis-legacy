@@ -1,26 +1,28 @@
 module Pyxis.View.Pages.Style.Typography exposing (..)
 
-import Html exposing (Html, a, br, div, h1, h2, h3, h4, h5, li, p, section, span, table, tbody, td, text, th, thead, tr, ul)
+import Html exposing (Html, a, br, div, h1, h2, h3, h4, h5, hr, li, p, section, span, table, tbody, td, text, th, thead, tr, ul)
 import Html.Attributes exposing (class, style)
 import Html.Events exposing (onClick)
-import Pyxis.Model exposing (Msg)
+import Pyxis.Model exposing (Msg(..))
+import Pyxis.Model.Route as Route
 import Pyxis.Model.Style.Colors as Colors exposing (Color, PyxisColor, pyxisColorToHexRGB)
+import Pyxis.PageHead as PageHead exposing (PageHead)
 
 
 view : Html Msg
 view =
-    div [ class "pyxis__content__typography" ] [ renderTypographyPage ]
+    div [ class "typography" ] [ renderTypographyPage ]
 
 
 renderTypographyPage : Html Msg
 renderTypographyPage =
     section
-        [ class "pyxis__content__typography__section"
+        [ class "typography-section"
         ]
-        [ renderSectionIntroduction
+        [ PageHead.view typographyHead
 
         -- 1px visible br
-        , br [] []
+        , hr [] []
         , renderSectionFont
         , renderSectionFontWeight
         , renderSectionHeadingStyles
@@ -29,20 +31,18 @@ renderTypographyPage =
         ]
 
 
-renderSectionIntroduction : Html Msg
-renderSectionIntroduction =
-    section
-        []
-        [ h1 [] [ text "Typography" ]
-        , p [] [ text "In questa sezione puoi verificare dimensioni dei caratteri, tipo di font e specifiche di utilizzo." ]
-        , div []
-            [ a [] [ text "Il font istituzionale" ]
-            , a [] [ text "Font weight" ]
-            , a [] [ text "Heading style" ]
-            , a [] [ text "Body style" ]
-            , a [] [ text "Il font del marchio" ]
-            ]
+typographyHead : PageHead Msg
+typographyHead =
+    { title = "Typography"
+    , subtitle = "In questa sezione puoi verificare dimensioni dei caratteri, tipo di font e specifiche di utilizzo."
+    , links =
+        [ { label = "Il font istituzionale", clickMsg = OnRouteChange Route.Typography }
+        , { label = "Font weight", clickMsg = OnRouteChange Route.Typography }
+        , { label = "Heading style", clickMsg = OnRouteChange Route.Typography }
+        , { label = "Body style", clickMsg = OnRouteChange Route.Typography }
+        , { label = "Il font del marchio", clickMsg = OnRouteChange Route.Typography }
         ]
+    }
 
 
 renderSectionFont : Html Msg
@@ -88,7 +88,7 @@ renderSectionFontWeight =
         []
         [ h2 [] [ text "Font Weight" ]
         , table
-            []
+            [ class "typography-table" ]
             [ thead []
                 [ tr []
                     [ th [] [ text "NAME" ]
@@ -134,31 +134,31 @@ contents =
     { headCells =
         [ [ text "NAME" ]
         , [ text "ELEMENT" ]
-        , [ span [] [ text "SIZE " ], span [] [ text "XLarge / Large / Medium / Small" ] ]
+        , [ span [ class "fw-heavy" ] [ text "SIZE " ], span [ class "fw-base", class "fs-xsmall" ] [ text "XLarge / Large / Medium / Small" ] ]
         , [ text "TYPEFACE" ]
         ]
     , bodyRows =
-        [ [ { text = "Header", attributes = [ class "h1-like" ] }
+        [ [ { text = "Header", attributes = [ class "typography-h1" ] }
           , { text = "H1", attributes = [] }
           , { text = "36px / 32px / 25px / 22px", attributes = [] }
           , { text = "Avenir Heavy", attributes = [] }
           ]
-        , [ { text = "Header", attributes = [ class "h2-like" ] }
+        , [ { text = "Header", attributes = [ class "typography-h2" ] }
           , { text = "H2", attributes = [] }
           , { text = "36px / 32px / 25px / 22px", attributes = [] }
           , { text = "Avenir Medium", attributes = [] }
           ]
-        , [ { text = "Header", attributes = [ class "h3-like" ] }
+        , [ { text = "Header", attributes = [ class "typography-h3" ] }
           , { text = "H3", attributes = [] }
           , { text = "36px / 32px / 25px / 22px", attributes = [] }
           , { text = "Avenir Medium", attributes = [] }
           ]
-        , [ { text = "Header", attributes = [ class "h4-like" ] }
+        , [ { text = "Header", attributes = [ class "typography-h4" ] }
           , { text = "H4", attributes = [] }
           , { text = "36px / 32px / 25px / 22px", attributes = [] }
           , { text = "Avenir Medium", attributes = [] }
           ]
-        , [ { text = "Header", attributes = [ class "h5-like" ] }
+        , [ { text = "Header", attributes = [ class "typography-h5" ] }
           , { text = "H5", attributes = [] }
           , { text = "36px / 32px / 25px / 22px", attributes = [] }
           , { text = "Avenir Medium", attributes = [] }
@@ -174,26 +174,20 @@ renderBodyRow row =
 
 renderTableCell : HeadingTableCell -> Html Msg
 renderTableCell cell =
-    td cell.attributes [ text cell.text ]
+    td (List.concat [ [], cell.attributes ]) [ text cell.text ]
 
 
 renderSectionHeadingStyles : Html Msg
 renderSectionHeadingStyles =
     section []
         [ h2 [] [ text "Heading Styles" ]
-        , table [ class "pyxis__content__typography__section__headings__table" ]
+        , table [ class "typography-table" ]
             [ thead []
-                [ tr []
-                    (List.map
-                        (\c -> th [] c)
-                        contents.headCells
-                    )
+                [ tr
+                    []
+                    (List.map (th []) contents.headCells)
                 ]
-            , tbody []
-                (List.map
-                    renderBodyRow
-                    contents.bodyRows
-                )
+            , tbody [] (List.map renderBodyRow contents.bodyRows)
             ]
         ]
 
@@ -204,7 +198,7 @@ renderSectionBodyStyles =
         []
         [ h2 [] [ text "Body Styles" ]
         , table
-            []
+            [ class "typography-table" ]
             [ thead []
                 [ tr []
                     [ th [] [ text "NAME" ]
@@ -219,7 +213,7 @@ renderSectionBodyStyles =
             , tbody []
                 [ tr
                     []
-                    [ td [] [ text "Text" ]
+                    [ td [ class "fs-xxlarge" ] [ text "Text" ]
                     , td [] [ text "XXlarge" ]
                     , td [] [ text "36px / 32px / 25px / 22px" ]
                     , td [] [ text "Avenir Book" ]
@@ -229,7 +223,7 @@ renderSectionBodyStyles =
                     ]
                 , tr
                     []
-                    [ td [] [ text "Text" ]
+                    [ td [ class "fs-xlarge" ] [ text "Text" ]
                     , td [] [ text "Xlarge" ]
                     , td [] [ text "36px / 32px / 25px / 22px" ]
                     , td [] [ text "Avenir Book" ]
@@ -239,7 +233,7 @@ renderSectionBodyStyles =
                     ]
                 , tr
                     []
-                    [ td [] [ text "Text" ]
+                    [ td [ class "fs-large" ] [ text "Text" ]
                     , td [] [ text "large" ]
                     , td [] [ text "36px / 32px / 25px / 22px" ]
                     , td [] [ text "Avenir Book" ]
