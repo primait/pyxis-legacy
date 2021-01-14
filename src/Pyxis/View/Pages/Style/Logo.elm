@@ -16,9 +16,7 @@ view =
 
 renderLogoPage : Html Msg
 renderLogoPage =
-    section
-        [ class "pyxis__content__colors__section"
-        ]
+    section [ class "pyxis__content__colors__section" ]
         [ PageHead.view logoHead
         , renderSectionMeaning
         , renderSectionMark

@@ -1,12 +1,11 @@
-// TODO: use mixins
-%tall-margin-bottom {
+@mixin tall-margin-bottom {
   margin-bottom: rem(40px);
   @include mq(medium) {
     margin-bottom: rem(100px);
   }
 }
 
-%common-responsive-section {
+@mixin common-responsive-section {
   align-items: center;
   display: flex;
   flex-flow: row wrap;
@@ -15,8 +14,8 @@
 
 .logo-section-meaning {
   @extend .inset-section;
-  @extend %tall-margin-bottom;
-  @extend %common-responsive-section;
+  @include tall-margin-bottom;
+  @include common-responsive-section;
 }
 
 .logo-section-meaning__text,
@@ -35,21 +34,21 @@
 .logo-section-mark,
 .logo-section-respect,
 .logo-section-colors {
-  @extend %tall-margin-bottom;
-  @extend %common-responsive-section;
+  @include tall-margin-bottom;
+  @include common-responsive-section;
 }
 
 .logo-section-downloads {
-  @extend %tall-margin-bottom;
+  @include tall-margin-bottom;
 }
 
 .logo-section-black {
-  @extend %tall-margin-bottom;
+  @include tall-margin-bottom;
 }
 
 .logo-section-black__images,
 .logo-section-cafe__images {
-  @extend %common-responsive-section;
+  @include common-responsive-section;
 
   overflow: hidden; // Prevent children backgrounds from overlapping border-radius
 
@@ -87,5 +86,5 @@
 }
 
 .logo-section-cafe {
-  @extend %tall-margin-bottom;
+  @include tall-margin-bottom;
 }
