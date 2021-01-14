@@ -4,6 +4,7 @@ import Process
 import Pyxis.Model.Style.Colors as Colors
 import Pyxis.Ports
 import Pyxis.Update.Helpers as UH
+import SmoothScroll exposing (scrollTo)
 import Task
 
 
@@ -25,7 +26,17 @@ update msg model =
                     ]
 
         Colors.UnsetColorCopied ->
-            model |> updateColorCopied False |> UH.withoutCmds
+            model
+                |> updateColorCopied False
+                |> UH.withoutCmds
+
+        Colors.SmoothScroll id ->
+            model
+                |> UH.withCmds [ Task.attempt (always Colors.NoOp) (scrollTo id) ]
+
+        Colors.NoOp ->
+            model
+                |> UH.withoutCmds
 
 
 updateColorCopied : Bool -> Colors.Model -> Colors.Model

@@ -19,6 +19,8 @@ type Msg
     = CopyToClipboard PyxisColor
     | CopyAcknowledgement
     | UnsetColorCopied
+    | SmoothScroll String
+    | NoOp
 
 
 type alias Model =

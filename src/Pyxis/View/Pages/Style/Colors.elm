@@ -1,9 +1,10 @@
 module Pyxis.View.Pages.Style.Colors exposing (..)
 
 import Html exposing (Html, div, h1, h2, hr, li, p, section, span, text, ul)
-import Html.Attributes exposing (class, classList, style)
+import Html.Attributes exposing (class, classList, id, style)
 import Html.Events exposing (onClick)
 import Pyxis.Model.Style.Colors as Colors exposing (Color, Model, PyxisColor, pyxisColorToHexRGB)
+import Pyxis.PageHead as PageHead exposing (PageHead)
 
 
 view : Colors.Model -> Html Colors.Msg
@@ -16,18 +17,32 @@ renderColors model =
     section
         [ class "pyxis__content__colors__section"
         ]
-        [ h1 [] [ text "Colors" ]
-        , p [] [ text "In questa sezione puoi trovare palette ufficiali e specifiche di utilizzo dei colori istituzionali." ]
-        , hr [] []
-        , h2 [] [ text "I colori istituzionali" ]
-        , p [] [ text "Rispetta sempre il set di colori ufficiale in tutte le situazioni in cui è il nostro brand a parlare. Puoi copiare gli esadecimali di riferimento direttamente da qui, oppure utilizzare le specifiche Pantone." ]
-        , h2 [] [ text "I colori di Prima.it" ]
-        , p [] [ text "Qui puoi trovare la palette completa dei colori che utilizziamo su Prima.it. Fai sempre attenzione ad applicarli in modo corretto, copiando gli esadecimali di riferimento o verificando le specifiche RGBA." ]
+        [ PageHead.view colorsHead
+        , section [ class "colors-section-institutional", id "colors-section-institutional" ]
+            [ h2 [] [ text "I colori istituzionali" ]
+            , p [] [ text "Rispetta sempre il set di colori ufficiale in tutte le situazioni in cui è il nostro brand a parlare. Puoi copiare gli esadecimali di riferimento direttamente da qui, oppure utilizzare le specifiche Pantone." ]
+            ]
+        , section []
+            [ h2 [ class "colors-section-colors", id "colors-section-colors" ]
+                [ text "I colori di Prima.it" ]
+            , p [] [ text "Qui puoi trovare la palette completa dei colori che utilizziamo su Prima.it. Fai sempre attenzione ad applicarli in modo corretto, copiando gli esadecimali di riferimento o verificando le specifiche RGBA." ]
+            ]
         , ul
             [ class "pyxis__content__colors__section__list"
             ]
             (List.map (renderColor model.colorCopied) model.colors)
         ]
+
+
+colorsHead : PageHead Colors.Msg
+colorsHead =
+    { title = "Colors"
+    , subtitle = "In questa sezione puoi trovare palette ufficiali e specifiche di utilizzo dei colori istituzionali."
+    , links =
+        [ { label = "I colori istituzionali", clickMsg = Colors.SmoothScroll "colors-section-institutional" }
+        , { label = "I colori di Prima.it", clickMsg = Colors.SmoothScroll "colors-section-colors" }
+        ]
+    }
 
 
 renderColor : Bool -> Colors.PyxisColor -> Html Colors.Msg
