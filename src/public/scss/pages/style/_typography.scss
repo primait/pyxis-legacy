@@ -10,10 +10,6 @@
   }
 }
 
-.typography-br {
-  border-bottom: 1px solid color(shape);
-}
-
 .typography-font-weight-section,
 .typography-body-styles-section,
 .typography-heading-styles-section {
@@ -107,6 +103,7 @@ $hTypes: h1, h2, h3, h4, h5, h6;
 
 .typography-mark-font-section {
   @extend .inset-section;
+
   background: linear-gradient(to right, #b964e3, color(brand, base));
   color: color(textAlt, light);
 }

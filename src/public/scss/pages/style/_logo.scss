@@ -1,0 +1,90 @@
+%tall-margin-bottom {
+  margin-bottom: rem(40px);
+  @include mq(medium) {
+    margin-bottom: rem(100px);
+  }
+}
+
+%common-responsive-section {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.logo-section-meaning {
+  @extend .inset-section;
+  @extend %tall-margin-bottom;
+  @extend %common-responsive-section;
+}
+
+.logo-section-meaning__text,
+.logo-section-mark__text,
+.logo-section-respect__text,
+.logo-section-colors__text {
+  @include mq(medium) {
+    width: rem(360px);
+  }
+
+  > p {
+    color: color(text, base);
+  }
+}
+
+.logo-section-mark,
+.logo-section-respect,
+.logo-section-colors {
+  @extend %tall-margin-bottom;
+  @extend %common-responsive-section;
+}
+
+.logo-section-downloads {
+  @extend %tall-margin-bottom;
+}
+
+.logo-section-black {
+  @extend %tall-margin-bottom;
+}
+
+.logo-section-black__images,
+.logo-section-cafe__images {
+  @extend %common-responsive-section;
+
+  overflow: hidden; // Prevent children backgrounds from overlapping border-radius
+
+  @include mq(small) {
+    border: 1px solid color(shape);
+    border-radius: rem(5px);
+  }
+}
+
+.logo-section-black__images-positive,
+.logo-section-cafe__images-positive {
+  background-color: color("background", base);
+  flex-grow: 1;
+  min-width: rem(360px);
+  @include mq(small) {
+    padding: rem(20px);
+  }
+  @include mq(medium) {
+    padding: rem(71px) rem(90px);
+  }
+}
+
+.logo-section-black__images-negative,
+.logo-section-cafe__images-negative {
+  background-color: color(backgroundAlt, dark);
+  color: color(textAlt, light);
+  flex-grow: 1;
+  min-width: rem(360px);
+  @include mq(small) {
+    padding: rem(20px);
+  }
+  @include mq(medium) {
+    padding: rem(71px) rem(90px);
+  }
+}
+
+.logo-section-cafe {
+  @extend %tall-margin-bottom;
+}

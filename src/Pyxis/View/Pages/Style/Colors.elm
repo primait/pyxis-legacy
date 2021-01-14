@@ -1,6 +1,6 @@
 module Pyxis.View.Pages.Style.Colors exposing (..)
 
-import Html exposing (Html, br, div, h1, h2, li, p, section, span, text, ul)
+import Html exposing (Html, div, h1, h2, hr, li, p, section, span, text, ul)
 import Html.Attributes exposing (class, classList, style)
 import Html.Events exposing (onClick)
 import Pyxis.Model.Style.Colors as Colors exposing (Color, Model, PyxisColor, pyxisColorToHexRGB)
@@ -18,7 +18,7 @@ renderColors model =
         ]
         [ h1 [] [ text "Colors" ]
         , p [] [ text "In questa sezione puoi trovare palette ufficiali e specifiche di utilizzo dei colori istituzionali." ]
-        , br [] []
+        , hr [] []
         , h2 [] [ text "I colori istituzionali" ]
         , p [] [ text "Rispetta sempre il set di colori ufficiale in tutte le situazioni in cui è il nostro brand a parlare. Puoi copiare gli esadecimali di riferimento direttamente da qui, oppure utilizzare le specifiche Pantone." ]
         , h2 [] [ text "I colori di Prima.it" ]

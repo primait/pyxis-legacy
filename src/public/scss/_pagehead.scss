@@ -1,3 +1,5 @@
+$hacky-flexbox-children-spacing: rem(4px);
+
 .page-head__subtitle {
   color: color(text, base);
   margin-bottom: rem(20px);
@@ -12,10 +14,8 @@
   border: 1px solid color(shape);
   border-radius: rem(5px);
   font-family: font(base);
+  margin: $hacky-flexbox-children-spacing;
   padding: rem(20px);
-  & + & {
-    margin-left: rem(10px);
-  }
   white-space: nowrap;
 
   > span {
@@ -27,4 +27,6 @@
 .page-head__link-bar {
   display: flex;
   flex-flow: row wrap;
+
+  margin: -$hacky-flexbox-children-spacing;
 }
