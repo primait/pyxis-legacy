@@ -140,63 +140,53 @@ renderSectionFontWeight =
         ]
 
 
-type alias HeadingTableCell =
+type alias HeadingsTableCell =
     { text : String
     , attributes : List (Html.Attribute Msg)
     }
 
 
-type alias HeadingTableContents =
-    { headCells : List (List (Html Msg))
-    , bodyRows : List (List HeadingTableCell)
+type alias HeadingsTableContents =
+    { headRow : List (List (Html Msg))
+    , bodyRows : List (List HeadingsTableCell)
     }
 
 
-contents : HeadingTableContents
-contents =
-    { headCells =
+headingsTableContents : HeadingsTableContents
+headingsTableContents =
+    { headRow =
         [ [ text "NAME" ]
         , [ text "ELEMENT" ]
         , [ span [ class "fw-heavy" ] [ text "SIZE " ], span [ class "fw-base", class "fs-xsmall" ] [ text "XLarge / Large / Medium / Small" ] ]
         , [ text "TYPEFACE" ]
         ]
-    , bodyRows =
-        [ [ { text = "Header", attributes = [ class "typography-h1" ] }
-          , { text = "H1", attributes = [] }
-          , { text = "36px / 32px / 25px / 22px", attributes = [] }
-          , { text = "Avenir Heavy", attributes = [] }
-          ]
-        , [ { text = "Header", attributes = [ class "typography-h2" ] }
-          , { text = "H2", attributes = [] }
-          , { text = "36px / 32px / 25px / 22px", attributes = [] }
-          , { text = "Avenir Medium", attributes = [] }
-          ]
-        , [ { text = "Header", attributes = [ class "typography-h3" ] }
-          , { text = "H3", attributes = [] }
-          , { text = "36px / 32px / 25px / 22px", attributes = [] }
-          , { text = "Avenir Medium", attributes = [] }
-          ]
-        , [ { text = "Header", attributes = [ class "typography-h4" ] }
-          , { text = "H4", attributes = [] }
-          , { text = "36px / 32px / 25px / 22px", attributes = [] }
-          , { text = "Avenir Medium", attributes = [] }
-          ]
-        , [ { text = "Header", attributes = [ class "typography-h5" ] }
-          , { text = "H5", attributes = [] }
-          , { text = "36px / 32px / 25px / 22px", attributes = [] }
-          , { text = "Avenir Medium", attributes = [] }
-          ]
-        ]
+    , bodyRows = List.map headingsTableBodyRows (List.range 1 5)
     }
 
 
-renderBodyRow : List HeadingTableCell -> Html Msg
-renderBodyRow row =
-    tr [] (List.map renderTableCell row)
+headingsTableBodyRows : Int -> List HeadingsTableCell
+headingsTableBodyRows int =
+    [ { text = "Header", attributes = [ class ("typography-h" ++ String.fromInt int) ] }
+    , { text = "H" ++ String.fromInt int, attributes = [] }
+    , { text = "36px / 32px / 25px / 22px", attributes = [] }
+    , { text =
+            if int == 1 then
+                "Avenir Heavy"
+
+            else
+                "Avenir Medium"
+      , attributes = []
+      }
+    ]
 
 
-renderTableCell : HeadingTableCell -> Html Msg
-renderTableCell cell =
+renderHeadingsTableBodyRow : List HeadingsTableCell -> Html Msg
+renderHeadingsTableBodyRow row =
+    tr [] (List.map renderHeadingsTableCell row)
+
+
+renderHeadingsTableCell : HeadingsTableCell -> Html Msg
+renderHeadingsTableCell cell =
     td (List.concat [ [], cell.attributes ]) [ text cell.text ]
 
 
@@ -208,9 +198,9 @@ renderSectionHeadingStyles =
             [ thead []
                 [ tr
                     []
-                    (List.map (th []) contents.headCells)
+                    (List.map (th []) headingsTableContents.headRow)
                 ]
-            , tbody [] (List.map renderBodyRow contents.bodyRows)
+            , tbody [] (List.map renderHeadingsTableBodyRow headingsTableContents.bodyRows)
             ]
         ]
 
