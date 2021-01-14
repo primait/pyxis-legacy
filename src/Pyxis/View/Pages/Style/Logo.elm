@@ -20,7 +20,6 @@ renderLogoPage =
         [ class "pyxis__content__colors__section"
         ]
         [ PageHead.view logoHead
-        , hr [] []
         , renderSectionMeaning
         , renderSectionMark
         , renderSectionRespectArea

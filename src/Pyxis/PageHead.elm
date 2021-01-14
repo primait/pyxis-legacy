@@ -1,6 +1,6 @@
 module Pyxis.PageHead exposing (Link, PageHead, view)
 
-import Html exposing (Html, a, div, h1, p, section, span, text)
+import Html exposing (Html, a, div, h1, hr, p, section, span, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 
@@ -25,6 +25,7 @@ view pageHead =
         [ h1 [ class "page-head__title" ] [ text pageHead.title ]
         , p [ class "page-head__subtitle" ] [ text pageHead.subtitle ]
         , linkBar pageHead.links
+        , hr [] []
         ]
 
 

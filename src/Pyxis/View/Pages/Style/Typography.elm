@@ -32,13 +32,8 @@ update msg =
 
 renderTypographyPage : Html Msg
 renderTypographyPage =
-    section
-        [ class "typography-section"
-        ]
+    section [ class "typography-section" ]
         [ PageHead.view typographyHead
-
-        -- 1px visible br
-        , hr [] []
         , renderSectionFont
         , renderSectionFontWeight
         , renderSectionHeadingStyles
