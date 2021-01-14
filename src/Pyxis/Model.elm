@@ -14,6 +14,7 @@ import Browser.Navigation as Nav
 import Pyxis.Model.Route as Route
 import Pyxis.Model.Style.Colors as Colors
 import Pyxis.Sidebar as Sidebar exposing (Sidebar)
+import Pyxis.View.Pages.Style.Typography as Typography
 import Url exposing (Url)
 
 
@@ -23,6 +24,7 @@ type Msg
     | OnRouteChange Route.Route
     | SidebarMsg Sidebar.Msg
     | ColorsMsg Colors.Msg
+    | TypographyMsg Typography.Msg
 
 
 type alias Model =

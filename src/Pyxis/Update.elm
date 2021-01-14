@@ -5,6 +5,7 @@ import Pyxis.Model.Style.Colors as Colors
 import Pyxis.Sidebar as Sidebar
 import Pyxis.Update.Helpers as UH
 import Pyxis.Update.Style.Colors as ColorsUpdate
+import Pyxis.View.Pages.Style.Typography as Typography
 
 
 update : PyxisModel.Msg -> PyxisModel.Model -> ( PyxisModel.Model, Cmd PyxisModel.Msg )
@@ -22,6 +23,9 @@ update msg model =
 
         PyxisModel.ColorsMsg colorsMsg ->
             dispatchColorsMsg colorsMsg model
+
+        PyxisModel.TypographyMsg typographyMsg ->
+            dispatchTypographyMsg typographyMsg model
 
         _ ->
             ( model, Cmd.none )
@@ -54,3 +58,12 @@ dispatchColorsMsg subMsg model =
         |> UH.withCmds
             [ Cmd.map PyxisModel.ColorsMsg colorsCmd
             ]
+
+
+dispatchTypographyMsg : Typography.Msg -> PyxisModel.Model -> ( PyxisModel.Model, Cmd PyxisModel.Msg )
+dispatchTypographyMsg subMsg model =
+    let
+        typographyCmd =
+            Typography.update subMsg
+    in
+    model |> UH.withCmds [ Cmd.map PyxisModel.TypographyMsg typographyCmd ]

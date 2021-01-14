@@ -62,7 +62,7 @@ currentPage model =
             Tools.view
 
         Route.Typography ->
-            Typography.view
+            Html.map TypographyMsg Typography.view
 
         Route.Colors ->
             Html.map ColorsMsg (Colors.view model.colorsModel)

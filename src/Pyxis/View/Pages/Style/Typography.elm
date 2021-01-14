@@ -1,17 +1,33 @@
-module Pyxis.View.Pages.Style.Typography exposing (..)
+module Pyxis.View.Pages.Style.Typography exposing (Msg, update, view)
 
 import Html exposing (Html, a, br, div, h1, h2, h3, h4, h5, hr, li, p, section, span, table, tbody, td, text, th, thead, tr, ul)
-import Html.Attributes exposing (class, style)
+import Html.Attributes exposing (class, id, style)
 import Html.Events exposing (onClick)
-import Pyxis.Model exposing (Msg(..))
 import Pyxis.Model.Route as Route
 import Pyxis.Model.Style.Colors as Colors exposing (Color, PyxisColor, pyxisColorToHexRGB)
 import Pyxis.PageHead as PageHead exposing (PageHead)
+import SmoothScroll exposing (scrollTo)
+import Task
+
+
+type Msg
+    = NoOp
+    | SmoothScroll String
 
 
 view : Html Msg
 view =
     div [ class "typography" ] [ renderTypographyPage ]
+
+
+update : Msg -> Cmd Msg
+update msg =
+    case msg of
+        NoOp ->
+            Cmd.none
+
+        SmoothScroll id ->
+            Task.attempt (always NoOp) (scrollTo id)
 
 
 renderTypographyPage : Html Msg
@@ -36,11 +52,11 @@ typographyHead =
     { title = "Typography"
     , subtitle = "In questa sezione puoi verificare dimensioni dei caratteri, tipo di font e specifiche di utilizzo."
     , links =
-        [ { label = "Il font istituzionale", clickMsg = OnRouteChange Route.Typography }
-        , { label = "Font weight", clickMsg = OnRouteChange Route.Typography }
-        , { label = "Heading style", clickMsg = OnRouteChange Route.Typography }
-        , { label = "Body style", clickMsg = OnRouteChange Route.Typography }
-        , { label = "Il font del marchio", clickMsg = OnRouteChange Route.Typography }
+        [ { label = "Il font istituzionale", clickMsg = SmoothScroll "typography-font-section" }
+        , { label = "Font weight", clickMsg = SmoothScroll "typography-font-weight-section" }
+        , { label = "Heading style", clickMsg = SmoothScroll "typography-heading-styles-section" }
+        , { label = "Body style", clickMsg = SmoothScroll "typography-body-styles-section" }
+        , { label = "Il font del marchio", clickMsg = SmoothScroll "typography-mark-font-section" }
         ]
     }
 
@@ -49,7 +65,7 @@ renderSectionFont : Html Msg
 renderSectionFont =
     -- 1px border, flex
     section
-        [ class "inset-section typography-font-section" ]
+        [ class "inset-section typography-font-section", id "typography-font-section" ]
         [ div [ class "typography-font-section__intro" ]
             -- LEFT, vertically centered
             [ h2
@@ -92,7 +108,7 @@ renderSectionFont =
 renderSectionFontWeight : Html Msg
 renderSectionFontWeight =
     section
-        [ class "typography-font-weight-section" ]
+        [ class "typography-font-weight-section", id "typography-font-weight-section" ]
         [ h2 [] [ text "Font Weight" ]
         , table
             [ class "typography-table" ]
@@ -186,7 +202,7 @@ renderTableCell cell =
 
 renderSectionHeadingStyles : Html Msg
 renderSectionHeadingStyles =
-    section [ class "typography-heading-styles-section" ]
+    section [ class "typography-heading-styles-section", id "typography-heading-styles-section" ]
         [ h2 [] [ text "Heading Styles" ]
         , table [ class "typography-table" ]
             [ thead []
@@ -202,7 +218,7 @@ renderSectionHeadingStyles =
 renderSectionBodyStyles : Html Msg
 renderSectionBodyStyles =
     section
-        [ class "typography-body-styles-section" ]
+        [ class "typography-body-styles-section", id "typography-body-styles-section" ]
         [ h2 [] [ text "Body Styles" ]
         , table
             [ class "typography-table" ]
@@ -256,7 +272,7 @@ renderSectionBodyStyles =
 renderSectionMarkFont : Html Msg
 renderSectionMarkFont =
     -- BG gradient, flex
-    section [ class "typography-mark-font-section" ]
+    section [ class "typography-mark-font-section", id "typography-mark-font-section" ]
         -- LEFT, vertically centered
         [ div []
             [ h2
