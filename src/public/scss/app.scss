@@ -2,7 +2,9 @@ $fontPath: "/fonts";
 
 @import "pyxis-npm/src/scss/pyxis";
 @import "variables";
+@import "mixins";
 @import "sidebar";
+@import "table";
 @import "pagehead";
 @import "pages/style/root";
 @import "icons";

@@ -1,0 +1,15 @@
+.overridden-pyxis-table {
+  .table__header__row__item {
+    border: none;
+  }
+  .table__body__row {
+    border: none;
+    border-bottom: 1px solid color(shape);
+  }
+  .table__body__row__item {
+    border: none;
+    @include fontSize(base);
+    padding-bottom: rem(40px);
+    padding-top: rem(40px);
+  }
+}

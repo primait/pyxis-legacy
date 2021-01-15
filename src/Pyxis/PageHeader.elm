@@ -1,11 +1,11 @@
-module Pyxis.PageHead exposing (Link, PageHead, view)
+module Pyxis.PageHeader exposing (Link, PageHeader, view)
 
-import Html exposing (Html, a, div, h1, hr, p, section, span, text)
+import Html exposing (Html, a, div, h1, header, hr, p, span, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 
 
-type alias PageHead msg =
+type alias PageHeader msg =
     { title : String
     , subtitle : String
     , links : List (Link msg)
@@ -18,12 +18,11 @@ type alias Link msg =
     }
 
 
-view : PageHead msg -> Html msg
+view : PageHeader msg -> Html msg
 view pageHead =
-    section
-        [ class "page-head" ]
+    header [ class "page-head" ]
         [ h1 [ class "page-head__title" ] [ text pageHead.title ]
-        , p [ class "page-head__subtitle" ] [ text pageHead.subtitle ]
+        , p [ class "page-head__subtitle c-text-base" ] [ text pageHead.subtitle ]
         , linkBar pageHead.links
         , hr [] []
         ]

@@ -1,6 +1,6 @@
 module Pyxis.Sidebar exposing (Msg, Sidebar, sidebar, update, view)
 
-import Html exposing (Html, aside)
+import Html exposing (Html, nav)
 import Html.Attributes exposing (class)
 import Pyxis.Model.Route as Route exposing (Route)
 import Pyxis.Sidebar.LinkNode as LinkNode exposing (LinkNode)
@@ -42,7 +42,7 @@ sidebar =
 
 view : Sidebar -> Html Msg
 view sidebarConfig =
-    aside
+    nav
         [ class "pyxis__sidebar" ]
         (List.map (LinkNode.view Toggle OnRouteChange) sidebarConfig)
 

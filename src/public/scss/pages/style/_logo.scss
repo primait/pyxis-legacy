@@ -1,10 +1,3 @@
-@mixin tall-margin-bottom {
-  margin-bottom: rem(40px);
-  @include mq(medium) {
-    margin-bottom: rem(100px);
-  }
-}
-
 @mixin common-responsive-section {
   align-items: center;
   display: flex;
@@ -14,7 +7,7 @@
 
 .logo-section-meaning {
   @extend .inset-section;
-  @include tall-margin-bottom;
+  @include tall-responsive-margin-botton;
   @include common-responsive-section;
 }
 
@@ -25,25 +18,21 @@
   @include mq(medium) {
     width: rem(360px);
   }
-
-  > p {
-    color: color(text, base);
-  }
 }
 
 .logo-section-mark,
 .logo-section-respect,
 .logo-section-colors {
-  @include tall-margin-bottom;
+  @include tall-responsive-margin-botton;
   @include common-responsive-section;
 }
 
 .logo-section-downloads {
-  @include tall-margin-bottom;
+  @include tall-responsive-margin-botton;
 }
 
 .logo-section-black {
-  @include tall-margin-bottom;
+  @include tall-responsive-margin-botton;
 }
 
 .logo-section-black__images,
@@ -86,5 +75,5 @@
 }
 
 .logo-section-cafe {
-  @include tall-margin-bottom;
+  @include tall-responsive-margin-botton;
 }

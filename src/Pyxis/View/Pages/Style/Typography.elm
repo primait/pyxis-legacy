@@ -1,11 +1,12 @@
 module Pyxis.View.Pages.Style.Typography exposing (Msg, update, view)
 
-import Html exposing (Html, a, br, div, h1, h2, h3, h4, h5, hr, li, p, section, span, table, tbody, td, text, th, thead, tr, ul)
+import Html exposing (Html, a, article, br, div, h1, h2, h3, h4, h5, hr, li, p, section, span, table, tbody, td, text, th, thead, tr, ul)
 import Html.Attributes exposing (class, id, style)
 import Html.Events exposing (onClick)
+import Prima.Pyxis.Table as Table
 import Pyxis.Model.Route as Route
 import Pyxis.Model.Style.Colors as Colors exposing (Color, PyxisColor, pyxisColorToHexRGB)
-import Pyxis.PageHead as PageHead exposing (PageHead)
+import Pyxis.PageHeader as PageHeader exposing (PageHeader)
 import SmoothScroll exposing (scrollTo)
 import Task
 
@@ -17,7 +18,14 @@ type Msg
 
 view : Html Msg
 view =
-    div [ class "typography" ] [ renderTypographyPage ]
+    article []
+        [ PageHeader.view typographyHead
+        , renderSectionFont
+        , renderSectionFontWeight
+        , renderSectionHeadingStyles
+        , renderSectionBodyStyles
+        , renderSectionMarkFont
+        ]
 
 
 update : Msg -> Cmd Msg
@@ -30,19 +38,174 @@ update msg =
             Task.attempt (always NoOp) (scrollTo id)
 
 
-renderTypographyPage : Html Msg
-renderTypographyPage =
-    section [ class "typography-section" ]
-        [ PageHead.view typographyHead
-        , renderSectionFont
-        , renderSectionFontWeight
-        , renderSectionHeadingStyles
-        , renderSectionBodyStyles
-        , renderSectionMarkFont
-        ]
+tableState : Table.State
+tableState =
+    Table.init Nothing Nothing
 
 
-typographyHead : PageHead Msg
+createHeaders : List String -> List (Table.Header Msg)
+createHeaders headers =
+    List.map (\h -> Table.header (String.toLower h) [ Html.strong [] [ Html.text h ] ]) headers
+
+
+createRows : List (List (List (Html Msg))) -> List (Table.Row Msg)
+createRows rows =
+    List.map (Table.row << createColumns) rows
+
+
+createColumns : List (List (Html Msg)) -> List (Table.Column Msg)
+createColumns columns =
+    List.map (Table.columnHtml 1) columns
+
+
+weightsTableConfig : Table.Config Msg
+weightsTableConfig =
+    Table.light False (\_ -> NoOp)
+        |> Table.withClass "overridden-pyxis-table"
+        |> Table.addHeaders (createHeaders weightsTableHeaders)
+        |> Table.addRows (createRows weightsTableRows)
+
+
+weightsTableHeaders : List String
+weightsTableHeaders =
+    [ "NAME", "USE", "CLASSES" ]
+
+
+weightsTableRows : List (List (List (Html Msg)))
+weightsTableRows =
+    [ [ [ span [ class "fw-light" ] [ text "Avenir Book" ] ]
+      , [ text "usato per i testi" ]
+      , [ text "fw-light" ]
+      ]
+    , [ [ span [ class "fw-base" ] [ text "Avenir Medium" ] ]
+      , [ text "usato per i link" ]
+      , [ text "fw-medium" ]
+      ]
+    , [ [ span [ class "fw-heavy" ] [ text "Avenir Heavy" ] ]
+      , [ text "usato per i titoli e testi bold" ]
+      , [ text "fw-heavy" ]
+      ]
+    ]
+
+
+headingsTableConfig : Table.Config Msg
+headingsTableConfig =
+    Table.light False (\_ -> NoOp)
+        |> Table.withClass "overridden-pyxis-table"
+        |> Table.addHeaders (createHeaders headingsTableHeaders)
+        |> Table.addRows (createRows headingsTableRows)
+
+
+headingsTableHeaders : List String
+headingsTableHeaders =
+    [ "NAME", "ELEMENT", "SIZE", "TYPEFACE" ]
+
+
+headingsTableRows : List (List (List (Html Msg)))
+headingsTableRows =
+    [ [ [ h1 [] [ text "Header" ] ]
+      , [ text "H1" ]
+      , [ text "36px / 32px / 25px / 22px" ]
+      , [ text "Avenir Heavy" ]
+      ]
+    , [ [ h2 [] [ text "Header" ] ]
+      , [ text "H2" ]
+      , [ text "36px / 32px / 25px / 22px" ]
+      , [ text "Avenir Medium" ]
+      ]
+    , [ [ h3 [] [ text "Header" ] ]
+      , [ text "H3" ]
+      , [ text "36px / 32px / 25px / 22px" ]
+      , [ text "Avenir Medium" ]
+      ]
+    , [ [ h4 [] [ text "Header" ] ]
+      , [ text "H4" ]
+      , [ text "36px / 32px / 25px / 22px" ]
+      , [ text "Avenir Medium" ]
+      ]
+    , [ [ h5 [] [ text "Header" ] ]
+      , [ text "H5" ]
+      , [ text "36px / 32px / 25px / 22px" ]
+      , [ text "Avenir Medium" ]
+      ]
+    ]
+
+
+sizesTableConfig : Table.Config Msg
+sizesTableConfig =
+    Table.light False (\_ -> NoOp)
+        |> Table.withClass "overridden-pyxis-table"
+        |> Table.addHeaders (createHeaders sizesTableHeaders)
+        |> Table.addRows (createRows sizesTableRows)
+
+
+sizesTableHeaders : List String
+sizesTableHeaders =
+    [ "NAME", "ELEMENT", "SIZE", "TYPEFACE", "L-SPACING", "CASE", "CLASSES" ]
+
+
+sizesTableRows : List (List (List (Html Msg)))
+sizesTableRows =
+    [ [ [ span [ class "fs-xxlarge" ] [ text "Text" ] ]
+      , [ text "XXlarge" ]
+      , [ text "36px / 32px / 25px / 22px" ]
+      , [ text "Avenir Book" ]
+      , [ text "0px" ]
+      , [ text "Sentence" ]
+      , [ text "fs-xxlarge" ]
+      ]
+    , [ [ span [ class "fs-xlarge" ] [ text "Text" ] ]
+      , [ text "Xlarge" ]
+      , [ text "36px / 32px / 25px / 22px" ]
+      , [ text "Avenir Book" ]
+      , [ text "0px" ]
+      , [ text "Sentence" ]
+      , [ text "fs-xlarge" ]
+      ]
+    , [ [ span [ class "fs-large" ] [ text "Text" ] ]
+      , [ text "large" ]
+      , [ text "36px / 32px / 25px / 22px" ]
+      , [ text "Avenir Book" ]
+      , [ text "0px" ]
+      , [ text "Sentence" ]
+      , [ text "fs-large" ]
+      ]
+    , [ [ span [ class "fs-medium" ] [ text "Text" ] ]
+      , [ text "medium" ]
+      , [ text "36px / 32px / 25px / 22px" ]
+      , [ text "Avenir Book" ]
+      , [ text "0px" ]
+      , [ text "Sentence" ]
+      , [ text "fs-medium" ]
+      ]
+    , [ [ span [ class "fs-base" ] [ text "Text" ] ]
+      , [ text "base" ]
+      , [ text "36px / 32px / 25px / 22px" ]
+      , [ text "Avenir Book" ]
+      , [ text "0px" ]
+      , [ text "Sentence" ]
+      , [ text "fs-base" ]
+      ]
+    , [ [ span [ class "fs-small" ] [ text "Text" ] ]
+      , [ text "small" ]
+      , [ text "36px / 32px / 25px / 22px" ]
+      , [ text "Avenir Book" ]
+      , [ text "0px" ]
+      , [ text "Sentence" ]
+      , [ text "fs-small" ]
+      ]
+    , [ [ span [ class "fs-xsmall" ] [ text "Text" ] ]
+      , [ text "Xsmall" ]
+      , [ text "36px / 32px / 25px / 22px" ]
+      , [ text "Avenir Book" ]
+      , [ text "0px" ]
+      , [ text "Sentence" ]
+      , [ text "fs-xsmall" ]
+      ]
+    ]
+
+
+typographyHead : PageHeader Msg
 typographyHead =
     { title = "Typography"
     , subtitle = "In questa sezione puoi verificare dimensioni dei caratteri, tipo di font e specifiche di utilizzo."
@@ -63,8 +226,7 @@ renderSectionFont =
         [ class "inset-section typography-font-section", id "typography-font-section" ]
         [ div [ class "typography-font-section__intro" ]
             -- LEFT, vertically centered
-            [ h2
-                []
+            [ h2 []
                 [ text "Il font istituzionale" ]
             , p []
                 [ text "Il nostro font istituzionale è Avenir, che utilizziamo con pesi diversi a seconda dei casi. In francese significa \"futuro\": Avenir, infatti, è una versione meno geometrica e razionale del font Futura, molto apprezzato da grafici e architetti per leggibilità e semplicità. Utilizza sempre questo font per tutti i contenuti testuali, a eccezione del marchio."
@@ -74,7 +236,7 @@ renderSectionFont =
             -- vertically centered, massive font size
             [ class "typography-font-section__sample" ]
             [ text "Aa" ]
-        , div [ class "typography-font-section__specs" ]
+        , div [ class "typography-font-section__specs fs-small" ]
             -- vertically centered, 1px border-left
             [ div [ class "typography-font-section__specs__item" ]
                 [ span [ class "typography-font-section__specs__item__label" ] [ text "CATEGORY" ]
@@ -105,98 +267,15 @@ renderSectionFontWeight =
     section
         [ class "typography-font-weight-section", id "typography-font-weight-section" ]
         [ h2 [] [ text "Font Weight" ]
-        , table
-            [ class "typography-table" ]
-            [ thead []
-                [ tr []
-                    [ th [] [ text "NAME" ]
-                    , th [] [ text "USE" ]
-                    , th [] [ text "CLASSES" ]
-                    ]
-                ]
-            , tbody []
-                [ tr []
-                    [ td [] [ text "Avenir Book" ]
-                    , td [] [ text "usato per i testi" ]
-                    , td [] [ text "fw-light" ]
-                    ]
-                , tr []
-                    [ td [] [ text "Avenir Medium" ]
-                    , td [] [ text "usato per i link" ]
-                    , td [] [ text "fw-medium" ]
-                    ]
-                , tr []
-                    [ td [] [ text "Avenir Heavy" ]
-                    , td [] [ text "usato per i titoli e testi bold" ]
-                    , td [] [ text "fw-heavy" ]
-                    ]
-                ]
-            ]
+        , Table.render tableState weightsTableConfig
         ]
-
-
-type alias HeadingsTableCell =
-    { text : String
-    , attributes : List (Html.Attribute Msg)
-    }
-
-
-type alias HeadingsTableContents =
-    { headRow : List (List (Html Msg))
-    , bodyRows : List (List HeadingsTableCell)
-    }
-
-
-headingsTableContents : HeadingsTableContents
-headingsTableContents =
-    { headRow =
-        [ [ text "NAME" ]
-        , [ text "ELEMENT" ]
-        , [ span [ class "fw-heavy" ] [ text "SIZE " ], span [ class "fw-base", class "fs-xsmall" ] [ text "XLarge / Large / Medium / Small" ] ]
-        , [ text "TYPEFACE" ]
-        ]
-    , bodyRows = List.map headingsTableBodyRows (List.range 1 5)
-    }
-
-
-headingsTableBodyRows : Int -> List HeadingsTableCell
-headingsTableBodyRows int =
-    [ { text = "Header", attributes = [ class ("typography-h" ++ String.fromInt int) ] }
-    , { text = "H" ++ String.fromInt int, attributes = [] }
-    , { text = "36px / 32px / 25px / 22px", attributes = [] }
-    , { text =
-            if int == 1 then
-                "Avenir Heavy"
-
-            else
-                "Avenir Medium"
-      , attributes = []
-      }
-    ]
-
-
-renderHeadingsTableBodyRow : List HeadingsTableCell -> Html Msg
-renderHeadingsTableBodyRow row =
-    tr [] (List.map renderHeadingsTableCell row)
-
-
-renderHeadingsTableCell : HeadingsTableCell -> Html Msg
-renderHeadingsTableCell cell =
-    td (List.concat [ [], cell.attributes ]) [ text cell.text ]
 
 
 renderSectionHeadingStyles : Html Msg
 renderSectionHeadingStyles =
     section [ class "typography-heading-styles-section", id "typography-heading-styles-section" ]
         [ h2 [] [ text "Heading Styles" ]
-        , table [ class "typography-table" ]
-            [ thead []
-                [ tr
-                    []
-                    (List.map (th []) headingsTableContents.headRow)
-                ]
-            , tbody [] (List.map renderHeadingsTableBodyRow headingsTableContents.bodyRows)
-            ]
+        , Table.render tableState headingsTableConfig
         ]
 
 
@@ -205,69 +284,21 @@ renderSectionBodyStyles =
     section
         [ class "typography-body-styles-section", id "typography-body-styles-section" ]
         [ h2 [] [ text "Body Styles" ]
-        , table
-            [ class "typography-table" ]
-            [ thead []
-                [ tr []
-                    [ th [] [ text "NAME" ]
-                    , th [] [ text "ELEMENT" ]
-                    , th [] [ span [] [ text "SIZE " ], span [] [ text "XLarge / Large / Medium / Small" ] ]
-                    , th [] [ text "TYPEFACE" ]
-                    , th [] [ text "L-SPACING" ]
-                    , th [] [ text "CASE" ]
-                    , th [] [ text "CLASSES" ]
-                    ]
-                ]
-            , tbody []
-                [ tr
-                    []
-                    [ td [ class "fs-xxlarge" ] [ text "Text" ]
-                    , td [] [ text "XXlarge" ]
-                    , td [] [ text "36px / 32px / 25px / 22px" ]
-                    , td [] [ text "Avenir Book" ]
-                    , td [] [ text "0px" ]
-                    , td [] [ text "Sentence" ]
-                    , td [] [ text "fs-xxlarge" ]
-                    ]
-                , tr
-                    []
-                    [ td [ class "fs-xlarge" ] [ text "Text" ]
-                    , td [] [ text "Xlarge" ]
-                    , td [] [ text "36px / 32px / 25px / 22px" ]
-                    , td [] [ text "Avenir Book" ]
-                    , td [] [ text "0px" ]
-                    , td [] [ text "Sentence" ]
-                    , td [] [ text "fs-xlarge" ]
-                    ]
-                , tr
-                    []
-                    [ td [ class "fs-large" ] [ text "Text" ]
-                    , td [] [ text "large" ]
-                    , td [] [ text "36px / 32px / 25px / 22px" ]
-                    , td [] [ text "Avenir Book" ]
-                    , td [] [ text "0px" ]
-                    , td [] [ text "Sentence" ]
-                    , td [] [ text "fs-large" ]
-                    ]
-                ]
-            ]
+        , Table.render tableState sizesTableConfig
         ]
 
 
 renderSectionMarkFont : Html Msg
 renderSectionMarkFont =
-    -- BG gradient, flex
     section [ class "typography-mark-font-section", id "typography-mark-font-section" ]
-        -- LEFT, vertically centered
         [ div []
-            [ h2
-                []
-                [ text "Il font del marchio" ]
+            -- LEFT, vertically centered
+            [ h2 [] [ text "Il font del marchio" ]
             , p [] [ text "Il font del logo è il Rubrik nelle varianti: Light, Regular, Semibold e Bold" ]
             ]
-
-        -- RIGHT, vertically centered
         , div []
+            -- RIGHT, vertically centered
+            -- TODO: use Rubrik font
             [ div []
                 [ div []
                     [ h5 [] [ text "RUBRIK LIGHT" ]
