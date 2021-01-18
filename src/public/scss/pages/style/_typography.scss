@@ -2,7 +2,10 @@
 .typography-font-weight-section,
 .typography-body-styles-section,
 .typography-heading-styles-section {
-  @include tall-responsive-margin-botton;
+  margin-bottom: get($sectionOffset, marginBottom);
+  @include mq(medium) {
+    margin-bottom: get($sectionOffset, breakpoints, medium);
+  }
 }
 
 .typography-font-weight-section,

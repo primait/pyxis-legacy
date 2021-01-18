@@ -136,7 +136,7 @@ sizesTableConfig =
     Table.light False (\_ -> NoOp)
         |> Table.withClass "overridden-pyxis-table"
         |> Table.addHeaders (createHeaders sizesTableHeaders)
-        |> Table.addRows (createRows sizesTableRows)
+        |> Table.addRows (List.map fontSizeToTableRow [ XXLarge, XLarge, Large, Medium, Base, Small, XSmall ])
 
 
 sizesTableHeaders : List String
@@ -144,65 +144,99 @@ sizesTableHeaders =
     [ "NAME", "ELEMENT", "SIZE", "TYPEFACE", "L-SPACING", "CASE", "CLASSES" ]
 
 
-sizesTableRows : List (List (List (Html Msg)))
-sizesTableRows =
-    [ [ [ span [ class "fs-xxlarge" ] [ text "Text" ] ]
-      , [ text "XXlarge" ]
-      , [ text "36px / 32px / 25px / 22px" ]
-      , [ text "Avenir Book" ]
-      , [ text "0px" ]
-      , [ text "Sentence" ]
-      , [ text "fs-xxlarge" ]
-      ]
-    , [ [ span [ class "fs-xlarge" ] [ text "Text" ] ]
-      , [ text "Xlarge" ]
-      , [ text "36px / 32px / 25px / 22px" ]
-      , [ text "Avenir Book" ]
-      , [ text "0px" ]
-      , [ text "Sentence" ]
-      , [ text "fs-xlarge" ]
-      ]
-    , [ [ span [ class "fs-large" ] [ text "Text" ] ]
-      , [ text "large" ]
-      , [ text "36px / 32px / 25px / 22px" ]
-      , [ text "Avenir Book" ]
-      , [ text "0px" ]
-      , [ text "Sentence" ]
-      , [ text "fs-large" ]
-      ]
-    , [ [ span [ class "fs-medium" ] [ text "Text" ] ]
-      , [ text "medium" ]
-      , [ text "36px / 32px / 25px / 22px" ]
-      , [ text "Avenir Book" ]
-      , [ text "0px" ]
-      , [ text "Sentence" ]
-      , [ text "fs-medium" ]
-      ]
-    , [ [ span [ class "fs-base" ] [ text "Text" ] ]
-      , [ text "base" ]
-      , [ text "36px / 32px / 25px / 22px" ]
-      , [ text "Avenir Book" ]
-      , [ text "0px" ]
-      , [ text "Sentence" ]
-      , [ text "fs-base" ]
-      ]
-    , [ [ span [ class "fs-small" ] [ text "Text" ] ]
-      , [ text "small" ]
-      , [ text "36px / 32px / 25px / 22px" ]
-      , [ text "Avenir Book" ]
-      , [ text "0px" ]
-      , [ text "Sentence" ]
-      , [ text "fs-small" ]
-      ]
-    , [ [ span [ class "fs-xsmall" ] [ text "Text" ] ]
-      , [ text "Xsmall" ]
-      , [ text "36px / 32px / 25px / 22px" ]
-      , [ text "Avenir Book" ]
-      , [ text "0px" ]
-      , [ text "Sentence" ]
-      , [ text "fs-xsmall" ]
-      ]
-    ]
+type FontSize
+    = XXLarge
+    | XLarge
+    | Large
+    | Medium
+    | Base
+    | Small
+    | XSmall
+
+
+fontSizeToTableRow : FontSize -> Table.Row Msg
+fontSizeToTableRow fontSize =
+    Table.row <|
+        List.map (Table.columnHtml 1) <|
+            List.map List.singleton
+                [ span [ class (fontSizeToCSSClass fontSize) ] [ text "Text" ]
+                , text (fontSizeToLabel fontSize)
+                , text (fontSizeToSizes fontSize)
+                , text (fontSizeToFontFamily fontSize)
+                , text (fontSizeToLSpacing fontSize)
+                , text (fontSizeToUseCase fontSize)
+                , text (fontSizeToCSSClass fontSize)
+                ]
+
+
+fontSizeToCSSClass : FontSize -> String
+fontSizeToCSSClass fontSize =
+    case fontSize of
+        XXLarge ->
+            "fs-xxlarge"
+
+        XLarge ->
+            "fs-xlarge"
+
+        Large ->
+            "fs-large"
+
+        Medium ->
+            "fs-medium"
+
+        Base ->
+            "fs-base"
+
+        Small ->
+            "fs-small"
+
+        XSmall ->
+            "fs-xsmall"
+
+
+fontSizeToLabel : FontSize -> String
+fontSizeToLabel fontSize =
+    case fontSize of
+        XXLarge ->
+            "XXLarge"
+
+        XLarge ->
+            "XLarge"
+
+        Large ->
+            "Large"
+
+        Medium ->
+            "Medium"
+
+        Base ->
+            "Base"
+
+        Small ->
+            "Small"
+
+        XSmall ->
+            "XSmall"
+
+
+fontSizeToSizes : FontSize -> String
+fontSizeToSizes _ =
+    "36px / 32px / 25px / 22px"
+
+
+fontSizeToFontFamily : FontSize -> String
+fontSizeToFontFamily _ =
+    "Avenir Book"
+
+
+fontSizeToLSpacing : FontSize -> String
+fontSizeToLSpacing _ =
+    "0px"
+
+
+fontSizeToUseCase : FontSize -> String
+fontSizeToUseCase _ =
+    "Sentence"
 
 
 typographyHead : PageHeader Msg
