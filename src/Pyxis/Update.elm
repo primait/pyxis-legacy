@@ -2,10 +2,10 @@ module Pyxis.Update exposing (update)
 
 import Pyxis.Model as PyxisModel
 import Pyxis.Model.Style.Colors as Colors
+import Pyxis.Pages.Typography as Typography
 import Pyxis.Sidebar as Sidebar
 import Pyxis.Update.Helpers as UH
 import Pyxis.Update.Style.Colors as ColorsUpdate
-import Pyxis.View.Pages.Style.Typography as Typography
 
 
 update : PyxisModel.Msg -> PyxisModel.Model -> ( PyxisModel.Model, Cmd PyxisModel.Msg )

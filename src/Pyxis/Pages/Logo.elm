@@ -1,4 +1,4 @@
-module Pyxis.View.Pages.Style.Logo exposing (..)
+module Pyxis.Pages.Logo exposing (..)
 
 import Html exposing (Html, a, article, br, div, h1, h2, h3, h5, hr, li, p, section, span, table, tbody, td, text, th, thead, tr, ul)
 import Html.Attributes exposing (class, style)

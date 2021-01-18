@@ -13,8 +13,8 @@ import Browser exposing (UrlRequest)
 import Browser.Navigation as Nav
 import Pyxis.Model.Route as Route
 import Pyxis.Model.Style.Colors as Colors
+import Pyxis.Pages.Typography as Typography
 import Pyxis.Sidebar as Sidebar exposing (Sidebar)
-import Pyxis.View.Pages.Style.Typography as Typography
 import Url exposing (Url)
 
 

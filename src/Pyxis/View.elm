@@ -6,16 +6,16 @@ import Html.Attributes exposing (class)
 import Html.Events exposing (onClick, onInput)
 import Pyxis.Model exposing (Model, Msg(..))
 import Pyxis.Model.Route as Route exposing (Route(..))
+import Pyxis.Pages.Components as Components
+import Pyxis.Pages.Content as Content
+import Pyxis.Pages.GetStarted as GetStarted
+import Pyxis.Pages.Logo as Logo
+import Pyxis.Pages.Patterns as Patterns
+import Pyxis.Pages.Style as Style
+import Pyxis.Pages.Tools as Tools
+import Pyxis.Pages.Typography as Typography
 import Pyxis.Sidebar as Sidebar exposing (Sidebar)
-import Pyxis.View.Pages.Components as Components
-import Pyxis.View.Pages.Content as Content
-import Pyxis.View.Pages.GetStarted as GetStarted
-import Pyxis.View.Pages.Patterns as Patterns
-import Pyxis.View.Pages.Style as Style
 import Pyxis.View.Pages.Style.Colors as Colors
-import Pyxis.View.Pages.Style.Logo as Logo
-import Pyxis.View.Pages.Style.Typography as Typography
-import Pyxis.View.Pages.Tools as Tools
 import Pyxis.View.Pages.Welcome as Welcome
 
 

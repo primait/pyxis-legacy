@@ -1,4 +1,4 @@
-module Pyxis.View.Pages.Style.Typography exposing (Msg, update, view)
+module Pyxis.Pages.Typography exposing (Msg, update, view)
 
 import Html exposing (Html, a, article, br, div, h1, h2, h3, h4, h5, hr, li, p, section, span, table, tbody, td, text, th, thead, tr, ul)
 import Html.Attributes exposing (class, id, style)
