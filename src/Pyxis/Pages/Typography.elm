@@ -225,7 +225,6 @@ renderSectionFont =
     section
         [ class "inset-section typography-font-section", id "typography-font-section" ]
         [ div [ class "typography-font-section__intro" ]
-            -- LEFT, vertically centered
             [ h2 []
                 [ text "Il font istituzionale" ]
             , p []
@@ -233,11 +232,9 @@ renderSectionFont =
                 ]
             ]
         , div
-            -- vertically centered, massive font size
             [ class "typography-font-section__sample" ]
             [ text "Aa" ]
         , div [ class "typography-font-section__specs fs-small" ]
-            -- vertically centered, 1px border-left
             [ div [ class "typography-font-section__specs__item" ]
                 [ span [ class "typography-font-section__specs__item__label" ] [ text "CATEGORY" ]
                 , span [] [ text "Sans-serif" ]
@@ -290,14 +287,12 @@ renderSectionBodyStyles =
 
 renderSectionMarkFont : Html Msg
 renderSectionMarkFont =
-    section [ class "typography-mark-font-section", id "typography-mark-font-section" ]
+    section [ class "typography-mark-font-section inset-section", id "typography-mark-font-section" ]
         [ div []
-            -- LEFT, vertically centered
             [ h2 [] [ text "Il font del marchio" ]
             , p [] [ text "Il font del logo è il Rubrik nelle varianti: Light, Regular, Semibold e Bold" ]
             ]
         , div []
-            -- RIGHT, vertically centered
             -- TODO: use Rubrik font
             [ div []
                 [ div []

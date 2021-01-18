@@ -137,8 +137,8 @@ renderHexRGB pyxisColor =
         [ class "pyxis__content__colors__section__list__item__copyable"
         , onClick (CopyToClipboard pyxisColor)
         ]
-        [ span [] [ text (pyxisColorToHexRGB pyxisColor) ]
-        , span [ class "icon-sheet" ] []
+        [ span [ class "pyxis__content__colors__section__list__item__copyable__text" ] [ text (pyxisColorToHexRGB pyxisColor) ]
+        , span [ class "pyxis__content__colors__section__list__item__copyable__icon icon-sheet" ] []
         ]
 
 

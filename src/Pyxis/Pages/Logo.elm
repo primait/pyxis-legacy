@@ -46,7 +46,7 @@ logoHead =
 
 renderSectionMeaning : Html Msg
 renderSectionMeaning =
-    section [ class "logo-section-meaning" ]
+    section [ class "logo-section-meaning inset-section" ]
         [ div [ class "logo-section-meaning__text" ]
             [ h2
                 []
@@ -90,7 +90,7 @@ renderSectionColorsAndBackground =
             , h3 [] [ text "I colori del brand" ]
             , p [ class "c-text-base" ] [ text "Il font del logo è il Rubrik nelle varianti: Light, Regular, Semibold e Bold" ]
             , div []
-                [-- Two color cards
+                [-- TODO: Add two color cards here
                 ]
             ]
         , div [ class "logo-section-colors__images" ]

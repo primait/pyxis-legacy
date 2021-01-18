@@ -6,7 +6,6 @@
 }
 
 .logo-section-meaning {
-  @extend .inset-section;
   @include tall-responsive-margin-botton;
   @include common-responsive-section;
 }
