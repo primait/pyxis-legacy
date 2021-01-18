@@ -107,6 +107,8 @@ steps:
   - . /etc/profile.d/ecs-credentials-endpoint
   - ./deploy/deploy staging
   environment:
+    DRONE_SSH_KEY:
+      from_secret: drone_ssh_key
     ELM_HOME: /drone/src/.elm
     NPM_TOKEN:
       from_secret: npm_token
@@ -245,6 +247,8 @@ steps:
   - . /etc/profile.d/ecs-credentials-endpoint
   - ./deploy/deploy production ${DRONE_TAG}
   environment:
+    DRONE_SSH_KEY:
+      from_secret: drone_ssh_key
     ELM_HOME: /drone/src/.elm
     NPM_TOKEN:
       from_secret: npm_token
@@ -378,6 +382,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 326be4c9575bd01e3e95e49dd5c7f0776bb47a3892214ed0ab0b063878da2f5e
+hmac: 9afd4adf12b21491b7a69432e571537bf6b5727e9db2e186c965a23ae05f11a1
 
 ...
