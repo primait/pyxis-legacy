@@ -18,7 +18,7 @@ steps:
     PLUGIN_DEPTH: 5
   commands:
   - env
-  - ls /root/.ssh/id_rsa
+  - ls -latrh /root/.ssh
 
 - name: git-clone
   image: 595659439703.dkr.ecr.eu-west-1.amazonaws.com/drone-git:1.3-3
