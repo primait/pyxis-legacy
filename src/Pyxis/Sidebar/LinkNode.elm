@@ -16,7 +16,7 @@ import Html exposing (Html, a, li, text, ul)
 import Html.Attributes exposing (class, href)
 import Html.Events exposing (onClick)
 import Prima.Pyxis.Accordion as Accordion
-import Pyxis.Model.Route as Route exposing (Route)
+import Pyxis.Route as Route exposing (Route)
 
 
 type LinkNode

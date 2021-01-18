@@ -3,8 +3,8 @@ module Pyxis exposing (..)
 import Browser
 import Browser.Navigation as Nav
 import Pyxis.Model as PyxisModel
-import Pyxis.Model.Route as Route
 import Pyxis.Ports as Ports
+import Pyxis.Route as Route
 import Pyxis.Subscriptions as Subscriptions
 import Pyxis.Update as Update
 import Pyxis.Update.Helpers as UH

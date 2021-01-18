@@ -11,9 +11,9 @@ module Pyxis.Model exposing
 
 import Browser exposing (UrlRequest)
 import Browser.Navigation as Nav
-import Pyxis.Model.Route as Route
-import Pyxis.Model.Style.Colors as Colors
+import Pyxis.Pages.Colors as Colors
 import Pyxis.Pages.Typography as Typography
+import Pyxis.Route as Route
 import Pyxis.Sidebar as Sidebar exposing (Sidebar)
 import Url exposing (Url)
 

@@ -5,7 +5,7 @@ import Html exposing (Html, button, div, input, main_, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick, onInput)
 import Pyxis.Model exposing (Model, Msg(..))
-import Pyxis.Model.Route as Route exposing (Route(..))
+import Pyxis.Pages.Colors as Colors
 import Pyxis.Pages.Components as Components
 import Pyxis.Pages.Content as Content
 import Pyxis.Pages.GetStarted as GetStarted
@@ -14,9 +14,9 @@ import Pyxis.Pages.Patterns as Patterns
 import Pyxis.Pages.Style as Style
 import Pyxis.Pages.Tools as Tools
 import Pyxis.Pages.Typography as Typography
+import Pyxis.Pages.Welcome as Welcome
+import Pyxis.Route as Route exposing (Route(..))
 import Pyxis.Sidebar as Sidebar exposing (Sidebar)
-import Pyxis.View.Pages.Style.Colors as Colors
-import Pyxis.View.Pages.Welcome as Welcome
 
 
 view : Model -> Document Msg

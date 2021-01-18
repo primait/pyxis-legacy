@@ -1,4 +1,4 @@
-module Pyxis.Model.Route exposing
+module Pyxis.Route exposing
     ( Route(..)
     , eq
     , parser

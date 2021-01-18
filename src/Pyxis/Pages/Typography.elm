@@ -4,9 +4,9 @@ import Html exposing (Html, a, article, br, div, h1, h2, h3, h4, h5, hr, li, p, 
 import Html.Attributes exposing (class, id, style)
 import Html.Events exposing (onClick)
 import Prima.Pyxis.Table as Table
-import Pyxis.Model.Route as Route
-import Pyxis.Model.Style.Colors as Colors exposing (Color, PyxisColor, pyxisColorToHexRGB)
 import Pyxis.PageHeader as PageHeader exposing (PageHeader)
+import Pyxis.Pages.Colors as Colors exposing (Color, PyxisColor, pyxisColorToHexRGB)
+import Pyxis.Route as Route
 import SmoothScroll exposing (scrollTo)
 import Task
 

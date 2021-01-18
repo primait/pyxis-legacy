@@ -1,7 +1,8 @@
 module Pyxis.Update.Helpers exposing (..)
 
 import Browser.Navigation as Nav
-import Pyxis.Model.Route as Route
+import Process
+import Pyxis.Route as Route
 import Task
 
 
@@ -33,3 +34,10 @@ sendCmd =
 replaceUrl : Nav.Key -> Route.Route -> Cmd msg
 replaceUrl key route =
     Nav.replaceUrl key (Route.routeToString route)
+
+
+delay : Float -> msg -> Cmd msg
+delay time msg =
+    Process.sleep time
+        |> Task.andThen (always <| Task.succeed msg)
+        |> Task.perform identity

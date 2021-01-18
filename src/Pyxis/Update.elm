@@ -1,11 +1,10 @@
 module Pyxis.Update exposing (update)
 
 import Pyxis.Model as PyxisModel
-import Pyxis.Model.Style.Colors as Colors
+import Pyxis.Pages.Colors as Colors
 import Pyxis.Pages.Typography as Typography
 import Pyxis.Sidebar as Sidebar
 import Pyxis.Update.Helpers as UH
-import Pyxis.Update.Style.Colors as ColorsUpdate
 
 
 update : PyxisModel.Msg -> PyxisModel.Model -> ( PyxisModel.Model, Cmd PyxisModel.Msg )
@@ -51,7 +50,7 @@ dispatchColorsMsg : Colors.Msg -> PyxisModel.Model -> ( PyxisModel.Model, Cmd Py
 dispatchColorsMsg subMsg model =
     let
         ( colorsModel, colorsCmd ) =
-            ColorsUpdate.update subMsg model.colorsModel
+            Colors.update subMsg model.colorsModel
     in
     model
         |> PyxisModel.updateColors colorsModel

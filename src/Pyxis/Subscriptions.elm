@@ -1,7 +1,7 @@
 module Pyxis.Subscriptions exposing (subscriptions)
 
 import Pyxis.Model as PyxisModel
-import Pyxis.Model.Style.Colors as Colors
+import Pyxis.Pages.Colors as Colors
 import Pyxis.Ports as Ports
 
 
