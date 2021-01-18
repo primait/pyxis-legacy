@@ -5,7 +5,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const StylelintPlugin = require('stylelint-webpack-plugin')
 
-module.exports = (env, options, mode) => {
+module.exports = (env, options) => {
+  let opt = options || { mode: 'development' }
+
   return {
     context: path.resolve(__dirname, 'src'),
     entry:
@@ -33,9 +35,9 @@ module.exports = (env, options, mode) => {
           loader: 'elm-webpack-loader',
           options: {
             pathToElm: path.resolve(__dirname, 'node_modules/.bin/elm'),
-            optimize: mode === 'production',
-            verbose: mode === 'development',
-            debug: true,
+            optimize: opt.mode === 'production',
+            verbose: opt.mode === 'development',
+            debug: opt.mode === 'development',
             runtimeOptions: ['-A128M', '-H128M', '-n8m']
           }
         }
@@ -58,14 +60,14 @@ module.exports = (env, options, mode) => {
           },
           {
             loader: 'css-loader',
-            options: { sourceMap: mode === 'production', url: false }
+            options: { sourceMap: opt.mode === 'production', url: false }
           },
           {
             loader: 'postcss-loader'
           },
           {
             loader: 'sass-loader',
-            options: { sourceMap: mode === 'production' }
+            options: { sourceMap: opt.mode === 'production' }
           }]
       },
       {
@@ -104,7 +106,7 @@ module.exports = (env, options, mode) => {
       poll: 300,
     },
     stats: 'minimal',
-    devtool: mode === 'production' ? 'source-map' : 'eval',
+    devtool: opt.mode === 'production' ? 'source-map' : 'eval',
     bail: true,
     cache: true,
     parallelism: 100,
