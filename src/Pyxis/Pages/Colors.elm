@@ -28,7 +28,7 @@ import Task
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case Debug.log "ho copiato" msg of
+    case msg of
         CopyToClipboard pyxisColor ->
             model
                 |> updateColorCopied True
