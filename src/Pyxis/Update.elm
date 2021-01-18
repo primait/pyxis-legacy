@@ -4,7 +4,7 @@ import Pyxis.Model as PyxisModel
 import Pyxis.Pages.Colors as Colors
 import Pyxis.Pages.Typography as Typography
 import Pyxis.Sidebar as Sidebar
-import Pyxis.Update.Helpers as UH
+import Pyxis.UpdateHelpers as UH
 
 
 update : PyxisModel.Msg -> PyxisModel.Model -> ( PyxisModel.Model, Cmd PyxisModel.Msg )

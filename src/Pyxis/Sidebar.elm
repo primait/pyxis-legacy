@@ -4,7 +4,7 @@ import Html exposing (Html, nav)
 import Html.Attributes exposing (class)
 import Pyxis.Route as Route exposing (Route)
 import Pyxis.Sidebar.LinkNode as LinkNode exposing (LinkNode)
-import Pyxis.Update.Helpers as UH
+import Pyxis.UpdateHelpers as UH
 
 
 type Msg

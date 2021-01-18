@@ -21,7 +21,7 @@ import Html.Attributes exposing (class, classList, id, style)
 import Html.Events exposing (onClick)
 import Pyxis.PageHeader as PageHeader exposing (PageHeader)
 import Pyxis.Ports
-import Pyxis.Update.Helpers as UH
+import Pyxis.UpdateHelpers as UH
 import SmoothScroll exposing (scrollTo)
 import Task
 

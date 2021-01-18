@@ -7,7 +7,7 @@ import Pyxis.Ports as Ports
 import Pyxis.Route as Route
 import Pyxis.Subscriptions as Subscriptions
 import Pyxis.Update as Update
-import Pyxis.Update.Helpers as UH
+import Pyxis.UpdateHelpers as UH
 import Pyxis.View as View
 import Url exposing (Url)
 

@@ -1,4 +1,4 @@
-module Pyxis.Update.Helpers exposing (..)
+module Pyxis.UpdateHelpers exposing (..)
 
 import Browser.Navigation as Nav
 import Process
