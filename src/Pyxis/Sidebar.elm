@@ -37,6 +37,8 @@ sidebar =
         |> LinkNode.addChild (LinkNode.leaf Route.UIKits)
         |> LinkNode.addChild (LinkNode.leaf Route.Fonts)
         |> LinkNode.addChild (LinkNode.leaf Route.Icons)
+    , LinkNode.node Route.Components
+        |> LinkNode.addChild (LinkNode.leaf Route.Button)
     ]
 
 

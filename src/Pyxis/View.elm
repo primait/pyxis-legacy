@@ -5,6 +5,7 @@ import Html exposing (Html, button, div, input, main_, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick, onInput)
 import Pyxis.Model exposing (Model, Msg(..))
+import Pyxis.Pages.Button as Button
 import Pyxis.Pages.Colors as Colors
 import Pyxis.Pages.Components as Components
 import Pyxis.Pages.Content as Content
@@ -49,14 +50,20 @@ currentPage model =
         Route.Style ->
             Style.view
 
+        Route.Components ->
+            Components.view
+
+        Route.Actions ->
+            text "placeholderActions"
+
+        Route.Button ->
+            Button.view
+
         Route.Content ->
             Content.view
 
         Route.Patterns ->
             Patterns.view
-
-        Route.Components ->
-            Components.view
 
         Route.Tools ->
             Tools.view
