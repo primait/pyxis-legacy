@@ -17,6 +17,7 @@ steps:
       from_secret: drone_ssh_key
     PLUGIN_DEPTH: 5
   commands:
+  - echo "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - /usr/local/bin/clone
 
 - name: pre-start
