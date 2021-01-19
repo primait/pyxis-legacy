@@ -1,3 +1,6 @@
 [submodule "pyxis-components"]
 	path = pyxis-components
 	url = https://github.com/primait/pyxis-components.git
+[submodule "pyxis-npm"]
+	path = pyxis-npm
+	url = https://github.com/primait/pyxis-npm.git
