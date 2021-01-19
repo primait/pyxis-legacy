@@ -28,6 +28,8 @@
   },
   "scripts": {
     "build": "webpack --mode production --progress",
-    "watch": "webpack serve --mode development --watch --progress"
+    "watch": "webpack serve --mode development --watch --progress",
+    "build:site": "vue-cli-service build",
+    "release": "yarn install && yarn build:site && tar czf ${VERSION}-${ENV}.tar.gz -C dist/pyxis-site ."
   }
 }
