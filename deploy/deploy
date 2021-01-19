@@ -16,7 +16,7 @@ set -o pipefail
 set -o xtrace
 
 if [ $# -eq 0 ]; then
-  echo "Devi passare come argomento l'env da utilizzare"
+  echo "Missing required argument: environment"
   exit 1
 fi
 
