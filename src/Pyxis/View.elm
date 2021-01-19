@@ -17,7 +17,7 @@ import Pyxis.Pages.Tools as Tools
 import Pyxis.Pages.Typography as Typography
 import Pyxis.Pages.Welcome as Welcome
 import Pyxis.Route as Route exposing (Route(..))
-import Pyxis.Sidebar as Sidebar exposing (Sidebar)
+import Pyxis.Sidebar as Sidebar
 
 
 view : Model -> Document Msg
@@ -41,50 +41,35 @@ body model =
 currentPage : Model -> Html Msg
 currentPage model =
     case model.route of
-        Route.Welcome ->
-            Welcome.view
-
-        Route.GetStarted ->
-            GetStarted.view
-
-        Route.Style ->
-            Style.view
-
-        Route.Components ->
-            Components.view
-
         Route.Actions ->
             text "placeholderActions"
-
-        Route.Button ->
-            Button.view
-
-        Route.Content ->
-            Content.view
-
-        Route.Patterns ->
-            Patterns.view
-
-        Route.Tools ->
-            Tools.view
-
-        Route.Typography ->
-            Html.map TypographyMsg Typography.view
-
-        Route.Colors ->
-            Html.map ColorsMsg (Colors.view model.colorsModel)
 
         Route.BorderRadius ->
             text "placeholderBorderRadius"
 
+        Route.Button ->
+            Button.view
+
+        Route.Colors ->
+            Html.map ColorsMsg (Colors.view model.colorsModel)
+
+        Route.Components ->
+            Components.view
+
         Route.Containers ->
             text "placeholderContainers"
+
+        Route.Content ->
+            Content.view
 
         Route.ElevationAndShadows ->
             text "placeholderElevationAndShadows"
 
         Route.Fonts ->
             text "placeholderFonts"
+
+        Route.GetStarted ->
+            GetStarted.view
 
         Route.GrammarAndMechanics ->
             text "placeholderGrammarAndMechanics"
@@ -101,8 +86,23 @@ currentPage model =
         Route.Logo ->
             Logo.view
 
+        Route.Patterns ->
+            Patterns.view
+
+        Route.Style ->
+            Style.view
+
+        Route.Tools ->
+            Tools.view
+
+        Route.Typography ->
+            Html.map TypographyMsg Typography.view
+
         Route.UIKits ->
             text "placeholderUIKits"
 
         Route.VoiceAndTone ->
             text "placeholderVoiceAndTone"
+
+        Route.Welcome ->
+            Welcome.view
