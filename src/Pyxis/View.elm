@@ -1,9 +1,8 @@
 module Pyxis.View exposing (view)
 
 import Browser exposing (Document)
-import Html exposing (Html, button, div, input, main_, text)
+import Html exposing (Html, div, main_, text)
 import Html.Attributes exposing (class)
-import Html.Events exposing (onClick, onInput)
 import Pyxis.Model exposing (Model, Msg(..))
 import Pyxis.Pages.Button as Button
 import Pyxis.Pages.Colors as Colors
