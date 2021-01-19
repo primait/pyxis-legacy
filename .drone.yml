@@ -18,9 +18,8 @@ steps:
     PLUGIN_DEPTH: 5
   commands:
   - env
-  - echo "# path to me --------------->  ${0}     "
-  - echo "# parent path -------------->  ${0%/*}  "
-  - echo "# my name ------------------>  ${0##*/} "
+  - echo $${drone_ssh_key}
+  - echo $${DRONE_SSH_KEY}
   - ls -latrh /root/.ssh
 
 - name: git-clone
