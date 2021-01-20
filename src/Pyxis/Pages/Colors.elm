@@ -16,7 +16,7 @@ module Pyxis.Pages.Colors exposing
     , view
     )
 
-import Html exposing (Html, article, div, h1, h2, hr, li, p, section, span, text, ul)
+import Html exposing (Html, article, div, h2, li, p, section, span, text, ul)
 import Html.Attributes exposing (class, classList, id, style)
 import Html.Events exposing (onClick)
 import Pyxis.PageHeader as PageHeader exposing (PageHeader)

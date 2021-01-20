@@ -6,6 +6,6 @@ import Pyxis.Ports as Ports
 
 
 subscriptions : PyxisModel.Model -> Sub PyxisModel.Msg
-subscriptions model =
+subscriptions _ =
     Sub.batch
         [ Ports.copyAcknowledgement (PyxisModel.ColorsMsg << always Colors.CopyAcknowledgement) ]

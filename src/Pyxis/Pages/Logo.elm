@@ -1,11 +1,9 @@
 module Pyxis.Pages.Logo exposing (..)
 
-import Html exposing (Html, a, article, br, div, h1, h2, h3, h5, hr, li, p, section, span, table, tbody, td, text, th, thead, tr, ul)
-import Html.Attributes exposing (class, style)
-import Html.Events exposing (onClick)
+import Html exposing (Html, article, div, h2, h3, p, section, text)
+import Html.Attributes exposing (class)
 import Pyxis.Model exposing (Msg(..))
 import Pyxis.PageHeader as PageHeader exposing (PageHeader)
-import Pyxis.Pages.Colors as Colors exposing (Color, PyxisColor, pyxisColorToHexRGB)
 import Pyxis.Route as Route
 
 
