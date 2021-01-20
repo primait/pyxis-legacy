@@ -1,4 +1,4 @@
-module Pyxis.View.Pages.Tools exposing (view)
+module Pyxis.Pages.Content exposing (view)
 
 import Html exposing (..)
 import Pyxis.Model exposing (Msg)
@@ -6,4 +6,4 @@ import Pyxis.Model exposing (Msg)
 
 view : Html Msg
 view =
-    text "Sei nella pagina Tools"
+    text "Sei nella pagina Content"

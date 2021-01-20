@@ -1,3 +1,10 @@
 $sidebarConfig: (
-    maxWidth: rem(320px),
+  maxWidth: rem(320px),
+);
+
+$sectionOffset: (
+  marginBottom: rem(40px),
+  breakpoints: (
+    medium: rem(100px),
+  ),
 );

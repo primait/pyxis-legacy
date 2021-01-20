@@ -1,0 +1,66 @@
+.typography-font-section,
+.typography-font-weight-section,
+.typography-body-styles-section,
+.typography-heading-styles-section {
+  margin-bottom: get($sectionOffset, marginBottom);
+  @include mq(medium) {
+    margin-bottom: get($sectionOffset, breakpoints, medium);
+  }
+}
+
+.typography-font-weight-section,
+.typography-body-styles-section,
+.typography-heading-styles-section {
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.typography-font-section {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+
+  @include mq(medium) {
+    justify-content: space-between;
+  }
+}
+
+.typography-font-section__intro {
+  width: 100%;
+
+  @include mq(medium) {
+    width: rem(360px);
+  }
+}
+
+.typography-font-section__specs {
+  margin-left: rem(40px);
+}
+
+.typography-font-section__specs__item {
+  margin-bottom: rem(12px);
+  margin-top: rem(12px);
+}
+
+.typography-font-section__specs__item__label {
+  font-family: font(heavy);
+  margin-right: rem(12px);
+}
+
+.typography-font-section__sample {
+  border-right: 1px solid color(shape);
+  font-family: font(base);
+  font-size: rem(160px);
+  line-height: rem(160px);
+  padding-right: rem(36px);
+}
+
+.typography-alphabet-sample {
+  margin-bottom: rem(8px);
+  word-wrap: break-word;
+}
+
+.typography-mark-font-section {
+  background: linear-gradient(to right, #b964e3, color(brand, base));
+  color: color(textAlt, light);
+}

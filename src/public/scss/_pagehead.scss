@@ -1,0 +1,31 @@
+$hacky-flexbox-children-spacing: rem(4px);
+
+.page-head__subtitle {
+  margin-bottom: rem(20px);
+  margin-top: rem(20px);
+}
+
+.page-head__title {
+  font-family: font(base);
+}
+
+.page-head__link {
+  border: 1px solid color(shape);
+  border-radius: rem(5px);
+  font-family: font(base);
+  margin: $hacky-flexbox-children-spacing;
+  padding: rem(20px);
+  white-space: nowrap;
+
+  > span {
+    color: color(brandAlt);
+    margin-right: 16px;
+  }
+}
+
+.page-head__link-bar {
+  display: flex;
+  flex-flow: row wrap;
+
+  margin: -$hacky-flexbox-children-spacing;
+}

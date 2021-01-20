@@ -1,0 +1,69 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Resources:
+  ECSTaskRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ecs-tasks.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: "/"
+      Policies:
+        - PolicyName: !Sub ${AWS::StackName}-task
+          PolicyDocument:
+            Statement:
+              - Effect: Allow # docker setup_common
+                Action:
+                  - ecs:DescribeContainerInstances
+                  - ec2:DescribeInstances
+                Resource:
+                  - "*"
+              - Effect: Allow
+                Action:
+                  - s3:Head*
+                  - s3:Get*
+                Resource:
+                  - arn:aws:s3:::prima-artifacts-encrypted/microservices/pyxis/*
+
+  ECSServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ecs-tasks.amazonaws.com
+                - ecs.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: "/"
+      Policies:
+        - PolicyName: !Sub ${AWS::StackName}-service
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - elasticloadbalancing:Describe*
+                  - elasticloadbalancing:DeregisterInstancesFromLoadBalancer
+                  - elasticloadbalancing:RegisterInstancesWithLoadBalancer
+                  - elasticloadbalancing:DeregisterTargets
+                  - elasticloadbalancing:RegisterTargets
+                  - ec2:Describe*
+                Resource: "*"
+
+Outputs:
+  ECSTaskRole:
+    Value: !Ref ECSTaskRole
+    Export:
+      Name: !Sub ${AWS::StackName}-task
+  ECSServiceRole:
+    Value: !Ref ECSServiceRole
+    Export:
+      Name: !Sub ${AWS::StackName}-service
