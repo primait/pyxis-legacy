@@ -4,16 +4,19 @@ import Html exposing (Attribute, Html, article, button, div, section, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 import Pyxis.Tabbed as Tabbed
+import Pyxis.TabbedContainer as TabbedContainer
 
 
 type Msg
     = ClickLink
     | TabbedOnClick String
+    | TabbedContainerUpdate TabbedContainer.State
 
 
 type alias Model =
     { tabs : List Tab
     , current : String
+    , tabbedContainerState : TabbedContainer.State
     }
 
 
@@ -25,7 +28,10 @@ type alias Tab =
 
 initialModel : Model
 initialModel =
-    { tabs = [], current = "prova" }
+    { tabs = []
+    , current = "prova"
+    , tabbedContainerState = TabbedContainer.init
+    }
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -36,6 +42,9 @@ update msg model =
 
         ClickLink ->
             ( model, Cmd.none )
+
+        TabbedContainerUpdate newTabbedContainerState ->
+            ( { model | tabbedContainerState = newTabbedContainerState }, Cmd.none )
 
 
 tabbedConfig : String -> Tabbed.Tabbed Msg
@@ -48,10 +57,18 @@ tabbedConfig current =
         ]
 
 
+tabs : List (TabbedContainer.Tab Msg)
+tabs =
+    [ { label = "mario", content = text "marioContent" }
+    , { label = "gino", content = text "ginoContent" }
+    ]
+
+
 view : Model -> Html Msg
 view model =
     article []
         [ Tabbed.view (tabbedConfig model.current)
+        , TabbedContainer.view TabbedContainerUpdate model.tabbedContainerState tabs
         , sectionIntro
         , sectionCallout
         , sectionPrimary
