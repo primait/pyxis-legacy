@@ -47,7 +47,7 @@ currentPage model =
             text "placeholderBorderRadius"
 
         Route.Button ->
-            Button.view
+            Html.map ButtonMsg (Button.view model.buttonModel)
 
         Route.Colors ->
             Html.map ColorsMsg (Colors.view model.colorsModel)

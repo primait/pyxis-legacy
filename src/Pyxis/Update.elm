@@ -1,6 +1,7 @@
 module Pyxis.Update exposing (update)
 
 import Pyxis.Model as PyxisModel
+import Pyxis.Pages.Button as Button
 import Pyxis.Pages.Colors as Colors
 import Pyxis.Pages.Typography as Typography
 import Pyxis.Sidebar as Sidebar
@@ -19,6 +20,9 @@ update msg model =
 
         PyxisModel.SidebarMsg sidebarMsg ->
             dispatchSidebarMsg sidebarMsg model
+
+        PyxisModel.ButtonMsg buttonMsg ->
+            dispatchButtonMsg buttonMsg model
 
         PyxisModel.ColorsMsg colorsMsg ->
             dispatchColorsMsg colorsMsg model
@@ -43,6 +47,19 @@ dispatchSidebarMsg subMsg model =
             , maybeRoute
                 |> Maybe.map (UH.sendCmd << PyxisModel.OnRouteChange)
                 |> Maybe.withDefault Cmd.none
+            ]
+
+
+dispatchButtonMsg : Button.Msg -> PyxisModel.Model -> ( PyxisModel.Model, Cmd PyxisModel.Msg )
+dispatchButtonMsg subMsg model =
+    let
+        ( buttonModel, buttonCmd ) =
+            Button.update subMsg model.buttonModel
+    in
+    model
+        |> PyxisModel.updateButton buttonModel
+        |> UH.withCmds
+            [ Cmd.map PyxisModel.ButtonMsg buttonCmd
             ]
 
 

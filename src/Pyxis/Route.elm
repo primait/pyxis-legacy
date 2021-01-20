@@ -42,6 +42,7 @@ parser : Parser (Route -> a) a
 parser =
     oneOf
         [ Parser.map BorderRadius (s "patterns" </> s "border-radius")
+        , Parser.map Button (s "components" </> s "actions" </> s "button")
         , Parser.map Colors (s "style" </> s "colors")
         , Parser.map Components (s "components")
         , Parser.map Containers (s "patterns" </> s "containers")
