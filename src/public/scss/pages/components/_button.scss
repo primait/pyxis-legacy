@@ -1,3 +1,16 @@
+.pyxis__page-button__section-intro,
+.pyxis__page-button__section-callout,
+.pyxis__page-button__section-primary,
+.pyxis__page-button__section-secondary,
+.pyxis__page-button__section-tertiary,
+.pyxis__page-button__section-button-group,
+.pyxis__page-button__section-button-group-cover-fluid {
+  margin-bottom: get($sectionOffset, marginBottom);
+  @include mq(medium) {
+    margin-bottom: get($sectionOffset, breakpoints, medium);
+  }
+}
+
 .pyxis__page-button__inset-light,
 .pyxis__page-button__inset-dark,
 .pyxis__page-button__inset-brand {
@@ -21,4 +34,32 @@
 .pyxis__page-button__preview-container {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.dos-and-donts {
+  display: flex;
+  flex-flow: row wrap;
+}
+.dos-and-donts__dos__header {
+  color: #21c7a7;
+}
+.dos-and-donts__donts__header {
+  color: #e74c3c;
+}
+.dos-and-donts__dos,
+.dos-and-donts__donts {
+  flex-basis: 50%;
+}
+.dos-and-donts__dos__header,
+.dos-and-donts__donts__header {
+  font-family: font(heavy);
+  margin-bottom: rem(32px);
+}
+.dos-and-donts__dos__list,
+.dos-and-donts__donts__list {
+  list-style: disc inside none;
+  > li {
+    margin-bottom: rem(32px);
+  }
 }

@@ -58,7 +58,7 @@ view model =
 
 sectionIntro : Html Msg
 sectionIntro =
-    section []
+    section [ class "pyxis__page-button__section-intro" ]
         [ h1 []
             [ text "Component" ]
         , p []
@@ -82,7 +82,7 @@ sectionIntro =
 
 sectionCallout : Model -> Html Msg
 sectionCallout model =
-    section []
+    section [ class "pyxis__page-button__section-callout" ]
         [ h1 []
             [ text "Call Out Button" ]
         , TabbedContainer.view
@@ -123,36 +123,46 @@ sectionCallout model =
               }
             , { label = "</> CODE", content = text "" }
             ]
+        , dosAndDonts
+            { dos =
+                [ "Il pulsante call out comunica grande enfasi ed è riservato per incoraggiare azioni molto importanti come la funzione Procedi nel flusso."
+                , "Non esiste uno stile tiny per questo pulsante perché è pensato per essere intenzionalmente prominente."
+                ]
+            , donts =
+                [ "Dovrebbe esserci solo un pulsante Call out per pagina."
+                , "Non utilizzare il pulsante Call out su background on gradient color"
+                ]
+            }
         ]
 
 
 sectionPrimary : Model -> Html Msg
 sectionPrimary model =
-    section []
+    section [ class "pyxis__page-button__section-primary" ]
         [ h1 [] [ text "Primary Button" ] ]
 
 
 sectionSecondary : Model -> Html Msg
 sectionSecondary model =
-    section []
+    section [ class "pyxis__page-button__section-secondary" ]
         [ h1 [] [ text "Secondary Button" ] ]
 
 
 sectionTertiary : Model -> Html Msg
 sectionTertiary model =
-    section []
+    section [ class "pyxis__page-button__section-tertiary" ]
         [ h1 [] [ text "Tertiary Button" ] ]
 
 
 sectionButtonGroup : Model -> Html Msg
 sectionButtonGroup model =
-    section []
+    section [ class "pyxis__page-button__section-button-group" ]
         [ h1 [] [ text "Button Group" ] ]
 
 
 sectionButtonGroupCoverFluid : Model -> Html Msg
 sectionButtonGroupCoverFluid model =
-    section []
+    section [ class "pyxis__page-button__section-button-group-cover-fluid" ]
         [ h1 [] [ text "Button Group Cover Fluid" ] ]
 
 
@@ -201,3 +211,21 @@ insetBrand :
     -> Html msg
 insetBrand =
     inset InsetBrand
+
+
+dosAndDonts : { dos : List String, donts : List String } -> Html msg
+dosAndDonts dosAndDonts_ =
+    div [ class "dos-and-donts" ]
+        [ div [ class "dos-and-donts__donts" ]
+            [ div [ class "dos-and-donts__donts__header" ]
+                [ text "DON'T" ]
+            , ul [ class "dos-and-donts__donts__list" ]
+                (List.map (text >> List.singleton >> li []) dosAndDonts_.dos)
+            ]
+        , div [ class "dos-and-donts__dos" ]
+            [ div [ class "dos-and-donts__dos__header" ]
+                [ text "DO" ]
+            , ul [ class "dos-and-donts__dos__list" ]
+                (List.map (text >> List.singleton >> li []) dosAndDonts_.donts)
+            ]
+        ]
