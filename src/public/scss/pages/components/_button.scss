@@ -1,0 +1,24 @@
+.pyxis__page-button__inset-light,
+.pyxis__page-button__inset-dark,
+.pyxis__page-button__inset-brand {
+  border-radius: rem(20px);
+  padding: rem(50px) rem(40px);
+}
+
+.pyxis__page-button__inset-light {
+  border-color: color(shape);
+  border-style: solid;
+  border-width: rem(1px);
+}
+.pyxis__page-button__inset-dark {
+  background-color: color(backgroundAlt, dark);
+  color: color(textAlt, light);
+}
+.pyxis__page-button__inset-brand {
+  background: linear-gradient(to right, #b964e3, color(brand, base));
+}
+
+.pyxis__page-button__preview-container {
+  display: flex;
+  flex-flow: row wrap;
+}

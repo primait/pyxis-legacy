@@ -35,7 +35,7 @@ update msg value =
 view : (State -> msg) -> State -> List (Tab msg) -> Html msg
 view toStateUpdateMsg (State current) tabs =
     div [ class "tabbed-container" ]
-        [ ul [ class "tabbed-container__label-container" ]
+        [ ul [ class "tabbed-container__label-container fs-small" ]
             (tabs
                 |> List.map .label
                 |> List.indexedMap Tuple.pair

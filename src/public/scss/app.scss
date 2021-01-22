@@ -4,8 +4,10 @@ $fontPath: "/fonts";
 @import "variables";
 @import "mixins";
 @import "sidebar";
+@import "tabbed_container";
 @import "table";
 @import "pagehead";
+@import "pages/components/root";
 @import "pages/style/root";
 @import "icons";
 
