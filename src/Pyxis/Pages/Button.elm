@@ -58,11 +58,11 @@ sectionIntro =
         , p []
             [ text "Aggiungere la classe a-btn con i suoi vari modificatori per ottenere un bottone di dimensioni standard. Un bottone standard di default si dispone automaticamente al centro orizzontale del suo elenento padre. Le varianti dark sono visibili correttamente solo su un background scuro. Quando è necessario impilare più bottoni in uno stesso contenuto è opportuno utilizzare la classe m-btnGroup e le sue varianti."
             ]
-        , div []
+        , div [ class "pyxis__page-button__section-intro__button-primer" ]
             [ inset InsetLight
-                []
+                [ class "pyxis__page-button__section-intro__button-primer__sample" ]
                 [ button [ class "btn btn--primary" ] [ text "BUTTON" ] ]
-            , div []
+            , div [ class "pyxis__page-button__section-intro__button-primer__specs" ]
                 [ h5 []
                     [ text "SPECIFICHE TECNICHE" ]
                 , ul []

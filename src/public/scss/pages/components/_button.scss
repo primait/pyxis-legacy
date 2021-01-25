@@ -11,6 +11,20 @@
   }
 }
 
+.pyxis__page-button__section-intro__button-primer {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.pyxis__page-button__section-intro__button-primer__sample,
+.pyxis__page-button__section-intro__button-primer__specs {
+  min-width: 50%;
+}
+.pyxis__page-button__section-intro__button-primer__sample {
+  display: flex;
+  justify-content: center;
+}
+
 .pyxis__page-button__inset-light,
 .pyxis__page-button__inset-dark,
 .pyxis__page-button__inset-brand {
@@ -37,6 +51,7 @@
   justify-content: space-around;
 }
 
+// DOs and DONTs
 .dos-and-donts {
   display: flex;
   flex-flow: row wrap;
