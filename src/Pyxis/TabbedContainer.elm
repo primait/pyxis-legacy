@@ -2,7 +2,7 @@ module Pyxis.TabbedContainer exposing (State, Tab, init, view)
 
 import Array
 import Html exposing (Html, div, li, text, ul)
-import Html.Attributes exposing (class, classList)
+import Html.Attributes exposing (class, classList, style)
 import Html.Events exposing (onClick)
 
 
@@ -42,12 +42,10 @@ view toStateUpdateMsg (State current) tabs =
                 |> List.map (renderLabel toStateUpdateMsg current)
             )
         , div [ class "tabbed-container__content-container" ]
-            [ tabs
-                |> List.map .content
-                |> Array.fromList
-                |> Array.get current
-                |> Maybe.withDefault (text "")
-            ]
+            (tabs
+                |> List.indexedMap Tuple.pair
+                |> List.map (renderTab current)
+            )
         ]
 
 
@@ -66,3 +64,17 @@ renderLabel toStateUpdateMsg current indexAndLabel =
         ]
         [ text label
         ]
+
+
+renderTab : Int -> ( Int, Tab msg ) -> Html msg
+renderTab current ( index, tab ) =
+    div
+        [ style "display"
+            (if current == index then
+                "block"
+
+             else
+                "none"
+            )
+        ]
+        [ tab.content ]

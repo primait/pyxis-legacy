@@ -12,5 +12,16 @@ app.ports.copyToClipboard.subscribe(color => {
   app.ports.copyAcknowledgement.send(null);
 })
 
-console.log("Veramente stocazzo")
+app.ports.askInnerHTML.subscribe(target => {
+  console.log(`asked for ${target}'s innerHTML`);
+
+  const targetDOMNode = document.getElementById(target);
+  const innerHTML = targetDOMNode?.innerHTML || ""
+
+  console.log(`${target}'s innerHTML: ${innerHTML}`);
+
+  app.ports.receivedInnerHTML.send({ target, innerHTML });
+})
+
+console.log("Veramente stocazzo") // TODO: remove :(
 

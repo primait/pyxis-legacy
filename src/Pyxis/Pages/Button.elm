@@ -1,26 +1,32 @@
-module Pyxis.Pages.Button exposing (Model, Msg, initialModel, update, view)
+module Pyxis.Pages.Button exposing (Model, Msg(..), initialModel, update, view)
 
 import Dict exposing (Dict)
 import Html exposing (Attribute, Html, article, div, h1, h2, h5, li, p, section, text, ul)
 import Html.Attributes exposing (class)
 import Prima.Pyxis.Button as Button
 import Prima.Pyxis.ButtonGroup as ButtonGroup
+import Pyxis.Ports
 import Pyxis.TabbedContainer as TabbedContainer
 
 
 type Msg
-    = ClickLink
+    = AskInnerHTML String
+    | ClickLink
+    | ReceivedInnerHTML { target : String, innerHTML : String }
     | TabbedContainerUpdate String TabbedContainer.State
 
 
 type alias Model =
     { tabbedContainerStates : Dict String TabbedContainer.State
+    , receivedInnerHTMLs :
+        Dict String String
     }
 
 
 initialModel : Model
 initialModel =
     { tabbedContainerStates = Dict.empty
+    , receivedInnerHTMLs = Dict.empty
     }
 
 
@@ -37,17 +43,22 @@ update msg model =
             , Cmd.none
             )
 
+        AskInnerHTML target ->
+            ( model, Pyxis.Ports.askInnerHTML target )
+
+        ReceivedInnerHTML payload ->
+            let
+                { target, innerHTML } =
+                    payload
+            in
+            ( { model | receivedInnerHTMLs = Dict.insert target innerHTML model.receivedInnerHTMLs }, Cmd.none )
+
 
 view : Model -> Html Msg
 view model =
     article []
         (List.concat
             [ [ sectionIntro ]
-            , [ Button.callOut "CallOut" ]
-                |> ButtonGroup.create
-                |> ButtonGroup.withAlignmentCentered
-                |> ButtonGroup.render
-                |> List.singleton
             , List.map
                 (renderSampleSection model)
                 [ sectionCallout
@@ -201,12 +212,30 @@ renderSampleTabbedContainer model buttonVariant insetVariant =
                           ]
                             |> ButtonGroup.create
                             |> ButtonGroup.withAlignmentSpaceBetween
+                            |> ButtonGroup.withId slug
                             |> ButtonGroup.render
                         ]
                     ]
           }
-        , { label = "</> CODE", content = inset InsetLight [] [] }
+        , { label = "</> CODE"
+          , content =
+                inset InsetLight
+                    []
+                    [ renderSampleInnerHTML model slug
+                    ]
+          }
         ]
+
+
+renderSampleInnerHTML : Model -> String -> Html Msg
+renderSampleInnerHTML model slug =
+    Dict.get slug model.receivedInnerHTMLs
+        |> Maybe.map text
+        |> Maybe.withDefault
+            (Button.primary "Show code"
+                |> Button.withOnClick (AskInnerHTML slug)
+                |> Button.render
+            )
 
 
 getSlug : ButtonVariant -> InsetVariant -> String
