@@ -1,8 +1,10 @@
 module Pyxis.Pages.Button exposing (Model, Msg, initialModel, update, view)
 
 import Dict exposing (Dict)
-import Html exposing (Attribute, Html, article, button, div, h1, h2, h5, li, p, section, text, ul)
+import Html exposing (Attribute, Html, article, div, h1, h2, h5, li, p, section, text, ul)
 import Html.Attributes exposing (class)
+import Prima.Pyxis.Button as Button
+import Prima.Pyxis.ButtonGroup as ButtonGroup
 import Pyxis.TabbedContainer as TabbedContainer
 
 
@@ -39,14 +41,21 @@ update msg model =
 view : Model -> Html Msg
 view model =
     article []
-        (sectionIntro
-            :: List.map
+        (List.concat
+            [ [ sectionIntro ]
+            , [ Button.callOut "CallOut" ]
+                |> ButtonGroup.create
+                |> ButtonGroup.withAlignmentCentered
+                |> ButtonGroup.render
+                |> List.singleton
+            , List.map
                 (renderSampleSection model)
                 [ sectionCallout
                 , sectionPrimary
                 , sectionSecondary
                 , sectionTertiary
                 ]
+            ]
         )
 
 
@@ -61,7 +70,11 @@ sectionIntro =
         , div [ class "pyxis__page-button__section-intro__button-primer" ]
             [ inset InsetLight
                 [ class "pyxis__page-button__section-intro__button-primer__sample" ]
-                [ button [ class "btn btn--primary" ] [ text "BUTTON" ] ]
+                [ [ Button.callOut "BUTTON" ]
+                    |> ButtonGroup.create
+                    |> ButtonGroup.withAlignmentCentered
+                    |> ButtonGroup.render
+                ]
             , div [ class "pyxis__page-button__section-intro__button-primer__specs" ]
                 [ h5 []
                     [ text "SPECIFICHE TECNICHE" ]
@@ -166,6 +179,9 @@ renderSampleTabbedContainer model buttonVariant insetVariant =
     let
         slug =
             getSlug buttonVariant insetVariant
+
+        buttonCreator =
+            buttonVariantToCreator buttonVariant
     in
     TabbedContainer.view
         (TabbedContainerUpdate slug)
@@ -179,9 +195,13 @@ renderSampleTabbedContainer model buttonVariant insetVariant =
                             [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
                             , div [] [ text "on light color" ]
                             ]
-                        , button [ class (buttonVariantToClass buttonVariant), class "btn" ] [ text "LARGE BUTTON" ]
-                        , button [ class (buttonVariantToClass buttonVariant), class "btn is-disabled" ] [ text "DISABLED BUTTON" ]
-                        , button [ class (buttonVariantToClass buttonVariant), class "btn btn--small" ] [ text "SMALL BUTTON" ]
+                        , [ buttonCreator "LARGE BUTTON"
+                          , buttonCreator "DISABLED BUTTON" |> Button.withDisabled True
+                          , buttonCreator "SMALL BUTTON" |> Button.withSmallSize
+                          ]
+                            |> ButtonGroup.create
+                            |> ButtonGroup.withAlignmentSpaceBetween
+                            |> ButtonGroup.render
                         ]
                     ]
           }
@@ -210,20 +230,20 @@ buttonVariantToSlug buttonVariant =
             "tertiary"
 
 
-buttonVariantToClass : ButtonVariant -> String
-buttonVariantToClass buttonVariant =
+buttonVariantToCreator : ButtonVariant -> String -> Button.Config Msg
+buttonVariantToCreator buttonVariant =
     case buttonVariant of
         Callout ->
-            "btn--callout"
+            Button.callOut
 
         Primary ->
-            "btn--primary"
+            Button.primary
 
         Secondary ->
-            "btn--secondary"
+            Button.secondary
 
         Tertiary ->
-            "btn--tertiary"
+            Button.tertiary
 
 
 insetVariantToSlug : InsetVariant -> String
