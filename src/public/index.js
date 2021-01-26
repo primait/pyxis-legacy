@@ -22,6 +22,3 @@ app.ports.askInnerHTML.subscribe(target => {
 
   app.ports.receivedInnerHTML.send({ target, innerHTML });
 })
-
-console.log("Veramente stocazzo") // TODO: remove :(
-
