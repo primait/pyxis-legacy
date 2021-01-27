@@ -11,14 +11,24 @@
   }
 }
 
+.pyxis__page-button__heading {
+  margin-bottom: rem(40px);
+}
+.pyxis__page-button__section-intro__p {
+  margin-bottom: rem(40px);
+}
 .pyxis__page-button__section-intro__button-primer {
   display: flex;
   flex-flow: row wrap;
+  @include hackyFlexboxChildrenSpacing(rem(20px));
 }
 
-.pyxis__page-button__section-intro__button-primer__sample,
-.pyxis__page-button__section-intro__button-primer__specs {
+.pyxis__page-button__section-intro__button-primer__sample {
   min-width: 50%;
+}
+.pyxis__page-button__section-intro__button-primer__specs__ul {
+  list-style-position: inside;
+  list-style-type: disc;
 }
 
 .pyxis__page-button__inset-light,

@@ -1,6 +1,5 @@
 module Pyxis.TabbedContainer exposing (State, Tab, init, view)
 
-import Array
 import Html exposing (Html, div, li, text, ul)
 import Html.Attributes exposing (class, classList, style)
 import Html.Events exposing (onClick)

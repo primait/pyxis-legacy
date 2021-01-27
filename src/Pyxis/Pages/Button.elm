@@ -73,9 +73,9 @@ view model =
 sectionIntro : Html Msg
 sectionIntro =
     section [ class "pyxis__page-button__section-intro" ]
-        [ h1 []
+        [ h1 [ class "pyxis__page-button__heading" ]
             [ text "Component" ]
-        , p []
+        , p [ class "pyxis__page-button__section-intro__p" ]
             [ text "Aggiungere la classe a-btn con i suoi vari modificatori per ottenere un bottone di dimensioni standard. Un bottone standard di default si dispone automaticamente al centro orizzontale del suo elenento padre. Le varianti dark sono visibili correttamente solo su un background scuro. Quando è necessario impilare più bottoni in uno stesso contenuto è opportuno utilizzare la classe m-btnGroup e le sue varianti."
             ]
         , div [ class "pyxis__page-button__section-intro__button-primer" ]
@@ -89,7 +89,7 @@ sectionIntro =
             , div [ class "pyxis__page-button__section-intro__button-primer__specs" ]
                 [ h5 []
                     [ text "SPECIFICHE TECNICHE" ]
-                , ul []
+                , ul [ class "pyxis__page-button__section-intro__button-primer__specs__ul" ]
                     [ li [] [ text "Font uppercase" ]
                     , li [] [ text "Font family: Heavy" ]
                     , li [] [ text "Letter spacing: 1px" ]
@@ -178,7 +178,10 @@ renderSampleSection : Model -> SampleSection -> Html Msg
 renderSampleSection model sampleSection =
     section [ class sampleSection.sectionClass ]
         (List.concat
-            [ [ h2 [] [ text sampleSection.headerText ] ]
+            [ [ h2
+                    [ class "pyxis__page-button__heading" ]
+                    [ text sampleSection.headerText ]
+              ]
             , List.map (renderSampleTabbedContainer model sampleSection.buttonVariant) sampleSection.insetVariants
             , [ dosAndDonts { dos = sampleSection.dos, donts = sampleSection.donts } ]
             ]
