@@ -12,7 +12,7 @@ app.ports.copyToClipboard.subscribe(color => {
   app.ports.copyAcknowledgement.send(null);
 })
 
-app.ports.askInnerHTML.subscribe(target => {
+app.ports.requestInnerHTML.subscribe(target => {
   console.log(`asked for ${target}'s innerHTML`);
 
   const targetDOMNode = document.getElementById(target);

@@ -7,6 +7,7 @@ import Prima.Pyxis.Button as Button
 import Prima.Pyxis.ButtonGroup as ButtonGroup
 import Pyxis.Ports
 import Pyxis.TabbedContainer as TabbedContainer
+import Pyxis.UpdateHelpers as UH
 
 
 type Msg
@@ -34,29 +35,30 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         ClickLink ->
-            ( model, Cmd.none )
+            model
+                |> UH.withoutCmds
 
         TabbedContainerUpdate slug newTabbedContainerState ->
-            ( { model
+            { model
                 | tabbedContainerStates = Dict.insert slug newTabbedContainerState model.tabbedContainerStates
-              }
-            , Cmd.none
-            )
+            }
+                |> UH.withoutCmds
 
         AskInnerHTML target ->
-            ( model, Pyxis.Ports.askInnerHTML target )
+            model
+                |> UH.withCmds [ Pyxis.Ports.requestInnerHTML target ]
 
-        ReceivedInnerHTML payload ->
-            let
-                { target, innerHTML } =
-                    payload
-            in
-            ( { model | receivedInnerHTMLs = Dict.insert target innerHTML model.receivedInnerHTMLs }, Cmd.none )
+        ReceivedInnerHTML { target, innerHTML } ->
+            { model
+                | receivedInnerHTMLs = Dict.insert target innerHTML model.receivedInnerHTMLs
+            }
+                |> UH.withoutCmds
 
 
 view : Model -> Html Msg
 view model =
     article []
+        -- Leaving this as a List.concat rather than "::" since ButtonGroups will be added later
         (List.concat
             [ [ sectionIntro ]
             , List.map
@@ -199,7 +201,10 @@ renderSampleTabbedContainer model buttonVariant insetVariant =
     in
     TabbedContainer.view
         (TabbedContainerUpdate slug)
-        (Dict.get slug model.tabbedContainerStates |> Maybe.withDefault TabbedContainer.init)
+        (model.tabbedContainerStates
+            |> Dict.get slug
+            |> Maybe.withDefault TabbedContainer.init
+        )
         [ { label = "PREVIEW"
           , content =
                 inset insetVariant
@@ -232,7 +237,8 @@ renderSampleTabbedContainer model buttonVariant insetVariant =
 
 renderSampleInnerHTML : Model -> String -> Html Msg
 renderSampleInnerHTML model slug =
-    Dict.get slug model.receivedInnerHTMLs
+    model.receivedInnerHTMLs
+        |> Dict.get slug
         |> Maybe.map text
         |> Maybe.withDefault
             (Button.primary "Show code"
@@ -344,12 +350,12 @@ dosAndDonts dosAndDonts_ =
             [ div [ class "dos-and-donts__donts__header" ]
                 [ text "DON'T" ]
             , ul [ class "dos-and-donts__donts__list" ]
-                (List.map (text >> List.singleton >> li []) dosAndDonts_.dos)
+                (List.map (text >> List.singleton >> li [ class "dos-and-donts__donts__list__li" ]) dosAndDonts_.dos)
             ]
         , div [ class "dos-and-donts__dos" ]
             [ div [ class "dos-and-donts__dos__header" ]
                 [ text "DO" ]
             , ul [ class "dos-and-donts__dos__list" ]
-                (List.map (text >> List.singleton >> li []) dosAndDonts_.donts)
+                (List.map (text >> List.singleton >> li [ class "dos-and-donts__donts__list__li" ]) dosAndDonts_.donts)
             ]
         ]

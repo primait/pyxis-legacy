@@ -58,29 +58,36 @@
 }
 
 // DOs and DONTs
+
 .dos-and-donts {
   display: flex;
   flex-flow: row wrap;
 }
+
 .dos-and-donts__dos__header {
-  color: #21c7a7;
+  color: color(action, base);
 }
+
 .dos-and-donts__donts__header {
-  color: #e74c3c;
+  color: color(error, base);
 }
+
 .dos-and-donts__dos,
 .dos-and-donts__donts {
   flex-basis: 50%;
 }
+
 .dos-and-donts__dos__header,
 .dos-and-donts__donts__header {
   font-family: font(heavy);
   margin-bottom: rem(32px);
 }
+
 .dos-and-donts__dos__list,
 .dos-and-donts__donts__list {
   list-style: disc inside none;
-  > li {
-    margin-bottom: rem(32px);
-  }
+}
+
+.dos-and-donts__donts__list__li {
+  margin-bottom: rem(32px);
 }
