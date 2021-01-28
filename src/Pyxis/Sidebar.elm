@@ -45,7 +45,7 @@ sidebar =
 view : Sidebar -> Html Msg
 view sidebarConfig =
     nav
-        [ class "pyxis__sidebar" ]
+        [ class "sidebar" ]
         (List.map (LinkNode.view Toggle OnRouteChange) sidebarConfig)
 
 

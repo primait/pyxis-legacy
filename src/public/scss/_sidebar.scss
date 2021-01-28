@@ -1,4 +1,4 @@
-.pyxis__sidebar {
+.sidebar {
   box-shadow: 0 0 rem(60px) rgba(77, 89, 105, 0.1);
   display: none;
   height: 100vh;
@@ -14,21 +14,21 @@
   }
 }
 
-.pyxis__sidebar__item {
+.sidebar__item {
   @extend .accordion__toggle;
   color: color(text, dark);
 }
 
-.pyxis__sidebar__list {
+.sidebar__list {
   list-style: none;
 }
 
-.pyxis__sidebar__list__item {
+.sidebar__list__item {
   display: block;
   margin: rem(10px) 0;
 }
 
-.pyxis__sidebar__list__item__link {
+.sidebar__list__item__link {
   color: color(text, base);
   cursor: pointer;
 

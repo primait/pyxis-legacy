@@ -9,12 +9,12 @@ import Pyxis.Route as Route
 
 view : Html Msg
 view =
-    div [ class "pyxis__content__colors" ] [ renderLogoPage ]
+    div [ class "pages__page-color" ] [ renderLogoPage ]
 
 
 renderLogoPage : Html Msg
 renderLogoPage =
-    article [ class "pyxis__content__colors__section" ]
+    article [ class "pages__page-color__section" ]
         [ PageHeader.view logoHead
         , renderSectionMeaning
         , renderSectionMark
@@ -44,34 +44,34 @@ logoHead =
 
 renderSectionMeaning : Html Msg
 renderSectionMeaning =
-    section [ class "logo-section-meaning inset-section" ]
-        [ div [ class "logo-section-meaning__text" ]
+    section [ class "pages__page-logo__section-meaning inset-section" ]
+        [ div [ class "pages__page-logo__section-meaning__text" ]
             [ h2
                 []
                 [ text "Il significato" ]
             , p [ class "c-text-base" ] [ text "Il nostro nome e il nostro marchio raccontano l'obiettivo di diventare la prima fintech europea. La P iniziale include un 1, un dettaglio grafico che sottolinea questo obiettivo e che ci rende riconoscibili." ]
             ]
-        , div [ class "logo-section-meaning__image" ] [ text "<Logotype>" ]
+        , div [ class "pages__page-logo__section-meaning__image" ] [ text "<Logotype>" ]
         ]
 
 
 renderSectionMark : Html Msg
 renderSectionMark =
-    section [ class "logo-section-mark" ]
-        [ div [ class "logo-section-mark__text" ]
+    section [ class "pages__page-logo__section-mark" ]
+        [ div [ class "pages__page-logo__section-mark__text" ]
             [ h2 [] [ text "Il marchio" ]
             , p [ class "c-text-base" ] [ text "Il marchio Prima è rappresentato da un logotipo e da un monogramma: il logotipo è realizzato secondo una disposizione vincolata, mentre il monogramma è dato dall'iniziale P in un cerchio pieno. Utilizza logotipo e monogramma rispettando le composizioni proposte, evitando aggiunte testuali o modifiche di colore." ]
             ]
-        , div [ class "logo-section-mark__image" ]
+        , div [ class "pages__page-logo__section-mark__image" ]
             [ text "<Logotype & Monogram>" ]
         ]
 
 
 renderSectionRespectArea : Html Msg
 renderSectionRespectArea =
-    section [ class "logo-section-respect" ]
-        [ div [ class "logo-section-respect__image" ] [ text "<Respect Area>" ]
-        , div [ class "logo-section-respect__text" ]
+    section [ class "pages__page-logo__section-respect" ]
+        [ div [ class "pages__page-logo__section-respect__image" ] [ text "<Respect Area>" ]
+        , div [ class "pages__page-logo__section-respect__text" ]
             [ h2 [] [ text "L'area di rispetto" ]
             , p [ class "c-text-base" ] [ text "Utilizza il marchio Prima senza interferire con l'area di rispetto, calcolata come puoi vedere in figura: elementi grafici, testi e immagini dovranno sempre restare al di fuori di quest'area per mantenere la giusta distanza dal logo." ]
             ]
@@ -80,8 +80,8 @@ renderSectionRespectArea =
 
 renderSectionColorsAndBackground : Html Msg
 renderSectionColorsAndBackground =
-    section [ class "logo-section-colors" ]
-        [ div [ class "logo-section-colors__text" ]
+    section [ class "pages__page-logo__section-colors" ]
+        [ div [ class "pages__page-logo__section-colors__text" ]
             [ h2 [] [ text "I colori e lo sfondo" ]
             , h3 [] [ text "Font del marchio" ]
             , p [ class "c-text-base" ] [ text "Il marchio Prima è pensato in due versioni, in positivo e in negativo. A seconda dello sfondo, utilizza la versione del marchio più adatta, evitando di utilizzare colori diversi da quelli ufficiali." ]
@@ -91,7 +91,7 @@ renderSectionColorsAndBackground =
                 [-- TODO: Add two color cards here
                 ]
             ]
-        , div [ class "logo-section-colors__images" ]
+        , div [ class "pages__page-logo__section-colors__images" ]
             [ div []
                 [ -- Logotype + Monogram positive image
                   text "<Positive Logotype & Monogram>"
@@ -106,7 +106,7 @@ renderSectionColorsAndBackground =
 
 renderSectionDownloads : Html Msg
 renderSectionDownloads =
-    section [ class "logo-section-downloads" ]
+    section [ class "pages__page-logo__section-downloads" ]
         [ h2 [] [ text "Download" ]
         , p [ class "c-text-base" ] [ text "Scarica e utilizza logotipi e pittogrammi in PNG, JPG o PDF. Scegli il formato RGB per il web e il formato CMYK per la stampa." ]
         , h3 [] [ text "Formato RGB - Web" ]
@@ -122,15 +122,15 @@ renderSectionDownloads =
 
 renderSectionPrimaBlackLogos : Html Msg
 renderSectionPrimaBlackLogos =
-    section [ class "logo-section-black" ]
+    section [ class "pages__page-logo__section-black" ]
         [ h2 [] [ text "Loghi Prima Black" ]
         , p [ class "c-text-base" ] [ text "Qui puoi trovare i loghi Prima Black in versione positiva e negativa, utilizzabili solo per agenti e broker che collaborano con Prima attraverso Prima Black." ]
-        , div [ class "logo-section-black__images" ]
-            [ div [ class "logo-section-black__images-positive" ]
+        , div [ class "pages__page-logo__section-black__images" ]
+            [ div [ class "pages__page-logo__section-black__images-positive" ]
                 [ text "<Prima Black Positive Logotype & Monogram>"
                 , p [] [ text "Versione positiva" ]
                 ]
-            , div [ class "logo-section-black__images-negative" ]
+            , div [ class "pages__page-logo__section-black__images-negative" ]
                 [ text "<Prima Black Negative Logotype & Monogram>"
                 , p [] [ text "Versione negativa" ]
                 ]
@@ -140,15 +140,15 @@ renderSectionPrimaBlackLogos =
 
 renderSectionPrimaCafeLogos : Html Msg
 renderSectionPrimaCafeLogos =
-    section [ class "logo-section-cafe" ]
+    section [ class "pages__page-logo__section-cafe" ]
         [ h2 [] [ text "Loghi Prima Café" ]
         , p [ class "c-text-base" ] [ text "Qui puoi trovare i loghi Prima Café, in versione positiva e negativa, utilizzabili solo per il locale Prima Café." ]
-        , div [ class "logo-section-cafe__images" ]
-            [ div [ class "logo-section-cafe__images-positive" ]
+        , div [ class "pages__page-logo__section-cafe__images" ]
+            [ div [ class "pages__page-logo__section-cafe__images-positive" ]
                 [ text "<Prima Café Positive Logotype & Monogram>"
                 , p [] [ text "Versione positiva" ]
                 ]
-            , div [ class "logo-section-cafe__images-negative" ]
+            , div [ class "pages__page-logo__section-cafe__images-negative" ]
                 [ text "<Prima Café Negative Logotype & Monogram>"
                 , p [] [ text "Versione negativa" ]
                 ]

@@ -86,7 +86,7 @@ view toggleMsg routeChangeMsg linkNode =
 viewLeaf : (Route -> msg) -> Route -> Html msg
 viewLeaf routeChangeMsg route =
     a
-        [ class "pyxis__sidebar__item"
+        [ class "sidebar__item"
         ]
         [ renderLink routeChangeMsg route
         ]
@@ -104,11 +104,11 @@ viewNode toggleMsg routeChangeMsg { route, children, accordionState } =
 renderChildren : (Route -> msg) -> List LinkNode -> Html msg
 renderChildren routeChangeMsg children =
     ul
-        [ class "pyxis__sidebar__list" ]
+        [ class "sidebar__list" ]
         (List.map
             (\child ->
                 li
-                    [ class "pyxis__sidebar__list__item"
+                    [ class "sidebar__list__item"
                     ]
                     [ renderLink routeChangeMsg (pickRoute child) ]
             )
@@ -119,7 +119,7 @@ renderChildren routeChangeMsg children =
 renderLink : (Route -> msg) -> Route -> Html msg
 renderLink routeChangeMsg route =
     a
-        [ class "pyxis__sidebar__list__item__link"
+        [ class "sidebar__list__item__link"
         , href "#"
         , onClick (routeChangeMsg route)
         ]

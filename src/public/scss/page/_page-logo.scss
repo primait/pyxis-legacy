@@ -1,37 +1,37 @@
-.logo-section-meaning,
-.logo-section-mark,
-.logo-section-respect,
-.logo-section-colors,
-.logo-section-downloads,
-.logo-section-black,
-.logo-section-cafe {
+.pages__page-logo__section-meaning,
+.pages__page-logo__section-mark,
+.pages__page-logo__section-respect,
+.pages__page-logo__section-colors,
+.pages__page-logo__section-downloads,
+.pages__page-logo__section-black,
+.pages__page-logo__section-cafe {
   margin-bottom: get($sectionOffset, marginBottom);
   @include mq(medium) {
     margin-bottom: get($sectionOffset, breakpoints, medium);
   }
 }
 
-.logo-section-colors,
-.logo-section-mark,
-.logo-section-meaning,
-.logo-section-respect {
+.pages__page-logo__section-colors,
+.pages__page-logo__section-mark,
+.pages__page-logo__section-meaning,
+.pages__page-logo__section-respect {
   align-items: center;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
 }
 
-.logo-section-meaning__text,
-.logo-section-mark__text,
-.logo-section-respect__text,
-.logo-section-colors__text {
+.pages__page-logo__section-meaning__text,
+.pages__page-logo__section-mark__text,
+.pages__page-logo__section-respect__text,
+.pages__page-logo__section-colors__text {
   @include mq(medium) {
     width: rem(360px);
   }
 }
 
-.logo-section-black__images,
-.logo-section-cafe__images {
+.pages__page-logo__section-black__images,
+.pages__page-logo__section-cafe__images {
   align-items: center;
   display: flex;
   flex-flow: row wrap;
@@ -45,8 +45,8 @@
   }
 }
 
-.logo-section-black__images-positive,
-.logo-section-cafe__images-positive {
+.pages__page-logo__section-black__images-positive,
+.pages__page-logo__section-cafe__images-positive {
   background-color: color("background", base);
   flex-grow: 1;
   min-width: rem(360px);
@@ -58,8 +58,8 @@
   }
 }
 
-.logo-section-black__images-negative,
-.logo-section-cafe__images-negative {
+.pages__page-logo__section-black__images-negative,
+.pages__page-logo__section-cafe__images-negative {
   background-color: color(backgroundAlt, dark);
   color: color(textAlt, light);
   flex-grow: 1;

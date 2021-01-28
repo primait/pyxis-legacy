@@ -6,17 +6,17 @@ import Html.Attributes exposing (class)
 
 dosAndDonts : { dos : List String, donts : List String } -> Html msg
 dosAndDonts { dos, donts } =
-    div [ class "pyxis__dos-and-donts" ]
-        [ div [ class "pyxis__dos-and-donts__donts" ]
-            [ div [ class "pyxis__dos-and-donts__donts__header" ]
+    div [ class "dos-and-donts" ]
+        [ div [ class "dos-and-donts__donts" ]
+            [ div [ class "dos-and-donts__donts__header" ]
                 [ text "DON'T" ]
-            , ul [ class "pyxis__dos-and-donts__donts__list" ]
-                (List.map (text >> List.singleton >> li [ class "pyxis__dos-and-donts__donts__list__li" ]) donts)
+            , ul [ class "dos-and-donts__donts__ul" ]
+                (List.map (text >> List.singleton >> li [ class "dos-and-donts__donts__li" ]) donts)
             ]
-        , div [ class "pyxis__dos-and-donts__dos" ]
-            [ div [ class "pyxis__dos-and-donts__dos__header" ]
+        , div [ class "dos-and-donts__dos" ]
+            [ div [ class "dos-and-donts__dos__header" ]
                 [ text "DO" ]
-            , ul [ class "pyxis__dos-and-donts__dos__list" ]
-                (List.map (text >> List.singleton >> li [ class "pyxis__dos-and-donts__donts__list__li" ]) dos)
+            , ul [ class "dos-and-donts__dos__ul" ]
+                (List.map (text >> List.singleton >> li [ class "dos-and-donts__dos__li" ]) dos)
             ]
         ]

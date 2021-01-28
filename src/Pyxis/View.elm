@@ -32,7 +32,7 @@ body model =
         [ class "pyxis"
         ]
         [ Html.map SidebarMsg (Sidebar.view model.sidebar)
-        , div [ class "pyxis__content" ] [ currentPage model ]
+        , div [ class "content" ] [ currentPage model ]
         ]
     ]
 

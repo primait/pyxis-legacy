@@ -1,0 +1,33 @@
+.dos-and-donts {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.dos-and-donts__dos__header {
+  color: color(action, base);
+}
+
+.dos-and-donts__donts__header {
+  color: color(error, base);
+}
+
+.dos-and-donts__dos,
+.dos-and-donts__donts {
+  flex-basis: 50%;
+}
+
+.dos-and-donts__dos__header,
+.dos-and-donts__donts__header {
+  font-family: font(heavy);
+  margin-bottom: rem(32px);
+}
+
+.dos-and-donts__dos__ul,
+.dos-and-donts__donts__ul {
+  list-style: disc inside none;
+}
+
+.dos-and-donts__dos__li,
+.dos-and-donts__donts__li {
+  margin-bottom: rem(32px);
+}
