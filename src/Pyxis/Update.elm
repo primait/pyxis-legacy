@@ -1,9 +1,9 @@
 module Pyxis.Update exposing (update)
 
 import Pyxis.Model as PyxisModel
-import Pyxis.Pages.Button as Button
-import Pyxis.Pages.Colors as Colors
-import Pyxis.Pages.Typography as Typography
+import Pyxis.Page.Button as Button
+import Pyxis.Page.Colors as Colors
+import Pyxis.Page.Typography as Typography
 import Pyxis.Sidebar as Sidebar
 import Pyxis.UpdateHelpers as UH
 

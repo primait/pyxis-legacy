@@ -1,9 +1,9 @@
 module Pyxis.Subscriptions exposing (subscriptions)
 
 import Pyxis.Model as PyxisModel
-import Pyxis.Pages.Button as Button
-import Pyxis.Pages.Button.Ports as ButtonPorts
-import Pyxis.Pages.Colors as Colors
+import Pyxis.Page.Button as Button
+import Pyxis.Page.Button.Ports as ButtonPorts
+import Pyxis.Page.Colors as Colors
 import Pyxis.Ports as Ports
 
 

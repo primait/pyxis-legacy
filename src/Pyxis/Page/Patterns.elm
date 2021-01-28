@@ -1,4 +1,4 @@
-module Pyxis.Pages.Components exposing (view)
+module Pyxis.Page.Patterns exposing (view)
 
 import Html exposing (Html, text)
 import Pyxis.Model exposing (Msg)
@@ -6,4 +6,4 @@ import Pyxis.Model exposing (Msg)
 
 view : Html Msg
 view =
-    text "Sei nella pagina Components"
+    text "Sei nella pagina Patterns"

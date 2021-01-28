@@ -4,17 +4,17 @@ import Browser exposing (Document)
 import Html exposing (Html, div, main_, text)
 import Html.Attributes exposing (class)
 import Pyxis.Model exposing (Model, Msg(..))
-import Pyxis.Pages.Button as Button
-import Pyxis.Pages.Colors as Colors
-import Pyxis.Pages.Components as Components
-import Pyxis.Pages.Content as Content
-import Pyxis.Pages.GetStarted as GetStarted
-import Pyxis.Pages.Logo as Logo
-import Pyxis.Pages.Patterns as Patterns
-import Pyxis.Pages.Style as Style
-import Pyxis.Pages.Tools as Tools
-import Pyxis.Pages.Typography as Typography
-import Pyxis.Pages.Welcome as Welcome
+import Pyxis.Page.Button as Button
+import Pyxis.Page.Colors as Colors
+import Pyxis.Page.Components as Components
+import Pyxis.Page.Content as Content
+import Pyxis.Page.GetStarted as GetStarted
+import Pyxis.Page.Logo as Logo
+import Pyxis.Page.Patterns as Patterns
+import Pyxis.Page.Style as Style
+import Pyxis.Page.Tools as Tools
+import Pyxis.Page.Typography as Typography
+import Pyxis.Page.Welcome as Welcome
 import Pyxis.Route as Route exposing (Route(..))
 import Pyxis.Sidebar as Sidebar
 

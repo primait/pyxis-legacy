@@ -1,69 +1,69 @@
-.pages__page-button__section-intro,
-.pages__page-button__section-callout,
-.pages__page-button__section-primary,
-.pages__page-button__section-secondary,
-.pages__page-button__section-tertiary,
-.pages__page-button__section-button-group,
-.pages__page-button__section-button-group-cover-fluid {
+.page-button__section-intro,
+.page-button__section-callout,
+.page-button__section-primary,
+.page-button__section-secondary,
+.page-button__section-tertiary,
+.page-button__section-button-group,
+.page-button__section-button-group-cover-fluid {
   margin-bottom: get($sectionOffset, marginBottom);
   @include mq(medium) {
     margin-bottom: get($sectionOffset, breakpoints, medium);
   }
 }
 
-.pages__page-button__heading {
+.page-button__heading {
   margin-bottom: rem(40px);
 }
-.pages__page-button__section-intro__p {
+.page-button__section-intro__p {
   margin-bottom: rem(40px);
 }
-.pages__page-button__section-intro__button-primer {
+.page-button__section-intro__button-primer {
   display: flex;
   flex-flow: row wrap;
   @include hackyFlexboxChildrenSpacing(rem(20px));
 }
 
-.pages__page-button__section-intro__button-primer__sample {
+.page-button__section-intro__button-primer__sample {
   min-width: 50%;
 }
-.pages__page-button__section-intro__button-primer__specs__ul {
+.page-button__section-intro__button-primer__specs__ul {
   list-style-position: inside;
   list-style-type: disc;
 }
 
-.pages__page-button__inset-light,
-.pages__page-button__inset-dark,
-.pages__page-button__inset-brand {
+.page-button__inset-light,
+.page-button__inset-dark,
+.page-button__inset-brand {
   border-radius: rem(20px);
   padding: rem(50px) rem(40px);
 }
 
-.pages__page-button__inset-light {
+.page-button__inset-light {
   border-color: color(shape);
   border-style: solid;
   border-width: rem(1px);
 }
-.pages__page-button__inset-dark {
+.page-button__inset-dark {
   background-color: color(backgroundAlt, dark);
   color: color(textAlt, light);
 }
-.pages__page-button__inset-brand {
+.page-button__inset-brand {
   background: linear-gradient(to right, #b964e3, color(brand, base));
   color: color(textAlt, light);
 }
 
-.pages__page-button__preview-container {
+.page-button__preview-container {
   display: flex;
   flex-flow: row wrap;
   flex-grow: 1;
   justify-content: space-around;
 }
 
-.pages__page-button__preview-container__label {
+.page-button__preview-container__label {
   flex-grow: 1;
   max-width: rem(200px);
 }
 
-.pages__page-button__preview-container__buttons {
+.page-button__preview-container__buttons {
   flex-grow: 1;
 }

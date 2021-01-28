@@ -1,4 +1,4 @@
-module Pyxis.Pages.Button exposing (Model, Msg(..), initialModel, update, view)
+module Pyxis.Page.Button exposing (Model, Msg(..), initialModel, update, view)
 
 import Dict exposing (Dict)
 import Html exposing (Attribute, Html, article, div, h1, h2, h5, li, p, section, text, ul)
@@ -6,7 +6,7 @@ import Html.Attributes exposing (class)
 import Prima.Pyxis.Button as Button
 import Prima.Pyxis.ButtonGroup as ButtonGroup
 import Pyxis.DosAndDonts
-import Pyxis.Pages.Button.Ports as ButtonPorts
+import Pyxis.Page.Button.Ports as ButtonPorts
 import Pyxis.TabbedContainer as TabbedContainer
 import Pyxis.UpdateHelpers as UH
 
@@ -109,24 +109,24 @@ view model =
 
 sectionIntro : Html Msg
 sectionIntro =
-    section [ class "pages__page-button__section-intro" ]
-        [ h1 [ class "pages__page-button__heading" ]
+    section [ class "page-button__section-intro" ]
+        [ h1 [ class "page-button__heading" ]
             [ text "Component" ]
-        , p [ class "pages__page-button__section-intro__p" ]
+        , p [ class "page-button__section-intro__p" ]
             [ text "Aggiungere la classe a-btn con i suoi vari modificatori per ottenere un bottone di dimensioni standard. Un bottone standard di default si dispone automaticamente al centro orizzontale del suo elenento padre. Le varianti dark sono visibili correttamente solo su un background scuro. Quando è necessario impilare più bottoni in uno stesso contenuto è opportuno utilizzare la classe m-btnGroup e le sue varianti."
             ]
-        , div [ class "pages__page-button__section-intro__button-primer" ]
+        , div [ class "page-button__section-intro__button-primer" ]
             [ inset InsetLight
-                [ class "pages__page-button__section-intro__button-primer__sample" ]
+                [ class "page-button__section-intro__button-primer__sample" ]
                 [ [ Button.callOut "BUTTON" ]
                     |> ButtonGroup.create
                     |> ButtonGroup.withAlignmentCentered
                     |> ButtonGroup.render
                 ]
-            , div [ class "pages__page-button__section-intro__button-primer__specs" ]
+            , div [ class "page-button__section-intro__button-primer__specs" ]
                 [ h5 []
                     [ text "SPECIFICHE TECNICHE" ]
-                , ul [ class "pages__page-button__section-intro__button-primer__specs__ul" ]
+                , ul [ class "page-button__section-intro__button-primer__specs__ul" ]
                     [ li [] [ text "Font uppercase" ]
                     , li [] [ text "Font family: Heavy" ]
                     , li [] [ text "Letter spacing: 1px" ]
@@ -138,7 +138,7 @@ sectionIntro =
 
 sectionCallout : ButtonSampleSection
 sectionCallout =
-    { sectionClass = "pages__page-button__section-callout"
+    { sectionClass = "page-button__section-callout"
     , headerText = "Call Out Button"
     , insetVariants = [ InsetLight, InsetDark ]
     , buttonVariant = Callout
@@ -155,7 +155,7 @@ sectionCallout =
 
 sectionPrimary : ButtonSampleSection
 sectionPrimary =
-    { sectionClass = "pages__page-button__section-primary"
+    { sectionClass = "page-button__section-primary"
     , headerText = "Primary Button"
     , insetVariants = [ InsetLight, InsetDark, InsetBrand ]
     , buttonVariant = Primary
@@ -171,7 +171,7 @@ sectionPrimary =
 
 sectionSecondary : ButtonSampleSection
 sectionSecondary =
-    { sectionClass = "pages__page-button__section-secondary"
+    { sectionClass = "page-button__section-secondary"
     , headerText = "Secondary Button"
     , insetVariants = [ InsetLight, InsetDark, InsetBrand ]
     , buttonVariant = Secondary
@@ -187,7 +187,7 @@ sectionSecondary =
 
 sectionTertiary : ButtonSampleSection
 sectionTertiary =
-    { sectionClass = "pages__page-button__section-tertiary"
+    { sectionClass = "page-button__section-tertiary"
     , headerText = "Tertiary Button"
     , insetVariants = [ InsetLight, InsetDark, InsetBrand ]
     , buttonVariant = Tertiary
@@ -206,7 +206,7 @@ renderButtonSampleSection model sampleSection =
     section [ class sampleSection.sectionClass ]
         (List.concat
             [ [ h2
-                    [ class "pages__page-button__heading" ]
+                    [ class "page-button__heading" ]
                     [ text sampleSection.headerText ]
               ]
             , List.map (renderButtonSampleTabbedContainer model sampleSection.buttonVariant) sampleSection.insetVariants
@@ -234,8 +234,8 @@ renderButtonSampleTabbedContainer model buttonVariant insetVariant =
           , content =
                 inset insetVariant
                     []
-                    [ div [ class "pages__page-button__preview-container" ]
-                        [ div [ class "pages__page-button__preview-container__label" ]
+                    [ div [ class "page-button__preview-container" ]
+                        [ div [ class "page-button__preview-container__label" ]
                             [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
                             , div [] [ text (insetVariantToExplanation insetVariant) ]
                             ]
@@ -304,12 +304,12 @@ renderButtonGroupSampleTabbedContainer model buttonGroupVariant =
           , content =
                 inset InsetLight
                     []
-                    [ div [ class "pages__page-button__preview-container" ]
-                        [ div [ class "pages__page-button__preview-container__label" ]
+                    [ div [ class "page-button__preview-container" ]
+                        [ div [ class "page-button__preview-container__label" ]
                             [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
                             , div [] [ text slug ]
                             ]
-                        , div [ class "pages__page-button__preview-container__buttons" ]
+                        , div [ class "page-button__preview-container__buttons" ]
                             [ [ Button.primary "LARGE BUTTON"
                               , Button.primary "LARGE BUTTON"
                               , Button.primary "LARGE BUTTON"
@@ -434,7 +434,7 @@ insetVariantToExplanation insetVariant =
 
 sectionButtonGroup : Model -> Html Msg
 sectionButtonGroup model =
-    section [ class "pages__page-button__section-button-group" ]
+    section [ class "page-button__section-button-group" ]
         [ h2 [] [ text "Button Group" ]
         , renderButtonGroupSampleTabbedContainer model SpaceBetween
         , renderButtonGroupSampleTabbedContainer model SpaceEvenly
@@ -447,7 +447,7 @@ sectionButtonGroup model =
 
 sectionButtonGroupCoverFluid : Model -> Html Msg
 sectionButtonGroupCoverFluid model =
-    section [ class "pages__page-button__section-button-group-cover-fluid" ]
+    section [ class "page-button__section-button-group-cover-fluid" ]
         [ h2 [] [ text "Button Group Cover Fluid" ]
         , TabbedContainer.view
             (TabbedContainerUpdate "single-cover-fluid")
@@ -459,12 +459,12 @@ sectionButtonGroupCoverFluid model =
               , content =
                     inset InsetLight
                         []
-                        [ div [ class "pages__page-button__preview-container" ]
-                            [ div [ class "pages__page-button__preview-container__label" ]
+                        [ div [ class "page-button__preview-container" ]
+                            [ div [ class "page-button__preview-container__label" ]
                                 [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
                                 , div [] [ text "single-cover-fluid" ]
                                 ]
-                            , div [ class "pages__page-button__preview-container__buttons" ]
+                            , div [ class "page-button__preview-container__buttons" ]
                                 [ [ Button.primary "LARGE BUTTON"
                                   ]
                                     |> ButtonGroup.create
@@ -506,12 +506,12 @@ inset insetVariant attributes contents =
         insetDivClass =
             case insetVariant of
                 InsetLight ->
-                    "pages__page-button__inset-light"
+                    "page-button__inset-light"
 
                 InsetDark ->
-                    "pages__page-button__inset-dark"
+                    "page-button__inset-dark"
 
                 InsetBrand ->
-                    "pages__page-button__inset-brand"
+                    "page-button__inset-brand"
     in
     div (class insetDivClass :: attributes) contents
