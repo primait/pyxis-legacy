@@ -54,7 +54,12 @@
 .pyxis__page-button__preview-container {
   display: flex;
   flex-flow: row wrap;
+  flex-grow: 1;
   justify-content: space-around;
+}
+
+.pyxis__page-button__preview-container__buttons {
+  flex-grow: 1;
 }
 
 // DOs and DONTs

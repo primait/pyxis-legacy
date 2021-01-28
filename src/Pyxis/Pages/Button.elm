@@ -81,7 +81,6 @@ update msg model =
 view : Model -> Html Msg
 view model =
     article []
-        -- Leaving this as a List.concat rather than "::" since ButtonGroups will be added later
         (List.concat
             [ [ sectionIntro ]
             , List.map
@@ -309,14 +308,16 @@ renderButtonGroupSampleTabbedContainer model buttonGroupVariant =
                             [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
                             , div [] [ text slug ]
                             ]
-                        , [ Button.primary "LARGE BUTTON"
-                          , Button.primary "LARGE BUTTON"
-                          , Button.primary "LARGE BUTTON"
-                          ]
-                            |> ButtonGroup.create
-                            |> buttonGroupModifier
-                            |> ButtonGroup.withId slug
-                            |> ButtonGroup.render
+                        , div [ class "pyxis__page-button__preview-container__buttons" ]
+                            [ [ Button.primary "LARGE BUTTON"
+                              , Button.primary "LARGE BUTTON"
+                              , Button.primary "LARGE BUTTON"
+                              ]
+                                |> ButtonGroup.create
+                                |> buttonGroupModifier
+                                |> ButtonGroup.withId slug
+                                |> ButtonGroup.render
+                            ]
                         ]
                     ]
           }
@@ -449,12 +450,14 @@ sectionButtonGroupCoverFluid model =
                                 [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
                                 , div [] [ text "single-cover-fluid" ]
                                 ]
-                            , [ Button.primary "LARGE BUTTON"
-                              ]
-                                |> ButtonGroup.create
-                                |> ButtonGroup.withAlignmentCoverFluid
-                                |> ButtonGroup.withId "single-cover-fluid"
-                                |> ButtonGroup.render
+                            , div [ class "pyxis__page-button__preview-container__buttons" ]
+                                [ [ Button.primary "LARGE BUTTON"
+                                  ]
+                                    |> ButtonGroup.create
+                                    |> ButtonGroup.withAlignmentCoverFluid
+                                    |> ButtonGroup.withId "single-cover-fluid"
+                                    |> ButtonGroup.render
+                                ]
                             ]
                         ]
               }
