@@ -5,6 +5,7 @@ import Html exposing (Attribute, Html, article, div, h1, h2, h5, li, p, section,
 import Html.Attributes exposing (class)
 import Prima.Pyxis.Button as Button
 import Prima.Pyxis.ButtonGroup as ButtonGroup
+import Pyxis.DosAndDonts
 import Pyxis.Pages.Button.Ports as ButtonPorts
 import Pyxis.TabbedContainer as TabbedContainer
 import Pyxis.UpdateHelpers as UH
@@ -209,7 +210,7 @@ renderButtonSampleSection model sampleSection =
                     [ text sampleSection.headerText ]
               ]
             , List.map (renderButtonSampleTabbedContainer model sampleSection.buttonVariant) sampleSection.insetVariants
-            , [ dosAndDonts { dos = sampleSection.dos, donts = sampleSection.donts } ]
+            , [ Pyxis.DosAndDonts.dosAndDonts { dos = sampleSection.dos, donts = sampleSection.donts } ]
             ]
         )
 
@@ -483,7 +484,7 @@ sectionButtonGroupCoverFluid model =
               }
             ]
         , renderButtonGroupSampleTabbedContainer model CoverFluid
-        , dosAndDonts
+        , Pyxis.DosAndDonts.dosAndDonts
             { dos =
                 [ "Un bottone all'interno di un gruppo fluido ha una dimensione massima che non dipende dal testo, in caso di shrink oltre la sua dimensione prevista per mantenerlo su una linea il testo potrà scendere su un massimo di due righe e poi verrà tagliato"
                 , "I margini automatici sono supportati fino a un massimo di 4 bottoni e funziona correttamente solo all'interno di un a-container o a-containerFluid diretto"
@@ -514,21 +515,3 @@ inset insetVariant attributes contents =
                     "pyxis__pages__button__inset-brand"
     in
     div (class insetDivClass :: attributes) contents
-
-
-dosAndDonts : { dos : List String, donts : List String } -> Html msg
-dosAndDonts { dos, donts } =
-    div [ class "dos-and-donts" ]
-        [ div [ class "dos-and-donts__donts" ]
-            [ div [ class "dos-and-donts__donts__header" ]
-                [ text "DON'T" ]
-            , ul [ class "dos-and-donts__donts__list" ]
-                (List.map (text >> List.singleton >> li [ class "dos-and-donts__donts__list__li" ]) donts)
-            ]
-        , div [ class "dos-and-donts__dos" ]
-            [ div [ class "dos-and-donts__dos__header" ]
-                [ text "DO" ]
-            , ul [ class "dos-and-donts__dos__list" ]
-                (List.map (text >> List.singleton >> li [ class "dos-and-donts__donts__list__li" ]) dos)
-            ]
-        ]

@@ -1,0 +1,32 @@
+.pyxis__dos-and-donts {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.pyxis__dos-and-donts__dos__header {
+  color: color(action, base);
+}
+
+.pyxis__dos-and-donts__donts__header {
+  color: color(error, base);
+}
+
+.pyxis__dos-and-donts__dos,
+.pyxis__dos-and-donts__donts {
+  flex-basis: 50%;
+}
+
+.pyxis__dos-and-donts__dos__header,
+.pyxis__dos-and-donts__donts__header {
+  font-family: font(heavy);
+  margin-bottom: rem(32px);
+}
+
+.pyxis__dos-and-donts__dos__list,
+.pyxis__dos-and-donts__donts__list {
+  list-style: disc inside none;
+}
+
+.pyxis__dos-and-donts__donts__list__li {
+  margin-bottom: rem(32px);
+}
