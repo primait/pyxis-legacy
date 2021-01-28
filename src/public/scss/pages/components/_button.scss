@@ -49,6 +49,7 @@
 }
 .pyxis__page-button__inset-brand {
   background: linear-gradient(to right, #b964e3, color(brand, base));
+  color: color(textAlt, light);
 }
 
 .pyxis__page-button__preview-container {
@@ -56,6 +57,11 @@
   flex-flow: row wrap;
   flex-grow: 1;
   justify-content: space-around;
+}
+
+.pyxis__page-button__preview-container__label {
+  flex-grow: 1;
+  max-width: rem(200px);
 }
 
 .pyxis__page-button__preview-container__buttons {

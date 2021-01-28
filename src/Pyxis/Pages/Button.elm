@@ -30,6 +30,16 @@ type InsetVariant
     | InsetBrand
 
 
+type ButtonGroupVariant
+    = SpaceBetween
+    | SpaceEvenly
+    | SpaceAround
+    | Centered
+    | ContentStart
+    | ContentEnd
+    | CoverFluid
+
+
 type alias ButtonSampleSection =
     { sectionClass : String
     , headerText : String
@@ -224,9 +234,9 @@ renderButtonSampleTabbedContainer model buttonVariant insetVariant =
                 inset insetVariant
                     []
                     [ div [ class "pyxis__page-button__preview-container" ]
-                        [ div []
+                        [ div [ class "pyxis__page-button__preview-container__label" ]
                             [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
-                            , div [] [ text "on light color" ]
+                            , div [] [ text (insetVariantToExplanation insetVariant) ]
                             ]
                         , [ buttonCreator "LARGE BUTTON"
                           , buttonCreator "DISABLED BUTTON" |> Button.withDisabled True
@@ -247,16 +257,6 @@ renderButtonSampleTabbedContainer model buttonVariant insetVariant =
                     ]
           }
         ]
-
-
-type ButtonGroupVariant
-    = SpaceBetween
-    | SpaceEvenly
-    | SpaceAround
-    | Centered
-    | ContentStart
-    | ContentEnd
-    | CoverFluid
 
 
 buttonGroupVariantToModifier : ButtonGroupVariant -> (ButtonGroup.Config Msg -> ButtonGroup.Config Msg)
@@ -304,7 +304,7 @@ renderButtonGroupSampleTabbedContainer model buttonGroupVariant =
                 inset InsetLight
                     []
                     [ div [ class "pyxis__page-button__preview-container" ]
-                        [ div []
+                        [ div [ class "pyxis__page-button__preview-container__label" ]
                             [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
                             , div [] [ text slug ]
                             ]
@@ -418,6 +418,19 @@ insetVariantToSlug insetVariant =
             "brand"
 
 
+insetVariantToExplanation : InsetVariant -> String
+insetVariantToExplanation insetVariant =
+    case insetVariant of
+        InsetLight ->
+            "on light color"
+
+        InsetDark ->
+            "on dark color"
+
+        InsetBrand ->
+            "on brand gradient"
+
+
 sectionButtonGroup : Model -> Html Msg
 sectionButtonGroup model =
     section [ class "pyxis__page-button__section-button-group" ]
@@ -446,7 +459,7 @@ sectionButtonGroupCoverFluid model =
                     inset InsetLight
                         []
                         [ div [ class "pyxis__page-button__preview-container" ]
-                            [ div []
+                            [ div [ class "pyxis__page-button__preview-container__label" ]
                                 [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
                                 , div [] [ text "single-cover-fluid" ]
                                 ]
