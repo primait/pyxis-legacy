@@ -29,6 +29,7 @@
   },
   "scripts": {
     "elm-analyse": "elm-analyse",
+    "stylelint": "stylelint \"**/*.scss\"",
     "build": "webpack --mode production --progress",
     "watch": "webpack serve --mode development --watch --progress",
     "build:site": "webpack --mode production --progress",
