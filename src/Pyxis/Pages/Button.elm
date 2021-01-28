@@ -17,6 +17,29 @@ type Msg
     | TabbedContainerUpdate String TabbedContainer.State
 
 
+type ButtonVariant
+    = Callout
+    | Primary
+    | Secondary
+    | Tertiary
+
+
+type InsetVariant
+    = InsetLight
+    | InsetDark
+    | InsetBrand
+
+
+type alias ButtonSampleSection =
+    { sectionClass : String
+    , headerText : String
+    , insetVariants : List InsetVariant
+    , buttonVariant : ButtonVariant
+    , dos : List String
+    , donts : List String
+    }
+
+
 type alias Model =
     { tabbedContainerStates : Dict String TabbedContainer.State
     , receivedInnerHTMLs :
@@ -62,12 +85,14 @@ view model =
         (List.concat
             [ [ sectionIntro ]
             , List.map
-                (renderSampleSection model)
+                (renderButtonSampleSection model)
                 [ sectionCallout
                 , sectionPrimary
                 , sectionSecondary
                 , sectionTertiary
                 ]
+            , [ sectionButtonGroup model ]
+            , [ sectionButtonGroupCoverFluid model ]
             ]
         )
 
@@ -101,17 +126,7 @@ sectionIntro =
         ]
 
 
-type alias SampleSection =
-    { sectionClass : String
-    , headerText : String
-    , insetVariants : List InsetVariant
-    , buttonVariant : ButtonVariant
-    , dos : List String
-    , donts : List String
-    }
-
-
-sectionCallout : SampleSection
+sectionCallout : ButtonSampleSection
 sectionCallout =
     { sectionClass = "pyxis__page-button__section-callout"
     , headerText = "Call Out Button"
@@ -128,73 +143,73 @@ sectionCallout =
     }
 
 
-sectionPrimary : SampleSection
+sectionPrimary : ButtonSampleSection
 sectionPrimary =
     { sectionClass = "pyxis__page-button__section-primary"
     , headerText = "Primary Button"
     , insetVariants = [ InsetLight, InsetDark, InsetBrand ]
     , buttonVariant = Primary
     , dos =
-        [ "Non dovrà essere posizionato in prossimità del pulsante Call out."
-        ]
-    , donts =
         [ "Dovrebbe essere usato al posto di un pulsante cta quando l'azione richiede meno rilievo."
         , "Può essere utilizzato in prossimità di pulsanti di Secondary e Tertiary."
+        ]
+    , donts =
+        [ "Non dovrà essere posizionato in prossimità del pulsante Call out."
         ]
     }
 
 
-sectionSecondary : SampleSection
+sectionSecondary : ButtonSampleSection
 sectionSecondary =
     { sectionClass = "pyxis__page-button__section-secondary"
     , headerText = "Secondary Button"
     , insetVariants = [ InsetLight, InsetDark, InsetBrand ]
     , buttonVariant = Secondary
     , dos =
-        [ "Non dovrà essere posizionato in prossimità del pulsante Call out."
-        ]
-    , donts =
         [ "Il pulsante secondario è per scarsa enfasi."
         , "Può essere utilizzato in prossimità di altri pulsanti di Primary, Secondary e Tertiary."
+        ]
+    , donts =
+        [ "Non dovrà essere posizionato in prossimità del pulsante Call out."
         ]
     }
 
 
-sectionTertiary : SampleSection
+sectionTertiary : ButtonSampleSection
 sectionTertiary =
     { sectionClass = "pyxis__page-button__section-tertiary"
     , headerText = "Tertiary Button"
     , insetVariants = [ InsetLight, InsetDark, InsetBrand ]
     , buttonVariant = Tertiary
     , dos =
-        [ "Non dovrà essere posizionato in prossimità del pulsante Call out."
-        ]
-    , donts =
         [ "Il pulsante secondario è per scarsa enfasi.??????"
         , "Può essere utilizzato in prossimità di altri pulsanti di Primary, Secondary e Tertiary."
+        ]
+    , donts =
+        [ "Non dovrà essere posizionato in prossimità del pulsante Call out."
         ]
     }
 
 
-renderSampleSection : Model -> SampleSection -> Html Msg
-renderSampleSection model sampleSection =
+renderButtonSampleSection : Model -> ButtonSampleSection -> Html Msg
+renderButtonSampleSection model sampleSection =
     section [ class sampleSection.sectionClass ]
         (List.concat
             [ [ h2
                     [ class "pyxis__page-button__heading" ]
                     [ text sampleSection.headerText ]
               ]
-            , List.map (renderSampleTabbedContainer model sampleSection.buttonVariant) sampleSection.insetVariants
+            , List.map (renderButtonSampleTabbedContainer model sampleSection.buttonVariant) sampleSection.insetVariants
             , [ dosAndDonts { dos = sampleSection.dos, donts = sampleSection.donts } ]
             ]
         )
 
 
-renderSampleTabbedContainer : Model -> ButtonVariant -> InsetVariant -> Html Msg
-renderSampleTabbedContainer model buttonVariant insetVariant =
+renderButtonSampleTabbedContainer : Model -> ButtonVariant -> InsetVariant -> Html Msg
+renderButtonSampleTabbedContainer model buttonVariant insetVariant =
     let
         slug =
-            getSlug buttonVariant insetVariant
+            getButtonSampleSlug buttonVariant insetVariant
 
         buttonCreator =
             buttonVariantToCreator buttonVariant
@@ -235,6 +250,86 @@ renderSampleTabbedContainer model buttonVariant insetVariant =
         ]
 
 
+type ButtonGroupVariant
+    = SpaceBetween
+    | SpaceEvenly
+    | SpaceAround
+    | Centered
+    | ContentStart
+    | ContentEnd
+    | CoverFluid
+
+
+buttonGroupVariantToModifier : ButtonGroupVariant -> (ButtonGroup.Config Msg -> ButtonGroup.Config Msg)
+buttonGroupVariantToModifier buttonGroupVariant =
+    case buttonGroupVariant of
+        SpaceBetween ->
+            ButtonGroup.withAlignmentSpaceBetween
+
+        SpaceEvenly ->
+            ButtonGroup.withAlignmentSpaceEvenly
+
+        SpaceAround ->
+            ButtonGroup.withAlignmentSpaceAround
+
+        Centered ->
+            ButtonGroup.withAlignmentCentered
+
+        ContentStart ->
+            ButtonGroup.withAlignmentContentStart
+
+        ContentEnd ->
+            ButtonGroup.withAlignmentContentEnd
+
+        CoverFluid ->
+            ButtonGroup.withAlignmentCoverFluid
+
+
+renderButtonGroupSampleTabbedContainer : Model -> ButtonGroupVariant -> Html Msg
+renderButtonGroupSampleTabbedContainer model buttonGroupVariant =
+    let
+        slug =
+            getButtonGroupSampleSlug buttonGroupVariant
+
+        buttonGroupModifier =
+            buttonGroupVariantToModifier buttonGroupVariant
+    in
+    TabbedContainer.view
+        (TabbedContainerUpdate slug)
+        (model.tabbedContainerStates
+            |> Dict.get slug
+            |> Maybe.withDefault TabbedContainer.init
+        )
+        [ { label = "PREVIEW"
+          , content =
+                inset InsetLight
+                    []
+                    [ div [ class "pyxis__page-button__preview-container" ]
+                        [ div []
+                            [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
+                            , div [] [ text slug ]
+                            ]
+                        , [ Button.primary "LARGE BUTTON"
+                          , Button.primary "LARGE BUTTON"
+                          , Button.primary "LARGE BUTTON"
+                          ]
+                            |> ButtonGroup.create
+                            |> buttonGroupModifier
+                            |> ButtonGroup.withId slug
+                            |> ButtonGroup.render
+                        ]
+                    ]
+          }
+        , { label = "</> CODE"
+          , content =
+                inset InsetLight
+                    []
+                    [ renderSampleInnerHTML model slug
+                    ]
+          }
+        ]
+
+
 renderSampleInnerHTML : Model -> String -> Html Msg
 renderSampleInnerHTML model slug =
     model.receivedInnerHTMLs
@@ -247,9 +342,34 @@ renderSampleInnerHTML model slug =
             )
 
 
-getSlug : ButtonVariant -> InsetVariant -> String
-getSlug buttonVariant insetVariant =
+getButtonSampleSlug : ButtonVariant -> InsetVariant -> String
+getButtonSampleSlug buttonVariant insetVariant =
     buttonVariantToSlug buttonVariant ++ "_" ++ insetVariantToSlug insetVariant
+
+
+getButtonGroupSampleSlug : ButtonGroupVariant -> String
+getButtonGroupSampleSlug buttonGroupVariant =
+    case buttonGroupVariant of
+        SpaceBetween ->
+            "space-between"
+
+        SpaceEvenly ->
+            "space-evenly"
+
+        SpaceAround ->
+            "space-around"
+
+        Centered ->
+            "centered"
+
+        ContentStart ->
+            "content-start"
+
+        ContentEnd ->
+            "content-end"
+
+        CoverFluid ->
+            "cover-fluid"
 
 
 buttonVariantToSlug : ButtonVariant -> String
@@ -300,26 +420,63 @@ insetVariantToSlug insetVariant =
 sectionButtonGroup : Model -> Html Msg
 sectionButtonGroup model =
     section [ class "pyxis__page-button__section-button-group" ]
-        [ h1 [] [ text "Button Group" ] ]
+        [ h2 [] [ text "Button Group" ]
+        , renderButtonGroupSampleTabbedContainer model SpaceBetween
+        , renderButtonGroupSampleTabbedContainer model SpaceEvenly
+        , renderButtonGroupSampleTabbedContainer model SpaceAround
+        , renderButtonGroupSampleTabbedContainer model Centered
+        , renderButtonGroupSampleTabbedContainer model ContentStart
+        , renderButtonGroupSampleTabbedContainer model ContentEnd
+        ]
 
 
 sectionButtonGroupCoverFluid : Model -> Html Msg
 sectionButtonGroupCoverFluid model =
     section [ class "pyxis__page-button__section-button-group-cover-fluid" ]
-        [ h1 [] [ text "Button Group Cover Fluid" ] ]
-
-
-type ButtonVariant
-    = Callout
-    | Primary
-    | Secondary
-    | Tertiary
-
-
-type InsetVariant
-    = InsetLight
-    | InsetDark
-    | InsetBrand
+        [ h2 [] [ text "Button Group Cover Fluid" ]
+        , TabbedContainer.view
+            (TabbedContainerUpdate "single-cover-fluid")
+            (model.tabbedContainerStates
+                |> Dict.get "single-cover-fluid"
+                |> Maybe.withDefault TabbedContainer.init
+            )
+            [ { label = "PREVIEW"
+              , content =
+                    inset InsetLight
+                        []
+                        [ div [ class "pyxis__page-button__preview-container" ]
+                            [ div []
+                                [ div [ class "fw-heavy" ] [ text "COMPONENT" ]
+                                , div [] [ text "single-cover-fluid" ]
+                                ]
+                            , [ Button.primary "LARGE BUTTON"
+                              ]
+                                |> ButtonGroup.create
+                                |> ButtonGroup.withAlignmentCoverFluid
+                                |> ButtonGroup.withId "single-cover-fluid"
+                                |> ButtonGroup.render
+                            ]
+                        ]
+              }
+            , { label = "</> CODE"
+              , content =
+                    inset InsetLight
+                        []
+                        [ renderSampleInnerHTML model "single-cover-fluid"
+                        ]
+              }
+            ]
+        , renderButtonGroupSampleTabbedContainer model CoverFluid
+        , dosAndDonts
+            { dos =
+                [ "Un bottone all'interno di un gruppo fluido ha una dimensione massima che non dipende dal testo, in caso di shrink oltre la sua dimensione prevista per mantenerlo su una linea il testo potrà scendere su un massimo di due righe e poi verrà tagliato"
+                , "I margini automatici sono supportati fino a un massimo di 4 bottoni e funziona correttamente solo all'interno di un a-container o a-containerFluid diretto"
+                , "Si può utilizzare questa classe in unione a un container per realizzare bottoni singoli di larghezza arbitraria"
+                , "Nel caso di contenitori innestati è necessario sovrascrivere le media query di margine."
+                ]
+            , donts = []
+            }
+        ]
 
 
 inset :
@@ -344,18 +501,18 @@ inset insetVariant attributes contents =
 
 
 dosAndDonts : { dos : List String, donts : List String } -> Html msg
-dosAndDonts dosAndDonts_ =
+dosAndDonts { dos, donts } =
     div [ class "dos-and-donts" ]
         [ div [ class "dos-and-donts__donts" ]
             [ div [ class "dos-and-donts__donts__header" ]
                 [ text "DON'T" ]
             , ul [ class "dos-and-donts__donts__list" ]
-                (List.map (text >> List.singleton >> li [ class "dos-and-donts__donts__list__li" ]) dosAndDonts_.dos)
+                (List.map (text >> List.singleton >> li [ class "dos-and-donts__donts__list__li" ]) donts)
             ]
         , div [ class "dos-and-donts__dos" ]
             [ div [ class "dos-and-donts__dos__header" ]
                 [ text "DO" ]
             , ul [ class "dos-and-donts__dos__list" ]
-                (List.map (text >> List.singleton >> li [ class "dos-and-donts__donts__list__li" ]) dosAndDonts_.donts)
+                (List.map (text >> List.singleton >> li [ class "dos-and-donts__donts__list__li" ]) dos)
             ]
         ]
