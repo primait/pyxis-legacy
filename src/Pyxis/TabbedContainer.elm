@@ -33,14 +33,14 @@ update msg value =
 
 view : (State -> msg) -> State -> List (Tab msg) -> Html msg
 view toStateUpdateMsg (State current) tabs =
-    div [ class "tabbed-container" ]
-        [ ul [ class "tabbed-container__label-container fs-small" ]
+    div [ class "pyxis__tabbed-container" ]
+        [ ul [ class "pyxis__tabbed-container__label-container fs-small" ]
             (tabs
                 |> List.map .label
                 |> List.indexedMap Tuple.pair
                 |> List.map (renderLabel toStateUpdateMsg current)
             )
-        , div [ class "tabbed-container__content-container" ]
+        , div [ class "pyxis__tabbed-container__content-container" ]
             (tabs
                 |> List.indexedMap Tuple.pair
                 |> List.map (renderTab current)
@@ -56,8 +56,8 @@ renderLabel toStateUpdateMsg current indexAndLabel =
     in
     li
         [ classList
-            [ ( "tabbed-container__label-container__label", True )
-            , ( "tabbed-container__label-container__label__active", index == current )
+            [ ( "pyxis__tabbed-container__label-container__label", True )
+            , ( "pyxis__tabbed-container__label-container__label__active", index == current )
             ]
         , onClick (toStateUpdateMsg (update SetCurrent index))
         ]
