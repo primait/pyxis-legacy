@@ -324,7 +324,7 @@ renderSectionMarkFont =
             , p [] [ text "Il font del logo è il Rubrik nelle varianti: Light, Regular, Semibold e Bold" ]
             ]
         , div []
-            -- TODO: use Rubrik font
+            -- To be done later: use Rubrik font
             [ div []
                 [ div []
                     [ h5 [] [ text "RUBRIK LIGHT" ]

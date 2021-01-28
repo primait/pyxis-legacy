@@ -1,4 +1,4 @@
-port module Pyxis.Ports exposing (..)
+port module Pyxis.Ports exposing (copyAcknowledgement, copyToClipboard)
 
 
 port copyToClipboard : String -> Cmd msg

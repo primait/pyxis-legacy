@@ -1,4 +1,4 @@
-port module Pyxis.Pages.Button.Ports exposing (..)
+port module Pyxis.Pages.Button.Ports exposing (receivedInnerHTML, requestInnerHTML)
 
 
 port requestInnerHTML : String -> Cmd msg

@@ -1,4 +1,4 @@
-module Pyxis.DosAndDonts exposing (..)
+module Pyxis.DosAndDonts exposing (dosAndDonts)
 
 import Html exposing (Html, div, li, text, ul)
 import Html.Attributes exposing (class)

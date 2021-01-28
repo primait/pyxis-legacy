@@ -1,4 +1,4 @@
-module Pyxis exposing (..)
+module Pyxis exposing (init, main)
 
 import Browser
 import Browser.Navigation as Nav

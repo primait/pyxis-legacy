@@ -9,6 +9,7 @@
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.1",
+    "elm-analyse": "^0.16.5",
     "elm-webpack-loader": "^7.0.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
@@ -27,6 +28,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
+    "elm-analyse": "elm-analyse",
     "build": "webpack --mode production --progress",
     "watch": "webpack serve --mode development --watch --progress",
     "build:site": "webpack --mode production --progress",

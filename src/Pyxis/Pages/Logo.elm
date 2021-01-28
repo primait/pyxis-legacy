@@ -1,4 +1,4 @@
-module Pyxis.Pages.Logo exposing (..)
+module Pyxis.Pages.Logo exposing (view)
 
 import Html exposing (Html, article, div, h2, h3, p, section, text)
 import Html.Attributes exposing (class)
@@ -88,7 +88,7 @@ renderSectionColorsAndBackground =
             , h3 [] [ text "I colori del brand" ]
             , p [ class "c-text-base" ] [ text "Il font del logo è il Rubrik nelle varianti: Light, Regular, Semibold e Bold" ]
             , div []
-                [-- TODO: Add two color cards here
+                [-- To be done later: Add two color cards here
                 ]
             ]
         , div [ class "pages__page-logo__section-colors__images" ]

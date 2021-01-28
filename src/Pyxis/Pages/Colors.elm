@@ -190,7 +190,9 @@ type Color
 
 
 type alias PyxisColor =
-    { variant : Variant, color : Color }
+    { variant : Variant
+    , color : Color
+    }
 
 
 type Variant

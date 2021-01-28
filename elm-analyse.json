@@ -1,0 +1,9 @@
+{
+    "checks": {
+      "SingleFieldRecord": false,
+      "UnusedTopLevel": false
+    },
+    "excludedPaths": [
+      "pyxis-components"
+    ]
+  }
