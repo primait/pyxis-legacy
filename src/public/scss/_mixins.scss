@@ -1,1 +1,10 @@
-// Nothing here yet
+@mixin hackyFlexboxChildrenSpacing($margin) {
+  margin-left: -$margin;
+  margin-right: -$margin;
+
+  // Child selector used because this is the only way these margins can work
+  > * {
+    margin-left: $margin;
+    margin-right: $margin;
+  }
+}

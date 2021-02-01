@@ -37,13 +37,15 @@ sidebar =
         |> LinkNode.addChild (LinkNode.leaf Route.UIKits)
         |> LinkNode.addChild (LinkNode.leaf Route.Fonts)
         |> LinkNode.addChild (LinkNode.leaf Route.Icons)
+    , LinkNode.node Route.Components
+        |> LinkNode.addChild (LinkNode.leaf Route.Button)
     ]
 
 
 view : Sidebar -> Html Msg
 view sidebarConfig =
     nav
-        [ class "pyxis__sidebar" ]
+        [ class "sidebar" ]
         (List.map (LinkNode.view Toggle OnRouteChange) sidebarConfig)
 
 

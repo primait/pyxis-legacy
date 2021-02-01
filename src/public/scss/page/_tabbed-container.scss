@@ -1,0 +1,30 @@
+// .tabbed-container {
+// }
+
+.tabbed-container__label-container {
+  @include hackyFlexboxChildrenSpacing(rem(20px));
+
+  display: flex;
+  flex-flow: row wrap;
+  font-family: font(heavy);
+  margin-bottom: rem(20px);
+}
+
+.tabbed-container__label-container__label {
+  text-decoration-thickness: rem(2px);
+}
+
+.tabbed-container__label-container__label:hover {
+  text-decoration-color: color(shape);
+  text-decoration-line: underline;
+}
+
+.tabbed-container__label-container__label__active,
+.tabbed-container__label-container__label__active:hover {
+  text-decoration-color: color(brand);
+  text-decoration-line: underline;
+}
+
+.tabbed-container__content-container {
+  margin-bottom: rem(40px);
+}

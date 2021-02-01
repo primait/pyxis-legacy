@@ -9,13 +9,14 @@ module Pyxis.Route exposing
     , routeToString
     )
 
-import Browser.Navigation as Nav
 import Url exposing (Url)
-import Url.Parser as Parser exposing ((</>), Parser, oneOf, s, string)
+import Url.Parser as Parser exposing ((</>), Parser, oneOf, s)
 
 
 type Route
     = BorderRadius
+    | Actions
+    | Button
     | Colors
     | Components
     | Containers
@@ -41,6 +42,7 @@ parser : Parser (Route -> a) a
 parser =
     oneOf
         [ Parser.map BorderRadius (s "patterns" </> s "border-radius")
+        , Parser.map Button (s "components" </> s "actions" </> s "button")
         , Parser.map Colors (s "style" </> s "colors")
         , Parser.map Components (s "components")
         , Parser.map Containers (s "patterns" </> s "containers")
@@ -80,32 +82,17 @@ routeToString page =
 routeToPieces : Route -> List String
 routeToPieces page =
     case page of
-        Welcome ->
-            []
-
-        GetStarted ->
-            []
-
-        Style ->
-            [ "login" ]
-
-        Colors ->
-            [ "style", "colors" ]
-
-        Typography ->
-            [ "style", "typography" ]
-
-        Logo ->
-            [ "style", "logo" ]
-
-        Illustration ->
-            [ "style", "illustration" ]
-
-        Iconography ->
-            [ "style", "iconography" ]
+        Actions ->
+            [ "components", "actions" ]
 
         BorderRadius ->
             [ "patterns", "border-radius" ]
+
+        Button ->
+            [ "components", "actions", "button" ]
+
+        Colors ->
+            [ "style", "colors" ]
 
         Components ->
             [ "components" ]
@@ -122,17 +109,35 @@ routeToPieces page =
         Fonts ->
             [ "tools-and-resources", "fonts" ]
 
+        GetStarted ->
+            []
+
         GrammarAndMechanics ->
             [ "content", "grammar-and-mechanics" ]
+
+        Iconography ->
+            [ "style", "iconography" ]
 
         Icons ->
             [ "tools-and-resources", "icons" ]
 
+        Illustration ->
+            [ "style", "illustration" ]
+
+        Logo ->
+            [ "style", "logo" ]
+
         Patterns ->
             [ "patterns" ]
 
+        Style ->
+            [ "login" ]
+
         Tools ->
             [ "tools-and-resources" ]
+
+        Typography ->
+            [ "style", "typography" ]
 
         UIKits ->
             [ "tools-and-resources", "ui-kits" ]
@@ -140,51 +145,33 @@ routeToPieces page =
         VoiceAndTone ->
             [ "content", "voice-and-tone" ]
 
+        Welcome ->
+            []
+
 
 routeToLabel : Route -> String
 routeToLabel route =
     case route of
-        Welcome ->
-            "Welcome"
-
-        GetStarted ->
-            "Start using Pyxis"
-
-        Style ->
-            "Style"
-
-        Content ->
-            "Content"
-
-        Patterns ->
-            "Patterns"
-
-        Components ->
-            "Components"
-
-        Tools ->
-            "Tools and Resources"
-
-        Logo ->
-            "Logo"
-
-        Typography ->
-            "Typography"
-
-        Colors ->
-            "Colors"
-
-        Illustration ->
-            "Illustration"
-
-        Iconography ->
-            "Iconography"
+        Actions ->
+            "Actions"
 
         BorderRadius ->
             "Border Radius"
 
+        Button ->
+            "Button"
+
+        Colors ->
+            "Colors"
+
+        Components ->
+            "Components"
+
         Containers ->
             "Containers"
+
+        Content ->
+            "Content"
 
         ElevationAndShadows ->
             "Elevation and Shadows"
@@ -192,17 +179,44 @@ routeToLabel route =
         Fonts ->
             "Fonts"
 
+        GetStarted ->
+            "Start using Pyxis"
+
         GrammarAndMechanics ->
             "Grammar and Mechanics"
 
+        Iconography ->
+            "Iconography"
+
         Icons ->
             "Icons"
+
+        Illustration ->
+            "Illustration"
+
+        Logo ->
+            "Logo"
+
+        Patterns ->
+            "Patterns"
+
+        Style ->
+            "Style"
+
+        Tools ->
+            "Tools and Resources"
+
+        Typography ->
+            "Typography"
 
         UIKits ->
             "UI Kits"
 
         VoiceAndTone ->
             "Voice and Tone"
+
+        Welcome ->
+            "Welcome"
 
 
 routeToSlug : Route -> String

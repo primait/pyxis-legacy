@@ -1,12 +1,9 @@
-module Pyxis.Pages.Typography exposing (Msg, update, view)
+module Pyxis.Page.Typography exposing (Msg, update, view)
 
-import Html exposing (Html, a, article, br, div, h1, h2, h3, h4, h5, hr, li, p, section, span, table, tbody, td, text, th, thead, tr, ul)
-import Html.Attributes exposing (class, id, style)
-import Html.Events exposing (onClick)
+import Html exposing (Html, article, div, h1, h2, h3, h4, h5, p, section, span, text)
+import Html.Attributes exposing (class, id)
 import Prima.Pyxis.Table as Table
 import Pyxis.PageHeader as PageHeader exposing (PageHeader)
-import Pyxis.Pages.Colors as Colors exposing (Color, PyxisColor, pyxisColorToHexRGB)
-import Pyxis.Route as Route
 import SmoothScroll exposing (scrollTo)
 import Task
 
@@ -244,11 +241,11 @@ typographyHead =
     { title = "Typography"
     , subtitle = "In questa sezione puoi verificare dimensioni dei caratteri, tipo di font e specifiche di utilizzo."
     , links =
-        [ { label = "Il font istituzionale", clickMsg = SmoothScroll "typography-font-section" }
-        , { label = "Font weight", clickMsg = SmoothScroll "typography-font-weight-section" }
-        , { label = "Heading style", clickMsg = SmoothScroll "typography-heading-styles-section" }
-        , { label = "Body style", clickMsg = SmoothScroll "typography-body-styles-section" }
-        , { label = "Il font del marchio", clickMsg = SmoothScroll "typography-mark-font-section" }
+        [ { label = "Il font istituzionale", clickMsg = SmoothScroll "page-typography-font-section" }
+        , { label = "Font weight", clickMsg = SmoothScroll "page-typography-font-weight-section" }
+        , { label = "Heading style", clickMsg = SmoothScroll "page-typography-heading-styles-section" }
+        , { label = "Body style", clickMsg = SmoothScroll "page-typography-body-styles-section" }
+        , { label = "Il font del marchio", clickMsg = SmoothScroll "page-typography-mark-font-section" }
         ]
     }
 
@@ -257,8 +254,8 @@ renderSectionFont : Html Msg
 renderSectionFont =
     -- 1px border, flex
     section
-        [ class "inset-section typography-font-section", id "typography-font-section" ]
-        [ div [ class "typography-font-section__intro" ]
+        [ class "inset-section page-typography-font-section", id "page-typography-font-section" ]
+        [ div [ class "page-typography-font-section__intro" ]
             [ h2 []
                 [ text "Il font istituzionale" ]
             , p []
@@ -266,27 +263,27 @@ renderSectionFont =
                 ]
             ]
         , div
-            [ class "typography-font-section__sample" ]
+            [ class "page-typography-font-section__sample" ]
             [ text "Aa" ]
-        , div [ class "typography-font-section__specs fs-small" ]
-            [ div [ class "typography-font-section__specs__item" ]
-                [ span [ class "typography-font-section__specs__item__label" ] [ text "CATEGORY" ]
+        , div [ class "page-typography-font-section__specs fs-small" ]
+            [ div [ class "page-typography-font-section__specs__item" ]
+                [ span [ class "page-typography-font-section__specs__item__label" ] [ text "CATEGORY" ]
                 , span [] [ text "Sans-serif" ]
                 ]
-            , div [ class "typography-font-section__specs__item" ]
-                [ span [ class "typography-font-section__specs__item__label" ] [ text "CLASSIFICATION" ]
+            , div [ class "page-typography-font-section__specs__item" ]
+                [ span [ class "page-typography-font-section__specs__item__label" ] [ text "CLASSIFICATION" ]
                 , span [] [ text "Geometric" ]
                 ]
-            , div [ class "typography-font-section__specs__item" ]
-                [ span [ class "typography-font-section__specs__item__label" ] [ text "DESIGNER" ]
+            , div [ class "page-typography-font-section__specs__item" ]
+                [ span [ class "page-typography-font-section__specs__item__label" ] [ text "DESIGNER" ]
                 , span [] [ text "Adrian Frutiger" ]
                 ]
-            , div [ class "typography-font-section__specs__item" ]
-                [ span [ class "typography-font-section__specs__item__label" ] [ text "FOUNDRY" ]
+            , div [ class "page-typography-font-section__specs__item" ]
+                [ span [ class "page-typography-font-section__specs__item__label" ] [ text "FOUNDRY" ]
                 , span [] [ text "Linotype GmbH" ]
                 ]
-            , div [ class "typography-font-section__specs__item" ]
-                [ span [ class "typography-font-section__specs__item__label" ] [ text "RELEASED" ]
+            , div [ class "page-typography-font-section__specs__item" ]
+                [ span [ class "page-typography-font-section__specs__item__label" ] [ text "RELEASED" ]
                 , span [] [ text "1988" ]
                 ]
             ]
@@ -296,7 +293,7 @@ renderSectionFont =
 renderSectionFontWeight : Html Msg
 renderSectionFontWeight =
     section
-        [ class "typography-font-weight-section", id "typography-font-weight-section" ]
+        [ class "page-typography-font-weight-section", id "page-typography-font-weight-section" ]
         [ h2 [] [ text "Font Weight" ]
         , Table.render tableState weightsTableConfig
         ]
@@ -304,7 +301,7 @@ renderSectionFontWeight =
 
 renderSectionHeadingStyles : Html Msg
 renderSectionHeadingStyles =
-    section [ class "typography-heading-styles-section", id "typography-heading-styles-section" ]
+    section [ class "page-typography-heading-styles-section", id "page-typography-heading-styles-section" ]
         [ h2 [] [ text "Heading Styles" ]
         , Table.render tableState headingsTableConfig
         ]
@@ -313,7 +310,7 @@ renderSectionHeadingStyles =
 renderSectionBodyStyles : Html Msg
 renderSectionBodyStyles =
     section
-        [ class "typography-body-styles-section", id "typography-body-styles-section" ]
+        [ class "page-typography-body-styles-section", id "page-typography-body-styles-section" ]
         [ h2 [] [ text "Body Styles" ]
         , Table.render tableState sizesTableConfig
         ]
@@ -321,29 +318,29 @@ renderSectionBodyStyles =
 
 renderSectionMarkFont : Html Msg
 renderSectionMarkFont =
-    section [ class "typography-mark-font-section inset-section", id "typography-mark-font-section" ]
+    section [ class "page-typography-mark-font-section inset-section", id "page-typography-mark-font-section" ]
         [ div []
             [ h2 [] [ text "Il font del marchio" ]
             , p [] [ text "Il font del logo è il Rubrik nelle varianti: Light, Regular, Semibold e Bold" ]
             ]
         , div []
-            -- TODO: use Rubrik font
+            -- To be done later: use Rubrik font
             [ div []
                 [ div []
                     [ h5 [] [ text "RUBRIK LIGHT" ]
-                    , p [ class "typography-alphabet-sample" ]
+                    , p [ class "page-typography-alphabet-sample" ]
                         [ text "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890RUBRIK"
                         ]
                     ]
                 , div []
                     [ h5 [] [ text "RUBRIK REGULAR" ]
-                    , p [ class "typography-alphabet-sample" ]
+                    , p [ class "page-typography-alphabet-sample" ]
                         [ text "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890RUBRIK"
                         ]
                     ]
                 , div []
                     [ h5 [] [ text "RUBRIK SEMIBOLD" ]
-                    , p [ class "typography-alphabet-sample" ]
+                    , p [ class "page-typography-alphabet-sample" ]
                         [ text "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890RUBRIK"
                         ]
                     ]

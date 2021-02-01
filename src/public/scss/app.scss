@@ -1,13 +1,14 @@
 $fontPath: "/fonts";
 
 @import "pyxis-npm/src/scss/pyxis";
+
 @import "variables";
 @import "mixins";
-@import "sidebar";
-@import "table";
-@import "pagehead";
-@import "pages/style/root";
 @import "icons";
+
+@import "sidebar";
+
+@import "page";
 
 .pyxis {
   color: color(text, dark);
@@ -17,7 +18,7 @@ $fontPath: "/fonts";
   // grid-template-rows: auto;
 }
 
-.pyxis__content {
+.content {
   overflow: scroll;
   width: 100%;
 

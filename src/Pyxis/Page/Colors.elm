@@ -1,4 +1,4 @@
-module Pyxis.Pages.Colors exposing
+module Pyxis.Page.Colors exposing
     ( Color(..)
     , Model
     , Msg(..)
@@ -16,7 +16,7 @@ module Pyxis.Pages.Colors exposing
     , view
     )
 
-import Html exposing (Html, article, div, h1, h2, hr, li, p, section, span, text, ul)
+import Html exposing (Html, article, div, h2, li, p, section, span, text, ul)
 import Html.Attributes exposing (class, classList, id, style)
 import Html.Events exposing (onClick)
 import Pyxis.PageHeader as PageHeader exposing (PageHeader)
@@ -64,12 +64,12 @@ updateColorCopied bool model =
 
 view : Model -> Html Msg
 view model =
-    div [ class "pyxis__content__colors" ] [ renderColors model ]
+    div [ class "page-color" ] [ renderColors model ]
 
 
 renderColors : Model -> Html Msg
 renderColors model =
-    article [ class "pyxis__content__colors__section" ]
+    article [ class "page-color__section" ]
         [ PageHeader.view colorsHead
         , section [ class "colors-section-institutional", id "colors-section-institutional" ]
             [ h2 [] [ text "I colori istituzionali" ]
@@ -81,7 +81,7 @@ renderColors model =
             , p [ class "c-text-base" ] [ text "Qui puoi trovare la palette completa dei colori che utilizziamo su Prima.it. Fai sempre attenzione ad applicarli in modo corretto, copiando gli esadecimali di riferimento o verificando le specifiche RGBA." ]
             ]
         , ul
-            [ class "pyxis__content__colors__section__list"
+            [ class "page-color__section__list"
             ]
             (List.map (renderColor model.colorCopied) model.colors)
         ]
@@ -101,10 +101,10 @@ colorsHead =
 renderColor : Bool -> PyxisColor -> Html Msg
 renderColor colorCopied ({ color, variant } as pyxisColor) =
     li
-        [ classList [ ( "pyxis__content__colors__section__list__item", True ), ( "colorCopied", colorCopied ) ] ]
+        [ classList [ ( "page-color__section__list__item", True ), ( "colorCopied", colorCopied ) ] ]
         [ renderSample pyxisColor
         , div
-            [ class "pyxis__content__colors__section__list__item__body" ]
+            [ class "page-color__section__list__item__body" ]
             [ renderName color
             , renderVariant variant
             , renderHexRGB pyxisColor
@@ -115,7 +115,7 @@ renderColor colorCopied ({ color, variant } as pyxisColor) =
 renderSample : PyxisColor -> Html Msg
 renderSample pyxisColor =
     div
-        [ class "pyxis__content__colors__section__list__item__sample"
+        [ class "page-color__section__list__item__sample"
         , style "background-color" (pyxisColorToHexRGB pyxisColor)
         ]
         []
@@ -123,22 +123,22 @@ renderSample pyxisColor =
 
 renderName : Color -> Html Msg
 renderName color =
-    span [ class "pyxis__content__colors__section__list__item__name" ] [ text <| colorToLabel color ]
+    span [ class "page-color__section__list__item__name" ] [ text <| colorToLabel color ]
 
 
 renderVariant : Variant -> Html Msg
 renderVariant variant =
-    span [ class "pyxis__content__colors__section__list__item__variant" ] [ text <| variantToLabel variant ]
+    span [ class "page-color__section__list__item__variant" ] [ text <| variantToLabel variant ]
 
 
 renderHexRGB : PyxisColor -> Html Msg
 renderHexRGB pyxisColor =
     div
-        [ class "pyxis__content__colors__section__list__item__copyable"
+        [ class "page-color__section__list__item__copyable"
         , onClick (CopyToClipboard pyxisColor)
         ]
-        [ span [ class "pyxis__content__colors__section__list__item__copyable__text" ] [ text (pyxisColorToHexRGB pyxisColor) ]
-        , span [ class "pyxis__content__colors__section__list__item__copyable__icon icon-sheet" ] []
+        [ span [ class "page-color__section__list__item__copyable__text" ] [ text (pyxisColorToHexRGB pyxisColor) ]
+        , span [ class "page-color__section__list__item__copyable__icon icon-sheet" ] []
         ]
 
 
@@ -190,7 +190,9 @@ type Color
 
 
 type alias PyxisColor =
-    { variant : Variant, color : Color }
+    { variant : Variant
+    , color : Color
+    }
 
 
 type Variant

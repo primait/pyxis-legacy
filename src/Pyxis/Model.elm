@@ -3,6 +3,7 @@ module Pyxis.Model exposing
     , Model
     , Msg(..)
     , initialModel
+    , updateButton
     , updateColors
     , updateModel
     , updateRoute
@@ -11,19 +12,21 @@ module Pyxis.Model exposing
 
 import Browser exposing (UrlRequest)
 import Browser.Navigation as Nav
-import Pyxis.Pages.Colors as Colors
-import Pyxis.Pages.Typography as Typography
+import Pyxis.Page.Button as Button
+import Pyxis.Page.Colors as Colors
+import Pyxis.Page.Typography as Typography
 import Pyxis.Route as Route
 import Pyxis.Sidebar as Sidebar exposing (Sidebar)
 import Url exposing (Url)
 
 
 type Msg
-    = OnUrlChange Url
-    | OnUrlRequest UrlRequest
-    | OnRouteChange Route.Route
-    | SidebarMsg Sidebar.Msg
+    = ButtonMsg Button.Msg
     | ColorsMsg Colors.Msg
+    | OnRouteChange Route.Route
+    | OnUrlChange Url
+    | OnUrlRequest UrlRequest
+    | SidebarMsg Sidebar.Msg
     | TypographyMsg Typography.Msg
 
 
@@ -31,6 +34,7 @@ type alias Model =
     { route : Route.Route
     , routeKey : Nav.Key
     , sidebar : Sidebar
+    , buttonModel : Button.Model
     , colorsModel : Colors.Model
     }
 
@@ -42,6 +46,7 @@ initialModel url key =
             |> Maybe.withDefault Route.Welcome
     , routeKey = key
     , sidebar = Sidebar.sidebar
+    , buttonModel = Button.initialModel
     , colorsModel = Colors.initialModel
     }
 
@@ -59,6 +64,11 @@ updateRoute route =
 updateSidebar : Sidebar -> Model -> Model
 updateSidebar sidebarModel =
     updateModel (\m -> { m | sidebar = sidebarModel })
+
+
+updateButton : Button.Model -> Model -> Model
+updateButton buttonModel =
+    updateModel (\m -> { m | buttonModel = buttonModel })
 
 
 updateColors : Colors.Model -> Model -> Model

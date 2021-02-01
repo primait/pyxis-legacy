@@ -1,6 +1,6 @@
-module Pyxis.Pages.Style exposing (view)
+module Pyxis.Page.Style exposing (view)
 
-import Html exposing (..)
+import Html exposing (Html, text)
 import Pyxis.Model exposing (Msg)
 
 
