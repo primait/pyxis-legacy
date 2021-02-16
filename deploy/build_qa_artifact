@@ -26,4 +26,4 @@ yarn run release
 tar czf ${REVISION}-${DEPLOY_ID}-${ENV}.tar.gz -C dist .
 
 
-aws --region="eu-west-1" s3 cp pyxis.tar.gz s3://prima-artifacts-encrypted/microservices/pyxis/${REVISION}-${DEPLOY_ID}-${ENV}.tar.gz
+aws --region="eu-west-1" s3 cp ${REVISION}-${DEPLOY_ID}-${ENV}.tar.gz s3://prima-artifacts-encrypted/microservices/pyxis/${REVISION}-${DEPLOY_ID}-${ENV}.tar.gz
