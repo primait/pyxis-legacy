@@ -262,7 +262,7 @@ Resources:
             DeploymentMinimumHealthyPercent,
           ]
       Role:
-        Fn::ImportValue: !Sub ecs-roles-Pyxis-${Environment}-service
+        Fn::ImportValue: !Sub ecs-roles-pyxis-${Environment}-service
       Tags:
         - Key: Name
           Value: !Ref AWS::StackName
