@@ -5,7 +5,7 @@ set +e
 REVISION=${DRONE_COMMIT_SHA:0:15}
 HASH=$(echo -n $DRONE_BRANCH_FROM_QAINIT | md5sum | awk '{print $1}')
 DEPLOY_ID=${HASH:0:8}
-
+ENV=qa
 
 
 # Check if artifact esists for current branch
