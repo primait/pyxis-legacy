@@ -31,20 +31,14 @@ Mappings:
   ECSCluster:
     qa:
       id: ""
-      MixEnv: qa
       PyxisCpu: 32
       PyxisRam: 32
       MinServiceSize: 1
       MaxServiceSize: 1
-      PyxisHostname: ""
       HealthyThreshold: 10
       DeploymentMaximumPercent: 100
       DeploymentMinimumHealthyPercent: 0
-      ALBShortName: ""
-      HealthCheckGracePeriodSeconds: 120
-      DnsServers:
-        - "172.17.0.1"
-        - "10.43.0.2"    
+      ALBShortName: "" 
     staging:
       id: ecs-cluster-allinone-staging-ECSCluster-1ECKQ785CYFWL
       PyxisCpu: 32
@@ -248,7 +242,7 @@ Resources:
       TaskDefinition:
         Ref: TaskDefinitionPyxis
       LoadBalancers:
-        - ContainerName: Pyxis
+        - ContainerName: pyxis
           ContainerPort: 80
           TargetGroupArn:
             Ref: ApplicationLoadBalancerTargetGroupPublic
@@ -271,7 +265,7 @@ Resources:
         - Key: prima:environment
           Value: !Ref Environment
         - Key: prima:application-name
-          Value: Pyxis
+          Value: pyxis
         - Key: prima:cluster-role
           Value: allinone
     DependsOn:
