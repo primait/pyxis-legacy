@@ -14,7 +14,7 @@ Parameters:
     Type: String
   TaskDesiredCount:
     Type: Number
-    Default: 2
+    Default: 1
   ALBShortName:
     Type: String
     Default: ""
