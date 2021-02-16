@@ -7,6 +7,9 @@ Parameters:
       - staging
       - production
       - qa
+  ECSClusterName:
+    Type: String
+    Default: ''      
   ReleaseVersion:
     Type: String
   TaskDesiredCount:
@@ -239,7 +242,7 @@ Resources:
     Type: AWS::ECS::Service
     Condition: IsQA
     Properties:
-      Cluster: !FindInMap [ECSCluster, !Ref Environment, id]
+      Cluster: !Ref ECSClusterName
       SchedulingStrategy: REPLICA
       DesiredCount: !Ref TaskDesiredCount
       TaskDefinition:
