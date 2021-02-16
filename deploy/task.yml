@@ -275,7 +275,7 @@ Resources:
         - Key: prima:cluster-role
           Value: allinone
     DependsOn:
-      - ApplicationLoadBalancerHttpsListenerRule
+      - ApplicationLoadBalancerHttpsListenerRuleQA
 
   ApplicationLoadBalancerTargetGroupPublic:
       Type: AWS::ElasticLoadBalancingV2::TargetGroup
