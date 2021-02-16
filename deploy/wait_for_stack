@@ -45,10 +45,15 @@ function check_deploy_status() {
   done
 }
 
+
 if [ "${ENV}" = "staging" ]; then
   check_deploy_status "ecs-task-pyxis-staging"
 elif [ "${ENV}" = "production" ]; then
   check_deploy_status "ecs-task-pyxis-production"
+elif [ "${ENV}" = "qa" ]; then
+  HASH=$(echo -n "${DRONE_BRANCH_FROM_QAINIT}" | md5sum | awk '{print $1}')
+  STACK_NAME="ecs-task-pyxis-qa-${HASH}"
+  check_deploy_status "${STACK_NAME}"
 else
   echo "${ENV} non supportato!"
   exit 1

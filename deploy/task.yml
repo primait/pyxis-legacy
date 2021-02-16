@@ -6,11 +6,18 @@ Parameters:
     AllowedValues:
       - staging
       - production
+      - qa
   ReleaseVersion:
     Type: String
   TaskDesiredCount:
     Type: Number
     Default: 2
+  ALBShortName:
+    Type: String
+    Default: ""
+  EnvHash:
+    Type: String
+    Default: ""    
   HostnamePattern:
     Type: String
   HostnamePatternPriority:
@@ -19,6 +26,22 @@ Parameters:
 
 Mappings:
   ECSCluster:
+    qa:
+      id: ""
+      MixEnv: qa
+      PyxisCpu: 32
+      PyxisRam: 32
+      MinServiceSize: 1
+      MaxServiceSize: 1
+      PyxisHostname: ""
+      HealthyThreshold: 10
+      DeploymentMaximumPercent: 100
+      DeploymentMinimumHealthyPercent: 0
+      ALBShortName: ""
+      HealthCheckGracePeriodSeconds: 120
+      DnsServers:
+        - "172.17.0.1"
+        - "10.43.0.2"    
     staging:
       id: ecs-cluster-allinone-staging-ECSCluster-1ECKQ785CYFWL
       PyxisCpu: 32
@@ -41,11 +64,14 @@ Mappings:
       ALBShortName: pyxis-production
 
 Conditions:
+  IsQA: !Equals [!Ref Environment, qa]
+  IsNotQA: !Not [!Equals [!Ref Environment, qa]]
   TaskDesiredCountZero: !Equals [!Ref TaskDesiredCount, 0]
 
 Resources:
   ECSServicePyxis:
     Type: AWS::ECS::Service
+    Condition: IsNotQA
     Properties:
       Cluster: !FindInMap [ECSCluster, !Ref Environment, id]
       PlacementStrategies:
@@ -83,6 +109,7 @@ Resources:
 
   ECSServicePyxisAutoscalingCpu:
     Type: AWS::ApplicationAutoScaling::ScalingPolicy
+    Condition: IsNotQA
     Properties:
       PolicyName: !Sub pyxis-application-autoscaling-cpu-${Environment}
       PolicyType: TargetTrackingScaling
@@ -96,6 +123,7 @@ Resources:
 
   ECSServicePyxisAutoscalingMemory:
     Type: AWS::ApplicationAutoScaling::ScalingPolicy
+    Condition: IsNotQA
     Properties:
       PolicyName: !Sub pyxis-application-autoscaling-memory-${Environment}
       PolicyType: TargetTrackingScaling
@@ -109,6 +137,7 @@ Resources:
 
   ECSServicePyxisScalableTarget:
     Type: AWS::ApplicationAutoScaling::ScalableTarget
+    Condition: IsNotQA
     Properties:
       MaxCapacity: !FindInMap [ECSCluster, !Ref Environment, MaxServiceSize]
       MinCapacity: !FindInMap [ECSCluster, !Ref Environment, MinServiceSize]
@@ -133,7 +162,8 @@ Resources:
           Cpu: !FindInMap [ECSCluster, !Ref Environment, PyxisCpu]
           MemoryReservation: !FindInMap [ECSCluster, !Ref Environment, PyxisRam]
           PortMappings:
-            - ContainerPort: 80
+            - HostPort: !If [IsQA, 15990, 0]
+              ContainerPort: 80
           Environment:
             - Name: AWS_STACK_NAME
               Value:
@@ -152,6 +182,7 @@ Resources:
 
   ApplicationLoadBalancerTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Condition: IsNotQA
     Properties:
       HealthCheckIntervalSeconds: 5
       HealthCheckPath: "/health-check"
@@ -166,9 +197,9 @@ Resources:
       UnhealthyThresholdCount: 2
       Matcher:
         HttpCode: "200"
-      Name: !FindInMap [ECSCluster, !Ref Environment, ALBShortName]
       Port: 80
       Protocol: HTTP
+      Name: !FindInMap [ECSCluster, !Ref Environment, ALBShortName]
       Tags:
         - Key: Name
           Value:
@@ -187,6 +218,7 @@ Resources:
 
   ApplicationLoadBalancerHttpsListenerRule:
     Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Condition: IsNotQA
     Properties:
       Actions:
         - Type: forward
@@ -199,3 +231,103 @@ Resources:
       ListenerArn:
         Fn::ImportValue: !Sub ALBPublicDefaultHttpsListener-http-${Environment}
       Priority: !Ref HostnamePatternPriority
+
+
+
+
+  ECSServicePyxisQA:
+    Type: AWS::ECS::Service
+    Condition: IsQA
+    Properties:
+      Cluster: !FindInMap [ECSCluster, !Ref Environment, id]
+      SchedulingStrategy: REPLICA
+      DesiredCount: !Ref TaskDesiredCount
+      TaskDefinition:
+        Ref: TaskDefinitionPyxis
+      LoadBalancers:
+        - ContainerName: Pyxis
+          ContainerPort: 80
+          TargetGroupArn:
+            Ref: ApplicationLoadBalancerTargetGroupPublic
+      DeploymentConfiguration:
+        MaximumPercent:
+          !FindInMap [ECSCluster, !Ref Environment, DeploymentMaximumPercent]
+        MinimumHealthyPercent:
+          !FindInMap [
+            ECSCluster,
+            !Ref Environment,
+            DeploymentMinimumHealthyPercent,
+          ]
+      Role:
+        Fn::ImportValue: !Sub ecs-roles-Pyxis-${Environment}-service
+      Tags:
+        - Key: Name
+          Value: !Ref AWS::StackName
+        - Key: prima:country
+          Value: IT
+        - Key: prima:environment
+          Value: !Ref Environment
+        - Key: prima:application-name
+          Value: Pyxis
+        - Key: prima:cluster-role
+          Value: allinone
+    DependsOn:
+      - ApplicationLoadBalancerHttpsListenerRule
+
+  ApplicationLoadBalancerTargetGroupPublic:
+      Type: AWS::ElasticLoadBalancingV2::TargetGroup
+      Condition: IsQA
+      Properties:
+        HealthCheckIntervalSeconds: 10
+        HealthCheckPath: "/health-check"
+        HealthCheckPort: traffic-port
+        HealthCheckProtocol: HTTP
+        HealthCheckTimeoutSeconds: 9
+        HealthyThresholdCount:
+          !FindInMap [ECSCluster, !Ref Environment, HealthyThreshold]
+        UnhealthyThresholdCount: 5
+        Matcher:
+          HttpCode: "200"
+        Port: 80
+        Protocol: HTTP          
+        Name:
+          Fn::Join:
+            - ""
+            - - Fn::FindInMap:
+                  - ECSCluster
+                  - Ref: Environment
+                  - ALBShortName
+              - Ref: ALBShortName
+        Tags:
+          - Key: prima:country
+            Value: IT
+          - Key: prima:environment
+            Value: !Ref Environment
+          - Key: prima:application-name
+            Value: pyxis
+          - Key: Name
+            Value:
+              Ref: AWS::StackName
+        TargetGroupAttributes:
+          - Key: deregistration_delay.timeout_seconds
+            Value: "30"
+          - Key: stickiness.enabled
+            Value: "false"
+        VpcId:
+          Fn::ImportValue: !Sub Vpc-${Environment}
+
+  ApplicationLoadBalancerHttpsListenerRuleQA:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Condition: IsQA
+    Properties:
+      Actions:
+        - Type: forward
+          TargetGroupArn:
+            Ref: ApplicationLoadBalancerTargetGroupPublic
+      Conditions:
+        - Field: host-header
+          Values:
+            - !Ref HostnamePattern
+      ListenerArn:
+        Fn::ImportValue: !Sub ALBPublicDefaultHttpsListener-http-${Environment}${EnvHash}
+      Priority: !Ref HostnamePatternPriority          

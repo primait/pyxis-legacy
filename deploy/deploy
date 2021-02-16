@@ -29,7 +29,7 @@ export VERSION
 export ENV=$1
 
 yarn run release
-
+tar czf ${VERSION}-${ENV}.tar.gz -C dist .
 aws --region="eu-west-1" s3 cp "${VERSION}"-"${ENV}".tar.gz s3://prima-artifacts-encrypted/microservices/pyxis/"${VERSION}"-"${ENV}".tar.gz
 
 function get_action() {
