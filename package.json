@@ -34,6 +34,6 @@
     "watch": "webpack serve --mode development --watch --progress",
     "build:site": "webpack --mode production --progress",
     "release": "webpack --mode production --progress && tar czf ${VERSION}-${ENV}.tar.gz -C dist .",
-    "release-qa": "webpack --mode production --progress && tar czf ${REVISION}-${DEPLOY_ID}-${ENV}.tar.gz -C dist ."
+    "release-qa": "webpack --mode production --progress && tar czf ${REVISION}-${DEPLOY_ID}-${ENV}.tar.gz -C dist . && ls -lart dist"
   }
 }
