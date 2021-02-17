@@ -2,10 +2,10 @@
 set -x
 set +e
 
-REVISION=${DRONE_COMMIT_SHA:0:15}
-HASH=$(echo -n $DRONE_BRANCH_FROM_QAINIT | md5sum | awk '{print $1}')
-DEPLOY_ID=${HASH:0:8}
-ENV=qa
+export REVISION=${DRONE_COMMIT_SHA:0:15}
+export HASH=$(echo -n $DRONE_BRANCH_FROM_QAINIT | md5sum | awk '{print $1}')
+export DEPLOY_ID=${HASH:0:8}
+export ENV=qa
 
 
 # Check if artifact esists for current branch
