@@ -9,7 +9,7 @@ service:
     - bash
     - javascript
   ports:
-    - type: web
+    - type: http
       port: 80
 
-depends_on:
+depends_on: {}
