@@ -1,0 +1,15 @@
+version: "0.1"
+
+countries:
+  - it
+
+service:
+  languages:
+    - elm
+    - bash
+    - javascript
+  ports:
+    - type: http
+      port: 80
+
+depends_on: {}
