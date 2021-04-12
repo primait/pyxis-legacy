@@ -1,18 +1,61 @@
 ---
 AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  Environment:
+    Type: String
+    AllowedValues:
+    - production
+    - staging
+    - qa
+
+Mappings:
+  Cluster:
+    qa:
+      OIDCProvider: oidc.eks.eu-west-1.amazonaws.com/id/80C981345A33060A104448DF6B84F463
+      Namespace: "*"
+    staging:
+      OIDCProvider: ""
+      Namespace: default
+    production:
+      OIDCProvider: ""
+      Namespace: default
 
 Resources:
   ECSTaskRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service:
-                - ecs-tasks.amazonaws.com
-            Action:
-              - sts:AssumeRole
+        Fn::Sub:
+          - |
+            {
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Principal": {
+                    "Service": "ecs-tasks.amazonaws.com"
+                  },
+                  "Action": [
+                    "sts:AssumeRole"
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Principal": {
+                    "Federated": "arn:aws:iam::${AWS::AccountId}:oidc-provider/${OIDCProvider}"
+                  },
+                  "Action": [
+                    "sts:AssumeRoleWithWebIdentity"
+                  ],
+                  "Condition": {
+                    "StringLike": {
+                      "${OIDCProvider}:sub": "system:serviceaccount:${Namespace}:pyxis"
+                    }
+                  }
+                }
+              ]
+            }
+          - OIDCProvider: !FindInMap [Cluster, !Ref Environment, OIDCProvider]
+            Namespace: !FindInMap [Cluster, !Ref Environment, Namespace]
       Path: "/"
       Policies:
         - PolicyName: !Sub ${AWS::StackName}-task
