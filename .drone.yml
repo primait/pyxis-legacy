@@ -662,4 +662,8 @@ depends_on:
 - deploy-it-staging
 - deploy-it-production
 
+---
+kind: signature
+hmac: 24e2c77aefdd45eee02a4b2a53ba9871fb29a56d86ae371ce6581c61e5b2ceb0
+
 ...
