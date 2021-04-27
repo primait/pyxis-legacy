@@ -56,9 +56,9 @@ steps:
   image: public.ecr.aws/prima/drone-tools:1.20.1
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
-  - check-roles-changes ecs-roles-pyxis-qa deploy/roles.yml
-  - check-roles-changes ecs-roles-pyxis-staging deploy/roles.yml
-  - check-roles-changes ecs-roles-pyxis-production deploy/roles.yml
+  - check-roles-changes ecs-roles-pyxis-qa deploy/roles.yml  ParameterKey=Environment,ParameterValue="qa"
+  - check-roles-changes ecs-roles-pyxis-staging deploy/roles.yml  ParameterKey=Environment,ParameterValue="staging"
+  - check-roles-changes ecs-roles-pyxis-production deploy/roles.yml  ParameterKey=Environment,ParameterValue="production"
   volumes:
   - name: ecs
     path: /etc/profile.d/ecs-credentials-endpoint
@@ -216,7 +216,7 @@ trigger:
   event:
   - promote
   target:
-  - qa
+  - qa-it
 
 ---
 kind: pipeline
@@ -438,7 +438,10 @@ trigger:
   event:
   - promote
   target:
-  - qa-stack
+  - qa-it
+
+depends_on:
+- build-qa
 
 ---
 kind: pipeline
@@ -647,8 +650,8 @@ trigger:
   - failure
   target:
     exclude:
-    - qa
-    - qa-stack
+    - qa-it
+    - qa-*
 
 depends_on:
 - default
@@ -658,9 +661,5 @@ depends_on:
 - deploy-it-qa
 - deploy-it-staging
 - deploy-it-production
-
----
-kind: signature
-hmac: 4e3ca0d8d9d5767d2951cf00a53cf174757e00ddec7116d453f40ed1feab0911
 
 ...

@@ -1,0 +1,131 @@
+name: pyxis
+environment: qa
+country: it
+
+containers:
+  - name: pyxis
+    image:
+      repository: public.ecr.aws/prima/pyxis
+      pullPolicy: IfNotPresent
+      tag: 1.12.2-2
+    securityContext: {}
+    environmentVars:
+      language: elm
+      role: web
+      bucket_name: prima-artifacts-encrypted
+      port: 80
+      extras: |-
+        - name: DD_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: ENV 
+          value: {{ .Values.environment }}      
+    ports:
+      - containerPort: 80
+        name: api
+        protocol: TCP
+    livenessProbe:
+      httpGet:
+        path: /health-check
+        port: 80
+      initialDelaySeconds: 15
+    readinessProbe:
+      httpGet:
+        path: /health-check
+        port: 80
+      initialDelaySeconds: 15
+    resources:
+      requests:
+        memory: 32Mi
+        cpu: 32m
+    volumeMounts: {}
+
+replicaCount: 1
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::001575623345:role/ecs-roles-pyxis-qa-ECSTaskRole-1ICY2YPNATLRM
+
+podAnnotations: {}
+  # ad.datadoghq.com/pyxis.logs: '[{"source":"pyxis","service":"pyxis"}]'
+
+podSecurityContext: {}
+
+volumes: {}
+
+nodeSelector:
+  com.prima.node/type: microservice
+
+# affinity: |-
+#   podAntiAffinity:
+#     preferredDuringSchedulingIgnoredDuringExecution:
+#       - weight: 100
+#         podAffinityTerm:
+#           labelSelector:
+#             matchExpressions:
+#               - key: app.kubernetes.io/name
+#                 operator: In
+#                 values:
+#                   - {{ .Values.name }}
+#               - key: app.kubernetes.io/version
+#                 operator: In
+#                 values:
+#                   - {{ .Values.version }}
+#           topologyKey: kubernetes.io/hostname
+#       - weight: 100
+#         podAffinityTerm:
+#           labelSelector:
+#             matchExpressions:
+#               - key: app.kubernetes.io/name
+#                 operator: In
+#                 values:
+#                   - {{ .Values.name }}
+#               - key: app.kubernetes.io/version
+#                 operator: In
+#                 values:
+#                   - {{ .Values.version }}
+#           topologyKey: failure-domain.beta.kubernetes.io/zone
+
+services:
+  - name: pyxis
+    spec: |-
+      type: ClusterIP
+      ports:
+        - port: 80
+          targetPort: 80
+          name: api
+          protocol: TCP
+  - name: pyxis-dns
+    annotations: |-
+      external-dns.alpha.kubernetes.io/hostname: pyxis-{{ .Values.hash }}.prima.qa
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+    spec: |-
+      type: ExternalName
+      externalName: traefik-private-it.prima.qa
+
+ingressroute:
+  - name: pyxis
+    spec: |-
+      entryPoints:
+        - websecure
+      routes:
+      - match: Host(`pyxis-{{ .Values.hash }}.prima.qa`)
+        kind: Rule
+        services:
+        - name: pyxis
+          port: 80
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 100
