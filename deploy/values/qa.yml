@@ -7,7 +7,7 @@ containers:
     image:
       repository: public.ecr.aws/prima/pyxis
       pullPolicy: IfNotPresent
-      tag: 1.12.2-2
+      tag: 1.12.2-4
     securityContext: {}
     environmentVars:
       language: elm
@@ -53,7 +53,7 @@ fullnameOverride: ""
 serviceAccount:
   create: true
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::001575623345:role/ecs-roles-pyxis-qa-ECSTaskRole-1ICY2YPNATLRM
+    eks.amazonaws.com/role-arn: arn:aws:iam::001575623345:role/ecs-roles-pyxis-qa-ECSTaskRole-1G6GD5RZCVUNW
 
 podAnnotations: {}
   # ad.datadoghq.com/pyxis.logs: '[{"source":"pyxis","service":"pyxis"}]'
@@ -107,10 +107,10 @@ services:
   - name: pyxis-dns
     annotations: |-
       external-dns.alpha.kubernetes.io/hostname: pyxis-{{ .Values.hash }}.prima.qa
-      external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     spec: |-
       type: ExternalName
-      externalName: traefik-private-it.prima.qa
+      externalName: traefik-public-it.prima.qa
 
 ingressroute:
   - name: pyxis
