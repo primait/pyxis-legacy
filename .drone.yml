@@ -56,9 +56,9 @@ steps:
   image: public.ecr.aws/prima/drone-tools:1.20.1
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
-  - check-roles-changes ecs-roles-pyxis-qa deploy/roles.yml  ParameterKey=Environment,ParameterValue="qa"
-  - check-roles-changes ecs-roles-pyxis-staging deploy/roles.yml  ParameterKey=Environment,ParameterValue="staging"
-  - check-roles-changes ecs-roles-pyxis-production deploy/roles.yml  ParameterKey=Environment,ParameterValue="production"
+  - check-roles-changes ecs-roles-pyxis-qa deploy/roles.yml ParameterKey=Environment,ParameterValue="qa"
+  - check-roles-changes ecs-roles-pyxis-staging deploy/roles.yml ParameterKey=Environment,ParameterValue="staging"
+  - check-roles-changes ecs-roles-pyxis-production deploy/roles.yml ParameterKey=Environment,ParameterValue="production"
   volumes:
   - name: ecs
     path: /etc/profile.d/ecs-credentials-endpoint
@@ -445,6 +445,36 @@ depends_on:
 
 ---
 kind: pipeline
+name: qainit-it
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  disable: true
+
+steps:
+- name: update-status
+  image: plugins/webhook
+  settings:
+    method: GET
+    signature-secret:
+      from_secret: qainitevo_secret
+    urls: ${QAINIT_DRONEAPI_URL}?hash=${HASH}&status=${DRONE_BUILD_STATUS}&name=pyxis
+
+trigger:
+  status:
+  - failure
+  - success
+  target:
+  - qa-it
+
+depends_on:
+- deploy-it-qa
+
+---
+kind: pipeline
 name: deploy-it-staging
 
 platform:
@@ -664,6 +694,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 24e2c77aefdd45eee02a4b2a53ba9871fb29a56d86ae371ce6581c61e5b2ceb0
+hmac: fed8e5f872112c38cc674e106c1dde6dd529ea76b8830ece0229ecee70c92454
 
 ...
