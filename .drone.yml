@@ -216,6 +216,7 @@ trigger:
   event:
   - promote
   target:
+  - qa-it
   - qa
 
 ---
@@ -438,7 +439,41 @@ trigger:
   event:
   - promote
   target:
+  - qa-it
   - qa-stack
+
+depends_on:
+- build-qa
+
+---
+kind: pipeline
+name: qainit-it
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  disable: true
+
+steps:
+- name: update-status
+  image: public.ecr.aws/prima/drone-webhook
+  settings:
+    method: GET
+    signature-secret:
+      from_secret: qainitevo_secret
+    urls: ${QAINIT_DRONEAPI_URL}?hash=${HASH}&status=${DRONE_BUILD_STATUS}&name=pyxis
+
+trigger:
+  status:
+  - failure
+  - success
+  target:
+  - qa-it
+
+depends_on:
+- deploy-it-qa
 
 ---
 kind: pipeline
@@ -521,7 +556,17 @@ platform:
   os: linux
   arch: amd64
 
+clone:
+  disable: true
+
 steps:
+- name: git-clone
+  image: public.ecr.aws/prima/drone-git:1.3-3
+  environment:
+    DRONE_SSH_KEY:
+      from_secret: drone_ssh_key
+    PLUGIN_DEPTH: 5
+
 - name: wait-for-artifact
   image: public.ecr.aws/prima/drone-tools:1.20.1
   commands:
@@ -647,8 +692,9 @@ trigger:
   - failure
   target:
     exclude:
-    - qa
     - qa-stack
+    - qa-it
+    - qa
 
 depends_on:
 - default
@@ -661,6 +707,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: b64a41b3b7a8e3eebf24be46c2931233e9151c5c1bb358261dbca89d43daffd8
+hmac: aa8ebf20670456526d5fce06d89172846b4822d8007506f5e10b8fd94fded354
 
 ...
