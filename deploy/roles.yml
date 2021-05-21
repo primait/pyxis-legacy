@@ -48,7 +48,7 @@ Resources:
                   ],
                   "Condition": {
                     "StringLike": {
-                      "${OIDCProvider}:sub": "system:serviceaccount:${Namespace}:pyxis"
+                      "${OIDCProvider}:sub": "system:serviceaccount:${Namespace}:pyxis-*"
                     }
                   }
                 }
