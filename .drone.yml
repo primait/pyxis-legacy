@@ -456,7 +456,7 @@ clone:
 
 steps:
 - name: update-status
-  image: plugins/webhook
+  image: public.ecr.aws/prima/drone-webhook
   settings:
     method: GET
     signature-secret:
@@ -554,7 +554,17 @@ platform:
   os: linux
   arch: amd64
 
+clone:
+  disable: true
+
 steps:
+- name: git-clone
+  image: public.ecr.aws/prima/drone-git:1.3-3
+  environment:
+    DRONE_SSH_KEY:
+      from_secret: drone_ssh_key
+    PLUGIN_DEPTH: 5
+
 - name: wait-for-artifact
   image: public.ecr.aws/prima/drone-tools:1.20.1
   commands:
@@ -680,8 +690,9 @@ trigger:
   - failure
   target:
     exclude:
+    - qa-stack
     - qa-it
-    - qa-*
+    - qa
 
 depends_on:
 - default
@@ -694,6 +705,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: fed8e5f872112c38cc674e106c1dde6dd529ea76b8830ece0229ecee70c92454
+hmac: 0eac106c1fa3df3738577b3ab2a9369794e4ea6d220f2435852ce7ff0cb99cb2
 
 ...
