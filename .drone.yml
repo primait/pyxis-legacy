@@ -18,7 +18,7 @@ steps:
     PLUGIN_DEPTH: 5
 
 - name: cache-restore
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - cache-restore
@@ -35,7 +35,7 @@ steps:
   - git-clone
 
 - name: check-secrets
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - check-secrets-grants
@@ -46,19 +46,19 @@ steps:
   - git-clone
 
 - name: check-public-docker-images
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - check-public-docker-images
   depends_on:
   - git-clone
 
 - name: check-roles-changes
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
-  - check-roles-changes ecs-roles-pyxis-qa deploy/roles.yml  ParameterKey=Environment,ParameterValue="qa"
-  - check-roles-changes ecs-roles-pyxis-staging deploy/roles.yml  ParameterKey=Environment,ParameterValue="staging"
-  - check-roles-changes ecs-roles-pyxis-production deploy/roles.yml  ParameterKey=Environment,ParameterValue="production"
+  - check-roles-changes ecs-roles-pyxis-qa deploy/roles.yml ParameterKey=Environment,ParameterValue="qa"
+  - check-roles-changes ecs-roles-pyxis-staging deploy/roles.yml ParameterKey=Environment,ParameterValue="staging"
+  - check-roles-changes ecs-roles-pyxis-production deploy/roles.yml ParameterKey=Environment,ParameterValue="production"
   volumes:
   - name: ecs
     path: /etc/profile.d/ecs-credentials-endpoint
@@ -66,7 +66,7 @@ steps:
   - git-clone
 
 - name: build-image
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - sed -i 's/USER node/USER root/g' ./Dockerfile
   - docker build -t prima/pyxis-ci:${DRONE_COMMIT} ./
@@ -104,7 +104,7 @@ steps:
   - frontend-dependencies
 
 - name: cache-save
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - cache-save .cache .elm node_modules elm-stuff
@@ -159,7 +159,7 @@ steps:
     PLUGIN_DEPTH: 5
 
 - name: cache-restore
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - cache-restore
@@ -176,7 +176,7 @@ steps:
   - git-clone
 
 - name: build-image
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - sed -i 's/USER node/USER root/g' ./Dockerfile
   - docker build -t prima/pyxis-ci:${DRONE_COMMIT} ./
@@ -239,7 +239,7 @@ steps:
     PLUGIN_DEPTH: 5
 
 - name: cache-restore
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - cache-restore
@@ -256,7 +256,7 @@ steps:
   - git-clone
 
 - name: build-image
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - sed -i 's/USER node/USER root/g' ./Dockerfile
   - docker build -t prima/pyxis-ci:${DRONE_COMMIT} ./
@@ -323,7 +323,7 @@ steps:
     PLUGIN_DEPTH: 5
 
 - name: cache-restore
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - cache-restore
@@ -340,7 +340,7 @@ steps:
   - git-clone
 
 - name: build-image
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - sed -i 's/USER node/USER root/g' ./Dockerfile
   - docker build -t prima/pyxis-ci:${DRONE_COMMIT} ./
@@ -402,14 +402,14 @@ steps:
     PLUGIN_DEPTH: 5
 
 - name: pre-start
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - pre-start-scripts
   depends_on:
   - git-clone
 
 - name: deploy
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - ./deploy/deploy-it qa
@@ -495,14 +495,14 @@ steps:
     PLUGIN_DEPTH: 5
 
 - name: pre-start
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - pre-start-scripts
   depends_on:
   - git-clone
 
 - name: deploy
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - ./deploy/deploy-it staging
@@ -568,7 +568,7 @@ steps:
     PLUGIN_DEPTH: 5
 
 - name: wait-for-artifact
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - ./deploy/deploy-it production --wait-for-artifact
@@ -613,14 +613,14 @@ steps:
     PLUGIN_DEPTH: 5
 
 - name: pre-start
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - pre-start-scripts
   depends_on:
   - git-clone
 
 - name: deploy
-  image: public.ecr.aws/prima/drone-tools:1.20.1
+  image: public.ecr.aws/prima/drone-tools:1.21.0
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - ./deploy/deploy-it production
@@ -679,7 +679,7 @@ steps:
 - name: email-failure
   image: public.ecr.aws/prima/drone-email
   settings:
-    from: noreply@prima.it
+    from: drone@prima.it
     host: email-smtp.eu-west-1.amazonaws.com
   environment:
     PLUGIN_PASSWORD:
@@ -707,6 +707,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: aa8ebf20670456526d5fce06d89172846b4822d8007506f5e10b8fd94fded354
+hmac: d4aa809b1aafe580f5efeae3c6575f57fbd94cc87d0893059ee5ba82583e0e98
 
 ...

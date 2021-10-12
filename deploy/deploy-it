@@ -66,19 +66,14 @@ fi
 
 if [ "${ENV}" = "qa" ]; then
 
-  TASK_DESIRED_COUNT=1
+  aws eks update-kubeconfig --name main-qa
+  chmod 400 /root/.kube/config
 
-  aws cloudformation deploy --no-fail-on-empty-changeset --stack-name "ecs-task-pyxis-qa-${HASH}" \
-    --template-file "${PWD}"/deploy/task.yml \
-    --parameter-overrides ReleaseVersion="${VERSION}" \
-    TaskDesiredCount="${TASK_DESIRED_COUNT}" \
-    Environment="${ENV}" \
-    ECSClusterName="${ECS_CLUSTER_NAME}" \
-    EnvHash="${HASH}" \
-    HostnamePatternPriority="62" \
-    HostnamePattern="pyxis-${HASH}.qa.colaster.com" \
-    ALBShortName="pyxis-qa-${HASH:0:8}" \
-    --tags "qainit=${DRONE_BRANCH_FROM_QAINIT}"
+  helm plugin install https://github.com/hypnoglow/helm-s3.git
+
+  helm repo add prima s3://prima-deploy/helm
+
+  helm upgrade --install --timeout 300s -n "${HASH}" "pyxis-web" prima/microservice --version "0.2.0" --set version="$VERSION" -f deploy/values/qa.yml
 
 elif
 
